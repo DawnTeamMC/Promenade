@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-public class BlueberryBushBlock extends SweetBerryBushBlock  {
+public class BlueberryBushBlock extends SweetBerryBushBlock {
 	public BlueberryBushBlock(Settings builder) {
 		super(builder);
 	}

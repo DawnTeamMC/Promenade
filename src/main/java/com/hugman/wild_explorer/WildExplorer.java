@@ -4,7 +4,6 @@ import com.hugman.dawn.api.creator.ModData;
 import com.hugman.wild_explorer.init.WEBiomePack;
 import com.hugman.wild_explorer.init.WEBlockPack;
 import com.hugman.wild_explorer.init.WEItemPack;
-import com.hugman.wild_explorer.init.client.WEColorMaps;
 import com.hugman.wild_explorer.init.world.WEConfiguredFeatures;
 import com.hugman.wild_explorer.init.world.WEFeatures;
 import net.fabricmc.api.ModInitializer;

@@ -3,7 +3,6 @@ package com.hugman.wild_explorer.init;
 import com.hugman.dawn.api.creator.ItemCreator;
 import com.hugman.wild_explorer.init.data.WEFood;
 import net.minecraft.item.AliasedBlockItem;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
