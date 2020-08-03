@@ -13,7 +13,11 @@
 
 #### Features:
 
-* WIP
+* Pumpkin pastures biome (inspired by Minecraft: Dungeons)
+* Pink and white cherry oak forests
+* Tall crimson and warped forests
+* Tritanopian, achromatopsian and protanopian galleries biomes in the nether
+* Dark amaranth forest in the end
 
 ##### Images of the added features can be found on the CurseForge [Images page](https://www.curseforge.com/minecraft/mc-mods/wild-explorer/screenshots).
 
