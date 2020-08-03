@@ -14,6 +14,6 @@ public class WEBiomePack extends WEPack {
 	public static final Biome TRITANOPIAN_GALLERY = register(new BiomeCreator.Builder("tritanopian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.createTritanopianGalleryGenerationSettings())).addToNether(0.05F, 0.025F, 0.0F, 0.0F, 0.05F));
 	public static final Biome ACHROMATOPSIAN_GALLERY = register(new BiomeCreator.Builder("achromatopsian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.createAchromatopsianGalleryGenerationSettings())).addToNether(0.1F, 0.05F, 0.0F, 0.0F, 0.025F));
 	public static final Biome PROTANOPIAN_GALLERY = register(new BiomeCreator.Builder("protanopian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.createProtanopianGalleryGenerationSettings())).addToNether(0.025F, 0.1F, 0.0F, 0.0F, 0.05F));
-	//public static final Biome DARK_AMARANTH_FOREST = register("dark_amaranth_forest", new DarkAmaranthForest());
-	//public static final Biome TALL_DARK_AMARANTH_FOREST = register("tall_dark_amaranth_forest", new TallDarkAmaranthForest());
+	public static final Biome DARK_AMARANTH_FOREST = register(new BiomeCreator.Builder("dark_amaranth_forest", WEBiomeCreator.createDarkAmaranthForest()));
+	public static final Biome TALL_DARK_AMARANTH_FOREST = register(new BiomeCreator.Builder("tall_dark_amaranth_forest", WEBiomeCreator.createDarkAmaranthForest()));
 }

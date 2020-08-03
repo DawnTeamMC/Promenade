@@ -2,6 +2,7 @@ package com.hugman.wild_explorer.util;
 
 import com.google.common.collect.ImmutableList;
 import com.hugman.wild_explorer.init.world.WEConfiguredFeatures;
+import com.hugman.wild_explorer.init.world.WEConfiguredSurfaceBuilders;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -347,5 +348,42 @@ public class WEBiomeCreator {
 						WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_BLUE_UPSIDE_FLAT))
 						.decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
 		return generationBuilder;
+	}
+
+	private static Biome createEndBiome(GenerationSettings.Builder generationBuilder, SpawnSettings.Builder spawnSettings) {
+		BiomeEffects.Builder effects = new BiomeEffects.Builder();
+		effects.waterColor(4159204);
+		effects.waterFogColor(329011);
+		effects.fogColor(10518688);
+		effects.skyColor(0);
+		effects.moodSound(BiomeMoodSound.CAVE);
+
+		Biome.Settings settings = new Biome.Settings();
+		settings.precipitation(Biome.Precipitation.NONE);
+		settings.category(Biome.Category.THEEND);
+		settings.depth(0.1F);
+		settings.scale(0.2F);
+		settings.temperature(0.5F);
+		settings.downfall(0.5F);
+		settings.effects(effects.build());
+		settings.spawnSettings(spawnSettings.build());
+		settings.generationSettings(generationBuilder.build());
+		settings.parent(null);
+		return settings.build();
+	}
+
+	public static Biome createDarkAmaranthForest() {
+		SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder();
+		DefaultBiomeFeatures.addEndMobs(spawnSettings);
+		spawnSettings.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 10, 4, 4));
+		spawnSettings.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CAVE_SPIDER, 10, 4, 4));
+
+		GenerationSettings.Builder generationBuilder = new GenerationSettings.Builder();
+		generationBuilder.surfaceBuilder(WEConfiguredSurfaceBuilders.AMARANTH_DYLIUM);
+		generationBuilder.structureFeature(ConfiguredStructureFeatures.END_CITY);
+		generationBuilder.feature(GenerationStep.Feature.SURFACE_STRUCTURES, ConfiguredFeatures.END_GATEWAY);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.AMARANTH_FOREST_VEGETATION);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.AMARANTH_FUNGI);
+		return createEndBiome(generationBuilder, spawnSettings);
 	}
 }
