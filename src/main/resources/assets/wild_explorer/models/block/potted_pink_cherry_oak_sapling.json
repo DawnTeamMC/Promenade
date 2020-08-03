@@ -1,0 +1,6 @@
+{
+	"parent": "block/flower_pot_cross",
+	"textures": {
+		"plant": "wild_explorer:block/pink_cherry_oak_sapling"
+	}
+}

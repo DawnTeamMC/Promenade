@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"end": "wild_explorer:block/palm_log/top",
+		"side": "wild_explorer:block/palm_log/side"
+	}
+}

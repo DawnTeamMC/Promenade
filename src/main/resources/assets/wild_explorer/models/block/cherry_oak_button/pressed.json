@@ -1,0 +1,6 @@
+{
+	"parent": "block/button_pressed",
+	"textures": {
+		"texture": "wild_explorer:block/cherry_oak_planks"
+	}
+}

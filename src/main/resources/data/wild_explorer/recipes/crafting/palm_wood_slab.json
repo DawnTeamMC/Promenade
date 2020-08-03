@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "wild_explorer:wood_slab",
+	"pattern": [
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "wild_explorer:palm_wood"
+		}
+	},
+	"result": {
+		"item": "wild_explorer:palm_wood_slab",
+		"count": 6
+	}
+}

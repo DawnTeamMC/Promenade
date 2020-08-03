@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"powered=false": {
+			"model": "wild_explorer:block/cherry_oak_pressure_plate/unpressed"
+		},
+		"powered=true": {
+			"model": "wild_explorer:block/cherry_oak_pressure_plate/pressed"
+		}
+	}
+}

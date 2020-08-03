@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "wooden_button",
+	"ingredients": [
+		{
+			"item": "wild_explorer:cherry_oak_planks"
+		}
+	],
+	"result": {
+		"item": "wild_explorer:cherry_oak_button"
+	}
+}

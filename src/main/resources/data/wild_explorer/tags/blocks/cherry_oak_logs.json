@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"wild_explorer:cherry_oak_log",
+		"wild_explorer:stripped_cherry_oak_log",
+		"wild_explorer:cherry_oak_wood",
+		"wild_explorer:stripped_cherry_oak_wood"
+	]
+}

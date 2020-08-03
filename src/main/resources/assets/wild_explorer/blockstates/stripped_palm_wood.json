@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=y": {
+			"model": "wild_explorer:block/stripped_palm_wood"
+		},
+		"axis=z": {
+			"model": "wild_explorer:block/stripped_palm_wood",
+			"x": 90
+		},
+		"axis=x": {
+			"model": "wild_explorer:block/stripped_palm_wood",
+			"x": 90,
+			"y": 90
+		}
+	}
+}

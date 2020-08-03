@@ -1,0 +1,7 @@
+{
+	"parent": "block/door_bottom_rh",
+	"textures": {
+		"bottom": "wild_explorer:block/cherry_oak_door/bottom",
+		"top": "wild_explorer:block/cherry_oak_door/top"
+	}
+}

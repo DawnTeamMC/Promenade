@@ -1,0 +1,11 @@
+{
+	"replace": false,
+	"values": [
+		"wild_explorer:cherry_oak_vertical_slab",
+		"wild_explorer:cherry_oak_wood_vertical_slab",
+		"wild_explorer:palm_vertical_slab",
+		"wild_explorer:palm_wood_vertical_slab",
+		"wild_explorer:dark_amaranth_vertical_slab",
+		"wild_explorer:dark_amaranth_hyphae_vertical_slab"
+	]
+}

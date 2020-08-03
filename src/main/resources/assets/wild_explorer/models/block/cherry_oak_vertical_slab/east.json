@@ -1,0 +1,6 @@
+{
+	"parent": "dawn:block/vertical_slab/east",
+	"textures": {
+		"block": "wild_explorer:block/cherry_oak_planks"
+	}
+}

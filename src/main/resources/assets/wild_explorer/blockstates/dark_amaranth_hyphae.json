@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=y": {
+			"model": "wild_explorer:block/dark_amaranth_hyphae"
+		},
+		"axis=z": {
+			"model": "wild_explorer:block/dark_amaranth_hyphae",
+			"x": 90
+		},
+		"axis=x": {
+			"model": "wild_explorer:block/dark_amaranth_hyphae",
+			"x": 90,
+			"y": 90
+		}
+	}
+}

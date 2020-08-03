@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "wooden_button",
+	"ingredients": [
+		{
+			"item": "wild_explorer:dark_amaranth_planks"
+		}
+	],
+	"result": {
+		"item": "wild_explorer:dark_amaranth_button"
+	}
+}

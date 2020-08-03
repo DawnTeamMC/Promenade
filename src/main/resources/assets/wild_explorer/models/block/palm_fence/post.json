@@ -1,0 +1,6 @@
+{
+	"parent": "block/fence_post",
+	"textures": {
+		"texture": "wild_explorer:block/palm_planks"
+	}
+}

@@ -1,0 +1,80 @@
+{
+	"variants": {
+		"facing=south,in_wall=false,open=false": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/close",
+			"uvlock": true
+		},
+		"facing=west,in_wall=false,open=false": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/close",
+			"uvlock": true,
+			"y": 90
+		},
+		"facing=north,in_wall=false,open=false": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/close",
+			"uvlock": true,
+			"y": 180
+		},
+		"facing=east,in_wall=false,open=false": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/close",
+			"uvlock": true,
+			"y": 270
+		},
+		"facing=south,in_wall=false,open=true": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/open",
+			"uvlock": true
+		},
+		"facing=west,in_wall=false,open=true": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/open",
+			"uvlock": true,
+			"y": 90
+		},
+		"facing=north,in_wall=false,open=true": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/open",
+			"uvlock": true,
+			"y": 180
+		},
+		"facing=east,in_wall=false,open=true": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/open",
+			"uvlock": true,
+			"y": 270
+		},
+		"facing=south,in_wall=true,open=false": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/wall/close",
+			"uvlock": true
+		},
+		"facing=west,in_wall=true,open=false": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/wall/close",
+			"uvlock": true,
+			"y": 90
+		},
+		"facing=north,in_wall=true,open=false": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/wall/close",
+			"uvlock": true,
+			"y": 180
+		},
+		"facing=east,in_wall=true,open=false": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/wall/close",
+			"uvlock": true,
+			"y": 270
+		},
+		"facing=south,in_wall=true,open=true": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/wall/open",
+			"uvlock": true
+		},
+		"facing=west,in_wall=true,open=true": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/wall/open",
+			"uvlock": true,
+			"y": 90
+		},
+		"facing=north,in_wall=true,open=true": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/wall/open",
+			"uvlock": true,
+			"y": 180
+		},
+		"facing=east,in_wall=true,open=true": {
+			"model": "wild_explorer:block/cherry_oak_fence_gate/wall/open",
+			"uvlock": true,
+			"y": 270
+		}
+	}
+}

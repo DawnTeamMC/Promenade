@@ -1,0 +1,8 @@
+{
+	"parent": "block/inner_stairs",
+	"textures": {
+		"bottom": "wild_explorer:block/cherry_oak_log/side",
+		"top": "wild_explorer:block/cherry_oak_log/side",
+		"side": "wild_explorer:block/cherry_oak_log/side"
+	}
+}

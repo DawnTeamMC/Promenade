@@ -1,0 +1,19 @@
+{
+	"variants": {
+		"type=north": {
+			"model": "wild_explorer:block/dark_amaranth_hyphae_vertical_slab/north"
+		},
+		"type=south": {
+			"model": "wild_explorer:block/dark_amaranth_hyphae_vertical_slab/south"
+		},
+		"type=east": {
+			"model": "wild_explorer:block/dark_amaranth_hyphae_vertical_slab/east"
+		},
+		"type=west": {
+			"model": "wild_explorer:block/dark_amaranth_hyphae_vertical_slab/west"
+		},
+		"type=double": {
+			"model": "wild_explorer:block/dark_amaranth_hyphae"
+		}
+	}
+}

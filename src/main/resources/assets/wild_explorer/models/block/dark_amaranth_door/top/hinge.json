@@ -1,0 +1,7 @@
+{
+	"parent": "block/door_top_rh",
+	"textures": {
+		"bottom": "wild_explorer:block/dark_amaranth_door/bottom",
+		"top": "wild_explorer:block/dark_amaranth_door/top"
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "leaf_pile",
+	"pattern": [
+		"##"
+	],
+	"key": {
+		"#": {
+			"item": "wild_explorer:autumn_birch_leaves"
+		}
+	},
+	"result": {
+		"item": "wild_explorer:autumn_birch_leaf_pile",
+		"count": 2
+	}
+}

@@ -1,0 +1,48 @@
+{
+	"multipart": [
+		{
+			"apply": {
+				"model": "wild_explorer:block/cherry_oak_fence/post"
+			}
+		},
+		{
+			"when": {
+				"north": "true"
+			},
+			"apply": {
+				"model": "wild_explorer:block/cherry_oak_fence/side",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"east": "true"
+			},
+			"apply": {
+				"model": "wild_explorer:block/cherry_oak_fence/side",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "true"
+			},
+			"apply": {
+				"model": "wild_explorer:block/cherry_oak_fence/side",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"west": "true"
+			},
+			"apply": {
+				"model": "wild_explorer:block/cherry_oak_fence/side",
+				"y": 270,
+				"uvlock": true
+			}
+		}
+	]
+}

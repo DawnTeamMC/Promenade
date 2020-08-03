@@ -1,0 +1,6 @@
+{
+	"parent": "dawn:block/vertical_slab/north",
+	"textures": {
+		"block": "wild_explorer:block/palm_planks"
+	}
+}

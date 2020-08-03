@@ -1,0 +1,8 @@
+{
+	"parent": "block/slab",
+	"textures": {
+		"bottom": "wild_explorer:block/palm_log/side",
+		"top": "wild_explorer:block/palm_log/side",
+		"side": "wild_explorer:block/palm_log/side"
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cross",
+	"textures": {
+		"cross": "wild_explorer:block/amaranth_roots"
+	}
+}
