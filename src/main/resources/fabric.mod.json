@@ -21,6 +21,9 @@
 			"com.hugman.wild_explorer.WildExplorerClient"
 		]
 	},
+	"mixins": [
+		"wild_explorer.mixins.json"
+	],
 	"depends": {
 		"fabric": "*",
 		"dawn": "*"
