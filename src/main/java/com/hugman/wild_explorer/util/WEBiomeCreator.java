@@ -80,18 +80,18 @@ public class WEBiomeCreator {
 		SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
 		DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
 		DefaultBiomeFeatures.addBatsAndMonsters(spawnBuilder);
-		spawnBuilder.spawners(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 5, 4, 4));
-		Biome.Settings settings = new Biome.Settings();
-		settings.depth(0.1F);
-		settings.scale(0.2F);
-		settings.temperature(temperature);
-		settings.downfall(downfall);
-		settings.precipitation(Biome.Precipitation.RAIN);
-		settings.category(Biome.Category.FOREST);
-		settings.effects(effectBuilder);
-		settings.spawnSettings(spawnBuilder.build());
-		settings.generationSettings(generationBuilder);
-		return settings.build();
+		spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 5, 4, 4));
+		Biome.Builder builder = new Biome.Builder();
+		builder.depth(0.1F);
+		builder.scale(0.2F);
+		builder.temperature(temperature);
+		builder.downfall(downfall);
+		builder.precipitation(Biome.Precipitation.RAIN);
+		builder.category(Biome.Category.FOREST);
+		builder.effects(effectBuilder);
+		builder.spawnSettings(spawnBuilder.build());
+		builder.generationSettings(generationBuilder);
+		return builder.build();
 	}
 
 	private static GenerationSettings.Builder createForestGenerationSettings() {
@@ -117,10 +117,10 @@ public class WEBiomeCreator {
 
 	public static Biome createTallCrimsonForest() {
 		SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-		spawnBuilder.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 1, 2, 4));
-		spawnBuilder.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.HOGLIN, 9, 3, 4));
-		spawnBuilder.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 5, 3, 4));
-		spawnBuilder.spawners(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
+		spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 1, 2, 4));
+		spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.HOGLIN, 9, 3, 4));
+		spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 5, 3, 4));
+		spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
 		GenerationSettings.Builder generationBuilder = new GenerationSettings.Builder();
 		generationBuilder.surfaceBuilder(ConfiguredSurfaceBuilders.CRIMSON_FOREST);
 		generationBuilder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
@@ -149,26 +149,25 @@ public class WEBiomeCreator {
 		effectBuilder.moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_CRIMSON_FOREST_MOOD, 6000, 8, 2.0D));
 		effectBuilder.additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_CRIMSON_FOREST_ADDITIONS, 0.0111D));
 		effectBuilder.music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_CRIMSON_FOREST));
-		Biome.Settings settings = new Biome.Settings();
-		settings.precipitation(Biome.Precipitation.NONE);
-		settings.category(Biome.Category.NETHER);
-		settings.depth(0.2F);
-		settings.scale(0.4F);
-		settings.temperature(2.0F);
-		settings.downfall(0.0F);
-		settings.scale(0.2F);
-		settings.effects(effectBuilder.build());
-		settings.spawnSettings(spawnBuilder.build());
-		settings.generationSettings(generationBuilder.build());
-		settings.parent(null);
-		return settings.build();
+		Biome.Builder builder = new Biome.Builder();
+		builder.precipitation(Biome.Precipitation.NONE);
+		builder.category(Biome.Category.NETHER);
+		builder.depth(0.2F);
+		builder.scale(0.4F);
+		builder.temperature(2.0F);
+		builder.downfall(0.0F);
+		builder.scale(0.2F);
+		builder.effects(effectBuilder.build());
+		builder.spawnSettings(spawnBuilder.build());
+		builder.generationSettings(generationBuilder.build());
+		return builder.build();
 	}
 
 	public static Biome createTallWarpedForest() {
 		SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-		spawnBuilder.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4));
-		spawnBuilder.spawners(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
-		spawnBuilder.spawnCosts(EntityType.ENDERMAN, 1.0D, 0.12D).build();
+		spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4));
+		spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
+		spawnBuilder.spawnCost(EntityType.ENDERMAN, 1.0D, 0.12D).build();
 		GenerationSettings.Builder generationBuilder = new GenerationSettings.Builder();
 		generationBuilder.surfaceBuilder(ConfiguredSurfaceBuilders.WARPED_FOREST);
 		generationBuilder.structureFeature(ConfiguredStructureFeatures.FORTRESS);
@@ -199,28 +198,27 @@ public class WEBiomeCreator {
 		effectBuilder.moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0D));
 		effectBuilder.additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111D));
 		effectBuilder.music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_WARPED_FOREST));
-		Biome.Settings settings = new Biome.Settings();
-		settings.precipitation(Biome.Precipitation.NONE);
-		settings.category(Biome.Category.NETHER);
-		settings.depth(0.2F);
-		settings.scale(0.4F);
-		settings.temperature(2.0F);
-		settings.downfall(0.0F);
-		settings.effects(effectBuilder.build());
-		settings.spawnSettings(spawnBuilder.build());
-		settings.generationSettings(generationBuilder.build());
-		settings.parent(null);
-		return settings.build();
+		Biome.Builder builder = new Biome.Builder();
+		builder.precipitation(Biome.Precipitation.NONE);
+		builder.category(Biome.Category.NETHER);
+		builder.depth(0.2F);
+		builder.scale(0.4F);
+		builder.temperature(2.0F);
+		builder.downfall(0.0F);
+		builder.effects(effectBuilder.build());
+		builder.spawnSettings(spawnBuilder.build());
+		builder.generationSettings(generationBuilder.build());
+		return builder.build();
 	}
 
 	public static Biome createGallery(GenerationSettings.Builder generationBuilder) {
 		SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-		spawnBuilder.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 4, 4));
-		spawnBuilder.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 100, 4, 4));
-		spawnBuilder.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 2, 4, 4));
-		spawnBuilder.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4));
-		spawnBuilder.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 15, 4, 4));
-		spawnBuilder.spawners(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
+		spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.GHAST, 50, 4, 4));
+		spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 100, 4, 4));
+		spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 2, 4, 4));
+		spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4));
+		spawnBuilder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 15, 4, 4));
+		spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2));
 		generationBuilder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
 		generationBuilder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
 		generationBuilder.structureFeature(ConfiguredStructureFeatures.FORTRESS);
@@ -245,7 +243,7 @@ public class WEBiomeCreator {
 		effectBuilder.moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_NETHER_WASTES_MOOD, 6000, 8, 2.0D));
 		effectBuilder.additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_NETHER_WASTES_ADDITIONS, 0.0111D));
 		effectBuilder.music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_NETHER_WASTES));
-		Biome.Settings settings = new Biome.Settings();
+		Biome.Builder settings = new Biome.Builder();
 		settings.precipitation(Biome.Precipitation.NONE);
 		settings.category(Biome.Category.NETHER);
 		settings.depth(0.1F);
@@ -255,7 +253,6 @@ public class WEBiomeCreator {
 		settings.effects(effectBuilder.build());
 		settings.spawnSettings(spawnBuilder.build());
 		settings.generationSettings(generationBuilder.build());
-		settings.parent(null);
 		return settings.build();
 	}
 
@@ -358,7 +355,7 @@ public class WEBiomeCreator {
 		effects.skyColor(0);
 		effects.moodSound(BiomeMoodSound.CAVE);
 
-		Biome.Settings settings = new Biome.Settings();
+		Biome.Builder settings = new Biome.Builder();
 		settings.precipitation(Biome.Precipitation.NONE);
 		settings.category(Biome.Category.THEEND);
 		settings.depth(0.1F);
@@ -368,15 +365,14 @@ public class WEBiomeCreator {
 		settings.effects(effects.build());
 		settings.spawnSettings(spawnSettings.build());
 		settings.generationSettings(generationBuilder.build());
-		settings.parent(null);
 		return settings.build();
 	}
 
 	public static Biome createDarkAmaranthForest() {
 		SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder();
 		DefaultBiomeFeatures.addEndMobs(spawnSettings);
-		spawnSettings.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 10, 4, 4));
-		spawnSettings.spawners(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CAVE_SPIDER, 10, 4, 4));
+		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 10, 4, 4));
+		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CAVE_SPIDER, 10, 4, 4));
 
 		GenerationSettings.Builder generationBuilder = new GenerationSettings.Builder();
 		generationBuilder.surfaceBuilder(WEConfiguredSurfaceBuilders.AMARANTH_DYLIUM);
