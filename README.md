@@ -29,6 +29,11 @@
 	<a href="https://www.curseforge.com/minecraft/mc-mods/nookbuild"><img title="NookBuild" height="100" src="https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/nookbuild/header.png"></a><br>
 </p>
 
+<p align="center">
+	<strong>Also check out our mods series, Common Expansion:</strong><br>
+	<a href="https://www.curseforge.com/minecraft/mc-mods/ce-foodstuffs"><img title="Common Expansion: Foodstuffs" height="100" src="https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/common_expansion/foodstuffs/header.png"></a><br>
+</p>
+
 <h5 align="center">
 	Wild Explorer is made for Fabric, and there are no plans to port it to Forge.<br>
 </h5>
