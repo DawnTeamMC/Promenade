@@ -179,16 +179,14 @@ public class HugeNetherMushroomFeature extends Feature<HugeNetherMushroomFeature
 	}
 
 	private static boolean isReplaceable(WorldAccess worldAccess, BlockPos blockPos, boolean canReplaceFluid, boolean canReplaceAllPlants) {
-		return worldAccess.testBlockState(blockPos, (blockState) ->
-		{
+		return worldAccess.testBlockState(blockPos, (blockState) -> {
 			Material material = blockState.getMaterial();
 			return blockState.isAir() || canReplaceFluid && blockState.isOf(Blocks.WATER) || canReplaceFluid && blockState.isOf(Blocks.LAVA) || material == Material.REPLACEABLE_PLANT || canReplaceAllPlants && material == Material.PLANT;
 		});
 	}
 
 	public static boolean isValidGround(WorldAccess worldAccess, BlockPos blockPos) {
-		return worldAccess.testBlockState(blockPos, (blockState) ->
-		{
+		return worldAccess.testBlockState(blockPos, (blockState) -> {
 			return blockState.isOf(Blocks.NETHERRACK) || blockState.isOf(Blocks.NETHER_QUARTZ_ORE) || blockState.isOf(Blocks.NETHER_GOLD_ORE);
 		});
 	}

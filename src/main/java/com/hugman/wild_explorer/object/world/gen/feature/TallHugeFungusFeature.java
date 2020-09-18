@@ -55,8 +55,7 @@ public class TallHugeFungusFeature extends Feature<HugeFungusFeatureConfig> {
 	}
 
 	private static boolean isReplaceable(WorldAccess worldAccess, BlockPos blockPos, boolean canReplaceAllPlants) {
-		return worldAccess.testBlockState(blockPos, (blockState) ->
-		{
+		return worldAccess.testBlockState(blockPos, (blockState) -> {
 			Material material = blockState.getMaterial();
 			return blockState.isAir() || blockState.isOf(Blocks.WATER) || blockState.isOf(Blocks.LAVA) || material == Material.REPLACEABLE_PLANT || canReplaceAllPlants && material == Material.PLANT;
 		});

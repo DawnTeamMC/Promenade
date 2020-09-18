@@ -16,47 +16,37 @@ public class WEColorMaps {
 	}
 
 	private static void registerBlockColors() {
-		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) ->
-		{
+		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
 			return pos != null && world != null ? BiomeColors.getFoliageColor(pos, world) : FoliageColors.getDefaultColor();
 		}, WEBlockPack.PALM_WOOD.getLeaves(), WEBlockPack.PALM_WOOD.getLeafPile());
-		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) ->
-		{
+		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
 			return 15232304;
 		}, WEBlockPack.AUTUMN_OAK_LEAVES.getLeaves(), WEBlockPack.AUTUMN_OAK_LEAVES.getLeafPile());
-		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) ->
-		{
+		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
 			return 15645495;
 		}, WEBlockPack.AUTUMN_BIRCH_LEAVES.getLeaves(), WEBlockPack.AUTUMN_BIRCH_LEAVES.getLeafPile());
-		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) ->
-		{
+		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
 			return 15768259;
 		}, WEBlockPack.PINK_CHERRY_OAK_LEAVES.getLeaves(), WEBlockPack.PINK_CHERRY_OAK_LEAVES.getLeafPile());
-		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) ->
-		{
+		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
 			return 15786729;
 		}, WEBlockPack.WHITE_CHERRY_OAK_LEAVES.getLeaves(), WEBlockPack.WHITE_CHERRY_OAK_LEAVES.getLeafPile());
 	}
 
 	private static void registerItemColors() {
-		ColorProviderRegistry.ITEM.register((item, layer) ->
-		{
+		ColorProviderRegistry.ITEM.register((item, layer) -> {
 			return GrassColors.getColor(0.5D, 1.0D);
 		}, WEBlockPack.PALM_WOOD.getLeaves(), WEBlockPack.PALM_WOOD.getLeafPile());
-		ColorProviderRegistry.ITEM.register((item, layer) ->
-		{
+		ColorProviderRegistry.ITEM.register((item, layer) -> {
 			return 15232304;
 		}, WEBlockPack.AUTUMN_OAK_LEAVES.getLeaves(), WEBlockPack.AUTUMN_OAK_LEAVES.getLeafPile());
-		ColorProviderRegistry.ITEM.register((item, layer) ->
-		{
+		ColorProviderRegistry.ITEM.register((item, layer) -> {
 			return 15645495;
 		}, WEBlockPack.AUTUMN_BIRCH_LEAVES.getLeaves(), WEBlockPack.AUTUMN_BIRCH_LEAVES.getLeafPile());
-		ColorProviderRegistry.ITEM.register((item, layer) ->
-		{
+		ColorProviderRegistry.ITEM.register((item, layer) -> {
 			return 15768259;
 		}, WEBlockPack.PINK_CHERRY_OAK_LEAVES.getLeaves(), WEBlockPack.PINK_CHERRY_OAK_LEAVES.getLeafPile());
-		ColorProviderRegistry.ITEM.register((item, layer) ->
-		{
+		ColorProviderRegistry.ITEM.register((item, layer) -> {
 			return 15786729;
 		}, WEBlockPack.WHITE_CHERRY_OAK_LEAVES.getLeaves(), WEBlockPack.WHITE_CHERRY_OAK_LEAVES.getLeafPile());
 	}

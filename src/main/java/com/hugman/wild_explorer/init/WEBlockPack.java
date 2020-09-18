@@ -31,12 +31,17 @@ public class WEBlockPack extends WEPack {
 
 	public static final NormalWoodPack PALM_WOOD = register(new NormalWoodPack.Builder("palm", new PalmSaplingGenerator(), MaterialColor.ORANGE, MaterialColor.CYAN_TERRACOTTA));
 
-	public static final Block AMARANTH_DYLIUM = register(new BlockCreator.Builder("amaranth_dylium", new DyliumBlock(FabricBlockSettings.of(Material.STONE, MaterialColor.field_25702).requiresTool().strength(3.0F, 9.0F).sounds(BlockSoundGroup.NYLIUM).ticksRandomly())).setItemGroup(ItemGroup.BUILDING_BLOCKS));
+	public static final Block AMARANTH_DYLIUM = register(new BlockCreator.Builder("amaranth_dylium", new DyliumBlock(FabricBlockSettings.of(Material.STONE, MaterialColor.field_25702)
+																																		.requiresTool()
+																																		.strength(3.0F, 9.0F)
+																																		.sounds(BlockSoundGroup.NYLIUM)
+																																		.ticksRandomly())).itemGroup(ItemGroup.BUILDING_BLOCKS));
 	public static final Block AMARANTH_WART_BLOCK = register(new BlockCreator.Builder("amaranth_wart_block", new Block(FabricBlockSettings.of(Material.SOLID_ORGANIC, MaterialColor.field_25708).breakByTool(FabricToolTags.HOES).strength(1.0F).sounds(BlockSoundGroup.WART_BLOCK))));
-	public static final Block AMARANTH_ROOTS = register(new BlockCreator.Builder("amaranth_roots", new RootsBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MaterialColor.CYAN).noCollision().breakInstantly().sounds(BlockSoundGroup.ROOTS))).setItemGroup(ItemGroup.DECORATIONS).setRender(BlockCreator.Render.CUTOUT));
-	public static final NetherWoodPack DARK_AMARANTH_WOOD = register(new NetherWoodPack.Builder("dark_amaranth", () -> {
-		return WEConfiguredFeatures.AMARANTH_FUNGI_PLANTED;
-	}, MaterialColor.LIGHT_GRAY, MaterialColor.field_25707));
+	public static final Block AMARANTH_ROOTS = register(new BlockCreator.Builder("amaranth_roots", new RootsBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MaterialColor.CYAN).noCollision().breakInstantly().sounds(BlockSoundGroup.ROOTS))).itemGroup(ItemGroup.DECORATIONS)
+																																																													   .render(BlockCreator.Render.CUTOUT));
+	public static final NetherWoodPack DARK_AMARANTH_WOOD = register(new NetherWoodPack.Builder("dark_amaranth", () -> WEConfiguredFeatures.AMARANTH_FUNGI_PLANTED, MaterialColor.LIGHT_GRAY, MaterialColor.field_25707));
 
-	public static final Block BLUEBERRY_BUSH = register(new BlockCreator.Builder("blueberry_bush", new BlueberryBushBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().noCollision().sounds(BlockSoundGroup.SWEET_BERRY_BUSH))).setFlammability(60, 100).setRender(BlockCreator.Render.CUTOUT).noItem());
+	public static final Block BLUEBERRY_BUSH = register(new BlockCreator.Builder("blueberry_bush", new BlueberryBushBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().noCollision().sounds(BlockSoundGroup.SWEET_BERRY_BUSH))).flammability(60, 100)
+																																																										 .render(BlockCreator.Render.CUTOUT)
+																																																										 .noItem());
 }

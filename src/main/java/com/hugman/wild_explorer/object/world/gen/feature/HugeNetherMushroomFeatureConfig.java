@@ -7,40 +7,28 @@ import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
 public class HugeNetherMushroomFeatureConfig implements FeatureConfig {
-	public static final Codec<HugeNetherMushroomFeatureConfig> CODEC = RecordCodecBuilder.create((instance) ->
-	{
-		return instance.group(BlockState.CODEC.fieldOf("stem_state").forGetter((config) ->
-		{
+	public static final Codec<HugeNetherMushroomFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {
+		return instance.group(BlockState.CODEC.fieldOf("stem_state").forGetter((config) -> {
 			return config.stemState;
-		}), Codec.INT.fieldOf("stem_base_height").forGetter((config) ->
-		{
+		}), Codec.INT.fieldOf("stem_base_height").forGetter((config) -> {
 			return config.stemBaseHeight;
-		}), Codec.INT.fieldOf("stem_random_height").forGetter((config) ->
-		{
+		}), Codec.INT.fieldOf("stem_random_height").forGetter((config) -> {
 			return config.stepRandomHeight;
-		}), BlockState.CODEC.fieldOf("hat_state").forGetter((config) ->
-		{
+		}), BlockState.CODEC.fieldOf("hat_state").forGetter((config) -> {
 			return config.hatState;
-		}), Codec.INT.fieldOf("hat_base_size").forGetter((config) ->
-		{
+		}), Codec.INT.fieldOf("hat_base_size").forGetter((config) -> {
 			return config.hatBaseSize;
-		}), Codec.INT.fieldOf("hat_random_size").forGetter((config) ->
-		{
+		}), Codec.INT.fieldOf("hat_random_size").forGetter((config) -> {
 			return config.hatRandomSize;
-		}), Codec.BOOL.fieldOf("flat_hat").orElse(false).forGetter((config) ->
-		{
+		}), Codec.BOOL.fieldOf("flat_hat").orElse(false).forGetter((config) -> {
 			return config.flatHat;
-		}), BlockState.CODEC.fieldOf("decor_state").forGetter((config) ->
-		{
+		}), BlockState.CODEC.fieldOf("decor_state").forGetter((config) -> {
 			return config.decorationState;
-		}), Codec.DOUBLE.fieldOf("decor_chance").forGetter((config) ->
-		{
+		}), Codec.DOUBLE.fieldOf("decor_chance").forGetter((config) -> {
 			return config.decorationChance;
-		}), Codec.DOUBLE.fieldOf("vine_chance").forGetter((config) ->
-		{
+		}), Codec.DOUBLE.fieldOf("vine_chance").forGetter((config) -> {
 			return config.vineChance;
-		}), Codec.BOOL.fieldOf("upside_down").orElse(false).forGetter((config) ->
-		{
+		}), Codec.BOOL.fieldOf("upside_down").orElse(false).forGetter((config) -> {
 			return config.upsideDown;
 		})).apply(instance, HugeNetherMushroomFeatureConfig::new);
 	});
