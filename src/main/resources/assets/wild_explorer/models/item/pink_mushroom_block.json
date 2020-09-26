@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "wild_explorer:block/pink_mushroom_block"
+	}
+}

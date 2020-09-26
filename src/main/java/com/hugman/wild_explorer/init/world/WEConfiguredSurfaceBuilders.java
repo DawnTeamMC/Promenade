@@ -16,7 +16,7 @@ public class WEConfiguredSurfaceBuilders {
 		return Registry.register(BuiltinRegistries.CONFIGURED_SURFACE_BUILDER, WildExplorer.MOD_DATA.id(name), feature);
 	}
 
-	public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> AMARANTH_DYLIUM = register("amaranth_dylium", SurfaceBuilder.DEFAULT.method_30478(new TernarySurfaceConfig(States.AMARANTH_DYLIUM, States.END_STONE, States.END_STONE)));
+	public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> AMARANTH_DYLIUM = register("amaranth_dylium", SurfaceBuilder.DEFAULT.withConfig(new TernarySurfaceConfig(States.AMARANTH_DYLIUM, States.END_STONE, States.END_STONE)));
 
 	public static final class States {
 		protected static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();

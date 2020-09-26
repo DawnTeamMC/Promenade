@@ -1,0 +1,20 @@
+{
+	"replace": false,
+	"values": [
+		"wild_explorer:white_mushroom",
+		"wild_explorer:light_gray_mushroom",
+		"wild_explorer:gray_mushroom",
+		"wild_explorer:black_mushroom",
+		"wild_explorer:orange_mushroom",
+		"wild_explorer:yellow_mushroom",
+		"wild_explorer:yellow_mushroom",
+		"wild_explorer:lime_mushroom",
+		"wild_explorer:green_mushroom",
+		"wild_explorer:cyan_mushroom",
+		"wild_explorer:light_blue_mushroom",
+		"wild_explorer:blue_mushroom",
+		"wild_explorer:purple_mushroom",
+		"wild_explorer:magenta_mushroom",
+		"wild_explorer:pink_mushroom"
+	]
+}
