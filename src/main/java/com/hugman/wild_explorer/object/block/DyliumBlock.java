@@ -36,7 +36,7 @@ public class DyliumBlock extends NyliumBlock {
 		BlockState blockState = world.getBlockState(pos);
 		BlockPos blockPos = pos.up();
 		if(blockState.isOf(WEBlockPack.AMARANTH_DYLIUM)) {
-			NetherForestVegetationFeature.method_26264(world, random, blockPos, WEConfiguredFeatures.Configs.AMARANTH_ROOTS, 3, 1);
+			NetherForestVegetationFeature.generate(world, random, blockPos, WEConfiguredFeatures.Configs.AMARANTH_ROOTS, 3, 1);
 		}
 	}
 }
