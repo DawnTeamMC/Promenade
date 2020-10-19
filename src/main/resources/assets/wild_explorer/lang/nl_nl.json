@@ -68,13 +68,11 @@
 	"block.wild_explorer.cherry_oak_button": "Kerseneikhouten knop",
 	"block.wild_explorer.cherry_oak_stairs": "Kerseneikhouten trap",
 	"block.wild_explorer.cherry_oak_slab": "Kerseneikhouten plaat",
-	"block.wild_explorer.cherry_oak_vertical_slab": "Kerseneikhouten plaat verticaal",
 	"block.wild_explorer.cherry_oak_fence_gate": "Kerseneikhouten poort",
 	"block.wild_explorer.cherry_oak_fence": "Kerseneikhouten hek",
 	"block.wild_explorer.cherry_oak_door": "Kerseneikhouten deur",
 	"block.wild_explorer.cherry_oak_wood_stairs": "Kerseneikhouten trap",
 	"block.wild_explorer.cherry_oak_wood_slab": "Kerseneikhouten plaat",
-	"block.wild_explorer.cherry_oak_wood_vertical_slab": "Kerseneikhouten plaat verticaal",
 	"block.wild_explorer.cherry_oak_wood_button": "Kerseneikhouten knop",
 
 	"block.wild_explorer.palm_planks": "Palmhouten planken",
@@ -90,13 +88,11 @@
 	"block.wild_explorer.palm_button": "Palmhouten knop",
 	"block.wild_explorer.palm_stairs": "Palmhouten trap",
 	"block.wild_explorer.palm_slab": "Palmhouten plaat",
-	"block.wild_explorer.palm_vertical_slab": "Palmhouten plaat verticaal",
 	"block.wild_explorer.palm_fence_gate": "Palmhouten poort",
 	"block.wild_explorer.palm_fence": "Palmhouten hek",
 	"block.wild_explorer.palm_door": "Palmhouten deur",
 	"block.wild_explorer.palm_wood_stairs": "Palmhouten trap",
 	"block.wild_explorer.palm_wood_slab": "Palmhouten plaat",
-	"block.wild_explorer.palm_wood_vertical_slab": "Palmhouten plaat verticaal",
 	"block.wild_explorer.palm_wood_button": "Palmhouten knop",
 
 	"block.wild_explorer.amaranth_dylium": "Amarant dylium",
@@ -114,13 +110,11 @@
 	"block.wild_explorer.dark_amaranth_button": "Donkereamarant houten knop",
 	"block.wild_explorer.dark_amaranth_stairs": "Donkereamarant houten trap",
 	"block.wild_explorer.dark_amaranth_slab": "Donkereamarant houten plaat",
-	"block.wild_explorer.dark_amaranth_vertical_slab": "Donkereamarant houten plaat verticaal",
 	"block.wild_explorer.dark_amaranth_fence_gate": "Donkereamarant houten poort",
 	"block.wild_explorer.dark_amaranth_fence": "Donkereamarant houten hek",
 	"block.wild_explorer.dark_amaranth_door": "Donkereamarant houten deur",
 	"block.wild_explorer.dark_amaranth_hyphae_stairs": "Donkereamarant schimmeldraad trap",
 	"block.wild_explorer.dark_amaranth_hyphae_slab": "Donkereamarant schimmeldraad plaat",
-	"block.wild_explorer.dark_amaranth_hyphae_vertical_slab": "Donkereamarant schimmeldraad plaat verticaal",
 	"block.wild_explorer.dark_amaranth_hyphae_button": "Donkereamarant schimmeldraad knop",
 
 	"block.wild_explorer.blueberry_bush": "Blauwebessenstruik",
@@ -136,6 +130,13 @@
 	"item.wild_explorer.banana": "Bannaan",
 	"item.wild_explorer.apricot": "Abrikoos",
 	"item.wild_explorer.mango": "Mango",
+	"item.wild_explorer.duck": "Eend",
+	"item.wild_explorer.cooked_duck": "Gebakken eend",
+
+	"item.wild_explorer.duck_spawn_egg": "Eendspawnei",
+
+	"comment": "ENTITIES",
+	"entity.wild_explorer.duck": "Eend",
 
 	"comment": "BIOMES",
 	"biome.wild_explorer.pumpkin_pastures": "Pompoen weiland",
@@ -147,5 +148,22 @@
 	"biome.wild_explorer.achromatopsian_gallery": "Achromatopsian galerij",
 	"biome.wild_explorer.protanopian_gallery": "Protanopishe galerij",
 	"biome.wild_explorer.dark_amaranth_forest": "Donkeramarant bos",
-	"biome.wild_explorer.tall_dark_amaranth_forest": "Hoog donkereamarant bos"
+	"biome.wild_explorer.tall_dark_amaranth_forest": "Hoog donkereamarant bos",
+
+	"comment": "SUBTITLES",
+	"subtitles.wild_explorer.entity.duck.ambient": "Eend kwaakt",
+	"subtitles.wild_explorer.entity.duck.hurt": "Eend heeft pijn",
+	"subtitles.wild_explorer.entity.duck.death": "Eend sterft",
+
+	"comment": "CONFIG",
+	"//text.autoconfig.wild_explorer.title": "Wild Explorer Configuration",
+	"//text.autoconfig.wild_explorer.category.worldGeneration": "World Generation",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.pumpkinPastures": "Generate Pumpkin Pastures",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.pinkCherryOakForest": "Generate Pink Cherry Oak Forests",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.whiteCherryOakForest": "Generate White Cherry Oak Forests",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.tallCrimsonForest": "Generate Tall Crimson Forests",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.tallWarpedForest": "Generate Tall Warped Forests",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.tritanopianGallery":"Generate Tritanopian Galleries",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.achromatopsianGallery": "Generate Achromatopsian Galleries",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.protanopianGallery": "Generate Protanopian Galleries"
 }

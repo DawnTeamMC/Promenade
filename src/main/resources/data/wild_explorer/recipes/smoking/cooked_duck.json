@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:smoking",
+	"ingredient": {
+		"item": "wild_explorer:duck"
+	},
+	"result": "wild_explorer:cooked_duck",
+	"experience": 0.35,
+	"cookingtime": 200
+}

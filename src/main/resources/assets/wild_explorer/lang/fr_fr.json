@@ -68,13 +68,11 @@
 	"block.wild_explorer.cherry_oak_button": "Bouton en cerisier",
 	"block.wild_explorer.cherry_oak_stairs": "Escalier en cerisier",
 	"block.wild_explorer.cherry_oak_slab": "Dalle en cerisier",
-	"block.wild_explorer.cherry_oak_vertical_slab": "Dalle verticale en cerisier",
 	"block.wild_explorer.cherry_oak_fence_gate": "Portillon en cerisier",
 	"block.wild_explorer.cherry_oak_fence": "Barrière en cerisier",
 	"block.wild_explorer.cherry_oak_door": "Porte en cerisier",
 	"block.wild_explorer.cherry_oak_wood_stairs": "Escalier en bois de cerisier",
 	"block.wild_explorer.cherry_oak_wood_slab": "Dalle en bois de cerisier",
-	"block.wild_explorer.cherry_oak_wood_vertical_slab": "Dalle verticale en bois de cerisier",
 	"block.wild_explorer.cherry_oak_wood_button": "Bouton en bois de cerisier",
 
 	"block.wild_explorer.palm_planks": "Planches de palmier",
@@ -90,13 +88,11 @@
 	"block.wild_explorer.palm_button": "Bouton en palmier",
 	"block.wild_explorer.palm_stairs": "Escalier en palmier",
 	"block.wild_explorer.palm_slab": "Dalle en palmier",
-	"block.wild_explorer.palm_vertical_slab": "Dalle verticale en palmier",
 	"block.wild_explorer.palm_fence_gate": "Portillon en palmier",
 	"block.wild_explorer.palm_fence": "Barrière en palmier",
 	"block.wild_explorer.palm_door": "Porte en palmier",
 	"block.wild_explorer.palm_wood_stairs": "Escalier en bois de palmier",
 	"block.wild_explorer.palm_wood_slab": "Dalle en bois de palmier",
-	"block.wild_explorer.palm_wood_vertical_slab": "Dalle verticale en bois de palmier",
 	"block.wild_explorer.palm_wood_button": "Bouton en bois de palmier",
 
 	"//block.wild_explorer.amaranth_dylium": "Amaranth Dylium",
@@ -114,13 +110,11 @@
 	"//block.wild_explorer.dark_amaranth_button": "Dark Amaranth Button",
 	"//block.wild_explorer.dark_amaranth_stairs": "Dark Amaranth Stairs",
 	"//block.wild_explorer.dark_amaranth_slab": "Dark Amaranth Slab",
-	"//block.wild_explorer.dark_amaranth_vertical_slab": "Dark Amaranth Vertical Slab",
 	"//block.wild_explorer.dark_amaranth_fence_gate": "Dark Amaranth Fence Gate",
 	"//block.wild_explorer.dark_amaranth_fence": "Dark Amaranth Fence",
 	"//block.wild_explorer.dark_amaranth_door": "Dark Amaranth Door",
 	"//block.wild_explorer.dark_amaranth_hyphae_stairs": "Dark Amaranth Hyphae Stairs",
 	"//block.wild_explorer.dark_amaranth_hyphae_slab": "Dark Amaranth Hyphae Slab",
-	"//block.wild_explorer.dark_amaranth_hyphae_vertical_slab": "Dark Amaranth Hyphae Vertical Slab",
 	"//block.wild_explorer.dark_amaranth_hyphae_button": "Dark Amaranth Hyphae Button",
 
 	"block.wild_explorer.blueberry_bush": "Buisson à myrtilles",
@@ -136,6 +130,13 @@
 	"item.wild_explorer.banana": "Banane",
 	"item.wild_explorer.apricot": "Abricot",
 	"item.wild_explorer.mango": "Mangue",
+	"item.wild_explorer.duck": "Canard",
+	"item.wild_explorer.cooked_duck": "Canard rôti",
+
+	"item.wild_explorer.duck_spawn_egg": "Oeuf d'apparition de canard",
+
+	"comment": "ENTITIES",
+	"entity.wild_explorer.duck": "Canard",
 
 	"comment": "BIOMES",
 	"biome.wild_explorer.pumpkin_pastures": "Champs de citrouilles",
@@ -147,5 +148,22 @@
 	"biome.wild_explorer.achromatopsian_gallery": "Galerie achromatopsienne",
 	"biome.wild_explorer.protanopian_gallery": "Galerie protanopienne",
 	"//biome.wild_explorer.dark_amaranth_forest": "Dark Amaranth Forest",
-	"//biome.wild_explorer.tall_dark_amaranth_forest": "Tall Dark Amaranth Forest"
+	"//biome.wild_explorer.tall_dark_amaranth_forest": "Tall Dark Amaranth Forest",
+
+	"comment": "SUBTITLES",
+	"subtitles.wild_explorer.entity.duck.ambient": "Canard qui cancane",
+	"subtitles.wild_explorer.entity.duck.hurt": "Canard blessé",
+	"subtitles.wild_explorer.entity.duck.death": "Canard qui meurt",
+
+	"comment": "CONFIG",
+	"text.autoconfig.wild_explorer.title": "Configuration de Wild Explorer",
+	"text.autoconfig.wild_explorer.category.worldGeneration": "Génération du monde",
+	"text.autoconfig.wild_explorer.option.worldGeneration.pumpkinPastures": "Générer les champs de citrouilles",
+	"text.autoconfig.wild_explorer.option.worldGeneration.pinkCherryOakForest": "Générer les forêts de cerisiers roses",
+	"text.autoconfig.wild_explorer.option.worldGeneration.whiteCherryOakForest": "Générer les forêts de cerisiers blancs",
+	"text.autoconfig.wild_explorer.option.worldGeneration.tallCrimsonForest": "Générer les grandes forêts carmins",
+	"text.autoconfig.wild_explorer.option.worldGeneration.tallWarpedForest": "Générer les grandes forêts biscornues",
+	"text.autoconfig.wild_explorer.option.worldGeneration.tritanopianGallery":"Générer les galeries tritanopiennes",
+	"text.autoconfig.wild_explorer.option.worldGeneration.achromatopsianGallery": "Générer les galeries achromatopsiennes",
+	"text.autoconfig.wild_explorer.option.worldGeneration.protanopianGallery": "Générer les galeries protanopiennes"
 }

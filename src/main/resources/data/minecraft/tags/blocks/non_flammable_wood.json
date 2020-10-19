@@ -3,7 +3,6 @@
 	"values": [
 		"wild_explorer:dark_amaranth_planks",
 		"wild_explorer:dark_amaranth_slab",
-		"wild_explorer:dark_amaranth_vertical_slab",
 		"wild_explorer:dark_amaranth_pressure_plate",
 		"wild_explorer:dark_amaranth_fence",
 		"wild_explorer:dark_amaranth_trapdoor",
@@ -13,7 +12,6 @@
 		"wild_explorer:dark_amaranth_door",
 		"wild_explorer:dark_amaranth_hyphae_stairs",
 		"wild_explorer:dark_amaranth_hyphae_slab",
-		"wild_explorer:dark_amaranth_hyphae_vertical_slab",
 		"wild_explorer:dark_amaranth_hyphae_button"
 	]
 }

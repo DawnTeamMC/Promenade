@@ -1,6 +1,0 @@
-{
-	"parent": "dawn:block/vertical_slab/west",
-	"textures": {
-		"block": "wild_explorer:block/palm_log/side"
-	}
-}

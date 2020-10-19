@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"wild_explorer:smoking/cooked_duck"
+		]
+	},
+	"criteria": {
+		"has_duck": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "wild_explorer:duck"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "wild_explorer:smoking/cooked_duck"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_duck",
+			"has_the_recipe"
+		]
+	]
+}

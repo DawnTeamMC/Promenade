@@ -1,6 +1,6 @@
 package com.hugman.wild_explorer.object.block;
 
-import com.hugman.wild_explorer.init.WEBlockPack;
+import com.hugman.wild_explorer.init.WEBlocks;
 import com.hugman.wild_explorer.init.world.WEConfiguredFeatures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -35,7 +35,7 @@ public class DyliumBlock extends NyliumBlock {
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
 		BlockState blockState = world.getBlockState(pos);
 		BlockPos blockPos = pos.up();
-		if(blockState.isOf(WEBlockPack.AMARANTH_DYLIUM)) {
+		if(blockState.isOf(WEBlocks.AMARANTH_DYLIUM)) {
 			NetherForestVegetationFeature.generate(world, random, blockPos, WEConfiguredFeatures.Configs.AMARANTH_ROOTS, 3, 1);
 		}
 	}

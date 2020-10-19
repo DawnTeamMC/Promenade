@@ -1,6 +1,6 @@
 package com.hugman.wild_explorer.object.block;
 
-import com.hugman.wild_explorer.init.WEItemPack;
+import com.hugman.wild_explorer.init.WEItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.entity.player.PlayerEntity;
@@ -22,7 +22,7 @@ public class BlueberryBushBlock extends SweetBerryBushBlock {
 
 	@Override
 	public ItemStack getPickStack(BlockView worldIn, BlockPos pos, BlockState state) {
-		return new ItemStack(WEItemPack.BLUEBERRIES);
+		return new ItemStack(WEItems.BLUEBERRIES);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class BlueberryBushBlock extends SweetBerryBushBlock {
 		}
 		else if(i > 1) {
 			int j = 1 + worldIn.random.nextInt(2);
-			dropStack(worldIn, pos, new ItemStack(WEItemPack.BLUEBERRIES, j + (flag ? 1 : 0)));
+			dropStack(worldIn, pos, new ItemStack(WEItems.BLUEBERRIES, j + (flag ? 1 : 0)));
 			worldIn.playSound(null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + worldIn.random.nextFloat() * 0.4F);
 			worldIn.setBlockState(pos, state.with(AGE, Integer.valueOf(1)), 2);
 			return ActionResult.SUCCESS;

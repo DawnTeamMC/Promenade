@@ -3,7 +3,7 @@ package com.hugman.wild_explorer.init.world;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.hugman.wild_explorer.WildExplorer;
-import com.hugman.wild_explorer.init.WEBlockPack;
+import com.hugman.wild_explorer.init.WEBlocks;
 import com.hugman.wild_explorer.object.world.gen.feature.HugeNetherMushroomFeatureConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -167,7 +167,7 @@ public class WEConfiguredFeatures {
 		protected static final HugeNetherMushroomFeatureConfig HUGE_NETHER_MUSHROOM_GRAY = new HugeNetherMushroomFeatureConfig(4, 7, States.GRAY_MUSHROOM_BLOCK, 3, 1, Blocks.SHROOMLIGHT.getDefaultState(), 0.01F, 0.0F);
 		protected static final HugeNetherMushroomFeatureConfig HUGE_NETHER_MUSHROOM_BLACK = new HugeNetherMushroomFeatureConfig(6, 2, States.BLACK_MUSHROOM_BLOCK, 2, 1, Blocks.SHROOMLIGHT.getDefaultState(), 0.01F, 0.0F);
 
-		public static final BlockPileFeatureConfig AMARANTH_ROOTS = new BlockPileFeatureConfig((new WeightedBlockStateProvider()).addState(WEBlockPack.AMARANTH_ROOTS.getDefaultState(), 87).addState(WEBlockPack.DARK_AMARANTH_WOOD.getFungus().getDefaultState(), 11));
+		public static final BlockPileFeatureConfig AMARANTH_ROOTS = new BlockPileFeatureConfig((new WeightedBlockStateProvider()).addState(WEBlocks.AMARANTH_ROOTS.getDefaultState(), 87).addState(WEBlocks.DARK_AMARANTH_WOOD.getFungus().getDefaultState(), 11));
 
 		protected static ConfiguredFeature<RandomPatchFeatureConfig, ?> patch(BlockState blockState, int tries) {
 			return Feature.RANDOM_PATCH.configure((new RandomPatchFeatureConfig.Builder(new SimpleBlockStateProvider(blockState), SimpleBlockPlacer.INSTANCE)).tries(tries).cannotProject().build());
@@ -182,51 +182,51 @@ public class WEConfiguredFeatures {
 		protected static final BlockState GRASS_BLOCK = Blocks.GRASS_BLOCK.getDefaultState();
 
 		protected static final BlockState OAK_LOG = Blocks.OAK_LOG.getDefaultState();
-		protected static final BlockState AUTUMN_OAK_LEAVES = WEBlockPack.AUTUMN_OAK_LEAVES.getLeaves().getDefaultState();
-		protected static final BlockState AUTUMN_OAK_LEAF_PILE = WEBlockPack.AUTUMN_OAK_LEAVES.getLeafPile().getDefaultState();
+		protected static final BlockState AUTUMN_OAK_LEAVES = WEBlocks.AUTUMN_OAK_LEAVES.getLeaves().getDefaultState();
+		protected static final BlockState AUTUMN_OAK_LEAF_PILE = WEBlocks.AUTUMN_OAK_LEAVES.getLeafPile().getDefaultState();
 
 		protected static final BlockState BIRCH_LOG = Blocks.BIRCH_LOG.getDefaultState();
-		protected static final BlockState AUTUMN_BIRCH_LEAVES = WEBlockPack.AUTUMN_BIRCH_LEAVES.getLeaves().getDefaultState();
-		protected static final BlockState AUTUMN_BIRCH_LEAF_PILE = WEBlockPack.AUTUMN_BIRCH_LEAVES.getLeafPile().getDefaultState();
+		protected static final BlockState AUTUMN_BIRCH_LEAVES = WEBlocks.AUTUMN_BIRCH_LEAVES.getLeaves().getDefaultState();
+		protected static final BlockState AUTUMN_BIRCH_LEAF_PILE = WEBlocks.AUTUMN_BIRCH_LEAVES.getLeafPile().getDefaultState();
 
-		protected static final BlockState CHERRY_OAK_LOG = WEBlockPack.CHERRY_OAK_WOOD.getLog().getDefaultState();
-		protected static final BlockState PINK_CHERRY_OAK_LEAVES = WEBlockPack.PINK_CHERRY_OAK_LEAVES.getLeaves().getDefaultState();
-		protected static final BlockState PINK_CHERRY_OAK_LEAF_PILE = WEBlockPack.PINK_CHERRY_OAK_LEAVES.getLeafPile().getDefaultState();
-		protected static final BlockState WHITE_CHERRY_OAK_LEAVES = WEBlockPack.WHITE_CHERRY_OAK_LEAVES.getLeaves().getDefaultState();
-		protected static final BlockState WHITE_CHERRY_OAK_LEAF_PILE = WEBlockPack.WHITE_CHERRY_OAK_LEAVES.getLeafPile().getDefaultState();
+		protected static final BlockState CHERRY_OAK_LOG = WEBlocks.CHERRY_OAK_WOOD.getLog().getDefaultState();
+		protected static final BlockState PINK_CHERRY_OAK_LEAVES = WEBlocks.PINK_CHERRY_OAK_LEAVES.getLeaves().getDefaultState();
+		protected static final BlockState PINK_CHERRY_OAK_LEAF_PILE = WEBlocks.PINK_CHERRY_OAK_LEAVES.getLeafPile().getDefaultState();
+		protected static final BlockState WHITE_CHERRY_OAK_LEAVES = WEBlocks.WHITE_CHERRY_OAK_LEAVES.getLeaves().getDefaultState();
+		protected static final BlockState WHITE_CHERRY_OAK_LEAF_PILE = WEBlocks.WHITE_CHERRY_OAK_LEAVES.getLeafPile().getDefaultState();
 
-		protected static final BlockState PALM_LOG = WEBlockPack.PALM_WOOD.getLog().getDefaultState();
-		protected static final BlockState PALM_LEAVES = WEBlockPack.PALM_WOOD.getLeaves().getDefaultState();
+		protected static final BlockState PALM_LOG = WEBlocks.PALM_WOOD.getLog().getDefaultState();
+		protected static final BlockState PALM_LEAVES = WEBlocks.PALM_WOOD.getLeaves().getDefaultState();
 
-		protected static final BlockState BLUEBERRY_BUSH = WEBlockPack.BLUEBERRY_BUSH.getDefaultState();
+		protected static final BlockState BLUEBERRY_BUSH = WEBlocks.BLUEBERRY_BUSH.getDefaultState();
 
-		protected static final BlockState AMARANTH_DYLIUM = WEBlockPack.AMARANTH_DYLIUM.getDefaultState();
-		protected static final BlockState DARK_AMARANTH_STEM = WEBlockPack.DARK_AMARANTH_WOOD.getStem().getDefaultState();
-		protected static final BlockState AMARANTH_WART_BLOCK = WEBlockPack.AMARANTH_WART_BLOCK.getDefaultState();
+		protected static final BlockState AMARANTH_DYLIUM = WEBlocks.AMARANTH_DYLIUM.getDefaultState();
+		protected static final BlockState DARK_AMARANTH_STEM = WEBlocks.DARK_AMARANTH_WOOD.getStem().getDefaultState();
+		protected static final BlockState AMARANTH_WART_BLOCK = WEBlocks.AMARANTH_WART_BLOCK.getDefaultState();
 		protected static final BlockState COBWEB = Blocks.COBWEB.getDefaultState();
 
-		protected static final BlockState BLUE_MUSHROOM = WEBlockPack.BLUE_MUSHROOM.getPlant().getDefaultState();
-		protected static final BlockState CYAN_MUSHROOM = WEBlockPack.CYAN_MUSHROOM.getPlant().getDefaultState();
-		protected static final BlockState YELLOW_MUSHROOM = WEBlockPack.YELLOW_MUSHROOM.getPlant().getDefaultState();
-		protected static final BlockState ORANGE_MUSHROOM = WEBlockPack.ORANGE_MUSHROOM.getPlant().getDefaultState();
-		protected static final BlockState PINK_MUSHROOM = WEBlockPack.PINK_MUSHROOM.getPlant().getDefaultState();
-		protected static final BlockState MAGENTA_MUSHROOM = WEBlockPack.MAGENTA_MUSHROOM.getPlant().getDefaultState();
-		protected static final BlockState WHITE_MUSHROOM = WEBlockPack.WHITE_MUSHROOM.getPlant().getDefaultState();
-		protected static final BlockState LIGHT_GRAY_MUSHROOM = WEBlockPack.LIGHT_GRAY_MUSHROOM.getPlant().getDefaultState();
-		protected static final BlockState GRAY_MUSHROOM = WEBlockPack.GRAY_MUSHROOM.getPlant().getDefaultState();
-		protected static final BlockState BLACK_MUSHROOM = WEBlockPack.BLACK_MUSHROOM.getPlant().getDefaultState();
+		protected static final BlockState BLUE_MUSHROOM = WEBlocks.BLUE_MUSHROOM.getPlant().getDefaultState();
+		protected static final BlockState CYAN_MUSHROOM = WEBlocks.CYAN_MUSHROOM.getPlant().getDefaultState();
+		protected static final BlockState YELLOW_MUSHROOM = WEBlocks.YELLOW_MUSHROOM.getPlant().getDefaultState();
+		protected static final BlockState ORANGE_MUSHROOM = WEBlocks.ORANGE_MUSHROOM.getPlant().getDefaultState();
+		protected static final BlockState PINK_MUSHROOM = WEBlocks.PINK_MUSHROOM.getPlant().getDefaultState();
+		protected static final BlockState MAGENTA_MUSHROOM = WEBlocks.MAGENTA_MUSHROOM.getPlant().getDefaultState();
+		protected static final BlockState WHITE_MUSHROOM = WEBlocks.WHITE_MUSHROOM.getPlant().getDefaultState();
+		protected static final BlockState LIGHT_GRAY_MUSHROOM = WEBlocks.LIGHT_GRAY_MUSHROOM.getPlant().getDefaultState();
+		protected static final BlockState GRAY_MUSHROOM = WEBlocks.GRAY_MUSHROOM.getPlant().getDefaultState();
+		protected static final BlockState BLACK_MUSHROOM = WEBlocks.BLACK_MUSHROOM.getPlant().getDefaultState();
 
-		protected static final BlockState BLUE_MUSHROOM_BLOCK = WEBlockPack.BLUE_MUSHROOM_BLOCK.getDefaultState();
-		protected static final BlockState CYAN_MUSHROOM_BLOCK = WEBlockPack.CYAN_MUSHROOM_BLOCK.getDefaultState();
-		protected static final BlockState YELLOW_MUSHROOM_BLOCK = WEBlockPack.YELLOW_MUSHROOM_BLOCK.getDefaultState();
+		protected static final BlockState BLUE_MUSHROOM_BLOCK = WEBlocks.BLUE_MUSHROOM_BLOCK.getDefaultState();
+		protected static final BlockState CYAN_MUSHROOM_BLOCK = WEBlocks.CYAN_MUSHROOM_BLOCK.getDefaultState();
+		protected static final BlockState YELLOW_MUSHROOM_BLOCK = WEBlocks.YELLOW_MUSHROOM_BLOCK.getDefaultState();
 		protected static final BlockState BROWN_MUSHROOM_BLOCK = Blocks.BROWN_MUSHROOM_BLOCK.getDefaultState();
-		protected static final BlockState ORANGE_MUSHROOM_BLOCK = WEBlockPack.ORANGE_MUSHROOM_BLOCK.getDefaultState();
-		protected static final BlockState PINK_MUSHROOM_BLOCK = WEBlockPack.PINK_MUSHROOM_BLOCK.getDefaultState();
-		protected static final BlockState MAGENTA_MUSHROOM_BLOCK = WEBlockPack.MAGENTA_MUSHROOM_BLOCK.getDefaultState();
-		protected static final BlockState WHITE_MUSHROOM_BLOCK = WEBlockPack.WHITE_MUSHROOM_BLOCK.getDefaultState();
-		protected static final BlockState LIGHT_GRAY_MUSHROOM_BLOCK = WEBlockPack.LIGHT_GRAY_MUSHROOM_BLOCK.getDefaultState();
-		protected static final BlockState GRAY_MUSHROOM_BLOCK = WEBlockPack.GRAY_MUSHROOM_BLOCK.getDefaultState();
-		protected static final BlockState BLACK_MUSHROOM_BLOCK = WEBlockPack.BLACK_MUSHROOM_BLOCK.getDefaultState();
+		protected static final BlockState ORANGE_MUSHROOM_BLOCK = WEBlocks.ORANGE_MUSHROOM_BLOCK.getDefaultState();
+		protected static final BlockState PINK_MUSHROOM_BLOCK = WEBlocks.PINK_MUSHROOM_BLOCK.getDefaultState();
+		protected static final BlockState MAGENTA_MUSHROOM_BLOCK = WEBlocks.MAGENTA_MUSHROOM_BLOCK.getDefaultState();
+		protected static final BlockState WHITE_MUSHROOM_BLOCK = WEBlocks.WHITE_MUSHROOM_BLOCK.getDefaultState();
+		protected static final BlockState LIGHT_GRAY_MUSHROOM_BLOCK = WEBlocks.LIGHT_GRAY_MUSHROOM_BLOCK.getDefaultState();
+		protected static final BlockState GRAY_MUSHROOM_BLOCK = WEBlocks.GRAY_MUSHROOM_BLOCK.getDefaultState();
+		protected static final BlockState BLACK_MUSHROOM_BLOCK = WEBlocks.BLACK_MUSHROOM_BLOCK.getDefaultState();
 
 		protected static final BlockState SHROOMLIGHT = Blocks.SHROOMLIGHT.getDefaultState();
 	}

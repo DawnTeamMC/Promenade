@@ -1,7 +1,7 @@
 package com.hugman.wild_explorer.init.world;
 
 import com.hugman.wild_explorer.WildExplorer;
-import com.hugman.wild_explorer.init.WEBlockPack;
+import com.hugman.wild_explorer.init.WEBlocks;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.BuiltinRegistries;
@@ -20,6 +20,6 @@ public class WEConfiguredSurfaceBuilders {
 
 	public static final class States {
 		protected static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
-		protected static final BlockState AMARANTH_DYLIUM = WEBlockPack.AMARANTH_DYLIUM.getDefaultState();
+		protected static final BlockState AMARANTH_DYLIUM = WEBlocks.AMARANTH_DYLIUM.getDefaultState();
 	}
 }

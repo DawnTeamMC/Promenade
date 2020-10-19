@@ -1,6 +1,6 @@
 package com.hugman.wild_explorer.init.client;
 
-import com.hugman.wild_explorer.init.WEBlockPack;
+import com.hugman.wild_explorer.init.WEBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -16,38 +16,18 @@ public class WEColorMaps {
 	}
 
 	private static void registerBlockColors() {
-		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
-			return pos != null && world != null ? BiomeColors.getFoliageColor(pos, world) : FoliageColors.getDefaultColor();
-		}, WEBlockPack.PALM_WOOD.getLeaves(), WEBlockPack.PALM_WOOD.getLeafPile());
-		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
-			return 15232304;
-		}, WEBlockPack.AUTUMN_OAK_LEAVES.getLeaves(), WEBlockPack.AUTUMN_OAK_LEAVES.getLeafPile());
-		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
-			return 15645495;
-		}, WEBlockPack.AUTUMN_BIRCH_LEAVES.getLeaves(), WEBlockPack.AUTUMN_BIRCH_LEAVES.getLeafPile());
-		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
-			return 15768259;
-		}, WEBlockPack.PINK_CHERRY_OAK_LEAVES.getLeaves(), WEBlockPack.PINK_CHERRY_OAK_LEAVES.getLeafPile());
-		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> {
-			return 15786729;
-		}, WEBlockPack.WHITE_CHERRY_OAK_LEAVES.getLeaves(), WEBlockPack.WHITE_CHERRY_OAK_LEAVES.getLeafPile());
+		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> pos != null && world != null ? BiomeColors.getFoliageColor(pos, world) : FoliageColors.getDefaultColor(), WEBlocks.PALM_WOOD.getLeaves(), WEBlocks.PALM_WOOD.getLeafPile());
+		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> 15232304, WEBlocks.AUTUMN_OAK_LEAVES.getLeaves(), WEBlocks.AUTUMN_OAK_LEAVES.getLeafPile());
+		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> 15645495, WEBlocks.AUTUMN_BIRCH_LEAVES.getLeaves(), WEBlocks.AUTUMN_BIRCH_LEAVES.getLeafPile());
+		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> 15768259, WEBlocks.PINK_CHERRY_OAK_LEAVES.getLeaves(), WEBlocks.PINK_CHERRY_OAK_LEAVES.getLeafPile());
+		ColorProviderRegistry.BLOCK.register((block, pos, world, layer) -> 15786729, WEBlocks.WHITE_CHERRY_OAK_LEAVES.getLeaves(), WEBlocks.WHITE_CHERRY_OAK_LEAVES.getLeafPile());
 	}
 
 	private static void registerItemColors() {
-		ColorProviderRegistry.ITEM.register((item, layer) -> {
-			return GrassColors.getColor(0.5D, 1.0D);
-		}, WEBlockPack.PALM_WOOD.getLeaves(), WEBlockPack.PALM_WOOD.getLeafPile());
-		ColorProviderRegistry.ITEM.register((item, layer) -> {
-			return 15232304;
-		}, WEBlockPack.AUTUMN_OAK_LEAVES.getLeaves(), WEBlockPack.AUTUMN_OAK_LEAVES.getLeafPile());
-		ColorProviderRegistry.ITEM.register((item, layer) -> {
-			return 15645495;
-		}, WEBlockPack.AUTUMN_BIRCH_LEAVES.getLeaves(), WEBlockPack.AUTUMN_BIRCH_LEAVES.getLeafPile());
-		ColorProviderRegistry.ITEM.register((item, layer) -> {
-			return 15768259;
-		}, WEBlockPack.PINK_CHERRY_OAK_LEAVES.getLeaves(), WEBlockPack.PINK_CHERRY_OAK_LEAVES.getLeafPile());
-		ColorProviderRegistry.ITEM.register((item, layer) -> {
-			return 15786729;
-		}, WEBlockPack.WHITE_CHERRY_OAK_LEAVES.getLeaves(), WEBlockPack.WHITE_CHERRY_OAK_LEAVES.getLeafPile());
+		ColorProviderRegistry.ITEM.register((item, layer) -> GrassColors.getColor(0.5D, 1.0D), WEBlocks.PALM_WOOD.getLeaves(), WEBlocks.PALM_WOOD.getLeafPile());
+		ColorProviderRegistry.ITEM.register((item, layer) -> 15232304, WEBlocks.AUTUMN_OAK_LEAVES.getLeaves(), WEBlocks.AUTUMN_OAK_LEAVES.getLeafPile());
+		ColorProviderRegistry.ITEM.register((item, layer) -> 15645495, WEBlocks.AUTUMN_BIRCH_LEAVES.getLeaves(), WEBlocks.AUTUMN_BIRCH_LEAVES.getLeafPile());
+		ColorProviderRegistry.ITEM.register((item, layer) -> 15768259, WEBlocks.PINK_CHERRY_OAK_LEAVES.getLeaves(), WEBlocks.PINK_CHERRY_OAK_LEAVES.getLeafPile());
+		ColorProviderRegistry.ITEM.register((item, layer) -> 15786729, WEBlocks.WHITE_CHERRY_OAK_LEAVES.getLeaves(), WEBlocks.WHITE_CHERRY_OAK_LEAVES.getLeafPile());
 	}
 }

@@ -19,6 +19,9 @@
 		],
 		"client": [
 			"com.hugman.wild_explorer.WildExplorerClient"
+		],
+		"modmenu": [
+			"com.hugman.wild_explorer.init.config.WEModMenuIntegration"
 		]
 	},
 	"mixins": [

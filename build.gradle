@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.4-SNAPSHOT'
+	id 'fabric-loom' version '0.5-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -15,15 +15,19 @@ group = project.maven_group
 repositories {
 	jcenter()
 	maven { url 'https://jitpack.io' }
-	maven { url 'https://maven.blamejared.com' }
 }
 
 dependencies {
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-	modCompile "net.fabricmc:fabric-loader:${project.loader_version}"
-	modCompile "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modCompile "com.github.DawnTeamMC:DawnAPI:${project.dawn_version}"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	modImplementation "me.shedaniel.cloth:config-2:+"
+	modImplementation "me.sargunvohra.mcmods:autoconfig1u:+"
+	modImplementation "io.github.prospector:modmenu:+"
+
+	modApi "com.github.DawnTeamMC:DawnAPI:${project.dawn_version}"
 
 	compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }

@@ -23,13 +23,11 @@
 	"block.wild_explorer.cherry_oak_button": "樱桃橡木按钮",
 	"block.wild_explorer.cherry_oak_stairs": "樱桃橡木楼梯",
 	"block.wild_explorer.cherry_oak_slab": "樱桃橡木台阶",
-	"block.wild_explorer.cherry_oak_vertical_slab": "樱桃橡木垂直台阶",
 	"block.wild_explorer.cherry_oak_fence_gate": "樱桃橡木栅栏门",
 	"block.wild_explorer.cherry_oak_fence": "樱桃橡木栅栏",
 	"block.wild_explorer.cherry_oak_door": "樱桃橡木门",
 	"block.wild_explorer.cherry_oak_wood_stairs": "樱桃橡木木楼梯",
 	"block.wild_explorer.cherry_oak_wood_slab": "樱桃橡木木台阶",
-	"block.wild_explorer.cherry_oak_wood_vertical_slab": "樱桃橡木木垂直台阶",
 	"block.wild_explorer.cherry_oak_wood_button": "樱桃橡木木按钮",
 
 	"block.wild_explorer.palm_planks": "棕榈木板",
@@ -45,13 +43,11 @@
 	"block.wild_explorer.palm_button": "棕榈按钮",
 	"block.wild_explorer.palm_stairs": "棕榈楼梯",
 	"block.wild_explorer.palm_slab": "棕榈台阶",
-	"block.wild_explorer.palm_vertical_slab": "棕榈垂直台阶",
 	"block.wild_explorer.palm_fence_gate": "棕榈栅栏门",
 	"block.wild_explorer.palm_fence": "棕榈栅栏",
 	"block.wild_explorer.palm_door": "棕榈门",
 	"block.wild_explorer.palm_wood_stairs": "棕榈木楼梯",
 	"block.wild_explorer.palm_wood_slab": "棕榈木台阶",
-	"block.wild_explorer.palm_wood_vertical_slab": "棕榈木垂直台阶",
 	"block.wild_explorer.palm_wood_button": "棕榈木按钮",
 
 	"block.wild_explorer.amaranth_dylium": "深紫花",
@@ -69,13 +65,11 @@
 	"block.wild_explorer.dark_amaranth_button": "暗紫按钮",
 	"block.wild_explorer.dark_amaranth_stairs": "暗紫楼梯",
 	"block.wild_explorer.dark_amaranth_slab": "暗紫台阶",
-	"block.wild_explorer.dark_amaranth_vertical_slab": "暗紫垂直台阶",
 	"block.wild_explorer.dark_amaranth_fence_gate": "暗紫栅栏门",
 	"block.wild_explorer.dark_amaranth_fence": "暗紫栅栏",
 	"block.wild_explorer.dark_amaranth_door": "暗紫门",
 	"block.wild_explorer.dark_amaranth_hyphae_stairs": "暗紫菌核楼梯",
 	"block.wild_explorer.dark_amaranth_hyphae_slab": "暗紫菌核台阶",
-	"block.wild_explorer.dark_amaranth_hyphae_vertical_slab": "暗紫菌核垂直台阶",
 	"block.wild_explorer.dark_amaranth_hyphae_button": "暗紫菌核按钮",
 
 	"block.wild_explorer.blueberry_bush": "蓝莓丛",
@@ -91,6 +85,13 @@
 	"item.wild_explorer.banana": "香蕉",
 	"item.wild_explorer.apricot": "杏子",
 	"item.wild_explorer.mango": "芒果",
+	"//item.wild_explorer.duck": "Duck",
+	"//item.wild_explorer.cooked_duck": "Cooked Duck",
+
+	"//item.wild_explorer.duck_spawn_egg": "Duck Spawn Egg",
+
+	"comment": "ENTITIES",
+	"//entity.wild_explorer.duck": "Duck",
 
 	"comment": "BIOMES",
 	"biome.wild_explorer.pumpkin_pastures": "南瓜牧场",
@@ -102,5 +103,22 @@
 	"biome.wild_explorer.achromatopsian_gallery": "全色巷道",
 	"biome.wild_explorer.protanopian_gallery": "红绿巷道",
 	"biome.wild_explorer.dark_amaranth_forest": "暗紫森林",
-	"biome.wild_explorer.tall_dark_amaranth_forest": "高大暗紫森林"
+	"biome.wild_explorer.tall_dark_amaranth_forest": "高大暗紫森林",
+
+	"comment": "SUBTITLES",
+	"//subtitles.wild_explorer.entity.duck.ambient": "Duck quacks",
+	"//subtitles.wild_explorer.entity.duck.hurt": "Duck hurts",
+	"//subtitles.wild_explorer.entity.duck.death": "Duck dies",
+
+	"comment": "CONFIG",
+	"//text.autoconfig.wild_explorer.title": "Wild Explorer Configuration",
+	"//text.autoconfig.wild_explorer.category.worldGeneration": "World Generation",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.pumpkinPastures": "Generate Pumpkin Pastures",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.pinkCherryOakForest": "Generate Pink Cherry Oak Forests",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.whiteCherryOakForest": "Generate White Cherry Oak Forests",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.tallCrimsonForest": "Generate Tall Crimson Forests",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.tallWarpedForest": "Generate Tall Warped Forests",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.tritanopianGallery":"Generate Tritanopian Galleries",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.achromatopsianGallery": "Generate Achromatopsian Galleries",
+	"//text.autoconfig.wild_explorer.option.worldGeneration.protanopianGallery": "Generate Protanopian Galleries"
 }

@@ -1,6 +1,0 @@
-{
-	"parent": "dawn:block/vertical_slab/north",
-	"textures": {
-		"block": "wild_explorer:block/dark_amaranth_stem/side"
-	}
-}
