@@ -31,6 +31,10 @@ import java.util.OptionalInt;
 import java.util.Set;
 
 public class WEConfiguredFeatures {
+	public static void init() {
+
+	}
+
 	private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> feature) {
 		return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, WildExplorer.MOD_DATA.id(name), feature);
 	}

@@ -12,6 +12,9 @@ import net.minecraft.world.gen.feature.HugeFungusFeatureConfig;
 import net.minecraft.world.gen.feature.SingleStateFeatureConfig;
 
 public class WEFeatures {
+	public static void init() {
+	}
+
 	private static <C extends FeatureConfig, F extends Feature<C>> F register(String name, F feature) {
 		return Registry.register(Registry.FEATURE, WildExplorer.MOD_DATA.id(name), feature);
 	}

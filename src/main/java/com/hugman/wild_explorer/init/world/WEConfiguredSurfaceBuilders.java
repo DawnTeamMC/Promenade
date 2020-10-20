@@ -12,6 +12,10 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceConfig;
 import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
 public class WEConfiguredSurfaceBuilders {
+	public static void init() {
+
+	}
+
 	private static <SC extends SurfaceConfig> ConfiguredSurfaceBuilder<SC> register(String name, ConfiguredSurfaceBuilder<SC> feature) {
 		return Registry.register(BuiltinRegistries.CONFIGURED_SURFACE_BUILDER, WildExplorer.MOD_DATA.id(name), feature);
 	}

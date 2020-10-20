@@ -7,6 +7,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
 public class WEItems extends WEPack {
+	public static void init() {
+	}
+
 	public static final Item BLUEBERRIES = register(new ItemCreator.Builder("blueberries", new AliasedBlockItem(WEBlocks.BLUEBERRY_BUSH, new Item.Settings().group(ItemGroup.FOOD).food(WEFood.BLUEBERRIES))).compostingChance(0.30F));
 	public static final Item BANANA = register(new ItemCreator.Builder("banana", new Item(new Item.Settings().group(ItemGroup.FOOD).food(WEFood.BANANA))).compostingChance(0.65F));
 	public static final Item APRICOT = register(new ItemCreator.Builder("apricot", new Item(new Item.Settings().group(ItemGroup.FOOD).food(WEFood.APRICOT))).compostingChance(0.65F));

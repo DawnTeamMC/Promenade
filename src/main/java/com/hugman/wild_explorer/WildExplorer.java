@@ -2,11 +2,10 @@ package com.hugman.wild_explorer;
 
 import com.hugman.dawn.api.creator.ModData;
 import com.hugman.dawn.mod.init.config.DawnConfig;
-import com.hugman.wild_explorer.init.WEBiomes;
-import com.hugman.wild_explorer.init.WEBlocks;
-import com.hugman.wild_explorer.init.WEItems;
+import com.hugman.wild_explorer.init.*;
 import com.hugman.wild_explorer.init.config.WEConfig;
 import com.hugman.wild_explorer.init.world.WEConfiguredFeatures;
+import com.hugman.wild_explorer.init.world.WEConfiguredSurfaceBuilders;
 import com.hugman.wild_explorer.init.world.WEFeatures;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.ConfigHolder;
@@ -26,10 +25,13 @@ public class WildExplorer implements ModInitializer {
 		ConfigHolder<WEConfig> configHolder = AutoConfig.register(WEConfig.class, PartitioningSerializer.wrap(GsonConfigSerializer::new));
 		CONFIG = configHolder.getConfig();
 
-		new WEBlocks();
-		new WEItems();
-		new WEFeatures();
-		new WEConfiguredFeatures();
+		WEBlocks.init();
+		WEItems.init();
+		WEEntities.init();
+		WESounds.init();
+		WEFeatures.init();
+		WEConfiguredFeatures.init();
+		WEConfiguredSurfaceBuilders.init();
 		WEBiomes.init();
 	}
 }

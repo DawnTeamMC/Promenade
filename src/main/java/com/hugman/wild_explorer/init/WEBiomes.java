@@ -2,12 +2,14 @@ package com.hugman.wild_explorer.init;
 
 import com.hugman.dawn.api.creator.BiomeCreator;
 import com.hugman.wild_explorer.WildExplorer;
+import com.hugman.wild_explorer.init.config.WEConfig;
 import com.hugman.wild_explorer.util.WEBiomeCreator;
 import net.fabricmc.fabric.api.biome.v1.OverworldClimate;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 
 public class WEBiomes extends WEPack {
+	public static final WEConfig.WorldGenerationCategory CONFIG = WildExplorer.CONFIG.worldGeneration;
 	public static RegistryKey<Biome> PUMPKIN_PASTURES;
 	public static RegistryKey<Biome> PINK_CHERRY_OAK_FOREST;
 	public static RegistryKey<Biome> WHITE_CHERRY_OAK_FOREST;
@@ -30,28 +32,28 @@ public class WEBiomes extends WEPack {
 		BiomeCreator.Builder protanopianGalleryBuilder = new BiomeCreator.Builder("protanopian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.createProtanopianGalleryGenerationSettings()));
 		BiomeCreator.Builder darkAmaranthForestBuilder = new BiomeCreator.Builder("dark_amaranth_forest", WEBiomeCreator.createDarkAmaranthForest());
 		BiomeCreator.Builder tallDarkAmaranthForestBuilder = new BiomeCreator.Builder("tall_dark_amaranth_forest", WEBiomeCreator.createDarkAmaranthForest());
-		if(WildExplorer.CONFIG.worldGeneration.pumpkinPastures) {
+		if(CONFIG.pumpkinPastures) {
 			pumpkinPasturesBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
 		}
-		if(WildExplorer.CONFIG.worldGeneration.pinkCherryOakForest) {
+		if(CONFIG.pinkCherryOakForest) {
 			pinkCherryOakForestBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
 		}
-		if(WildExplorer.CONFIG.worldGeneration.whiteCherryOakForest) {
+		if(CONFIG.whiteCherryOakForest) {
 			whiteCherryOakForestBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
 		}
-		if(WildExplorer.CONFIG.worldGeneration.tallCrimsonForest) {
+		if(CONFIG.tallCrimsonForest) {
 			tallCrimsonForestBuilder.addToNether(0.4F, 0.0F, 0.1F, 0.0F, 0.0F);
 		}
-		if(WildExplorer.CONFIG.worldGeneration.tallWarpedForest) {
+		if(CONFIG.tallWarpedForest) {
 			tallWarpedForestBuilder.addToNether(0.0F, 0.5F, 0.1F, 0.0F, 0.375F);
 		}
-		if(WildExplorer.CONFIG.worldGeneration.tritanopianGallery) {
+		if(CONFIG.tritanopianGallery) {
 			tritanopianGalleryBuilder.addToNether(0.05F, 0.025F, 0.0F, 0.0F, 0.05F);
 		}
-		if(WildExplorer.CONFIG.worldGeneration.achromatopsianGallery) {
+		if(CONFIG.achromatopsianGallery) {
 			achromatopsianGalleryBuilder.addToNether(0.1F, 0.05F, 0.0F, 0.0F, 0.025F);
 		}
-		if(WildExplorer.CONFIG.worldGeneration.protanopianGallery) {
+		if(CONFIG.protanopianGallery) {
 			protanopianGalleryBuilder.addToNether(0.025F, 0.1F, 0.0F, 0.0F, 0.05F);
 		}
 		PUMPKIN_PASTURES = register(pumpkinPasturesBuilder);
