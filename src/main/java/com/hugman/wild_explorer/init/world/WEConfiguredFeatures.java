@@ -8,6 +8,7 @@ import com.hugman.wild_explorer.object.world.gen.feature.HugeNetherMushroomFeatu
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.util.Pair;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.Heightmap;
@@ -27,12 +28,13 @@ import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.OptionalInt;
 import java.util.Set;
 
 public class WEConfiguredFeatures {
 	public static void init() {
-
 	}
 
 	private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> feature) {

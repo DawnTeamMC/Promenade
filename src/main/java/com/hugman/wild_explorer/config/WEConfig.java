@@ -1,4 +1,4 @@
-package com.hugman.wild_explorer.init.config;
+package com.hugman.wild_explorer.config;
 
 import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
@@ -6,7 +6,7 @@ import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.PartitioningSerializer;
 
 @Config(name = "wild_explorer")
-@Config.Gui.CategoryBackground(category = "world_generation", background = "minecraft:textures/block/lime_concrete.png")
+@Config.Gui.Background("minecraft:textures/block/lime_concrete.png")
 public class WEConfig extends PartitioningSerializer.GlobalData {
 	@ConfigEntry.Category("world_generation")
 	@ConfigEntry.Gui.TransitiveObject

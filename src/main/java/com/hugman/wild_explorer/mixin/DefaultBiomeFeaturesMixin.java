@@ -1,5 +1,6 @@
 package com.hugman.wild_explorer.mixin;
 
+import com.hugman.wild_explorer.WildExplorer;
 import com.hugman.wild_explorer.init.WEEntities;
 import com.hugman.wild_explorer.init.world.WEConfiguredFeatures;
 import net.minecraft.entity.SpawnGroup;
@@ -16,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class DefaultBiomeFeaturesMixin {
 	@Inject(method = "addDesertVegetation", at = @At(value = "TAIL"), cancellable = true)
 	private static void WE_addDesertVegetation(GenerationSettings.Builder builder, CallbackInfo info) {
-		builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PALM_TREES);
+		//builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PALM_TREES);
 	}
 
 	@Inject(method = "addFarmAnimals", at = @At(value = "TAIL"), cancellable = true)

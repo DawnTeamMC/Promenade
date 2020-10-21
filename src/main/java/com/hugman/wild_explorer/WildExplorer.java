@@ -1,9 +1,8 @@
 package com.hugman.wild_explorer;
 
 import com.hugman.dawn.api.creator.ModData;
-import com.hugman.dawn.mod.init.config.DawnConfig;
 import com.hugman.wild_explorer.init.*;
-import com.hugman.wild_explorer.init.config.WEConfig;
+import com.hugman.wild_explorer.config.WEConfig;
 import com.hugman.wild_explorer.init.world.WEConfiguredFeatures;
 import com.hugman.wild_explorer.init.world.WEConfiguredSurfaceBuilders;
 import com.hugman.wild_explorer.init.world.WEFeatures;
@@ -18,13 +17,10 @@ import org.apache.logging.log4j.Logger;
 public class WildExplorer implements ModInitializer {
 	public static final ModData MOD_DATA = new ModData("wild_explorer");
 	public static final Logger LOGGER = LogManager.getLogger();
-	public static WEConfig CONFIG;
+	public static final WEConfig CONFIG = AutoConfig.register(WEConfig.class, PartitioningSerializer.wrap(GsonConfigSerializer::new)).getConfig();
 
 	@Override
 	public void onInitialize() {
-		ConfigHolder<WEConfig> configHolder = AutoConfig.register(WEConfig.class, PartitioningSerializer.wrap(GsonConfigSerializer::new));
-		CONFIG = configHolder.getConfig();
-
 		WEBlocks.init();
 		WEItems.init();
 		WEEntities.init();

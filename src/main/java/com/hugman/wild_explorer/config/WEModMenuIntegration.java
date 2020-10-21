@@ -1,6 +1,5 @@
-package com.hugman.wild_explorer.init.config;
+package com.hugman.wild_explorer.config;
 
-import com.hugman.dawn.mod.init.config.DawnConfig;
 import io.github.prospector.modmenu.api.ConfigScreenFactory;
 import io.github.prospector.modmenu.api.ModMenuApi;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;

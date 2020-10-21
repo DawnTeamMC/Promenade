@@ -2,7 +2,7 @@ package com.hugman.wild_explorer.init;
 
 import com.hugman.dawn.api.creator.BiomeCreator;
 import com.hugman.wild_explorer.WildExplorer;
-import com.hugman.wild_explorer.init.config.WEConfig;
+import com.hugman.wild_explorer.config.WEConfig;
 import com.hugman.wild_explorer.util.WEBiomeCreator;
 import net.fabricmc.fabric.api.biome.v1.OverworldClimate;
 import net.minecraft.util.registry.RegistryKey;

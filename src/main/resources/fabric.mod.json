@@ -21,7 +21,7 @@
 			"com.hugman.wild_explorer.WildExplorerClient"
 		],
 		"modmenu": [
-			"com.hugman.wild_explorer.init.config.WEModMenuIntegration"
+			"com.hugman.wild_explorer.config.WEModMenuIntegration"
 		]
 	},
 	"mixins": [
