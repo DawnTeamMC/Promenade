@@ -156,14 +156,14 @@
 	"subtitles.wild_explorer.entity.duck.death": "Eend sterft",
 
 	"comment": "CONFIG",
-	"//text.autoconfig.wild_explorer.title": "Wild Explorer Configuration",
-	"//text.autoconfig.wild_explorer.category.worldGeneration": "World Generation",
-	"//text.autoconfig.wild_explorer.option.worldGeneration.pumpkinPastures": "Generate Pumpkin Pastures",
-	"//text.autoconfig.wild_explorer.option.worldGeneration.pinkCherryOakForest": "Generate Pink Cherry Oak Forests",
-	"//text.autoconfig.wild_explorer.option.worldGeneration.whiteCherryOakForest": "Generate White Cherry Oak Forests",
-	"//text.autoconfig.wild_explorer.option.worldGeneration.tallCrimsonForest": "Generate Tall Crimson Forests",
-	"//text.autoconfig.wild_explorer.option.worldGeneration.tallWarpedForest": "Generate Tall Warped Forests",
-	"//text.autoconfig.wild_explorer.option.worldGeneration.tritanopianGallery":"Generate Tritanopian Galleries",
-	"//text.autoconfig.wild_explorer.option.worldGeneration.achromatopsianGallery": "Generate Achromatopsian Galleries",
-	"//text.autoconfig.wild_explorer.option.worldGeneration.protanopianGallery": "Generate Protanopian Galleries"
+	"text.autoconfig.wild_explorer.title": "Wild Explorer configuratie",
+	"text.autoconfig.wild_explorer.category.worldGeneration": "Wereld generatie",
+	"text.autoconfig.wild_explorer.option.worldGeneration.pumpkinPastures": "Genereer pompoen weiland",
+	"text.autoconfig.wild_explorer.option.worldGeneration.pinkCherryOakForest": "Genereer rozekerseneiken bos",
+	"text.autoconfig.wild_explorer.option.worldGeneration.whiteCherryOakForest": "Genereer wittekerseneiken bos",
+	"text.autoconfig.wild_explorer.option.worldGeneration.tallCrimsonForest": "Genereer hoog helrood bos",
+	"text.autoconfig.wild_explorer.option.worldGeneration.tallWarpedForest": "Genereer hoog spookachtig bos",
+	"text.autoconfig.wild_explorer.option.worldGeneration.tritanopianGallery":"Genereer tritanopische galerij",
+	"text.autoconfig.wild_explorer.option.worldGeneration.achromatopsianGallery": "Genereer achromatopsian galerij",
+	"text.autoconfig.wild_explorer.option.worldGeneration.protanopianGallery": "Genereer protanopishe galerij"
 }
