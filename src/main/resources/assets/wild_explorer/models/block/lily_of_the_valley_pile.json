@@ -1,0 +1,6 @@
+{
+	"parent": "dawn:block/pile",
+	"textures": {
+		"pile": "wild_explorer:block/lily_of_the_valley_pile"
+	}
+}

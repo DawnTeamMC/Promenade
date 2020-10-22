@@ -6,7 +6,7 @@ import com.hugman.dawn.api.util.CreatorBuilder;
 import com.hugman.wild_explorer.WildExplorer;
 
 public abstract class WEPack extends Pack {
-	protected static <V, B extends CreatorBuilder> V register(B creatorBuilder) {
+	protected static <V, B extends CreatorBuilder<V>> V register(B creatorBuilder) {
 		return add(creatorBuilder, WildExplorer.MOD_DATA);
 	}
 

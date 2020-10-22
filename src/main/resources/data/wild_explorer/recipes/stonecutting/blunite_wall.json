@@ -1,0 +1,8 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": {
+		"item": "wild_explorer:blunite"
+	},
+	"result": "wild_explorer:blunite_wall",
+	"count": 1
+}

@@ -1,7 +1,6 @@
 package com.hugman.wild_explorer.object.entity;
 
 import com.hugman.wild_explorer.init.WEEntities;
-import com.hugman.wild_explorer.init.WESounds;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -128,22 +127,22 @@ public class DuckEntity extends AnimalEntity {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return WESounds.ENTITY_DUCK_AMBIENT;
+		return WEEntities.DUCK_AMBIENT_SOUND;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return WESounds.ENTITY_DUCK_HURT;
+		return WEEntities.DUCK_HURT_SOUND;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return WESounds.ENTITY_DUCK_DEATH;
+		return WEEntities.DUCK_DEATH_SOUND;
 	}
 
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState state) {
-		this.playSound(WESounds.ENTITY_DUCK_STEP, 0.15F, 1.0F);
+		this.playSound(WEEntities.DUCK_STEP_SOUND, 0.15F, 1.0F);
 	}
 
 	@Nullable

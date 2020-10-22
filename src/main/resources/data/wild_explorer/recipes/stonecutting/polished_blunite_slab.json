@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": [
+		{
+			"item": "wild_explorer:blunite"
+		},
+		{
+			"item": "wild_explorer:polished_blunite"
+		}
+	],
+	"result": "wild_explorer:polished_blunite_slab",
+	"count": 2
+}

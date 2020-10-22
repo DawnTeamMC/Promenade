@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"wild_explorer:crafting/blue_orchid_pile"
+		]
+	},
+	"criteria": {
+		"has_flower": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "minecraft:blue_orchid"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "wild_explorer:crafting/blue_orchid_pile"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_flower",
+			"has_the_recipe"
+		]
+	]
+}

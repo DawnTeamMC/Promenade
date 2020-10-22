@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"#  ",
+		"## ",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "wild_explorer:polished_carbonite"
+		}
+	},
+	"result": {
+		"item": "wild_explorer:polished_carbonite_stairs",
+		"count": 4
+	}
+}

@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"wild_explorer:crafting/spruce_leaf_pile"
+		]
+	},
+	"criteria": {
+		"has_leaves": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "minecraft:spruce_leaves"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "wild_explorer:crafting/spruce_leaf_pile"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_leaves",
+			"has_the_recipe"
+		]
+	]
+}

@@ -3,7 +3,7 @@
 	"id": "wild_explorer",
 	"version": "${version}",
 	"icon": "assets/wild_explorer/textures/logo.png",
-	"description": "Fancy and simplistic biomes and structures!",
+	"description": "Fancy and simplistic animals, biomes, structures and more!",
 	"authors": [
 		"Hugman"
 	],

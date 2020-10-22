@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"wild_explorer:stonecutting/blunite_slab"
+		]
+	},
+	"criteria": {
+		"has_blunite": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "wild_explorer:blunite"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "wild_explorer:stonecutting/blunite_slab"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_blunite",
+			"has_the_recipe"
+		]
+	]
+}

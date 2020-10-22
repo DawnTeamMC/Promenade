@@ -1,0 +1,6 @@
+{
+	"parent": "dawn:block/pile",
+	"textures": {
+		"pile": "minecraft:block/acacia_leaves"
+	}
+}

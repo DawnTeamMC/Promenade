@@ -293,7 +293,7 @@ public class WEBiomeCreator {
 		return generationBuilder;
 	}
 
-	private static Biome createEndBiome(GenerationSettings.Builder generationBuilder, SpawnSettings.Builder spawnSettings) {
+	private static Biome createEndBiome(float depth, float scale, GenerationSettings.Builder generationBuilder, SpawnSettings.Builder spawnSettings) {
 		BiomeEffects.Builder effects = new BiomeEffects.Builder();
 		effects.waterColor(4159204);
 		effects.waterFogColor(329011);
@@ -303,8 +303,8 @@ public class WEBiomeCreator {
 		Biome.Builder settings = new Biome.Builder();
 		settings.precipitation(Biome.Precipitation.NONE);
 		settings.category(Biome.Category.THEEND);
-		settings.depth(0.1F);
-		settings.scale(0.2F);
+		settings.depth(depth);
+		settings.scale(scale);
 		settings.temperature(0.5F);
 		settings.downfall(0.5F);
 		settings.effects(effects.build());
@@ -313,17 +313,23 @@ public class WEBiomeCreator {
 		return settings.build();
 	}
 
-	public static Biome createDarkAmaranthForest() {
-		SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder();
-		DefaultBiomeFeatures.addEndMobs(spawnSettings);
-		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 10, 4, 4));
-		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CAVE_SPIDER, 10, 4, 4));
-		GenerationSettings.Builder generationBuilder = new GenerationSettings.Builder();
+	private static Biome createDarkAmaranthForest(float depth, float scale, GenerationSettings.Builder generationBuilder) {
 		generationBuilder.surfaceBuilder(WEConfiguredSurfaceBuilders.AMARANTH_DYLIUM);
 		generationBuilder.structureFeature(ConfiguredStructureFeatures.END_CITY);
 		generationBuilder.feature(GenerationStep.Feature.SURFACE_STRUCTURES, ConfiguredFeatures.END_GATEWAY);
 		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.AMARANTH_FOREST_VEGETATION);
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.AMARANTH_FUNGI);
-		return createEndBiome(generationBuilder, spawnSettings);
+		SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder();
+		DefaultBiomeFeatures.addEndMobs(spawnSettings);
+		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 10, 4, 4));
+		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CAVE_SPIDER, 10, 4, 4));
+		return createEndBiome(depth, scale, generationBuilder, spawnSettings);
+	}
+
+	public static Biome createNormalDarkAmaranthForest() {
+		return createDarkAmaranthForest(0.1F, 0.2F, new GenerationSettings.Builder().feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.AMARANTH_FUNGI));
+	}
+
+	public static Biome createTallDarkAmaranthForest() {
+		return createDarkAmaranthForest(0.2F, 0.4F, new GenerationSettings.Builder().feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.TALL_AMARANTH_FUNGI));
 	}
 }

@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "wild_explorer:carbonite"
+		}
+	},
+	"result": {
+		"item": "wild_explorer:carbonite_slab",
+		"count": 6
+	}
+}

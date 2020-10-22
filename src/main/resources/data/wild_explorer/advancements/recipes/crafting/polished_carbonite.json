@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"wild_explorer:crafting/polished_carbonite"
+		]
+	},
+	"criteria": {
+		"has_carbonite": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "wild_explorer:carbonite"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "wild_explorer:crafting/polished_carbonite"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_carbonite",
+			"has_the_recipe"
+		]
+	]
+}

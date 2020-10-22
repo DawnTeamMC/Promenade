@@ -30,8 +30,8 @@ public class WEBiomes extends WEPack {
 		BiomeCreator.Builder tritanopianGalleryBuilder = new BiomeCreator.Builder("tritanopian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.createTritanopianGalleryGenerationSettings()));
 		BiomeCreator.Builder achromatopsianGalleryBuilder = new BiomeCreator.Builder("achromatopsian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.createAchromatopsianGalleryGenerationSettings()));
 		BiomeCreator.Builder protanopianGalleryBuilder = new BiomeCreator.Builder("protanopian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.createProtanopianGalleryGenerationSettings()));
-		BiomeCreator.Builder darkAmaranthForestBuilder = new BiomeCreator.Builder("dark_amaranth_forest", WEBiomeCreator.createDarkAmaranthForest());
-		BiomeCreator.Builder tallDarkAmaranthForestBuilder = new BiomeCreator.Builder("tall_dark_amaranth_forest", WEBiomeCreator.createDarkAmaranthForest());
+		BiomeCreator.Builder darkAmaranthForestBuilder = new BiomeCreator.Builder("dark_amaranth_forest", WEBiomeCreator.createNormalDarkAmaranthForest());
+		BiomeCreator.Builder tallDarkAmaranthForestBuilder = new BiomeCreator.Builder("tall_dark_amaranth_forest", WEBiomeCreator.createTallDarkAmaranthForest());
 		if(CONFIG.pumpkinPastures) {
 			pumpkinPasturesBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
 		}

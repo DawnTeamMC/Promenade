@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"wild_explorer:blunite_slab",
+		"wild_explorer:polished_blunite_slab",
+		"wild_explorer:carbonite_slab",
+		"wild_explorer:polished_carbonite_slab"
+	]
+}

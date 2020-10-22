@@ -3,8 +3,7 @@
 	"package": "com.hugman.wild_explorer.mixin",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
-		"DefaultBiomeFeaturesMixin",
-		"TreeFeatureMixin"
+		"DefaultBiomeFeaturesMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

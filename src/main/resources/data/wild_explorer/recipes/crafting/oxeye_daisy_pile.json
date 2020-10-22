@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "flower_pile",
+	"pattern": [
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "minecraft:oxeye_daisy"
+		}
+	},
+	"result": {
+		"item": "wild_explorer:oxeye_daisy_pile"
+	}
+}

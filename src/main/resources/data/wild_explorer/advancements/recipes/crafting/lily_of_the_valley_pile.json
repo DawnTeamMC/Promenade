@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"wild_explorer:crafting/lily_of_the_valley_pile"
+		]
+	},
+	"criteria": {
+		"has_flower": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "minecraft:lily_of_the_valley"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "wild_explorer:crafting/lily_of_the_valley_pile"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_flower",
+			"has_the_recipe"
+		]
+	]
+}

@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"wild_explorer:crafting/polished_blunite_stairs"
+		]
+	},
+	"criteria": {
+		"has_polished_blunite": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "wild_explorer:polished_blunite"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "wild_explorer:crafting/polished_blunite_stairs"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_polished_blunite",
+			"has_the_recipe"
+		]
+	]
+}

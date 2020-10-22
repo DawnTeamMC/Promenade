@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": [
+		{
+			"item": "wild_explorer:carbonite"
+		},
+		{
+			"item": "wild_explorer:polished_carbonite"
+		}
+	],
+	"result": "wild_explorer:polished_carbonite_slab",
+	"count": 2
+}
