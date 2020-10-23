@@ -18,6 +18,7 @@ public class DuckEntityRenderer extends MobEntityRenderer<DuckEntity, DuckEntity
 
 	@Override
 	public Identifier getTexture(DuckEntity entity) {
+		if(entity.isBaby()) return WildExplorer.MOD_DATA.id("textures/entity/duck/duckling.png");
 		return WildExplorer.MOD_DATA.id("textures/entity/duck/" + entity.getVariant().getName() + ".png");
 	}
 
