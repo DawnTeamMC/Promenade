@@ -27,5 +27,6 @@ public class WildExplorer implements ModInitializer {
 		WEConfiguredFeatures.init();
 		WEConfiguredSurfaceBuilders.init();
 		WEBiomes.init();
+		MOD_DATA.registerCreators();
 	}
 }

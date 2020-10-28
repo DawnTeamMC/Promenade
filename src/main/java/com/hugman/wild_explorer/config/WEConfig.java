@@ -8,27 +8,51 @@ import me.sargunvohra.mcmods.autoconfig1u.serializer.PartitioningSerializer;
 @Config(name = "wild_explorer")
 @Config.Gui.Background("minecraft:textures/block/lime_concrete.png")
 public class WEConfig extends PartitioningSerializer.GlobalData {
-	@ConfigEntry.Category("world_generation")
+	@ConfigEntry.Category("biomes")
 	@ConfigEntry.Gui.TransitiveObject
-	public WorldGenerationCategory worldGeneration = new WorldGenerationCategory();
+	public BiomesCategory biomes = new BiomesCategory();
+	@ConfigEntry.Category("features")
+	@ConfigEntry.Gui.TransitiveObject
+	public FeaturesCategory features = new FeaturesCategory();
+	@ConfigEntry.Category("creatures")
+	@ConfigEntry.Gui.TransitiveObject
+	public CreaturesCategory creatures = new CreaturesCategory();
 
-	@Config(name = "world_generation")
-	public static class WorldGenerationCategory implements ConfigData {
+	@Config(name = "biomes")
+	public static class BiomesCategory implements ConfigData {
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean pumpkinPastures = true;
+		public boolean pumpkin_pastures = true;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean pinkCherryOakForest = true;
+		public boolean pink_cherry_oak_forest = true;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean whiteCherryOakForest = true;
+		public boolean white_cherry_oak_forest = true;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean tallCrimsonForest = true;
+		public boolean tall_crimson_forest = true;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean tallWarpedForest = true;
+		public boolean tall_warped_forest = true;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean tritanopianGallery = true;
+		public boolean tritanopian_gallery = true;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean achromatopsianGallery = true;
+		public boolean achromatopsian_gallery = true;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean protanopianGallery = true;
+		public boolean protanopian_gallery = true;
+	}
+
+	@Config(name = "features")
+	public static class FeaturesCategory implements ConfigData {
+		@ConfigEntry.Gui.RequiresRestart
+		public boolean blunite_patch = true;
+		@ConfigEntry.Gui.RequiresRestart
+		public boolean carbonite_patch = true;
+		@ConfigEntry.Gui.RequiresRestart
+		public boolean palm_tree = true;
+		@ConfigEntry.Gui.RequiresRestart
+		public boolean blueberry_bush = true;
+	}
+
+	@Config(name = "creatures")
+	public static class CreaturesCategory implements ConfigData {
+		@ConfigEntry.Gui.RequiresRestart
+		public boolean duck = true;
 	}
 }

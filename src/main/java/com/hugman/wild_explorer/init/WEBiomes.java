@@ -9,7 +9,7 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 
 public class WEBiomes extends WEPack {
-	public static final WEConfig.WorldGenerationCategory CONFIG = WildExplorer.CONFIG.worldGeneration;
+	public static final WEConfig.BiomesCategory CONFIG = WildExplorer.CONFIG.biomes;
 	public static RegistryKey<Biome> PUMPKIN_PASTURES;
 	public static RegistryKey<Biome> PINK_CHERRY_OAK_FOREST;
 	public static RegistryKey<Biome> WHITE_CHERRY_OAK_FOREST;
@@ -32,39 +32,23 @@ public class WEBiomes extends WEPack {
 		BiomeCreator.Builder protanopianGalleryBuilder = new BiomeCreator.Builder("protanopian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.createProtanopianGalleryGenerationSettings()));
 		BiomeCreator.Builder darkAmaranthForestBuilder = new BiomeCreator.Builder("dark_amaranth_forest", WEBiomeCreator.createNormalDarkAmaranthForest());
 		BiomeCreator.Builder tallDarkAmaranthForestBuilder = new BiomeCreator.Builder("tall_dark_amaranth_forest", WEBiomeCreator.createTallDarkAmaranthForest());
-		if(CONFIG.pumpkinPastures) {
-			pumpkinPasturesBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
-		}
-		if(CONFIG.pinkCherryOakForest) {
-			pinkCherryOakForestBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
-		}
-		if(CONFIG.whiteCherryOakForest) {
-			whiteCherryOakForestBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
-		}
-		if(CONFIG.tallCrimsonForest) {
-			tallCrimsonForestBuilder.addToNether(0.4F, 0.0F, 0.1F, 0.0F, 0.0F);
-		}
-		if(CONFIG.tallWarpedForest) {
-			tallWarpedForestBuilder.addToNether(0.0F, 0.5F, 0.1F, 0.0F, 0.375F);
-		}
-		if(CONFIG.tritanopianGallery) {
-			tritanopianGalleryBuilder.addToNether(0.05F, 0.025F, 0.0F, 0.0F, 0.05F);
-		}
-		if(CONFIG.achromatopsianGallery) {
-			achromatopsianGalleryBuilder.addToNether(0.1F, 0.05F, 0.0F, 0.0F, 0.025F);
-		}
-		if(CONFIG.protanopianGallery) {
-			protanopianGalleryBuilder.addToNether(0.025F, 0.1F, 0.0F, 0.0F, 0.05F);
-		}
+		if(CONFIG.pumpkin_pastures) pumpkinPasturesBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
+		if(CONFIG.pink_cherry_oak_forest) pinkCherryOakForestBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
+		if(CONFIG.white_cherry_oak_forest) whiteCherryOakForestBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
+		if(CONFIG.tall_crimson_forest) tallCrimsonForestBuilder.addToNether(0.4F, 0.0F, 0.1F, 0.0F, 0.0F);
+		if(CONFIG.tall_warped_forest) tallWarpedForestBuilder.addToNether(0.0F, 0.5F, 0.1F, 0.0F, 0.375F);
+		if(CONFIG.tritanopian_gallery) tritanopianGalleryBuilder.addToNether(0.05F, 0.025F, 0.0F, 0.0F, 0.05F);
+		if(CONFIG.achromatopsian_gallery) achromatopsianGalleryBuilder.addToNether(0.1F, 0.05F, 0.0F, 0.0F, 0.025F);
+		if(CONFIG.protanopian_gallery) protanopianGalleryBuilder.addToNether(0.025F, 0.1F, 0.0F, 0.0F, 0.05F);
 		PUMPKIN_PASTURES = register(pumpkinPasturesBuilder);
-		PINK_CHERRY_OAK_FOREST = register(pinkCherryOakForestBuilder);
-		WHITE_CHERRY_OAK_FOREST = register(whiteCherryOakForestBuilder);
-		TALL_CRIMSON_FOREST = register(tallCrimsonForestBuilder);
-		TALL_WARPED_FOREST = register(tallWarpedForestBuilder);
-		TRITANOPIAN_GALLERY = register(tritanopianGalleryBuilder);
-		ACHROMATOPSIAN_GALLERY = register(achromatopsianGalleryBuilder);
-		PROTANOPIAN_GALLERY = register(protanopianGalleryBuilder);
-		DARK_AMARANTH_FOREST = register(darkAmaranthForestBuilder);
-		TALL_DARK_AMARANTH_FOREST = register(tallDarkAmaranthForestBuilder);
+		//PINK_CHERRY_OAK_FOREST = register(pinkCherryOakForestBuilder);
+		//WHITE_CHERRY_OAK_FOREST = register(whiteCherryOakForestBuilder);
+		//TALL_CRIMSON_FOREST = register(tallCrimsonForestBuilder);
+		//TALL_WARPED_FOREST = register(tallWarpedForestBuilder);
+		//TRITANOPIAN_GALLERY = register(tritanopianGalleryBuilder);
+		//ACHROMATOPSIAN_GALLERY = register(achromatopsianGalleryBuilder);
+		//PROTANOPIAN_GALLERY = register(protanopianGalleryBuilder);
+		//DARK_AMARANTH_FOREST = register(darkAmaranthForestBuilder);
+		//TALL_DARK_AMARANTH_FOREST = register(tallDarkAmaranthForestBuilder);
 	}
 }
