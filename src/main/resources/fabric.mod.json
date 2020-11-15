@@ -5,7 +5,8 @@
 	"icon": "assets/wild_explorer/textures/logo.png",
 	"description": "Fancy and simplistic animals, biomes, structures and more!",
 	"authors": [
-		"Hugman"
+		"Hugman",
+		"Dawn Team"
 	],
 	"contact": {
 		"homepage": "https://www.curseforge.com/minecraft/mc-mods/wild-explorer",
@@ -28,6 +29,7 @@
 		"wild_explorer.mixins.json"
 	],
 	"depends": {
+		"minecraft": ">=1.16.2",
 		"fabric": "*",
 		"dawn": "*"
 	},
