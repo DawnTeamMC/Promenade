@@ -33,8 +33,10 @@ public class WEBiomes extends WEPack {
 		BiomeCreator.Builder darkAmaranthForestBuilder = new BiomeCreator.Builder("dark_amaranth_forest", WEBiomeCreator.createNormalDarkAmaranthForest());
 		BiomeCreator.Builder tallDarkAmaranthForestBuilder = new BiomeCreator.Builder("tall_dark_amaranth_forest", WEBiomeCreator.createTallDarkAmaranthForest());
 		if(CONFIG.pumpkin_pastures) pumpkinPasturesBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
-		if(CONFIG.pink_cherry_oak_forest) pinkCherryOakForestBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
-		if(CONFIG.white_cherry_oak_forest) whiteCherryOakForestBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
+		if(CONFIG.pink_cherry_oak_forest)
+			pinkCherryOakForestBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
+		if(CONFIG.white_cherry_oak_forest)
+			whiteCherryOakForestBuilder.addToOverworldContinental(OverworldClimate.COOL, 1D);
 		if(CONFIG.tall_crimson_forest) tallCrimsonForestBuilder.addToNether(0.4F, 0.0F, 0.1F, 0.0F, 0.0F);
 		if(CONFIG.tall_warped_forest) tallWarpedForestBuilder.addToNether(0.0F, 0.5F, 0.1F, 0.0F, 0.375F);
 		if(CONFIG.tritanopian_gallery) tritanopianGalleryBuilder.addToNether(0.05F, 0.025F, 0.0F, 0.0F, 0.05F);

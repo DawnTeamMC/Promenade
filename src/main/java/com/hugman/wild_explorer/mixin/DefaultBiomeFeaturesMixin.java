@@ -21,27 +21,33 @@ public class DefaultBiomeFeaturesMixin {
 
 	@Inject(method = "addMineables", at = @At(value = "TAIL"))
 	private static void WE_addMineables(GenerationSettings.Builder builder, CallbackInfo info) {
-		if(FEATURES_CONFIG.blunite_patch) builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, WEConfiguredFeatures.ORE_BLUNITE);
-		if(FEATURES_CONFIG.carbonite_patch) builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, WEConfiguredFeatures.ORE_CARBONITE);
+		if(FEATURES_CONFIG.blunite_patch)
+			builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, WEConfiguredFeatures.ORE_BLUNITE);
+		if(FEATURES_CONFIG.carbonite_patch)
+			builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, WEConfiguredFeatures.ORE_CARBONITE);
 	}
 
 	@Inject(method = "addDesertVegetation", at = @At(value = "TAIL"))
 	private static void WE_addPalmTrees(GenerationSettings.Builder builder, CallbackInfo info) {
-		if(FEATURES_CONFIG.palm_tree) builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PALM_TREES);
+		if(FEATURES_CONFIG.palm_tree)
+			builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PALM_TREES);
 	}
 
 	@Inject(method = "addSweetBerryBushes", at = @At(value = "TAIL"))
 	private static void WE_addBlueberryBushes(GenerationSettings.Builder builder, CallbackInfo info) {
-		if(FEATURES_CONFIG.blueberry_bush) builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PATCH_BLUEBERRY_BUSH_SPARSE);
+		if(FEATURES_CONFIG.blueberry_bush)
+			builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PATCH_BLUEBERRY_BUSH_SPARSE);
 	}
 
 	@Inject(method = "addSweetBerryBushesSnowy", at = @At(value = "TAIL"))
 	private static void WE_addBlueberryBushesSnowy(GenerationSettings.Builder builder, CallbackInfo info) {
-		if(FEATURES_CONFIG.blueberry_bush) builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PATCH_BLUEBERRY_BUSH_DECORATED);
+		if(FEATURES_CONFIG.blueberry_bush)
+			builder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PATCH_BLUEBERRY_BUSH_DECORATED);
 	}
 
 	@Inject(method = "addFarmAnimals", at = @At(value = "TAIL"))
 	private static void WE_addDuck(SpawnSettings.Builder builder, CallbackInfo info) {
-		if(CREATURES_CONFIG.duck) builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(WEEntities.DUCK, 10, 4, 4));
+		if(CREATURES_CONFIG.duck)
+			builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(WEEntities.DUCK, 10, 4, 4));
 	}
 }

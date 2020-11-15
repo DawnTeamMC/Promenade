@@ -2,7 +2,10 @@ package com.hugman.wild_explorer;
 
 import com.hugman.dawn.api.util.ModData;
 import com.hugman.wild_explorer.config.WEConfig;
-import com.hugman.wild_explorer.init.*;
+import com.hugman.wild_explorer.init.WEBiomes;
+import com.hugman.wild_explorer.init.WEBlocks;
+import com.hugman.wild_explorer.init.WEEntities;
+import com.hugman.wild_explorer.init.WEItems;
 import com.hugman.wild_explorer.init.world.WEConfiguredFeatures;
 import com.hugman.wild_explorer.init.world.WEConfiguredSurfaceBuilders;
 import com.hugman.wild_explorer.init.world.WEFeatures;

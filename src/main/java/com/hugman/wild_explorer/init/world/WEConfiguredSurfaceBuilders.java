@@ -12,6 +12,8 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceConfig;
 import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
 public class WEConfiguredSurfaceBuilders {
+	public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> AMARANTH_DYLIUM = register("amaranth_dylium", SurfaceBuilder.DEFAULT.withConfig(new TernarySurfaceConfig(States.AMARANTH_DYLIUM, States.END_STONE, States.END_STONE)));
+
 	public static void init() {
 
 	}
@@ -19,8 +21,6 @@ public class WEConfiguredSurfaceBuilders {
 	private static <SC extends SurfaceConfig> ConfiguredSurfaceBuilder<SC> register(String name, ConfiguredSurfaceBuilder<SC> feature) {
 		return Registry.register(BuiltinRegistries.CONFIGURED_SURFACE_BUILDER, WildExplorer.MOD_DATA.id(name), feature);
 	}
-
-	public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> AMARANTH_DYLIUM = register("amaranth_dylium", SurfaceBuilder.DEFAULT.withConfig(new TernarySurfaceConfig(States.AMARANTH_DYLIUM, States.END_STONE, States.END_STONE)));
 
 	public static final class States {
 		protected static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();

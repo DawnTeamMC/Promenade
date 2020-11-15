@@ -17,6 +17,10 @@ public class EndBoulderFeature extends Feature<SingleStateFeatureConfig> {
 		super(codec);
 	}
 
+	protected static boolean isEndStone(Block block) {
+		return block == Blocks.END_STONE;
+	}
+
 	@Override
 	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, SingleStateFeatureConfig config) {
 		for(; pos.getY() > 3; pos = pos.down()) {
@@ -47,9 +51,5 @@ public class EndBoulderFeature extends Feature<SingleStateFeatureConfig> {
 			}
 			return true;
 		}
-	}
-
-	protected static boolean isEndStone(Block block) {
-		return block == Blocks.END_STONE;
 	}
 }

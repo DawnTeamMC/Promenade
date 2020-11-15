@@ -22,6 +22,36 @@ public class TallHugeFungusFeature extends Feature<HugeFungusFeatureConfig> {
 		super(codec);
 	}
 
+	private static boolean isReplaceable(WorldAccess worldAccess, BlockPos blockPos, boolean canReplaceAllPlants) {
+		return worldAccess.testBlockState(blockPos, (blockState) -> {
+			Material material = blockState.getMaterial();
+			return blockState.isAir() || blockState.isOf(Blocks.WATER) || blockState.isOf(Blocks.LAVA) || material == Material.REPLACEABLE_PLANT || canReplaceAllPlants && material == Material.PLANT;
+		});
+	}
+
+	private static BlockPos.Mutable getStartPos(WorldAccess world, BlockPos origin, Block block) {
+		BlockPos.Mutable mutable = origin.mutableCopy();
+		for(int i = origin.getY(); i >= 1; --i) {
+			mutable.setY(i);
+			Block block2 = world.getBlockState(mutable.down()).getBlock();
+			if(block2 == block) {
+				return mutable;
+			}
+		}
+		return null;
+	}
+
+	private static void generateVines(BlockPos blockPos, WorldAccess worldAccess, Random random) {
+		BlockPos.Mutable mutable = blockPos.mutableCopy().move(Direction.DOWN);
+		if(worldAccess.isAir(mutable)) {
+			int i = MathHelper.nextInt(random, 1, 5);
+			if(random.nextInt(7) == 0) {
+				i *= 2;
+			}
+			WeepingVinesFeature.generateVineColumn(worldAccess, random, mutable, i, 23, 25);
+		}
+	}
+
 	@Override
 	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, HugeFungusFeatureConfig hugeFungusFeatureConfig) {
 		Block block = hugeFungusFeatureConfig.validBaseBlock.getBlock();
@@ -52,13 +82,6 @@ public class TallHugeFungusFeature extends Feature<HugeFungusFeatureConfig> {
 			this.generateHat(world, random, hugeFungusFeatureConfig, pos2, i, bl);
 			return true;
 		}
-	}
-
-	private static boolean isReplaceable(WorldAccess worldAccess, BlockPos blockPos, boolean canReplaceAllPlants) {
-		return worldAccess.testBlockState(blockPos, (blockState) -> {
-			Material material = blockState.getMaterial();
-			return blockState.isAir() || blockState.isOf(Blocks.WATER) || blockState.isOf(Blocks.LAVA) || material == Material.REPLACEABLE_PLANT || canReplaceAllPlants && material == Material.PLANT;
-		});
 	}
 
 	private void generateStem(WorldAccess world, Random random, HugeFungusFeatureConfig config, BlockPos blockPos, int stemHeight, boolean thickStem) {
@@ -163,28 +186,5 @@ public class TallHugeFungusFeature extends Feature<HugeFungusFeatureConfig> {
 			}
 		}
 
-	}
-
-	private static BlockPos.Mutable getStartPos(WorldAccess world, BlockPos origin, Block block) {
-		BlockPos.Mutable mutable = origin.mutableCopy();
-		for(int i = origin.getY(); i >= 1; --i) {
-			mutable.setY(i);
-			Block block2 = world.getBlockState(mutable.down()).getBlock();
-			if(block2 == block) {
-				return mutable;
-			}
-		}
-		return null;
-	}
-
-	private static void generateVines(BlockPos blockPos, WorldAccess worldAccess, Random random) {
-		BlockPos.Mutable mutable = blockPos.mutableCopy().move(Direction.DOWN);
-		if(worldAccess.isAir(mutable)) {
-			int i = MathHelper.nextInt(random, 1, 5);
-			if(random.nextInt(7) == 0) {
-				i *= 2;
-			}
-			WeepingVinesFeature.generateVineColumn(worldAccess, random, mutable, i, 23, 25);
-		}
 	}
 }

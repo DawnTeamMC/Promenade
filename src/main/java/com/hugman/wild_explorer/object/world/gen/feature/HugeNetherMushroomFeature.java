@@ -22,6 +22,55 @@ public class HugeNetherMushroomFeature extends Feature<HugeNetherMushroomFeature
 		super(codec);
 	}
 
+	private static void generateVines(BlockPos pos, WorldAccess worldAccess, Random random, HugeNetherMushroomFeatureConfig config) {
+		BlockPos.Mutable mutable = pos.mutableCopy().move(config.upsideDown ? Direction.UP : Direction.DOWN);
+		if(worldAccess.isAir(mutable)) {
+			int i = MathHelper.nextInt(random, 1, 5);
+			if(random.nextInt(7) == 0) {
+				i *= 2;
+			}
+			if(config.upsideDown) {
+				TwistingVinesFeature.generateVineColumn(worldAccess, random, mutable, i, 23, 25);
+			}
+			else {
+				WeepingVinesFeature.generateVineColumn(worldAccess, random, mutable, i, 23, 25);
+			}
+		}
+	}
+
+	private static BlockPos.Mutable getOrigin(WorldAccess world, BlockPos pos, int height, HugeNetherMushroomFeatureConfig config) {
+		BlockPos.Mutable mutable = pos.mutableCopy();
+		for(int i = pos.getY(); i >= 1; --i) {
+			mutable.setY(i);
+			if(isValidGround(world, mutable.offset(config.upsideDown ? Direction.UP : Direction.DOWN))) {
+				BlockPos.Mutable mutable2 = mutable.mutableCopy();
+				boolean allReplaceable = true;
+				for(int j = 0; j <= height + 1; ++j) {
+					mutable2.move(config.upsideDown ? Direction.DOWN : Direction.UP, j);
+					if(!isReplaceable(world, mutable2, false, true)) {
+						allReplaceable = false;
+						break;
+					}
+				}
+				if(allReplaceable) {
+					return mutable;
+				}
+			}
+		}
+		return null;
+	}
+
+	private static boolean isReplaceable(WorldAccess worldAccess, BlockPos blockPos, boolean canReplaceFluid, boolean canReplaceAllPlants) {
+		return worldAccess.testBlockState(blockPos, (blockState) -> {
+			Material material = blockState.getMaterial();
+			return blockState.isAir() || canReplaceFluid && blockState.isOf(Blocks.WATER) || canReplaceFluid && blockState.isOf(Blocks.LAVA) || material == Material.REPLACEABLE_PLANT || canReplaceAllPlants && material == Material.PLANT;
+		});
+	}
+
+	public static boolean isValidGround(WorldAccess worldAccess, BlockPos blockPos) {
+		return worldAccess.testBlockState(blockPos, (blockState) -> blockState.isOf(Blocks.NETHERRACK) || blockState.isOf(Blocks.NETHER_QUARTZ_ORE) || blockState.isOf(Blocks.NETHER_GOLD_ORE));
+	}
+
 	@Override
 	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, HugeNetherMushroomFeatureConfig config) {
 		int stemHeight = getStemHeight(random, config);
@@ -123,22 +172,6 @@ public class HugeNetherMushroomFeature extends Feature<HugeNetherMushroomFeature
 		}
 	}
 
-	private static void generateVines(BlockPos pos, WorldAccess worldAccess, Random random, HugeNetherMushroomFeatureConfig config) {
-		BlockPos.Mutable mutable = pos.mutableCopy().move(config.upsideDown ? Direction.UP : Direction.DOWN);
-		if(worldAccess.isAir(mutable)) {
-			int i = MathHelper.nextInt(random, 1, 5);
-			if(random.nextInt(7) == 0) {
-				i *= 2;
-			}
-			if(config.upsideDown) {
-				TwistingVinesFeature.generateVineColumn(worldAccess, random, mutable, i, 23, 25);
-			}
-			else {
-				WeepingVinesFeature.generateVineColumn(worldAccess, random, mutable, i, 23, 25);
-			}
-		}
-	}
-
 	protected int getStemHeight(Random random, HugeNetherMushroomFeatureConfig config) {
 		int i = config.stemBaseHeight + random.nextInt(config.stepRandomHeight);
 		if(random.nextInt(12) == 0) {
@@ -154,40 +187,5 @@ public class HugeNetherMushroomFeature extends Feature<HugeNetherMushroomFeature
 		else {
 			return config.hatBaseSize + random.nextInt(config.hatRandomSize);
 		}
-	}
-
-	private static BlockPos.Mutable getOrigin(WorldAccess world, BlockPos pos, int height, HugeNetherMushroomFeatureConfig config) {
-		BlockPos.Mutable mutable = pos.mutableCopy();
-		for(int i = pos.getY(); i >= 1; --i) {
-			mutable.setY(i);
-			if(isValidGround(world, mutable.offset(config.upsideDown ? Direction.UP : Direction.DOWN))) {
-				BlockPos.Mutable mutable2 = mutable.mutableCopy();
-				boolean allReplaceable = true;
-				for(int j = 0; j <= height + 1; ++j) {
-					mutable2.move(config.upsideDown ? Direction.DOWN : Direction.UP, j);
-					if(!isReplaceable(world, mutable2, false, true)) {
-						allReplaceable = false;
-						break;
-					}
-				}
-				if(allReplaceable) {
-					return mutable;
-				}
-			}
-		}
-		return null;
-	}
-
-	private static boolean isReplaceable(WorldAccess worldAccess, BlockPos blockPos, boolean canReplaceFluid, boolean canReplaceAllPlants) {
-		return worldAccess.testBlockState(blockPos, (blockState) -> {
-			Material material = blockState.getMaterial();
-			return blockState.isAir() || canReplaceFluid && blockState.isOf(Blocks.WATER) || canReplaceFluid && blockState.isOf(Blocks.LAVA) || material == Material.REPLACEABLE_PLANT || canReplaceAllPlants && material == Material.PLANT;
-		});
-	}
-
-	public static boolean isValidGround(WorldAccess worldAccess, BlockPos blockPos) {
-		return worldAccess.testBlockState(blockPos, (blockState) -> {
-			return blockState.isOf(Blocks.NETHERRACK) || blockState.isOf(Blocks.NETHER_QUARTZ_ORE) || blockState.isOf(Blocks.NETHER_GOLD_ORE);
-		});
 	}
 }

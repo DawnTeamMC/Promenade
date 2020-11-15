@@ -49,6 +49,18 @@ public class DuckEntity extends AnimalEntity {
 		this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
 	}
 
+	public static Builder createDuckAttributes() {
+		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D);
+	}
+
+	public static List<RegistryKey<Biome>> getSpawnBiomes() {
+		ArrayList<RegistryKey<Biome>> biomeList = new ArrayList<>();
+		for(DuckEntity.Type type : Type.typeList) {
+			biomeList.addAll(type.getSpawnBiomes());
+		}
+		return biomeList.stream().distinct().collect(Collectors.toList());
+	}
+
 	@Override
 	protected void initDataTracker() {
 		super.initDataTracker();
@@ -91,10 +103,6 @@ public class DuckEntity extends AnimalEntity {
 	public void readCustomDataFromTag(CompoundTag compound) {
 		super.readCustomDataFromTag(compound);
 		this.setVariant(DuckEntity.Type.byName(compound.getString("Type")));
-	}
-
-	public static Builder createDuckAttributes() {
-		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D);
 	}
 
 	@Override
@@ -169,29 +177,12 @@ public class DuckEntity extends AnimalEntity {
 		}
 	}
 
-	public static class DuckData extends PassiveEntity.PassiveData {
-		public final DuckEntity.Type type;
-
-		public DuckData(DuckEntity.Type typeIn) {
-			super(false);
-			this.type = typeIn;
-		}
-	}
-
 	public DuckEntity.Type getVariant() {
 		return DuckEntity.Type.fromId(this.dataTracker.get(DUCK_TYPE));
 	}
 
 	private void setVariant(DuckEntity.Type type) {
 		this.dataTracker.set(DUCK_TYPE, type.getIndex());
-	}
-
-	public static List<RegistryKey<Biome>> getSpawnBiomes() {
-		ArrayList<RegistryKey<Biome>> biomeList = new ArrayList<>();
-		for(DuckEntity.Type type : Type.typeList) {
-			biomeList.addAll(type.getSpawnBiomes());
-		}
-		return biomeList.stream().distinct().collect(Collectors.toList());
 	}
 
 	public enum Type {
@@ -208,18 +199,6 @@ public class DuckEntity extends AnimalEntity {
 			this.index = indexIn;
 			this.name = nameIn;
 			this.spawnBiomes = Arrays.asList(spawnBiomesIn);
-		}
-
-		public String getName() {
-			return this.name;
-		}
-
-		public List<RegistryKey<Biome>> getSpawnBiomes() {
-			return this.spawnBiomes;
-		}
-
-		public int getIndex() {
-			return this.index;
 		}
 
 		public static DuckEntity.Type byName(String name) {
@@ -244,6 +223,27 @@ public class DuckEntity extends AnimalEntity {
 				}
 			}
 			return PEKIN;
+		}
+
+		public String getName() {
+			return this.name;
+		}
+
+		public List<RegistryKey<Biome>> getSpawnBiomes() {
+			return this.spawnBiomes;
+		}
+
+		public int getIndex() {
+			return this.index;
+		}
+	}
+
+	public static class DuckData extends PassiveEntity.PassiveData {
+		public final DuckEntity.Type type;
+
+		public DuckData(DuckEntity.Type typeIn) {
+			super(false);
+			this.type = typeIn;
 		}
 	}
 }
