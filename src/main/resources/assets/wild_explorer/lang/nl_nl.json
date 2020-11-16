@@ -1,12 +1,10 @@
 {
-	"comment": "BLOCKS",
 	"block.wild_explorer.oak_leaf_pile": "Eikenbladeren hoop",
 	"block.wild_explorer.spruce_leaf_pile": "Sparrebladeren hoop",
 	"block.wild_explorer.birch_leaf_pile": "Berkenbladeren hoop",
 	"block.wild_explorer.jungle_leaf_pile": "Oerwoudbladeren hoop",
 	"block.wild_explorer.acacia_leaf_pile": "Acaciabladeren hoop",
 	"block.wild_explorer.dark_oak_leaf_pile": "Donkereikenbladeren hoop",
-
 	"block.wild_explorer.dandelion_pile": "Paardenbloemen hoop",
 	"block.wild_explorer.poppy_pile": "Klaproozen hoop",
 	"block.wild_explorer.blue_orchid_pile": "Blauwe Orchideen hoop",
@@ -20,7 +18,6 @@
 	"block.wild_explorer.cornflower_pile": "Korenbloemen hoop",
 	"block.wild_explorer.lily_of_the_valley_pile": "Lelietjes-van-dalen hoop",
 	"block.wild_explorer.wither_rose_pile": "Witherrozen hoop",
-
 	"block.wild_explorer.blue_mushroom": "Blauwe paddenstoel",
 	"block.wild_explorer.light_blue_mushroom": "Lichtblauwe paddenstoel",
 	"block.wild_explorer.cyan_mushroom": "Turquoise paddenstoel",
@@ -35,7 +32,6 @@
 	"block.wild_explorer.light_gray_mushroom": "Lichtgrijse paddenstoel",
 	"block.wild_explorer.gray_mushroom": "Grijse paddenstoel",
 	"block.wild_explorer.black_mushroom": "Zwarte paddenstoel",
-
 	"block.wild_explorer.potted_blue_mushroom": "Gepotte blauwe paddenstoel",
 	"block.wild_explorer.potted_light_blue_mushroom": "Gepotte lichtblauwe paddenstoel",
 	"block.wild_explorer.potted_cyan_mushroom": "Gepotte turquoise paddenstoel",
@@ -50,7 +46,6 @@
 	"block.wild_explorer.potted_light_gray_mushroom": "Gepotte lichtgrijze paddenstoel",
 	"block.wild_explorer.potted_gray_mushroom": "Gepotte grijze paddenstoel",
 	"block.wild_explorer.potted_black_mushroom": "Gepotte zwarte paddenstoel",
-
 	"block.wild_explorer.blue_mushroom_block": "Blauw paddenstoelenblok",
 	"block.wild_explorer.light_blue_mushroom_block": "Lichtblauw paddenstoelenblok",
 	"block.wild_explorer.cyan_mushroom_block": "Turquoise paddenstoelenblok",
@@ -65,7 +60,6 @@
 	"block.wild_explorer.light_gray_mushroom_block": "Lichtgrijs paddenstoelenblok",
 	"block.wild_explorer.gray_mushroom_block": "Grijs paddenstoelenblok",
 	"block.wild_explorer.black_mushroom_block": "Zwart paddenstoelenblok",
-
 	"block.wild_explorer.blunite": "Bluniet",
 	"block.wild_explorer.blunite_stairs": "Bluniettrap",
 	"block.wild_explorer.blunite_slab": "Blunietplaat",
@@ -80,14 +74,12 @@
 	"block.wild_explorer.polished_carbonite": "Gepolijst carboniet",
 	"block.wild_explorer.polished_carbonite_stairs": "Gepolijst carboniettrap",
 	"block.wild_explorer.polished_carbonite_slab": "Gepolijst carbonietplaat",
-
 	"block.wild_explorer.autumn_oak_sapling": "Herfsteikkiemplant",
 	"block.wild_explorer.autumn_oak_leaves": "Herfsteikbladeren",
 	"block.wild_explorer.autumn_oak_leaf_pile": "Herfsteikbladerhoop",
 	"block.wild_explorer.autumn_birch_sapling": "Herfstberkenkiemplant",
 	"block.wild_explorer.autumn_birch_leaves": "Herfstberkenbladeren",
 	"block.wild_explorer.autumn_birch_leaf_pile": "Herfstberkenbladerhoop",
-
 	"block.wild_explorer.cherry_oak_planks": "Kerseneikhouten planken",
 	"block.wild_explorer.pink_cherry_oak_sapling": "Rozekerseneikkiemplant",
 	"block.wild_explorer.white_cherry_oak_sapling": "Wittekerseneikkiemplant",
@@ -110,7 +102,6 @@
 	"block.wild_explorer.cherry_oak_wood_stairs": "Kerseneikhouten trap",
 	"block.wild_explorer.cherry_oak_wood_slab": "Kerseneikhouten plaat",
 	"block.wild_explorer.cherry_oak_wood_button": "Kerseneikhouten knop",
-
 	"block.wild_explorer.palm_planks": "Palmhouten planken",
 	"block.wild_explorer.palm_sapling": "Palmkiemplant",
 	"block.wild_explorer.palm_log": "Palmstam",
@@ -130,11 +121,9 @@
 	"block.wild_explorer.palm_wood_stairs": "Palmhouten trap",
 	"block.wild_explorer.palm_wood_slab": "Palmhouten plaat",
 	"block.wild_explorer.palm_wood_button": "Palmhouten knop",
-
 	"block.wild_explorer.amaranth_dylium": "Amarant dylium",
 	"block.wild_explorer.amaranth_roots": "Amarant wortels",
 	"block.wild_explorer.amaranth_wart_block": "Amarant kruidblok",
-
 	"block.wild_explorer.dark_amaranth_planks": "Donkereamarant houten planken",
 	"block.wild_explorer.dark_amaranth_fungus": "Donkereamarant zwam",
 	"block.wild_explorer.dark_amaranth_stem": "Donkereamarant stam",
@@ -152,29 +141,20 @@
 	"block.wild_explorer.dark_amaranth_hyphae_stairs": "Donkereamarant schimmeldraad trap",
 	"block.wild_explorer.dark_amaranth_hyphae_slab": "Donkereamarant schimmeldraad plaat",
 	"block.wild_explorer.dark_amaranth_hyphae_button": "Donkereamarant schimmeldraad knop",
-
 	"block.wild_explorer.blueberry_bush": "Blauwebessenstruik",
-
 	"block.wild_explorer.potted_autumn_oak_sapling": "Gepotte herfsteikkiemplant",
 	"block.wild_explorer.potted_autumn_birch_sapling": "Gepotte Herfstberkenkiemplant",
 	"block.wild_explorer.potted_pink_cherry_oak_sapling": "Gepotte rozekerseneikkiemplant",
 	"block.wild_explorer.potted_white_cherry_oak_sapling": "Gepotte wittekerseneikkiemplant",
 	"block.wild_explorer.potted_palm_sapling": "Gepotte palmkiemplant",
-
-	"comment": "ITEMS",
 	"item.wild_explorer.blueberries": "Blauwebessen",
 	"item.wild_explorer.banana": "Bannaan",
 	"item.wild_explorer.apricot": "Abrikoos",
 	"item.wild_explorer.mango": "Mango",
 	"item.wild_explorer.duck": "Eend",
 	"item.wild_explorer.cooked_duck": "Gebakken eend",
-
 	"item.wild_explorer.duck_spawn_egg": "Eendspawnei",
-
-	"comment": "ENTITIES",
 	"entity.wild_explorer.duck": "Eend",
-
-	"comment": "BIOMES",
 	"biome.wild_explorer.pumpkin_pastures": "Pompoen weiland",
 	"biome.wild_explorer.pink_cherry_oak_forest": "Rozekerseneiken bos",
 	"biome.wild_explorer.white_cherry_oak_forest": "Wittekerseneiken bos",
@@ -185,17 +165,13 @@
 	"biome.wild_explorer.protanopian_gallery": "Protanopishe galerij",
 	"biome.wild_explorer.dark_amaranth_forest": "Donkeramarant bos",
 	"biome.wild_explorer.tall_dark_amaranth_forest": "Hoog donkereamarant bos",
-
-	"comment": "SUBTITLES",
 	"subtitles.wild_explorer.entity.duck.ambient": "Eend kwaakt",
 	"subtitles.wild_explorer.entity.duck.hurt": "Eend heeft pijn",
 	"subtitles.wild_explorer.entity.duck.death": "Eend sterft",
-
-	"comment": "CONFIG",
 	"text.autoconfig.wild_explorer.title": "Wild Explorer configuratie",
-	"//text.autoconfig.wild_explorer.category.biomes": "Biomes",
-	"//text.autoconfig.wild_explorer.category.features": "Features",
-	"//text.autoconfig.wild_explorer.category.creatures": "Creatures",
+	"text.autoconfig.wild_explorer.category.biomes": "Klimaten",
+	"text.autoconfig.wild_explorer.category.features": "Eigenschappen",
+	"text.autoconfig.wild_explorer.category.creatures": "Wezens",
 	"text.autoconfig.wild_explorer.option.biomes.pumpkin_pastures": "Genereer pompoen weiland",
 	"text.autoconfig.wild_explorer.option.biomes.pink_cherry_oak_forest": "Genereer rozekerseneiken bos",
 	"text.autoconfig.wild_explorer.option.biomes.white_cherry_oak_forest": "Genereer wittekerseneiken bos",
@@ -204,9 +180,9 @@
 	"text.autoconfig.wild_explorer.option.biomes.tritanopian_gallery": "Genereer tritanopische galerij",
 	"text.autoconfig.wild_explorer.option.biomes.achromatopsian_gallery": "Genereer achromatopsian galerij",
 	"text.autoconfig.wild_explorer.option.biomes.protanopian_gallery": "Genereer protanopishe galerij",
-	"//text.autoconfig.wild_explorer.option.features.blunite_patch": "Generate patches of Blunite",
-	"//text.autoconfig.wild_explorer.option.features.carbonite_patch": "Generate patches of Carbonite",
-	"//text.autoconfig.wild_explorer.option.features.palm_tree": "Generate palm trees",
-	"//text.autoconfig.wild_explorer.option.features.blueberry_bush": "Generate blueberry bushes",
-	"//text.autoconfig.wild_explorer.option.creatures.duck": "Ducks spawn naturally"
+	"text.autoconfig.wild_explorer.option.features.blunite_patch": "Genereer stukken bluniet",
+	"text.autoconfig.wild_explorer.option.features.carbonite_patch": "Genereer stukken carboniet",
+	"text.autoconfig.wild_explorer.option.features.palm_tree": "Genereer palmbomen",
+	"text.autoconfig.wild_explorer.option.features.blueberry_bush": "Genereen blauwebessenstruiken",
+	"text.autoconfig.wild_explorer.option.creatures.duck": "Spawn eenden natuurlijk"
 }
