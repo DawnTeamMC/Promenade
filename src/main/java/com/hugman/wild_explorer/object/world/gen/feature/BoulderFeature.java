@@ -1,5 +1,6 @@
 package com.hugman.wild_explorer.object.world.gen.feature;
 
+import com.hugman.wild_explorer.object.world.gen.feature.config.BoulderFeatureConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -7,13 +8,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.SingleStateFeatureConfig;
 
 import java.util.Iterator;
 import java.util.Random;
 
-public class EndBoulderFeature extends Feature<SingleStateFeatureConfig> {
-	public EndBoulderFeature(Codec<SingleStateFeatureConfig> codec) {
+public class BoulderFeature extends Feature<BoulderFeatureConfig> {
+	public BoulderFeature(Codec<BoulderFeatureConfig> codec) {
 		super(codec);
 	}
 
@@ -22,11 +22,10 @@ public class EndBoulderFeature extends Feature<SingleStateFeatureConfig> {
 	}
 
 	@Override
-	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, SingleStateFeatureConfig config) {
+	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, BoulderFeatureConfig config) {
 		for(; pos.getY() > 3; pos = pos.down()) {
 			if(!world.isAir(pos.down())) {
-				Block block = world.getBlockState(pos.down()).getBlock();
-				if(!isEndStone(block)) {
+				if(!config.replaceableBlocks.contains(world.getBlockState(pos.down()))) {
 					break;
 				}
 			}

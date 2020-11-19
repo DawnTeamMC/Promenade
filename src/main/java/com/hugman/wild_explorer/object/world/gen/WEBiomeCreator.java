@@ -1,6 +1,5 @@
-package com.hugman.wild_explorer.util;
+package com.hugman.wild_explorer.object.world.gen;
 
-import com.google.common.collect.ImmutableList;
 import com.hugman.wild_explorer.init.world.WEConfiguredFeatures;
 import com.hugman.wild_explorer.init.world.WEConfiguredSurfaceBuilders;
 import net.minecraft.client.sound.MusicType;
@@ -14,7 +13,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.ConfiguredFeatures;
+import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
+import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders;
 
 public class WEBiomeCreator {
@@ -260,10 +261,10 @@ public class WEBiomeCreator {
 		GenerationSettings.Builder generationBuilder = new GenerationSettings.Builder();
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_PINK_MUSHROOM_NETHER);
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_CYAN_MUSHROOM_NETHER);
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_BOOLEAN_SELECTOR.configure(new RandomBooleanFeatureConfig(() -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_PINK, () -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_CYAN)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_BOOLEAN_SELECTOR.configure(new RandomBooleanFeatureConfig(() -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_PINK_FLAT, () -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_CYAN_FLAT)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_BOOLEAN_SELECTOR.configure(new RandomBooleanFeatureConfig(() -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_PINK_UPSIDE, () -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_CYAN_UPSIDE)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_BOOLEAN_SELECTOR.configure(new RandomBooleanFeatureConfig(() -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_PINK_UPSIDE_FLAT, () -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_CYAN_UPSIDE_FLAT)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.TRITANOPIAN_GALLERY_GENERATION_1);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.TRITANOPIAN_GALLERY_GENERATION_2);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.TRITANOPIAN_GALLERY_GENERATION_3);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.TRITANOPIAN_GALLERY_GENERATION_4);
 		return generationBuilder;
 	}
 
@@ -273,10 +274,10 @@ public class WEBiomeCreator {
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_LIGHT_GRAY_MUSHROOM_NETHER);
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_GRAY_MUSHROOM_NETHER);
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_BLACK_MUSHROOM_NETHER);
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_BOOLEAN_SELECTOR.configure(new RandomBooleanFeatureConfig(() -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_GRAY, () -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_BLACK)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_BOOLEAN_SELECTOR.configure(new RandomBooleanFeatureConfig(() -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_GRAY_FLAT, () -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_BLACK_FLAT)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_BOOLEAN_SELECTOR.configure(new RandomBooleanFeatureConfig(() -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_WHITE_UPSIDE, () -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_LIGHT_GRAY_UPSIDE)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_BOOLEAN_SELECTOR.configure(new RandomBooleanFeatureConfig(() -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_WHITE_UPSIDE_FLAT, () -> WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_LIGHT_GRAY_UPSIDE_FLAT)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.ACHROMATOPSIAN_GALLERY_GENERATION_1);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.ACHROMATOPSIAN_GALLERY_GENERATION_2);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.ACHROMATOPSIAN_GALLERY_GENERATION_3);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.ACHROMATOPSIAN_GALLERY_GENERATION_4);
 		return generationBuilder;
 	}
 
@@ -286,10 +287,10 @@ public class WEBiomeCreator {
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_YELLOW_MUSHROOM_NETHER);
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_CYAN_MUSHROOM_NETHER);
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_BLUE_MUSHROOM_NETHER);
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(ImmutableList.of(WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_BROWN_FLAT.withChance(0.25F), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_YELLOW.withChance(0.25F), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_CYAN.withChance(0.25F)), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_BLUE)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(ImmutableList.of(WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_BROWN_UPSIDE_FLAT.withChance(0.25F), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_YELLOW_UPSIDE.withChance(0.25F), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_CYAN_UPSIDE.withChance(0.25F)), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_BLUE_UPSIDE)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(ImmutableList.of(WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_YELLOW_FLAT.withChance(1F / 3F), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_CYAN_FLAT.withChance(1F / 3F)), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_BLUE_FLAT)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
-		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(ImmutableList.of(WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_YELLOW_UPSIDE_FLAT.withChance(1F / 3F), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_CYAN_UPSIDE_FLAT.withChance(1F / 3F)), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_BLUE_UPSIDE_FLAT)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PROTANOPIAN_GALLERY_GENERATION_1);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PROTANOPIAN_GALLERY_GENERATION_2);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PROTANOPIAN_GALLERY_GENERATION_3);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PROTANOPIAN_GALLERY_GENERATION_4);
 		return generationBuilder;
 	}
 
@@ -313,7 +314,10 @@ public class WEBiomeCreator {
 		return settings.build();
 	}
 
-	private static Biome createDarkAmaranthForest(float depth, float scale, GenerationSettings.Builder generationBuilder) {
+	public static Biome createDarkAmaranthForest(boolean isTall) {
+		GenerationSettings.Builder generationBuilder = new GenerationSettings.Builder();
+		if(isTall) generationBuilder.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, WEConfiguredFeatures.OBSIDIAN_SPIKE);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, isTall ? WEConfiguredFeatures.TALL_AMARANTH_FUNGI : WEConfiguredFeatures.AMARANTH_FUNGI);
 		generationBuilder.surfaceBuilder(WEConfiguredSurfaceBuilders.AMARANTH_DYLIUM);
 		generationBuilder.structureFeature(ConfiguredStructureFeatures.END_CITY);
 		generationBuilder.feature(GenerationStep.Feature.SURFACE_STRUCTURES, ConfiguredFeatures.END_GATEWAY);
@@ -322,14 +326,6 @@ public class WEBiomeCreator {
 		DefaultBiomeFeatures.addEndMobs(spawnSettings);
 		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 10, 4, 4));
 		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CAVE_SPIDER, 10, 4, 4));
-		return createEndBiome(depth, scale, generationBuilder, spawnSettings);
-	}
-
-	public static Biome createNormalDarkAmaranthForest() {
-		return createDarkAmaranthForest(0.1F, 0.2F, new GenerationSettings.Builder().feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.AMARANTH_FUNGI));
-	}
-
-	public static Biome createTallDarkAmaranthForest() {
-		return createDarkAmaranthForest(0.2F, 0.4F, new GenerationSettings.Builder().feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.TALL_AMARANTH_FUNGI));
+		return createEndBiome(isTall ? 0.2F : 0.1F, isTall ? 0.4F : 0.2F, generationBuilder, spawnSettings);
 	}
 }

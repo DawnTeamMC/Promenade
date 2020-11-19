@@ -36,6 +36,8 @@ public class WEConfig extends PartitioningSerializer.GlobalData {
 		public boolean achromatopsian_gallery = true;
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean protanopian_gallery = true;
+		@ConfigEntry.Gui.RequiresRestart
+		public boolean dark_amaranth_forest = true;
 	}
 
 	@Config(name = "features")

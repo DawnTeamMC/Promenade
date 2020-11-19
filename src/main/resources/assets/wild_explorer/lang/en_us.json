@@ -1,12 +1,10 @@
 {
-	"comment": "BLOCKS",
 	"block.wild_explorer.oak_leaf_pile": "Oak Leaf Pile",
 	"block.wild_explorer.spruce_leaf_pile": "Spruce Leaf Pile",
 	"block.wild_explorer.birch_leaf_pile": "Birch Leaf Pile",
 	"block.wild_explorer.jungle_leaf_pile": "Jungle Leaf Pile",
 	"block.wild_explorer.acacia_leaf_pile": "Acacia Leaf Pile",
 	"block.wild_explorer.dark_oak_leaf_pile": "Dark Oak Leaf Pile",
-
 	"block.wild_explorer.dandelion_pile": "Dandelion Pile",
 	"block.wild_explorer.poppy_pile": "Poppy Pile",
 	"block.wild_explorer.blue_orchid_pile": "Blue Orchid Pile",
@@ -20,7 +18,6 @@
 	"block.wild_explorer.cornflower_pile": "Cornflower Pile",
 	"block.wild_explorer.lily_of_the_valley_pile": "Lily of the Valley Pile",
 	"block.wild_explorer.wither_rose_pile": "Wither Rose Pile",
-
 	"block.wild_explorer.blue_mushroom": "Blue Mushroom",
 	"block.wild_explorer.light_blue_mushroom": "Light Blue Mushroom",
 	"block.wild_explorer.cyan_mushroom": "Cyan Mushroom",
@@ -35,7 +32,6 @@
 	"block.wild_explorer.light_gray_mushroom": "Light Gray Mushroom",
 	"block.wild_explorer.gray_mushroom": "Gray Mushroom",
 	"block.wild_explorer.black_mushroom": "Black Mushroom",
-
 	"block.wild_explorer.potted_blue_mushroom": "Potted Blue Mushroom",
 	"block.wild_explorer.potted_light_blue_mushroom": "Potted Light Blue Mushroom",
 	"block.wild_explorer.potted_cyan_mushroom": "Potted Cyan Mushroom",
@@ -50,7 +46,6 @@
 	"block.wild_explorer.potted_light_gray_mushroom": "Potted Light Gray Mushroom",
 	"block.wild_explorer.potted_gray_mushroom": "Potted Gray Mushroom",
 	"block.wild_explorer.potted_black_mushroom": "Potted Black Mushroom",
-
 	"block.wild_explorer.blue_mushroom_block": "Blue Mushroom Block",
 	"block.wild_explorer.light_blue_mushroom_block": "Light Blue Mushroom Block",
 	"block.wild_explorer.cyan_mushroom_block": "Cyan Mushroom Block",
@@ -65,7 +60,6 @@
 	"block.wild_explorer.light_gray_mushroom_block": "Light Gray Mushroom Block",
 	"block.wild_explorer.gray_mushroom_block": "Gray Mushroom Block",
 	"block.wild_explorer.black_mushroom_block": "Black Mushroom Block",
-
 	"block.wild_explorer.blunite": "Blunite",
 	"block.wild_explorer.blunite_stairs": "Blunite Stairs",
 	"block.wild_explorer.blunite_slab": "Blunite Slab",
@@ -80,14 +74,12 @@
 	"block.wild_explorer.polished_carbonite": "Polished Carbonite",
 	"block.wild_explorer.polished_carbonite_stairs": "Polished Carbonite Stairs",
 	"block.wild_explorer.polished_carbonite_slab": "Polished Carbonite Slab",
-
 	"block.wild_explorer.autumn_oak_sapling": "Autumn Oak Sapling",
 	"block.wild_explorer.autumn_oak_leaves": "Autumn Oak Leaves",
 	"block.wild_explorer.autumn_oak_leaf_pile": "Autumn Oak Leaf Pile",
 	"block.wild_explorer.autumn_birch_sapling": "Autumn Birch Sapling",
 	"block.wild_explorer.autumn_birch_leaves": "Autumn Birch Leaves",
 	"block.wild_explorer.autumn_birch_leaf_pile": "Autumn Birch Leaf Pile",
-
 	"block.wild_explorer.cherry_oak_planks": "Cherry Oak Planks",
 	"block.wild_explorer.pink_cherry_oak_sapling": "Pink Cherry Oak Sapling",
 	"block.wild_explorer.white_cherry_oak_sapling": "White Cherry Oak Sapling",
@@ -110,7 +102,6 @@
 	"block.wild_explorer.cherry_oak_wood_stairs": "Cherry Oak Wood Stairs",
 	"block.wild_explorer.cherry_oak_wood_slab": "Cherry Oak Wood Slab",
 	"block.wild_explorer.cherry_oak_wood_button": "Cherry Oak Wood Button",
-
 	"block.wild_explorer.palm_planks": "Palm Planks",
 	"block.wild_explorer.palm_sapling": "Palm Sapling",
 	"block.wild_explorer.palm_log": "Palm Log",
@@ -130,11 +121,9 @@
 	"block.wild_explorer.palm_wood_stairs": "Palm Wood Stairs",
 	"block.wild_explorer.palm_wood_slab": "Palm Wood Slab",
 	"block.wild_explorer.palm_wood_button": "Palm Wood Button",
-
 	"block.wild_explorer.amaranth_dylium": "Amaranth Dylium",
 	"block.wild_explorer.amaranth_roots": "Amaranth Roots",
 	"block.wild_explorer.amaranth_wart_block": "Amaranth Wart Block",
-
 	"block.wild_explorer.dark_amaranth_planks": "Dark Amaranth Planks",
 	"block.wild_explorer.dark_amaranth_fungus": "Dark Amaranth Fungus",
 	"block.wild_explorer.dark_amaranth_stem": "Dark Amaranth Stem",
@@ -152,29 +141,20 @@
 	"block.wild_explorer.dark_amaranth_hyphae_stairs": "Dark Amaranth Hyphae Stairs",
 	"block.wild_explorer.dark_amaranth_hyphae_slab": "Dark Amaranth Hyphae Slab",
 	"block.wild_explorer.dark_amaranth_hyphae_button": "Dark Amaranth Hyphae Button",
-
 	"block.wild_explorer.blueberry_bush": "Blueberry Bush",
-
 	"block.wild_explorer.potted_autumn_oak_sapling": "Potted Autumn Oak Sapling",
 	"block.wild_explorer.potted_autumn_birch_sapling": "Potted Autumn Birch Sapling",
 	"block.wild_explorer.potted_pink_cherry_oak_sapling": "Potted Pink Cherry Oak Sapling",
 	"block.wild_explorer.potted_white_cherry_oak_sapling": "Potted White Cherry Oak Sapling",
 	"block.wild_explorer.potted_palm_sapling": "Potted Palm Sapling",
-
-	"comment": "ITEMS",
 	"item.wild_explorer.blueberries": "Blueberries",
 	"item.wild_explorer.banana": "Banana",
 	"item.wild_explorer.apricot": "Apricot",
 	"item.wild_explorer.mango": "Mango",
 	"item.wild_explorer.duck": "Duck",
 	"item.wild_explorer.cooked_duck": "Cooked Duck",
-
 	"item.wild_explorer.duck_spawn_egg": "Duck Spawn Egg",
-
-	"comment": "ENTITIES",
 	"entity.wild_explorer.duck": "Duck",
-
-	"comment": "BIOMES",
 	"biome.wild_explorer.pumpkin_pastures": "Pumpkin Pastures",
 	"biome.wild_explorer.pink_cherry_oak_forest": "Pink Cherry Oak Forest",
 	"biome.wild_explorer.white_cherry_oak_forest": "White Cherry Oak Forest",
@@ -185,13 +165,9 @@
 	"biome.wild_explorer.protanopian_gallery": "Protanopian Gallery",
 	"biome.wild_explorer.dark_amaranth_forest": "Dark Amaranth Forest",
 	"biome.wild_explorer.tall_dark_amaranth_forest": "Tall Dark Amaranth Forest",
-
-	"comment": "SUBTITLES",
 	"subtitles.wild_explorer.entity.duck.ambient": "Duck quacks",
 	"subtitles.wild_explorer.entity.duck.hurt": "Duck hurts",
 	"subtitles.wild_explorer.entity.duck.death": "Duck dies",
-
-	"comment": "CONFIG",
 	"text.autoconfig.wild_explorer.title": "Wild Explorer Configuration",
 	"text.autoconfig.wild_explorer.category.biomes": "Biomes",
 	"text.autoconfig.wild_explorer.category.features": "Features",
@@ -204,6 +180,7 @@
 	"text.autoconfig.wild_explorer.option.biomes.tritanopian_gallery": "Generate Tritanopian Galleries",
 	"text.autoconfig.wild_explorer.option.biomes.achromatopsian_gallery": "Generate Achromatopsian Galleries",
 	"text.autoconfig.wild_explorer.option.biomes.protanopian_gallery": "Generate Protanopian Galleries",
+	"text.autoconfig.wild_explorer.option.biomes.dark_amaranth_forest": "Generate Dark Amaranth Forests",
 	"text.autoconfig.wild_explorer.option.features.blunite_patch": "Generate patches of Blunite",
 	"text.autoconfig.wild_explorer.option.features.carbonite_patch": "Generate patches of Carbonite",
 	"text.autoconfig.wild_explorer.option.features.palm_tree": "Generate palm trees",
