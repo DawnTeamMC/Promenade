@@ -35,7 +35,7 @@ public class DyliumBlock extends NyliumBlock {
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
 		BlockState blockState = world.getBlockState(pos);
 		BlockPos blockPos = pos.up();
-		if(blockState.isOf(WEBlocks.AMARANTH_DYLIUM)) {
+		if(blockState.isOf(WEBlocks.BLACK_DYLIUM)) {
 			NetherForestVegetationFeature.generate(world, random, blockPos, WEConfiguredFeatures.Configs.AMARANTH_ROOTS, 3, 1);
 		}
 	}

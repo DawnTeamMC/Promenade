@@ -6,7 +6,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.FeatureConfig;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SpikeFeatureConfig implements FeatureConfig {

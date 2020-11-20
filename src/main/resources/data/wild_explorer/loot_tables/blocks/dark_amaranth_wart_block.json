@@ -6,7 +6,7 @@
 			"entries": [
 				{
 					"type": "minecraft:item",
-					"name": "wild_explorer:amaranth_wart_block"
+					"name": "wild_explorer:dark_amaranth_wart_block"
 				}
 			],
 			"conditions": [

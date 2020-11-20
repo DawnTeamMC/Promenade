@@ -23,6 +23,6 @@ public class WEConfiguredSurfaceBuilders {
 
 	public static final class States {
 		protected static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
-		protected static final BlockState AMARANTH_DYLIUM = WEBlocks.AMARANTH_DYLIUM.getDefaultState();
+		protected static final BlockState AMARANTH_DYLIUM = WEBlocks.BLACK_DYLIUM.getDefaultState();
 	}
 }
