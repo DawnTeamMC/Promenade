@@ -324,8 +324,8 @@ public class WEBiomeCreator {
 		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.AMARANTH_FOREST_VEGETATION);
 		SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder();
 		DefaultBiomeFeatures.addEndMobs(spawnSettings);
-		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 10, 4, 4));
-		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CAVE_SPIDER, 10, 4, 4));
+		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 10, 3, 4));
+		spawnSettings.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CAVE_SPIDER, 6, 1, 3));
 		return createEndBiome(isTall ? 0.2F : 0.1F, isTall ? 0.4F : 0.2F, generationBuilder, spawnSettings);
 	}
 }
