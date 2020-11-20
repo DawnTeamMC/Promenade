@@ -6,7 +6,6 @@ import com.hugman.dawn.api.creator.ConfiguredFeatureCreator;
 import com.hugman.dawn.api.util.DefaultBlockGetter;
 import com.hugman.wild_explorer.init.WEBlocks;
 import com.hugman.wild_explorer.init.WEPack;
-import com.hugman.wild_explorer.object.world.gen.decorator.config.CountSafelistRangeDecoratorConfig;
 import com.hugman.wild_explorer.object.world.gen.feature.config.BoulderFeatureConfig;
 import com.hugman.wild_explorer.object.world.gen.feature.config.HugeMushroomFeatureConfig;
 import com.hugman.wild_explorer.object.world.gen.feature.config.SpikeFeatureConfig;
@@ -165,11 +164,11 @@ public class WEConfiguredFeatures extends WEPack {
 	public static final ConfiguredFeature<?, ?> PROTANOPIAN_GALLERY_GENERATION_3 = register("protanopian_gallery_generation_3", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(ImmutableList.of(WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_YELLOW_FLAT.withChance(1F / 3F), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_CYAN_FLAT.withChance(1F / 3F)), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_BLUE_FLAT)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
 	public static final ConfiguredFeature<?, ?> PROTANOPIAN_GALLERY_GENERATION_4 = register("protanopian_gallery_generation_4", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(ImmutableList.of(WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_YELLOW_UPSIDE_FLAT.withChance(1F / 3F), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_CYAN_UPSIDE_FLAT.withChance(1F / 3F)), WEConfiguredFeatures.HUGE_NETHER_MUSHROOM_BLUE_UPSIDE_FLAT)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP));
 
-	public static final ConfiguredFeature<?, ?> AMARANTH_FUNGI = register("amaranth_fungi", Feature.HUGE_FUNGUS.configure(new HugeFungusFeatureConfig(States.AMARANTH_DYLIUM, States.DARK_AMARANTH_STEM, States.AMARANTH_WART_BLOCK, States.COBWEB, false)).decorate(Decorator.COUNT_MULTILAYER.configure(new CountConfig(8))));
-	public static final ConfiguredFeature<?, ?> TALL_AMARANTH_FUNGI = register("tall_amaranth_fungi", WEFeatures.TALL_HUGE_FUNGUS.configure(new HugeFungusFeatureConfig(States.AMARANTH_DYLIUM, States.DARK_AMARANTH_STEM, States.AMARANTH_WART_BLOCK, States.COBWEB, false)).decorate(Decorator.COUNT_MULTILAYER.configure(new CountConfig(8))));
+	public static final ConfiguredFeature<?, ?> AMARANTH_FUNGI = register("amaranth_fungi", Feature.HUGE_FUNGUS.configure(new HugeFungusFeatureConfig(States.AMARANTH_DYLIUM, States.DARK_AMARANTH_STEM, States.AMARANTH_WART_BLOCK, States.COBWEB, false)).decorate(Decorator.COUNT_MULTILAYER.configure(new CountConfig(2))));
+	public static final ConfiguredFeature<?, ?> TALL_AMARANTH_FUNGI = register("tall_amaranth_fungi", WEFeatures.TALL_HUGE_FUNGUS.configure(new HugeFungusFeatureConfig(States.AMARANTH_DYLIUM, States.DARK_AMARANTH_STEM, States.AMARANTH_WART_BLOCK, States.COBWEB, false)).decorate(Decorator.COUNT_MULTILAYER.configure(new CountConfig(2))));
 	public static final ConfiguredFeature<HugeFungusFeatureConfig, ?> AMARANTH_FUNGI_PLANTED = register("amaranth_fungi_planted", Feature.HUGE_FUNGUS.configure(new HugeFungusFeatureConfig(States.AMARANTH_DYLIUM, States.DARK_AMARANTH_STEM, States.AMARANTH_WART_BLOCK, States.COBWEB, true)));
-	public static final ConfiguredFeature<?, ?> AMARANTH_FOREST_VEGETATION = register("amaranth_forest_vegetation", Feature.NETHER_FOREST_VEGETATION.configure(Configs.AMARANTH_ROOTS).decorate(Decorator.COUNT_MULTILAYER.configure(new CountConfig(6))));
-	public static final ConfiguredFeature<?, ?> OBSIDIAN_SPIKE = register("obsidian_spike", WEFeatures.SPIKE.configure(new SpikeFeatureConfig(Blocks.OBSIDIAN.getDefaultState(), Arrays.asList(Blocks.END_STONE.getDefaultState()), 14, 8, 2, 4, 0, 360, 150, 30)).decorate(WEDecorators.COUNT_FLOOR.configure(new CountSafelistRangeDecoratorConfig(10, 20, 20, 255, Arrays.asList(Blocks.END_STONE.getDefaultState(), WEBlocks.AMARANTH_DYLIUM.getDefaultState())))));
+	public static final ConfiguredFeature<?, ?> AMARANTH_FOREST_VEGETATION = register("amaranth_forest_vegetation", Feature.NETHER_FOREST_VEGETATION.configure(Configs.AMARANTH_ROOTS).decorate(Decorator.COUNT_MULTILAYER.configure(new CountConfig(4))));
+	public static final ConfiguredFeature<?, ?> OBSIDIAN_SPIKE = register("obsidian_spike", WEFeatures.SPIKE.configure(new SpikeFeatureConfig(Blocks.OBSIDIAN.getDefaultState(), Arrays.asList(WEBlocks.AMARANTH_DYLIUM.getDefaultState(), Blocks.END_STONE.getDefaultState()), 6, 22, 2, 3, 0, 360, 150, 30, -4).setDecoration(Blocks.CRYING_OBSIDIAN.getDefaultState(), 0.08f)).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP).repeatRandomly(12));
 	public static final ConfiguredFeature<?, ?> ENDER_BOULDER = register("ender_boulder", WEFeatures.BOULDER.configure(new BoulderFeatureConfig(Blocks.OBSIDIAN.getDefaultState(), Arrays.asList(Blocks.END_STONE.getDefaultState()))).decorate(ConfiguredFeatures.Decorators.SQUARE_HEIGHTMAP).repeatRandomly(2));
 
 	public static void init() {
@@ -180,7 +179,7 @@ public class WEConfiguredFeatures extends WEPack {
 	}
 
 	public static final class Configs {
-		public static final BlockPileFeatureConfig AMARANTH_ROOTS = new BlockPileFeatureConfig((new WeightedBlockStateProvider()).addState(WEBlocks.AMARANTH_ROOTS.getDefaultState(), 87).addState(WEBlocks.DARK_AMARANTH_WOOD.getFungus().getDefaultState(), 11));
+		public static final BlockPileFeatureConfig AMARANTH_ROOTS = new BlockPileFeatureConfig((new WeightedBlockStateProvider()).addState(WEBlocks.AMARANTH_ROOTS.getDefaultState(), 80).addState(WEBlocks.DARK_AMARANTH_WOOD.getFungus().getDefaultState(), 4));
 		protected static final HugeMushroomFeatureConfig HUGE_NETHER_MUSHROOM_BLUE = new HugeMushroomFeatureConfig(13, 8, States.BLUE_MUSHROOM_BLOCK, 3, 3, States.SHROOMLIGHT, 0.1F, 0.05F);
 		protected static final HugeMushroomFeatureConfig HUGE_NETHER_MUSHROOM_CYAN = new HugeMushroomFeatureConfig(4, 3, States.CYAN_MUSHROOM_BLOCK, 2, 1, Blocks.SHROOMLIGHT.getDefaultState(), 0.05F, 0.1F);
 		protected static final HugeMushroomFeatureConfig HUGE_NETHER_MUSHROOM_PINK = new HugeMushroomFeatureConfig(5, 4, States.PINK_MUSHROOM_BLOCK, 2, 1, Blocks.SHROOMLIGHT.getDefaultState(), 0.05F, 0.1F);

@@ -59,17 +59,7 @@ public class HugeMushroomFeatureConfig implements FeatureConfig {
 	}
 
 	public HugeMushroomFeatureConfig(int stemBaseHeight, int stemRandomHeight, BlockState hatState, int hatBaseSize, int hatRandomSize, BlockState decorationState, double decorationChance, double vineChance) {
-		this.stemState = Blocks.MUSHROOM_STEM.getDefaultState();
-		this.stemBaseHeight = stemBaseHeight;
-		this.stemRandomHeight = stemRandomHeight;
-		this.hatState = hatState;
-		this.hatBaseSize = hatBaseSize;
-		this.hatRandomSize = hatRandomSize;
-		this.flatHat = false;
-		this.decorationState = decorationState;
-		this.decorationChance = decorationChance;
-		this.vineChance = vineChance;
-		this.upsideDown = false;
+		this(Blocks.MUSHROOM_STEM.getDefaultState(), stemBaseHeight, stemRandomHeight, hatState, hatBaseSize, hatRandomSize, false, decorationState, decorationChance, vineChance, false);
 	}
 
 	public HugeMushroomFeatureConfig setUpsideDown() {

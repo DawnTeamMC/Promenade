@@ -26,7 +26,7 @@ public class WEBiomeCreator {
 	}
 
 	public static Biome createPumpkinPastures() {
-		GenerationSettings.Builder generationBuilder = createForestGenerationSettings();
+		GenerationSettings.Builder generationBuilder = composeForestGenerationSettings();
 		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PUMPKIN_PASTURES_TREES);
 		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PATCH_AUTUMN_BIRCH_LEAF_PILE_NORMAL);
 		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PATCH_AUTUMN_OAK_LEAF_PILE_NORMAL);
@@ -44,7 +44,7 @@ public class WEBiomeCreator {
 	}
 
 	public static Biome createCherryOakForest(boolean isPink) {
-		GenerationSettings.Builder generationBuilder = createForestGenerationSettings();
+		GenerationSettings.Builder generationBuilder = composeForestGenerationSettings();
 		if(isPink) {
 			generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PINK_CHERRY_OAK_FOREST_TREES);
 			generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, WEConfiguredFeatures.PATCH_PINK_CHERRY_OAK_LEAF_PILE_NORMAL);
@@ -67,7 +67,7 @@ public class WEBiomeCreator {
 		return createForest(generationBuilder.build(), effectBuilder.build(), 0.6F, 0.4F);
 	}
 
-	public static Biome createForest(GenerationSettings generationBuilder, float temperature, float downfall, int waterColor, int waterFogColor) {
+	private static Biome createForest(GenerationSettings generationBuilder, float temperature, float downfall, int waterColor, int waterFogColor) {
 		BiomeEffects.Builder effectBuilder = new BiomeEffects.Builder();
 		effectBuilder.fogColor(12638463);
 		effectBuilder.skyColor(getSkyColor(temperature));
@@ -77,7 +77,7 @@ public class WEBiomeCreator {
 		return createForest(generationBuilder, effectBuilder.build(), temperature, downfall);
 	}
 
-	public static Biome createForest(GenerationSettings generationBuilder, BiomeEffects effectBuilder, float temperature, float downfall) {
+	private static Biome createForest(GenerationSettings generationBuilder, BiomeEffects effectBuilder, float temperature, float downfall) {
 		SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
 		DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
 		DefaultBiomeFeatures.addBatsAndMonsters(spawnBuilder);
@@ -95,7 +95,7 @@ public class WEBiomeCreator {
 		return builder.build();
 	}
 
-	private static GenerationSettings.Builder createForestGenerationSettings() {
+	private static GenerationSettings.Builder composeForestGenerationSettings() {
 		GenerationSettings.Builder builder = new GenerationSettings.Builder();
 		builder.surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
 		builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL);
@@ -257,7 +257,7 @@ public class WEBiomeCreator {
 		return settings.build();
 	}
 
-	public static GenerationSettings.Builder createTritanopianGalleryGenerationSettings() {
+	public static GenerationSettings.Builder composeTritanopianGalleryGenerationSettings() {
 		GenerationSettings.Builder generationBuilder = new GenerationSettings.Builder();
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_PINK_MUSHROOM_NETHER);
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_CYAN_MUSHROOM_NETHER);
@@ -268,7 +268,7 @@ public class WEBiomeCreator {
 		return generationBuilder;
 	}
 
-	public static GenerationSettings.Builder createAchromatopsianGalleryGenerationSettings() {
+	public static GenerationSettings.Builder composeAchromatopsianGalleryGenerationSettings() {
 		GenerationSettings.Builder generationBuilder = new GenerationSettings.Builder();
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_WHITE_MUSHROOM_NETHER);
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_LIGHT_GRAY_MUSHROOM_NETHER);
@@ -281,7 +281,7 @@ public class WEBiomeCreator {
 		return generationBuilder;
 	}
 
-	public static GenerationSettings.Builder createProtanopianGalleryGenerationSettings() {
+	public static GenerationSettings.Builder composeProtanopianGalleryGenerationSettings() {
 		GenerationSettings.Builder generationBuilder = new GenerationSettings.Builder();
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, ConfiguredFeatures.BROWN_MUSHROOM_NETHER);
 		generationBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, WEConfiguredFeatures.PATCH_YELLOW_MUSHROOM_NETHER);

@@ -18,9 +18,9 @@ public class WEBiomes extends WEPack {
 	public static final RegistryKey<Biome> WHITE_CHERRY_OAK_FOREST = register(new BiomeCreator.Builder("white_cherry_oak_forest", WEBiomeCreator.createCherryOakForest(false)));
 	public static final RegistryKey<Biome> TALL_CRIMSON_FOREST = register(new BiomeCreator.Builder("tall_crimson_forest", WEBiomeCreator.createTallCrimsonForest()));
 	public static final RegistryKey<Biome> TALL_WARPED_FOREST = register(new BiomeCreator.Builder("tall_warped_forest", WEBiomeCreator.createTallWarpedForest()));
-	public static final RegistryKey<Biome> TRITANOPIAN_GALLERY = register(new BiomeCreator.Builder("tritanopian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.createTritanopianGalleryGenerationSettings())));
-	public static final RegistryKey<Biome> ACHROMATOPSIAN_GALLERY = register(new BiomeCreator.Builder("achromatopsian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.createAchromatopsianGalleryGenerationSettings())));
-	public static final RegistryKey<Biome> PROTANOPIAN_GALLERY = register(new BiomeCreator.Builder("protanopian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.createProtanopianGalleryGenerationSettings())));
+	public static final RegistryKey<Biome> TRITANOPIAN_GALLERY = register(new BiomeCreator.Builder("tritanopian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.composeTritanopianGalleryGenerationSettings())));
+	public static final RegistryKey<Biome> ACHROMATOPSIAN_GALLERY = register(new BiomeCreator.Builder("achromatopsian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.composeAchromatopsianGalleryGenerationSettings())));
+	public static final RegistryKey<Biome> PROTANOPIAN_GALLERY = register(new BiomeCreator.Builder("protanopian_gallery", WEBiomeCreator.createGallery(WEBiomeCreator.composeProtanopianGalleryGenerationSettings())));
 	public static final RegistryKey<Biome> DARK_AMARANTH_FOREST = register(new BiomeCreator.Builder("dark_amaranth_forest", WEBiomeCreator.createDarkAmaranthForest(false)));
 	public static final RegistryKey<Biome> TALL_DARK_AMARANTH_FOREST = register(new BiomeCreator.Builder("tall_dark_amaranth_forest", WEBiomeCreator.createDarkAmaranthForest(true)));
 
