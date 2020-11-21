@@ -301,6 +301,7 @@ public class WEBiomeCreator {
 		effects.fogColor(10518688);
 		effects.skyColor(0);
 		effects.moodSound(BiomeMoodSound.CAVE);
+		effects.particleConfig(new BiomeParticleConfig(ParticleTypes.FALLING_OBSIDIAN_TEAR, 0.002F));
 		Biome.Builder settings = new Biome.Builder();
 		settings.precipitation(Biome.Precipitation.NONE);
 		settings.category(Biome.Category.THEEND);
