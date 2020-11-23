@@ -6,9 +6,7 @@ import com.hugman.wild_explorer.init.WEBiomes;
 import com.hugman.wild_explorer.init.WEBlocks;
 import com.hugman.wild_explorer.init.WEEntities;
 import com.hugman.wild_explorer.init.WEItems;
-import com.hugman.wild_explorer.init.world.WEConfiguredFeatures;
-import com.hugman.wild_explorer.init.world.WEConfiguredSurfaceBuilders;
-import com.hugman.wild_explorer.init.world.WEFeatures;
+import com.hugman.wild_explorer.init.world.*;
 import me.sargunvohra.mcmods.autoconfig1u.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.GsonConfigSerializer;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.PartitioningSerializer;
@@ -28,9 +26,13 @@ public class WildExplorer implements ModInitializer {
 		WEEntities.init();
 		WEFeatures.init();
 		WEConfiguredFeatures.init();
+		WEStructureFeatures.init();
+		WEStructurePieces.init();
+		WEConfiguredStructuresFeatures.init();
 		WEConfiguredSurfaceBuilders.init();
 		WEBiomes.init();
 		MOD_DATA.registerCreators();
 		WEBiomes.addToGen();
+		WEConfiguredStructuresFeatures.addToGen();
 	}
 }

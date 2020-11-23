@@ -21,7 +21,7 @@ public class DefaultBiomeFeaturesMixin {
 
 	@Inject(method = "addMineables", at = @At(value = "TAIL"))
 	private static void WE_addMineables(GenerationSettings.Builder builder, CallbackInfo info) {
-		if(FEATURES_CONFIG.igneous_rock_patches){
+		if(FEATURES_CONFIG.igneous_rock_patches) {
 			builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, WEConfiguredFeatures.ORE_BLUNITE);
 			builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, WEConfiguredFeatures.ORE_CARBONITE);
 		}

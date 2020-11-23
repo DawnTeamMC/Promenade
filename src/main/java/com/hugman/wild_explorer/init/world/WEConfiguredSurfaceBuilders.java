@@ -1,16 +1,12 @@
 package com.hugman.wild_explorer.init.world;
 
 import com.hugman.dawn.api.creator.ConfiguredSurfaceBuilderCreator;
-import com.hugman.wild_explorer.WildExplorer;
 import com.hugman.wild_explorer.init.WEBlocks;
 import com.hugman.wild_explorer.init.WEPack;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilder;
 import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
-import net.minecraft.world.gen.surfacebuilder.SurfaceConfig;
 import net.minecraft.world.gen.surfacebuilder.TernarySurfaceConfig;
 
 public class WEConfiguredSurfaceBuilders extends WEPack {
