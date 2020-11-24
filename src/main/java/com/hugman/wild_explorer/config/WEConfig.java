@@ -14,6 +14,9 @@ public class WEConfig extends PartitioningSerializer.GlobalData {
 	@ConfigEntry.Category("features")
 	@ConfigEntry.Gui.TransitiveObject
 	public FeaturesCategory features = new FeaturesCategory();
+	@ConfigEntry.Category("structures")
+	@ConfigEntry.Gui.TransitiveObject
+	public StructuresCategory structures = new StructuresCategory();
 	@ConfigEntry.Category("creatures")
 	@ConfigEntry.Gui.TransitiveObject
 	public CreaturesCategory creatures = new CreaturesCategory();
@@ -41,6 +44,12 @@ public class WEConfig extends PartitioningSerializer.GlobalData {
 		public boolean palm_trees = true;
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean blueberry_bushes = true;
+	}
+
+	@Config(name = "structures")
+	public static class StructuresCategory implements ConfigData {
+		@ConfigEntry.Gui.RequiresRestart
+		public boolean witch_huts = true;
 	}
 
 	@Config(name = "creatures")

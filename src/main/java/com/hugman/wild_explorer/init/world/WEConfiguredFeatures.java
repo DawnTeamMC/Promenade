@@ -174,6 +174,11 @@ public class WEConfiguredFeatures extends WEPack {
 	public static void init() {
 	}
 
+
+	public static void addToGen() {
+	}
+
+
 	private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> register(String name, ConfiguredFeature<FC, ?> configuredFeature) {
 		return register(new ConfiguredFeatureCreator.Builder<>(name, configuredFeature));
 	}
@@ -202,8 +207,8 @@ public class WEConfiguredFeatures extends WEPack {
 	public static final class States {
 		protected static final BlockState GRASS_BLOCK = Blocks.GRASS_BLOCK.getDefaultState();
 
-		protected static final BlockState BLUNITE = WEBlocks.BLUNITE_BLOCKS.getBlock(DefaultBlockGetter.CUBE).getDefaultState();
-		protected static final BlockState CARBONITE = WEBlocks.CARBONITE_BLOCKS.getBlock(DefaultBlockGetter.CUBE).getDefaultState();
+		protected static final BlockState BLUNITE = WEBlocks.BLUNITE.getBlock(DefaultBlockGetter.CUBE).getDefaultState();
+		protected static final BlockState CARBONITE = WEBlocks.CARBONITE.getBlock(DefaultBlockGetter.CUBE).getDefaultState();
 
 		protected static final BlockState OAK_LOG = Blocks.OAK_LOG.getDefaultState();
 		protected static final BlockState AUTUMN_OAK_LEAVES = WEBlocks.AUTUMN_OAK_LEAVES.getLeaves().getDefaultState();

@@ -1,0 +1,20 @@
+{
+	"replace": false,
+	"values": [
+		"wild_explorer:potted_white_mushroom",
+		"wild_explorer:potted_light_gray_mushroom",
+		"wild_explorer:potted_gray_mushroom",
+		"wild_explorer:potted_black_mushroom",
+		"wild_explorer:potted_orange_mushroom",
+		"wild_explorer:potted_yellow_mushroom",
+		"wild_explorer:potted_yellow_mushroom",
+		"wild_explorer:potted_lime_mushroom",
+		"wild_explorer:potted_green_mushroom",
+		"wild_explorer:potted_cyan_mushroom",
+		"wild_explorer:potted_light_blue_mushroom",
+		"wild_explorer:potted_blue_mushroom",
+		"wild_explorer:potted_purple_mushroom",
+		"wild_explorer:potted_magenta_mushroom",
+		"wild_explorer:potted_pink_mushroom"
+	]
+}

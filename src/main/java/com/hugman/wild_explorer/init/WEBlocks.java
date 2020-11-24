@@ -77,10 +77,10 @@ public class WEBlocks extends WEPack {
 
 	public static final Block BLUEBERRY_BUSH = register(new BlockCreator.Builder("blueberry_bush", new BlueberryBushBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().noCollision().sounds(BlockSoundGroup.SWEET_BERRY_BUSH))).flammability(60, 100).render(BlockCreator.Render.CUTOUT).noItem());
 
-	public static final MSBlockPack BLUNITE_BLOCKS = register(new MSBlockPack.Builder("blunite", FabricBlockSettings.copyOf(Blocks.ANDESITE).materialColor(MaterialColor.LIGHT_BLUE_TERRACOTTA), DefaultBlockGetter.CUBE, DefaultBlockGetter.STAIRS, DefaultBlockGetter.SLAB, DefaultBlockGetter.WALL));
-	public static final MSBlockPack CARBONITE_BLOCKS = register(new MSBlockPack.Builder("carbonite", FabricBlockSettings.copyOf(Blocks.ANDESITE).materialColor(MaterialColor.BLACK), DefaultBlockGetter.CUBE, DefaultBlockGetter.STAIRS, DefaultBlockGetter.SLAB, DefaultBlockGetter.WALL));
-	public static final MSBlockPack POLISHED_BLUNITE = register(new MSBlockPack.Builder("polished_blunite", FabricBlockSettings.copyOf(BLUNITE_BLOCKS.getBlock(DefaultBlockGetter.CUBE)), DefaultBlockGetter.CUBE, DefaultBlockGetter.STAIRS, DefaultBlockGetter.SLAB));
-	public static final MSBlockPack POLISHED_CARBONITE = register(new MSBlockPack.Builder("polished_carbonite", FabricBlockSettings.copyOf(CARBONITE_BLOCKS.getBlock(DefaultBlockGetter.CUBE)), DefaultBlockGetter.CUBE, DefaultBlockGetter.STAIRS, DefaultBlockGetter.SLAB));
+	public static final MSBlockPack BLUNITE = register(new MSBlockPack.Builder("blunite", FabricBlockSettings.copyOf(Blocks.ANDESITE).materialColor(MaterialColor.LIGHT_BLUE_TERRACOTTA), DefaultBlockGetter.CUBE, DefaultBlockGetter.STAIRS, DefaultBlockGetter.SLAB, DefaultBlockGetter.WALL));
+	public static final MSBlockPack CARBONITE = register(new MSBlockPack.Builder("carbonite", FabricBlockSettings.copyOf(Blocks.ANDESITE).materialColor(MaterialColor.BLACK), DefaultBlockGetter.CUBE, DefaultBlockGetter.STAIRS, DefaultBlockGetter.SLAB, DefaultBlockGetter.WALL));
+	public static final MSBlockPack POLISHED_BLUNITE = register(new MSBlockPack.Builder("polished_blunite", FabricBlockSettings.copyOf(BLUNITE.getBlock(DefaultBlockGetter.CUBE)), DefaultBlockGetter.CUBE, DefaultBlockGetter.STAIRS, DefaultBlockGetter.SLAB));
+	public static final MSBlockPack POLISHED_CARBONITE = register(new MSBlockPack.Builder("polished_carbonite", FabricBlockSettings.copyOf(CARBONITE.getBlock(DefaultBlockGetter.CUBE)), DefaultBlockGetter.CUBE, DefaultBlockGetter.STAIRS, DefaultBlockGetter.SLAB));
 
 	public static final PottedPlantPack AUTUMN_OAK_SAPLING = register(new PottedPlantPack.Builder(new BlockCreator.Builder("autumn_oak_sapling", new SaplingBlock(new AutumnOakSaplingGenerator(), BlockSettings.SAPLING)).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT)));
 	public static final LeavesPack AUTUMN_OAK_LEAVES = register(new LeavesPack.Builder("autumn_oak"));

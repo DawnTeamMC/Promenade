@@ -25,14 +25,15 @@ public class WildExplorer implements ModInitializer {
 		WEItems.init();
 		WEEntities.init();
 		WEFeatures.init();
-		WEConfiguredFeatures.init();
 		WEStructureFeatures.init();
 		WEStructurePieces.init();
+		WEConfiguredFeatures.init();
 		WEConfiguredStructuresFeatures.init();
 		WEConfiguredSurfaceBuilders.init();
 		WEBiomes.init();
 		MOD_DATA.registerCreators();
 		WEBiomes.addToGen();
+		WEConfiguredFeatures.addToGen();
 		WEConfiguredStructuresFeatures.addToGen();
 	}
 }

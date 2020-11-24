@@ -172,6 +172,7 @@
 	"text.autoconfig.wild_explorer.title": "Wild Explorer Configuration",
 	"text.autoconfig.wild_explorer.category.biomes": "Biomes",
 	"text.autoconfig.wild_explorer.category.features": "Features",
+	"text.autoconfig.wild_explorer.category.structures": "Structures",
 	"text.autoconfig.wild_explorer.category.creatures": "Creatures",
 	"text.autoconfig.wild_explorer.option.biomes.pumpkin_pastures": "Generate Pumpkin Pastures",
 	"text.autoconfig.wild_explorer.option.biomes.cherry_oak_forests": "Generate Cherry Oak Forests",
@@ -182,5 +183,6 @@
 	"text.autoconfig.wild_explorer.option.features.igneous_rock_patches.@Tooltip": "Blunite and Carbonite patches",
 	"text.autoconfig.wild_explorer.option.features.palm_trees": "Generate palm trees",
 	"text.autoconfig.wild_explorer.option.features.blueberry_bushes": "Generate blueberry bushes",
+	"text.autoconfig.wild_explorer.option.structures.witch_huts": "Generate witch huts",
 	"text.autoconfig.wild_explorer.option.creatures.ducks": "Ducks spawn naturally"
 }
