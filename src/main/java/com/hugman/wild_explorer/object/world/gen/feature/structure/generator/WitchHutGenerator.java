@@ -4,15 +4,16 @@ import com.google.common.collect.ImmutableList;
 import com.hugman.dawn.api.util.DefaultBlockGetter;
 import com.hugman.wild_explorer.WildExplorer;
 import com.hugman.wild_explorer.init.WEBlocks;
+import com.hugman.wild_explorer.init.data.WELootTables;
 import com.hugman.wild_explorer.init.data.WETags;
 import com.hugman.wild_explorer.init.world.WEStructurePieces;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LanternBlock;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.WitchEntity;
-import net.minecraft.loot.LootTables;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.structure.*;
 import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
@@ -89,11 +90,12 @@ public class WitchHutGenerator {
 		@Override
 		protected void handleMetadata(String metadata, BlockPos pos, ServerWorldAccess serverWorldAccess, Random random, BlockBox boundingBox) {
 			if(metadata.startsWith("Barrel")) {
-				BlockPos blockPos = pos.down();
-				if (boundingBox.contains(blockPos)) {
-					LootableContainerBlockEntity.setLootTable(serverWorldAccess, random, pos, LootTables.END_CITY_TREASURE_CHEST);
+				BlockEntity blockEntity = serverWorldAccess.getBlockEntity(pos.down());
+				if(blockEntity instanceof LootableContainerBlockEntity) {
+					((LootableContainerBlockEntity) blockEntity).setLootTable(WELootTables.WITCH_HUT_CHEST, random.nextLong());
 				}
-			} else if (metadata.startsWith("Witch")) {
+			}
+			else if(metadata.startsWith("Witch")) {
 				WitchEntity witchEntity = EntityType.WITCH.create(serverWorldAccess.toServerWorld());
 				witchEntity.setPersistent();
 				witchEntity.refreshPositionAndAngles(pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, 0.0F, 0.0F);
