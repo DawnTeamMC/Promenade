@@ -1,6 +1,7 @@
 {
 	"replace": false,
 	"values": [
+		"wild_explorer:autumn_oak_sapling",
 		"wild_explorer:autumn_birch_sapling",
 		"wild_explorer:pink_cherry_oak_sapling",
 		"wild_explorer:white_cherry_oak_sapling",
