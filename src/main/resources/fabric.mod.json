@@ -1,17 +1,18 @@
 {
-	"name": "Wild Explorer",
-	"id": "wild_explorer",
+	"schemaVersion": 1,
+	"name": "${mod_name}",
+	"id": "${mod_id}",
 	"version": "${version}",
-	"icon": "assets/wild_explorer/textures/logo.png",
+	"icon": "assets/${mod_id}/textures/logo.png",
 	"description": "Fancy and simplistic animals, biomes, structures and more!",
 	"authors": [
 		"Hugman",
 		"Dawn Team"
 	],
 	"contact": {
-		"homepage": "https://www.curseforge.com/minecraft/mc-mods/wild-explorer",
-		"sources": "https://github.com/DawnTeamMC/WildExplorer",
-		"issues": "https://github.com/DawnTeamMC/WildExplorer/issues"
+		"homepage": "https://www.curseforge.com/minecraft/mc-mods/${curseforge_slug}",
+		"sources": "https://github.com/DawnTeamMC/${github_name}",
+		"issues": "https://github.com/DawnTeamMC/${github_name}/issues"
 	},
 	"environment": "*",
 	"entrypoints": {
@@ -39,6 +40,5 @@
 			"projectID": 399648
 		}
 	},
-	"license": "MIT",
-	"schemaVersion": 1
+	"license": "MIT"
 }
