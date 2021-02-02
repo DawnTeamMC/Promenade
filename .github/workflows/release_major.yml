@@ -46,7 +46,7 @@ jobs:
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
       - name: Build and release
-        run: ./gradlew generateChangelog build curseforge github modrinth --stacktrace -PlastTag="${{ steps.previous-tag.outputs.tag }}" -PcurrentTag="${{ steps.current-tag.outputs.tag }}"
+        run: ./gradlew downloadTranslations generateChangelog build curseforge github modrinth --stacktrace --parallel -PlastTag="${{ steps.previous-tag.outputs.tag }}" -PcurrentTag="${{ steps.current-tag.outputs.tag }}"
         env:
           CURSEFORGE_TOKEN: ${{ secrets.CURSEFORGE_TOKEN }}
           MODRINTH_TOKEN: ${{ secrets.MODRINTH_TOKEN }}
