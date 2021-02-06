@@ -4,6 +4,7 @@ import me.sargunvohra.mcmods.autoconfig1u.ConfigData;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.Config;
 import me.sargunvohra.mcmods.autoconfig1u.annotation.ConfigEntry;
 import me.sargunvohra.mcmods.autoconfig1u.serializer.PartitioningSerializer;
+import me.sargunvohra.mcmods.autoconfig1u.shadowed.blue.endless.jankson.Comment;
 
 @Config(name = "wild_explorer")
 @Config.Gui.Background("minecraft:textures/block/lime_concrete.png")
@@ -26,13 +27,22 @@ public class WEConfig extends PartitioningSerializer.GlobalData {
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean pumpkin_pastures = true;
 		@ConfigEntry.Gui.RequiresRestart
+		@ConfigEntry.BoundedDiscrete(min = 1, max = 25)
+		public int pumpkin_pastures_weight = 10;
+		@ConfigEntry.Gui.RequiresRestart
 		public boolean cherry_oak_forests = true;
+		@ConfigEntry.Gui.RequiresRestart
+		@ConfigEntry.BoundedDiscrete(min = 1, max = 25)
+		public int cherry_oak_forests_weight = 10;
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean tall_nether_forests = true;
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean nether_galleries = true;
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean dark_amaranth_forests = true;
+		@ConfigEntry.Gui.RequiresRestart
+		@ConfigEntry.BoundedDiscrete(min = 1, max = 25)
+		public int dark_amaranth_forests_weight = 10;
 	}
 
 	@Config(name = "features")

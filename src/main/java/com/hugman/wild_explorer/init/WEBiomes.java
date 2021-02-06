@@ -28,10 +28,10 @@ public class WEBiomes extends WEPack {
 	}
 
 	public static void addToGen() {
-		if(CONFIG.pumpkin_pastures) OverworldBiomes.addContinentalBiome(PUMPKIN_PASTURES, OverworldClimate.COOL, 1D);
+		if(CONFIG.pumpkin_pastures) OverworldBiomes.addContinentalBiome(PUMPKIN_PASTURES, OverworldClimate.COOL, CONFIG.pumpkin_pastures_weight / 10.0D);
 		if(CONFIG.cherry_oak_forests) {
-			OverworldBiomes.addContinentalBiome(PINK_CHERRY_OAK_FOREST, OverworldClimate.COOL, 1D);
-			OverworldBiomes.addContinentalBiome(WHITE_CHERRY_OAK_FOREST, OverworldClimate.COOL, 1D);
+			OverworldBiomes.addContinentalBiome(PINK_CHERRY_OAK_FOREST, OverworldClimate.COOL, CONFIG.cherry_oak_forests_weight / 10.0D);
+			OverworldBiomes.addContinentalBiome(WHITE_CHERRY_OAK_FOREST, OverworldClimate.COOL, CONFIG.cherry_oak_forests_weight / 10.0D);
 		}
 		if(CONFIG.tall_nether_forests) {
 			NetherBiomes.addNetherBiome(TALL_CRIMSON_FOREST, new Biome.MixedNoisePoint(0.4F, 0.0F, 0.1F, 0.0F, 0.0F));
@@ -43,8 +43,8 @@ public class WEBiomes extends WEPack {
 			NetherBiomes.addNetherBiome(PROTANOPIAN_GALLERY, new Biome.MixedNoisePoint(0.025F, 0.1F, 0.0F, 0.0F, 0.05F));
 		}
 		if(CONFIG.dark_amaranth_forests) {
-			TheEndBiomes.addHighlandsBiome(TALL_DARK_AMARANTH_FOREST, 1.0D);
-			TheEndBiomes.addMidlandsBiome(TALL_DARK_AMARANTH_FOREST, DARK_AMARANTH_FOREST, 1.0D);
+			TheEndBiomes.addHighlandsBiome(TALL_DARK_AMARANTH_FOREST, CONFIG.dark_amaranth_forests_weight / 10.0D);
+			TheEndBiomes.addMidlandsBiome(TALL_DARK_AMARANTH_FOREST, DARK_AMARANTH_FOREST, CONFIG.dark_amaranth_forests_weight / 10.0D);
 		}
 	}
 }

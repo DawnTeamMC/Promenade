@@ -1,5 +1,6 @@
 {
 	"modmenu.descriptionTranslation.wild_explorer": "Fancy and simplistic animals, biomes, structures and more!",
+
 	"block.wild_explorer.oak_leaf_pile": "Oak Leaf Pile",
 	"block.wild_explorer.spruce_leaf_pile": "Spruce Leaf Pile",
 	"block.wild_explorer.birch_leaf_pile": "Birch Leaf Pile",
@@ -176,10 +177,13 @@
 	"text.autoconfig.wild_explorer.category.structures": "Structures",
 	"text.autoconfig.wild_explorer.category.creatures": "Creatures",
 	"text.autoconfig.wild_explorer.option.biomes.pumpkin_pastures": "Generate Pumpkin Pastures",
+	"text.autoconfig.wild_explorer.option.biomes.pumpkin_pastures_weight": "Pumpkin Pastures weight",
 	"text.autoconfig.wild_explorer.option.biomes.cherry_oak_forests": "Generate Cherry Oak Forests",
+	"text.autoconfig.wild_explorer.option.biomes.cherry_oak_forests_weight": "Cherry Oak Forests weight",
 	"text.autoconfig.wild_explorer.option.biomes.tall_nether_forests": "Generate taller Nether forest variants",
 	"text.autoconfig.wild_explorer.option.biomes.nether_galleries": "Generate Nether galleries",
 	"text.autoconfig.wild_explorer.option.biomes.dark_amaranth_forests": "Generate Dark Amaranth Forests",
+	"text.autoconfig.wild_explorer.option.biomes.dark_amaranth_forests_weight": "Dark Amaranth Forests weight",
 	"text.autoconfig.wild_explorer.option.features.igneous_rock_patches": "Generate patches of new igneous rocks",
 	"text.autoconfig.wild_explorer.option.features.igneous_rock_patches.@Tooltip": "Blunite and Carbonite patches",
 	"text.autoconfig.wild_explorer.option.features.palm_trees": "Generate palm trees",

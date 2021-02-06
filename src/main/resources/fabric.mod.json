@@ -34,9 +34,13 @@
 	"custom": {
 		"modmenu": {
 			"links": {
+				"modmenu.twitter": "https://twitter.com/DawnTeamMC",
 				"modmenu.discord": "https://discord.gg/8ksTVJu",
-				"modmenu.dawn.curseforge": "https://www.curseforge.com/minecraft/mc-mods/${curseforge_slug}",
-				"modmenu.dawn.modrinth": "https://modrinth.com/mod/${modrinth_slug}"
+				"modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/${curseforge_slug}",
+				"modmenu.modrinth": "https://modrinth.com/mod/${modrinth_slug}",
+				"modmenu.github_releases": "https://github.com/DawnTeamMC/${github_name}/releases/",
+				"modmenu.crowdin": "https://crowdin.com/project/dawnteam",
+				"modmenu.wiki": "https://github.com/DawnTeamMC/${github_name}/wiki/"
 			}
 		},
 		"modupdater": {
