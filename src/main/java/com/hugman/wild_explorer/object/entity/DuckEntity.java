@@ -2,8 +2,21 @@ package com.hugman.wild_explorer.object.entity;
 
 import com.hugman.wild_explorer.init.WEEntities;
 import net.minecraft.block.BlockState;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityData;
+import net.minecraft.entity.EntityDimensions;
+import net.minecraft.entity.EntityPose;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.ai.goal.AnimalMateGoal;
+import net.minecraft.entity.ai.goal.EscapeDangerGoal;
+import net.minecraft.entity.ai.goal.FollowParentGoal;
+import net.minecraft.entity.ai.goal.LookAroundGoal;
+import net.minecraft.entity.ai.goal.LookAtEntityGoal;
+import net.minecraft.entity.ai.goal.SwimGoal;
+import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.WanderAroundFarGoal;
 import net.minecraft.entity.ai.pathing.PathNodeType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer.Builder;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -17,7 +30,7 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -32,7 +45,13 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 
 import javax.annotation.Nullable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DuckEntity extends AnimalEntity {
@@ -68,8 +87,8 @@ public class DuckEntity extends AnimalEntity {
 	}
 
 	@Override
-	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable CompoundTag entityTag) {
-		Optional<RegistryKey<Biome>> biome = world.method_31081(this.getBlockPos());
+	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+		Optional<RegistryKey<Biome>> biome = world.getBiomeKey(this.getBlockPos());
 		DuckEntity.Type type = DuckEntity.Type.fromBiome(biome);
 		if(entityData instanceof DuckEntity.DuckData) {
 			type = ((DuckEntity.DuckData) entityData).type;
@@ -78,7 +97,7 @@ public class DuckEntity extends AnimalEntity {
 			entityData = new DuckEntity.DuckData(type);
 		}
 		this.setVariant(type);
-		return super.initialize(world, difficulty, spawnReason, entityData, entityTag);
+		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
 	}
 
 	@Override
@@ -86,7 +105,7 @@ public class DuckEntity extends AnimalEntity {
 		this.goalSelector.add(0, new SwimGoal(this));
 		this.goalSelector.add(1, new EscapeDangerGoal(this, 1.4D));
 		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
-		this.goalSelector.add(3, new TemptGoal(this, 1.0D, false, TEMPTATION_ITEMS));
+		this.goalSelector.add(3, new TemptGoal(this, 1.0D, TEMPTATION_ITEMS, false));
 		this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
 		this.goalSelector.add(5, new WanderAroundFarGoal(this, 1.0D));
 		this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
@@ -94,14 +113,14 @@ public class DuckEntity extends AnimalEntity {
 	}
 
 	@Override
-	public void writeCustomDataToTag(CompoundTag compound) {
-		super.writeCustomDataToTag(compound);
+	public void writeCustomDataToNbt(NbtCompound compound) {
+		super.writeCustomDataToNbt(compound);
 		compound.putString("Type", this.getVariant().getName());
 	}
 
 	@Override
-	public void readCustomDataFromTag(CompoundTag compound) {
-		super.readCustomDataFromTag(compound);
+	public void readCustomDataFromNbt(NbtCompound compound) {
+		super.readCustomDataFromNbt(compound);
 		this.setVariant(DuckEntity.Type.byName(compound.getString("Type")));
 	}
 
@@ -129,28 +148,28 @@ public class DuckEntity extends AnimalEntity {
 	}
 
 	@Override
-	public boolean handleFallDamage(float distance, float multiplier) {
+	public boolean handleFallDamage(float distance, float multiplier, DamageSource damageSource) {
 		return false;
 	}
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return WEEntities.DUCK_AMBIENT_SOUND;
+		return WEEntities.DUCK_AMBIENT_SOUND.getSound();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return WEEntities.DUCK_HURT_SOUND;
+		return WEEntities.DUCK_HURT_SOUND.getSound();
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return WEEntities.DUCK_DEATH_SOUND;
+		return WEEntities.DUCK_DEATH_SOUND.getSound();
 	}
 
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState state) {
-		this.playSound(WEEntities.DUCK_STEP_SOUND, 0.15F, 1.0F);
+		this.playSound(WEEntities.DUCK_STEP_SOUND.getSound(), 0.15F, 1.0F);
 	}
 
 	@Nullable

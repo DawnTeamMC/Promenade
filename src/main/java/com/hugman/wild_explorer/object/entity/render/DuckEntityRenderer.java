@@ -1,19 +1,20 @@
 package com.hugman.wild_explorer.object.entity.render;
 
 import com.hugman.wild_explorer.WildExplorer;
+import com.hugman.wild_explorer.init.client.WEEntityModels;
 import com.hugman.wild_explorer.object.entity.DuckEntity;
 import com.hugman.wild_explorer.object.entity.model.DuckEntityModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
+import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
 public class DuckEntityRenderer extends MobEntityRenderer<DuckEntity, DuckEntityModel<DuckEntity>> {
-	public DuckEntityRenderer(EntityRenderDispatcher manager) {
-		super(manager, new DuckEntityModel<>(), 0.3F);
+	public DuckEntityRenderer(EntityRendererFactory.Context context) {
+		super(context, new DuckEntityModel<>(context.getPart(WEEntityModels.DUCK)), 0.3F);
 	}
 
 	@Override

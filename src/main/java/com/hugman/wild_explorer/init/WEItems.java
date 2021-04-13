@@ -6,13 +6,13 @@ import net.minecraft.item.AliasedBlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 
-public class WEItems extends WEPack {
-	public static final Item BLUEBERRIES = register(new ItemCreator.Builder("blueberries", new AliasedBlockItem(WEBlocks.BLUEBERRY_BUSH, new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.BLUEBERRIES))).compostingChance(0.30F));
-	public static final Item BANANA = register(new ItemCreator.Builder("banana", new Item(new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.BANANA))).compostingChance(0.65F));
-	public static final Item APRICOT = register(new ItemCreator.Builder("apricot", new Item(new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.APRICOT))).compostingChance(0.65F));
-	public static final Item MANGO = register(new ItemCreator.Builder("mango", new Item(new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.MANGO))).compostingChance(0.65F));
-	public static final Item DUCK = register(new ItemCreator.Builder("duck", new Item(new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.DUCK))));
-	public static final Item COOKED_DUCK = register(new ItemCreator.Builder("cooked_duck", new Item(new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.COOKED_DUCK))));
+public class WEItems extends WEBundle {
+	public static final Item BLUEBERRIES = add(new ItemCreator.Builder("blueberries", settings -> new AliasedBlockItem(WEBlocks.BLUEBERRY_BUSH, settings), new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.BLUEBERRIES)).compostingChance(0.30F).build());
+	public static final Item BANANA = add(new ItemCreator.Builder("banana", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.BANANA)).compostingChance(0.65F).build());
+	public static final Item APRICOT = add(new ItemCreator.Builder("apricot", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.APRICOT)).compostingChance(0.65F).build());
+	public static final Item MANGO = add(new ItemCreator.Builder("mango", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.MANGO)).compostingChance(0.65F).build());
+	public static final Item DUCK = add(new ItemCreator.Builder("duck", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.DUCK)).build());
+	public static final Item COOKED_DUCK = add(new ItemCreator.Builder("cooked_duck", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(WEFoods.COOKED_DUCK)).build());
 
 	public static void init() {
 	}

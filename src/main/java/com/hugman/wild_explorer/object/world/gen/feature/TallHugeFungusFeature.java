@@ -10,10 +10,10 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.HugeFungusFeatureConfig;
 import net.minecraft.world.gen.feature.WeepingVinesFeature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
@@ -53,10 +53,14 @@ public class TallHugeFungusFeature extends Feature<HugeFungusFeatureConfig> {
 	}
 
 	@Override
-	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, HugeFungusFeatureConfig hugeFungusFeatureConfig) {
-		Block block = hugeFungusFeatureConfig.validBaseBlock.getBlock();
+	public boolean generate(FeatureContext<HugeFungusFeatureConfig> context) {
+		Random random = context.getRandom();
+		HugeFungusFeatureConfig config = context.getConfig();
+		StructureWorldAccess world = context.getWorld();
+		BlockPos pos = context.getOrigin();
+		Block block = config.validBaseBlock.getBlock();
 		BlockPos pos2 = null;
-		if(hugeFungusFeatureConfig.planted) {
+		if(config.planted) {
 			Block block2 = world.getBlockState(pos.down()).getBlock();
 			if(block2 == block) {
 				pos2 = pos;
@@ -70,16 +74,16 @@ public class TallHugeFungusFeature extends Feature<HugeFungusFeatureConfig> {
 		}
 		else {
 			int i = MathHelper.nextInt(random, 8, 16) * 2;
-			if(!hugeFungusFeatureConfig.planted) {
-				int j = world.getDimensionHeight();
+			if(!config.planted) {
+				int j = world.getHeight();
 				if(pos2.getY() + i + 1 >= j) {
 					return false;
 				}
 			}
-			boolean bl = !hugeFungusFeatureConfig.planted && random.nextFloat() < 0.16F;
+			boolean bl = !config.planted && random.nextFloat() < 0.16F;
 			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
-			this.generateStem(world, random, hugeFungusFeatureConfig, pos2, i, bl);
-			this.generateHat(world, random, hugeFungusFeatureConfig, pos2, i, bl);
+			this.generateStem(world, random, config, pos2, i, bl);
+			this.generateHat(world, random, config, pos2, i, bl);
 			return true;
 		}
 	}

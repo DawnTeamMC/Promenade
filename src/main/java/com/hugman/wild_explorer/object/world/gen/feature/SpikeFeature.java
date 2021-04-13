@@ -15,8 +15,8 @@ import com.terraformersmc.terraform.shapes.impl.validator.AirValidator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.TestableWorld;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
@@ -26,7 +26,11 @@ public class SpikeFeature extends Feature<SpikeFeatureConfig> {
 	}
 
 	@Override
-	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, SpikeFeatureConfig config) {
+	public boolean generate(FeatureContext<SpikeFeatureConfig> context) {
+		Random random = context.getRandom();
+		SpikeFeatureConfig config = context.getConfig();
+		StructureWorldAccess world = context.getWorld();
+		BlockPos pos = context.getOrigin();
 		int amount = random.nextInt(3) + 2;
 		Shape shape = Shape.of((point) -> false, Position.of(0, 0, 0), Position.of(0, 0, 0));
 		if(!config.baseBlocks.contains(world.getBlockState(pos.down()).getBlock().getDefaultState())) return false;

@@ -11,10 +11,10 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.WorldAccess;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.TwistingVinesFeature;
 import net.minecraft.world.gen.feature.WeepingVinesFeature;
+import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
@@ -73,7 +73,11 @@ public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
 	}
 
 	@Override
-	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, HugeMushroomFeatureConfig config) {
+	public boolean generate(FeatureContext<HugeMushroomFeatureConfig> context) {
+		Random random = context.getRandom();
+		HugeMushroomFeatureConfig config = context.getConfig();
+		StructureWorldAccess world = context.getWorld();
+		BlockPos pos = context.getOrigin();
 		int stemHeight = getStemHeight(random, config);
 		int hatSize = getHatSize(random, config);
 		BlockPos origin = getOrigin(world, pos, stemHeight, config);
@@ -81,7 +85,7 @@ public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
 			return false;
 		}
 		else {
-			if(origin.getY() + stemHeight + 1 >= world.getDimensionHeight()) {
+			if(origin.getY() + stemHeight + 1 >= world.getHeight()) {
 				return false;
 			}
 			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);

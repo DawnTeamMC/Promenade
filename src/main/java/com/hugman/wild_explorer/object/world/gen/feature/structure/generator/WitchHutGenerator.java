@@ -1,7 +1,7 @@
 package com.hugman.wild_explorer.object.world.gen.feature.structure.generator;
 
 import com.google.common.collect.ImmutableList;
-import com.hugman.dawn.api.util.DefaultBlockGetter;
+import com.hugman.dawn.api.util.DefaultBlockTemplate;
 import com.hugman.wild_explorer.WildExplorer;
 import com.hugman.wild_explorer.init.WEBlocks;
 import com.hugman.wild_explorer.init.data.WELootTables;
@@ -11,11 +11,15 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.LanternBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
+import net.minecraft.class_6130;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.WitchEntity;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.structure.*;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.structure.SimpleStructurePiece;
+import net.minecraft.structure.StructureManager;
+import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
 import net.minecraft.structure.processor.RuleStructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorRule;
@@ -30,61 +34,45 @@ import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ServerWorldAccess;
 
-import java.util.List;
 import java.util.Random;
 
 public class WitchHutGenerator {
-	public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, BlockMirror mirror, List<StructurePiece> pieces) {
-		pieces.add(new MainPiece(manager, pos, WildExplorer.MOD_DATA.id("witch_hut"), rotation, mirror));
+	public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, BlockMirror mirror, class_6130 arg, Random random) {
+		arg.method_35462(new MainPiece(manager, WildExplorer.MOD_DATA.id("witch_hut"), pos, rotation, mirror));
 	}
 
 	public static class MainPiece extends SimpleStructurePiece {
-		private final BlockRotation rotation;
-		private final Identifier template;
-		private final BlockMirror mirror;
-
-		public MainPiece(StructureManager manager, CompoundTag tag) {
-			super(WEStructurePieces.WITCH_HUT_PIECE, tag);
-			this.template = new Identifier(tag.getString("Template"));
-			this.rotation = BlockRotation.valueOf(tag.getString("Rot"));
-			this.mirror = BlockMirror.valueOf(tag.getString("Mirror"));
-			this.initializeStructureData(manager);
+		public MainPiece(ServerWorld world, NbtCompound nbt) {
+			super(WEStructurePieces.WITCH_HUT_PIECE, nbt, world, (identifier) -> createPlacementData(BlockRotation.valueOf(nbt.getString("Rot")), BlockMirror.valueOf(nbt.getString("Mirror"))));
 		}
 
-		public MainPiece(StructureManager manager, BlockPos pos, Identifier template, BlockRotation rotation, BlockMirror mirror) {
-			super(WEStructurePieces.WITCH_HUT_PIECE, 0);
-			this.pos = pos;
-			this.rotation = rotation;
-			this.template = template;
-			this.mirror = mirror;
-
-			this.initializeStructureData(manager);
+		public MainPiece(StructureManager manager, Identifier identifier, BlockPos pos, BlockRotation rotation, BlockMirror mirror) {
+			super(WEStructurePieces.WITCH_HUT_PIECE, 0, manager, identifier, identifier.toString(), createPlacementData(rotation, mirror), pos);
 		}
 
-		private void initializeStructureData(StructureManager manager) {
+		private static StructurePlacementData createPlacementData(BlockRotation blockRotation, BlockMirror blockMirror) {
 			Random random = new Random();
-			Structure structure = manager.getStructureOrBlank(this.template);
 			StructurePlacementData placementData = (new StructurePlacementData())
-					.setRotation(this.rotation)
-					.setMirror(this.mirror)
+					.setRotation(blockRotation)
+					.setMirror(blockMirror)
 					.addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS)
 					.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.COBBLESTONE, 0.4F), AlwaysTrueRuleTest.INSTANCE, Blocks.MOSSY_COBBLESTONE.getDefaultState()))))
 					.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new TagMatchRuleTest(WETags.Blocks.POTTED_MUSHROOMS), AlwaysTrueRuleTest.INSTANCE, WETags.Blocks.POTTED_MUSHROOMS.getRandom(random).getDefaultState()))));
 			if(random.nextBoolean()) {
-				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(WEBlocks.POLISHED_CARBONITE.getBlock(DefaultBlockGetter.CUBE)), AlwaysTrueRuleTest.INSTANCE, Blocks.POLISHED_ANDESITE.getDefaultState()))));
-				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(WEBlocks.CARBONITE.getBlock(DefaultBlockGetter.WALL)), AlwaysTrueRuleTest.INSTANCE, Blocks.ANDESITE_WALL.getDefaultState()))));
+				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(WEBlocks.POLISHED_CARBONITE.getBlock(DefaultBlockTemplate.CUBE)), AlwaysTrueRuleTest.INSTANCE, Blocks.POLISHED_ANDESITE.getDefaultState()))));
+				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(WEBlocks.CARBONITE.getBlock(DefaultBlockTemplate.WALL)), AlwaysTrueRuleTest.INSTANCE, Blocks.ANDESITE_WALL.getDefaultState()))));
 			}
 			if(random.nextFloat() < 0.2f) {
 				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(Blocks.LANTERN), AlwaysTrueRuleTest.INSTANCE, Blocks.SOUL_LANTERN.getDefaultState().with(LanternBlock.HANGING, true)))));
 			}
-			this.setStructureData(structure, this.pos, placementData);
+			return placementData;
 		}
 
-		protected void toNbt(CompoundTag tag) {
-			super.toNbt(tag);
-			tag.putString("Template", this.template.toString());
-			tag.putString("Rot", this.rotation.name());
-			tag.putString("Mirror", this.mirror.name());
+		@Override
+		protected void writeNbt(ServerWorld world, NbtCompound nbt) {
+			super.writeNbt(world, nbt);
+			nbt.putString("Rot", this.placementData.getRotation().name());
+			nbt.putString("Mirror", this.placementData.getMirror().name());
 		}
 
 		@Override
