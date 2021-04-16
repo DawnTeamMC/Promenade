@@ -9,6 +9,7 @@ repositories {
     mavenLocal()
     maven { url 'https://jitpack.io' }
     maven { url 'http://maven.terraformersmc.com/' }
+    maven { url "https://maven.shedaniel.me/" }
 }
 
 dependencies {
