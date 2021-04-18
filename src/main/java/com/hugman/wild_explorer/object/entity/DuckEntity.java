@@ -72,7 +72,7 @@ public class DuckEntity extends AnimalEntity {
 		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D);
 	}
 
-	public static List<RegistryKey<Biome>> getSpawnBiomes() {
+		public static List<RegistryKey<Biome>> getSpawnBiomes() {
 		ArrayList<RegistryKey<Biome>> biomeList = new ArrayList<>();
 		for(DuckEntity.Type type : Type.typeList) {
 			biomeList.addAll(type.getSpawnBiomes());
@@ -176,7 +176,9 @@ public class DuckEntity extends AnimalEntity {
 	@Override
 	public DuckEntity createChild(ServerWorld serverWorld, PassiveEntity mate) {
 		DuckEntity child = WEEntities.DUCK.create(this.world);
-		child.setVariant(this.random.nextFloat() < 0.5f ? ((DuckEntity) (mate)).getVariant() : this.getVariant());
+		if(child != null) {
+			child.setVariant(this.random.nextFloat() < 0.5f ? ((DuckEntity) (mate)).getVariant() : this.getVariant());
+		}
 		return child;
 	}
 

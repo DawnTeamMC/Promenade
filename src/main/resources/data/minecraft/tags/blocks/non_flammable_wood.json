@@ -9,9 +9,6 @@
 		"wild_explorer:dark_amaranth_fence_gate",
 		"wild_explorer:dark_amaranth_stairs",
 		"wild_explorer:dark_amaranth_button",
-		"wild_explorer:dark_amaranth_door",
-		"wild_explorer:dark_amaranth_hyphae_stairs",
-		"wild_explorer:dark_amaranth_hyphae_slab",
-		"wild_explorer:dark_amaranth_hyphae_button"
+		"wild_explorer:dark_amaranth_door"
 	]
 }

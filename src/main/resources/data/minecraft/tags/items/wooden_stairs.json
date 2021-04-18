@@ -2,10 +2,7 @@
 	"replace": false,
 	"values": [
 		"wild_explorer:cherry_oak_stairs",
-		"wild_explorer:cherry_oak_wood_stairs",
 		"wild_explorer:palm_stairs",
-		"wild_explorer:palm_wood_stairs",
-		"wild_explorer:dark_amaranth_stairs",
-		"wild_explorer:dark_amaranth_hyphae_stairs"
+		"wild_explorer:dark_amaranth_stairs"
 	]
 }

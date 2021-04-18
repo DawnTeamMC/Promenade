@@ -1,5 +1,5 @@
 {
-	"parent": "dawn:block/pile",
+	"parent": "wild_explorer:block/pile",
 	"textures": {
 		"pile": "minecraft:block/jungle_leaves"
 	}

@@ -1,7 +1,7 @@
 package com.hugman.wild_explorer.object.world.gen.feature.structure.generator;
 
 import com.google.common.collect.ImmutableList;
-import com.hugman.dawn.api.util.DefaultBlockTemplate;
+import com.hugman.dawn.api.util.DefaultBlockTemplates;
 import com.hugman.wild_explorer.WildExplorer;
 import com.hugman.wild_explorer.init.WEBlocks;
 import com.hugman.wild_explorer.init.data.WELootTables;
@@ -59,8 +59,8 @@ public class WitchHutGenerator {
 					.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.COBBLESTONE, 0.4F), AlwaysTrueRuleTest.INSTANCE, Blocks.MOSSY_COBBLESTONE.getDefaultState()))))
 					.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new TagMatchRuleTest(WETags.Blocks.POTTED_MUSHROOMS), AlwaysTrueRuleTest.INSTANCE, WETags.Blocks.POTTED_MUSHROOMS.getRandom(random).getDefaultState()))));
 			if(random.nextBoolean()) {
-				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(WEBlocks.POLISHED_CARBONITE.getBlock(DefaultBlockTemplate.CUBE)), AlwaysTrueRuleTest.INSTANCE, Blocks.POLISHED_ANDESITE.getDefaultState()))));
-				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(WEBlocks.CARBONITE.getBlock(DefaultBlockTemplate.WALL)), AlwaysTrueRuleTest.INSTANCE, Blocks.ANDESITE_WALL.getDefaultState()))));
+				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(WEBlocks.POLISHED_CARBONITE.getBlock(DefaultBlockTemplates.CUBE)), AlwaysTrueRuleTest.INSTANCE, Blocks.POLISHED_ANDESITE.getDefaultState()))));
+				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(WEBlocks.CARBONITE.getBlock(DefaultBlockTemplates.WALL)), AlwaysTrueRuleTest.INSTANCE, Blocks.ANDESITE_WALL.getDefaultState()))));
 			}
 			if(random.nextFloat() < 0.2f) {
 				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(Blocks.LANTERN), AlwaysTrueRuleTest.INSTANCE, Blocks.SOUL_LANTERN.getDefaultState().with(LanternBlock.HANGING, true)))));

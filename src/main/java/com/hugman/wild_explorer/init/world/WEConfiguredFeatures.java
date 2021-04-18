@@ -3,7 +3,7 @@ package com.hugman.wild_explorer.init.world;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.hugman.dawn.api.creator.ConfiguredFeatureCreator;
-import com.hugman.dawn.api.util.DefaultBlockTemplate;
+import com.hugman.dawn.api.util.DefaultBlockTemplates;
 import com.hugman.wild_explorer.init.WEBlocks;
 import com.hugman.wild_explorer.init.WEBundle;
 import com.hugman.wild_explorer.object.world.gen.feature.config.BoulderFeatureConfig;
@@ -35,8 +35,8 @@ import java.util.OptionalInt;
 import java.util.Set;
 
 public class WEConfiguredFeatures extends WEBundle {
-	public static final ConfiguredFeature<?, ?> ORE_BLUNITE = register("ore_blunite", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, States.BLUNITE, 64)).rangeOf(YOffset.fixed(0), YOffset.fixed(79)).spreadHorizontally().repeat(2));
-	public static final ConfiguredFeature<?, ?> ORE_CARBONITE = register("ore_carbonite", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, States.CARBONITE, 64)).rangeOf(YOffset.fixed(0), YOffset.fixed(79)).spreadHorizontally().repeat(2));
+	public static final ConfiguredFeature<?, ?> ORE_BLUNITE = register("ore_blunite", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, States.BLUNITE, 33)).method_36296(YOffset.fixed(0), YOffset.fixed(79)).spreadHorizontally().repeat(2));
+	public static final ConfiguredFeature<?, ?> ORE_CARBONITE = register("ore_carbonite", Feature.ORE.configure(new OreFeatureConfig(OreFeatureConfig.Rules.BASE_STONE_OVERWORLD, States.CARBONITE, 33)).method_36296(YOffset.fixed(0), YOffset.fixed(79)).spreadHorizontally().repeat(2));
 
 	public static final ConfiguredFeature<TreeFeatureConfig, ?> AUTUMN_OAK = register("autumn_oak", Feature.TREE.configure((new TreeFeatureConfig.Builder(new SimpleBlockStateProvider(States.OAK_LOG), new StraightTrunkPlacer(4, 2, 0), new SimpleBlockStateProvider(States.AUTUMN_OAK_LEAVES), new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3), new TwoLayersFeatureSize(1, 0, 1))).ignoreVines().build()));
 	public static final ConfiguredFeature<TreeFeatureConfig, ?> AUTUMN_OAK_BEES_002 = register("autumn_oak_bees_002", Feature.TREE.configure(AUTUMN_OAK.getConfig().setTreeDecorators(ImmutableList.of(ConfiguredFeatures.Decorators.REGULAR_BEEHIVES_TREES))));
@@ -207,22 +207,22 @@ public class WEConfiguredFeatures extends WEBundle {
 	public static final class States {
 		protected static final BlockState GRASS_BLOCK = Blocks.GRASS_BLOCK.getDefaultState();
 
-		protected static final BlockState BLUNITE = WEBlocks.BLUNITE.getBlock(DefaultBlockTemplate.CUBE).getDefaultState();
-		protected static final BlockState CARBONITE = WEBlocks.CARBONITE.getBlock(DefaultBlockTemplate.CUBE).getDefaultState();
+		protected static final BlockState BLUNITE = WEBlocks.BLUNITE.getBlock(DefaultBlockTemplates.CUBE).getDefaultState();
+		protected static final BlockState CARBONITE = WEBlocks.CARBONITE.getBlock(DefaultBlockTemplates.CUBE).getDefaultState();
 
 		protected static final BlockState OAK_LOG = Blocks.OAK_LOG.getDefaultState();
-		protected static final BlockState AUTUMN_OAK_LEAVES = WEBlocks.AUTUMN_OAK_LEAVES.getLeaves().getDefaultState();
-		protected static final BlockState AUTUMN_OAK_LEAF_PILE = WEBlocks.AUTUMN_OAK_LEAVES.getLeafPile().getDefaultState();
+		protected static final BlockState AUTUMN_OAK_LEAVES = WEBlocks.AUTUMN_OAK_LEAVES.getDefaultState();
+		protected static final BlockState AUTUMN_OAK_LEAF_PILE = WEBlocks.AUTUMN_OAK_LEAF_PILE.getDefaultState();
 
 		protected static final BlockState BIRCH_LOG = Blocks.BIRCH_LOG.getDefaultState();
-		protected static final BlockState AUTUMN_BIRCH_LEAVES = WEBlocks.AUTUMN_BIRCH_LEAVES.getLeaves().getDefaultState();
-		protected static final BlockState AUTUMN_BIRCH_LEAF_PILE = WEBlocks.AUTUMN_BIRCH_LEAVES.getLeafPile().getDefaultState();
+		protected static final BlockState AUTUMN_BIRCH_LEAVES = WEBlocks.AUTUMN_BIRCH_LEAVES.getDefaultState();
+		protected static final BlockState AUTUMN_BIRCH_LEAF_PILE = WEBlocks.AUTUMN_BIRCH_LEAF_PILE.getDefaultState();
 
 		protected static final BlockState CHERRY_OAK_LOG = WEBlocks.CHERRY_OAK_WOOD.getLog().getDefaultState();
-		protected static final BlockState PINK_CHERRY_OAK_LEAVES = WEBlocks.PINK_CHERRY_OAK_LEAVES.getLeaves().getDefaultState();
-		protected static final BlockState PINK_CHERRY_OAK_LEAF_PILE = WEBlocks.PINK_CHERRY_OAK_LEAVES.getLeafPile().getDefaultState();
-		protected static final BlockState WHITE_CHERRY_OAK_LEAVES = WEBlocks.WHITE_CHERRY_OAK_LEAVES.getLeaves().getDefaultState();
-		protected static final BlockState WHITE_CHERRY_OAK_LEAF_PILE = WEBlocks.WHITE_CHERRY_OAK_LEAVES.getLeafPile().getDefaultState();
+		protected static final BlockState PINK_CHERRY_OAK_LEAVES = WEBlocks.PINK_CHERRY_OAK_LEAVES.getDefaultState();
+		protected static final BlockState PINK_CHERRY_OAK_LEAF_PILE = WEBlocks.PINK_CHERRY_OAK_LEAF_PILE.getDefaultState();
+		protected static final BlockState WHITE_CHERRY_OAK_LEAVES = WEBlocks.WHITE_CHERRY_OAK_LEAVES.getDefaultState();
+		protected static final BlockState WHITE_CHERRY_OAK_LEAF_PILE = WEBlocks.WHITE_CHERRY_OAK_LEAF_PILE.getDefaultState();
 
 		protected static final BlockState PALM_LOG = WEBlocks.PALM_WOOD.getLog().getDefaultState();
 		protected static final BlockState PALM_LEAVES = WEBlocks.PALM_WOOD.getLeaves().getDefaultState();
