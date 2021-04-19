@@ -1,6 +1,0 @@
-{
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "wild_explorer:block/light_gray_mushroom"
-	}
-}

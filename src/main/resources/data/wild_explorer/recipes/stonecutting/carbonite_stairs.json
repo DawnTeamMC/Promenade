@@ -1,8 +1,0 @@
-{
-	"type": "minecraft:stonecutting",
-	"ingredient": {
-		"item": "wild_explorer:carbonite"
-	},
-	"result": "wild_explorer:carbonite_stairs",
-	"count": 1
-}

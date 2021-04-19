@@ -1,0 +1,90 @@
+{
+	"multipart": [
+		{
+			"when": {
+				"up": "true"
+			},
+			"apply": {
+				"model": "promenade:block/blunite_wall/post"
+			}
+		},
+		{
+			"when": {
+				"north": "low"
+			},
+			"apply": {
+				"model": "promenade:block/blunite_wall/side",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"east": "low"
+			},
+			"apply": {
+				"model": "promenade:block/blunite_wall/side",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "low"
+			},
+			"apply": {
+				"model": "promenade:block/blunite_wall/side",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"west": "low"
+			},
+			"apply": {
+				"model": "promenade:block/blunite_wall/side",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"north": "tall"
+			},
+			"apply": {
+				"model": "promenade:block/blunite_wall/side_tall",
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"east": "tall"
+			},
+			"apply": {
+				"model": "promenade:block/blunite_wall/side_tall",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "tall"
+			},
+			"apply": {
+				"model": "promenade:block/blunite_wall/side_tall",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"west": "tall"
+			},
+			"apply": {
+				"model": "promenade:block/blunite_wall/side_tall",
+				"y": 270,
+				"uvlock": true
+			}
+		}
+	]
+}

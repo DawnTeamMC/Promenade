@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"powered=false": {
+			"model": "promenade:block/dark_amaranth_pressure_plate/unpressed"
+		},
+		"powered=true": {
+			"model": "promenade:block/dark_amaranth_pressure_plate/pressed"
+		}
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"variants": {
+		"type=bottom": {
+			"model": "promenade:block/dark_amaranth_slab/bottom"
+		},
+		"type=top": {
+			"model": "promenade:block/dark_amaranth_slab/top"
+		},
+		"type=double": {
+			"model": "promenade:block/dark_amaranth_planks"
+		}
+	}
+}

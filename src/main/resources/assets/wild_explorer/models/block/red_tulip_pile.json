@@ -1,6 +1,0 @@
-{
-	"parent": "wild_explorer:block/pile",
-	"textures": {
-		"pile": "wild_explorer:block/red_tulip_pile"
-	}
-}

@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": [
+		{
+			"item": "promenade:carbonite"
+		},
+		{
+			"item": "promenade:polished_carbonite"
+		}
+	],
+	"result": "promenade:polished_carbonite_slab",
+	"count": 2
+}

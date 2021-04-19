@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:crafting/blunite_wall"
+		]
+	},
+	"criteria": {
+		"has_blunite": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "promenade:blunite"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:crafting/blunite_wall"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_blunite",
+			"has_the_recipe"
+		]
+	]
+}

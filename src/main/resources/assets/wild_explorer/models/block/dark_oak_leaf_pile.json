@@ -1,6 +1,0 @@
-{
-	"parent": "wild_explorer:block/pile",
-	"textures": {
-		"pile": "minecraft:block/dark_oak_leaves"
-	}
-}

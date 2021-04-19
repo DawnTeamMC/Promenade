@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:crafting/white_cherry_oak_leaf_pile"
+		]
+	},
+	"criteria": {
+		"has_leaves": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "promenade:white_cherry_oak_leaves"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:crafting/white_cherry_oak_leaf_pile"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_leaves",
+			"has_the_recipe"
+		]
+	]
+}

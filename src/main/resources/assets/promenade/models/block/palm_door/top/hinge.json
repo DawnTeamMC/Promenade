@@ -1,0 +1,7 @@
+{
+	"parent": "block/door_top_rh",
+	"textures": {
+		"bottom": "promenade:block/palm_door/bottom",
+		"top": "promenade:block/palm_door/top"
+	}
+}

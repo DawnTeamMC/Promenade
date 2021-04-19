@@ -1,8 +1,0 @@
-{
-	"parent": "minecraft:block/cube_bottom_top",
-	"textures": {
-		"top": "wild_explorer:block/black_dylium/top",
-		"bottom": "minecraft:block/end_stone",
-		"side": "wild_explorer:block/black_dylium/side/2"
-	}
-}

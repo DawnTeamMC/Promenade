@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.hugman.promenade.mixin",
+	"compatibilityLevel": "JAVA_8",
+	"mixins": [
+		"DefaultBiomeFeaturesMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

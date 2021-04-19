@@ -1,0 +1,6 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "promenade:block/dark_amaranth_wart_block"
+	}
+}

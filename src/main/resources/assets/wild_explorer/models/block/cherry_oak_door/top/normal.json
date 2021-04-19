@@ -1,7 +1,0 @@
-{
-	"parent": "block/door_top",
-	"textures": {
-		"bottom": "wild_explorer:block/cherry_oak_door/bottom",
-		"top": "wild_explorer:block/cherry_oak_door/top"
-	}
-}

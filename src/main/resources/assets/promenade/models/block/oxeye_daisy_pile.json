@@ -1,0 +1,6 @@
+{
+	"parent": "promenade:block/pile",
+	"textures": {
+		"pile": "promenade:block/oxeye_daisy_pile"
+	}
+}

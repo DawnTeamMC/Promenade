@@ -1,6 +1,0 @@
-{
-	"parent": "block/template_orientable_trapdoor_bottom",
-	"textures": {
-		"texture": "wild_explorer:block/cherry_oak_trapdoor"
-	}
-}

@@ -14,17 +14,17 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.hugman.wild_explorer.WildExplorer"
+			"com.hugman.promenade.Promenade"
 		],
 		"client": [
-			"com.hugman.wild_explorer.WildExplorerClient"
+			"com.hugman.promenade.PromenadeClient"
 		],
 		"modmenu": [
-			"com.hugman.wild_explorer.config.WEModMenuIntegration"
+			"com.hugman.promenade.config.PromenadeModMenuIntegration"
 		]
 	},
 	"mixins": [
-		"wild_explorer.mixins.json"
+		"promenade.mixins.json"
 	],
 	"depends": {
 		"minecraft": ">=1.16.2",

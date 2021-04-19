@@ -1,8 +1,8 @@
 {
 	"replace": false,
 	"values": [
-		"wild_explorer:cherry_oak_slab",
-		"wild_explorer:palm_slab",
-		"wild_explorer:dark_amaranth_slab"
+		"promenade:cherry_oak_slab",
+		"promenade:palm_slab",
+		"promenade:dark_amaranth_slab"
 	]
 }

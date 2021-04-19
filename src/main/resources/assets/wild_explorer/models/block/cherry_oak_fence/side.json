@@ -1,6 +1,0 @@
-{
-	"parent": "block/fence_side",
-	"textures": {
-		"texture": "wild_explorer:block/cherry_oak_planks"
-	}
-}

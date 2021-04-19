@@ -1,0 +1,32 @@
+{
+	"entity.duck.ambient": {
+		"subtitle": "subtitles.promenade.entity.duck.ambient",
+		"sounds": [
+			"promenade:entity/duck/ambient/1",
+			"promenade:entity/duck/ambient/2",
+			"promenade:entity/duck/ambient/3",
+			"promenade:entity/duck/ambient/4"
+		]
+	},
+	"entity.duck.hurt": {
+		"subtitle": "subtitles.promenade.entity.duck.hurt",
+		"sounds": [
+			"promenade:entity/duck/hurt/1",
+			"promenade:entity/duck/hurt/2",
+			"promenade:entity/duck/hurt/3"
+		]
+	},
+	"entity.duck.death": {
+		"subtitle": "subtitles.promenade.entity.duck.death",
+		"sounds": [
+			"promenade:entity/duck/death"
+		]
+	},
+	"entity.duck.step": {
+		"subtitle": "subtitles.block.generic.footsteps",
+		"sounds": [
+			"minecraft:mob/chicken/step1",
+			"minecraft:mob/chicken/step2"
+		]
+	}
+}

@@ -1,8 +1,8 @@
 {
 	"replace": false,
 	"values": [
-		"wild_explorer:cherry_oak_stairs",
-		"wild_explorer:palm_stairs",
-		"wild_explorer:dark_amaranth_stairs"
+		"promenade:cherry_oak_stairs",
+		"promenade:palm_stairs",
+		"promenade:dark_amaranth_stairs"
 	]
 }

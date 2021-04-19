@@ -1,8 +1,8 @@
 {
 	"replace": false,
 	"values": [
-		"wild_explorer:cherry_oak_button",
-		"wild_explorer:palm_button",
-		"wild_explorer:dark_amaranth_button"
+		"promenade:cherry_oak_button",
+		"promenade:palm_button",
+		"promenade:dark_amaranth_button"
 	]
 }

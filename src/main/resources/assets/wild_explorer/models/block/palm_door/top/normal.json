@@ -1,7 +1,0 @@
-{
-	"parent": "block/door_top",
-	"textures": {
-		"bottom": "wild_explorer:block/palm_door/bottom",
-		"top": "wild_explorer:block/palm_door/top"
-	}
-}

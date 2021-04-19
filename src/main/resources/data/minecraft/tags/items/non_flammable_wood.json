@@ -1,14 +1,14 @@
 {
 	"replace": false,
 	"values": [
-		"wild_explorer:dark_amaranth_planks",
-		"wild_explorer:dark_amaranth_slab",
-		"wild_explorer:dark_amaranth_pressure_plate",
-		"wild_explorer:dark_amaranth_fence",
-		"wild_explorer:dark_amaranth_trapdoor",
-		"wild_explorer:dark_amaranth_fence_gate",
-		"wild_explorer:dark_amaranth_stairs",
-		"wild_explorer:dark_amaranth_button",
-		"wild_explorer:dark_amaranth_door"
+		"promenade:dark_amaranth_planks",
+		"promenade:dark_amaranth_slab",
+		"promenade:dark_amaranth_pressure_plate",
+		"promenade:dark_amaranth_fence",
+		"promenade:dark_amaranth_trapdoor",
+		"promenade:dark_amaranth_fence_gate",
+		"promenade:dark_amaranth_stairs",
+		"promenade:dark_amaranth_button",
+		"promenade:dark_amaranth_door"
 	]
 }

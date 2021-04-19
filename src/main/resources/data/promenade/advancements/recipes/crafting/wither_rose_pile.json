@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:crafting/wither_rose_pile"
+		]
+	},
+	"criteria": {
+		"has_flower": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "minecraft:wither_rose"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:crafting/wither_rose_pile"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_flower",
+			"has_the_recipe"
+		]
+	]
+}

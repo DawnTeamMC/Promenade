@@ -1,0 +1,6 @@
+{
+	"parent": "promenade:block/pile",
+	"textures": {
+		"pile": "minecraft:block/jungle_leaves"
+	}
+}

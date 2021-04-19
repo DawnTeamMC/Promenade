@@ -1,8 +1,0 @@
-{
-	"parent": "block/outer_stairs",
-	"textures": {
-		"bottom": "wild_explorer:block/polished_carbonite",
-		"top": "wild_explorer:block/polished_carbonite",
-		"side": "wild_explorer:block/polished_carbonite"
-	}
-}

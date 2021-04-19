@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "flower_pile",
+	"pattern": [
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "minecraft:allium"
+		}
+	},
+	"result": {
+		"item": "promenade:allium_pile"
+	}
+}

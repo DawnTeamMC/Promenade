@@ -1,0 +1,8 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": {
+		"item": "promenade:carbonite"
+	},
+	"result": "promenade:carbonite_stairs",
+	"count": 1
+}

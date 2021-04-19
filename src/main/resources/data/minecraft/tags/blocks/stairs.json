@@ -1,9 +1,9 @@
 {
 	"replace": false,
 	"values": [
-		"wild_explorer:blunite_stairs",
-		"wild_explorer:polished_blunite_stairs",
-		"wild_explorer:carbonite_stairs",
-		"wild_explorer:polished_carbonite_stairs"
+		"promenade:blunite_stairs",
+		"promenade:polished_blunite_stairs",
+		"promenade:carbonite_stairs",
+		"promenade:polished_carbonite_stairs"
 	]
 }

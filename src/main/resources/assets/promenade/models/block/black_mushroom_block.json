@@ -1,0 +1,6 @@
+{
+	"parent": "promenade:block/mushroom_block",
+	"textures": {
+		"block": "promenade:block/black_mushroom_block"
+	}
+}

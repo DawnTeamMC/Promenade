@@ -1,10 +1,10 @@
 {
 	"replace": false,
 	"values": [
-		"wild_explorer:autumn_oak_leaves",
-		"wild_explorer:autumn_birch_leaves",
-		"wild_explorer:pink_cherry_oak_leaves",
-		"wild_explorer:white_cherry_oak_leaves",
-		"wild_explorer:palm_leaves"
+		"promenade:autumn_oak_leaves",
+		"promenade:autumn_birch_leaves",
+		"promenade:pink_cherry_oak_leaves",
+		"promenade:white_cherry_oak_leaves",
+		"promenade:palm_leaves"
 	]
 }
