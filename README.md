@@ -1,2 +1,3 @@
-![Check Build](https://github.com/DawnTeamMC/WildExplorer/workflows/Check%20Build/badge.svg)
-[![Wild Explorer](https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/wild_explorer/header.png)](https://www.curseforge.com/minecraft/mc-mods/wild-explorer)
+# Promenade [![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg)](https://github.com/DawnTeamMC/Promenade/releases/latest) [![License](https://img.shields.io/github/license/DawnTeamMC/Promenade.svg)](https://github.com/DawnTeamMC/Promenade/blob/master/LICENSE)
+
+[![Promenade](https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/promenade/header.png)](https://github.com/DawnTeamMC/Promenade/wiki)
