@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": [
+		{
+			"item": "promenade:blunite"
+		},
+		{
+			"item": "promenade:polished_blunite"
+		}
+	],
+	"result": "promenade:polished_blunite_stairs",
+	"count": 1
+}

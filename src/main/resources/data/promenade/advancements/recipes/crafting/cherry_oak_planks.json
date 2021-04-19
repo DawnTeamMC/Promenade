@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:crafting/cherry_oak_planks"
+		]
+	},
+	"criteria": {
+		"has_logs": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"tag": "promenade:cherry_oak_logs"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:crafting/cherry_oak_planks"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_logs",
+			"has_the_recipe"
+		]
+	]
+}

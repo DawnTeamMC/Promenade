@@ -1,8 +1,0 @@
-{
-	"parent": "block/stairs",
-	"textures": {
-		"bottom": "wild_explorer:block/carbonite",
-		"top": "wild_explorer:block/carbonite",
-		"side": "wild_explorer:block/carbonite"
-	}
-}

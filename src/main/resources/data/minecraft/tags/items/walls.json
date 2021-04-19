@@ -1,7 +1,7 @@
 {
 	"replace": false,
 	"values": [
-		"wild_explorer:blunite_wall",
-		"wild_explorer:carbonite_wall"
+		"promenade:blunite_wall",
+		"promenade:carbonite_wall"
 	]
 }

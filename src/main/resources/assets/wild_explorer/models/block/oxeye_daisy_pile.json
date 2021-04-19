@@ -1,6 +1,0 @@
-{
-	"parent": "dawn:block/pile",
-	"textures": {
-		"pile": "wild_explorer:block/oxeye_daisy_pile"
-	}
-}

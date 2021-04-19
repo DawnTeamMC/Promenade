@@ -1,8 +1,8 @@
 {
 	"replace": false,
 	"values": [
-		"#wild_explorer:mushrooms",
-		"wild_explorer:dark_amaranth_fungus",
-		"wild_explorer:dark_amaranth_roots"
+		"#promenade:mushrooms",
+		"promenade:dark_amaranth_fungus",
+		"promenade:dark_amaranth_roots"
 	]
 }

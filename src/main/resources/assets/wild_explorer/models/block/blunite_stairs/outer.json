@@ -1,8 +1,0 @@
-{
-	"parent": "block/outer_stairs",
-	"textures": {
-		"bottom": "wild_explorer:block/blunite",
-		"top": "wild_explorer:block/blunite",
-		"side": "wild_explorer:block/blunite"
-	}
-}

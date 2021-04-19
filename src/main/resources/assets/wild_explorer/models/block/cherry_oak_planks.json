@@ -1,6 +1,0 @@
-{
-	"parent": "block/cube_all",
-	"textures": {
-		"all": "wild_explorer:block/cherry_oak_planks"
-	}
-}

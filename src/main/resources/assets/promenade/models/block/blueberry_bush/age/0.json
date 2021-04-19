@@ -1,0 +1,6 @@
+{
+	"parent": "block/cross",
+	"textures": {
+		"cross": "promenade:block/blueberry_bush/age/0"
+	}
+}

@@ -1,6 +1,0 @@
-{
-	"parent": "dawn:block/pile",
-	"textures": {
-		"pile": "wild_explorer:block/cherry_oak_leaves"
-	}
-}

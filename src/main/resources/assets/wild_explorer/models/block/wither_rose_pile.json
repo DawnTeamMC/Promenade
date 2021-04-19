@@ -1,6 +1,0 @@
-{
-	"parent": "dawn:block/pile",
-	"textures": {
-		"pile": "wild_explorer:block/wither_rose_pile"
-	}
-}

@@ -1,6 +1,0 @@
-{
-	"parent": "block/cross",
-	"textures": {
-		"cross": "wild_explorer:block/orange_mushroom"
-	}
-}

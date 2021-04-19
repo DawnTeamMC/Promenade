@@ -1,6 +1,0 @@
-{
-	"parent": "wild_explorer:block/mushroom_block",
-	"textures": {
-		"block": "wild_explorer:block/blue_mushroom_block"
-	}
-}

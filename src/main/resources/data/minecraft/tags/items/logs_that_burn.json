@@ -1,7 +1,7 @@
 {
 	"replace": false,
 	"values": [
-		"#wild_explorer:cherry_oak_logs",
-		"#wild_explorer:palm_logs"
+		"#promenade:cherry_oak_logs",
+		"#promenade:palm_logs"
 	]
 }

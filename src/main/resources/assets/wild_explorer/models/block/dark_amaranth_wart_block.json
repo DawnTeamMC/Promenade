@@ -1,6 +1,0 @@
-{
-	"parent": "block/cube_all",
-	"textures": {
-		"all": "wild_explorer:block/dark_amaranth_wart_block"
-	}
-}

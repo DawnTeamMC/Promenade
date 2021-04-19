@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "promenade:carbonite"
+		}
+	},
+	"result": {
+		"item": "promenade:carbonite_slab",
+		"count": 6
+	}
+}

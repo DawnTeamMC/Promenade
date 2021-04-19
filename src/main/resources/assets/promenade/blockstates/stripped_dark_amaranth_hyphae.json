@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=y": {
+			"model": "promenade:block/stripped_dark_amaranth_hyphae"
+		},
+		"axis=z": {
+			"model": "promenade:block/stripped_dark_amaranth_hyphae",
+			"x": 90
+		},
+		"axis=x": {
+			"model": "promenade:block/stripped_dark_amaranth_hyphae",
+			"x": 90,
+			"y": 90
+		}
+	}
+}

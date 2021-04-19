@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "promenade:wood_slab",
+	"pattern": [
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "promenade:palm_wood"
+		}
+	},
+	"result": {
+		"item": "promenade:palm_wood_slab",
+		"count": 6
+	}
+}

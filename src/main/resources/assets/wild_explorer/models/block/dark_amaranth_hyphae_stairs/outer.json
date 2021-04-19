@@ -1,8 +1,0 @@
-{
-	"parent": "block/outer_stairs",
-	"textures": {
-		"bottom": "wild_explorer:block/dark_amaranth_stem/side",
-		"top": "wild_explorer:block/dark_amaranth_stem/side",
-		"side": "wild_explorer:block/dark_amaranth_stem/side"
-	}
-}

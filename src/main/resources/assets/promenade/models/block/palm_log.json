@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"end": "promenade:block/palm_log/top",
+		"side": "promenade:block/palm_log/side"
+	}
+}

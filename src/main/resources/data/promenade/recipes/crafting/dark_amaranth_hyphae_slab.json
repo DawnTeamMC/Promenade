@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "promenade:hyphae_slab",
+	"pattern": [
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "promenade:dark_amaranth_hyphae"
+		}
+	},
+	"result": {
+		"item": "promenade:dark_amaranth_hyphae_slab",
+		"count": 6
+	}
+}

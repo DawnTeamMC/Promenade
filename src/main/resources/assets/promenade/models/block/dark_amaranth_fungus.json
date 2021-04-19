@@ -1,0 +1,6 @@
+{
+	"parent": "block/cross",
+	"textures": {
+		"cross": "promenade:block/dark_amaranth_fungus"
+	}
+}

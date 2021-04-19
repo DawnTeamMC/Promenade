@@ -1,8 +1,8 @@
 {
 	"replace": false,
 	"values": [
-		"wild_explorer:cherry_oak_fence",
-		"wild_explorer:palm_fence",
-		"wild_explorer:dark_amaranth_fence"
+		"promenade:cherry_oak_fence",
+		"promenade:palm_fence",
+		"promenade:dark_amaranth_fence"
 	]
 }

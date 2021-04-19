@@ -1,0 +1,15 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "promenade:hyphae_button",
+	"pattern": [
+		"#"
+	],
+	"key": {
+		"#": {
+			"item": "promenade:dark_amaranth_hyphae"
+		}
+	},
+	"result": {
+		"item": "promenade:dark_amaranth_hyphae_button"
+	}
+}

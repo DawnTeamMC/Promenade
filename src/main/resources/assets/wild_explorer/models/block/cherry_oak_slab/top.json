@@ -1,8 +1,0 @@
-{
-	"parent": "block/slab_top",
-	"textures": {
-		"bottom": "wild_explorer:block/cherry_oak_planks",
-		"top": "wild_explorer:block/cherry_oak_planks",
-		"side": "wild_explorer:block/cherry_oak_planks"
-	}
-}

@@ -1,0 +1,13 @@
+{
+	"variants": {
+		"type=bottom": {
+			"model": "promenade:block/polished_carbonite_slab/bottom"
+		},
+		"type=top": {
+			"model": "promenade:block/polished_carbonite_slab/top"
+		},
+		"type=double": {
+			"model": "promenade:block/polished_carbonite"
+		}
+	}
+}

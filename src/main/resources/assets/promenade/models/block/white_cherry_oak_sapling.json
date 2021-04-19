@@ -1,0 +1,6 @@
+{
+	"parent": "block/cross",
+	"textures": {
+		"cross": "promenade:block/white_cherry_oak_sapling"
+	}
+}
