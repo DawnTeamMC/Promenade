@@ -13,6 +13,7 @@ import com.hugman.dawn.api.object.block.SaplingBlock;
 import com.hugman.dawn.api.util.BlockTemplate;
 import com.hugman.dawn.api.util.DefaultBlockSettings;
 import com.hugman.dawn.api.util.DefaultBlockTemplates;
+import com.hugman.promenade.creator.bundle.block.OreContainerBundle;
 import com.hugman.promenade.init.world.PromenadeConfiguredFeatures;
 import com.hugman.promenade.object.block.BlueberryBushBlock;
 import com.hugman.promenade.object.block.DyliumBlock;
@@ -34,6 +35,11 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.util.DyeColor;
 
 public class PromenadeBlocks extends PromenadeBundle {
+	public static final OreContainerBundle DIORITE_ORES = bundle(new OreContainerBundle("diorite", FabricBlockSettings.of(Material.STONE, MapColor.OFF_WHITE).requiresTool().strength(3.0F, 3.0F)));
+	public static final OreContainerBundle GRANITE_ORES = bundle(new OreContainerBundle("granite", FabricBlockSettings.of(Material.STONE, MapColor.DIRT_BROWN).requiresTool().strength(3.0F, 3.0F)));
+	public static final OreContainerBundle ANDESITE_ORES = bundle(new OreContainerBundle("andesite", FabricBlockSettings.of(Material.STONE, MapColor.STONE_GRAY).requiresTool().strength(3.0F, 3.0F)));
+	public static final OreContainerBundle TUFF_ORES = bundle(new OreContainerBundle("tuff", FabricBlockSettings.of(Material.STONE, MapColor.TERRACOTTA_GRAY).sounds(BlockSoundGroup.TUFF).requiresTool().strength(3.0F, 3.0F)));
+
 	public static final Block OAK_LEAF_PILE = add(new BlockCreator.Builder("oak", Templates.LEAF_PILE, Settings.LEAF_PILE).flammability(30, 60).build());
 	public static final Block SPRUCE_LEAF_PILE = add(new BlockCreator.Builder("spruce", Templates.LEAF_PILE, Settings.LEAF_PILE).flammability(30, 60).build());
 	public static final Block BIRCH_LEAF_PILE = add(new BlockCreator.Builder("birch", Templates.LEAF_PILE, Settings.LEAF_PILE).flammability(30, 60).build());
