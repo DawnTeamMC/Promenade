@@ -103,8 +103,9 @@ public class PromenadeBiomeCreator {
 		DefaultBiomeFeatures.addLandCarvers(builder);
 		DefaultBiomeFeatures.addDefaultLakes(builder);
 		DefaultBiomeFeatures.addDungeons(builder);
+		DefaultBiomeFeatures.addAmethystGeodes(builder);
 		DefaultBiomeFeatures.addForestFlowers(builder);
-		DefaultBiomeFeatures.addMineables(builder);
+		DefaultBiomeFeatures.method_36453(builder);
 		DefaultBiomeFeatures.addDefaultOres(builder);
 		DefaultBiomeFeatures.addDefaultDisks(builder);
 		DefaultBiomeFeatures.addDefaultFlowers(builder);

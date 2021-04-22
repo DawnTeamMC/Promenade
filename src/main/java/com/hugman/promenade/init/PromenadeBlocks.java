@@ -95,8 +95,6 @@ public class PromenadeBlocks extends PromenadeBundle {
 	public static final MTBlockBundle POLISHED_BLUNITE = bundle(new MTBlockBundle(new BlockCreator.Builder().name("polished_blunite").settings(FabricBlockSettings.copyOf(BLUNITE.getBlock(DefaultBlockTemplates.CUBE))), DefaultBlockTemplates.CUBE, DefaultBlockTemplates.STAIRS, DefaultBlockTemplates.SLAB));
 	public static final MTBlockBundle POLISHED_CARBONITE = bundle(new MTBlockBundle(new BlockCreator.Builder().name("polished_carbonite").settings(FabricBlockSettings.copyOf(CARBONITE.getBlock(DefaultBlockTemplates.CUBE))), DefaultBlockTemplates.CUBE, DefaultBlockTemplates.STAIRS, DefaultBlockTemplates.SLAB));
 
-	public static final Block POINTED_FROZEN_DRIPSTONE = add(new BlockCreator.Builder("pointed_frozen_dripstone", PointedDripstoneBlock::new, FabricBlockSettings.copyOf(Blocks.POINTED_DRIPSTONE)).itemGroup(ItemGroup.BUILDING_BLOCKS).render(BlockCreator.Render.CUTOUT).build());
-
 	public static final PlantBundle AUTUMN_OAK_SAPLING = bundle(new PlantBundle(new BlockCreator.Builder("autumn_oak_sapling", settings -> new SaplingBlock(new AutumnOakSaplingGenerator(), settings), DefaultBlockSettings.SAPLING).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT)));
 	public static final Block AUTUMN_OAK_LEAVES = add(new BlockCreator.Builder("autumn_oak", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).build());
 	public static final Block AUTUMN_OAK_LEAF_PILE = add(new BlockCreator.Builder("autumn_oak", Templates.LEAF_PILE, Settings.LEAF_PILE).flammability(30, 60).build());
