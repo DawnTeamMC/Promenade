@@ -1,6 +1,39 @@
 {
 	"modmenu.descriptionTranslation.promenade": "Fancy and simplistic animals, biomes, structures and more!",
 
+	"block.promenade.andesite_coal_ore": "Andesite Coal Ore",
+	"block.promenade.andesite_iron_ore": "Andesite Iron Ore",
+	"block.promenade.andesite_gold_ore": "Andesite Gold Ore",
+	"block.promenade.andesite_copper_ore": "Andesite Copper Ore",
+	"block.promenade.andesite_lapis_ore": "Andesite Lapis Ore",
+	"block.promenade.andesite_redstone_ore": "Andesite Redstone Ore",
+	"block.promenade.andesite_emerald_ore": "Andesite Emerald Ore",
+	"block.promenade.andesite_diamond_ore": "Andesite Diamond Ore",
+	"block.promenade.diorite_coal_ore": "Diorite Coal Ore",
+	"block.promenade.diorite_iron_ore": "Diorite Iron Ore",
+	"block.promenade.diorite_gold_ore": "Diorite Gold Ore",
+	"block.promenade.diorite_copper_ore": "Diorite Copper Ore",
+	"block.promenade.diorite_lapis_ore": "Diorite Lapis Ore",
+	"block.promenade.diorite_redstone_ore": "Diorite Redstone Ore",
+	"block.promenade.diorite_emerald_ore": "Diorite Emerald Ore",
+	"block.promenade.diorite_diamond_ore": "Diorite Diamond Ore",
+	"block.promenade.granite_coal_ore": "Granite Coal Ore",
+	"block.promenade.granite_iron_ore": "Granite Iron Ore",
+	"block.promenade.granite_gold_ore": "Granite Gold Ore",
+	"block.promenade.granite_copper_ore": "Granite Copper Ore",
+	"block.promenade.granite_lapis_ore": "Granite Lapis Ore",
+	"block.promenade.granite_redstone_ore": "Granite Redstone Ore",
+	"block.promenade.granite_emerald_ore": "Granite Emerald Ore",
+	"block.promenade.granite_diamond_ore": "Granite Diamond Ore",
+	"block.promenade.tuff_coal_ore": "Tuff Coal Ore",
+	"block.promenade.tuff_iron_ore": "Tuff Iron Ore",
+	"block.promenade.tuff_gold_ore": "Tuff Gold Ore",
+	"block.promenade.tuff_copper_ore": "Tuff Copper Ore",
+	"block.promenade.tuff_lapis_ore": "Tuff Lapis Ore",
+	"block.promenade.tuff_redstone_ore": "Tuff Redstone Ore",
+	"block.promenade.tuff_emerald_ore": "Tuff Emerald Ore",
+	"block.promenade.tuff_diamond_ore": "Tuff Diamond Ore",
+
 	"block.promenade.oak_leaf_pile": "Oak Leaf Pile",
 	"block.promenade.spruce_leaf_pile": "Spruce Leaf Pile",
 	"block.promenade.birch_leaf_pile": "Birch Leaf Pile",
@@ -20,6 +53,7 @@
 	"block.promenade.cornflower_pile": "Cornflower Pile",
 	"block.promenade.lily_of_the_valley_pile": "Lily of the Valley Pile",
 	"block.promenade.wither_rose_pile": "Wither Rose Pile",
+
 	"block.promenade.blue_mushroom": "Blue Mushroom",
 	"block.promenade.light_blue_mushroom": "Light Blue Mushroom",
 	"block.promenade.cyan_mushroom": "Cyan Mushroom",
@@ -34,6 +68,7 @@
 	"block.promenade.light_gray_mushroom": "Light Gray Mushroom",
 	"block.promenade.gray_mushroom": "Gray Mushroom",
 	"block.promenade.black_mushroom": "Black Mushroom",
+
 	"block.promenade.potted_blue_mushroom": "Potted Blue Mushroom",
 	"block.promenade.potted_light_blue_mushroom": "Potted Light Blue Mushroom",
 	"block.promenade.potted_cyan_mushroom": "Potted Cyan Mushroom",
@@ -48,6 +83,7 @@
 	"block.promenade.potted_light_gray_mushroom": "Potted Light Gray Mushroom",
 	"block.promenade.potted_gray_mushroom": "Potted Gray Mushroom",
 	"block.promenade.potted_black_mushroom": "Potted Black Mushroom",
+
 	"block.promenade.blue_mushroom_block": "Blue Mushroom Block",
 	"block.promenade.light_blue_mushroom_block": "Light Blue Mushroom Block",
 	"block.promenade.cyan_mushroom_block": "Cyan Mushroom Block",
@@ -62,6 +98,7 @@
 	"block.promenade.light_gray_mushroom_block": "Light Gray Mushroom Block",
 	"block.promenade.gray_mushroom_block": "Gray Mushroom Block",
 	"block.promenade.black_mushroom_block": "Black Mushroom Block",
+
 	"block.promenade.blunite": "Blunite",
 	"block.promenade.blunite_stairs": "Blunite Stairs",
 	"block.promenade.blunite_slab": "Blunite Slab",
@@ -76,6 +113,7 @@
 	"block.promenade.polished_carbonite": "Polished Carbonite",
 	"block.promenade.polished_carbonite_stairs": "Polished Carbonite Stairs",
 	"block.promenade.polished_carbonite_slab": "Polished Carbonite Slab",
+
 	"block.promenade.autumn_oak_sapling": "Autumn Oak Sapling",
 	"block.promenade.autumn_oak_leaves": "Autumn Oak Leaves",
 	"block.promenade.autumn_oak_leaf_pile": "Autumn Oak Leaf Pile",
@@ -141,6 +179,7 @@
 	"block.promenade.potted_white_cherry_oak_sapling": "Potted White Cherry Oak Sapling",
 	"block.promenade.potted_palm_sapling": "Potted Palm Sapling",
 	"block.promenade.potted_dark_amaranth_fungus": "Potted Dark Amaranth Fungus",
+
 	"item.promenade.blueberries": "Blueberries",
 	"item.promenade.banana": "Banana",
 	"item.promenade.apricot": "Apricot",
@@ -148,7 +187,9 @@
 	"item.promenade.duck": "Duck",
 	"item.promenade.cooked_duck": "Cooked Duck",
 	"item.promenade.duck_spawn_egg": "Duck Spawn Egg",
+
 	"entity.promenade.duck": "Duck",
+
 	"biome.promenade.pumpkin_pastures": "Pumpkin Pastures",
 	"biome.promenade.pink_cherry_oak_forest": "Pink Cherry Oak Forest",
 	"biome.promenade.white_cherry_oak_forest": "White Cherry Oak Forest",
