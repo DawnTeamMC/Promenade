@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "promenade:andesite_gold_ore",
+    "promenade:diorite_gold_ore",
+    "promenade:granite_gold_ore",
+    "promenade:tuff_gold_ore"
+  ]
+}

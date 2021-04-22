@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "promenade:andesite_coal_ore",
+    "promenade:diorite_coal_ore",
+    "promenade:granite_coal_ore",
+    "promenade:tuff_coal_ore"
+  ]
+}
