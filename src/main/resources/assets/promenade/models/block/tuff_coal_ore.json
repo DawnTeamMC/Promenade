@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "promenade:block/tuff_coal_ore"
+  }
+}
