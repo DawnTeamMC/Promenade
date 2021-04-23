@@ -12,7 +12,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:diorite_redstone_ore"
+            "item": "promenade:diorite_redstone_ore"
           }
         ]
       }

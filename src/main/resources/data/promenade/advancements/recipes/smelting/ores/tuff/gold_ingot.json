@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:tuff_gold_ore"
+            "item": "promenade:tuff_gold_ore"
           }
         ]
       }

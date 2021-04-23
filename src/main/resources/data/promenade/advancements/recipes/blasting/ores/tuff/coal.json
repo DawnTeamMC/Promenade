@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:tuff_coal_ore"
+            "item": "promenade:tuff_coal_ore"
           }
         ]
       }

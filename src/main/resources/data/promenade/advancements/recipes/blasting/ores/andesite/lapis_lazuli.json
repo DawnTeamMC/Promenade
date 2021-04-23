@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:andesite_lapis_ore"
+            "item": "promenade:andesite_lapis_ore"
           }
         ]
       }

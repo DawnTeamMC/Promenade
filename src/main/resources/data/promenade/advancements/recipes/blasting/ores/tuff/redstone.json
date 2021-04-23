@@ -12,7 +12,7 @@
       "conditions": {
         "items": [
           {
-            "item": "minecraft:tuff_redstone_ore"
+            "item": "promenade:tuff_redstone_ore"
           }
         ]
       }
