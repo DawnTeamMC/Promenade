@@ -1,0 +1,33 @@
+
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "promenade:blasting/ores/andesite/redstone"
+    ]
+  },
+  "criteria": {
+    "has_andesite_redstone_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:andesite_redstone_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "promenade:blasting/ores/andesite/redstone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_andesite_redstone_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

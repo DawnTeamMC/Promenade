@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "promenade:blasting/ores/diorite/copper_ingot"
+    ]
+  },
+  "criteria": {
+    "has_diorite_copper_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:diorite_copper_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "promenade:blasting/ores/diorite/copper_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_diorite_copper_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "promenade:smelting/ores/tuff/coal"
+    ]
+  },
+  "criteria": {
+    "has_tuff_coal_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:tuff_coal_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "promenade:smelting/ores/tuff/coal"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_tuff_coal_ore",
+      "has_the_recipe"
+    ]
+  ]
+}
