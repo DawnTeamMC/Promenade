@@ -11,21 +11,24 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
-public class OreContainerBundle extends Bundle {
+public class OverworldOreBundle extends Bundle {
 	private final BlockCreator COAL_ORE, IRON_ORE, GOLD_ORE, COPPER_ORE, LAPIS_ORE, REDSTONE_ORE, EMERALD_ORE, DIAMOND_ORE;
 
 	/**
 	 * Creates a creator bundle containing all vanilla ores in a certain block.
+	 *
+	 * @param name The name of the block in which the ores will be in. (example: "granite")
+	 * @param settings The block settings for all the ores.
 	 */
-	public OreContainerBundle(String name, AbstractBlock.Settings settings) {
+	public OverworldOreBundle(String name, AbstractBlock.Settings settings) {
 		BlockCreator.Builder builder = new BlockCreator.Builder().settings(settings).itemGroup(ItemGroup.BUILDING_BLOCKS);
 		COAL_ORE = put(builder.copy().name(name + "_coal_ore").blockProvider(s -> new OreBlock(s, UniformIntProvider.create(0, 2))).build());
 		IRON_ORE = put(builder.copy().name(name + "_iron_ore").blockProvider(OreBlock::new).build());
-		GOLD_ORE = put(builder.copy().name(name + "_gold_ore").blockProvider(OreBlock::new).build());
 		COPPER_ORE = put(builder.copy().name(name + "_copper_ore").blockProvider(OreBlock::new).build());
-		LAPIS_ORE = put(builder.copy().name(name + "_lapis_ore").blockProvider(s -> new OreBlock(s, UniformIntProvider.create(2, 5))).build());
+		GOLD_ORE = put(builder.copy().name(name + "_gold_ore").blockProvider(OreBlock::new).build());
 		REDSTONE_ORE = put(builder.copy().name(name + "_redstone_ore").blockProvider(RedstoneOreBlock::new).settings(FabricBlockSettings.copyOf(settings).ticksRandomly().luminance((state) -> (Boolean)state.get(Properties.LIT) ? 9 : 0)).build());
 		EMERALD_ORE = put(builder.copy().name(name + "_emerald_ore").blockProvider(s -> new OreBlock(s, UniformIntProvider.create(3, 7))).build());
+		LAPIS_ORE = put(builder.copy().name(name + "_lapis_ore").blockProvider(s -> new OreBlock(s, UniformIntProvider.create(2, 5))).build());
 		DIAMOND_ORE = put(builder.copy().name(name + "_diamond_ore").blockProvider(s -> new OreBlock(s, UniformIntProvider.create(3, 7))).build());
 	}
 
