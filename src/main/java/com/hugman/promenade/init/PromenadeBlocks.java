@@ -35,8 +35,8 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.util.DyeColor;
 
 public class PromenadeBlocks extends PromenadeBundle {
-	public static final OreContainerBundle DIORITE_ORES = bundle(new OreContainerBundle("diorite", FabricBlockSettings.of(Material.STONE, MapColor.OFF_WHITE).requiresTool().strength(3.0F, 3.0F)));
 	public static final OreContainerBundle GRANITE_ORES = bundle(new OreContainerBundle("granite", FabricBlockSettings.of(Material.STONE, MapColor.DIRT_BROWN).requiresTool().strength(3.0F, 3.0F)));
+	public static final OreContainerBundle DIORITE_ORES = bundle(new OreContainerBundle("diorite", FabricBlockSettings.of(Material.STONE, MapColor.OFF_WHITE).requiresTool().strength(3.0F, 3.0F)));
 	public static final OreContainerBundle ANDESITE_ORES = bundle(new OreContainerBundle("andesite", FabricBlockSettings.of(Material.STONE, MapColor.STONE_GRAY).requiresTool().strength(3.0F, 3.0F)));
 	public static final OreContainerBundle TUFF_ORES = bundle(new OreContainerBundle("tuff", FabricBlockSettings.of(Material.STONE, MapColor.TERRACOTTA_GRAY).sounds(BlockSoundGroup.TUFF).requiresTool().strength(3.0F, 3.0F)));
 
