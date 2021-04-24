@@ -49,7 +49,7 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 	public static class FeaturesCategory implements ConfigData {
 		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.Gui.Tooltip
-		public boolean igneous_rock_patches = false;
+		public boolean igneous_rock_patches = true;
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean palm_trees = true;
 		@ConfigEntry.Gui.RequiresRestart
