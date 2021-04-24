@@ -1,9 +1,9 @@
 {
-  "replace": false,
-  "values": [
-    "promenade:andesite_redstone_ore",
-    "promenade:diorite_redstone_ore",
-    "promenade:granite_redstone_ore",
-    "promenade:tuff_redstone_ore"
-  ]
+	"replace": false,
+	"values": [
+		"promenade:andesite_redstone_ore",
+		"promenade:diorite_redstone_ore",
+		"promenade:granite_redstone_ore",
+		"promenade:tuff_redstone_ore"
+	]
 }

@@ -1,9 +1,9 @@
 {
-  "replace": false,
-  "values": [
-    "promenade:andesite_iron_ore",
-    "promenade:diorite_iron_ore",
-    "promenade:granite_iron_ore",
-    "promenade:tuff_iron_ore"
-  ]
+	"replace": false,
+	"values": [
+		"promenade:andesite_iron_ore",
+		"promenade:diorite_iron_ore",
+		"promenade:granite_iron_ore",
+		"promenade:tuff_iron_ore"
+	]
 }

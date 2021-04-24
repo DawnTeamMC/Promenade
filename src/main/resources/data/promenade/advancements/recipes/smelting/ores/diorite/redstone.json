@@ -1,33 +1,32 @@
-
 {
-  "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "promenade:smelting/ores/diorite/redstone"
-    ]
-  },
-  "criteria": {
-    "has_diorite_redstone_ore": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "promenade:diorite_redstone_ore"
-          }
-        ]
-      }
-    },
-    "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": {
-        "recipe": "promenade:smelting/ores/diorite/redstone"
-      }
-    }
-  },
-  "requirements": [
-    [
-      "has_diorite_redstone_ore",
-      "has_the_recipe"
-    ]
-  ]
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:smelting/ores/diorite/redstone"
+		]
+	},
+	"criteria": {
+		"has_diorite_redstone_ore": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "promenade:diorite_redstone_ore"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:smelting/ores/diorite/redstone"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_diorite_redstone_ore",
+			"has_the_recipe"
+		]
+	]
 }

@@ -1,32 +1,32 @@
 {
-  "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "promenade:smelting/ores/granite/coal"
-    ]
-  },
-  "criteria": {
-    "has_granite_coal_ore": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "promenade:granite_coal_ore"
-          }
-        ]
-      }
-    },
-    "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": {
-        "recipe": "promenade:smelting/ores/granite/coal"
-      }
-    }
-  },
-  "requirements": [
-    [
-      "has_granite_coal_ore",
-      "has_the_recipe"
-    ]
-  ]
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:smelting/ores/granite/coal"
+		]
+	},
+	"criteria": {
+		"has_granite_coal_ore": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "promenade:granite_coal_ore"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:smelting/ores/granite/coal"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_granite_coal_ore",
+			"has_the_recipe"
+		]
+	]
 }

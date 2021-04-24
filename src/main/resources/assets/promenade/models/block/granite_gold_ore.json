@@ -1,6 +1,6 @@
 {
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "promenade:block/granite_gold_ore"
-  }
+	"parent": "block/cube_all",
+	"textures": {
+		"all": "promenade:block/granite_gold_ore"
+	}
 }

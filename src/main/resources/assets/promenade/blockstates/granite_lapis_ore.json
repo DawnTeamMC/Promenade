@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "promenade:block/granite_lapis_ore"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "promenade:block/granite_lapis_ore"
+		}
+	}
 }

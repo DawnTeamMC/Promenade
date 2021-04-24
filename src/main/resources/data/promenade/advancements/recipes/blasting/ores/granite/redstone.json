@@ -1,33 +1,32 @@
-
 {
-  "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "promenade:blasting/ores/granite/redstone"
-    ]
-  },
-  "criteria": {
-    "has_granite_redstone_ore": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "promenade:granite_redstone_ore"
-          }
-        ]
-      }
-    },
-    "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": {
-        "recipe": "promenade:blasting/ores/granite/redstone"
-      }
-    }
-  },
-  "requirements": [
-    [
-      "has_granite_redstone_ore",
-      "has_the_recipe"
-    ]
-  ]
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:blasting/ores/granite/redstone"
+		]
+	},
+	"criteria": {
+		"has_granite_redstone_ore": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"item": "promenade:granite_redstone_ore"
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:blasting/ores/granite/redstone"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_granite_redstone_ore",
+			"has_the_recipe"
+		]
+	]
 }

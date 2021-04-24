@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "promenade:block/granite_diamond_ore"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "promenade:block/granite_diamond_ore"
+		}
+	}
 }

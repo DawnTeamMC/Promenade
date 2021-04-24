@@ -1,7 +1,7 @@
 {
-  "variants": {
-    "": {
-      "model": "promenade:block/diorite_emerald_ore"
-    }
-  }
+	"variants": {
+		"": {
+			"model": "promenade:block/diorite_emerald_ore"
+		}
+	}
 }
