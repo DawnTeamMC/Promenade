@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MovementType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.AnimalMateGoal;
 import net.minecraft.entity.ai.goal.EscapeDangerGoal;
@@ -28,6 +29,8 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -132,19 +135,34 @@ public class DuckEntity extends AnimalEntity {
 	@Override
 	public void tickMovement() {
 		super.tickMovement();
+		boolean isAirBorne = !this.onGround && !this.isTouchingWater();
 		this.oFlap = this.wingRotation;
 		this.oFlapSpeed = this.destPos;
-		this.destPos = (float) ((double) this.destPos + (double) (this.onGround ? -1 : 4) * 0.3D);
+		this.destPos = (float) ((double) this.destPos + (double) (!isAirBorne ? -1 : 4) * 0.3D);
 		this.destPos = MathHelper.clamp(this.destPos, 0.0F, 1.0F);
-		if(!this.onGround && this.wingRotDelta < 0.55F) {
+		if(isAirBorne && this.wingRotDelta < 0.55F) {
 			this.wingRotDelta = 0.55F;
 		}
 		this.wingRotDelta = (float) ((double) this.wingRotDelta * 0.9D);
 		Vec3d vec3d = this.getVelocity();
-		if(!this.onGround && vec3d.y < 0.0D) {
+		if(isAirBorne && vec3d.y < 0.0D) {
 			this.setVelocity(vec3d.multiply(1.0D, 0.75D, 1.0D));
 		}
 		this.wingRotation += this.wingRotDelta * 2.0F;
+	}
+
+	@Override
+	public void travel(Vec3d movementInput) {
+		if(this.canMoveVoluntarily() && this.isTouchingWater()) {
+			this.updateVelocity(0.1F, movementInput);
+			this.move(MovementType.SELF, this.getVelocity());
+			this.setVelocity(this.getVelocity().multiply(0.9D));
+			if (this.getTarget() == null) {
+				this.setVelocity(this.getVelocity().add(0.0D, -0.005D, 0.0D));
+			}
+		}else {
+			super.travel(movementInput);
+		}
 	}
 
 	@Override

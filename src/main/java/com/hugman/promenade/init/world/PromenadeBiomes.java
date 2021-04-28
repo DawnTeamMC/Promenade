@@ -1,8 +1,9 @@
-package com.hugman.promenade.init;
+package com.hugman.promenade.init.world;
 
 import com.hugman.dawn.api.creator.BiomeCreator;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.config.PromenadeConfig;
+import com.hugman.promenade.init.PromenadeBundle;
 import com.hugman.promenade.object.world.gen.PromenadeBiomeCreator;
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
 import net.fabricmc.fabric.api.biome.v1.OverworldBiomes;

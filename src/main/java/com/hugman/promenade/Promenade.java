@@ -2,7 +2,7 @@ package com.hugman.promenade;
 
 import com.hugman.dawn.api.object.ModData;
 import com.hugman.promenade.config.PromenadeConfig;
-import com.hugman.promenade.init.PromenadeBiomes;
+import com.hugman.promenade.init.world.PromenadeBiomes;
 import com.hugman.promenade.init.PromenadeBlocks;
 import com.hugman.promenade.init.PromenadeEntities;
 import com.hugman.promenade.init.PromenadeItems;
