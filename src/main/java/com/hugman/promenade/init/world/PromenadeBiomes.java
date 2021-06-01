@@ -4,12 +4,13 @@ import com.hugman.dawn.api.creator.BiomeCreator;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.PromenadeBundle;
-import com.hugman.promenade.object.world.gen.PromenadeBiomeCreator;
+import com.hugman.promenade.object.world.gen.biome.PromenadeBiomeCreator;
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
 import net.fabricmc.fabric.api.biome.v1.OverworldBiomes;
 import net.fabricmc.fabric.api.biome.v1.OverworldClimate;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 
 public class PromenadeBiomes extends PromenadeBundle {
 	public static final PromenadeConfig.BiomesCategory CONFIG = Promenade.CONFIG.biomes;

@@ -19,7 +19,7 @@ public class DefaultBiomeFeaturesMixin {
 	private static final PromenadeConfig.FeaturesCategory FEATURES_CONFIG = Promenade.CONFIG.features;
 	private static final PromenadeConfig.CreaturesCategory CREATURES_CONFIG = Promenade.CONFIG.creatures;
 
-	@Inject(method = "addMineables", at = @At(value = "TAIL"))
+	@Inject(method = "addMineables(Lnet/minecraft/world/biome/GenerationSettings$Builder;Z)V", at = @At(value = "TAIL"))
 	private static void WE_addMineables(GenerationSettings.Builder builder, boolean bl, CallbackInfo ci) {
 		if(FEATURES_CONFIG.igneous_rock_patches) {
 			builder.feature(GenerationStep.Feature.UNDERGROUND_ORES, PromenadeConfiguredFeatures.ORE_BLUNITE);

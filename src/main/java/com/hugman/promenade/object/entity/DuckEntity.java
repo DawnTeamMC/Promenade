@@ -75,14 +75,6 @@ public class DuckEntity extends AnimalEntity {
 		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D);
 	}
 
-	public static List<RegistryKey<Biome>> getSpawnBiomes() {
-		ArrayList<RegistryKey<Biome>> biomeList = new ArrayList<>();
-		for(DuckEntity.Type type : Type.typeList) {
-			biomeList.addAll(type.getSpawnBiomes());
-		}
-		return biomeList.stream().distinct().collect(Collectors.toList());
-	}
-
 	@Override
 	protected void initDataTracker() {
 		super.initDataTracker();

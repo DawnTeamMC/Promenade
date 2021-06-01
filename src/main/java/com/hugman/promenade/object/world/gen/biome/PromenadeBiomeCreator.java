@@ -1,4 +1,4 @@
-package com.hugman.promenade.object.world.gen;
+package com.hugman.promenade.object.world.gen.biome;
 
 import com.hugman.promenade.init.world.PromenadeConfiguredFeatures;
 import com.hugman.promenade.init.world.PromenadeConfiguredSurfaceBuilders;
@@ -99,6 +99,33 @@ public class PromenadeBiomeCreator {
 		return builder.build();
 	}
 
+	public static Biome createLushRiver() {
+		SpawnSettings.Builder builder = (new SpawnSettings.Builder()).spawn(SpawnGroup.WATER_CREATURE, new SpawnSettings.SpawnEntry(EntityType.SQUID, 2, 1, 4)).spawn(SpawnGroup.WATER_AMBIENT, new SpawnSettings.SpawnEntry(EntityType.SALMON, 5, 1, 5));
+		DefaultBiomeFeatures.addBatsAndMonsters(builder);
+		builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.DROWNED, 100, 1, 1));
+		GenerationSettings.Builder generationBuilder = (new GenerationSettings.Builder()).surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
+		generationBuilder.structureFeature(ConfiguredStructureFeatures.MINESHAFT);
+		generationBuilder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL);
+		DefaultBiomeFeatures.addLandCarvers(generationBuilder);
+		DefaultBiomeFeatures.addDefaultLakes(generationBuilder);
+		DefaultBiomeFeatures.addAmethystGeodes(generationBuilder);
+		DefaultBiomeFeatures.addDungeons(generationBuilder);
+		DefaultBiomeFeatures.addMineables(generationBuilder);
+		DefaultBiomeFeatures.addDefaultOres(generationBuilder);
+		DefaultBiomeFeatures.addDefaultDisks(generationBuilder);
+		DefaultBiomeFeatures.addWaterBiomeOakTrees(generationBuilder);
+		DefaultBiomeFeatures.addDefaultFlowers(generationBuilder);
+		DefaultBiomeFeatures.addDefaultGrass(generationBuilder);
+		DefaultBiomeFeatures.addDefaultMushrooms(generationBuilder);
+		DefaultBiomeFeatures.addDefaultVegetation(generationBuilder);
+		DefaultBiomeFeatures.addSprings(generationBuilder);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.PATCH_WATERLILLY);
+		generationBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SEAGRASS_RIVER);
+
+		DefaultBiomeFeatures.addFrozenTopLayer(generationBuilder);
+		return (new Biome.Builder()).precipitation(Biome.Precipitation.RAIN).category(Biome.Category.RIVER).depth(-0.5F).scale(0.0F).temperature(0.5F).downfall(0.5F).effects((new BiomeEffects.Builder()).waterColor(4159204).waterFogColor(329011).fogColor(12638463).skyColor(getSkyColor(0.5F)).moodSound(BiomeMoodSound.CAVE).build()).spawnSettings(builder.build()).generationSettings(generationBuilder.build()).build();
+	}
+
 	private static GenerationSettings.Builder composeForestGenerationSettings() {
 		GenerationSettings.Builder builder = new GenerationSettings.Builder();
 		builder.surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
@@ -109,7 +136,7 @@ public class PromenadeBiomeCreator {
 		DefaultBiomeFeatures.addDungeons(builder);
 		DefaultBiomeFeatures.addAmethystGeodes(builder);
 		DefaultBiomeFeatures.addForestFlowers(builder);
-		DefaultBiomeFeatures.method_36453(builder);
+		DefaultBiomeFeatures.addMineables(builder);
 		DefaultBiomeFeatures.addDefaultOres(builder);
 		DefaultBiomeFeatures.addDefaultDisks(builder);
 		DefaultBiomeFeatures.addDefaultFlowers(builder);

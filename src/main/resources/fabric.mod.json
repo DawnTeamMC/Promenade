@@ -27,9 +27,10 @@
 		"promenade.mixins.json"
 	],
 	"depends": {
-		"minecraft": ">=1.16.2",
+		"minecraft": "1.17.*",
 		"fabric": "*",
-		"dawn": "*"
+		"fabricloader": ">=0.11.3",
+		"java": ">=16"
 	},
 	"custom": {
 		"modmenu": {

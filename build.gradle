@@ -1,15 +1,15 @@
 plugins {
-    id 'fabric-loom' version '0.5-SNAPSHOT' apply false
+    id 'fabric-loom' version '0.8-SNAPSHOT' apply false
     id 'maven-publish'
 }
 
-apply from: 'https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/build_template.gradle'
+apply from: 'https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/build_template/1.17.gradle'
 
 repositories {
     mavenLocal()
     maven { url 'https://jitpack.io' }
     maven { url 'https://maven.shedaniel.me/' }
-    maven { url 'http://maven.terraformersmc.com/' }
+    maven { url 'https://maven.terraformersmc.com/' }
 }
 
 dependencies {
