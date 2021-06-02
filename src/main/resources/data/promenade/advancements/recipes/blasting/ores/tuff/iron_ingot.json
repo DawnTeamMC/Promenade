@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:tuff_iron_ore"
+						"items": ["promenade:tuff_iron_ore"]
 					}
 				]
 			}

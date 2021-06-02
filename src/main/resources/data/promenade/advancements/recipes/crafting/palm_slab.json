@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:palm_planks"
+						"items": ["promenade:palm_planks"]
 					}
 				]
 			}

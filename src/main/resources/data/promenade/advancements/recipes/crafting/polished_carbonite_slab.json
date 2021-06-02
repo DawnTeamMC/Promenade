@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:polished_carbonite"
+						"items": ["promenade:polished_carbonite"]
 					}
 				]
 			}

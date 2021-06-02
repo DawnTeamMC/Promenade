@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:andesite_iron_ore"
+						"items": ["promenade:andesite_iron_ore"]
 					}
 				]
 			}

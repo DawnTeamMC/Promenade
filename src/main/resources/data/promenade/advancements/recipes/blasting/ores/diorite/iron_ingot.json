@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:diorite_iron_ore"
+						"items": ["promenade:diorite_iron_ore"]
 					}
 				]
 			}

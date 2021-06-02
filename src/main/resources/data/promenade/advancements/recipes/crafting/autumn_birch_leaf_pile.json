@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:autumn_birch_leaves"
+						"items": ["promenade:autumn_birch_leaves"]
 					}
 				]
 			}

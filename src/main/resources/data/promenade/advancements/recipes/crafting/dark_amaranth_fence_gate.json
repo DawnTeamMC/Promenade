@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:dark_amaranth_planks"
+						"items": ["promenade:dark_amaranth_planks"]
 					}
 				]
 			}

@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:granite_lapis_ore"
+						"items": ["promenade:granite_lapis_ore"]
 					}
 				]
 			}

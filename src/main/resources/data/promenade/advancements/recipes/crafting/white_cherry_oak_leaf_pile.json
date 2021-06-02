@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:white_cherry_oak_leaves"
+						"items": ["promenade:white_cherry_oak_leaves"]
 					}
 				]
 			}

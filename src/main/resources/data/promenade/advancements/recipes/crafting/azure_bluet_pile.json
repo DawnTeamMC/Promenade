@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "minecraft:azure_bluet"
+						"items": ["minecraft:azure_bluet"]
 					}
 				]
 			}

@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:tuff_coal_ore"
+						"items": ["promenade:tuff_coal_ore"]
 					}
 				]
 			}

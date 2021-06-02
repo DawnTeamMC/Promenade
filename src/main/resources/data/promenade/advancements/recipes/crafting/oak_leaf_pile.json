@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "minecraft:oak_leaves"
+						"items": ["minecraft:oak_leaves"]
 					}
 				]
 			}

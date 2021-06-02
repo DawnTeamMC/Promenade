@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:blunite"
+						"items": ["promenade:blunite"]
 					}
 				]
 			}
@@ -21,7 +21,7 @@
 			"conditions": {
 				"items": [
 					{
-						"item": "promenade:polished_blunite"
+						"items": ["promenade:polished_blunite"]
 					}
 				]
 			}
