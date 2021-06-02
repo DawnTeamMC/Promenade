@@ -13,7 +13,6 @@ import com.hugman.dawn.api.object.block.SaplingBlock;
 import com.hugman.dawn.api.util.BlockTemplate;
 import com.hugman.dawn.api.util.DefaultBlockSettings;
 import com.hugman.dawn.api.util.DefaultBlockTemplates;
-import com.hugman.promenade.creator.bundle.block.OverworldOreBundle;
 import com.hugman.promenade.init.world.PromenadeConfiguredFeatures;
 import com.hugman.promenade.object.block.BlueberryBushBlock;
 import com.hugman.promenade.object.block.DyliumBlock;
@@ -39,11 +38,6 @@ public class PromenadeBlocks extends PromenadeBundle {
 	public static final MTBlockBundle CARBONITE = bundle(new MTBlockBundle(new BlockCreator.Builder().name("carbonite").settings(FabricBlockSettings.copyOf(Blocks.ANDESITE).mapColor(MapColor.BLACK).sounds(BlockSoundGroup.BASALT)), DefaultBlockTemplates.CUBE, DefaultBlockTemplates.STAIRS, DefaultBlockTemplates.SLAB, DefaultBlockTemplates.WALL));
 	public static final MTBlockBundle POLISHED_BLUNITE = bundle(new MTBlockBundle(new BlockCreator.Builder().name("polished_blunite").settings(FabricBlockSettings.copyOf(BLUNITE.getBlock(DefaultBlockTemplates.CUBE)).sounds(BlockSoundGroup.TUFF)), DefaultBlockTemplates.CUBE, DefaultBlockTemplates.STAIRS, DefaultBlockTemplates.SLAB));
 	public static final MTBlockBundle POLISHED_CARBONITE = bundle(new MTBlockBundle(new BlockCreator.Builder().name("polished_carbonite").settings(FabricBlockSettings.copyOf(CARBONITE.getBlock(DefaultBlockTemplates.CUBE))), DefaultBlockTemplates.CUBE, DefaultBlockTemplates.STAIRS, DefaultBlockTemplates.SLAB));
-
-	public static final OverworldOreBundle GRANITE_ORES = bundle(new OverworldOreBundle("granite", FabricBlockSettings.of(Material.STONE, MapColor.DIRT_BROWN).requiresTool().strength(3.0F, 3.0F)));
-	public static final OverworldOreBundle DIORITE_ORES = bundle(new OverworldOreBundle("diorite", FabricBlockSettings.of(Material.STONE, MapColor.OFF_WHITE).requiresTool().strength(3.0F, 3.0F)));
-	public static final OverworldOreBundle ANDESITE_ORES = bundle(new OverworldOreBundle("andesite", FabricBlockSettings.of(Material.STONE, MapColor.STONE_GRAY).requiresTool().strength(3.0F, 3.0F)));
-	public static final OverworldOreBundle TUFF_ORES = bundle(new OverworldOreBundle("tuff", FabricBlockSettings.of(Material.STONE, MapColor.TERRACOTTA_GRAY).sounds(BlockSoundGroup.TUFF).requiresTool().strength(3.0F, 3.0F)));
 
 	public static final Block OAK_LEAF_PILE = add(new BlockCreator.Builder("oak", Templates.LEAF_PILE, Settings.LEAF_PILE).flammability(30, 60).build());
 	public static final Block SPRUCE_LEAF_PILE = add(new BlockCreator.Builder("spruce", Templates.LEAF_PILE, Settings.LEAF_PILE).flammability(30, 60).build());
