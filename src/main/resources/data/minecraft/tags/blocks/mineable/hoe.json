@@ -3,7 +3,7 @@
 	"values": [
 		"#promenade:leaves",
 		"#promenade:leaf_piles",
-		"#promenade:flower_piles"
-    "promenade:dark_amaranth_wart_block",
+		"#promenade:flower_piles",
+		"promenade:dark_amaranth_wart_block"
 	]
 }

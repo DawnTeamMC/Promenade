@@ -22,7 +22,7 @@ import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import net.minecraft.world.gen.surfacebuilder.ConfiguredSurfaceBuilders;
 
-public class PromenadeBiomeCreator {
+public final class PromenadeBiomeCreator {
 	private static int getSkyColor(float temperature) {
 		float g = temperature / 3.0F;
 		g = MathHelper.clamp(g, -1.0F, 1.0F);
@@ -129,12 +129,12 @@ public class PromenadeBiomeCreator {
 	private static GenerationSettings.Builder composeForestGenerationSettings() {
 		GenerationSettings.Builder builder = new GenerationSettings.Builder();
 		builder.surfaceBuilder(ConfiguredSurfaceBuilders.GRASS);
-		builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL);
 		DefaultBiomeFeatures.addDefaultUndergroundStructures(builder);
+		builder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL);
 		DefaultBiomeFeatures.addLandCarvers(builder);
 		DefaultBiomeFeatures.addDefaultLakes(builder);
-		DefaultBiomeFeatures.addDungeons(builder);
 		DefaultBiomeFeatures.addAmethystGeodes(builder);
+		DefaultBiomeFeatures.addDungeons(builder);
 		DefaultBiomeFeatures.addForestFlowers(builder);
 		DefaultBiomeFeatures.addMineables(builder);
 		DefaultBiomeFeatures.addDefaultOres(builder);
