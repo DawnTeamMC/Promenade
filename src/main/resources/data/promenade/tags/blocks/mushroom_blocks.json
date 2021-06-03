@@ -1,0 +1,19 @@
+{
+	"replace": false,
+	"values": [
+		"promenade:white_mushroom_block",
+		"promenade:light_gray_mushroom_block",
+		"promenade:gray_mushroom_block",
+		"promenade:black_mushroom_block",
+		"promenade:orange_mushroom_block",
+		"promenade:yellow_mushroom_block",
+		"promenade:lime_mushroom_block",
+		"promenade:green_mushroom_block",
+		"promenade:cyan_mushroom_block",
+		"promenade:light_blue_mushroom_block",
+		"promenade:blue_mushroom_block",
+		"promenade:purple_mushroom_block",
+		"promenade:magenta_mushroom_block",
+		"promenade:pink_mushroom_block"
+	]
+}

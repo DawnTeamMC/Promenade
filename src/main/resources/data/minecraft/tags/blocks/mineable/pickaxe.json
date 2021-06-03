@@ -1,0 +1,18 @@
+{
+	"replace": false,
+	"values": [
+		"promenade:blunite",
+		"promenade:blunite_stairs",
+		"promenade:blunite_slab",
+		"promenade:carbonite",
+		"promenade:carbonite_stairs",
+		"promenade:carbonite_slab",
+		"promenade:polished_blunite",
+		"promenade:polished_blunite_stairs",
+		"promenade:polished_blunite_slab",
+		"promenade:polished_carbonite",
+		"promenade:polished_carbonite_stairs",
+		"promenade:polished_carbonite_slab",
+    "promenade:black_dylium"
+	]
+}

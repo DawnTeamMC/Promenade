@@ -1,0 +1,16 @@
+{
+	"replace": false,
+	"values": [
+		"promenade:oak_leaf_pile",
+		"promenade:spruce_leaf_pile",
+		"promenade:birch_leaf_pile",
+		"promenade:jungle_leaf_pile",
+		"promenade:acacia_leaf_pile",
+		"promenade:dark_oak_leaf_pile",
+		"promenade:autumn_oak_leaf_pile",
+		"promenade:autumn_birch_leaf_pile"
+		"promenade:pink_cherry_oak_leaf_pile",
+		"promenade:white_cherry_oak_leaf_pile",
+		"promenade:palm_leaf_pile"
+	]
+}
