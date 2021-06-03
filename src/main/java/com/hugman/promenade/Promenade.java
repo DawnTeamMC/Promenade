@@ -1,11 +1,12 @@
 package com.hugman.promenade;
 
 import com.hugman.dawn.api.object.ModData;
+import com.hugman.promenade.compat.init.PromenadeColumnBlocks;
 import com.hugman.promenade.config.PromenadeConfig;
-import com.hugman.promenade.init.world.PromenadeBiomes;
 import com.hugman.promenade.init.PromenadeBlocks;
 import com.hugman.promenade.init.PromenadeEntities;
 import com.hugman.promenade.init.PromenadeItems;
+import com.hugman.promenade.init.world.PromenadeBiomes;
 import com.hugman.promenade.init.world.PromenadeConfiguredFeatures;
 import com.hugman.promenade.init.world.PromenadeConfiguredStructuresFeatures;
 import com.hugman.promenade.init.world.PromenadeConfiguredSurfaceBuilders;
@@ -16,6 +17,7 @@ import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,6 +38,9 @@ public class Promenade implements ModInitializer {
 		PromenadeConfiguredStructuresFeatures.init();
 		PromenadeConfiguredSurfaceBuilders.init();
 		PromenadeBiomes.init();
+		if(FabricLoader.getInstance().isModLoaded("columns")) {
+			PromenadeColumnBlocks.init();
+		}
 		MOD_DATA.registerCreators();
 		PromenadeBiomes.addToGen();
 		PromenadeConfiguredStructuresFeatures.addToGen();

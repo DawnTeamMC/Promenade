@@ -14,5 +14,18 @@
 		"promenade:polished_carbonite_stairs",
 		"promenade:polished_carbonite_slab",
 		"promenade:black_dylium"
-	]
+	],
+	"libcd": {
+		"entries": [
+			{
+				"when": {
+					"libcd:mod_loaded": "columns"
+				},
+				"values": [
+					"promenade:blunite_column",
+					"promenade:carbonite_column"
+				]
+			}
+		]
+	}
 }

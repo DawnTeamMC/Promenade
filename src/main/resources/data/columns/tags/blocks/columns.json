@@ -1,0 +1,17 @@
+{
+	"replace": false,
+	"values": [],
+	"libcd": {
+		"entries": [
+			{
+				"when": {
+					"libcd:mod_loaded": "columns"
+				},
+				"values": [
+					"promenade:blunite_column",
+					"promenade:carbonite_column"
+				]
+			}
+		]
+	}
+}

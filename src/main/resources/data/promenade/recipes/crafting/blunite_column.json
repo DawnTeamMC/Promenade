@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"###",
+		" # ",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "promenade:blunite"
+		}
+	},
+	"result": {
+		"item": "promenade:blunite_column",
+		"count": 6
+	}
+}

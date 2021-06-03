@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:stonecutting/carbonite_column"
+		]
+	},
+	"criteria": {
+		"has_carbonite": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": ["promenade:carbonite"]
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:stonecutting/carbonite_column"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_carbonite",
+			"has_the_recipe"
+		]
+	]
+}

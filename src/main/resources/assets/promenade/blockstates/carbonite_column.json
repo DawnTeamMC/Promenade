@@ -1,0 +1,27 @@
+{
+	"multipart": [
+		{
+			"apply": {
+				"model": "promenade:block/carbonite_column/center"
+			}
+		},
+		{
+			"when": {
+				"down": true
+			},
+			"apply": {
+				"model": "promenade:block/carbonite_column/end"
+			}
+		},
+		{
+			"when": {
+				"up": true
+			},
+			"apply": {
+				"model": "promenade:block/carbonite_column/end",
+				"x": 180,
+				"uvlock": true
+			}
+		}
+	]
+}

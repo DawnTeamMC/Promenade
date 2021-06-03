@@ -10,6 +10,8 @@ repositories {
     maven { url 'https://jitpack.io' }
     maven { url 'https://maven.shedaniel.me/' }
     maven { url 'https://maven.terraformersmc.com/' }
+    maven { url 'https://server.bbkr.space/artifactory/libs-release' }
+    maven { url 'https://www.cursemaven.com' }
 }
 
 dependencies {

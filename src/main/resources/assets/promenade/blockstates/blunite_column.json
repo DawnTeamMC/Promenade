@@ -1,0 +1,27 @@
+{
+	"multipart": [
+		{
+			"apply": {
+				"model": "promenade:block/blunite_column/center"
+			}
+		},
+		{
+			"when": {
+				"down": true
+			},
+			"apply": {
+				"model": "promenade:block/blunite_column/end"
+			}
+		},
+		{
+			"when": {
+				"up": true
+			},
+			"apply": {
+				"model": "promenade:block/blunite_column/end",
+				"x": 180,
+				"uvlock": true
+			}
+		}
+	]
+}
