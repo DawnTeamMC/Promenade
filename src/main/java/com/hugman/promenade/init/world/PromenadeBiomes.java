@@ -10,7 +10,6 @@ import net.fabricmc.fabric.api.biome.v1.OverworldBiomes;
 import net.fabricmc.fabric.api.biome.v1.OverworldClimate;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
 
 public class PromenadeBiomes extends PromenadeBundle {
 	public static final PromenadeConfig.BiomesCategory CONFIG = Promenade.CONFIG.biomes;

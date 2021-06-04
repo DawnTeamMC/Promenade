@@ -48,7 +48,6 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -154,10 +153,11 @@ public class DuckEntity extends AnimalEntity {
 			this.updateVelocity(0.1F, movementInput);
 			this.move(MovementType.SELF, this.getVelocity());
 			this.setVelocity(this.getVelocity().multiply(0.9D));
-			if (this.getTarget() == null) {
+			if(this.getTarget() == null) {
 				this.setVelocity(this.getVelocity().add(0.0D, -0.005D, 0.0D));
 			}
-		}else {
+		}
+		else {
 			super.travel(movementInput);
 		}
 	}
