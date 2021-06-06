@@ -1,7 +1,7 @@
 package com.hugman.promenade;
 
 import com.hugman.dawn.api.object.ModData;
-import com.hugman.promenade.compat.init.PromenadeColumnBlocks;
+import com.hugman.promenade.compat.init.PromenadeColumns;
 import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.PromenadeBlocks;
 import com.hugman.promenade.init.PromenadeEntities;
@@ -39,7 +39,7 @@ public class Promenade implements ModInitializer {
 		PromenadeConfiguredSurfaceBuilders.init();
 		PromenadeBiomes.init();
 		if(FabricLoader.getInstance().isModLoaded("columns")) {
-			PromenadeColumnBlocks.init();
+			PromenadeColumns.init();
 		}
 		MOD_DATA.registerCreators();
 		PromenadeBiomes.addToGen();
