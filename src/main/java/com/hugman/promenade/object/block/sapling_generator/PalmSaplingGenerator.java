@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class PalmSaplingGenerator extends SaplingGenerator {
 	@Override
-	protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean beeHive) {
+	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean beeHive) {
 		return PromenadeConfiguredFeatures.PALM;
 	}
 }

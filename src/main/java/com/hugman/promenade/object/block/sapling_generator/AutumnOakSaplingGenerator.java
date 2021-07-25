@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class AutumnOakSaplingGenerator extends SaplingGenerator {
 	@Override
-	protected ConfiguredFeature<TreeFeatureConfig, ?> createTreeFeature(Random random, boolean beeHive) {
+	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean beeHive) {
 		return random.nextInt(10) == 0 ? beeHive ? PromenadeConfiguredFeatures.FANCY_AUTUMN_BIRCH_BEES_002 : PromenadeConfiguredFeatures.FANCY_AUTUMN_BIRCH : beeHive ? PromenadeConfiguredFeatures.AUTUMN_OAK_BEES_002 : PromenadeConfiguredFeatures.AUTUMN_OAK;
 	}
 }
