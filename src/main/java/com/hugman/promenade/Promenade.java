@@ -6,13 +6,7 @@ import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.PromenadeBlocks;
 import com.hugman.promenade.init.PromenadeEntities;
 import com.hugman.promenade.init.PromenadeItems;
-import com.hugman.promenade.init.world.PromenadeBiomes;
-import com.hugman.promenade.init.world.PromenadeConfiguredFeatures;
-import com.hugman.promenade.init.world.PromenadeConfiguredStructuresFeatures;
-import com.hugman.promenade.init.world.PromenadeConfiguredSurfaceBuilders;
-import com.hugman.promenade.init.world.PromenadeFeatures;
-import com.hugman.promenade.init.world.PromenadeStructureFeatures;
-import com.hugman.promenade.init.world.PromenadeStructurePieces;
+import com.hugman.promenade.init.world.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
@@ -43,6 +37,8 @@ public class Promenade implements ModInitializer {
 		}
 		MOD_DATA.registerCreators();
 		PromenadeBiomes.addToGen();
+		PromenadeConfiguredFeatures.addToGen();
 		PromenadeConfiguredStructuresFeatures.addToGen();
+		PromenadeEntities.addToGen();
 	}
 }

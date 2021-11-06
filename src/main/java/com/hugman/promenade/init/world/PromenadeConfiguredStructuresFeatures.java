@@ -6,7 +6,6 @@ import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.PromenadeBundle;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.feature.ConfiguredFeatures;
 import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
@@ -23,11 +22,11 @@ public class PromenadeConfiguredStructuresFeatures extends PromenadeBundle {
 
 	public static void addToGen() {
 		if(CONFIG.witch_huts) {
-			BiomeModifications.addStructure(biomeSelectionContext -> biomeSelectionContext.hasBuiltInFeature(ConfiguredFeatures.DARK_FOREST_VEGETATION_RED) || biomeSelectionContext.hasBuiltInFeature(ConfiguredFeatures.DARK_FOREST_VEGETATION_BROWN), getId(PromenadeConfiguredStructuresFeatures.DARK_FOREST_WITCH_HUT));
+			BiomeModifications.addStructure(biomeSelectionContext -> biomeSelectionContext.hasBuiltInFeature(ConfiguredFeatures.DARK_FOREST_VEGETATION_RED) || biomeSelectionContext.hasBuiltInFeature(ConfiguredFeatures.DARK_FOREST_VEGETATION_BROWN), key(PromenadeConfiguredStructuresFeatures.DARK_FOREST_WITCH_HUT));
 		}
 	}
 
-	public static RegistryKey<ConfiguredStructureFeature<?, ?>> getId(ConfiguredStructureFeature<?, ?> structureFeature) {
-		return RegistryKey.of(Registry.CONFIGURED_STRUCTURE_FEATURE_KEY, BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE.getId(structureFeature));
+	public static RegistryKey<ConfiguredStructureFeature<?, ?>> key(ConfiguredStructureFeature<?, ?> structureFeature) {
+		return BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE.getKey(structureFeature).get();
 	}
 }

@@ -3,7 +3,13 @@ package com.hugman.promenade.init;
 import com.hugman.dawn.api.creator.EntityCreator;
 import com.hugman.dawn.api.creator.ItemCreator;
 import com.hugman.dawn.api.creator.SoundCreator;
+import com.hugman.promenade.Promenade;
+import com.hugman.promenade.config.PromenadeConfig;
+import com.hugman.promenade.init.world.PromenadeConfiguredFeatures;
 import com.hugman.promenade.object.entity.DuckEntity;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -11,6 +17,11 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.world.biome.SpawnSettings;
+import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.feature.ConfiguredFeatures;
+
+import java.util.function.Predicate;
 
 public class PromenadeEntities extends PromenadeBundle {
 	public static final EntityType<DuckEntity> DUCK = add(new EntityCreator<>("duck", FabricEntityTypeBuilder.createLiving().entityFactory(DuckEntity::new).spawnGroup(SpawnGroup.CREATURE).dimensions(EntityDimensions.fixed(0.4F, 0.8F)).trackRangeChunks(10).trackedUpdateRate(3).defaultAttributes(DuckEntity::createDuckAttributes).build()));
@@ -20,6 +31,15 @@ public class PromenadeEntities extends PromenadeBundle {
 	public static final SoundCreator DUCK_DEATH_SOUND = creator(new SoundCreator("entity.duck.death"));
 	public static final SoundCreator DUCK_STEP_SOUND = creator(new SoundCreator("entity.duck.step"));
 
+	private static final PromenadeConfig.CreaturesCategory CREATURES_CONFIG = Promenade.CONFIG.creatures;
+
 	public static void init() {
+	}
+
+	public static void addToGen() {
+		if(CREATURES_CONFIG.ducks) {
+			Predicate<BiomeSelectionContext> hasFarmAnimals = BiomeSelectors.spawnsOneOf(EntityType.COW).and(BiomeSelectors.spawnsOneOf(EntityType.SHEEP)).and(BiomeSelectors.spawnsOneOf(EntityType.CHICKEN)).and(BiomeSelectors.spawnsOneOf(EntityType.PIG));
+			BiomeModifications.addSpawn(hasFarmAnimals, SpawnGroup.CREATURE, PromenadeEntities.DUCK, 10, 4, 4);
+		}
 	}
 }
