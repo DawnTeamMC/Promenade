@@ -6,8 +6,8 @@ import com.hugman.promenade.object.entity.model.DuckEntityModel;
 import com.hugman.promenade.object.entity.render.DuckEntityRenderer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 
 @Environment(EnvType.CLIENT)
@@ -15,11 +15,15 @@ public class PromenadeEntityModels {
 	public static final EntityModelLayer DUCK = new EntityModelLayer(Promenade.MOD_DATA.id("duck"), "main");
 
 	public static void init() {
-		EntityModelLayerRegistry.registerModelLayer(DUCK, () -> DuckEntityModel.createModelData());
+		registerModelLayers();
 		registerEntityRenders();
 	}
 
+	private static void registerModelLayers() {
+		EntityModelLayerRegistry.registerModelLayer(DUCK, DuckEntityModel::createModelData);
+	}
+
 	private static void registerEntityRenders() {
-		EntityRendererRegistry.INSTANCE.register(PromenadeEntities.DUCK, DuckEntityRenderer::new);
+		EntityRendererRegistry.register(PromenadeEntities.DUCK, DuckEntityRenderer::new);
 	}
 }

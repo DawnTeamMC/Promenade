@@ -31,7 +31,7 @@
 		"java": ">=16",
 		"fabric": "*",
 		"fabricloader": ">=0.11.3",
-		"dawn": ">=2.0.1"
+		"dawn": ">=2.0.6"
 	},
 	"suggests": {
 		"columns": "*"
