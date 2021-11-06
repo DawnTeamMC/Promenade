@@ -3,7 +3,7 @@ package com.hugman.promenade.init;
 import com.hugman.dawn.api.creator.BlockCreator;
 import com.hugman.dawn.api.creator.bundle.block.MTBlockBundle;
 import com.hugman.dawn.api.creator.bundle.block.NetherWoodBundle;
-import com.hugman.dawn.api.creator.bundle.block.NormalWoodBundle;
+import com.hugman.dawn.api.creator.bundle.block.OverworldWoodBundle;
 import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.creator.bundle.block.WoodBundle;
 import com.hugman.dawn.api.object.block.FertilizableMushroomPlantBlock;
@@ -23,7 +23,6 @@ import com.hugman.promenade.object.block.sapling_generator.PalmSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.PinkCherryOakSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.WhiteCherryOakSaplingGenerator;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
@@ -109,11 +108,11 @@ public class PromenadeBlocks extends PromenadeBundle {
 	public static final Block WHITE_CHERRY_OAK_LEAVES = add(new BlockCreator.Builder("white_cherry_oak", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).build());
 	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(new BlockCreator.Builder("white_cherry_oak", Templates.LEAF_PILE, Settings.LEAF_PILE).flammability(30, 60).build());
 
-	public static final NormalWoodBundle PALM_WOOD = bundle(new NormalWoodBundle.Builder("palm", new PalmSaplingGenerator(), MapColor.ORANGE, MapColor.TERRACOTTA_CYAN).saplingSoil(blockState -> blockState.isIn(BlockTags.SAND)).build());
+	public static final OverworldWoodBundle PALM_WOOD = bundle(new OverworldWoodBundle.Builder("palm", new PalmSaplingGenerator(), MapColor.ORANGE, MapColor.TERRACOTTA_CYAN).saplingSoil(blockState -> blockState.isIn(BlockTags.SAND)).build());
 	public static final Block PALM_LEAF_PILE = add(new BlockCreator.Builder("palm", Templates.LEAF_PILE, Settings.LEAF_PILE).flammability(30, 60).build());
 
 	public static final Block BLACK_DYLIUM = add(new BlockCreator.Builder("black_dylium", DyliumBlock::new, FabricBlockSettings.of(Material.STONE, MapColor.DULL_RED).requiresTool().strength(3.0F, 9.0F).sounds(BlockSoundGroup.NYLIUM).ticksRandomly()).itemGroup(ItemGroup.BUILDING_BLOCKS).build());
-	public static final Block DARK_AMARANTH_WART_BLOCK = add(new BlockCreator.Builder("dark_amaranth_wart_block", Block::new, FabricBlockSettings.of(Material.SOLID_ORGANIC, MapColor.BRIGHT_TEAL).breakByTool(FabricToolTags.HOES).strength(1.0F).sounds(BlockSoundGroup.WART_BLOCK)).build());
+	public static final Block DARK_AMARANTH_WART_BLOCK = add(new BlockCreator.Builder("dark_amaranth_wart_block", Block::new, FabricBlockSettings.of(Material.SOLID_ORGANIC, MapColor.BRIGHT_TEAL).strength(1.0F).sounds(BlockSoundGroup.WART_BLOCK)).build());
 	public static final Block DARK_AMARANTH_ROOTS = add(new BlockCreator.Builder("dark_amaranth_roots", RootsBlock::new, FabricBlockSettings.of(Material.REPLACEABLE_PLANT, MapColor.CYAN).noCollision().breakInstantly().sounds(BlockSoundGroup.ROOTS)).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT).build());
 	public static final NetherWoodBundle DARK_AMARANTH_WOOD = bundle(new NetherWoodBundle.Builder("dark_amaranth", () -> PromenadeConfiguredFeatures.AMARANTH_FUNGI_PLANTED, MapColor.LIGHT_GRAY, MapColor.DARK_DULL_PINK).build());
 
