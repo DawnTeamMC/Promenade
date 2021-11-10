@@ -3,6 +3,7 @@ package com.hugman.promenade.object.entity;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -23,8 +24,13 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity {
 		super(entityType, world);
 	}
 
+	public static DefaultAttributeContainer.Builder createSunkenSkeletonAttributes() {
+		return createAbstractSkeletonAttributes();
+	}
+
 	public static boolean canSpawn(EntityType<SunkenSkeletonEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
 		BlockPos blockPos = pos;
+
 		do {
 			blockPos = blockPos.up();
 		} while(world.getBlockState(blockPos).isOf(Blocks.POWDER_SNOW));
@@ -35,10 +41,6 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity {
 	protected SoundEvent getAmbientSound() {
 		return SoundEvents.ENTITY_SKELETON_AMBIENT;
 	}
-	
-	SoundEvent getStepSound() {
-		return SoundEvents.ENTITY_SKELETON_STEP;
-	}
 
 	protected SoundEvent getHurtSound(DamageSource source) {
 		return SoundEvents.ENTITY_SKELETON_HURT;
@@ -46,6 +48,10 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity {
 
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_SKELETON_DEATH;
+	}
+
+	protected SoundEvent getStepSound() {
+		return SoundEvents.ENTITY_SKELETON_STEP;
 	}
 
 	protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {

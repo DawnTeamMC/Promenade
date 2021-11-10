@@ -8,6 +8,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.render.entity.SkeletonEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 
 @Environment(EnvType.CLIENT)
@@ -25,5 +26,6 @@ public class PromenadeEntityModels {
 
 	private static void registerEntityRenders() {
 		EntityRendererRegistry.register(PromenadeEntities.DUCK, DuckEntityRenderer::new);
+		EntityRendererRegistry.register(PromenadeEntities.SUNKEN_SKELETON, SkeletonEntityRenderer::new);
 	}
 }

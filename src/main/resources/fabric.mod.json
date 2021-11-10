@@ -26,6 +26,7 @@
 	"mixins": [
 		"promenade.mixins.json"
 	],
+	"accessWidener": "promenade.accesswidener",
 	"depends": {
 		"minecraft": "1.17.*",
 		"java": ">=16",

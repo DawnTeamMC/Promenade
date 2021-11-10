@@ -7,10 +7,12 @@ import com.hugman.promenade.Promenade;
 import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.world.PromenadeConfiguredFeatures;
 import com.hugman.promenade.object.entity.DuckEntity;
+import com.hugman.promenade.object.entity.SunkenSkeletonEntity;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -30,6 +32,9 @@ public class PromenadeEntities extends PromenadeBundle {
 	public static final SoundCreator DUCK_HURT_SOUND = creator(new SoundCreator("entity.duck.hurt"));
 	public static final SoundCreator DUCK_DEATH_SOUND = creator(new SoundCreator("entity.duck.death"));
 	public static final SoundCreator DUCK_STEP_SOUND = creator(new SoundCreator("entity.duck.step"));
+
+	public static final EntityType<SunkenSkeletonEntity> SUNKEN_SKELETON = add(new EntityCreator<>("sunken_skeleton", FabricEntityTypeBuilder.createMob().entityFactory(SunkenSkeletonEntity::new).spawnGroup(SpawnGroup.MONSTER).dimensions(EntityDimensions.fixed(0.6F, 1.99F)).trackRangeChunks(8).defaultAttributes(SunkenSkeletonEntity::createSunkenSkeletonAttributes).build()));
+	public static final Item SUNKEN_SKELETON_SPAWN_EGG = add(new ItemCreator.Builder("sunken_skeleton_spawn_egg", settings -> new SpawnEggItem(PromenadeEntities.SUNKEN_SKELETON, 10592673, 15904341, settings), new Item.Settings().group(ItemGroup.MISC)).build());
 
 	private static final PromenadeConfig.CreaturesCategory CREATURES_CONFIG = Promenade.CONFIG.creatures;
 

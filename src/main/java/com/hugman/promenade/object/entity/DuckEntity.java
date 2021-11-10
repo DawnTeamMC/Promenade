@@ -68,8 +68,13 @@ public class DuckEntity extends AnimalEntity {
 
 	@Override
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-		Optional<RegistryKey<Biome>> biome = world.getBiomeKey(this.getBlockPos());
-		DuckEntity.Type type = DuckEntity.Type.fromBiome(biome);
+		Optional<RegistryKey<Biome>> optional = world.getBiomeKey(this.getBlockPos());
+
+		DuckEntity.Type type = DuckEntity.Type.PEKIN;
+		if(optional.isPresent())
+		{
+			type= DuckEntity.Type.fromBiome(optional.get());
+		}
 		if(entityData instanceof DuckEntity.DuckData) {
 			type = ((DuckEntity.DuckData) entityData).type;
 		}
@@ -217,6 +222,7 @@ public class DuckEntity extends AnimalEntity {
 		private final String name;
 		private final List<RegistryKey<Biome>> spawnBiomes;
 
+		@SafeVarargs
 		Type(int indexIn, String nameIn, RegistryKey<Biome>... spawnBiomesIn) {
 			this.index = indexIn;
 			this.name = nameIn;
@@ -234,16 +240,14 @@ public class DuckEntity extends AnimalEntity {
 			return typeList[index];
 		}
 
-		public static DuckEntity.Type fromBiome(Optional<RegistryKey<Biome>> optional) {
+		public static DuckEntity.Type fromBiome(RegistryKey<Biome> biome) {
 			List<Type> shuffledList = Arrays.asList(typeList.clone());
 			Collections.shuffle(shuffledList);
-			if(optional.isPresent()) {
 				for(DuckEntity.Type type : shuffledList) {
-					if(type.getSpawnBiomes().contains(optional.get())) {
+					if(type.getSpawnBiomes().contains(biome)) {
 						return type;
 					}
 				}
-			}
 			return PEKIN;
 		}
 
