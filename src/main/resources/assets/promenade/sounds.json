@@ -28,5 +28,47 @@
 			"minecraft:mob/chicken/step1",
 			"minecraft:mob/chicken/step2"
 		]
+	},
+	"entity.sunken_skeleton.ambient": {
+		"subtitle": "subtitles.promenade.entity.sunken_skeleton.ambient",
+		"sounds": [
+			"promenade:entity/sunken_skeleton/ambient/1",
+			"promenade:entity/sunken_skeleton/ambient/2",
+			"promenade:entity/sunken_skeleton/ambient/3"
+		]
+	},
+	"entity.sunken_skeleton.hurt": {
+		"subtitle": "subtitles.promenade.entity.sunken_skeleton.hurt",
+		"sounds": [
+			"promenade:entity/sunken_skeleton/hurt/1",
+			"promenade:entity/sunken_skeleton/hurt/2",
+			"promenade:entity/sunken_skeleton/hurt/3",
+			"promenade:entity/sunken_skeleton/hurt/4"
+		]
+	},
+	"entity.sunken_skeleton.death": {
+		"subtitle": "subtitles.promenade.entity.sunken_skeleton.death",
+		"sounds": [
+			"promenade:entity/sunken_skeleton/death/1",
+			"promenade:entity/sunken_skeleton/death/2",
+			"promenade:entity/sunken_skeleton/death/3"
+		]
+	},
+	"entity.sunken_skeleton.step": {
+		"subtitle": "subtitles.block.generic.footsteps",
+		"sounds": [
+			"promenade:entity/sunken_skeleton/step/1",
+			"promenade:entity/sunken_skeleton/step/2",
+			"promenade:entity/sunken_skeleton/step/3",
+			"promenade:entity/sunken_skeleton/step/4"
+		]
+	},
+	"entity.sunken_skeleton.shoot": {
+		"subtitle": "subtitles.promenade.entity.sunken_skeleton.shoot",
+		"sounds": [
+			"promenade:entity/sunken_skeleton/shoot/1",
+			"promenade:entity/sunken_skeleton/shoot/2",
+			"promenade:entity/sunken_skeleton/shoot/3"
+		]
 	}
 }
