@@ -19,6 +19,7 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.ConfiguredFeatures;
@@ -35,6 +36,11 @@ public class PromenadeEntities extends PromenadeBundle {
 
 	public static final EntityType<SunkenSkeletonEntity> SUNKEN_SKELETON = add(new EntityCreator<>("sunken_skeleton", FabricEntityTypeBuilder.createMob().entityFactory(SunkenSkeletonEntity::new).spawnGroup(SpawnGroup.MONSTER).dimensions(EntityDimensions.fixed(0.6F, 1.99F)).trackRangeChunks(8).defaultAttributes(SunkenSkeletonEntity::createSunkenSkeletonAttributes).build()));
 	public static final Item SUNKEN_SKELETON_SPAWN_EGG = add(new ItemCreator.Builder("sunken_skeleton_spawn_egg", settings -> new SpawnEggItem(PromenadeEntities.SUNKEN_SKELETON, 10592673, 15904341, settings), new Item.Settings().group(ItemGroup.MISC)).build());
+	public static final SoundCreator SUNKEN_SKELETON_AMBIENT_SOUND = creator(new SoundCreator("entity.sunken_skeleton.ambient"));
+	public static final SoundCreator SUNKEN_SKELETON_HURT_SOUND = creator(new SoundCreator("entity.sunken_skeleton.hurt"));
+	public static final SoundCreator SUNKEN_SKELETON_DEATH_SOUND = creator(new SoundCreator("entity.sunken_skeleton.death"));
+	public static final SoundCreator SUNKEN_SKELETON_STEP_SOUND = creator(new SoundCreator("entity.sunken_skeleton.step"));
+	public static final SoundCreator SUNKEN_SKELETON_SHOOT_SOUND = creator(new SoundCreator("entity.sunken_skeleton.shoot"));
 
 	private static final PromenadeConfig.CreaturesCategory CREATURES_CONFIG = Promenade.CONFIG.creatures;
 

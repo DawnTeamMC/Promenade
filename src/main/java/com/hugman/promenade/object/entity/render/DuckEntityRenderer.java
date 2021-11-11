@@ -1,7 +1,7 @@
 package com.hugman.promenade.object.entity.render;
 
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.init.client.PromenadeEntityModels;
+import com.hugman.promenade.init.client.PromenadeEntityModelLayers;
 import com.hugman.promenade.object.entity.DuckEntity;
 import com.hugman.promenade.object.entity.model.DuckEntityModel;
 import net.fabricmc.api.EnvType;
@@ -14,7 +14,7 @@ import net.minecraft.util.math.MathHelper;
 @Environment(EnvType.CLIENT)
 public class DuckEntityRenderer extends MobEntityRenderer<DuckEntity, DuckEntityModel<DuckEntity>> {
 	public DuckEntityRenderer(EntityRendererFactory.Context context) {
-		super(context, new DuckEntityModel<>(context.getPart(PromenadeEntityModels.DUCK)), 0.3F);
+		super(context, new DuckEntityModel<>(context.getPart(PromenadeEntityModelLayers.DUCK)), 0.3F);
 	}
 
 	@Override
