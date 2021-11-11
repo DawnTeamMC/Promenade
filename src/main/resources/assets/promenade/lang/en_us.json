@@ -156,8 +156,10 @@
 	"item.promenade.duck": "Duck",
 	"item.promenade.cooked_duck": "Cooked Duck",
 	"item.promenade.duck_spawn_egg": "Duck Spawn Egg",
+	"item.promenade.sunken_skeleton": "Sunken Skeleton Spawn Egg",
 
 	"entity.promenade.duck": "Duck",
+	"entity.promenade.sunken_skeleton": "Sunken Skeleton",
 
 	"biome.promenade.pumpkin_pastures": "Pumpkin Pastures",
 	"biome.promenade.pink_cherry_oak_forest": "Pink Cherry Oak Forest",
@@ -169,9 +171,15 @@
 	"biome.promenade.protanopian_gallery": "Protanopian Gallery",
 	"biome.promenade.dark_amaranth_forest": "Dark Amaranth Forest",
 	"biome.promenade.tall_dark_amaranth_forest": "Tall Dark Amaranth Forest",
+
 	"subtitles.promenade.entity.duck.ambient": "Duck quacks",
 	"subtitles.promenade.entity.duck.hurt": "Duck hurts",
 	"subtitles.promenade.entity.duck.death": "Duck dies",
+	"subtitles.promenade.entity.sunken_skeleton.ambient": "Sunken Skeleton rattles",
+	"subtitles.promenade.entity.sunken_skeleton.hurt": "Sunken Skeleton hurts",
+	"subtitles.promenade.entity.sunken_skeleton.death": "Sunken Skeleton dies",
+	"subtitles.promenade.entity.sunken_skeleton.shoot": "Sunken Skeleton shoots",
+
 	"text.autoconfig.promenade.title": "Promenade Configuration",
 	"text.autoconfig.promenade.category.biomes": "Biomes",
 	"text.autoconfig.promenade.category.features": "Features",
