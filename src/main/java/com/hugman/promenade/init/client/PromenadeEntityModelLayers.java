@@ -2,6 +2,7 @@ package com.hugman.promenade.init.client;
 
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.entity.model.DuckEntityModel;
+import com.hugman.promenade.object.entity.model.SunkenSkeletonModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -26,7 +27,7 @@ public class PromenadeEntityModelLayers {
 
 	public static void init() {
 		EntityModelLayerRegistry.registerModelLayer(DUCK, DuckEntityModel::createModelData);
-		EntityModelLayerRegistry.registerModelLayer(SUNKEN_SKELETON, SkeletonEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(SUNKEN_SKELETON, SunkenSkeletonModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(SUNKEN_SKELETON_INNER_ARMOR, () -> INNER_ARMOR_MODEL_DATA);
 		EntityModelLayerRegistry.registerModelLayer(SUNKEN_SKELETON_OUTER_ARMOR, () -> OUTER_ARMOR_MODEL_DATA);
 	}
