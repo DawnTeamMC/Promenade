@@ -37,9 +37,10 @@ public class SunkenSkeletonModel extends SkeletonEntityModel<SunkenSkeletonEntit
 		this.leftArmPose = BipedEntityModel.ArmPose.EMPTY;
 		ArmPose armPose = switch(mobEntity.getState()) {
 			default -> ArmPose.EMPTY;
-			case BOW -> ArmPose.BOW_AND_ARROW;
+			case BOW_HOLD -> ArmPose.BOW_AND_ARROW;
 			case CROSSBOW_CHARGE -> ArmPose.CROSSBOW_CHARGE;
 			case CROSSBOW_HOLD -> ArmPose.CROSSBOW_HOLD;
+			case SWIMMING -> ArmPose.SPYGLASS;
 		};
 		if (mobEntity.getMainArm() == Arm.RIGHT) {
 			this.rightArmPose = armPose;
