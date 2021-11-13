@@ -19,7 +19,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
 
 import java.util.function.Predicate;
 
@@ -49,6 +48,6 @@ public class PromenadeEntities extends PromenadeBundle {
 			Predicate<BiomeSelectionContext> hasFarmAnimals = BiomeSelectors.spawnsOneOf(EntityType.COW).and(BiomeSelectors.spawnsOneOf(EntityType.SHEEP)).and(BiomeSelectors.spawnsOneOf(EntityType.CHICKEN)).and(BiomeSelectors.spawnsOneOf(EntityType.PIG));
 			BiomeModifications.addSpawn(hasFarmAnimals, SpawnGroup.CREATURE, DUCK, 10, 4, 4);
 		}
-		BiomeModifications.addSpawn(biome -> biome.hasBuiltInFeature(ConfiguredFeatures.WARM_OCEAN_VEGETATION), SpawnGroup.MONSTER, SUNKEN_SKELETON, 6, 1, 3);
+		BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityType.DROWNED), SpawnGroup.MONSTER, SUNKEN_SKELETON, 6, 1, 3);
 	}
 }

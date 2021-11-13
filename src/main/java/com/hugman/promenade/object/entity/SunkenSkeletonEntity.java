@@ -56,6 +56,7 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 	private static final TrackedData<Integer> SUNKEN_SKELETON_TYPE = DataTracker.registerData(SunkenSkeletonEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final TrackedData<Boolean> CHARGING = DataTracker.registerData(SunkenSkeletonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 	private static final TrackedData<Boolean> SWIMMING = DataTracker.registerData(SunkenSkeletonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+	private final static EntityDimensions SWIMMING_DIMENSIONS = EntityDimensions.fixed(0.6F, 0.6F);
 	protected final SwimNavigation waterNavigation = new SwimNavigation(this, world);
 	protected final MobNavigation landNavigation = new MobNavigation(this, world);
 	private final CrossbowAttackGoal<SunkenSkeletonEntity> crossbowAttackGoal = new CrossbowAttackGoal<>(this, 1.0D, 20.0F);
@@ -72,7 +73,6 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 		}
 	};
 	boolean targetingUnderwater;
-	private final static EntityDimensions SWIMMING_DIMENSIONS = EntityDimensions.fixed(0.6F, 0.6F);
 
 	public SunkenSkeletonEntity(EntityType<? extends SunkenSkeletonEntity> entityType, World world) {
 		super(entityType, world);
@@ -82,8 +82,12 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 	}
 
 	public static boolean canSpawn(EntityType<SunkenSkeletonEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+		return true;
+		/*
 		boolean bl = world.getDifficulty() != Difficulty.PEACEFUL && isSpawnDark(world, pos, random) && (spawnReason == SpawnReason.SPAWNER || world.getFluidState(pos).isIn(FluidTags.WATER));
 		return random.nextInt(40) == 0 && pos.getY() < world.getSeaLevel() - 5 && bl;
+
+		 */
 	}
 
 	public static DefaultAttributeContainer.Builder createSunkenSkeletonAttributes() {
@@ -217,7 +221,8 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 	@Override
 	public void updateSwimming() {
 		if(!this.world.isClient) {
-			if(this.canMoveVoluntarily() && this.isSubmergedInWater()) {
+			boolean b = this.world.isAir(this.getBlockPos().up(2));
+			if(!b && this.canMoveVoluntarily() && this.isSubmergedInWater()) {
 				this.navigation = this.waterNavigation;
 				this.setSwimming(true);
 				this.setBreaststrokeSwimming(true);
@@ -286,13 +291,13 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 		else return this.dataTracker.get(SWIMMING);
 	}
 
+	public void setBreaststrokeSwimming(boolean breaststrokeSwimming) {
+		this.dataTracker.set(SWIMMING, breaststrokeSwimming);
+	}
+
 	@Override
 	public boolean isInSwimmingPose() {
 		return isBreaststrokeSwimming();
-	}
-
-	public void setBreaststrokeSwimming(boolean breaststrokeSwimming) {
-		this.dataTracker.set(SWIMMING, breaststrokeSwimming);
 	}
 
 	@Override

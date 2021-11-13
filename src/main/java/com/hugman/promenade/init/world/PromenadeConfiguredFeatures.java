@@ -8,7 +8,6 @@ import com.hugman.promenade.Promenade;
 import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.PromenadeBlocks;
 import com.hugman.promenade.init.PromenadeBundle;
-import com.hugman.promenade.init.PromenadeEntities;
 import com.hugman.promenade.object.world.gen.feature.config.BoulderFeatureConfig;
 import com.hugman.promenade.object.world.gen.feature.config.HugeMushroomFeatureConfig;
 import com.hugman.promenade.object.world.gen.feature.config.SpikeFeatureConfig;
@@ -18,15 +17,12 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.CountConfig;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.YOffset;
@@ -205,7 +201,7 @@ public class PromenadeConfiguredFeatures extends PromenadeBundle {
 		if(FEATURES_CONFIG.palm_trees) {
 			BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.DESERT), GenerationStep.Feature.VEGETAL_DECORATION, key(PALM_TREES));
 		}
-		if(FEATURES_CONFIG.blueberry_bushes){
+		if(FEATURES_CONFIG.blueberry_bushes) {
 			BiomeModifications.addFeature(c -> c.hasBuiltInFeature(ConfiguredFeatures.PATCH_BERRY_SPARSE), GenerationStep.Feature.VEGETAL_DECORATION, key(PATCH_BLUEBERRY_BUSH_SPARSE));
 			BiomeModifications.addFeature(c -> c.hasBuiltInFeature(ConfiguredFeatures.PATCH_BERRY_DECORATED), GenerationStep.Feature.VEGETAL_DECORATION, key(PATCH_BLUEBERRY_BUSH_DECORATED));
 		}

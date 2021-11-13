@@ -2,8 +2,6 @@ package com.hugman.promenade.object.world.gen.feature;
 
 import com.hugman.promenade.object.world.gen.feature.config.BoulderFeatureConfig;
 import com.mojang.serialization.Codec;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.feature.Feature;
@@ -15,10 +13,6 @@ import java.util.Random;
 public class BoulderFeature extends Feature<BoulderFeatureConfig> {
 	public BoulderFeature(Codec<BoulderFeatureConfig> codec) {
 		super(codec);
-	}
-
-	protected static boolean isEndStone(Block block) {
-		return block == Blocks.END_STONE;
 	}
 
 	@Override

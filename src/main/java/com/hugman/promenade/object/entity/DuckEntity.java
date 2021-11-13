@@ -71,9 +71,8 @@ public class DuckEntity extends AnimalEntity {
 		Optional<RegistryKey<Biome>> optional = world.getBiomeKey(this.getBlockPos());
 
 		DuckEntity.Type type = DuckEntity.Type.PEKIN;
-		if(optional.isPresent())
-		{
-			type= DuckEntity.Type.fromBiome(optional.get());
+		if(optional.isPresent()) {
+			type = DuckEntity.Type.fromBiome(optional.get());
 		}
 		if(entityData instanceof DuckEntity.DuckData) {
 			type = ((DuckEntity.DuckData) entityData).type;
@@ -243,11 +242,11 @@ public class DuckEntity extends AnimalEntity {
 		public static DuckEntity.Type fromBiome(RegistryKey<Biome> biome) {
 			List<Type> shuffledList = Arrays.asList(typeList.clone());
 			Collections.shuffle(shuffledList);
-				for(DuckEntity.Type type : shuffledList) {
-					if(type.getSpawnBiomes().contains(biome)) {
-						return type;
-					}
+			for(DuckEntity.Type type : shuffledList) {
+				if(type.getSpawnBiomes().contains(biome)) {
+					return type;
 				}
+			}
 			return PEKIN;
 		}
 

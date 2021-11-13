@@ -40,11 +40,11 @@ public class SunkenSkeletonModel extends SkeletonEntityModel<SunkenSkeletonEntit
 			case BOW_HOLD -> ArmPose.BOW_AND_ARROW;
 			case CROSSBOW_CHARGE -> ArmPose.CROSSBOW_CHARGE;
 			case CROSSBOW_HOLD -> ArmPose.CROSSBOW_HOLD;
-			case SWIMMING -> ArmPose.SPYGLASS;
 		};
-		if (mobEntity.getMainArm() == Arm.RIGHT) {
+		if(mobEntity.getMainArm() == Arm.RIGHT) {
 			this.rightArmPose = armPose;
-		} else {
+		}
+		else {
 			this.leftArmPose = armPose;
 		}
 	}

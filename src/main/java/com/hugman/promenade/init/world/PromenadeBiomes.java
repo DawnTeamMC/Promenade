@@ -5,19 +5,13 @@ import com.hugman.promenade.Promenade;
 import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.PromenadeBundle;
 import com.hugman.promenade.object.world.gen.biome.PromenadeBiomeCreator;
-import net.fabricmc.fabric.api.biome.v1.*;
-import net.minecraft.util.registry.BuiltinRegistries;
+import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
+import net.fabricmc.fabric.api.biome.v1.OverworldBiomes;
+import net.fabricmc.fabric.api.biome.v1.OverworldClimate;
+import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
-import net.minecraft.world.gen.feature.ConfiguredStructureFeature;
-
-import java.util.function.Predicate;
 
 public class PromenadeBiomes extends PromenadeBundle {
-	private static final PromenadeConfig.BiomesCategory BIOMES_CONFIG = Promenade.CONFIG.biomes;
-	private static final PromenadeConfig.CreaturesCategory CREATURES_CONFIG = Promenade.CONFIG.creatures;
 	public static final BiomeCreator PUMPKIN_PASTURES = creator(new BiomeCreator("pumpkin_pastures", PromenadeBiomeCreator.createPumpkinPastures()));
 	public static final BiomeCreator PINK_CHERRY_OAK_FOREST = creator(new BiomeCreator("pink_cherry_oak_forest", PromenadeBiomeCreator.createCherryOakForest(true)));
 	public static final BiomeCreator WHITE_CHERRY_OAK_FOREST = creator(new BiomeCreator("white_cherry_oak_forest", PromenadeBiomeCreator.createCherryOakForest(false)));
@@ -28,6 +22,8 @@ public class PromenadeBiomes extends PromenadeBundle {
 	public static final BiomeCreator PROTANOPIAN_GALLERY = creator(new BiomeCreator("protanopian_gallery", PromenadeBiomeCreator.createGallery(PromenadeBiomeCreator.composeProtanopianGalleryGenerationSettings())));
 	public static final BiomeCreator DARK_AMARANTH_FOREST = creator(new BiomeCreator("dark_amaranth_forest", PromenadeBiomeCreator.createDarkAmaranthForest(false)));
 	public static final BiomeCreator TALL_DARK_AMARANTH_FOREST = creator(new BiomeCreator("tall_dark_amaranth_forest", PromenadeBiomeCreator.createDarkAmaranthForest(true)));
+	private static final PromenadeConfig.BiomesCategory BIOMES_CONFIG = Promenade.CONFIG.biomes;
+	private static final PromenadeConfig.CreaturesCategory CREATURES_CONFIG = Promenade.CONFIG.creatures;
 
 	public static void init() {
 	}
