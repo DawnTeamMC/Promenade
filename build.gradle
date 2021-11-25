@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-apply from: 'https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/build_template/1.17.gradle'
+apply from: 'https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/gradle_scripts/fabric-1.17.gradle'
 
 repositories {
     mavenLocal()

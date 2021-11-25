@@ -66,5 +66,7 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 	public static class CreaturesCategory implements ConfigData {
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean ducks = true;
+		@ConfigEntry.Gui.RequiresRestart
+		public boolean sunken_skeletons = true;
 	}
 }

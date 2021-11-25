@@ -198,5 +198,6 @@
 	"text.autoconfig.promenade.option.features.palm_trees": "Generate palm trees",
 	"text.autoconfig.promenade.option.features.blueberry_bushes": "Generate blueberry bushes",
 	"text.autoconfig.promenade.option.structures.witch_huts": "Generate witch huts",
-	"text.autoconfig.promenade.option.creatures.ducks": "Ducks spawn naturally"
+	"text.autoconfig.promenade.option.creatures.ducks": "Ducks spawn naturally",
+	"text.autoconfig.promenade.option.creatures.sunken_skeletons": "Sunken Skeletons spawn naturally"
 }
