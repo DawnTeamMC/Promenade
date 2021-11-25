@@ -5,11 +5,13 @@ import com.hugman.promenade.Promenade;
 import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.PromenadeBundle;
 import com.hugman.promenade.object.world.gen.biome.PromenadeBiomeCreator;
+import net.fabricmc.fabric.api.biome.v1.BiomeModification;
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
 import net.fabricmc.fabric.api.biome.v1.OverworldBiomes;
 import net.fabricmc.fabric.api.biome.v1.OverworldClimate;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 
 public class PromenadeBiomes extends PromenadeBundle {
 	public static final BiomeCreator PUMPKIN_PASTURES = creator(new BiomeCreator("pumpkin_pastures", PromenadeBiomeCreator.createPumpkinPastures()));
@@ -29,19 +31,26 @@ public class PromenadeBiomes extends PromenadeBundle {
 	}
 
 	public static void addToGen() {
+		/*
+		--------------------------------------
+		OVERWORLD BIOMES ARE NOT SUPPORTED YET
+		--------------------------------------
+
 		if(BIOMES_CONFIG.pumpkin_pastures) OverworldBiomes.addContinentalBiome(PUMPKIN_PASTURES.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.pumpkin_pastures_weight / 10.0D);
 		if(BIOMES_CONFIG.cherry_oak_forests) {
 			OverworldBiomes.addContinentalBiome(PINK_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D);
 			OverworldBiomes.addContinentalBiome(WHITE_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D);
 		}
+
+		 */
 		if(BIOMES_CONFIG.tall_nether_forests) {
-			NetherBiomes.addNetherBiome(TALL_CRIMSON_FOREST.getRegistryKey(), new Biome.MixedNoisePoint(0.4F, 0.0F, 0.1F, 0.0F, 0.0F));
-			NetherBiomes.addNetherBiome(TALL_WARPED_FOREST.getRegistryKey(), new Biome.MixedNoisePoint(0.0F, 0.5F, 0.1F, 0.0F, 0.375F));
+			NetherBiomes.addNetherBiome(TALL_CRIMSON_FOREST.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.4F, 0.0F, 0.8F, 0.0F, 0.4F, 0.0F, 0.0F));
+			NetherBiomes.addNetherBiome(TALL_WARPED_FOREST.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.5F, 0.8F, 0.0F, 0.0F, 0.0F, 0.375F));
 		}
 		if(BIOMES_CONFIG.nether_galleries) {
-			NetherBiomes.addNetherBiome(TRITANOPIAN_GALLERY.getRegistryKey(), new Biome.MixedNoisePoint(0.05F, 0.025F, 0.0F, 0.0F, 0.05F));
-			NetherBiomes.addNetherBiome(ACHROMATOPSIAN_GALLERY.getRegistryKey(), new Biome.MixedNoisePoint(0.1F, 0.05F, 0.0F, 0.0F, 0.025F));
-			NetherBiomes.addNetherBiome(PROTANOPIAN_GALLERY.getRegistryKey(), new Biome.MixedNoisePoint(0.025F, 0.1F, 0.0F, 0.0F, 0.05F));
+			NetherBiomes.addNetherBiome(TRITANOPIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+			NetherBiomes.addNetherBiome(ACHROMATOPSIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.2F, 0.0F, 0.6F, 0.0F));
+			NetherBiomes.addNetherBiome(PROTANOPIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.1F, 0.0F));
 		}
 		if(BIOMES_CONFIG.dark_amaranth_forests) {
 			TheEndBiomes.addHighlandsBiome(TALL_DARK_AMARANTH_FOREST.getRegistryKey(), BIOMES_CONFIG.dark_amaranth_forests_weight / 10.0D);
