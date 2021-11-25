@@ -1,9 +1,10 @@
 plugins {
-    id 'fabric-loom' version '0.8-SNAPSHOT' apply false
-    id 'maven-publish'
+    id 'fabric-loom' version '0.10-SNAPSHOT'
 }
 
-apply from: 'https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/gradle_scripts/fabric-1.17.gradle'
+apply from: 'https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/gradle_scripts/fabric-mod/java-17.gradle'
+apply from: 'https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/gradle_scripts/fabric-publish.gradle'
+apply from: 'https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/gradle_scripts/fabric-translate.gradle'
 
 repositories {
     mavenLocal()
