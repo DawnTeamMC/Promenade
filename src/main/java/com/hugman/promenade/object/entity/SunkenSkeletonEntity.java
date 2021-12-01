@@ -1,6 +1,6 @@
 package com.hugman.promenade.object.entity;
 
-import com.hugman.promenade.init.PromenadeEntities;
+import com.hugman.promenade.init.EntityBundle;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.NoPenaltyTargeting;
 import net.minecraft.entity.ai.control.MoveControl;
@@ -96,26 +96,26 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return this.isSubmergedIn(FluidTags.WATER) ? PromenadeEntities.SUNKEN_SKELETON_AMBIENT_SOUND.getSound() : SoundEvents.ENTITY_SKELETON_AMBIENT;
+		return this.isSubmergedIn(FluidTags.WATER) ? EntityBundle.SUNKEN_SKELETON_AMBIENT_SOUND.getSound() : SoundEvents.ENTITY_SKELETON_AMBIENT;
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return this.isSubmergedIn(FluidTags.WATER) ? PromenadeEntities.SUNKEN_SKELETON_HURT_SOUND.getSound() : SoundEvents.ENTITY_SKELETON_HURT;
+		return this.isSubmergedIn(FluidTags.WATER) ? EntityBundle.SUNKEN_SKELETON_HURT_SOUND.getSound() : SoundEvents.ENTITY_SKELETON_HURT;
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return this.isSubmergedIn(FluidTags.WATER) ? PromenadeEntities.SUNKEN_SKELETON_DEATH_SOUND.getSound() : SoundEvents.ENTITY_SKELETON_DEATH;
+		return this.isSubmergedIn(FluidTags.WATER) ? EntityBundle.SUNKEN_SKELETON_DEATH_SOUND.getSound() : SoundEvents.ENTITY_SKELETON_DEATH;
 	}
 
 	@Override
 	protected SoundEvent getStepSound() {
-		return this.isSubmergedIn(FluidTags.WATER) ? PromenadeEntities.SUNKEN_SKELETON_STEP_SOUND.getSound() : SoundEvents.ENTITY_SKELETON_STEP;
+		return this.isSubmergedIn(FluidTags.WATER) ? EntityBundle.SUNKEN_SKELETON_STEP_SOUND.getSound() : SoundEvents.ENTITY_SKELETON_STEP;
 	}
 
 	protected SoundEvent getShootSound() {
-		return this.isSubmergedIn(FluidTags.WATER) ? PromenadeEntities.SUNKEN_SKELETON_SHOOT_SOUND.getSound() : (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem) ? SoundEvents.ITEM_CROSSBOW_SHOOT : SoundEvents.ENTITY_SKELETON_SHOOT);
+		return this.isSubmergedIn(FluidTags.WATER) ? EntityBundle.SUNKEN_SKELETON_SHOOT_SOUND.getSound() : (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem) ? SoundEvents.ITEM_CROSSBOW_SHOOT : SoundEvents.ENTITY_SKELETON_SHOOT);
 	}
 
 	@Override
@@ -494,7 +494,7 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 
 		public void tick() {
 			if(this.sunkenSkeleton.getY() < (double) (this.minY - 1) && (this.sunkenSkeleton.getNavigation().isIdle() || this.sunkenSkeleton.hasFinishedCurrentPath())) {
-				Vec3d vec3d = NoPenaltyTargeting.find(this.sunkenSkeleton, 4, 8, new Vec3d(this.sunkenSkeleton.getX(), this.minY - 1, this.sunkenSkeleton.getZ()), 1.5707963705062866D);
+				Vec3d vec3d = NoPenaltyTargeting.findTo(this.sunkenSkeleton, 4, 8, new Vec3d(this.sunkenSkeleton.getX(), this.minY - 1, this.sunkenSkeleton.getZ()), 1.6D);
 				if(vec3d == null) {
 					this.foundTarget = true;
 					return;

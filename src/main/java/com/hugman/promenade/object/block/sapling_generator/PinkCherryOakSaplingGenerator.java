@@ -1,6 +1,6 @@
 package com.hugman.promenade.object.block.sapling_generator;
 
-import com.hugman.promenade.init.world.PromenadeConfiguredFeatures;
+import com.hugman.promenade.init.world.feature.PromenadeConfiguredFeatures;
 import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;

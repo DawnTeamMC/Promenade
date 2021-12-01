@@ -1,7 +1,7 @@
 package com.hugman.promenade.init.world;
 
 import com.hugman.dawn.api.creator.ConfiguredSurfaceBuilderCreator;
-import com.hugman.promenade.init.PromenadeBlocks;
+import com.hugman.promenade.init.BlockBundle;
 import com.hugman.promenade.init.PromenadeBundle;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -17,6 +17,6 @@ public class PromenadeConfiguredSurfaceBuilders extends PromenadeBundle {
 
 	public static final class States {
 		protected static final BlockState END_STONE = Blocks.END_STONE.getDefaultState();
-		protected static final BlockState AMARANTH_DYLIUM = PromenadeBlocks.BLACK_DYLIUM.getDefaultState();
+		protected static final BlockState AMARANTH_DYLIUM = BlockBundle.BLACK_DYLIUM.getDefaultState();
 	}
 }

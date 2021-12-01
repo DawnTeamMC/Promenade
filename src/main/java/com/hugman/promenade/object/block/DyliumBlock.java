@@ -1,7 +1,7 @@
 package com.hugman.promenade.object.block;
 
-import com.hugman.promenade.init.PromenadeBlocks;
-import com.hugman.promenade.init.world.PromenadeConfiguredFeatures;
+import com.hugman.promenade.init.BlockBundle;
+import com.hugman.promenade.init.world.feature.PromenadeConfiguredFeatures;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.NyliumBlock;
@@ -35,7 +35,7 @@ public class DyliumBlock extends NyliumBlock {
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
 		BlockState blockState = world.getBlockState(pos);
 		BlockPos blockPos = pos.up();
-		if(blockState.isOf(PromenadeBlocks.BLACK_DYLIUM)) {
+		if(blockState.isOf(BlockBundle.BLACK_DYLIUM)) {
 			NetherForestVegetationFeature.generate(world, random, blockPos, PromenadeConfiguredFeatures.Configs.AMARANTH_ROOTS, 3, 1);
 		}
 	}

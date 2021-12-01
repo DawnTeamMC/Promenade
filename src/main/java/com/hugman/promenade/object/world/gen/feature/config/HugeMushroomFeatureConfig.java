@@ -2,6 +2,7 @@ package com.hugman.promenade.object.world.gen.feature.config;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.FeatureConfig;
@@ -56,6 +57,10 @@ public class HugeMushroomFeatureConfig implements FeatureConfig {
 		this.decorationChance = decorationChance;
 		this.vineChance = vineChance;
 		this.upsideDown = upsideDown;
+	}
+
+	public HugeMushroomFeatureConfig(int stemBaseHeight, int stemRandomHeight, Block hat, int hatBaseSize, int hatRandomSize, Block decoration, double decorationChance, double vineChance) {
+		this(stemBaseHeight, stemRandomHeight, hat.getDefaultState(), hatBaseSize, hatRandomSize, decoration.getDefaultState(), decorationChance, vineChance);
 	}
 
 	public HugeMushroomFeatureConfig(int stemBaseHeight, int stemRandomHeight, BlockState hatState, int hatBaseSize, int hatRandomSize, BlockState decorationState, double decorationChance, double vineChance) {
