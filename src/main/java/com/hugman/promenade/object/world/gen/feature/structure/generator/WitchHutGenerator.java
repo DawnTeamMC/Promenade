@@ -3,10 +3,10 @@ package com.hugman.promenade.object.world.gen.feature.structure.generator;
 import com.google.common.collect.ImmutableList;
 import com.hugman.dawn.api.util.DefaultBlockTemplates;
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.init.BlockBundle;
+import com.hugman.promenade.init.OreBundle;
+import com.hugman.promenade.init.WitchHutBundle;
 import com.hugman.promenade.init.data.PromenadeLootTables;
 import com.hugman.promenade.init.data.PromenadeTags;
-import com.hugman.promenade.init.world.PromenadeStructurePieces;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LanternBlock;
 import net.minecraft.block.entity.BlockEntity;
@@ -15,8 +15,8 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.WitchEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.structure.SimpleStructurePiece;
+import net.minecraft.structure.StructureContext;
 import net.minecraft.structure.StructureManager;
 import net.minecraft.structure.StructurePiecesHolder;
 import net.minecraft.structure.StructurePlacementData;
@@ -37,21 +37,22 @@ import net.minecraft.world.ServerWorldAccess;
 import java.util.Random;
 
 public class WitchHutGenerator {
-	public static void addPieces(StructureManager manager, BlockPos pos, BlockRotation rotation, BlockMirror mirror, StructurePiecesHolder piecesHolder) {
-		piecesHolder.addPiece(new MainPiece(manager, Promenade.MOD_DATA.id("witch_hut"), pos, rotation, mirror));
+	public static void addPieces(StructureManager manager, BlockPos pos, StructurePiecesHolder holder, Random random) {
+		BlockRotation rotation = BlockRotation.random(random);
+		BlockMirror mirror = random.nextFloat() < 0.5F ? BlockMirror.NONE : BlockMirror.FRONT_BACK;
+		holder.addPiece(new MainPiece(manager, Promenade.MOD_DATA.id("witch_hut"), pos, rotation, mirror, random));
 	}
 
 	public static class MainPiece extends SimpleStructurePiece {
-		public MainPiece(ServerWorld world, NbtCompound nbt) {
-			super(PromenadeStructurePieces.WITCH_HUT_PIECE, nbt, world, (identifier) -> createPlacementData(BlockRotation.valueOf(nbt.getString("Rot")), BlockMirror.valueOf(nbt.getString("Mirror"))));
+		public MainPiece(StructureManager manager, NbtCompound nbt) {
+			super(WitchHutBundle.WITCH_HUT_PIECE, nbt, manager, (identifier) -> createPlacementData(BlockRotation.valueOf(nbt.getString("Rot")), BlockMirror.valueOf(nbt.getString("Mirror")), new Random()));
 		}
 
-		public MainPiece(StructureManager manager, Identifier identifier, BlockPos pos, BlockRotation rotation, BlockMirror mirror) {
-			super(PromenadeStructurePieces.WITCH_HUT_PIECE, 0, manager, identifier, identifier.toString(), createPlacementData(rotation, mirror), pos);
+		public MainPiece(StructureManager manager, Identifier identifier, BlockPos pos, BlockRotation rotation, BlockMirror mirror, Random random) {
+			super(WitchHutBundle.WITCH_HUT_PIECE, 0, manager, identifier, identifier.toString(), createPlacementData(rotation, mirror, random), pos);
 		}
 
-		private static StructurePlacementData createPlacementData(BlockRotation blockRotation, BlockMirror blockMirror) {
-			Random random = new Random();
+		private static StructurePlacementData createPlacementData(BlockRotation blockRotation, BlockMirror blockMirror, Random random) {
 			StructurePlacementData placementData = (new StructurePlacementData())
 					.setRotation(blockRotation)
 					.setMirror(blockMirror)
@@ -59,8 +60,8 @@ public class WitchHutGenerator {
 					.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.COBBLESTONE, 0.4F), AlwaysTrueRuleTest.INSTANCE, Blocks.MOSSY_COBBLESTONE.getDefaultState()))))
 					.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new TagMatchRuleTest(PromenadeTags.Blocks.POTTED_MUSHROOMS), AlwaysTrueRuleTest.INSTANCE, PromenadeTags.Blocks.POTTED_MUSHROOMS.getRandom(random).getDefaultState()))));
 			if(random.nextBoolean()) {
-				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(BlockBundle.POLISHED_CARBONITE.getBlock(DefaultBlockTemplates.CUBE)), AlwaysTrueRuleTest.INSTANCE, Blocks.POLISHED_ANDESITE.getDefaultState()))));
-				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(BlockBundle.CARBONITE.getBlock(DefaultBlockTemplates.WALL)), AlwaysTrueRuleTest.INSTANCE, Blocks.ANDESITE_WALL.getDefaultState()))));
+				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(OreBundle.POLISHED_CARBONITE.getBlock(DefaultBlockTemplates.CUBE)), AlwaysTrueRuleTest.INSTANCE, Blocks.POLISHED_ANDESITE.getDefaultState()))));
+				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(OreBundle.CARBONITE.getBlock(DefaultBlockTemplates.WALL)), AlwaysTrueRuleTest.INSTANCE, Blocks.ANDESITE_WALL.getDefaultState()))));
 			}
 			if(random.nextFloat() < 0.2f) {
 				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(Blocks.LANTERN), AlwaysTrueRuleTest.INSTANCE, Blocks.SOUL_LANTERN.getDefaultState().with(LanternBlock.HANGING, true)))));
@@ -69,8 +70,8 @@ public class WitchHutGenerator {
 		}
 
 		@Override
-		protected void writeNbt(ServerWorld world, NbtCompound nbt) {
-			super.writeNbt(world, nbt);
+		protected void writeNbt(StructureContext context, NbtCompound nbt) {
+			super.writeNbt(context, nbt);
 			nbt.putString("Rot", this.placementData.getRotation().name());
 			nbt.putString("Mirror", this.placementData.getMirror().name());
 		}

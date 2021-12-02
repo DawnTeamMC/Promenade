@@ -16,21 +16,21 @@ import net.minecraft.world.gen.trunk.TrunkPlacer;
 
 import java.util.OptionalInt;
 
-public class TreeUtil {
+public final class TreeUtil {
 	public static final BeehiveTreeDecorator BEES_0002 = new BeehiveTreeDecorator(0.002f);
 	public static final BeehiveTreeDecorator BEES_002 = new BeehiveTreeDecorator(0.02f);
 	public static final BeehiveTreeDecorator BEES_005 = new BeehiveTreeDecorator(0.05f);
 	public static final BeehiveTreeDecorator BEES = new BeehiveTreeDecorator(1.0f);
 
 	public static TreeFeatureConfig.Builder buildNormal(Block log, Block leaves, int baseHeight, int firstRandomHeight, int secondRandomHeight, int radius) {
-		return buildNormal(log, leaves, new StraightTrunkPlacer(baseHeight, firstRandomHeight, secondRandomHeight), new BlobFoliagePlacer(ConstantIntProvider.create(radius), ConstantIntProvider.create(0), 3), new TwoLayersFeatureSize(1, 0, 1));
+		return build(log, leaves, new StraightTrunkPlacer(baseHeight, firstRandomHeight, secondRandomHeight), new BlobFoliagePlacer(ConstantIntProvider.create(radius), ConstantIntProvider.create(0), 3), new TwoLayersFeatureSize(1, 0, 1));
 	}
 
 	public static TreeFeatureConfig.Builder buildFancy(Block log, Block leaves, int baseHeight, int firstRandomHeight, int secondRandomHeight, int radius) {
-		return buildNormal(log, leaves, new LargeOakTrunkPlacer(baseHeight, firstRandomHeight, secondRandomHeight), new LargeOakFoliagePlacer(ConstantIntProvider.create(radius), ConstantIntProvider.create(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)));
+		return build(log, leaves, new LargeOakTrunkPlacer(baseHeight, firstRandomHeight, secondRandomHeight), new LargeOakFoliagePlacer(ConstantIntProvider.create(radius), ConstantIntProvider.create(4), 4), new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)));
 	}
 
-	public static TreeFeatureConfig.Builder buildNormal(Block log, Block leaves, TrunkPlacer trunk, FoliagePlacer foliage, FeatureSize size) {
+	public static TreeFeatureConfig.Builder build(Block log, Block leaves, TrunkPlacer trunk, FoliagePlacer foliage, FeatureSize size) {
 		return new TreeFeatureConfig.Builder(BlockStateProvider.of(log), trunk, BlockStateProvider.of(leaves), foliage, size);
 	}
 }

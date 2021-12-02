@@ -1,25 +1,16 @@
-package com.hugman.promenade.object.world.gen.biome;
+package com.hugman.promenade.util;
 
-import com.hugman.promenade.init.world.PromenadeConfiguredSurfaceBuilders;
-import com.hugman.promenade.init.world.feature.PromenadeConfiguredFeatures;
-import net.minecraft.client.sound.MusicType;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
-import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.MusicSound;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
-import net.minecraft.world.gen.feature.ConfiguredStructureFeatures;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import org.jetbrains.annotations.Nullable;
 
@@ -104,21 +95,20 @@ public final class BiomeUtil {
 	}
 
 	public static Biome createEndBiome(GenerationSettings.Builder generationBuilder, SpawnSettings.Builder spawnSettings) {
-		BiomeEffects.Builder effects = new BiomeEffects.Builder();
-		effects.waterColor(4159204);
-		effects.waterFogColor(329011);
-		effects.fogColor(10518688);
-		effects.skyColor(0);
-		effects.moodSound(BiomeMoodSound.CAVE);
-		effects.particleConfig(new BiomeParticleConfig(ParticleTypes.FALLING_OBSIDIAN_TEAR, 0.002F));
-		Biome.Builder settings = new Biome.Builder();
-		settings.precipitation(Biome.Precipitation.NONE);
-		settings.category(Biome.Category.THEEND);
-		settings.temperature(0.5F);
-		settings.downfall(0.5F);
-		settings.effects(effects.build());
-		settings.spawnSettings(spawnSettings.build());
-		settings.generationSettings(generationBuilder.build());
+		BiomeEffects.Builder effects = genericEffectBuilder(0.5F)
+				.waterColor(4159204)
+				.waterFogColor(329011)
+				.fogColor(0xA080A0)
+				.skyColor(0)
+				.particleConfig(new BiomeParticleConfig(ParticleTypes.FALLING_OBSIDIAN_TEAR, 0.002F));
+		Biome.Builder settings = new Biome.Builder()
+				.precipitation(Biome.Precipitation.NONE)
+				.category(Biome.Category.THEEND)
+				.temperature(0.5F)
+				.downfall(0.5F)
+				.effects(effects.build())
+				.spawnSettings(spawnSettings.build())
+				.generationSettings(generationBuilder.build());
 		return settings.build();
 	}
 }

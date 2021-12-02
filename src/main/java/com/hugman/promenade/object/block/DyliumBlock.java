@@ -1,7 +1,6 @@
 package com.hugman.promenade.object.block;
 
-import com.hugman.promenade.init.BlockBundle;
-import com.hugman.promenade.init.world.feature.PromenadeConfiguredFeatures;
+import com.hugman.promenade.init.AmaranthBundle;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.NyliumBlock;
@@ -10,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.chunk.light.ChunkLightProvider;
-import net.minecraft.world.gen.feature.NetherForestVegetationFeature;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 import java.util.Random;
 
@@ -35,8 +34,9 @@ public class DyliumBlock extends NyliumBlock {
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
 		BlockState blockState = world.getBlockState(pos);
 		BlockPos blockPos = pos.up();
-		if(blockState.isOf(BlockBundle.BLACK_DYLIUM)) {
-			NetherForestVegetationFeature.generate(world, random, blockPos, PromenadeConfiguredFeatures.Configs.AMARANTH_ROOTS, 3, 1);
+		ChunkGenerator chunkGenerator = world.getChunkManager().getChunkGenerator();
+		if(blockState.isOf(AmaranthBundle.BLACK_DYLIUM)) {
+			AmaranthBundle.Features.Configured.DARK_AMARANTH_FOREST_VEGETATION_BONEMEAL.generate(world, chunkGenerator, random, blockPos);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 package com.hugman.promenade.object.entity;
 
-import com.hugman.promenade.init.EntityBundle;
+import com.hugman.promenade.init.AnimalBundle;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -159,28 +159,28 @@ public class DuckEntity extends AnimalEntity {
 
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return EntityBundle.DUCK_AMBIENT_SOUND.getSound();
+		return AnimalBundle.DUCK_AMBIENT_SOUND.getSound();
 	}
 
 	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
-		return EntityBundle.DUCK_HURT_SOUND.getSound();
+		return AnimalBundle.DUCK_HURT_SOUND.getSound();
 	}
 
 	@Override
 	protected SoundEvent getDeathSound() {
-		return EntityBundle.DUCK_DEATH_SOUND.getSound();
+		return AnimalBundle.DUCK_DEATH_SOUND.getSound();
 	}
 
 	@Override
 	protected void playStepSound(BlockPos pos, BlockState state) {
-		this.playSound(EntityBundle.DUCK_STEP_SOUND.getSound(), 0.15F, 1.0F);
+		this.playSound(AnimalBundle.DUCK_STEP_SOUND.getSound(), 0.15F, 1.0F);
 	}
 
 	@Nullable
 	@Override
 	public DuckEntity createChild(ServerWorld serverWorld, PassiveEntity mate) {
-		DuckEntity child = EntityBundle.DUCK.create(this.world);
+		DuckEntity child = AnimalBundle.DUCK.create(this.world);
 		if(child != null) {
 			child.setVariant(this.random.nextFloat() < 0.5f ? ((DuckEntity) (mate)).getVariant() : this.getVariant());
 		}

@@ -10,7 +10,7 @@ import com.hugman.dawn.api.util.DefaultBlockSettings;
 import com.hugman.dawn.api.util.DefaultBlockTemplates;
 import com.hugman.promenade.object.block.sapling_generator.AutumnBirchSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.AutumnOakSaplingGenerator;
-import com.hugman.promenade.object.world.gen.biome.BiomeUtil;
+import com.hugman.promenade.util.BiomeUtil;
 import com.hugman.promenade.util.BlockSettingsUtil;
 import com.hugman.promenade.util.BlockTemplateUtil;
 import com.hugman.promenade.util.TreeUtil;

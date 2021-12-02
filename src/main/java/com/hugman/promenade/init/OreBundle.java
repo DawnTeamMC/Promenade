@@ -1,4 +1,4 @@
-package com.hugman.promenade.init.world.feature;
+package com.hugman.promenade.init;
 
 import com.hugman.dawn.api.creator.BlockCreator;
 import com.hugman.dawn.api.creator.ConfiguredFeatureCreator;
@@ -52,14 +52,10 @@ public class OreBundle extends PromenadeBundle {
 	public static void addToGen() {
 		if(Promenade.CONFIG.features.igneous_rock_patches) {
 			Predicate<BiomeSelectionContext> hasIgneousRocks = c -> c.hasBuiltInFeature(OreConfiguredFeatures.ORE_ANDESITE) && c.hasBuiltInFeature(OreConfiguredFeatures.ORE_DIORITE) && c.hasBuiltInFeature(OreConfiguredFeatures.ORE_GRANITE);
-			BiomeModifications.addFeature(hasIgneousRocks, GenerationStep.Feature.UNDERGROUND_ORES, key(Features.Placed.ORE_BLUNITE_UPPER));
-			BiomeModifications.addFeature(hasIgneousRocks, GenerationStep.Feature.UNDERGROUND_ORES, key(Features.Placed.ORE_BLUNITE_LOWER));
-			BiomeModifications.addFeature(hasIgneousRocks, GenerationStep.Feature.UNDERGROUND_ORES, key(Features.Placed.ORE_CARBONITE_UPPER));
-			BiomeModifications.addFeature(hasIgneousRocks, GenerationStep.Feature.UNDERGROUND_ORES, key(Features.Placed.ORE_CARBONITE_LOWER));
+			BiomeModifications.addFeature(hasIgneousRocks, GenerationStep.Feature.UNDERGROUND_ORES, GenUtil.getKey(Features.Placed.ORE_BLUNITE_UPPER));
+			BiomeModifications.addFeature(hasIgneousRocks, GenerationStep.Feature.UNDERGROUND_ORES, GenUtil.getKey(Features.Placed.ORE_BLUNITE_LOWER));
+			BiomeModifications.addFeature(hasIgneousRocks, GenerationStep.Feature.UNDERGROUND_ORES, GenUtil.getKey(Features.Placed.ORE_CARBONITE_UPPER));
+			BiomeModifications.addFeature(hasIgneousRocks, GenerationStep.Feature.UNDERGROUND_ORES, GenUtil.getKey(Features.Placed.ORE_CARBONITE_LOWER));
 		}
-	}
-
-	public static RegistryKey<PlacedFeature> key(PlacedFeature placedFeature) {
-		return BuiltinRegistries.PLACED_FEATURE.getKey(placedFeature).orElseThrow();
 	}
 }

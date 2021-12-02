@@ -33,7 +33,7 @@ public class SpikeFeature extends Feature<SpikeFeatureConfig> {
 		BlockPos pos = context.getOrigin();
 		int amount = random.nextInt(3) + 2;
 		Shape shape = Shape.of((point) -> false, Position.of(0, 0, 0), Position.of(0, 0, 0));
-		if(!config.baseBlocks.contains(world.getBlockState(pos.down()).getBlock().getDefaultState())) return false;
+		if(!config.validBlocks.contains(world.getBlockState(pos.down()).getBlock())) return false;
 		for(int i = 0; i < amount; i++) {
 			int height = random.nextInt(config.randomHeight) + config.baseHeight;
 			float radius = random.nextFloat() * config.randomRadius + config.baseRadius;

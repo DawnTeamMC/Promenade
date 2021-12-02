@@ -3,8 +3,7 @@ package com.hugman.promenade.init;
 import com.hugman.dawn.api.creator.BiomeCreator;
 import com.hugman.dawn.api.creator.ConfiguredFeatureCreator;
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.init.world.PromenadeFeatures;
-import com.hugman.promenade.object.world.gen.biome.BiomeUtil;
+import com.hugman.promenade.util.BiomeUtil;
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.sound.MusicType;
@@ -36,8 +35,8 @@ public class TallerNetherForestBundle extends PromenadeBundle {
 
 	public static class Features {
 		public static class Configured {
-			public static final ConfiguredFeature<HugeFungusFeatureConfig, ?> TALL_CRIMSON_FUNGUS = add(new ConfiguredFeatureCreator<>("tall_crimson_fungus", PromenadeFeatures.TALL_HUGE_FUNGUS.configure(new HugeFungusFeatureConfig(Blocks.CRIMSON_NYLIUM.getDefaultState(), Blocks.CRIMSON_STEM.getDefaultState(), Blocks.NETHER_WART_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), false))));
-			public static final ConfiguredFeature<HugeFungusFeatureConfig, ?> TALL_WARPED_FUNGUS = add(new ConfiguredFeatureCreator<>("tall_warped_fungus", PromenadeFeatures.TALL_HUGE_FUNGUS.configure(new HugeFungusFeatureConfig(Blocks.WARPED_NYLIUM.getDefaultState(), Blocks.WARPED_STEM.getDefaultState(), Blocks.WARPED_WART_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), false))));
+			public static final ConfiguredFeature<HugeFungusFeatureConfig, ?> TALL_CRIMSON_FUNGUS = add(new ConfiguredFeatureCreator<>("tall_crimson_fungus", CommonBundle.TALL_HUGE_FUNGUS.configure(new HugeFungusFeatureConfig(Blocks.CRIMSON_NYLIUM.getDefaultState(), Blocks.CRIMSON_STEM.getDefaultState(), Blocks.NETHER_WART_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), false))));
+			public static final ConfiguredFeature<HugeFungusFeatureConfig, ?> TALL_WARPED_FUNGUS = add(new ConfiguredFeatureCreator<>("tall_warped_fungus", CommonBundle.TALL_HUGE_FUNGUS.configure(new HugeFungusFeatureConfig(Blocks.WARPED_NYLIUM.getDefaultState(), Blocks.WARPED_STEM.getDefaultState(), Blocks.WARPED_WART_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), false))));
 		}
 
 		public static class Placed {
