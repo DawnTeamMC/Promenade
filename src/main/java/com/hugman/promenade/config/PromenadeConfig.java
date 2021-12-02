@@ -24,22 +24,23 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 
 	@Config(name = "biomes")
 	public static class BiomesCategory implements ConfigData {
+		//TODO: turn this back on when biomes are there again
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean pumpkin_pastures = true;
+		public boolean pumpkin_pastures = false;
 		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.BoundedDiscrete(min = 1, max = 25)
 		public int pumpkin_pastures_weight = 10;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean cherry_oak_forests = true;
+		public boolean cherry_oak_forests = false;
 		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.BoundedDiscrete(min = 1, max = 25)
 		public int cherry_oak_forests_weight = 10;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean tall_nether_forests = true;
+		public boolean tall_nether_forests = false;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean nether_galleries = true;
+		public boolean nether_galleries = false;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean dark_amaranth_forests = true;
+		public boolean dark_amaranth_forests = false;
 		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.BoundedDiscrete(min = 1, max = 25)
 		public int dark_amaranth_forests_weight = 10;

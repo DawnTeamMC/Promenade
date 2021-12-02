@@ -3,6 +3,7 @@ package com.hugman.promenade.init;
 import com.hugman.dawn.api.creator.BiomeCreator;
 import com.hugman.dawn.api.creator.BlockCreator;
 import com.hugman.dawn.api.creator.ConfiguredFeatureCreator;
+import com.hugman.dawn.api.creator.PlacedFeatureCreator;
 import com.hugman.dawn.api.creator.bundle.block.NetherWoodBundle;
 import com.hugman.dawn.api.object.block.RootsBlock;
 import com.hugman.promenade.Promenade;
@@ -65,11 +66,10 @@ public class AmaranthBundle extends PromenadeBundle {
 		}
 
 		public static class Placed {
-			public static final PlacedFeature AMARANTH_FUNGI = PlacedFeatures.register("amaranth_fungi", Configured.AMARANTH_FUNGUS.withPlacement(CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of()));
-			public static final PlacedFeature TALL_AMARANTH_FUNGI = PlacedFeatures.register("tall_amaranth_fungi", Configured.AMARANTH_FUNGUS.withPlacement(CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of()));
-			public static final PlacedFeature DARK_AMARANTH_FOREST_VEGETATION = PlacedFeatures.register("dark_amaranth_forest_vegetation", Configured.DARK_AMARANTH_FOREST_VEGETATION.withPlacement(CountMultilayerPlacementModifier.of(6), BiomePlacementModifier.of()));
-
-			public static final PlacedFeature OBSIDIAN_SPIKES = PlacedFeatures.register("obsidian_spikes", Configured.OBSIDIAN_SPIKE.withPlacement(CountPlacementModifier.of(12), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
+			public static final PlacedFeature AMARANTH_FUNGI = add( new PlacedFeatureCreator("amaranth_fungi", Configured.AMARANTH_FUNGUS.withPlacement(CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of())));
+			public static final PlacedFeature TALL_AMARANTH_FUNGI = add( new PlacedFeatureCreator("tall_amaranth_fungi", Configured.AMARANTH_FUNGUS.withPlacement(CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of())));
+			public static final PlacedFeature DARK_AMARANTH_FOREST_VEGETATION = add( new PlacedFeatureCreator("dark_amaranth_forest_vegetation", Configured.DARK_AMARANTH_FOREST_VEGETATION.withPlacement(CountMultilayerPlacementModifier.of(6), BiomePlacementModifier.of())));
+			public static final PlacedFeature OBSIDIAN_SPIKES = add( new PlacedFeatureCreator("obsidian_spikes", Configured.OBSIDIAN_SPIKE.withPlacement(CountPlacementModifier.of(12), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of())));
 		}
 	}
 

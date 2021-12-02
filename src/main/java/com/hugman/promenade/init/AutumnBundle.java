@@ -62,7 +62,6 @@ public class AutumnBundle extends PromenadeBundle {
 			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_AUTUMN_BIRCH = add(new ConfiguredFeatureCreator<>("tree/autumn_birch/fancy", Feature.TREE.configure(fancyAutumnBirchTree().build())));
 			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_AUTUMN_BIRCH_BEES_002 = add(new ConfiguredFeatureCreator<>("tree/autumn_birch/fancy_bees_002", Feature.TREE.configure(fancyAutumnBirchTree().decorators(List.of(TreeUtil.BEES_002)).build())));
 
-			public static final ConfiguredFeature<RandomFeatureConfig, ?> PUMPKIN_PASTURES_TREES = add(new ConfiguredFeatureCreator<>("trees/pumpkin_pastures", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.AUTUMN_OAK_BEES_002, 0.2f), new RandomFeatureEntry(Placed.FANCY_AUTUMN_BIRCH_BEES_002, 0.1f)), Placed.AUTUMN_BIRCH_BEES_002))));
 
 			/*--------------*/
 			/*  LEAF PILES  */
@@ -105,7 +104,8 @@ public class AutumnBundle extends PromenadeBundle {
 			public static final PlacedFeature FANCY_AUTUMN_BIRCH = add(new PlacedFeatureCreator("tree/autumn_birch/fancy", Configured.FANCY_AUTUMN_BIRCH.withWouldSurviveFilter(AUTUMN_BIRCH_SAPLING.getPlant())));
 			public static final PlacedFeature FANCY_AUTUMN_BIRCH_BEES_002 = add(new PlacedFeatureCreator("tree/autumn_birch/fancy_bees_002", Configured.FANCY_AUTUMN_BIRCH_BEES_002.withWouldSurviveFilter(AUTUMN_BIRCH_SAPLING.getPlant())));
 
-			public static final PlacedFeature PUMPKIN_PASTURES_TREES = add(new PlacedFeatureCreator("trees/pumpkin_pastures", Configured.PUMPKIN_PASTURES_TREES.withPlacement(VegetationPlacedFeatures.modifiers(net.minecraft.world.gen.feature.PlacedFeatures.createCountExtraModifier(10, 0.1f, 1)))));
+			public static final ConfiguredFeature<RandomFeatureConfig, ?> PUMPKIN_PASTURES_TREES_C = add(new ConfiguredFeatureCreator<>("trees/pumpkin_pastures", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.AUTUMN_OAK_BEES_002, 0.2f), new RandomFeatureEntry(Placed.FANCY_AUTUMN_BIRCH_BEES_002, 0.1f)), Placed.AUTUMN_BIRCH_BEES_002))));
+			public static final PlacedFeature PUMPKIN_PASTURES_TREES = add(new PlacedFeatureCreator("trees/pumpkin_pastures", PUMPKIN_PASTURES_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(10, 0.1f, 1)))));
 
 			/*--------------*/
 			/*  LEAF PILES  */

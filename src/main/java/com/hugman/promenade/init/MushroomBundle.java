@@ -25,9 +25,6 @@ import net.minecraft.world.gen.feature.SimpleBlockFeatureConfig;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 public class MushroomBundle extends PromenadeBundle {
-	public static void init() {
-	}
-
 	public static final Block WHITE_MUSHROOM_BLOCK = add(new BlockCreator.Builder("white", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.WHITE)).build());
 	public static final Block LIGHT_GRAY_MUSHROOM_BLOCK = add(new BlockCreator.Builder("light_gray", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.LIGHT_GRAY)).build());
 	public static final Block GRAY_MUSHROOM_BLOCK = add(new BlockCreator.Builder("gray", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.GRAY)).build());

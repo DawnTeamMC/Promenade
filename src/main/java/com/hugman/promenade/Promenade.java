@@ -1,5 +1,6 @@
 package com.hugman.promenade;
 
+import com.google.common.reflect.Reflection;
 import com.hugman.dawn.api.object.ModData;
 import com.hugman.promenade.compat.init.ColumnsBundle;
 import com.hugman.promenade.config.PromenadeConfig;
@@ -24,21 +25,34 @@ public class Promenade implements ModInitializer {
 		postInitBundles();
 	}
 
+	public static void initBundle(Class<?> clazz) {
+		Reflection.initialize(clazz);
+		for(Class<?> clazz2 : clazz.getClasses()) {
+			initBundle(clazz2);
+		}
+	}
+
 	public static void initBundles() {
-		AmaranthBundle.init();
-		AnimalBundle.init();
-		AutumnBundle.init();
-		CherryBundle.init();
-		CommonBundle.init();
-		FoodBundle.init();
-		GalleryBundle.init();
-		MonsterBundle.init();
-		MushroomBundle.init();
-		OreBundle.init();
-		PalmBundle.init();
-		TallerNetherForestBundle.init();
-		VanillaPilesBundle.init();
-		WitchHutBundle.init();
+		initBundle(CommonBundle.class);
+
+		initBundle(OreBundle.class);
+		initBundle(VanillaPilesBundle.class);
+		initBundle(MushroomBundle.class);
+
+		initBundle(AnimalBundle.class);
+		initBundle(MonsterBundle.class);
+
+		initBundle(AutumnBundle.class);
+		initBundle(CherryBundle.class);
+		initBundle(FoodBundle.class);
+		initBundle(PalmBundle.class);
+
+		initBundle(WitchHutBundle.class);
+
+		initBundle(TallerNetherForestBundle.class);
+		initBundle(GalleryBundle.class);
+
+		initBundle(AmaranthBundle.class);
 
 		if(FabricLoader.getInstance().isModLoaded("columns")) {
 			ColumnsBundle.init();

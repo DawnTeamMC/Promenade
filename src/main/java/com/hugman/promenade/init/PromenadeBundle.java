@@ -20,7 +20,4 @@ public abstract class PromenadeBundle extends Bundle {
 		Promenade.MOD_DATA.addBundle(bundle);
 		return bundle;
 	}
-
-	public static void init() {
-	}
 }

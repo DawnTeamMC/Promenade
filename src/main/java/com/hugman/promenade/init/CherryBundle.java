@@ -66,9 +66,6 @@ public class CherryBundle extends PromenadeBundle {
 			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_WHITE_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/fancy", Feature.TREE.configure(fancyWhiteCherryOakTree().build())));
 			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_WHITE_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/fancy_bees_005", Feature.TREE.configure(fancyWhiteCherryOakTree().decorators(List.of(TreeUtil.BEES_005)).build())));
 
-			public static final ConfiguredFeature<RandomFeatureConfig, ?> PINK_CHERRY_OAK_FOREST_TREES = add(new ConfiguredFeatureCreator<>("trees/pink_cherry_oak_forest", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.WHITE_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_PINK_CHERRY_OAK, 0.1f)), Placed.PINK_CHERRY_OAK))));
-			public static final ConfiguredFeature<RandomFeatureConfig, ?> WHITE_CHERRY_OAK_FOREST_TREES = add(new ConfiguredFeatureCreator<>("trees/white_cherry_oak_forest", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.PINK_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_WHITE_CHERRY_OAK, 0.1f)), Placed.WHITE_CHERRY_OAK))));
-
 			/*--------------*/
 			/*  LEAF PILES  */
 			/*--------------*/
@@ -110,8 +107,11 @@ public class CherryBundle extends PromenadeBundle {
 			public static final PlacedFeature FANCY_WHITE_CHERRY_OAK = add(new PlacedFeatureCreator("tree/white_cherry_oak/fancy", Configured.FANCY_WHITE_CHERRY_OAK.withWouldSurviveFilter(WHITE_CHERRY_OAK_SAPLING.getPlant())));
 			public static final PlacedFeature FANCY_WHITE_CHERRY_OAK_BEES_005 = add(new PlacedFeatureCreator("tree/white_cherry_oak/fancy_bees_005", Configured.FANCY_WHITE_CHERRY_OAK_BEES_005.withWouldSurviveFilter(WHITE_CHERRY_OAK_SAPLING.getPlant())));
 
-			public static final PlacedFeature PINK_CHERRY_OAK_FOREST_TREES = PlacedFeatures.register("trees/pink_cherry_oak_forest", Configured.PINK_CHERRY_OAK_FOREST_TREES.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(10, 0.1f, 1))));
-			public static final PlacedFeature WHITE_CHERRY_OAK_FOREST_TREES = PlacedFeatures.register("trees/white_cherry_oak_forest", Configured.WHITE_CHERRY_OAK_FOREST_TREES.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(10, 0.1f, 1))));
+			public static final ConfiguredFeature<RandomFeatureConfig, ?> PINK_CHERRY_OAK_FOREST_TREES_C = add(new ConfiguredFeatureCreator<>("trees/pink_cherry_oak_forest", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.WHITE_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_PINK_CHERRY_OAK, 0.1f)), Placed.PINK_CHERRY_OAK))));
+			public static final ConfiguredFeature<RandomFeatureConfig, ?> WHITE_CHERRY_OAK_FOREST_TREES_C = add(new ConfiguredFeatureCreator<>("trees/white_cherry_oak_forest", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.PINK_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_WHITE_CHERRY_OAK, 0.1f)), Placed.WHITE_CHERRY_OAK))));
+
+			public static final PlacedFeature PINK_CHERRY_OAK_FOREST_TREES = PlacedFeatures.register("trees/pink_cherry_oak_forest", PINK_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(10, 0.1f, 1))));
+			public static final PlacedFeature WHITE_CHERRY_OAK_FOREST_TREES = PlacedFeatures.register("trees/white_cherry_oak_forest", WHITE_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(10, 0.1f, 1))));
 
 			/*--------------*/
 			/*  LEAF PILES  */

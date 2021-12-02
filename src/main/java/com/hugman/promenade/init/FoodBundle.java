@@ -36,22 +36,21 @@ public class FoodBundle extends PromenadeBundle {
 	public static final Item DUCK = add(new ItemCreator.Builder("duck", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(PromenadeFoods.DUCK)).build());
 	public static final Item COOKED_DUCK = add(new ItemCreator.Builder("cooked_duck", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(PromenadeFoods.COOKED_DUCK)).build());
 
-	public static void addToGen() {
-		if(Promenade.CONFIG.features.blueberry_bushes) {
-			BiomeModifications.addFeature(c -> c.hasBuiltInPlacedFeature(VegetationPlacedFeatures.PATCH_BERRY_COMMON), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PATCH_BLUEBERRY_BUSH_COMMON));
-			BiomeModifications.addFeature(c -> c.hasBuiltInPlacedFeature(VegetationPlacedFeatures.PATCH_BERRY_RARE), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PATCH_BLUEBERRY_BUSH_RARE));
-		}
-	}
-
-
 	public static class Features {
 		public static class Configured {
 			public static final ConfiguredFeature<?, ?> PATCH_BLUEBERRY_BUSH = add(new ConfiguredFeatureCreator<>("patch/blueberry_bush", Feature.RANDOM_PATCH.configure(ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(BLUEBERRY_BUSH.getDefaultState().with(BlueberryBushBlock.AGE, 3)))), List.of(Blocks.GRASS_BLOCK)))));
 		}
 
 		public static class Placed {
-			public static final PlacedFeature PATCH_BLUEBERRY_BUSH_COMMON = add(new PlacedFeatureCreator("patch/blueberry_bush/common", VegetationConfiguredFeatures.PATCH_BERRY_BUSH.withPlacement(RarityFilterPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of())));
-			public static final PlacedFeature PATCH_BLUEBERRY_BUSH_RARE = add(new PlacedFeatureCreator("patch/blueberry_bush/rare", VegetationConfiguredFeatures.PATCH_BERRY_BUSH.withPlacement(RarityFilterPlacementModifier.of(384), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of())));
+			public static final PlacedFeature PATCH_BLUEBERRY_BUSH_COMMON = add(new PlacedFeatureCreator("patch/blueberry_bush/common", Configured.PATCH_BLUEBERRY_BUSH.withPlacement(RarityFilterPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of())));
+			public static final PlacedFeature PATCH_BLUEBERRY_BUSH_RARE = add(new PlacedFeatureCreator("patch/blueberry_bush/rare", Configured.PATCH_BLUEBERRY_BUSH.withPlacement(RarityFilterPlacementModifier.of(384), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of())));
+		}
+	}
+
+	public static void addToGen() {
+		if(Promenade.CONFIG.features.blueberry_bushes) {
+			BiomeModifications.addFeature(c -> c.hasBuiltInPlacedFeature(VegetationPlacedFeatures.PATCH_BERRY_COMMON), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PATCH_BLUEBERRY_BUSH_COMMON));
+			BiomeModifications.addFeature(c -> c.hasBuiltInPlacedFeature(VegetationPlacedFeatures.PATCH_BERRY_RARE), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PATCH_BLUEBERRY_BUSH_RARE));
 		}
 	}
 }
