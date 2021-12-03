@@ -18,6 +18,7 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
+import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.passive.DolphinEntity;
 import net.minecraft.entity.passive.PufferfishEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -43,6 +44,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
 import javax.annotation.Nullable;
@@ -82,12 +84,15 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 	}
 
 	public static boolean canSpawn(EntityType<SunkenSkeletonEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
-		return true;
-		/*
-		boolean bl = world.getDifficulty() != Difficulty.PEACEFUL && isSpawnDark(world, pos, random) && (spawnReason == SpawnReason.SPAWNER || world.getFluidState(pos).isIn(FluidTags.WATER));
-		return random.nextInt(40) == 0 && pos.getY() < world.getSeaLevel() - 5 && bl;
+		boolean bl = world.getDifficulty() != Difficulty.PEACEFUL
+				&& isSpawnDark(world, pos, random)
+				&& (spawnReason == SpawnReason.SPAWNER || world.getFluidState(pos).isIn(FluidTags.WATER));
+		return pos.getY() < world.getSeaLevel() - 10 && bl;
+	}
 
-		 */
+	@Override
+	public boolean canSpawn(WorldView world) {
+		return world.intersectsEntities(this);
 	}
 
 	public static DefaultAttributeContainer.Builder createSunkenSkeletonAttributes() {
@@ -173,6 +178,11 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 		this.dataTracker.startTracking(SUNKEN_SKELETON_TYPE, 0);
 		this.dataTracker.startTracking(CHARGING, false);
 		this.dataTracker.startTracking(SWIMMING, false);
+	}
+
+	@Override
+	public boolean isPushedByFluids() {
+		return !this.isSwimming();
 	}
 
 	@Override
