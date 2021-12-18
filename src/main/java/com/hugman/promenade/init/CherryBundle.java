@@ -35,10 +35,10 @@ public class CherryBundle extends PromenadeBundle {
 	public static final WoodBundle CHERRY_OAK_WOOD = bundle(new WoodBundle.Builder("cherry_oak", MapColor.DULL_RED, MapColor.DULL_PINK, MapColor.DARK_DULL_PINK, false).build());
 	public static final PlantBundle PINK_CHERRY_OAK_SAPLING = bundle(new PlantBundle(new BlockCreator.Builder("pink_cherry_oak_sapling", settings -> new SaplingBlock(new PinkCherryOakSaplingGenerator(), settings), DefaultBlockSettings.SAPLING).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT)));
 	public static final PlantBundle WHITE_CHERRY_OAK_SAPLING = bundle(new PlantBundle(new BlockCreator.Builder("white_cherry_oak_sapling", settings -> new SaplingBlock(new WhiteCherryOakSaplingGenerator(), settings), DefaultBlockSettings.SAPLING).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT)));
-	public static final Block PINK_CHERRY_OAK_LEAVES = add(new BlockCreator.Builder("pink_cherry_oak", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).build());
-	public static final Block PINK_CHERRY_OAK_LEAF_PILE = add(new BlockCreator.Builder("pink_cherry_oak", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).build());
-	public static final Block WHITE_CHERRY_OAK_LEAVES = add(new BlockCreator.Builder("white_cherry_oak", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).build());
-	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(new BlockCreator.Builder("white_cherry_oak", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).build());
+	public static final Block PINK_CHERRY_OAK_LEAVES = add(new BlockCreator.Builder("pink_cherry_oak", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).compostingChance(0.3f).build());
+	public static final Block PINK_CHERRY_OAK_LEAF_PILE = add(new BlockCreator.Builder("pink_cherry_oak", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).compostingChance(0.3f).build());
+	public static final Block WHITE_CHERRY_OAK_LEAVES = add(new BlockCreator.Builder("white_cherry_oak", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).compostingChance(0.3f).build());
+	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(new BlockCreator.Builder("white_cherry_oak", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).compostingChance(0.3f).build());
 
 	public static void addToGen() {
 		/**

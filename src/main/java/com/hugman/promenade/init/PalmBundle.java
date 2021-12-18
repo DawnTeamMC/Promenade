@@ -28,7 +28,7 @@ import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 
 public class PalmBundle extends PromenadeBundle {
 	public static final OverworldWoodBundle PALM_WOOD = bundle(new OverworldWoodBundle.Builder("palm", new PalmSaplingGenerator(), MapColor.ORANGE, MapColor.TERRACOTTA_CYAN).saplingSoil(blockState -> blockState.isIn(BlockTags.SAND)).build());
-	public static final Block PALM_LEAF_PILE = add(new BlockCreator.Builder("palm", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).build());
+	public static final Block PALM_LEAF_PILE = add(new BlockCreator.Builder("palm", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).compostingChance(0.3f).build());
 
 	public static class Features {
 		public static class Configured {

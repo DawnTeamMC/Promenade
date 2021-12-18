@@ -32,11 +32,11 @@ public class AutumnBundle extends PromenadeBundle {
 	/*  BLOCKS  */
 	/*----------*/
 	public static final PlantBundle AUTUMN_OAK_SAPLING = bundle(new PlantBundle(new BlockCreator.Builder("autumn_oak_sapling", settings -> new SaplingBlock(new AutumnOakSaplingGenerator(), settings), DefaultBlockSettings.SAPLING).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT)));
-	public static final Block AUTUMN_OAK_LEAVES = add(new BlockCreator.Builder("autumn_oak", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).build());
-	public static final Block AUTUMN_OAK_LEAF_PILE = add(new BlockCreator.Builder("autumn_oak", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).build());
+	public static final Block AUTUMN_OAK_LEAVES = add(new BlockCreator.Builder("autumn_oak", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).compostingChance(0.3f).build());
+	public static final Block AUTUMN_OAK_LEAF_PILE = add(new BlockCreator.Builder("autumn_oak", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).compostingChance(0.3f).build());
 	public static final PlantBundle AUTUMN_BIRCH_SAPLING = bundle(new PlantBundle(new BlockCreator.Builder("autumn_birch_sapling", settings -> new SaplingBlock(new AutumnBirchSaplingGenerator(), settings), DefaultBlockSettings.SAPLING).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT)));
-	public static final Block AUTUMN_BIRCH_LEAVES = add(new BlockCreator.Builder("autumn_birch", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).build());
-	public static final Block AUTUMN_BIRCH_LEAF_PILE = add(new BlockCreator.Builder("autumn_birch", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).build());
+	public static final Block AUTUMN_BIRCH_LEAVES = add(new BlockCreator.Builder("autumn_birch", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).compostingChance(0.3f).build());
+	public static final Block AUTUMN_BIRCH_LEAF_PILE = add(new BlockCreator.Builder("autumn_birch", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).compostingChance(0.3f).build());
 
 	public static void addToGen() {
 		/**

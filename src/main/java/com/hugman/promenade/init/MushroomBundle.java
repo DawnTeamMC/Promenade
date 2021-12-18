@@ -25,20 +25,22 @@ import net.minecraft.world.gen.feature.SimpleBlockFeatureConfig;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 public class MushroomBundle extends PromenadeBundle {
-	public static final Block WHITE_MUSHROOM_BLOCK = add(new BlockCreator.Builder("white", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.WHITE)).build());
-	public static final Block LIGHT_GRAY_MUSHROOM_BLOCK = add(new BlockCreator.Builder("light_gray", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.LIGHT_GRAY)).build());
-	public static final Block GRAY_MUSHROOM_BLOCK = add(new BlockCreator.Builder("gray", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.GRAY)).build());
-	public static final Block BLACK_MUSHROOM_BLOCK = add(new BlockCreator.Builder("black", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.BLACK)).build());
-	public static final Block ORANGE_MUSHROOM_BLOCK = add(new BlockCreator.Builder("orange", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.ORANGE)).build());
-	public static final Block YELLOW_MUSHROOM_BLOCK = add(new BlockCreator.Builder("yellow", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.YELLOW)).build());
-	public static final Block LIME_MUSHROOM_BLOCK = add(new BlockCreator.Builder("lime", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.LIME)).build());
-	public static final Block GREEN_MUSHROOM_BLOCK = add(new BlockCreator.Builder("green", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.GREEN)).build());
-	public static final Block CYAN_MUSHROOM_BLOCK = add(new BlockCreator.Builder("cyan", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.CYAN)).build());
-	public static final Block LIGHT_BLUE_MUSHROOM_BLOCK = add(new BlockCreator.Builder("light_blue", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.LIGHT_BLUE)).build());
-	public static final Block BLUE_MUSHROOM_BLOCK = add(new BlockCreator.Builder("blue", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.BLUE)).build());
-	public static final Block PURPLE_MUSHROOM_BLOCK = add(new BlockCreator.Builder("purple", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.PURPLE)).build());
-	public static final Block MAGENTA_MUSHROOM_BLOCK = add(new BlockCreator.Builder("magenta", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.MAGENTA)).build());
-	public static final Block PINK_MUSHROOM_BLOCK = add(new BlockCreator.Builder("pink", DefaultBlockTemplates.MUSHROOM_BLOCK, DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.PINK)).build());
+	private static final BlockCreator.Builder MUSHROOM_BLOCK_BUILDER = new BlockCreator.Builder().applyTemplate(DefaultBlockTemplates.MUSHROOM_BLOCK).compostingChance(0.85F);
+
+	public static final Block WHITE_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("white").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.WHITE)).build());
+	public static final Block LIGHT_GRAY_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("light_gray").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.LIGHT_GRAY)).build());
+	public static final Block GRAY_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("gray").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.GRAY)).build());
+	public static final Block BLACK_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("black").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.BLACK)).build());
+	public static final Block ORANGE_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("orange").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.ORANGE)).build());
+	public static final Block YELLOW_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("yellow").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.YELLOW)).build());
+	public static final Block LIME_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("lime").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.LIME)).build());
+	public static final Block GREEN_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("green").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.GREEN)).build());
+	public static final Block CYAN_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("cyan").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.CYAN)).build());
+	public static final Block LIGHT_BLUE_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("light_blue").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.LIGHT_BLUE)).build());
+	public static final Block BLUE_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("blue").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.BLUE)).build());
+	public static final Block PURPLE_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("purple").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.PURPLE)).build());
+	public static final Block MAGENTA_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("magenta").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.MAGENTA)).build());
+	public static final Block PINK_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("pink").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.PINK)).build());
 
 	private static final BlockCreator.Builder MUSHROOM_BUILDER = new BlockCreator.Builder().settings(DefaultBlockSettings.MUSHROOM).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT).compostingChance(0.65F);
 

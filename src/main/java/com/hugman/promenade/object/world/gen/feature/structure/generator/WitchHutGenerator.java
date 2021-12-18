@@ -7,6 +7,8 @@ import com.hugman.promenade.init.OreBundle;
 import com.hugman.promenade.init.WitchHutBundle;
 import com.hugman.promenade.init.data.PromenadeLootTables;
 import com.hugman.promenade.init.data.PromenadeTags;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LanternBlock;
 import net.minecraft.block.entity.BlockEntity;
@@ -15,11 +17,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.WitchEntity;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.structure.SimpleStructurePiece;
-import net.minecraft.structure.StructureContext;
-import net.minecraft.structure.StructureManager;
-import net.minecraft.structure.StructurePiecesHolder;
-import net.minecraft.structure.StructurePlacementData;
+import net.minecraft.structure.*;
 import net.minecraft.structure.processor.BlockIgnoreStructureProcessor;
 import net.minecraft.structure.processor.RuleStructureProcessor;
 import net.minecraft.structure.processor.StructureProcessorRule;
@@ -32,7 +30,12 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.gen.StructureAccessor;
+import net.minecraft.world.gen.chunk.ChunkGenerator;
 
 import java.util.Random;
 
@@ -52,10 +55,10 @@ public class WitchHutGenerator {
 			super(WitchHutBundle.WITCH_HUT_PIECE, 0, manager, identifier, identifier.toString(), createPlacementData(rotation, mirror, random), pos);
 		}
 
-		private static StructurePlacementData createPlacementData(BlockRotation blockRotation, BlockMirror blockMirror, Random random) {
+		private static StructurePlacementData createPlacementData(BlockRotation rotation, BlockMirror mirror, Random random) {
 			StructurePlacementData placementData = (new StructurePlacementData())
-					.setRotation(blockRotation)
-					.setMirror(blockMirror)
+					.setRotation(rotation)
+					.setMirror(mirror)
 					.addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS)
 					.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.COBBLESTONE, 0.4F), AlwaysTrueRuleTest.INSTANCE, Blocks.MOSSY_COBBLESTONE.getDefaultState()))))
 					.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new TagMatchRuleTest(PromenadeTags.Blocks.POTTED_MUSHROOMS), AlwaysTrueRuleTest.INSTANCE, PromenadeTags.Blocks.POTTED_MUSHROOMS.getRandom(random).getDefaultState()))));
@@ -93,6 +96,16 @@ public class WitchHutGenerator {
 				}
 				serverWorldAccess.spawnEntityAndPassengers(witchEntity);
 			}
+		}
+
+		@Override
+		public void generate(StructureWorldAccess world, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockBox chunkBox, ChunkPos chunkPos, BlockPos pos) {
+			/*
+			int i = world.getTopY(Heightmap.Type.WORLD_SURFACE_WG, this.pos.getX(), this.pos.getZ());
+			this.pos = this.pos.add(0, i - 90 - 1, 0);
+
+			 */
+			super.generate(world, structureAccessor, chunkGenerator, random, chunkBox, chunkPos, pos);
 		}
 	}
 }
