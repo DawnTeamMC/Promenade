@@ -1,6 +1,7 @@
 {
 	"replace": false,
 	"values": [
+		"#promenade:dark_amaranth_stems",
 		"promenade:dark_amaranth_planks",
 		"promenade:dark_amaranth_slab",
 		"promenade:dark_amaranth_pressure_plate",
