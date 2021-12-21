@@ -1,6 +1,5 @@
 package com.hugman.promenade.init;
 
-import com.hugman.dawn.api.creator.BlockCreator;
 import com.hugman.dawn.api.creator.ConfiguredFeatureCreator;
 import com.hugman.dawn.api.creator.PlacedFeatureCreator;
 import com.hugman.dawn.api.creator.bundle.block.OverworldWoodBundle;
@@ -17,7 +16,12 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.feature.PlacedFeatures;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
+import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
@@ -34,16 +38,16 @@ public class PalmBundle extends PromenadeBundle {
 			private static TreeFeatureConfig.Builder createPalm() {
 				return TreeUtil.build(PALM_WOOD.getLog(), PALM_WOOD.getLeaves(), new ForkingTrunkPlacer(16, 2, 2), new AcaciaFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0)), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines();
 			}
- 		}
+		}
 
 		public static class Placed {
-			public static final PlacedFeature PALM_TREES = add(new PlacedFeatureCreator("trees/palm", Configured.PALM.withWouldSurviveFilter(PALM_WOOD.getSapling())));
+			public static final PlacedFeature PALMS = add(new PlacedFeatureCreator("tree/palms", Configured.PALM.withPlacement(VegetationPlacedFeatures.modifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.1f, 1), PALM_WOOD.getSapling()))));
 		}
 	}
 
 	public static void addToGen() {
 		if(Promenade.CONFIG.features.palm_trees) {
-			BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.DESERT), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PALM_TREES));
+			BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.DESERT), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PALMS));
 		}
 	}
 }
