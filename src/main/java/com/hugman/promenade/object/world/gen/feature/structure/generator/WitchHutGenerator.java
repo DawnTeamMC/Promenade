@@ -32,6 +32,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.StructureAccessor;
@@ -99,13 +100,12 @@ public class WitchHutGenerator {
 		}
 
 		@Override
-		public void generate(StructureWorldAccess world, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockBox chunkBox, ChunkPos chunkPos, BlockPos pos) {
-			/*
+		public void generate(StructureWorldAccess world, StructureAccessor structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockBox chunkBox, ChunkPos chunkPos, BlockPos pivotPos) {
+			BlockPos pos2 = this.pos;
 			int i = world.getTopY(Heightmap.Type.WORLD_SURFACE_WG, this.pos.getX(), this.pos.getZ());
 			this.pos = this.pos.add(0, i - 90 - 1, 0);
-
-			 */
-			super.generate(world, structureAccessor, chunkGenerator, random, chunkBox, chunkPos, pos);
+			super.generate(world, structureAccessor, chunkGenerator, random, chunkBox, chunkPos, pivotPos);
+			this.pos = pos2;
 		}
 	}
 }
