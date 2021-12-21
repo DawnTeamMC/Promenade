@@ -56,7 +56,8 @@ public class Promenade implements ModInitializer {
 		initBundle(AmaranthBundle.class);
 
 		if(FabricLoader.getInstance().isModLoaded("columns")) {
-			ColumnsBundle.init();
+			initBundle(ColumnsBundle.class);
+			Promenade.LOGGER.info("Initialized Columns compatibility");
 		}
 	}
 
