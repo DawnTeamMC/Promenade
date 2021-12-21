@@ -1,22 +1,17 @@
 package com.hugman.promenade.init;
 
 import com.hugman.dawn.api.creator.BiomeCreator;
-import com.hugman.dawn.api.creator.BlockCreator;
 import com.hugman.dawn.api.creator.ConfiguredFeatureCreator;
 import com.hugman.dawn.api.creator.PlacedFeatureCreator;
 import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.object.block.SaplingBlock;
-import com.hugman.dawn.api.util.DefaultBlockSettings;
-import com.hugman.dawn.api.util.DefaultBlockTemplates;
+import com.hugman.dawn.api.util.DefaultBlockBuilders;
 import com.hugman.promenade.object.block.sapling_generator.AutumnBirchSaplingGenerator;
-import com.hugman.promenade.object.block.sapling_generator.AutumnOakSaplingGenerator;
 import com.hugman.promenade.util.BiomeUtil;
-import com.hugman.promenade.util.BlockSettingsUtil;
-import com.hugman.promenade.util.BlockTemplateUtil;
+import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.TreeUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
@@ -31,12 +26,12 @@ public class AutumnBundle extends PromenadeBundle {
 	/*----------*/
 	/*  BLOCKS  */
 	/*----------*/
-	public static final PlantBundle AUTUMN_OAK_SAPLING = bundle(new PlantBundle(new BlockCreator.Builder("autumn_oak_sapling", settings -> new SaplingBlock(new AutumnOakSaplingGenerator(), settings), DefaultBlockSettings.SAPLING).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT)));
-	public static final Block AUTUMN_OAK_LEAVES = add(new BlockCreator.Builder("autumn_oak", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).compostingChance(0.3f).build());
-	public static final Block AUTUMN_OAK_LEAF_PILE = add(new BlockCreator.Builder("autumn_oak", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).compostingChance(0.3f).build());
-	public static final PlantBundle AUTUMN_BIRCH_SAPLING = bundle(new PlantBundle(new BlockCreator.Builder("autumn_birch_sapling", settings -> new SaplingBlock(new AutumnBirchSaplingGenerator(), settings), DefaultBlockSettings.SAPLING).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT)));
-	public static final Block AUTUMN_BIRCH_LEAVES = add(new BlockCreator.Builder("autumn_birch", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).compostingChance(0.3f).build());
-	public static final Block AUTUMN_BIRCH_LEAF_PILE = add(new BlockCreator.Builder("autumn_birch", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).compostingChance(0.3f).build());
+	public static final PlantBundle AUTUMN_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("autumn_oak_sapling").provider(settings -> new SaplingBlock(new AutumnBirchSaplingGenerator(), settings))));
+	public static final Block AUTUMN_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("autumn_oak_leaves").build());
+	public static final Block AUTUMN_OAK_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("autumn_oak_leaf_pile").build());
+	public static final PlantBundle AUTUMN_BIRCH_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("autumn_birch_sapling").provider(settings -> new SaplingBlock(new AutumnBirchSaplingGenerator(), settings))));
+	public static final Block AUTUMN_BIRCH_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("autumn_birch_leaves").build());
+	public static final Block AUTUMN_BIRCH_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("autumn_birch_leaf_pile").build());
 
 	public static void addToGen() {
 		/**

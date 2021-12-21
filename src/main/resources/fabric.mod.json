@@ -30,7 +30,7 @@
 	"depends": {
 		"minecraft": ">=1.18",
 		"fabric": "*",
-		"dawn": ">=3.1.0"
+		"dawn": ">=3.2.0"
 	},
 	"suggests": {
 		"columns": "*"

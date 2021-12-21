@@ -13,6 +13,7 @@ repositories {
     maven { url 'https://maven.terraformersmc.com/' }
     maven { url 'https://server.bbkr.space/artifactory/libs-release' }
     maven { url 'https://www.cursemaven.com' }
+    maven { url "https://maven.ryanliptak.com/" }
 }
 
 dependencies {
@@ -21,7 +22,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
-    modApi "com.github.DawnTeamMC:DawnAPI:v${dawn_version}"
+    modApi "com.github.DawnTeamMC:DawnAPI:${dawn_version}"
 
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }

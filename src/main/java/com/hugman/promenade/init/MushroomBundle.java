@@ -1,17 +1,18 @@
 package com.hugman.promenade.init;
 
-import com.hugman.dawn.api.creator.BlockCreator;
 import com.hugman.dawn.api.creator.ConfiguredFeatureCreator;
 import com.hugman.dawn.api.creator.PlacedFeatureCreator;
 import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.object.block.FertilizableMushroomPlantBlock;
+import com.hugman.dawn.api.util.DefaultBlockBuilders;
 import com.hugman.dawn.api.util.DefaultBlockSettings;
-import com.hugman.dawn.api.util.DefaultBlockTemplates;
 import com.hugman.promenade.object.world.gen.feature.config.HugeMushroomFeatureConfig;
 import com.hugman.promenade.util.GenUtil;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.block.Material;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.DyeColor;
 import net.minecraft.world.gen.decorator.BiomePlacementModifier;
 import net.minecraft.world.gen.decorator.RarityFilterPlacementModifier;
@@ -25,39 +26,36 @@ import net.minecraft.world.gen.feature.SimpleBlockFeatureConfig;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 public class MushroomBundle extends PromenadeBundle {
-	private static final BlockCreator.Builder MUSHROOM_BLOCK_BUILDER = new BlockCreator.Builder().applyTemplate(DefaultBlockTemplates.MUSHROOM_BLOCK).compostingChance(0.85F);
+	public static final FabricBlockSettings MUSHROOM_BLOCk_SETTINGS = FabricBlockSettings.of(Material.WOOD).hardness(0.2F).sounds(BlockSoundGroup.WOOD);
+	public static final Block WHITE_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("white_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.WHITE)).build());
+	public static final Block LIGHT_GRAY_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("light_gray_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.LIGHT_GRAY)).build());
+	public static final Block GRAY_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("gray_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.GRAY)).build());
+	public static final Block BLACK_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("black_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.BLACK)).build());
+	public static final Block ORANGE_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("orange_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.ORANGE)).build());
+	public static final Block YELLOW_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("yellow_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.YELLOW)).build());
+	public static final Block LIME_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("lime_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.LIME)).build());
+	public static final Block GREEN_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("green_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.GREEN)).build());
+	public static final Block CYAN_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("cyan_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.CYAN)).build());
+	public static final Block LIGHT_BLUE_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("light_blue_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.LIGHT_BLUE)).build());
+	public static final Block BLUE_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("blue_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.BLUE)).build());
+	public static final Block PURPLE_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("purple_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.PURPLE)).build());
+	public static final Block MAGENTA_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("magenta_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.MAGENTA)).build());
+	public static final Block PINK_MUSHROOM_BLOCK = add(DefaultBlockBuilders.MUSHROOM_BLOCK.copy("pink_mushroom_block").settings(MUSHROOM_BLOCk_SETTINGS.mapColor(DyeColor.PINK)).build());
 
-	public static final Block WHITE_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("white").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.WHITE)).build());
-	public static final Block LIGHT_GRAY_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("light_gray").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.LIGHT_GRAY)).build());
-	public static final Block GRAY_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("gray").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.GRAY)).build());
-	public static final Block BLACK_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("black").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.BLACK)).build());
-	public static final Block ORANGE_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("orange").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.ORANGE)).build());
-	public static final Block YELLOW_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("yellow").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.YELLOW)).build());
-	public static final Block LIME_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("lime").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.LIME)).build());
-	public static final Block GREEN_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("green").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.GREEN)).build());
-	public static final Block CYAN_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("cyan").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.CYAN)).build());
-	public static final Block LIGHT_BLUE_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("light_blue").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.LIGHT_BLUE)).build());
-	public static final Block BLUE_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("blue").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.BLUE)).build());
-	public static final Block PURPLE_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("purple").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.PURPLE)).build());
-	public static final Block MAGENTA_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("magenta").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.MAGENTA)).build());
-	public static final Block PINK_MUSHROOM_BLOCK = add(MUSHROOM_BLOCK_BUILDER.name("pink").settings(DefaultBlockSettings.MUSHROOM_BLOCK.mapColor(DyeColor.PINK)).build());
-
-	private static final BlockCreator.Builder MUSHROOM_BUILDER = new BlockCreator.Builder().settings(DefaultBlockSettings.MUSHROOM).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT).compostingChance(0.65F);
-
-	public static final PlantBundle WHITE_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("white_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, WHITE_MUSHROOM_BLOCK))));
-	public static final PlantBundle LIGHT_GRAY_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("light_gray_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, LIGHT_GRAY_MUSHROOM_BLOCK))));
-	public static final PlantBundle GRAY_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("gray_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, GRAY_MUSHROOM_BLOCK))));
-	public static final PlantBundle BLACK_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("black_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, BLACK_MUSHROOM_BLOCK))));
-	public static final PlantBundle ORANGE_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("orange_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, ORANGE_MUSHROOM_BLOCK))));
-	public static final PlantBundle YELLOW_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("yellow_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, YELLOW_MUSHROOM_BLOCK))));
-	public static final PlantBundle LIME_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("lime_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, LIME_MUSHROOM_BLOCK))));
-	public static final PlantBundle GREEN_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("green_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, GREEN_MUSHROOM_BLOCK))));
-	public static final PlantBundle CYAN_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("cyan_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, CYAN_MUSHROOM_BLOCK))));
-	public static final PlantBundle LIGHT_BLUE_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("light_blue_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, LIGHT_BLUE_MUSHROOM_BLOCK))));
-	public static final PlantBundle BLUE_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("blue_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, BLUE_MUSHROOM_BLOCK))));
-	public static final PlantBundle PURPLE_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("purple_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, PURPLE_MUSHROOM_BLOCK))));
-	public static final PlantBundle MAGENTA_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("magenta_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, MAGENTA_MUSHROOM_BLOCK))));
-	public static final PlantBundle PINK_MUSHROOM = bundle(new PlantBundle(MUSHROOM_BUILDER.name("pink_mushroom").blockProvider(settings -> new FertilizableMushroomPlantBlock(settings, PINK_MUSHROOM_BLOCK))));
+	public static final PlantBundle WHITE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("white_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, WHITE_MUSHROOM_BLOCK))));
+	public static final PlantBundle LIGHT_GRAY_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("light_gray_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, LIGHT_GRAY_MUSHROOM_BLOCK))));
+	public static final PlantBundle GRAY_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("gray_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, GRAY_MUSHROOM_BLOCK))));
+	public static final PlantBundle BLACK_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("black_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, BLACK_MUSHROOM_BLOCK))));
+	public static final PlantBundle ORANGE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("orange_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, ORANGE_MUSHROOM_BLOCK))));
+	public static final PlantBundle YELLOW_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("yellow_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, YELLOW_MUSHROOM_BLOCK))));
+	public static final PlantBundle LIME_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("lime_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, LIME_MUSHROOM_BLOCK))));
+	public static final PlantBundle GREEN_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("green_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, GREEN_MUSHROOM_BLOCK))));
+	public static final PlantBundle CYAN_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("cyan_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, CYAN_MUSHROOM_BLOCK))));
+	public static final PlantBundle LIGHT_BLUE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("light_blue_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, LIGHT_BLUE_MUSHROOM_BLOCK))));
+	public static final PlantBundle BLUE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("blue_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, BLUE_MUSHROOM_BLOCK))));
+	public static final PlantBundle PURPLE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("purple_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, PURPLE_MUSHROOM_BLOCK))));
+	public static final PlantBundle MAGENTA_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("magenta_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, MAGENTA_MUSHROOM_BLOCK))));
+	public static final PlantBundle PINK_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("pink_mushroom").provider(s -> new FertilizableMushroomPlantBlock(s, PINK_MUSHROOM_BLOCK))));
 
 	public static class Features {
 		public static class Configured {

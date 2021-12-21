@@ -7,13 +7,12 @@ import com.hugman.dawn.api.creator.PlacedFeatureCreator;
 import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.creator.bundle.block.WoodBundle;
 import com.hugman.dawn.api.object.block.SaplingBlock;
+import com.hugman.dawn.api.util.DefaultBlockBuilders;
 import com.hugman.dawn.api.util.DefaultBlockSettings;
-import com.hugman.dawn.api.util.DefaultBlockTemplates;
 import com.hugman.promenade.object.block.sapling_generator.PinkCherryOakSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.WhiteCherryOakSaplingGenerator;
 import com.hugman.promenade.util.BiomeUtil;
-import com.hugman.promenade.util.BlockSettingsUtil;
-import com.hugman.promenade.util.BlockTemplateUtil;
+import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.TreeUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
@@ -32,13 +31,13 @@ public class CherryBundle extends PromenadeBundle {
 	/*----------*/
 	/*  BLOCKS  */
 	/*----------*/
-	public static final WoodBundle CHERRY_OAK_WOOD = bundle(new WoodBundle.Builder("cherry_oak", MapColor.DULL_RED, MapColor.DULL_PINK, MapColor.DARK_DULL_PINK, false).build());
-	public static final PlantBundle PINK_CHERRY_OAK_SAPLING = bundle(new PlantBundle(new BlockCreator.Builder("pink_cherry_oak_sapling", settings -> new SaplingBlock(new PinkCherryOakSaplingGenerator(), settings), DefaultBlockSettings.SAPLING).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT)));
-	public static final PlantBundle WHITE_CHERRY_OAK_SAPLING = bundle(new PlantBundle(new BlockCreator.Builder("white_cherry_oak_sapling", settings -> new SaplingBlock(new WhiteCherryOakSaplingGenerator(), settings), DefaultBlockSettings.SAPLING).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT)));
-	public static final Block PINK_CHERRY_OAK_LEAVES = add(new BlockCreator.Builder("pink_cherry_oak", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).compostingChance(0.3f).build());
-	public static final Block PINK_CHERRY_OAK_LEAF_PILE = add(new BlockCreator.Builder("pink_cherry_oak", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).compostingChance(0.3f).build());
-	public static final Block WHITE_CHERRY_OAK_LEAVES = add(new BlockCreator.Builder("white_cherry_oak", DefaultBlockTemplates.LEAVES, DefaultBlockSettings.LEAVES).flammability(30, 60).compostingChance(0.3f).build());
-	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(new BlockCreator.Builder("white_cherry_oak", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).compostingChance(0.3f).build());
+	public static final WoodBundle CHERRY_OAK_WOOD = creator(new WoodBundle.Builder("cherry_oak", MapColor.DULL_RED, MapColor.DULL_PINK, MapColor.DARK_DULL_PINK, false).build());
+	public static final PlantBundle PINK_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("pink_cherry_oak_sapling").provider(s -> new SaplingBlock(new PinkCherryOakSaplingGenerator(), s))));
+	public static final PlantBundle WHITE_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("white_cherry_oak_sapling").provider(s -> new SaplingBlock(new WhiteCherryOakSaplingGenerator(), s))));
+	public static final Block PINK_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("pink_cherry_oak_leaves").build());
+	public static final Block PINK_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("pink_cherry_oak_leaf_pile").build());
+	public static final Block WHITE_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("white_cherry_oak_leaves").build());
+	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("white_cherry_oak_leaf_pile").build());
 
 	public static void addToGen() {
 		/**

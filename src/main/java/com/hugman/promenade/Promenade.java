@@ -20,6 +20,7 @@ public class Promenade implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		MOD_DATA.addOldName("wild_explorer");
 		initBundles();
 		MOD_DATA.registerCreators();
 		postInitBundles();

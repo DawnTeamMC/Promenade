@@ -6,8 +6,7 @@ import com.hugman.dawn.api.creator.PlacedFeatureCreator;
 import com.hugman.dawn.api.creator.bundle.block.OverworldWoodBundle;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.PalmSaplingGenerator;
-import com.hugman.promenade.util.BlockSettingsUtil;
-import com.hugman.promenade.util.BlockTemplateUtil;
+import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.GenUtil;
 import com.hugman.promenade.util.TreeUtil;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -16,8 +15,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.*;
@@ -27,8 +24,8 @@ import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 
 
 public class PalmBundle extends PromenadeBundle {
-	public static final OverworldWoodBundle PALM_WOOD = bundle(new OverworldWoodBundle.Builder("palm", new PalmSaplingGenerator(), MapColor.ORANGE, MapColor.TERRACOTTA_CYAN).saplingSoil(blockState -> blockState.isIn(BlockTags.SAND)).build());
-	public static final Block PALM_LEAF_PILE = add(new BlockCreator.Builder("palm", BlockTemplateUtil.LEAF_PILE, BlockSettingsUtil.LEAF_PILE).flammability(30, 60).compostingChance(0.3f).build());
+	public static final OverworldWoodBundle PALM_WOOD = creator(new OverworldWoodBundle.Builder("palm", new PalmSaplingGenerator(), MapColor.ORANGE, MapColor.TERRACOTTA_CYAN).saplingSoil(blockState -> blockState.isIn(BlockTags.SAND)).build());
+	public static final Block PALM_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("palm_leaf_pile").build());
 
 	public static class Features {
 		public static class Configured {
