@@ -1,7 +1,6 @@
 package com.hugman.promenade.init;
 
 import com.hugman.dawn.api.creator.FeatureCreator;
-import com.hugman.promenade.init.PromenadeBundle;
 import com.hugman.promenade.object.world.gen.feature.BoulderFeature;
 import com.hugman.promenade.object.world.gen.feature.HugeMushroomFeature;
 import com.hugman.promenade.object.world.gen.feature.SpikeFeature;

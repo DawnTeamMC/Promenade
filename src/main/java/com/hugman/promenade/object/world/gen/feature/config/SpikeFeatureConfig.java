@@ -1,20 +1,14 @@
 package com.hugman.promenade.object.world.gen.feature.config;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableSet;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.predicate.BlockPredicate;
-import net.minecraft.predicate.block.BlockStatePredicate;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.gen.feature.FeatureConfig;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 import java.util.List;
-import java.util.Set;
 
 public class SpikeFeatureConfig implements FeatureConfig {
 	public static final Codec<SpikeFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> {

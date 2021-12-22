@@ -18,7 +18,6 @@ import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.AbstractSkeletonEntity;
-import net.minecraft.entity.mob.DrownedEntity;
 import net.minecraft.entity.passive.DolphinEntity;
 import net.minecraft.entity.passive.PufferfishEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -44,7 +43,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
 import javax.annotation.Nullable;

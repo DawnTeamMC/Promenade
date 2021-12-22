@@ -1,7 +1,6 @@
 package com.hugman.promenade.compat.init;
 
 import com.hugman.dawn.api.creator.BlockCreator;
-import com.hugman.promenade.Promenade;
 import com.hugman.promenade.init.OreBundle;
 import com.hugman.promenade.init.PromenadeBundle;
 import io.github.haykam821.columns.block.ColumnBlock;

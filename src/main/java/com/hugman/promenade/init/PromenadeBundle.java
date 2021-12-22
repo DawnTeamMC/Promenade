@@ -2,7 +2,6 @@ package com.hugman.promenade.init;
 
 import com.hugman.dawn.api.creator.Creator;
 import com.hugman.dawn.api.creator.SimpleCreator;
-import com.hugman.dawn.api.creator.bundle.Bundle;
 import com.hugman.promenade.Promenade;
 
 public abstract class PromenadeBundle {

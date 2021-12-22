@@ -66,10 +66,10 @@ public class AmaranthBundle extends PromenadeBundle {
 		}
 
 		public static class Placed {
-			public static final PlacedFeature AMARANTH_FUNGI = add( new PlacedFeatureCreator("amaranth_fungi", Configured.AMARANTH_FUNGUS.withPlacement(CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of())));
-			public static final PlacedFeature TALL_AMARANTH_FUNGI = add( new PlacedFeatureCreator("tall_amaranth_fungi", Configured.AMARANTH_FUNGUS.withPlacement(CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of())));
-			public static final PlacedFeature DARK_AMARANTH_FOREST_VEGETATION = add( new PlacedFeatureCreator("dark_amaranth_forest_vegetation", Configured.DARK_AMARANTH_FOREST_VEGETATION.withPlacement(CountMultilayerPlacementModifier.of(6), BiomePlacementModifier.of())));
-			public static final PlacedFeature OBSIDIAN_SPIKES = add( new PlacedFeatureCreator("obsidian_spikes", Configured.OBSIDIAN_SPIKE.withPlacement(CountPlacementModifier.of(12), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of())));
+			public static final PlacedFeature AMARANTH_FUNGI = add(new PlacedFeatureCreator("amaranth_fungi", Configured.AMARANTH_FUNGUS.withPlacement(CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of())));
+			public static final PlacedFeature TALL_AMARANTH_FUNGI = add(new PlacedFeatureCreator("tall_amaranth_fungi", Configured.AMARANTH_FUNGUS.withPlacement(CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of())));
+			public static final PlacedFeature DARK_AMARANTH_FOREST_VEGETATION = add(new PlacedFeatureCreator("dark_amaranth_forest_vegetation", Configured.DARK_AMARANTH_FOREST_VEGETATION.withPlacement(CountMultilayerPlacementModifier.of(6), BiomePlacementModifier.of())));
+			public static final PlacedFeature OBSIDIAN_SPIKES = add(new PlacedFeatureCreator("obsidian_spikes", Configured.OBSIDIAN_SPIKE.withPlacement(CountPlacementModifier.of(12), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of())));
 		}
 	}
 

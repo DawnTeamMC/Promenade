@@ -4,7 +4,6 @@ import com.hugman.promenade.Promenade;
 import net.fabricmc.fabric.api.tag.TagFactory;
 import net.minecraft.block.Block;
 import net.minecraft.tag.Tag;
-import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 
 public class PromenadeTags {

@@ -4,13 +4,8 @@ import com.hugman.dawn.api.creator.EntityCreator;
 import com.hugman.dawn.api.creator.ItemCreator;
 import com.hugman.dawn.api.creator.SoundCreator;
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.config.PromenadeConfig;
-import com.hugman.promenade.init.data.PromenadeTags;
-import com.hugman.promenade.object.entity.DuckEntity;
 import com.hugman.promenade.object.entity.SunkenSkeletonEntity;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
@@ -20,11 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.world.Heightmap;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.feature.OceanConfiguredFeatures;
-
-import java.util.function.Predicate;
 
 public class MonsterBundle extends PromenadeBundle {
 	public static final EntityType<SunkenSkeletonEntity> SUNKEN_SKELETON = add(new EntityCreator<>("sunken_skeleton", FabricEntityTypeBuilder.createMob()

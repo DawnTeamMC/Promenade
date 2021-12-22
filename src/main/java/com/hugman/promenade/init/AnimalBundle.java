@@ -4,9 +4,7 @@ import com.hugman.dawn.api.creator.EntityCreator;
 import com.hugman.dawn.api.creator.ItemCreator;
 import com.hugman.dawn.api.creator.SoundCreator;
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.object.entity.DuckEntity;
-import com.hugman.promenade.object.entity.SunkenSkeletonEntity;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -14,11 +12,9 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.SpawnRestriction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
-import net.minecraft.world.Heightmap;
 
 import java.util.function.Predicate;
 
