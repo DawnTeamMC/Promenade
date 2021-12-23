@@ -62,6 +62,9 @@ public class Promenade implements ModInitializer {
 	}
 
 	public static void postInitBundles() {
+		AutumnBundle.addWanderingSales();
+		CherryBundle.addWanderingSales();
+
 		AmaranthBundle.addToGen();
 		AnimalBundle.addToGen();
 		AutumnBundle.addToGen();

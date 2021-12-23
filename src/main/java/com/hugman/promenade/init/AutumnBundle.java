@@ -7,9 +7,11 @@ import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.object.block.SaplingBlock;
 import com.hugman.dawn.api.util.DefaultBlockBuilders;
 import com.hugman.promenade.object.block.sapling_generator.AutumnBirchSaplingGenerator;
+import com.hugman.promenade.object.sell.SellSaplingFactory;
 import com.hugman.promenade.util.BiomeUtil;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.TreeUtil;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.sound.BiomeMoodSound;
@@ -40,6 +42,13 @@ public class AutumnBundle extends PromenadeBundle {
 		 * if(Promenade.CONFIG.biomes.pumpkin_pastures)
 		 * 			OverworldBiomes.addContinentalBiome(AutumnBundle.Biomes.PUMPKIN_PASTURES.getRegistryKey(), OverworldClimate.COOL, Promenade.CONFIG.biomes.pumpkin_pastures_weight / 10.0D);
 		 */
+	}
+
+	public static void addWanderingSales() {
+		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
+			factories.add(new SellSaplingFactory(AUTUMN_OAK_SAPLING.getPlant()));
+			factories.add(new SellSaplingFactory(AUTUMN_BIRCH_SAPLING.getPlant()));
+		});
 	}
 
 	public static class Features {
