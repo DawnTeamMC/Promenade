@@ -33,7 +33,8 @@
 		"dawn": ">=3.2.0"
 	},
 	"suggests": {
-		"columns": "*"
+		"columns": "*",
+		"farmingforblockheads": "*"
 	},
 	"custom": {
 		"modmenu": {

@@ -1,0 +1,25 @@
+{
+	"modId": "promenade",
+	"group": {
+		"name": "Promenade Saplings",
+		"enabledByDefault": true,
+		"defaultPayment": {
+			"item": "minecraft:emerald"
+		},
+		"defaultCategory": "farmingforblockheads:saplings"
+	},
+	"customEntries": [
+		{
+			"output": "promenade:autumn_oak_sapling"
+		},
+		{
+			"output": "promenade:autumn_birch_sapling"
+		},
+		{
+			"output": "promenade:pink_cherry_oak_sapling"
+		},
+		{
+			"output": "promenade:white_cherry_oak_sapling"
+		}
+	]
+}
