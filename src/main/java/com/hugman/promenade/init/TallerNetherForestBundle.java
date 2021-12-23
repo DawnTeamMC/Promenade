@@ -13,6 +13,8 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
@@ -24,6 +26,7 @@ import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.decorator.BiomePlacementModifier;
 import net.minecraft.world.gen.decorator.CountMultilayerPlacementModifier;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 
 public class TallerNetherForestBundle extends PromenadeBundle {
 	public static void addToGen() {
@@ -58,8 +61,9 @@ public class TallerNetherForestBundle extends PromenadeBundle {
 					.build();
 			GenerationSettings.Builder genBuilder = new GenerationSettings.Builder()
 					.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE)
-					.feature(GenerationStep.Feature.VEGETAL_DECORATION, MiscPlacedFeatures.SPRING_LAVA)
-					.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_OPEN)
+					.feature(GenerationStep.Feature.VEGETAL_DECORATION, MiscPlacedFeatures.SPRING_LAVA);
+			DefaultBiomeFeatures.addDefaultMushrooms(genBuilder);
+			genBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_OPEN)
 					.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_FIRE)
 					.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA)
 					.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE)
@@ -68,7 +72,7 @@ public class TallerNetherForestBundle extends PromenadeBundle {
 					.feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.WEEPING_VINES)
 					.feature(GenerationStep.Feature.VEGETAL_DECORATION, Features.Placed.TALL_CRIMSON_FUNGI)
 					.feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.CRIMSON_FOREST_VEGETATION);
-			DefaultBiomeFeatures.addDefaultMushrooms(genBuilder);
+
 			DefaultBiomeFeatures.addNetherMineables(genBuilder);
 			BiomeEffects effects = BiomeUtil.genericEffectBuilder(2.0F)
 					.fogColor(0x330303)
@@ -103,8 +107,9 @@ public class TallerNetherForestBundle extends PromenadeBundle {
 					.build();
 			GenerationSettings.Builder genBuilder = new GenerationSettings.Builder()
 					.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE)
-					.feature(GenerationStep.Feature.VEGETAL_DECORATION, MiscPlacedFeatures.SPRING_LAVA)
-					.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_OPEN)
+					.feature(GenerationStep.Feature.VEGETAL_DECORATION, MiscPlacedFeatures.SPRING_LAVA);
+			DefaultBiomeFeatures.addDefaultMushrooms(genBuilder);
+			genBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_OPEN)
 					.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_FIRE)
 					.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_SOUL_FIRE)
 					.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.GLOWSTONE_EXTRA)
@@ -115,7 +120,6 @@ public class TallerNetherForestBundle extends PromenadeBundle {
 					.feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.WARPED_FOREST_VEGETATION)
 					.feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.NETHER_SPROUTS)
 					.feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.TWISTING_VINES);
-			DefaultBiomeFeatures.addDefaultMushrooms(genBuilder);
 			DefaultBiomeFeatures.addNetherMineables(genBuilder);
 			BiomeEffects effects = BiomeUtil.genericEffectBuilder(2.0F)
 					.fogColor(1705242)
