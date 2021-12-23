@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"group": "leaf_pile",
+	"pattern": [
+		"##"
+	],
+	"key": {
+		"#": {
+			"item": "minecraft:azalea_leaves"
+		}
+	},
+	"result": {
+		"item": "promenade:azalea_leaf_pile",
+		"count": 2
+	}
+}
