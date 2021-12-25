@@ -13,6 +13,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
@@ -26,6 +27,7 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
+import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 
 
@@ -44,7 +46,7 @@ public class PalmBundle extends PromenadeBundle {
 			public static final ConfiguredFeature<TreeFeatureConfig, ?> PALM = add(new ConfiguredFeatureCreator<>("tree/palm", Feature.TREE.configure(createPalm().build())));
 
 			private static TreeFeatureConfig.Builder createPalm() {
-				return TreeUtil.build(PALM_WOOD.getLog(), PALM_WOOD.getLeaves(), new ForkingTrunkPlacer(16, 2, 2), new AcaciaFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0)), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines();
+				return TreeUtil.build(PALM_WOOD.getLog(), PALM_WOOD.getLeaves(), new ForkingTrunkPlacer(16, 2, 2), new AcaciaFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0)), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().dirtProvider(BlockStateProvider.of(Blocks.SAND));
 			}
 		}
 
