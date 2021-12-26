@@ -46,7 +46,7 @@ public class OreBundle extends PromenadeBundle {
 	}
 
 	public static void addToGen() {
-		if(Promenade.CONFIG.features.igneous_rock_patches) {
+		if(Promenade.CONFIG.world_features.igneous_rock_patches) {
 			Predicate<BiomeSelectionContext> hasIgneousRocks = c -> c.hasBuiltInFeature(OreConfiguredFeatures.ORE_ANDESITE) && c.hasBuiltInFeature(OreConfiguredFeatures.ORE_DIORITE) && c.hasBuiltInFeature(OreConfiguredFeatures.ORE_GRANITE);
 			BiomeModifications.addFeature(hasIgneousRocks, GenerationStep.Feature.UNDERGROUND_ORES, GenUtil.getKey(Features.Placed.ORE_BLUNITE_UPPER));
 			BiomeModifications.addFeature(hasIgneousRocks, GenerationStep.Feature.UNDERGROUND_ORES, GenUtil.getKey(Features.Placed.ORE_BLUNITE_LOWER));

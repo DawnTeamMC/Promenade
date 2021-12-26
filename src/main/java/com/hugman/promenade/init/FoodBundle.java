@@ -48,7 +48,7 @@ public class FoodBundle extends PromenadeBundle {
 	}
 
 	public static void addToGen() {
-		if(Promenade.CONFIG.features.blueberry_bushes) {
+		if(Promenade.CONFIG.world_features.blueberry_bushes) {
 			BiomeModifications.addFeature(c -> c.hasBuiltInPlacedFeature(VegetationPlacedFeatures.PATCH_BERRY_COMMON), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PATCH_BLUEBERRY_BUSH_COMMON));
 			BiomeModifications.addFeature(c -> c.hasBuiltInPlacedFeature(VegetationPlacedFeatures.PATCH_BERRY_RARE), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PATCH_BLUEBERRY_BUSH_RARE));
 		}

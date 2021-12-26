@@ -5,7 +5,7 @@ import com.hugman.dawn.api.creator.PlacedFeatureCreator;
 import com.hugman.dawn.api.creator.bundle.block.OverworldWoodBundle;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.PalmSaplingGenerator;
-import com.hugman.promenade.object.sell.SellSaplingFactory;
+import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.GenUtil;
 import com.hugman.promenade.util.TreeUtil;
@@ -56,7 +56,7 @@ public class PalmBundle extends PromenadeBundle {
 	}
 
 	public static void addToGen() {
-		if(Promenade.CONFIG.features.palm_trees) {
+		if(Promenade.CONFIG.world_features.palms) {
 			BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.DESERT), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PALMS));
 		}
 	}

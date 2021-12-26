@@ -7,9 +7,10 @@ import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.creator.bundle.block.WoodBundle;
 import com.hugman.dawn.api.object.block.SaplingBlock;
 import com.hugman.dawn.api.util.DefaultBlockBuilders;
+import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.PinkCherryOakSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.WhiteCherryOakSaplingGenerator;
-import com.hugman.promenade.object.sell.SellSaplingFactory;
+import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
 import com.hugman.promenade.util.BiomeUtil;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.TreeUtil;
@@ -39,14 +40,10 @@ public class CherryBundle extends PromenadeBundle {
 	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("white_cherry_oak_leaf_pile").build());
 
 	public static void addToGen() {
-		/**
-		 * TODO: add when API is here LOL
-		 *
-		 * if(BIOMES_CONFIG.cherry_oak_forests) {
-		 * 			OverworldBiomes.addContinentalBiome(PINK_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D);
-		 * 			OverworldBiomes.addContinentalBiome(WHITE_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D);
-		 * }
-		 */
+		 if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
+			 //OverworldBiomes.addContinentalBiome(PINK_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D)
+			 //OverworldBiomes.addContinentalBiome(WHITE_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D);
+		 }
 	}
 
 	public static void addWanderingSales() {

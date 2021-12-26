@@ -46,9 +46,9 @@ public class AmaranthBundle extends PromenadeBundle {
 	//public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> AMARANTH_DYLIUM = add(new ConfiguredSurfaceBuilderCreator<>("amaranth_dylium", SurfaceBuilder.DEFAULT.withConfig(new TernarySurfaceConfig(States.AMARANTH_DYLIUM, States.END_STONE, States.END_STONE))));
 
 	public static void addToGen() {
-		if(Promenade.CONFIG.biomes.dark_amaranth_forests) {
-			TheEndBiomes.addHighlandsBiome(Biomes.TALL_DARK_AMARANTH_FOREST.getRegistryKey(), Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 10.0D);
-			TheEndBiomes.addMidlandsBiome(Biomes.TALL_DARK_AMARANTH_FOREST.getRegistryKey(), Biomes.DARK_AMARANTH_FOREST.getRegistryKey(), Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 10.0D);
+		if(Promenade.CONFIG.biomes.dark_amaranth_forests_weight > 0) {
+			//TheEndBiomes.addHighlandsBiome(Biomes.TALL_DARK_AMARANTH_FOREST.getRegistryKey(), Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 10.0D);
+			//TheEndBiomes.addMidlandsBiome(Biomes.TALL_DARK_AMARANTH_FOREST.getRegistryKey(), Biomes.DARK_AMARANTH_FOREST.getRegistryKey(), Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 10.0D);
 		}
 	}
 

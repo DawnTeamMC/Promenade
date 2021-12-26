@@ -1,4 +1,4 @@
-package com.hugman.promenade.object.sell;
+package com.hugman.promenade.object.trade_offers;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemConvertible;

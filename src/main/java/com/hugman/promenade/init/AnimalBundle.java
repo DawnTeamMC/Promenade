@@ -38,7 +38,7 @@ public class AnimalBundle extends PromenadeBundle {
 	public static final SoundCreator DUCK_STEP_SOUND = creator(new SoundCreator("entity.duck.step"));
 
 	public static void addToGen() {
-		if(Promenade.CONFIG.creatures.ducks) {
+		if(Promenade.CONFIG.animals.ducks) {
 			Predicate<BiomeSelectionContext> hasFarmAnimals = BiomeSelectors.spawnsOneOf(EntityType.COW).and(BiomeSelectors.spawnsOneOf(EntityType.SHEEP)).and(BiomeSelectors.spawnsOneOf(EntityType.CHICKEN)).and(BiomeSelectors.spawnsOneOf(EntityType.PIG));
 			BiomeModifications.addSpawn(hasFarmAnimals, SpawnGroup.CREATURE, DUCK, 10, 4, 4);
 		}

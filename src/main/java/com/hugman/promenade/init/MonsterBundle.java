@@ -33,7 +33,7 @@ public class MonsterBundle extends PromenadeBundle {
 	public static final SoundCreator SUNKEN_SKELETON_SHOOT_SOUND = creator(new SoundCreator("entity.sunken_skeleton.shoot"));
 
 	public static void addToGen() {
-		if(Promenade.CONFIG.creatures.sunken_skeletons) {
+		if(Promenade.CONFIG.monsters.sunken_skeletons) {
 			BiomeModifications.addSpawn(biomeSelectionContext -> biomeSelectionContext.hasBuiltInFeature(OceanConfiguredFeatures.WARM_OCEAN_VEGETATION), SpawnGroup.MONSTER, SUNKEN_SKELETON, 20, 1, 3);
 		}
 	}

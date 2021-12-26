@@ -21,7 +21,7 @@ public class WitchHutBundle extends PromenadeBundle {
 	public static final ConfiguredStructureFeature<DefaultFeatureConfig, ? extends StructureFeature<DefaultFeatureConfig>> DARK_FOREST_WITCH_HUT = add(new ConfiguredStructureFeatureCreator<>("dark_forest_witch_hut", WITCH_HUT.getStructure().configure(DefaultFeatureConfig.DEFAULT)));
 
 	public static void addToGen() {
-		if(Promenade.CONFIG.structures.witch_huts) {
+		if(Promenade.CONFIG.world_features.witch_huts) {
 			BiomeModifications.addStructure(biomeSelectionContext -> biomeSelectionContext.hasBuiltInFeature(VegetationConfiguredFeatures.DARK_FOREST_VEGETATION), GenUtil.getKey(WitchHutBundle.DARK_FOREST_WITCH_HUT));
 		}
 	}

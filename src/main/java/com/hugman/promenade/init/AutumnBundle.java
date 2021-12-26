@@ -6,8 +6,9 @@ import com.hugman.dawn.api.creator.PlacedFeatureCreator;
 import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.object.block.SaplingBlock;
 import com.hugman.dawn.api.util.DefaultBlockBuilders;
+import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.AutumnBirchSaplingGenerator;
-import com.hugman.promenade.object.sell.SellSaplingFactory;
+import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
 import com.hugman.promenade.util.BiomeUtil;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.TreeUtil;
@@ -36,12 +37,9 @@ public class AutumnBundle extends PromenadeBundle {
 	public static final Block AUTUMN_BIRCH_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("autumn_birch_leaf_pile").build());
 
 	public static void addToGen() {
-		/**
-		 * TODO: add when API is here LOL
-		 *
-		 * if(Promenade.CONFIG.biomes.pumpkin_pastures)
-		 * 			OverworldBiomes.addContinentalBiome(AutumnBundle.Biomes.PUMPKIN_PASTURES.getRegistryKey(), OverworldClimate.COOL, Promenade.CONFIG.biomes.pumpkin_pastures_weight / 10.0D);
-		 */
+		if(Promenade.CONFIG.biomes.pumpkin_pastures_weight > 0) {
+			//OverworldBiomes.addContinentalBiome(AutumnBundle.Biomes.PUMPKIN_PASTURES.getRegistryKey(), OverworldClimate.COOL, Promenade.CONFIG.biomes.pumpkin_pastures_weight / 10.0D);
+		}
 	}
 
 	public static void addWanderingSales() {

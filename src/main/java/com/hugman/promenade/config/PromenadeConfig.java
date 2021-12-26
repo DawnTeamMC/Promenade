@@ -12,61 +12,56 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 	@ConfigEntry.Category("biomes")
 	@ConfigEntry.Gui.TransitiveObject
 	public BiomesCategory biomes = new BiomesCategory();
-	@ConfigEntry.Category("features")
+	@ConfigEntry.Category("world_features")
 	@ConfigEntry.Gui.TransitiveObject
-	public FeaturesCategory features = new FeaturesCategory();
-	@ConfigEntry.Category("structures")
+	public WorldFeaturesCategory world_features = new WorldFeaturesCategory();
+	@ConfigEntry.Category("animals")
 	@ConfigEntry.Gui.TransitiveObject
-	public StructuresCategory structures = new StructuresCategory();
-	@ConfigEntry.Category("creatures")
+	public AnimalsCategory animals = new AnimalsCategory();
+	@ConfigEntry.Category("monsters")
 	@ConfigEntry.Gui.TransitiveObject
-	public CreaturesCategory creatures = new CreaturesCategory();
+	public MonstersCategory monsters = new MonstersCategory();
 
 	@Config(name = "biomes")
 	public static class BiomesCategory implements ConfigData {
-		//TODO: turn this back on when biomes are there again
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean pumpkin_pastures = false;
-		@ConfigEntry.Gui.RequiresRestart
-		@ConfigEntry.BoundedDiscrete(min = 1, max = 25)
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
 		public int pumpkin_pastures_weight = 10;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean cherry_oak_forests = false;
-		@ConfigEntry.Gui.RequiresRestart
-		@ConfigEntry.BoundedDiscrete(min = 1, max = 25)
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
 		public int cherry_oak_forests_weight = 10;
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean tall_nether_forests = false;
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean nether_galleries = false;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean dark_amaranth_forests = false;
-		@ConfigEntry.Gui.RequiresRestart
-		@ConfigEntry.BoundedDiscrete(min = 1, max = 25)
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
 		public int dark_amaranth_forests_weight = 10;
 	}
 
-	@Config(name = "features")
-	public static class FeaturesCategory implements ConfigData {
+	@Config(name = "world_features")
+	public static class WorldFeaturesCategory implements ConfigData {
+		@ConfigEntry.Gui.RequiresRestart
+		public boolean witch_huts = true;
 		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.Gui.Tooltip
 		public boolean igneous_rock_patches = true;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean palm_trees = true;
+		public boolean palms = true;
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean blueberry_bushes = true;
 	}
 
-	@Config(name = "structures")
-	public static class StructuresCategory implements ConfigData {
-		@ConfigEntry.Gui.RequiresRestart
-		public boolean witch_huts = true;
-	}
-
-	@Config(name = "creatures")
-	public static class CreaturesCategory implements ConfigData {
+	@Config(name = "animals")
+	public static class AnimalsCategory implements ConfigData {
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean ducks = true;
+	}
+
+	@Config(name = "monsters")
+	public static class MonstersCategory implements ConfigData {
+		@ConfigEntry.Gui.RequiresRestart
+		public boolean lush_creepers = true;
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean sunken_skeletons = true;
 	}
