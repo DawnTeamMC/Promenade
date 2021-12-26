@@ -31,8 +31,8 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 public class TallerNetherForestBundle extends PromenadeBundle {
 	public static void addToGen() {
 		if(Promenade.CONFIG.biomes.tall_nether_forests) {
-			NetherBiomes.addNetherBiome(Biomes.TALL_CRIMSON_FOREST.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.4F, 0.0F, 0.8F, 0.0F, 0.4F, 0.0F, 0.0F));
-			NetherBiomes.addNetherBiome(Biomes.TALL_WARPED_FOREST.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.5F, 0.8F, 0.0F, 0.0F, 0.0F, 0.375F));
+			//NetherBiomes.addNetherBiome(Biomes.TALL_CRIMSON_FOREST.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.4F, 0.0F, 0.8F, 0.0F, 0.4F, 0.0F, 0.0F));
+			//NetherBiomes.addNetherBiome(Biomes.TALL_WARPED_FOREST.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.5F, 0.8F, 0.0F, 0.0F, 0.0F, 0.375F));
 		}
 	}
 

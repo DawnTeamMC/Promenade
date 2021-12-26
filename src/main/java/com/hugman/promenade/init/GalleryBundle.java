@@ -32,9 +32,9 @@ import static com.hugman.promenade.init.MushroomBundle.Features.Configured.*;
 public class GalleryBundle extends PromenadeBundle {
 	public static void addToGen() {
 		if(Promenade.CONFIG.biomes.nether_galleries) {
-			NetherBiomes.addNetherBiome(Biomes.TRITANOPIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.5F, 0.0F, 0.0F, 0.0F));
-			NetherBiomes.addNetherBiome(Biomes.ACHROMATOPSIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.2F, 0.0F, 0.6F, 0.0F));
-			NetherBiomes.addNetherBiome(Biomes.PROTANOPIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.1F, 0.0F));
+			//NetherBiomes.addNetherBiome(Biomes.TRITANOPIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+			//NetherBiomes.addNetherBiome(Biomes.ACHROMATOPSIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.2F, 0.0F, 0.6F, 0.0F));
+			//NetherBiomes.addNetherBiome(Biomes.PROTANOPIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.1F, 0.0F));
 		}
 	}
 

@@ -7,11 +7,14 @@ import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.creator.bundle.block.WoodBundle;
 import com.hugman.dawn.api.object.block.SaplingBlock;
 import com.hugman.dawn.api.util.DefaultBlockBuilders;
+import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.PinkCherryOakSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.WhiteCherryOakSaplingGenerator;
+import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
 import com.hugman.promenade.util.BiomeUtil;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.TreeUtil;
+import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
 import net.minecraft.sound.BiomeMoodSound;
@@ -30,21 +33,24 @@ public class CherryBundle extends PromenadeBundle {
 	/*----------*/
 	public static final WoodBundle CHERRY_OAK_WOOD = creator(new WoodBundle.Builder("cherry_oak", MapColor.DULL_RED, MapColor.DULL_PINK, MapColor.DARK_DULL_PINK, false).build());
 	public static final PlantBundle PINK_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("pink_cherry_oak_sapling").provider(s -> new SaplingBlock(new PinkCherryOakSaplingGenerator(), s))));
-	public static final PlantBundle WHITE_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("white_cherry_oak_sapling").provider(s -> new SaplingBlock(new WhiteCherryOakSaplingGenerator(), s))));
 	public static final Block PINK_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("pink_cherry_oak_leaves").build());
 	public static final Block PINK_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("pink_cherry_oak_leaf_pile").build());
+	public static final PlantBundle WHITE_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("white_cherry_oak_sapling").provider(s -> new SaplingBlock(new WhiteCherryOakSaplingGenerator(), s))));
 	public static final Block WHITE_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("white_cherry_oak_leaves").build());
 	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("white_cherry_oak_leaf_pile").build());
 
 	public static void addToGen() {
-		/**
-		 * TODO: add when API is here LOL
-		 *
-		 * if(BIOMES_CONFIG.cherry_oak_forests) {
-		 * 			OverworldBiomes.addContinentalBiome(PINK_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D);
-		 * 			OverworldBiomes.addContinentalBiome(WHITE_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D);
-		 * }
-		 */
+		 if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
+			 //OverworldBiomes.addContinentalBiome(PINK_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D)
+			 //OverworldBiomes.addContinentalBiome(WHITE_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D);
+		 }
+	}
+
+	public static void addWanderingSales() {
+		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
+			factories.add(new SellSaplingFactory(PINK_CHERRY_OAK_SAPLING.getPlant()));
+			factories.add(new SellSaplingFactory(WHITE_CHERRY_OAK_SAPLING.getPlant()));
+		});
 	}
 
 	public static class Features {

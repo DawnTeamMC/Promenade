@@ -33,8 +33,6 @@ public class FoodBundle extends PromenadeBundle {
 	public static final Item BANANA = add(new ItemCreator.Builder("banana", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(PromenadeFoods.BANANA)).compostingChance(0.65F).build());
 	public static final Item APRICOT = add(new ItemCreator.Builder("apricot", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(PromenadeFoods.APRICOT)).compostingChance(0.65F).build());
 	public static final Item MANGO = add(new ItemCreator.Builder("mango", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(PromenadeFoods.MANGO)).compostingChance(0.65F).build());
-	public static final Item DUCK = add(new ItemCreator.Builder("duck", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(PromenadeFoods.DUCK)).build());
-	public static final Item COOKED_DUCK = add(new ItemCreator.Builder("cooked_duck", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(PromenadeFoods.COOKED_DUCK)).build());
 
 	public static class Features {
 		public static class Configured {
@@ -48,7 +46,7 @@ public class FoodBundle extends PromenadeBundle {
 	}
 
 	public static void addToGen() {
-		if(Promenade.CONFIG.features.blueberry_bushes) {
+		if(Promenade.CONFIG.world_features.blueberry_bushes) {
 			BiomeModifications.addFeature(c -> c.hasBuiltInPlacedFeature(VegetationPlacedFeatures.PATCH_BERRY_COMMON), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PATCH_BLUEBERRY_BUSH_COMMON));
 			BiomeModifications.addFeature(c -> c.hasBuiltInPlacedFeature(VegetationPlacedFeatures.PATCH_BERRY_RARE), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PATCH_BLUEBERRY_BUSH_RARE));
 		}

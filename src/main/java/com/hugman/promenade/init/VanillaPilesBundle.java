@@ -11,6 +11,8 @@ public class VanillaPilesBundle extends PromenadeBundle {
 	public static final Block JUNGLE_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("jungle_leaf_pile").build());
 	public static final Block ACACIA_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("acacia_leaf_pile").build());
 	public static final Block DARK_OAK_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("dark_oak_leaf_pile").build());
+	public static final Block AZALEA_LEAF_PILE = add(BlockBuilders.AZALEA_LEAF_PILE.copy("azalea_leaf_pile").build());
+	public static final Block FLOWERING_AZALEA_LEAF_PILE = add(BlockBuilders.AZALEA_LEAF_PILE.copy("flowering_azalea_leaf_pile").build());
 
 	public static final Block DANDELION_PILE = add(BlockBuilders.PLANT_PILE.copy("dandelion_pile").build());
 	public static final Block POPPY_PILE = add(BlockBuilders.PLANT_PILE.copy("poppy_pile").build());
