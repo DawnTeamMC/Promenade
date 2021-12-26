@@ -4,6 +4,8 @@ import com.hugman.dawn.api.creator.BiomeCreator;
 import com.hugman.dawn.api.creator.ConfiguredFeatureCreator;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.util.BiomeUtil;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.sound.MusicType;
@@ -31,8 +33,8 @@ import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
 public class TallerNetherForestBundle extends PromenadeBundle {
 	public static void addToGen() {
 		if(Promenade.CONFIG.biomes.tall_nether_forests) {
-			NetherBiomes.addNetherBiome(Biomes.TALL_CRIMSON_FOREST.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.4F, 0.0F, 0.8F, 0.0F, 0.4F, 0.0F, 0.0F));
-			NetherBiomes.addNetherBiome(Biomes.TALL_WARPED_FOREST.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.5F, 0.8F, 0.0F, 0.0F, 0.0F, 0.375F));
+			NetherBiomes.addNetherBiome(Biomes.TALL_CRIMSON_FOREST.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.6F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F));
+			NetherBiomes.addNetherBiome(Biomes.TALL_WARPED_FOREST.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.7F, 0.0F, 0.0F, 0.0F, 0.0F, 0.35F));
 		}
 	}
 
@@ -83,9 +85,7 @@ public class TallerNetherForestBundle extends PromenadeBundle {
 					.music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_CRIMSON_FOREST))
 					.build();
 			/* TODO
-					.surfaceBuilder(ConfiguredSurfaceBuilders.CRIMSON_FOREST)
 					.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER)
-					.carver(GenerationStep.Carver.AIR, ConfiguredCarvers.NETHER_CAVE)
 					.structureFeature(ConfiguredStructureFeatures.FORTRESS)
 					.structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT)
 			*/

@@ -4,6 +4,7 @@ import com.hugman.promenade.object.world.gen.feature.config.HugeMushroomFeatureC
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.ConnectingBlock;
 import net.minecraft.block.Material;
 import net.minecraft.block.MushroomBlock;
 import net.minecraft.util.math.BlockPos;
@@ -103,6 +104,7 @@ public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
 	private void generateStem(WorldAccess world, Random random, BlockPos origin, int stemHeight, HugeMushroomFeatureConfig config) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable();
 		BlockState blockState = config.stemState;
+		if(blockState.contains(MushroomBlock.UP) && blockState.contains(MushroomBlock.DOWN)) blockState = blockState.with(MushroomBlock.UP, false).with(MushroomBlock.DOWN, false);
 		for(int i = 0; i < stemHeight; ++i) {
 			mutable.set(origin).move(config.upsideDown ? Direction.DOWN : Direction.UP, i);
 			if(isReplaceable(world, mutable, true, true)) {
