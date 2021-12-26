@@ -33,7 +33,7 @@ public class DuckEntityModel<T extends LivingEntity> extends AnimalModel<T> {
 		this.leftWing = root.getChild("left_wing");
 	}
 
-	public static TexturedModelData createModelData() {
+	public static TexturedModelData getTexturedModelData() {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
 		modelPartData.addChild("head", ModelPartBuilder.create().uv(0, 0).cuboid(-2.0F, -10.0F, -2.0F, 4.0F, 10.0F, 3.0F), ModelTransform.pivot(0.0F, 15.0F, -4.0F));

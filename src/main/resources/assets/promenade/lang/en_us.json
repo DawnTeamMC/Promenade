@@ -162,10 +162,13 @@
 	"item.promenade.mango": "Mango",
 	"item.promenade.duck": "Duck",
 	"item.promenade.cooked_duck": "Cooked Duck",
+
 	"item.promenade.duck_spawn_egg": "Duck Spawn Egg",
+	"item.promenade.lush_creeper_spawn_egg": "Lush Creeper Spawn Egg",
 	"item.promenade.sunken_skeleton_spawn_egg": "Sunken Skeleton Spawn Egg",
 
 	"entity.promenade.duck": "Duck",
+	"entity.promenade.lush_creeper": "Lush Creeper",
 	"entity.promenade.sunken_skeleton": "Sunken Skeleton",
 
 	"biome.promenade.pumpkin_pastures": "Pumpkin Pastures",
@@ -204,5 +207,6 @@
 	"text.autoconfig.promenade.option.world_features.palms": "Generate Palms",
 	"text.autoconfig.promenade.option.world_features.blueberry_bushes": "Generate Blueberry Bushes",
 	"text.autoconfig.promenade.option.animals.ducks": "Natural spawning of Ducks",
+	"text.autoconfig.promenade.option.monsters.lush_creepers": "Natural spawning of Lush Creepers",
 	"text.autoconfig.promenade.option.monsters.sunken_skeletons": "Natural spawning of Sunken Skeletons"
 }
