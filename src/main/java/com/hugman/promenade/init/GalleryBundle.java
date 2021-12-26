@@ -32,9 +32,9 @@ import static com.hugman.promenade.init.MushroomBundle.Features.Configured.*;
 public class GalleryBundle extends PromenadeBundle {
 	public static void addToGen() {
 		if(Promenade.CONFIG.biomes.nether_galleries) {
-			//NetherBiomes.addNetherBiome(Biomes.TRITANOPIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.5F, 0.0F, 0.0F, 0.0F));
-			//NetherBiomes.addNetherBiome(Biomes.ACHROMATOPSIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.2F, 0.0F, 0.6F, 0.0F));
-			//NetherBiomes.addNetherBiome(Biomes.PROTANOPIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.1F, 0.0F));
+			NetherBiomes.addNetherBiome(Biomes.TRITANOPIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.5F, 0.0F, 0.0F, 0.0F));
+			NetherBiomes.addNetherBiome(Biomes.ACHROMATOPSIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.2F, 0.0F, 0.6F, 0.0F));
+			NetherBiomes.addNetherBiome(Biomes.PROTANOPIAN_GALLERY.getRegistryKey(), MultiNoiseUtil.createNoiseHypercube(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.1F, 0.0F));
 		}
 	}
 
@@ -90,7 +90,6 @@ public class GalleryBundle extends PromenadeBundle {
 					.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 15, 4, 4))
 					.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2))
 					.build();
-			DefaultBiomeFeatures.addNetherMineables(genBuilder);
 			/* TODO
 				genBuilder.surfaceBuilder(ConfiguredSurfaceBuilders.NETHER);
 				genBuilder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
@@ -123,6 +122,7 @@ public class GalleryBundle extends PromenadeBundle {
 			addTritanopianHugeMushrooms(builder);
 			addUndergroundDecoration(builder);
 			addTritanopianMushrooms(builder);
+			DefaultBiomeFeatures.addNetherMineables(builder);
 
 			return builder;
 		}
@@ -135,6 +135,7 @@ public class GalleryBundle extends PromenadeBundle {
 			addAchromatopsianHugeMushrooms(builder);
 			addUndergroundDecoration(builder);
 			addAchromatopsianMushrooms(builder);
+			DefaultBiomeFeatures.addNetherMineables(builder);
 
 			return builder;
 		}
@@ -147,6 +148,7 @@ public class GalleryBundle extends PromenadeBundle {
 			addProtanopianHugeMushrooms(builder);
 			addUndergroundDecoration(builder, true);
 			addProtanopianMushrooms(builder);
+			DefaultBiomeFeatures.addNetherMineables(builder);
 
 			return builder;
 		}

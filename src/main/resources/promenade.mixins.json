@@ -2,7 +2,7 @@
 	"required": true,
 	"package": "com.hugman.promenade.mixin",
 	"compatibilityLevel": "JAVA_16",
-	"mixins": ["VanillaSurfaceRulesMixin"],
+	"mixins": ["MaterialRulesMixin"],
 	"injectors": {
 		"defaultRequire": 1
 	}
