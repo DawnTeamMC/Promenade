@@ -17,7 +17,6 @@ public class VanillaSurfaceRulesMixin {
 	@Inject(method = "getEndStoneRule", at = @At("RETURN"), cancellable = true)
 	private static void promenade$appendEndSurfaces(CallbackInfoReturnable<MaterialRules.MaterialRule> cir) {
 		MaterialRules.MaterialRule rules = cir.getReturnValue();
-		MaterialRules.MaterialCondition surface = MaterialRules.aboveY(YOffset.fixed(31), 0);
 		MaterialRules.MaterialCondition darkAmaranthForest = MaterialRules.biome(BiomeUtil.DARK_AMARANTH_FOREST_KEY, BiomeUtil.TALL_DARK_AMARANTH_FOREST_KEY);
 
 		cir.setReturnValue(MaterialRules.sequence(
