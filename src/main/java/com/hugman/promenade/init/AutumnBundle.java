@@ -38,6 +38,7 @@ public class AutumnBundle extends PromenadeBundle {
 
 	public static void addToGen() {
 		if(Promenade.CONFIG.biomes.pumpkin_pastures_weight > 0) {
+			//TODO
 			//OverworldBiomes.addContinentalBiome(AutumnBundle.Biomes.PUMPKIN_PASTURES.getRegistryKey(), OverworldClimate.COOL, Promenade.CONFIG.biomes.pumpkin_pastures_weight / 10.0D);
 		}
 	}
