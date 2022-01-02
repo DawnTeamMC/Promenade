@@ -1,20 +1,35 @@
 package com.hugman.promenade.util;
 
+import com.hugman.promenade.Promenade;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.MusicSound;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.registry.BuiltinRegistries;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+import net.minecraft.world.gen.noise.BuiltinNoiseParameters;
+import net.minecraft.world.gen.noise.NoiseParametersKeys;
 import org.jetbrains.annotations.Nullable;
 
 public final class BiomeUtil {
+	public static final RegistryKey<Biome> TALL_CRIMSON_FOREST_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("tall_crimson_forest"));
+	public static final RegistryKey<Biome> TALL_WARPED_FOREST_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("tall_warped_forest"));
+	public static final RegistryKey<Biome> TRITANOPIAN_GALLERY_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("tritanopian_gallery"));
+	public static final RegistryKey<Biome> ACHROMATOPSIAN_GALLERY_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("achromatopsian_gallery"));
+	public static final RegistryKey<Biome> PROTANOPIAN_GALLERY_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("protanopian_gallery"));
+	public static final RegistryKey<Biome> DARK_AMARANTH_FOREST_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("dark_amaranth_forest"));
+	public static final RegistryKey<Biome> TALL_DARK_AMARANTH_FOREST_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("tall_dark_amaranth_forest"));
+
+
 	public static int getSkyColor(float temperature) {
 		float g = temperature / 3.0F;
 		g = MathHelper.clamp(g, -1.0F, 1.0F);

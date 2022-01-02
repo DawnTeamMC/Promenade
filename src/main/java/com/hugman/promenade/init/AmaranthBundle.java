@@ -42,13 +42,13 @@ public class AmaranthBundle extends PromenadeBundle {
 	public static final Block DARK_AMARANTH_ROOTS = add(new BlockCreator.Builder("dark_amaranth_roots", RootsBlock::new, FabricBlockSettings.of(Material.NETHER_SHOOTS, MapColor.CYAN).noCollision().breakInstantly().sounds(BlockSoundGroup.ROOTS)).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT).compostingChance(0.65F).build());
 	public static final NetherWoodBundle DARK_AMARANTH_WOOD = creator(new NetherWoodBundle.Builder("dark_amaranth", () -> Features.Configured.AMARANTH_FUNGUS_PLANTED, MapColor.LIGHT_GRAY, MapColor.DARK_DULL_PINK).build());
 
-	//TODO
-	//public static final ConfiguredSurfaceBuilder<TernarySurfaceConfig> AMARANTH_DYLIUM = add(new ConfiguredSurfaceBuilderCreator<>("amaranth_dylium", SurfaceBuilder.DEFAULT.withConfig(new TernarySurfaceConfig(States.AMARANTH_DYLIUM, States.END_STONE, States.END_STONE))));
-
 	public static void addToGen() {
 		if(Promenade.CONFIG.biomes.dark_amaranth_forests_weight > 0) {
-			//TheEndBiomes.addHighlandsBiome(Biomes.TALL_DARK_AMARANTH_FOREST.getRegistryKey(), Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 10.0D);
-			//TheEndBiomes.addMidlandsBiome(Biomes.TALL_DARK_AMARANTH_FOREST.getRegistryKey(), Biomes.DARK_AMARANTH_FOREST.getRegistryKey(), Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 10.0D);
+			/*
+			TODO: fix the damn features
+			TheEndBiomes.addHighlandsBiome(Biomes.TALL_DARK_AMARANTH_FOREST.getRegistryKey(), Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 10.0D);
+			TheEndBiomes.addMidlandsBiome(Biomes.TALL_DARK_AMARANTH_FOREST.getRegistryKey(), Biomes.DARK_AMARANTH_FOREST.getRegistryKey(), Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 10.0D);
+			 */
 		}
 	}
 
@@ -83,8 +83,7 @@ public class AmaranthBundle extends PromenadeBundle {
 			generationBuilder
 					.feature(GenerationStep.Feature.VEGETAL_DECORATION, isTall ? Features.Placed.TALL_AMARANTH_FUNGI : Features.Placed.AMARANTH_FUNGI)
 					/* TODO
-					.surfaceBuilder(PromenadeConfiguredSurfaceBuilders.AMARANTH_DYLIUM)
-					.structureFeature(ConfiguredStructureFeatures.END_CITY)
+						.structureFeature(ConfiguredStructureFeatures.END_CITY)
 					 */
 					.feature(GenerationStep.Feature.SURFACE_STRUCTURES, EndPlacedFeatures.END_GATEWAY_RETURN)
 					.feature(GenerationStep.Feature.VEGETAL_DECORATION, Features.Placed.DARK_AMARANTH_FOREST_VEGETATION);
