@@ -18,12 +18,17 @@ import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
 import net.minecraft.sound.BiomeMoodSound;
+import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
+import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 
 import java.util.List;
 
@@ -40,11 +45,11 @@ public class CherryBundle extends PromenadeBundle {
 	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("white_cherry_oak_leaf_pile").build());
 
 	public static void addToGen() {
-		 if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
-		 	//TODO
+		if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
+			//TODO
 			//OverworldBiomes.addContinentalBiome(PINK_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D)
 			//OverworldBiomes.addContinentalBiome(WHITE_CHERRY_OAK_FOREST.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.cherry_oak_forests_weight / 10.0D);
-		 }
+		}
 	}
 
 	public static void addWanderingSales() {
@@ -59,15 +64,15 @@ public class CherryBundle extends PromenadeBundle {
 			/*---------*/
 			/*  TREES  */
 			/*---------*/
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> PINK_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/normal", Feature.TREE.configure(pinkCherryOakTree().build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> PINK_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/bees_005", Feature.TREE.configure(pinkCherryOakTree().decorators(List.of(TreeUtil.BEES_005)).build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_PINK_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/fancy", Feature.TREE.configure(fancyPinkCherryOakTree().build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_PINK_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/fancy_bees_005", Feature.TREE.configure(fancyPinkCherryOakTree().decorators(List.of(TreeUtil.BEES_005)).build())));
+			public static final ConfiguredFeature<TreeFeatureConfig, ?> PINK_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/normal", Feature.TREE.configure(buildNormalCherryOak(PINK_CHERRY_OAK_LEAVES).build())));
+			public static final ConfiguredFeature<TreeFeatureConfig, ?> PINK_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/bees_005", Feature.TREE.configure(buildNormalCherryOak(PINK_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build())));
+			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_PINK_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/fancy", Feature.TREE.configure(buildFancyCherryOak(PINK_CHERRY_OAK_LEAVES).build())));
+			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_PINK_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/fancy_bees_005", Feature.TREE.configure(buildFancyCherryOak(PINK_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build())));
 
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> WHITE_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/normal", Feature.TREE.configure(whiteCherryOakTree().build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> WHITE_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/bees_005", Feature.TREE.configure(whiteCherryOakTree().decorators(List.of(TreeUtil.BEES_005)).build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_WHITE_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/fancy", Feature.TREE.configure(fancyWhiteCherryOakTree().build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_WHITE_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/fancy_bees_005", Feature.TREE.configure(fancyWhiteCherryOakTree().decorators(List.of(TreeUtil.BEES_005)).build())));
+			public static final ConfiguredFeature<TreeFeatureConfig, ?> WHITE_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/normal", Feature.TREE.configure(buildNormalCherryOak(WHITE_CHERRY_OAK_LEAVES).build())));
+			public static final ConfiguredFeature<TreeFeatureConfig, ?> WHITE_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/bees_005", Feature.TREE.configure(buildNormalCherryOak(WHITE_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build())));
+			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_WHITE_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/fancy", Feature.TREE.configure(buildFancyCherryOak(WHITE_CHERRY_OAK_LEAVES).build())));
+			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_WHITE_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/fancy_bees_005", Feature.TREE.configure(buildFancyCherryOak(WHITE_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build())));
 
 			/*--------------*/
 			/*  LEAF PILES  */
@@ -75,20 +80,16 @@ public class CherryBundle extends PromenadeBundle {
 			public static final ConfiguredFeature<?, ?> PINK_CHERRY_OAK_LEAF_PILE_PATCH = add(new ConfiguredFeatureCreator<>("patch/leaf_pile/pink_cherry_oak", Feature.RANDOM_PATCH.configure(createRandomPatchFeatureConfig(BlockStateProvider.of(PINK_CHERRY_OAK_LEAF_PILE), 32))));
 			public static final ConfiguredFeature<?, ?> WHITE_CHERRY_OAK_LEAF_PILE_PATCH = add(new ConfiguredFeatureCreator<>("patch/leaf_pile/white_cherry_oak", Feature.RANDOM_PATCH.configure(createRandomPatchFeatureConfig(BlockStateProvider.of(WHITE_CHERRY_OAK_LEAF_PILE), 32))));
 
-			private static TreeFeatureConfig.Builder pinkCherryOakTree() {
-				return TreeUtil.buildNormal(CHERRY_OAK_WOOD.getLog(), PINK_CHERRY_OAK_LEAVES, 5, 2, 0, 2).ignoreVines();
+			private static TreeFeatureConfig.Builder buildNormalCherryOak(Block leaves) {
+				return buildCherryOak(leaves, 3, 2, 1).ignoreVines();
 			}
 
-			private static TreeFeatureConfig.Builder fancyPinkCherryOakTree() {
-				return TreeUtil.buildFancy(CHERRY_OAK_WOOD.getLog(), PINK_CHERRY_OAK_LEAVES, 3, 11, 0, 2).ignoreVines();
+			private static TreeFeatureConfig.Builder buildFancyCherryOak(Block leaves) {
+				return buildCherryOak(leaves, 5, 3, 2).ignoreVines();
 			}
 
-			private static TreeFeatureConfig.Builder whiteCherryOakTree() {
-				return TreeUtil.buildNormal(CHERRY_OAK_WOOD.getLog(), WHITE_CHERRY_OAK_LEAVES, 5, 2, 0, 2).ignoreVines();
-			}
-
-			private static TreeFeatureConfig.Builder fancyWhiteCherryOakTree() {
-				return TreeUtil.buildFancy(CHERRY_OAK_WOOD.getLog(), WHITE_CHERRY_OAK_LEAVES, 3, 11, 0, 2).ignoreVines();
+			private static TreeFeatureConfig.Builder buildCherryOak(Block leaves, int baseHeight, int firstRandomHeight, int secondRandomHeight) {
+				return TreeUtil.build(CherryBundle.CHERRY_OAK_WOOD.getLog(), leaves, new ForkingTrunkPlacer(baseHeight, firstRandomHeight, secondRandomHeight), new AcaciaFoliagePlacer(UniformIntProvider.create(1, 2), ConstantIntProvider.create(0)), new TwoLayersFeatureSize(1, 0, 1));
 			}
 
 			private static RandomPatchFeatureConfig createRandomPatchFeatureConfig(BlockStateProvider block, int tries) {
