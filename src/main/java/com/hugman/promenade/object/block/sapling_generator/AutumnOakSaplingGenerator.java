@@ -10,6 +10,6 @@ import java.util.Random;
 public class AutumnOakSaplingGenerator extends SaplingGenerator {
 	@Override
 	protected ConfiguredFeature<TreeFeatureConfig, ?> getTreeFeature(Random random, boolean beeHive) {
-		return random.nextInt(10) == 0 ? beeHive ? AutumnBundle.Features.Configured.FANCY_AUTUMN_OAK_BEES_002 : AutumnBundle.Features.Configured.FANCY_AUTUMN_BIRCH : beeHive ? AutumnBundle.Features.Configured.AUTUMN_OAK_BEES_002 : AutumnBundle.Features.Configured.AUTUMN_OAK;
+		return random.nextInt(10) == 0 ? beeHive ? AutumnBundle.Features.Configured.FANCY_AUTUMN_OAK_BEES_002 : AutumnBundle.Features.Configured.FANCY_AUTUMN_OAK : beeHive ? AutumnBundle.Features.Configured.AUTUMN_BIRCH_BEES_002 : AutumnBundle.Features.Configured.AUTUMN_BIRCH;
 	}
 }
