@@ -37,9 +37,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
 				int k = random.nextInt(8);
 				int l = random.nextInt(2);
 				float f = (float) (j + k + l) * 0.333F + 0.5F;
-				Iterator var11 = BlockPos.iterate(pos.add(-j, -k, -l), pos.add(j, k, l)).iterator();
-				while(var11.hasNext()) {
-					BlockPos blockPos2 = (BlockPos) var11.next();
+				for(BlockPos blockPos2 : BlockPos.iterate(pos.add(-j, -k, -l), pos.add(j, k, l))) {
 					if(blockPos2.getSquaredDistance(pos) <= (double) (f * f)) {
 						world.setBlockState(blockPos2, config.state, 4);
 					}
