@@ -1,0 +1,76 @@
+package com.hugman.promenade.object.world.gen.tree;
+
+import com.google.common.collect.ImmutableList;
+import com.hugman.promenade.init.CommonBundle;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.block.BlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.intprovider.IntProvider;
+import net.minecraft.world.TestableWorld;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
+import net.minecraft.world.gen.foliage.FoliagePlacer;
+import net.minecraft.world.gen.trunk.TrunkPlacer;
+import net.minecraft.world.gen.trunk.TrunkPlacerType;
+
+import java.util.List;
+import java.util.Random;
+import java.util.function.BiConsumer;
+
+public class LeapingTrunkPlacer extends TrunkPlacer {
+	public static final Codec<LeapingTrunkPlacer> CODEC = RecordCodecBuilder.create(instance -> fillTrunkPlacerFields(instance).and(instance.group(
+			IntProvider.createValidatingCodec(0, 80).fieldOf("straight_max").forGetter(placer -> placer.straightMax),
+			IntProvider.VALUE_CODEC.fieldOf("straight_difference").forGetter(placer -> placer.straightDifference),
+			Codec.FLOAT.fieldOf("decline_chance").forGetter(placer -> placer.declineChance))
+	).apply(instance, LeapingTrunkPlacer::new));
+
+	private final IntProvider straightMax;
+	private final IntProvider straightDifference;
+	private final float declineChance;
+
+	public LeapingTrunkPlacer(int baseHeight, int firstRandomHeight, int secondRandomHeight, IntProvider straightMax, IntProvider straightDifference, float declineChance) {
+		super(baseHeight, firstRandomHeight, secondRandomHeight);
+		this.straightMax = straightMax;
+		this.straightDifference = straightDifference;
+		this.declineChance = declineChance;
+	}
+
+	@Override
+	protected TrunkPlacerType<?> getType() {
+		return CommonBundle.LEAPING_TRUNK_PLACER;
+	}
+
+	@Override
+	public List<FoliagePlacer.TreeNode> generate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config) {
+		Direction direction = Direction.Type.HORIZONTAL.random(random);
+		BlockPos.Mutable mutable = startPos.mutableCopy().move(Direction.DOWN);
+
+		int j = this.straightMax.get(random);
+		int k = j;
+
+		setToDirt(world, replacer, random, mutable, config);
+		for(int i = 0; i < height; ++i) {
+			mutable.move(Direction.UP);
+			if(k <= 0) {
+				j += this.straightDifference.get(random);
+				k = j;
+				if(random.nextFloat() < this.declineChance && i < height - 1) {
+					getAndSetState(world, replacer, random, mutable, config);
+					if(random.nextBoolean()) {
+						mutable.move(direction.rotateYClockwise());
+					}
+					else {
+						mutable.move(direction.rotateYCounterclockwise());
+					}
+				}
+				mutable.move(direction);
+			}
+			getAndSetState(world, replacer, random, mutable, config);
+			k--;
+		}
+
+		mutable.move(Direction.UP);
+		return ImmutableList.of(new FoliagePlacer.TreeNode(mutable, 0, false));
+	}
+}
