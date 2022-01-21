@@ -6,7 +6,8 @@ import com.hugman.dawn.api.creator.bundle.block.OverworldWoodBundle;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.PalmSaplingGenerator;
 import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
-import com.hugman.promenade.object.world.gen.tree.LeapingTrunkPlacer;
+import com.hugman.promenade.object.world.gen.tree.foliage.PalmFoliagePlacer;
+import com.hugman.promenade.object.world.gen.tree.trunk.LeapingTrunkPlacer;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.GenUtil;
 import com.hugman.promenade.util.TreeUtil;
@@ -43,7 +44,7 @@ public class PalmBundle extends PromenadeBundle {
 			public static final ConfiguredFeature<TreeFeatureConfig, ?> PALM = add(new ConfiguredFeatureCreator<>("tree/palm", Feature.TREE.configure(createPalm().build())));
 
 			private static TreeFeatureConfig.Builder createPalm() {
-				return TreeUtil.build(PALM_WOOD.getLog(), PALM_WOOD.getLeaves(), new LeapingTrunkPlacer(6, 5, 2, BiasedToBottomIntProvider.create(3, 10), UniformIntProvider.create(-1, 0), 0.45F), new AcaciaFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0)), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().dirtProvider(BlockStateProvider.of(Blocks.SAND));
+				return TreeUtil.build(PALM_WOOD.getLog(), PALM_WOOD.getLeaves(), new LeapingTrunkPlacer(6, 5, 2, BiasedToBottomIntProvider.create(3, 10), UniformIntProvider.create(-1, 0), 0.45F, 2), new PalmFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().dirtProvider(BlockStateProvider.of(Blocks.SAND));
 			}
 		}
 

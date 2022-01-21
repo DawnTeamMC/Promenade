@@ -1,4 +1,4 @@
-package com.hugman.promenade.object.world.gen.tree;
+package com.hugman.promenade.object.world.gen.tree.trunk;
 
 import com.google.common.collect.ImmutableList;
 import com.hugman.promenade.init.CommonBundle;
@@ -7,6 +7,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
@@ -22,18 +23,21 @@ public class LeapingTrunkPlacer extends TrunkPlacer {
 	public static final Codec<LeapingTrunkPlacer> CODEC = RecordCodecBuilder.create(instance -> fillTrunkPlacerFields(instance).and(instance.group(
 			IntProvider.createValidatingCodec(0, 80).fieldOf("straight_max").forGetter(placer -> placer.straightMax),
 			IntProvider.VALUE_CODEC.fieldOf("straight_difference").forGetter(placer -> placer.straightDifference),
-			Codec.FLOAT.fieldOf("decline_chance").forGetter(placer -> placer.declineChance))
+			Codec.FLOAT.fieldOf("decline_chance").forGetter(placer -> placer.declineChance),
+			Codec.INT.fieldOf("max_foliage_radius_bonus").forGetter(placer -> placer.maxFoliageRadiusBonus))
 	).apply(instance, LeapingTrunkPlacer::new));
 
 	private final IntProvider straightMax;
 	private final IntProvider straightDifference;
 	private final float declineChance;
+	private final int maxFoliageRadiusBonus;
 
-	public LeapingTrunkPlacer(int baseHeight, int firstRandomHeight, int secondRandomHeight, IntProvider straightMax, IntProvider straightDifference, float declineChance) {
+	public LeapingTrunkPlacer(int baseHeight, int firstRandomHeight, int secondRandomHeight, IntProvider straightMax, IntProvider straightDifference, float declineChance, int maxFoliageRadiusBonus) {
 		super(baseHeight, firstRandomHeight, secondRandomHeight);
 		this.straightMax = straightMax;
 		this.straightDifference = straightDifference;
 		this.declineChance = declineChance;
+		this.maxFoliageRadiusBonus = maxFoliageRadiusBonus;
 	}
 
 	@Override
@@ -71,6 +75,8 @@ public class LeapingTrunkPlacer extends TrunkPlacer {
 		}
 
 		mutable.move(Direction.UP);
-		return ImmutableList.of(new FoliagePlacer.TreeNode(mutable, 0, false));
+
+		double heightRatio = MathHelper.clamp((height - this.baseHeight) / (double) (this.firstRandomHeight + this.secondRandomHeight), 0.0D, 0.999D);
+		return ImmutableList.of(new FoliagePlacer.TreeNode(mutable, MathHelper.floor((this.maxFoliageRadiusBonus + 1) * heightRatio), false));
 	}
 }
