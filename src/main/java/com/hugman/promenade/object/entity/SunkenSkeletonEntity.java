@@ -90,7 +90,7 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 
 	@Override
 	public boolean canSpawn(WorldView world) {
-		return world.intersectsEntities(this);
+		return world.doesNotIntersectEntities(this);
 	}
 
 	public static DefaultAttributeContainer.Builder createSunkenSkeletonAttributes() {
