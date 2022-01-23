@@ -42,10 +42,6 @@ public final class BiomeUtil {
 				.music(null);
 	}
 
-	public static Biome createBiome(Biome.Precipitation precipitation, Biome.Category category, float temperature, float downfall, SpawnSettings spawnSettings, GenerationSettings genSettings, @Nullable MusicSound music) {
-		return createBiome(category, precipitation, temperature, downfall, spawnSettings, genSettings, genericEffectBuilder(temperature).build());
-	}
-
 	public static Biome createBiome(Biome.Category category, Biome.Precipitation precipitation, float temperature, float downfall, SpawnSettings spawnSettings, GenerationSettings genSettings, BiomeEffects effects) {
 		return new Biome.Builder()
 				.precipitation(precipitation)
@@ -58,13 +54,12 @@ public final class BiomeUtil {
 				.build();
 	}
 
-	public static Biome createForest(GenerationSettings genSettings, BiomeEffects effects, float temperature, float downfall) {
+	public static SpawnSettings.Builder composeForestSpawn() {
 		SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
 		DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
 		DefaultBiomeFeatures.addBatsAndMonsters(spawnBuilder);
 		spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 5, 4, 4));
-
-		return createBiome(Biome.Category.FOREST, Biome.Precipitation.RAIN, temperature, downfall, spawnBuilder.build(), genSettings, effects);
+		return spawnBuilder;
 	}
 
 	public static void addBasicFeatures(GenerationSettings.Builder generationSettings) {

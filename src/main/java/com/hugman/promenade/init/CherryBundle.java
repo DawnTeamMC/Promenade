@@ -18,6 +18,8 @@ import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.VerticalSurfaceType;
@@ -27,6 +29,7 @@ import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
+import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.BiomePlacementModifier;
 import net.minecraft.world.gen.decorator.HeightmapPlacementModifier;
@@ -139,8 +142,8 @@ public class CherryBundle extends PromenadeBundle {
 			public static final ConfiguredFeature<RandomFeatureConfig, ?> PINK_CHERRY_OAK_FOREST_TREES_C = add(new ConfiguredFeatureCreator<>("trees/pink_cherry_oak_forest", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.WHITE_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_PINK_CHERRY_OAK, 0.1f)), Placed.PINK_CHERRY_OAK))));
 			public static final ConfiguredFeature<RandomFeatureConfig, ?> WHITE_CHERRY_OAK_FOREST_TREES_C = add(new ConfiguredFeatureCreator<>("trees/white_cherry_oak_forest", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.PINK_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_WHITE_CHERRY_OAK, 0.1f)), Placed.WHITE_CHERRY_OAK))));
 
-			public static final PlacedFeature PINK_CHERRY_OAK_FOREST_TREES = add(new PlacedFeatureCreator("trees/pink_cherry_oak_forest", PINK_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(5, 0.1f, 1)))));
-			public static final PlacedFeature WHITE_CHERRY_OAK_FOREST_TREES = add(new PlacedFeatureCreator("trees/white_cherry_oak_forest", WHITE_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(5, 0.1f, 1)))));
+			public static final PlacedFeature PINK_CHERRY_OAK_FOREST_TREES = add(new PlacedFeatureCreator("trees/pink_cherry_oak_forest", PINK_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(2, 0.1f, 1)))));
+			public static final PlacedFeature WHITE_CHERRY_OAK_FOREST_TREES = add(new PlacedFeatureCreator("trees/white_cherry_oak_forest", WHITE_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(2, 0.1f, 1)))));
 
 			/*--------------*/
 			/*  LEAF PILES  */
@@ -177,6 +180,7 @@ public class CherryBundle extends PromenadeBundle {
 			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.BAMBOO_LIGHT);
 			DefaultBiomeFeatures.addDefaultFlowers(genBuilder);
 			DefaultBiomeFeatures.addForestGrass(genBuilder);
+			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.BIRCH_TALL);
 			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_WATERLILY);
 			DefaultBiomeFeatures.addDefaultMushrooms(genBuilder);
 			DefaultBiomeFeatures.addDefaultVegetation(genBuilder);
@@ -193,12 +197,17 @@ public class CherryBundle extends PromenadeBundle {
 				genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, MushroomBundle.Features.Placed.WHITE_MUSHROOM_NORMAL_PATCH);
 				genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, MushroomBundle.Features.Placed.LIGHT_GRAY_MUSHROOM_NORMAL_PATCH);
 			}
+			SpawnSettings.Builder spawnBuilder = BiomeUtil.composeForestSpawn();
+			spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.FOX, 16, 1, 3));
+			spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.PANDA, 2, 4, 5));
+
 			BiomeEffects effects = BiomeUtil.genericEffectBuilder(0.6F)
 					.waterColor(6459391)
 					.waterFogColor(2170954)
 					.moodSound(BiomeMoodSound.CAVE)
 					.build();
-			return BiomeUtil.createForest(genBuilder.build(), effects, 0.6F, 0.4F);
+
+			return BiomeUtil.createBiome(Biome.Category.FOREST, Biome.Precipitation.RAIN, 0.6F, 0.4F, spawnBuilder.build(), genBuilder.build(), effects);
 		}
 	}
 }

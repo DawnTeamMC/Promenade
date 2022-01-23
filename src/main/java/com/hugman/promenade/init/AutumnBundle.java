@@ -137,7 +137,7 @@ public class AutumnBundle extends PromenadeBundle {
 					.foliageColor(15232304)
 					.grassColor(15443554)
 					.build();
-			return BiomeUtil.createForest(genSettings, effects, 0.8F, 0.9F);
+			return BiomeUtil.createBiome(Biome.Category.FOREST, Biome.Precipitation.RAIN, 0.8F, 0.9F, BiomeUtil.composeForestSpawn().build(), genSettings, effects);
 		}
 	}
 }
