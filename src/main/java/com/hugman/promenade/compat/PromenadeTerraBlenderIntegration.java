@@ -28,9 +28,11 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 
 		@Override
 		public void addOverworldBiomes(Registry<Biome> registry, Consumer<Pair<TBClimate.ParameterPoint, RegistryKey<Biome>>> mapper) {
-			this.addBiomeSimilar(mapper, BiomeKeys.BIRCH_FOREST, AutumnBundle.Biomes.PUMPKIN_PASTURES		.getRegistryKey());
-			this.addBiomeSimilar(mapper, BiomeKeys.FOREST,		 CherryBundle.Biomes.PINK_CHERRY_OAK_FOREST	.getRegistryKey());
-			this.addBiomeSimilar(mapper, BiomeKeys.FOREST,		 CherryBundle.Biomes.WHITE_CHERRY_OAK_FOREST.getRegistryKey());
+			this.addModifiedVanillaOverworldBiomes(mapper, builder ->{
+				builder.replaceBiome(BiomeKeys.PLAINS,		 AutumnBundle.Biomes.PUMPKIN_PASTURES		.getRegistryKey());
+				builder.replaceBiome(BiomeKeys.FOREST,		 CherryBundle.Biomes.PINK_CHERRY_OAK_FOREST	.getRegistryKey());
+				builder.replaceBiome(BiomeKeys.BIRCH_FOREST, CherryBundle.Biomes.WHITE_CHERRY_OAK_FOREST.getRegistryKey());
+			});
 		}
 	}
 }
