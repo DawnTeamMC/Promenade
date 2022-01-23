@@ -21,6 +21,9 @@
 		],
 		"modmenu": [
 			"com.hugman.promenade.config.PromenadeModMenuIntegration"
+		],
+		"terrablender": [
+			"com.hugman.promenade.compat.PromenadeTerraBlenderIntegration"
 		]
 	},
 	"mixins": [
@@ -34,7 +37,8 @@
 	},
 	"suggests": {
 		"columns": "*",
-		"farmingforblockheads": "*"
+		"farmingforblockheads": "*",
+		"terrablender": "*"
 	},
 	"custom": {
 		"modmenu": {

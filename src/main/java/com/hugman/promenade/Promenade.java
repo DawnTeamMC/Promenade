@@ -5,7 +5,6 @@ import com.hugman.dawn.api.object.ModData;
 import com.hugman.promenade.compat.init.ColumnsBundle;
 import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.*;
-import com.hugman.promenade.util.BiomeUtil;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
@@ -78,7 +77,5 @@ public class Promenade implements ModInitializer {
 		PalmBundle.addToGen();
 		TallerNetherForestBundle.addToGen();
 		WitchHutBundle.addToGen();
-
-		BiomeUtil.registerBiomeRegions();
 	}
 }

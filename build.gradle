@@ -8,6 +8,7 @@ apply from: 'https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/grad
 
 repositories {
     mavenLocal()
+    maven { url 'https://maven.minecraftforge.net/' }
     maven { url 'https://jitpack.io' }
     maven { url 'https://maven.shedaniel.me/' }
     maven { url 'https://maven.terraformersmc.com/' }
@@ -21,7 +22,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
-    modImplementation "eu.pb4:biome-api:0.0.1-prototype"
+    modImplementation 'com.github.glitchfiend:TerraBlender-fabric:1.18.1-1.1.0.73'
 
     modApi "com.github.DawnTeamMC:DawnAPI:v${dawn_version}"
 
