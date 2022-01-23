@@ -16,14 +16,22 @@ import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.TreeUtil;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.sound.BiomeMoodSound;
+import net.minecraft.tag.BlockTags;
+import net.minecraft.util.math.VerticalSurfaceType;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
+import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.decorator.BiomePlacementModifier;
+import net.minecraft.world.gen.decorator.HeightmapPlacementModifier;
+import net.minecraft.world.gen.decorator.RarityFilterPlacementModifier;
+import net.minecraft.world.gen.decorator.SquarePlacementModifier;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
@@ -80,6 +88,23 @@ public class CherryBundle extends PromenadeBundle {
 			public static final ConfiguredFeature<?, ?> PINK_CHERRY_OAK_LEAF_PILE_PATCH = add(new ConfiguredFeatureCreator<>("patch/leaf_pile/pink_cherry_oak", Feature.RANDOM_PATCH.configure(createRandomPatchFeatureConfig(BlockStateProvider.of(PINK_CHERRY_OAK_LEAF_PILE), 32))));
 			public static final ConfiguredFeature<?, ?> WHITE_CHERRY_OAK_LEAF_PILE_PATCH = add(new ConfiguredFeatureCreator<>("patch/leaf_pile/white_cherry_oak", Feature.RANDOM_PATCH.configure(createRandomPatchFeatureConfig(BlockStateProvider.of(WHITE_CHERRY_OAK_LEAF_PILE), 32))));
 
+			public static final ConfiguredFeature<?, ?> GRAVEL_POOL = add(new ConfiguredFeatureCreator<>("water_pool/gravel", Feature.LAKE.configure(new LakeFeature.Config(BlockStateProvider.of(Blocks.WATER.getDefaultState()), BlockStateProvider.of(Blocks.GRAVEL.getDefaultState())))));
+			public static final ConfiguredFeature<?, ?> DECORATED_GRAVEL_WATER_POOL = add(new ConfiguredFeatureCreator<>("water_pool/gravel_decorated", Feature.WATERLOGGED_VEGETATION_PATCH.configure(
+					new VegetationPatchFeatureConfig(
+							BlockTags.LUSH_GROUND_REPLACEABLE.getId(),
+							BlockStateProvider.of(Blocks.GRAVEL),
+							Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(
+									List.of(new RandomFeatureEntry(VegetationConfiguredFeatures.PATCH_WATERLILY.withPlacement(), 0.5f)),
+									VegetationConfiguredFeatures.PATCH_SUGAR_CANE.withPlacement()
+							))::withPlacement,
+							VerticalSurfaceType.FLOOR,
+							ConstantIntProvider.create(3),
+							0.8f,
+							5,
+							0.15f,
+							UniformIntProvider.create(4, 7),
+							0.7f))));
+
 			private static TreeFeatureConfig.Builder buildNormalCherryOak(Block leaves) {
 				return buildCherryOak(leaves, 3, 2, 1).ignoreVines();
 			}
@@ -114,14 +139,24 @@ public class CherryBundle extends PromenadeBundle {
 			public static final ConfiguredFeature<RandomFeatureConfig, ?> PINK_CHERRY_OAK_FOREST_TREES_C = add(new ConfiguredFeatureCreator<>("trees/pink_cherry_oak_forest", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.WHITE_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_PINK_CHERRY_OAK, 0.1f)), Placed.PINK_CHERRY_OAK))));
 			public static final ConfiguredFeature<RandomFeatureConfig, ?> WHITE_CHERRY_OAK_FOREST_TREES_C = add(new ConfiguredFeatureCreator<>("trees/white_cherry_oak_forest", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.PINK_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_WHITE_CHERRY_OAK, 0.1f)), Placed.WHITE_CHERRY_OAK))));
 
-			public static final PlacedFeature PINK_CHERRY_OAK_FOREST_TREES = PlacedFeatures.register("trees/pink_cherry_oak_forest", PINK_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(10, 0.1f, 1))));
-			public static final PlacedFeature WHITE_CHERRY_OAK_FOREST_TREES = PlacedFeatures.register("trees/white_cherry_oak_forest", WHITE_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(10, 0.1f, 1))));
+			public static final PlacedFeature PINK_CHERRY_OAK_FOREST_TREES = add(new PlacedFeatureCreator("trees/pink_cherry_oak_forest", PINK_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(5, 0.1f, 1)))));
+			public static final PlacedFeature WHITE_CHERRY_OAK_FOREST_TREES = add(new PlacedFeatureCreator("trees/white_cherry_oak_forest", WHITE_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(5, 0.1f, 1)))));
 
 			/*--------------*/
 			/*  LEAF PILES  */
 			/*--------------*/
-			public static final PlacedFeature PINK_CHERRY_OAK_LEAF_PILE_PATCH = add(new PlacedFeatureCreator("patch/leaf_pile/pink_cherry_oak/forest", Configured.PINK_CHERRY_OAK_LEAF_PILE_PATCH.withPlacement(VegetationPlacedFeatures.modifiers(5))));
-			public static final PlacedFeature WHITE_CHERRY_OAK_LEAF_PILE_PATCH = add(new PlacedFeatureCreator("patch/leaf_pile/white_cherry_oak/forest", Configured.WHITE_CHERRY_OAK_LEAF_PILE_PATCH.withPlacement(VegetationPlacedFeatures.modifiers(5))));
+			public static final PlacedFeature PINK_CHERRY_OAK_LEAF_PILE_PATCH = add(new PlacedFeatureCreator("patch/leaf_pile/pink_cherry_oak/forest", Configured.PINK_CHERRY_OAK_LEAF_PILE_PATCH.withPlacement(VegetationPlacedFeatures.modifiers(3))));
+			public static final PlacedFeature WHITE_CHERRY_OAK_LEAF_PILE_PATCH = add(new PlacedFeatureCreator("patch/leaf_pile/white_cherry_oak/forest", Configured.WHITE_CHERRY_OAK_LEAF_PILE_PATCH.withPlacement(VegetationPlacedFeatures.modifiers(3))));
+
+			/*--------*/
+			/* POOLS  */
+			/*--------*/
+			public static final PlacedFeature GRAVEL_WATER_POOL = add(new PlacedFeatureCreator("water_pool/gravel", Configured.GRAVEL_POOL.withPlacement(RarityFilterPlacementModifier.of(7), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of())));
+			public static final PlacedFeature DECORATED_GRAVEL_WATER_POOL = add(new PlacedFeatureCreator("water_pool/gravel_decorated", Configured.DECORATED_GRAVEL_WATER_POOL.withPlacement(
+					RarityFilterPlacementModifier.of(10),
+					SquarePlacementModifier.of(),
+					HeightmapPlacementModifier.of(Heightmap.Type.MOTION_BLOCKING),
+					BiomePlacementModifier.of())));
 		}
 	}
 
@@ -131,6 +166,10 @@ public class CherryBundle extends PromenadeBundle {
 
 		private static Biome createCherryOakForest(boolean isPink) {
 			GenerationSettings.Builder genBuilder = BiomeUtil.composeForestGenerationSettings();
+			genBuilder.feature(GenerationStep.Feature.LAKES, Features.Placed.GRAVEL_WATER_POOL);
+			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Features.Placed.DECORATED_GRAVEL_WATER_POOL);
+			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.BAMBOO_LIGHT);
+			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_WATERLILY);
 			if(isPink) {
 				genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Features.Placed.PINK_CHERRY_OAK_FOREST_TREES);
 				genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Features.Placed.PINK_CHERRY_OAK_LEAF_PILE_PATCH);
@@ -147,7 +186,6 @@ public class CherryBundle extends PromenadeBundle {
 					.waterColor(6459391)
 					.waterFogColor(2170954)
 					.moodSound(BiomeMoodSound.CAVE)
-					.foliageColor(15768259)
 					.build();
 			return BiomeUtil.createForest(genBuilder.build(), effects, 0.6F, 0.4F);
 		}

@@ -6,6 +6,8 @@ import com.hugman.dawn.api.creator.bundle.block.OverworldWoodBundle;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.PalmSaplingGenerator;
 import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
+import com.hugman.promenade.object.world.gen.tree.foliage.PalmFoliagePlacer;
+import com.hugman.promenade.object.world.gen.tree.trunk.LeapingTrunkPlacer;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.GenUtil;
 import com.hugman.promenade.util.TreeUtil;
@@ -16,19 +18,15 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.feature.PlacedFeatures;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
-import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
+import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
-import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 
 
 public class PalmBundle extends PromenadeBundle {
@@ -46,7 +44,7 @@ public class PalmBundle extends PromenadeBundle {
 			public static final ConfiguredFeature<TreeFeatureConfig, ?> PALM = add(new ConfiguredFeatureCreator<>("tree/palm", Feature.TREE.configure(createPalm().build())));
 
 			private static TreeFeatureConfig.Builder createPalm() {
-				return TreeUtil.build(PALM_WOOD.getLog(), PALM_WOOD.getLeaves(), new ForkingTrunkPlacer(16, 2, 2), new AcaciaFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0)), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().dirtProvider(BlockStateProvider.of(Blocks.SAND));
+				return TreeUtil.build(PALM_WOOD.getLog(), PALM_WOOD.getLeaves(), new LeapingTrunkPlacer(6, 5, 2, BiasedToBottomIntProvider.create(3, 10), UniformIntProvider.create(-1, 0), 0.45F, 2), new PalmFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)), new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().dirtProvider(BlockStateProvider.of(Blocks.SAND));
 			}
 		}
 
@@ -56,7 +54,7 @@ public class PalmBundle extends PromenadeBundle {
 	}
 
 	public static void addToGen() {
-		if(Promenade.CONFIG.world_features.palms) {
+		if (Promenade.CONFIG.world_features.palms) {
 			BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.DESERT), GenerationStep.Feature.VEGETAL_DECORATION, GenUtil.getKey(Features.Placed.PALMS));
 		}
 	}

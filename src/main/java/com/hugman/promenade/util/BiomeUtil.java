@@ -46,19 +46,6 @@ public final class BiomeUtil {
 		return createBiome(category, precipitation, temperature, downfall, spawnSettings, genSettings, genericEffectBuilder(temperature).build());
 	}
 
-	public static Biome createBiome(Biome.Category category, Biome.Precipitation precipitation, float temperature, float downfall, int waterColor, int waterFogColor, int fogColor, SpawnSettings spawnSettings, GenerationSettings genSettings, @Nullable MusicSound music) {
-		return createBiome(category, precipitation, temperature, downfall, spawnSettings, genSettings,
-				new BiomeEffects.Builder()
-						.waterColor(waterColor)
-						.waterFogColor(waterFogColor)
-						.fogColor(fogColor)
-						.skyColor(getSkyColor(temperature))
-						.moodSound(BiomeMoodSound.CAVE)
-						.music(music)
-						.build()
-		);
-	}
-
 	public static Biome createBiome(Biome.Category category, Biome.Precipitation precipitation, float temperature, float downfall, SpawnSettings spawnSettings, GenerationSettings genSettings, BiomeEffects effects) {
 		return new Biome.Builder()
 				.precipitation(precipitation)
