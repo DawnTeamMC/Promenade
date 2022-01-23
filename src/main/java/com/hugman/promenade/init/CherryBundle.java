@@ -180,7 +180,6 @@ public class CherryBundle extends PromenadeBundle {
 			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.BAMBOO_LIGHT);
 			DefaultBiomeFeatures.addDefaultFlowers(genBuilder);
 			DefaultBiomeFeatures.addForestGrass(genBuilder);
-			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.BIRCH_TALL);
 			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_WATERLILY);
 			DefaultBiomeFeatures.addDefaultMushrooms(genBuilder);
 			DefaultBiomeFeatures.addDefaultVegetation(genBuilder);
