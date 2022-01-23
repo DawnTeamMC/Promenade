@@ -161,15 +161,26 @@ public class CherryBundle extends PromenadeBundle {
 	}
 
 	public static class Biomes {
-		public static final BiomeCreator PINK_CHERRY_OAK_FOREST = creator(new BiomeCreator("pink_cherry_oak_forest", createCherryOakForest(true)));
+		public static final BiomeCreator PINK_CHERRY_OAK_FOREST  = creator(new BiomeCreator("pink_cherry_oak_forest",  createCherryOakForest(true)));
 		public static final BiomeCreator WHITE_CHERRY_OAK_FOREST = creator(new BiomeCreator("white_cherry_oak_forest", createCherryOakForest(false)));
 
 		private static Biome createCherryOakForest(boolean isPink) {
-			GenerationSettings.Builder genBuilder = BiomeUtil.composeForestGenerationSettings();
+			GenerationSettings.Builder genBuilder = new GenerationSettings.Builder();
+
+			BiomeUtil.addBasicFeatures(genBuilder);
 			genBuilder.feature(GenerationStep.Feature.LAKES, Features.Placed.GRAVEL_WATER_POOL);
 			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Features.Placed.DECORATED_GRAVEL_WATER_POOL);
+			DefaultBiomeFeatures.addForestFlowers(genBuilder);
+			DefaultBiomeFeatures.addDefaultOres(genBuilder);
+			DefaultBiomeFeatures.addDefaultDisks(genBuilder);
+
 			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.BAMBOO_LIGHT);
+			DefaultBiomeFeatures.addDefaultFlowers(genBuilder);
+			DefaultBiomeFeatures.addForestGrass(genBuilder);
 			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_WATERLILY);
+			DefaultBiomeFeatures.addDefaultMushrooms(genBuilder);
+			DefaultBiomeFeatures.addDefaultVegetation(genBuilder);
+
 			if(isPink) {
 				genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Features.Placed.PINK_CHERRY_OAK_FOREST_TREES);
 				genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Features.Placed.PINK_CHERRY_OAK_LEAF_PILE_PATCH);

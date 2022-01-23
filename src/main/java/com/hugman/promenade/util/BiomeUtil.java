@@ -71,7 +71,7 @@ public final class BiomeUtil {
 		return createBiome(Biome.Category.FOREST, Biome.Precipitation.RAIN, temperature, downfall, spawnBuilder.build(), genSettings, effects);
 	}
 
-	private static void addBasicFeatures(GenerationSettings.Builder generationSettings) {
+	public static void addBasicFeatures(GenerationSettings.Builder generationSettings) {
 		DefaultBiomeFeatures.addLandCarvers(generationSettings);
 		DefaultBiomeFeatures.addAmethystGeodes(generationSettings);
 		DefaultBiomeFeatures.addDungeons(generationSettings);
