@@ -32,8 +32,8 @@ public class OreBundle extends PromenadeBundle {
 
 	public static class Features {
 		public static class Configured {
-			public static final ConfiguredFeature<?, ?> BLUNITE_ORE = add(new ConfiguredFeatureCreator<>("ore/blunite", Feature.ORE.configure(new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_OVERWORLD, BLUNITE.getBlock().getDefaultState(), 64))));
-			public static final ConfiguredFeature<?, ?> CARBONITE_ORE = add(new ConfiguredFeatureCreator<>("ore/carbonite", Feature.ORE.configure(new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_OVERWORLD, CARBONITE.getBlock().getDefaultState(), 64))));
+			public static final ConfiguredFeature<?, ?> BLUNITE_ORE = add(new ConfiguredFeatureCreator<>("ore/blunite", Feature.ORE.configure(new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_OVERWORLD, BLUNITE.getBlock().getDefaultState(), 25))));
+			public static final ConfiguredFeature<?, ?> CARBONITE_ORE = add(new ConfiguredFeatureCreator<>("ore/carbonite", Feature.ORE.configure(new OreFeatureConfig(OreConfiguredFeatures.BASE_STONE_OVERWORLD, CARBONITE.getBlock().getDefaultState(), 25))));
 		}
 
 		public static class Placed {
