@@ -8,10 +8,9 @@ import com.hugman.dawn.api.creator.bundle.block.NetherWoodBundle;
 import com.hugman.dawn.api.object.block.RootsBlock;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.DyliumBlock;
-import com.hugman.promenade.object.world.gen.feature.config.BoulderFeatureConfig;
-import com.hugman.promenade.object.world.gen.feature.config.SpikeFeatureConfig;
+import com.hugman.promenade.object.world.gen.feature.BoulderFeatureConfig;
+import com.hugman.promenade.object.world.gen.feature.SpikeFeatureConfig;
 import com.hugman.promenade.util.BiomeUtil;
-import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,6 +22,7 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.collection.DataPool;
+import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
@@ -32,6 +32,7 @@ import net.minecraft.world.gen.decorator.CountMultilayerPlacementModifier;
 import net.minecraft.world.gen.decorator.CountPlacementModifier;
 import net.minecraft.world.gen.decorator.SquarePlacementModifier;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
 import java.util.List;
@@ -62,7 +63,7 @@ public class AmaranthBundle extends PromenadeBundle {
 			public static final ConfiguredFeature<?, ?> DARK_AMARANTH_FOREST_VEGETATION = add(new ConfiguredFeatureCreator<>("dark_amaranth_forest_vegetation/normal", Feature.NETHER_FOREST_VEGETATION.configure(new NetherForestVegetationFeatureConfig(AMARANTH_FOREST_VEGETATION_PROVIDER, 8, 4))));
 			public static final ConfiguredFeature<?, ?> DARK_AMARANTH_FOREST_VEGETATION_BONEMEAL = add(new ConfiguredFeatureCreator<>("dark_amaranth_forest_vegetation/bonemeal", Feature.NETHER_FOREST_VEGETATION.configure(new NetherForestVegetationFeatureConfig(AMARANTH_FOREST_VEGETATION_PROVIDER, 3, 1))));
 			public static final ConfiguredFeature<?, ?> OBSIDIAN_SPIKE = add(new ConfiguredFeatureCreator<>("obsidian_spike", CommonBundle.SPIKE.configure(new SpikeFeatureConfig(Blocks.OBSIDIAN.getDefaultState(), List.of(BLACK_DYLIUM, Blocks.END_STONE), 6, 22, 2, 3, 0, 360, 150, 30, -4).setDecoration(Blocks.CRYING_OBSIDIAN.getDefaultState(), 0.08f))));
-			public static final ConfiguredFeature<?, ?> ENDER_BOULDER = add(new ConfiguredFeatureCreator<>("ender_boulder", CommonBundle.BOULDER.configure(new BoulderFeatureConfig(Blocks.OBSIDIAN.getDefaultState(), List.of(Blocks.END_STONE.getDefaultState())))));
+			public static final ConfiguredFeature<?, ?> ENDER_BOULDER = add(new ConfiguredFeatureCreator<>("ender_boulder", CommonBundle.BOULDER.configure(new BoulderFeatureConfig(SimpleBlockStateProvider.of(Blocks.OBSIDIAN), List.of(Blocks.END_STONE.getDefaultState()), ConstantIntProvider.create(8)))));
 		}
 
 		public static class Placed {

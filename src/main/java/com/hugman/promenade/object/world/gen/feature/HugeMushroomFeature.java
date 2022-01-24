@@ -1,10 +1,8 @@
 package com.hugman.promenade.object.world.gen.feature;
 
-import com.hugman.promenade.object.world.gen.feature.config.HugeMushroomFeatureConfig;
 import com.mojang.serialization.Codec;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.ConnectingBlock;
 import net.minecraft.block.Material;
 import net.minecraft.block.MushroomBlock;
 import net.minecraft.util.math.BlockPos;

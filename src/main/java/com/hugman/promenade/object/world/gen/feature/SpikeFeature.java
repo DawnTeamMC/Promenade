@@ -1,6 +1,5 @@
 package com.hugman.promenade.object.world.gen.feature;
 
-import com.hugman.promenade.object.world.gen.feature.config.SpikeFeatureConfig;
 import com.mojang.serialization.Codec;
 import com.terraformersmc.terraform.shapes.api.Position;
 import com.terraformersmc.terraform.shapes.api.Quaternion;

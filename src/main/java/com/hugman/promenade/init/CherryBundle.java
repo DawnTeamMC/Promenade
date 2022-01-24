@@ -11,17 +11,20 @@ import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.PinkCherryOakSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.WhiteCherryOakSaplingGenerator;
 import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
+import com.hugman.promenade.object.world.gen.feature.BoulderFeatureConfig;
 import com.hugman.promenade.util.BiomeUtil;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.TreeUtil;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.tag.BlockTags;
+import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.VerticalSurfaceType;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
@@ -32,6 +35,7 @@ import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.BiomePlacementModifier;
+import net.minecraft.world.gen.decorator.CountPlacementModifier;
 import net.minecraft.world.gen.decorator.HeightmapPlacementModifier;
 import net.minecraft.world.gen.decorator.RarityFilterPlacementModifier;
 import net.minecraft.world.gen.decorator.SquarePlacementModifier;
@@ -39,6 +43,7 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 
 import java.util.List;
@@ -91,22 +96,23 @@ public class CherryBundle extends PromenadeBundle {
 			public static final ConfiguredFeature<?, ?> PINK_CHERRY_OAK_LEAF_PILE_PATCH = add(new ConfiguredFeatureCreator<>("patch/leaf_pile/pink_cherry_oak", Feature.RANDOM_PATCH.configure(createRandomPatchFeatureConfig(BlockStateProvider.of(PINK_CHERRY_OAK_LEAF_PILE), 32))));
 			public static final ConfiguredFeature<?, ?> WHITE_CHERRY_OAK_LEAF_PILE_PATCH = add(new ConfiguredFeatureCreator<>("patch/leaf_pile/white_cherry_oak", Feature.RANDOM_PATCH.configure(createRandomPatchFeatureConfig(BlockStateProvider.of(WHITE_CHERRY_OAK_LEAF_PILE), 32))));
 
+			/*---------*/
+			/*  OTHER  */
+			/*---------*/
+			public static final ConfiguredFeature<?, ?> CUTE_LITTLE_ROCK = add(new ConfiguredFeatureCreator<>("cute_little_rock", CommonBundle.BOULDER.configure(new BoulderFeatureConfig(new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(Blocks.STONE.getDefaultState(), 80).add(Blocks.CALCITE.getDefaultState(), 20)), List.of(Blocks.GRASS_BLOCK.getDefaultState()), UniformIntProvider.create(3, 4)))));
+
 			public static final ConfiguredFeature<?, ?> GRAVEL_POOL = add(new ConfiguredFeatureCreator<>("water_pool/gravel", Feature.LAKE.configure(new LakeFeature.Config(BlockStateProvider.of(Blocks.WATER.getDefaultState()), BlockStateProvider.of(Blocks.GRAVEL.getDefaultState())))));
-			public static final ConfiguredFeature<?, ?> DECORATED_GRAVEL_WATER_POOL = add(new ConfiguredFeatureCreator<>("water_pool/gravel_decorated", Feature.WATERLOGGED_VEGETATION_PATCH.configure(
-					new VegetationPatchFeatureConfig(
-							BlockTags.LUSH_GROUND_REPLACEABLE.getId(),
-							BlockStateProvider.of(Blocks.GRAVEL),
-							Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(
-									List.of(new RandomFeatureEntry(VegetationConfiguredFeatures.PATCH_WATERLILY.withPlacement(), 0.5f)),
-									VegetationConfiguredFeatures.PATCH_SUGAR_CANE.withPlacement()
-							))::withPlacement,
-							VerticalSurfaceType.FLOOR,
-							ConstantIntProvider.create(3),
-							0.8f,
-							5,
-							0.15f,
-							UniformIntProvider.create(4, 7),
-							0.7f))));
+			public static final ConfiguredFeature<?, ?> DECORATED_GRAVEL_WATER_POOL = add(new ConfiguredFeatureCreator<>("water_pool/gravel_decorated", Feature.WATERLOGGED_VEGETATION_PATCH.configure(buildDecoratedPool())));
+
+			private static VegetationPatchFeatureConfig buildDecoratedPool() {
+				return new VegetationPatchFeatureConfig(
+						BlockTags.LUSH_GROUND_REPLACEABLE.getId(), BlockStateProvider.of(Blocks.GRAVEL),
+						Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(
+								List.of(new RandomFeatureEntry(VegetationConfiguredFeatures.BAMBOO_SOME_PODZOL.withPlacement(), 0.4f)),
+								VegetationConfiguredFeatures.PATCH_WATERLILY.withPlacement()
+						))::withPlacement,
+						VerticalSurfaceType.FLOOR, ConstantIntProvider.create(3), 0.8f, 5, 0.15f, UniformIntProvider.create(4, 7), 0.7f);
+			}
 
 			private static TreeFeatureConfig.Builder buildNormalCherryOak(Block leaves) {
 				return buildCherryOak(leaves, 3, 2, 1).ignoreVines();
@@ -151,15 +157,12 @@ public class CherryBundle extends PromenadeBundle {
 			public static final PlacedFeature PINK_CHERRY_OAK_LEAF_PILE_PATCH = add(new PlacedFeatureCreator("patch/leaf_pile/pink_cherry_oak/forest", Configured.PINK_CHERRY_OAK_LEAF_PILE_PATCH.withPlacement(VegetationPlacedFeatures.modifiers(3))));
 			public static final PlacedFeature WHITE_CHERRY_OAK_LEAF_PILE_PATCH = add(new PlacedFeatureCreator("patch/leaf_pile/white_cherry_oak/forest", Configured.WHITE_CHERRY_OAK_LEAF_PILE_PATCH.withPlacement(VegetationPlacedFeatures.modifiers(3))));
 
-			/*--------*/
-			/* POOLS  */
-			/*--------*/
-			public static final PlacedFeature GRAVEL_WATER_POOL = add(new PlacedFeatureCreator("water_pool/gravel", Configured.GRAVEL_POOL.withPlacement(RarityFilterPlacementModifier.of(7), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of())));
-			public static final PlacedFeature DECORATED_GRAVEL_WATER_POOL = add(new PlacedFeatureCreator("water_pool/gravel_decorated", Configured.DECORATED_GRAVEL_WATER_POOL.withPlacement(
-					RarityFilterPlacementModifier.of(10),
-					SquarePlacementModifier.of(),
-					HeightmapPlacementModifier.of(Heightmap.Type.MOTION_BLOCKING),
-					BiomePlacementModifier.of())));
+			/*---------*/
+			/*  OTHER  */
+			/*---------*/
+			public static final PlacedFeature CUTE_LITTLE_ROCKS = add(new PlacedFeatureCreator("cute_little_rocks", Configured.CUTE_LITTLE_ROCK.withPlacement(CountPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of())));
+			public static final PlacedFeature GRAVEL_WATER_POOLS = add(new PlacedFeatureCreator("water_pools/gravel", Configured.GRAVEL_POOL.withPlacement(RarityFilterPlacementModifier.of(7), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of())));
+			public static final PlacedFeature DECORATED_GRAVEL_WATER_POOLS = add(new PlacedFeatureCreator("water_pools/gravel_decorated", Configured.DECORATED_GRAVEL_WATER_POOL.withPlacement(RarityFilterPlacementModifier.of(10), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of())));
 		}
 	}
 
@@ -171,8 +174,9 @@ public class CherryBundle extends PromenadeBundle {
 			GenerationSettings.Builder genBuilder = new GenerationSettings.Builder();
 
 			BiomeUtil.addBasicFeatures(genBuilder);
-			genBuilder.feature(GenerationStep.Feature.LAKES, Features.Placed.GRAVEL_WATER_POOL);
-			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Features.Placed.DECORATED_GRAVEL_WATER_POOL);
+			genBuilder.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, Features.Placed.CUTE_LITTLE_ROCKS);
+			genBuilder.feature(GenerationStep.Feature.LAKES, Features.Placed.GRAVEL_WATER_POOLS);
+			genBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, Features.Placed.DECORATED_GRAVEL_WATER_POOLS);
 			DefaultBiomeFeatures.addForestFlowers(genBuilder);
 			DefaultBiomeFeatures.addDefaultOres(genBuilder);
 			DefaultBiomeFeatures.addDefaultDisks(genBuilder);

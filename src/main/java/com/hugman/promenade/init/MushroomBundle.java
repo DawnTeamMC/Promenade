@@ -5,7 +5,7 @@ import com.hugman.dawn.api.creator.PlacedFeatureCreator;
 import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.object.block.FertilizableMushroomPlantBlock;
 import com.hugman.dawn.api.util.DefaultBlockBuilders;
-import com.hugman.promenade.object.world.gen.feature.config.HugeMushroomFeatureConfig;
+import com.hugman.promenade.object.world.gen.feature.HugeMushroomFeatureConfig;
 import com.hugman.promenade.util.GenUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;

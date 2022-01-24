@@ -1,4 +1,4 @@
-package com.hugman.promenade.object.world.gen.feature.config;
+package com.hugman.promenade.object.world.gen.feature;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
