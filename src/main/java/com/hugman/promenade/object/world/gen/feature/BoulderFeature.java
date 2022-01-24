@@ -21,14 +21,14 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
 		StructureWorldAccess world = context.getWorld();
 		int radius = config.radius.get(random);
 		BlockPos pos = context.getOrigin();
-		for(; pos.getY() > 3; pos = pos.down()) {
-			if(!world.isAir(pos.down())) {
-				if(!config.replaceableBlocks.contains(world.getBlockState(pos.down()))) {
+		for(; pos.getY() > world.getBottomY() + radius; pos = pos.down()) {
+			if(!world.isAir(pos)) {
+				if(config.replaceableBlocks.contains(world.getBlockState(pos))) {
 					break;
 				}
 			}
 		}
-		if(pos.getY() <= 3) {
+		if(pos.getY() <= world.getBottomY() + radius) {
 			return false;
 		}
 		else {

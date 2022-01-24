@@ -7,6 +7,7 @@ import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.creator.bundle.block.WoodBundle;
 import com.hugman.dawn.api.object.block.SaplingBlock;
 import com.hugman.dawn.api.util.DefaultBlockBuilders;
+import com.hugman.dawn.api.util.DefaultBlockSettings;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.PinkCherryOakSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.WhiteCherryOakSaplingGenerator;
@@ -15,14 +16,17 @@ import com.hugman.promenade.object.world.gen.feature.BoulderFeatureConfig;
 import com.hugman.promenade.util.BiomeUtil;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.TreeUtil;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
+import net.minecraft.block.Material;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.sound.BiomeMoodSound;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.VerticalSurfaceType;
@@ -54,11 +58,11 @@ public class CherryBundle extends PromenadeBundle {
 	/*----------*/
 	public static final WoodBundle CHERRY_OAK_WOOD = creator(new WoodBundle.Builder("cherry_oak", MapColor.DULL_RED, MapColor.DULL_PINK, MapColor.DARK_DULL_PINK, false).build());
 	public static final PlantBundle PINK_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("pink_cherry_oak_sapling").provider(s -> new SaplingBlock(new PinkCherryOakSaplingGenerator(), s))));
-	public static final Block PINK_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("pink_cherry_oak_leaves").build());
-	public static final Block PINK_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("pink_cherry_oak_leaf_pile").build());
+	public static final Block PINK_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("pink_cherry_oak_leaves").settings(FabricBlockSettings.of(Material.LEAVES).strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.AZALEA_LEAVES).nonOpaque().allowsSpawning(DefaultBlockSettings::canSpawnOnLeaves).suffocates(DefaultBlockSettings::never).blockVision(DefaultBlockSettings::never)).build());
+	public static final Block PINK_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.leafPile("pink_cherry_oak_leaf_pile", BlockSoundGroup.AZALEA_LEAVES).build());
 	public static final PlantBundle WHITE_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("white_cherry_oak_sapling").provider(s -> new SaplingBlock(new WhiteCherryOakSaplingGenerator(), s))));
-	public static final Block WHITE_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("white_cherry_oak_leaves").build());
-	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("white_cherry_oak_leaf_pile").build());
+	public static final Block WHITE_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("white_cherry_oak_leaves").settings(FabricBlockSettings.of(Material.LEAVES).strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.AZALEA_LEAVES).nonOpaque().allowsSpawning(DefaultBlockSettings::canSpawnOnLeaves).suffocates(DefaultBlockSettings::never).blockVision(DefaultBlockSettings::never)).build());
+	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.leafPile("white_cherry_oak_leaf_pile", BlockSoundGroup.AZALEA_LEAVES).build());
 
 	public static void addToGen() {
 		if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
@@ -161,6 +165,7 @@ public class CherryBundle extends PromenadeBundle {
 			/*  OTHER  */
 			/*---------*/
 			public static final PlacedFeature CUTE_LITTLE_ROCKS = add(new PlacedFeatureCreator("cute_little_rocks", Configured.CUTE_LITTLE_ROCK.withPlacement(CountPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of())));
+
 			public static final PlacedFeature GRAVEL_WATER_POOLS = add(new PlacedFeatureCreator("water_pools/gravel", Configured.GRAVEL_POOL.withPlacement(RarityFilterPlacementModifier.of(7), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of())));
 			public static final PlacedFeature DECORATED_GRAVEL_WATER_POOLS = add(new PlacedFeatureCreator("water_pools/gravel_decorated", Configured.DECORATED_GRAVEL_WATER_POOL.withPlacement(RarityFilterPlacementModifier.of(10), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of())));
 		}
