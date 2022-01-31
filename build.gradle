@@ -8,13 +8,13 @@ apply from: 'https://raw.githubusercontent.com/DawnTeamMC/DawnTeamMC/master/grad
 
 repositories {
     mavenLocal()
-    maven { url 'https://maven.minecraftforge.net/' }
     maven { url 'https://jitpack.io' }
     maven { url 'https://maven.shedaniel.me/' }
     maven { url 'https://maven.terraformersmc.com/' }
     maven { url 'https://server.bbkr.space/artifactory/libs-release' }
     maven { url 'https://www.cursemaven.com' }
     maven { url "https://maven.ryanliptak.com/" }
+    maven { url 'https://maven.minecraftforge.net/' }
 }
 
 dependencies {
