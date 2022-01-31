@@ -9,6 +9,7 @@ import com.hugman.dawn.api.object.block.SaplingBlock;
 import com.hugman.dawn.api.util.DefaultBlockBuilders;
 import com.hugman.dawn.api.util.DefaultBlockSettings;
 import com.hugman.promenade.Promenade;
+import com.hugman.promenade.creator.ParticleCreator;
 import com.hugman.promenade.object.block.sapling_generator.PinkCherryOakSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.WhiteCherryOakSaplingGenerator;
 import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
@@ -18,6 +19,7 @@ import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.TreeUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -25,6 +27,9 @@ import net.minecraft.block.MapColor;
 import net.minecraft.block.Material;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
+import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.ParticleType;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.tag.BlockTags;
@@ -32,15 +37,14 @@ import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.VerticalSurfaceType;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
+import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.BiomePlacementModifier;
 import net.minecraft.world.gen.decorator.CountPlacementModifier;
-import net.minecraft.world.gen.decorator.HeightmapPlacementModifier;
 import net.minecraft.world.gen.decorator.RarityFilterPlacementModifier;
 import net.minecraft.world.gen.decorator.SquarePlacementModifier;
 import net.minecraft.world.gen.feature.*;
@@ -63,6 +67,7 @@ public class CherryBundle extends PromenadeBundle {
 	public static final PlantBundle WHITE_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("white_cherry_oak_sapling").provider(s -> new SaplingBlock(new WhiteCherryOakSaplingGenerator(), s))));
 	public static final Block WHITE_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("white_cherry_oak_leaves").settings(FabricBlockSettings.of(Material.LEAVES).strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.AZALEA_LEAVES).nonOpaque().allowsSpawning(DefaultBlockSettings::canSpawnOnLeaves).suffocates(DefaultBlockSettings::never).blockVision(DefaultBlockSettings::never)).build());
 	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.leafPile("white_cherry_oak_leaf_pile", BlockSoundGroup.AZALEA_LEAVES).build());
+	public static final DefaultParticleType CHERRY_PETAL = add(new ParticleCreator<>("cherry_petal", FabricParticleTypes.simple()));
 
 	public static void addToGen() {
 		if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
@@ -212,6 +217,7 @@ public class CherryBundle extends PromenadeBundle {
 			BiomeEffects effects = BiomeUtil.genericEffectBuilder(0.6F)
 					.waterColor(6459391)
 					.waterFogColor(2170954)
+					.particleConfig(new BiomeParticleConfig(ParticleTypes.CAMPFIRE_COSY_SMOKE, 0.01F))
 					.moodSound(BiomeMoodSound.CAVE)
 					.build();
 
