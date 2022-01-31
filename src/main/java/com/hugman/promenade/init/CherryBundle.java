@@ -28,8 +28,6 @@ import net.minecraft.block.Material;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.tag.BlockTags;
@@ -67,7 +65,8 @@ public class CherryBundle extends PromenadeBundle {
 	public static final PlantBundle WHITE_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("white_cherry_oak_sapling").provider(s -> new SaplingBlock(new WhiteCherryOakSaplingGenerator(), s))));
 	public static final Block WHITE_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("white_cherry_oak_leaves").settings(FabricBlockSettings.of(Material.LEAVES).strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.AZALEA_LEAVES).nonOpaque().allowsSpawning(DefaultBlockSettings::canSpawnOnLeaves).suffocates(DefaultBlockSettings::never).blockVision(DefaultBlockSettings::never)).build());
 	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(BlockBuilders.leafPile("white_cherry_oak_leaf_pile", BlockSoundGroup.AZALEA_LEAVES).build());
-	public static final DefaultParticleType CHERRY_PETAL = add(new ParticleCreator<>("cherry_petal", FabricParticleTypes.simple()));
+	public static final DefaultParticleType PINK_CHERRY_BLOSSOM = add(new ParticleCreator<>("pink_cherry_blossom", FabricParticleTypes.simple()));
+	public static final DefaultParticleType WHITE_CHERRY_BLOSSOM = add(new ParticleCreator<>("white_cherry_blossom", FabricParticleTypes.simple()));
 
 	public static void addToGen() {
 		if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
@@ -217,7 +216,7 @@ public class CherryBundle extends PromenadeBundle {
 			BiomeEffects effects = BiomeUtil.genericEffectBuilder(0.6F)
 					.waterColor(6459391)
 					.waterFogColor(2170954)
-					.particleConfig(new BiomeParticleConfig(ParticleTypes.CAMPFIRE_COSY_SMOKE, 0.01F))
+					.particleConfig(new BiomeParticleConfig(isPink ? PINK_CHERRY_BLOSSOM : WHITE_CHERRY_BLOSSOM, 0.001F))
 					.moodSound(BiomeMoodSound.CAVE)
 					.build();
 
