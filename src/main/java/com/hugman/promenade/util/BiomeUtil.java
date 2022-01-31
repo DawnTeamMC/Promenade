@@ -18,6 +18,10 @@ import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
 import org.jetbrains.annotations.Nullable;
 
 public final class BiomeUtil {
+	public static final RegistryKey<Biome> PUMPKIN_PASTURES_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("pumpkin_pastures"));
+	public static final RegistryKey<Biome> PINK_CHERRY_OAK_FOREST_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("pink_cherry_oak_forest"));
+	public static final RegistryKey<Biome> WHITE_CHERRY_OAK_FOREST_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("white_cherry_oak_forest"));
+
 	public static final RegistryKey<Biome> TALL_CRIMSON_FOREST_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("tall_crimson_forest"));
 	public static final RegistryKey<Biome> TALL_WARPED_FOREST_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("tall_warped_forest"));
 	public static final RegistryKey<Biome> TRITANOPIAN_GALLERY_KEY = RegistryKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id("tritanopian_gallery"));
