@@ -29,11 +29,11 @@
 	"mixins": [
 		"promenade.mixins.json"
 	],
-	"accessWidener": "promenade.accesswidener",
+	"accessWidener": "promenade.aw",
 	"depends": {
-		"minecraft": ">=1.18",
+		"minecraft": ">=1.18.2",
 		"fabric": "*",
-		"dawn": ">=3.2.0"
+		"dawn": ">=3.3.0"
 	},
 	"suggests": {
 		"columns": "*",

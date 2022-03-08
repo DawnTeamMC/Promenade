@@ -1,5 +1,0 @@
-accessWidener	v1	named
-extendable    method    net/minecraft/entity/mob/AbstractSkeletonEntity    getStepSound    ()Lnet/minecraft/sound/SoundEvent;
-extendable    method    net/minecraft/entity/mob/CreeperEntity    explode    ()V
-accessible    method    net/minecraft/world/gen/trunk/TrunkPlacerType    <init>    (Lcom/mojang/serialization/Codec;)V
-accessible    method    net/minecraft/world/gen/foliage/FoliagePlacerType    <init>    (Lcom/mojang/serialization/Codec;)V
