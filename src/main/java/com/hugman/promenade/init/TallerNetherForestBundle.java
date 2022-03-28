@@ -1,11 +1,9 @@
 package com.hugman.promenade.init;
 
 import com.hugman.dawn.api.creator.BiomeCreator;
-import com.hugman.dawn.api.creator.ConfiguredFeatureCreator;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.util.BiomeUtil;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import com.hugman.promenade.util.PFeatureRegistrer;
 import net.fabricmc.fabric.api.biome.v1.NetherBiomes;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.sound.MusicType;
@@ -15,8 +13,7 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.BiomeAdditionsSound;
 import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
@@ -25,10 +22,9 @@ import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
-import net.minecraft.world.gen.decorator.BiomePlacementModifier;
-import net.minecraft.world.gen.decorator.CountMultilayerPlacementModifier;
 import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.surfacebuilder.SurfaceBuilder;
+import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.CountMultilayerPlacementModifier;
 
 public class TallerNetherForestBundle extends PromenadeBundle {
 	public static void addToGen() {
@@ -40,13 +36,13 @@ public class TallerNetherForestBundle extends PromenadeBundle {
 
 	public static class Features {
 		public static class Configured {
-			public static final ConfiguredFeature<HugeFungusFeatureConfig, ?> TALL_CRIMSON_FUNGUS = add(new ConfiguredFeatureCreator<>("tall_crimson_fungus", CommonBundle.TALL_HUGE_FUNGUS.configure(new HugeFungusFeatureConfig(Blocks.CRIMSON_NYLIUM.getDefaultState(), Blocks.CRIMSON_STEM.getDefaultState(), Blocks.NETHER_WART_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), false))));
-			public static final ConfiguredFeature<HugeFungusFeatureConfig, ?> TALL_WARPED_FUNGUS = add(new ConfiguredFeatureCreator<>("tall_warped_fungus", CommonBundle.TALL_HUGE_FUNGUS.configure(new HugeFungusFeatureConfig(Blocks.WARPED_NYLIUM.getDefaultState(), Blocks.WARPED_STEM.getDefaultState(), Blocks.WARPED_WART_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), false))));
+			public static final RegistryEntry<ConfiguredFeature<HugeFungusFeatureConfig, ?>> TALL_CRIMSON_FUNGUS = PFeatureRegistrer.config("tall_crimson_fungus", CommonBundle.TALL_HUGE_FUNGUS, new HugeFungusFeatureConfig(Blocks.CRIMSON_NYLIUM.getDefaultState(), Blocks.CRIMSON_STEM.getDefaultState(), Blocks.NETHER_WART_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), false));
+			public static final RegistryEntry<ConfiguredFeature<HugeFungusFeatureConfig, ?>> TALL_WARPED_FUNGUS = PFeatureRegistrer.config("tall_warped_fungus", CommonBundle.TALL_HUGE_FUNGUS, new HugeFungusFeatureConfig(Blocks.WARPED_NYLIUM.getDefaultState(), Blocks.WARPED_STEM.getDefaultState(), Blocks.WARPED_WART_BLOCK.getDefaultState(), Blocks.SHROOMLIGHT.getDefaultState(), false));
 		}
 
 		public static class Placed {
-			public static final PlacedFeature TALL_CRIMSON_FUNGI = PlacedFeatures.register("tall_crimson_fungi", Configured.TALL_CRIMSON_FUNGUS.withPlacement(CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of()));
-			public static final PlacedFeature TALL_WARPED_FUNGI = PlacedFeatures.register("tall_warped_fungi", Configured.TALL_WARPED_FUNGUS.withPlacement(CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of()));
+			public static final RegistryEntry<PlacedFeature> TALL_CRIMSON_FUNGI = PFeatureRegistrer.place("tall_crimson_fungi", Configured.TALL_CRIMSON_FUNGUS, CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of());
+			public static final RegistryEntry<PlacedFeature> TALL_WARPED_FUNGI = PFeatureRegistrer.place("tall_warped_fungi", Configured.TALL_WARPED_FUNGUS, CountMultilayerPlacementModifier.of(8), BiomePlacementModifier.of());
 		}
 	}
 

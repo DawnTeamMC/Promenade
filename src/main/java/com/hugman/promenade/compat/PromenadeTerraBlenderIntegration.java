@@ -16,24 +16,29 @@ import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.noise.NoiseParametersKeys;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
-import terrablender.api.BiomeProvider;
-import terrablender.api.BiomeProviders;
+import terrablender.api.Region;
+import terrablender.api.RegionType;
+import terrablender.api.Regions;
+import terrablender.api.SurfaceRuleManager;
 import terrablender.api.TerraBlenderApi;
-import terrablender.worldgen.TBClimate;
 import terrablender.worldgen.TBSurfaceRuleData;
 
-import java.util.Optional;
 import java.util.function.Consumer;
 
 public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
-	@Override
-	public void onTerraBlenderInitialized() {
-		BiomeProviders.register(new PBiomeProvider());
+	private static MaterialRules.MaterialRule makeStateRule(Block block) {
+		return MaterialRules.block(block.getDefaultState());
 	}
 
 	@Override
-	public Optional<MaterialRules.MaterialRule> getDefaultOverworldSurfaceRules() {
-		return Optional.of(
+	public void onTerraBlenderInitialized() {
+		Regions.register(new PromenadeOverworldRegion());
+		Regions.register(new PromenadeNetherRegion());
+		registerOverworldMaterialRules();
+	}
+
+	public static void registerOverworldMaterialRules() {
+		SurfaceRuleManager.addToDefaultSurfaceRulesAtStage(SurfaceRuleManager.RuleCategory.OVERWORLD, SurfaceRuleManager.RuleStage.AFTER_BEDROCK, 1,
 				MaterialRules.sequence(
 						MaterialRules.condition(
 								MaterialRules.biome(BiomeUtil.PUMPKIN_PASTURES_KEY),
@@ -47,17 +52,13 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 		);
 	}
 
-	private static MaterialRules.MaterialRule makeStateRule(Block block) {
-		return MaterialRules.block(block.getDefaultState());
-	}
-
-	public static class PBiomeProvider extends BiomeProvider {
-		public PBiomeProvider() {
-			super(Promenade.MOD_DATA.id("biome_provider"), 2, 5);
+	public static class PromenadeOverworldRegion extends Region {
+		public PromenadeOverworldRegion() {
+			super(Promenade.MOD_DATA.id("overworld_region"), RegionType.OVERWORLD, 2);
 		}
 
 		@Override
-		public void addOverworldBiomes(Registry<Biome> registry, Consumer<Pair<TBClimate.ParameterPoint, RegistryKey<Biome>>> mapper) {
+		public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
 			this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
 				if(Promenade.CONFIG.biomes.pumpkin_pastures_weight > 0) {
 					builder.replaceBiome(BiomeKeys.PLAINS, AutumnBundle.Biomes.PUMPKIN_PASTURES.getRegistryKey());
@@ -68,9 +69,15 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 				}
 			});
 		}
+	}
+
+	public static class PromenadeNetherRegion extends Region {
+		public PromenadeNetherRegion() {
+			super(Promenade.MOD_DATA.id("nether_region"), RegionType.NETHER, 5);
+		}
 
 		@Override
-		public void addNetherBiomes(Registry<Biome> registry, Consumer<Pair<TBClimate.ParameterPoint, RegistryKey<Biome>>> mapper) {
+		public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
 			if(Promenade.CONFIG.biomes.tall_nether_forests) {
 				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.3F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, TallerNetherForestBundle.Biomes.TALL_CRIMSON_FOREST.getRegistryKey());
 				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.7F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.35F, TallerNetherForestBundle.Biomes.TALL_WARPED_FOREST.getRegistryKey());

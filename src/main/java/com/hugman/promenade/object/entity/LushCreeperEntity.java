@@ -41,7 +41,7 @@ public class LushCreeperEntity extends CreeperEntity {
 				for(int i = 0; i < 10; i++) {
 					BlockPos pos = getBlockPos().down(i);
 					if(this.world.getBlockState(pos).getMaterial().isSolid()) {
-						if((this.world.getRandom().nextBoolean() ? UndergroundConfiguredFeatures.MOSS_PATCH : UndergroundConfiguredFeatures.CLAY_POOL_WITH_DRIPLEAVES).generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.up())) {
+						if((this.world.getRandom().nextBoolean() ? UndergroundConfiguredFeatures.MOSS_PATCH : UndergroundConfiguredFeatures.CLAY_POOL_WITH_DRIPLEAVES).value().generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.up())) {
 							hasGeneratedMoss = true;
 						}
 						break;
@@ -50,7 +50,7 @@ public class LushCreeperEntity extends CreeperEntity {
 				for(int i = 0; i < 10; i++) {
 					BlockPos pos = getBlockPos().up(i);
 					if(this.world.getBlockState(pos).getMaterial().isSolid()) {
-						if(UndergroundConfiguredFeatures.MOSS_PATCH_CEILING.generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.down())) {
+						if(UndergroundConfiguredFeatures.MOSS_PATCH_CEILING.value().generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.down())) {
 							hasGeneratedMoss = true;
 						}
 						break;

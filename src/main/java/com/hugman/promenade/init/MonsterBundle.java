@@ -4,6 +4,7 @@ import com.hugman.dawn.api.creator.EntityCreator;
 import com.hugman.dawn.api.creator.ItemCreator;
 import com.hugman.dawn.api.creator.SoundCreator;
 import com.hugman.promenade.Promenade;
+import com.hugman.promenade.init.data.PromenadeTags;
 import com.hugman.promenade.object.entity.LushCreeperEntity;
 import com.hugman.promenade.object.entity.SunkenSkeletonEntity;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -53,7 +54,7 @@ public class MonsterBundle extends PromenadeBundle {
 			BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.LUSH_CAVES), SpawnGroup.MONSTER, LUSH_CREEPER, 90, 2, 4);
 		}
 		if(Promenade.CONFIG.monsters.sunken_skeletons) {
-			BiomeModifications.addSpawn(biomeSelectionContext -> biomeSelectionContext.hasBuiltInFeature(OceanConfiguredFeatures.WARM_OCEAN_VEGETATION), SpawnGroup.MONSTER, SUNKEN_SKELETON, 20, 1, 3);
+			BiomeModifications.addSpawn(biomeSelectionContext -> biomeSelectionContext.hasTag(PromenadeTags.Biomes.SUNKEN_SKELETON_SPAWN), SpawnGroup.MONSTER, SUNKEN_SKELETON, 20, 1, 3);
 		}
 	}
 }

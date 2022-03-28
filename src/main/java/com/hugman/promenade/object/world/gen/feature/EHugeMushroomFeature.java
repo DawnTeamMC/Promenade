@@ -17,12 +17,12 @@ import net.minecraft.world.gen.feature.util.FeatureContext;
 
 import java.util.Random;
 
-public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
-	public HugeMushroomFeature(Codec<HugeMushroomFeatureConfig> codec) {
+public class EHugeMushroomFeature extends Feature<EHugeMushroomFeatureConfig> {
+	public EHugeMushroomFeature(Codec<EHugeMushroomFeatureConfig> codec) {
 		super(codec);
 	}
 
-	private static void generateVines(BlockPos pos, WorldAccess worldAccess, Random random, HugeMushroomFeatureConfig config) {
+	private static void generateVines(BlockPos pos, WorldAccess worldAccess, Random random, EHugeMushroomFeatureConfig config) {
 		BlockPos.Mutable mutable = pos.mutableCopy().move(config.upsideDown ? Direction.UP : Direction.DOWN);
 		if(worldAccess.isAir(mutable)) {
 			int i = MathHelper.nextInt(random, 1, 5);
@@ -38,7 +38,7 @@ public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
 		}
 	}
 
-	private static BlockPos.Mutable getOrigin(WorldAccess world, BlockPos pos, int height, HugeMushroomFeatureConfig config) {
+	private static BlockPos.Mutable getOrigin(WorldAccess world, BlockPos pos, int height, EHugeMushroomFeatureConfig config) {
 		BlockPos.Mutable mutable = pos.mutableCopy();
 		for(int i = pos.getY(); i >= 1; --i) {
 			mutable.setY(i);
@@ -72,9 +72,9 @@ public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
 	}
 
 	@Override
-	public boolean generate(FeatureContext<HugeMushroomFeatureConfig> context) {
+	public boolean generate(FeatureContext<EHugeMushroomFeatureConfig> context) {
 		Random random = context.getRandom();
-		HugeMushroomFeatureConfig config = context.getConfig();
+		EHugeMushroomFeatureConfig config = context.getConfig();
 		StructureWorldAccess world = context.getWorld();
 		BlockPos pos = context.getOrigin();
 		int stemHeight = getStemHeight(random, config);
@@ -99,7 +99,7 @@ public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
 		}
 	}
 
-	private void generateStem(WorldAccess world, Random random, BlockPos origin, int stemHeight, HugeMushroomFeatureConfig config) {
+	private void generateStem(WorldAccess world, Random random, BlockPos origin, int stemHeight, EHugeMushroomFeatureConfig config) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable();
 		BlockState blockState = config.stemState;
 		if(blockState.contains(MushroomBlock.UP) && blockState.contains(MushroomBlock.DOWN)) blockState = blockState.with(MushroomBlock.UP, false).with(MushroomBlock.DOWN, false);
@@ -111,7 +111,7 @@ public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
 		}
 	}
 
-	protected void generateBubbleHat(WorldAccess world, Random random, BlockPos origin, int stemHeight, int hatSize, HugeMushroomFeatureConfig config) {
+	protected void generateBubbleHat(WorldAccess world, Random random, BlockPos origin, int stemHeight, int hatSize, EHugeMushroomFeatureConfig config) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable();
 		for(int i = stemHeight - hatSize; i <= stemHeight; ++i) {
 			int j = i < stemHeight ? hatSize : hatSize - 1;
@@ -140,7 +140,7 @@ public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
 		}
 	}
 
-	protected void generateFlatHat(WorldAccess world, Random random, BlockPos origin, int stemHeight, int hatSize, HugeMushroomFeatureConfig config) {
+	protected void generateFlatHat(WorldAccess world, Random random, BlockPos origin, int stemHeight, int hatSize, EHugeMushroomFeatureConfig config) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable();
 		for(int j = -hatSize; j <= hatSize; ++j) {
 			for(int k = -hatSize; k <= hatSize; ++k) {
@@ -165,7 +165,7 @@ public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
 		}
 	}
 
-	private void generateHatBlock(WorldAccess world, Random random, BlockPos pos, BlockState hatState, HugeMushroomFeatureConfig config) {
+	private void generateHatBlock(WorldAccess world, Random random, BlockPos pos, BlockState hatState, EHugeMushroomFeatureConfig config) {
 		if(random.nextFloat() < config.decorationChance) {
 			this.setBlockState(world, pos, config.decorationState);
 		}
@@ -177,7 +177,7 @@ public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
 		}
 	}
 
-	protected int getStemHeight(Random random, HugeMushroomFeatureConfig config) {
+	protected int getStemHeight(Random random, EHugeMushroomFeatureConfig config) {
 		int i = config.stemBaseHeight + random.nextInt(config.stemRandomHeight);
 		if(random.nextInt(12) == 0) {
 			i *= 2;
@@ -185,7 +185,7 @@ public class HugeMushroomFeature extends Feature<HugeMushroomFeatureConfig> {
 		return i;
 	}
 
-	protected int getHatSize(Random random, HugeMushroomFeatureConfig config) {
+	protected int getHatSize(Random random, EHugeMushroomFeatureConfig config) {
 		if(config.hatRandomSize == 0) {
 			return config.hatBaseSize;
 		}
