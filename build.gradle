@@ -15,7 +15,7 @@ repositories {
 
     maven { url 'https://www.cursemaven.com' }          // Required for Columns
 
-    maven { url 'https://maven.minecraftforge.net/' } // Required for TerraBlender
+    maven { url 'https://maven.minecraftforge.net/' }   // Required for TerraBlender
 }
 
 dependencies {
