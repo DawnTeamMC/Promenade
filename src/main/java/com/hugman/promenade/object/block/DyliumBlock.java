@@ -36,7 +36,7 @@ public class DyliumBlock extends NyliumBlock {
 		BlockPos blockPos = pos.up();
 		ChunkGenerator chunkGenerator = world.getChunkManager().getChunkGenerator();
 		if(blockState.isOf(AmaranthBundle.BLACK_DYLIUM)) {
-			AmaranthBundle.Features.Configured.DARK_AMARANTH_FOREST_VEGETATION_BONEMEAL.generate(world, chunkGenerator, random, blockPos);
+			AmaranthBundle.Features.Configured.DARK_AMARANTH_FOREST_VEGETATION_BONEMEAL.value().generate(world, chunkGenerator, random, blockPos);
 		}
 	}
 }

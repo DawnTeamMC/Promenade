@@ -1,21 +1,20 @@
 package com.hugman.promenade.init;
 
 import com.hugman.dawn.api.creator.BiomeCreator;
-import com.hugman.dawn.api.creator.ConfiguredFeatureCreator;
-import com.hugman.dawn.api.creator.PlacedFeatureCreator;
+import com.hugman.dawn.api.creator.ParticleCreator;
 import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.creator.bundle.block.WoodBundle;
 import com.hugman.dawn.api.object.block.SaplingBlock;
 import com.hugman.dawn.api.util.DefaultBlockBuilders;
 import com.hugman.dawn.api.util.DefaultBlockSettings;
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.creator.ParticleCreator;
 import com.hugman.promenade.object.block.sapling_generator.PinkCherryOakSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.WhiteCherryOakSaplingGenerator;
 import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
 import com.hugman.promenade.object.world.gen.feature.BoulderFeatureConfig;
 import com.hugman.promenade.util.BiomeUtil;
 import com.hugman.promenade.util.BlockBuilders;
+import com.hugman.promenade.util.PFeatureRegistrer;
 import com.hugman.promenade.util.TreeUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
@@ -32,22 +31,26 @@ import net.minecraft.sound.BiomeMoodSound;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.collection.DataPool;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.VerticalSurfaceType;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeEffects;
 import net.minecraft.world.biome.BiomeParticleConfig;
 import net.minecraft.world.biome.GenerationSettings;
 import net.minecraft.world.biome.SpawnSettings;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.BiomePlacementModifier;
-import net.minecraft.world.gen.decorator.CountPlacementModifier;
-import net.minecraft.world.gen.decorator.RarityFilterPlacementModifier;
-import net.minecraft.world.gen.decorator.SquarePlacementModifier;
+import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
+import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.BlockFilterPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
@@ -88,37 +91,40 @@ public class CherryBundle extends PromenadeBundle {
 			/*---------*/
 			/*  TREES  */
 			/*---------*/
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> PINK_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/normal", Feature.TREE.configure(buildNormalCherryOak(PINK_CHERRY_OAK_LEAVES).build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> PINK_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/bees_005", Feature.TREE.configure(buildNormalCherryOak(PINK_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_PINK_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/fancy", Feature.TREE.configure(buildFancyCherryOak(PINK_CHERRY_OAK_LEAVES).build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_PINK_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/pink_cherry_oak/fancy_bees_005", Feature.TREE.configure(buildFancyCherryOak(PINK_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build())));
+			public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> PINK_CHERRY_OAK = PFeatureRegistrer.config("tree/pink_cherry_oak/normal", Feature.TREE, buildNormalCherryOak(PINK_CHERRY_OAK_LEAVES).build());
+			public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> PINK_CHERRY_OAK_BEES_005 = PFeatureRegistrer.config("tree/pink_cherry_oak/bees_005", Feature.TREE, buildNormalCherryOak(PINK_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build());
+			public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> FANCY_PINK_CHERRY_OAK = PFeatureRegistrer.config("tree/pink_cherry_oak/fancy", Feature.TREE, buildFancyCherryOak(PINK_CHERRY_OAK_LEAVES).build());
+			public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> FANCY_PINK_CHERRY_OAK_BEES_005 = PFeatureRegistrer.config("tree/pink_cherry_oak/fancy_bees_005", Feature.TREE, buildFancyCherryOak(PINK_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build());
 
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> WHITE_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/normal", Feature.TREE.configure(buildNormalCherryOak(WHITE_CHERRY_OAK_LEAVES).build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> WHITE_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/bees_005", Feature.TREE.configure(buildNormalCherryOak(WHITE_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_WHITE_CHERRY_OAK = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/fancy", Feature.TREE.configure(buildFancyCherryOak(WHITE_CHERRY_OAK_LEAVES).build())));
-			public static final ConfiguredFeature<TreeFeatureConfig, ?> FANCY_WHITE_CHERRY_OAK_BEES_005 = add(new ConfiguredFeatureCreator<>("tree/white_cherry_oak/fancy_bees_005", Feature.TREE.configure(buildFancyCherryOak(WHITE_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build())));
+			public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> WHITE_CHERRY_OAK = PFeatureRegistrer.config("tree/white_cherry_oak/normal", Feature.TREE, buildNormalCherryOak(WHITE_CHERRY_OAK_LEAVES).build());
+			public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> WHITE_CHERRY_OAK_BEES_005 = PFeatureRegistrer.config("tree/white_cherry_oak/bees_005", Feature.TREE, buildNormalCherryOak(WHITE_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build());
+			public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> FANCY_WHITE_CHERRY_OAK = PFeatureRegistrer.config("tree/white_cherry_oak/fancy", Feature.TREE, buildFancyCherryOak(WHITE_CHERRY_OAK_LEAVES).build());
+			public static final RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> FANCY_WHITE_CHERRY_OAK_BEES_005 = PFeatureRegistrer.config("tree/white_cherry_oak/fancy_bees_005", Feature.TREE, buildFancyCherryOak(WHITE_CHERRY_OAK_LEAVES).decorators(List.of(TreeUtil.BEES_005)).build());
 
 			/*--------------*/
 			/*  LEAF PILES  */
 			/*--------------*/
-			public static final ConfiguredFeature<?, ?> PINK_CHERRY_OAK_LEAF_PILE_PATCH = add(new ConfiguredFeatureCreator<>("patch/leaf_pile/pink_cherry_oak", Feature.RANDOM_PATCH.configure(createRandomPatchFeatureConfig(BlockStateProvider.of(PINK_CHERRY_OAK_LEAF_PILE), 32))));
-			public static final ConfiguredFeature<?, ?> WHITE_CHERRY_OAK_LEAF_PILE_PATCH = add(new ConfiguredFeatureCreator<>("patch/leaf_pile/white_cherry_oak", Feature.RANDOM_PATCH.configure(createRandomPatchFeatureConfig(BlockStateProvider.of(WHITE_CHERRY_OAK_LEAF_PILE), 32))));
+			public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> PINK_CHERRY_OAK_LEAF_PILE_PATCH = PFeatureRegistrer.config("patch/leaf_pile/pink_cherry_oak", Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(BlockStateProvider.of(PINK_CHERRY_OAK_LEAF_PILE), 32));
+			public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> WHITE_CHERRY_OAK_LEAF_PILE_PATCH = PFeatureRegistrer.config("patch/leaf_pile/white_cherry_oak", Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(BlockStateProvider.of(WHITE_CHERRY_OAK_LEAF_PILE), 32));
 
 			/*---------*/
 			/*  OTHER  */
 			/*---------*/
-			public static final ConfiguredFeature<?, ?> CUTE_LITTLE_ROCK = add(new ConfiguredFeatureCreator<>("cute_little_rock", CommonBundle.BOULDER.configure(new BoulderFeatureConfig(new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(Blocks.STONE.getDefaultState(), 80).add(Blocks.CALCITE.getDefaultState(), 20)), List.of(Blocks.GRASS_BLOCK.getDefaultState()), UniformIntProvider.create(3, 4)))));
+			public static final RegistryEntry<ConfiguredFeature<BoulderFeatureConfig, ?>> CUTE_LITTLE_ROCK = PFeatureRegistrer.config("cute_little_rock", CommonBundle.BOULDER, new BoulderFeatureConfig(new WeightedBlockStateProvider(DataPool.<BlockState>builder().add(Blocks.STONE.getDefaultState(), 80).add(Blocks.CALCITE.getDefaultState(), 20)), List.of(Blocks.GRASS_BLOCK.getDefaultState()), UniformIntProvider.create(3, 4)));
 
-			public static final ConfiguredFeature<?, ?> GRAVEL_POOL = add(new ConfiguredFeatureCreator<>("water_pool/gravel", Feature.LAKE.configure(new LakeFeature.Config(BlockStateProvider.of(Blocks.WATER.getDefaultState()), BlockStateProvider.of(Blocks.GRAVEL.getDefaultState())))));
-			public static final ConfiguredFeature<?, ?> DECORATED_GRAVEL_WATER_POOL = add(new ConfiguredFeatureCreator<>("water_pool/gravel_decorated", Feature.WATERLOGGED_VEGETATION_PATCH.configure(buildDecoratedPool())));
+			public static final RegistryEntry<ConfiguredFeature<LakeFeature.Config, ?>> GRAVEL_POOL = PFeatureRegistrer.config("water_pool/gravel", Feature.LAKE, new LakeFeature.Config(BlockStateProvider.of(Blocks.WATER.getDefaultState()), BlockStateProvider.of(Blocks.GRAVEL.getDefaultState())));
+			public static final RegistryEntry<PlacedFeature> GRAVEL_WATER_POOL_BAMBOO = PFeatureRegistrer.place("water_pool/gravel/decoration/bamboo", VegetationConfiguredFeatures.BAMBOO_SOME_PODZOL);
+			public static final RegistryEntry<PlacedFeature> GRAVEL_WATER_POOL_WATERLILY = PFeatureRegistrer.place("water_pool/gravel/decoration/waterlily", VegetationConfiguredFeatures.PATCH_WATERLILY);
+			public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> GRAVEL_WATER_POOL_DECORATION_C = PFeatureRegistrer.config("water_pool/gravel/decoration", Feature.RANDOM_SELECTOR, new RandomFeatureConfig(
+					List.of(new RandomFeatureEntry(GRAVEL_WATER_POOL_BAMBOO, 0.4f)),
+					GRAVEL_WATER_POOL_WATERLILY));
+			public static final RegistryEntry<PlacedFeature> GRAVEL_WATER_POOL_DECORATION = PFeatureRegistrer.place("water_pool/gravel/decoration", GRAVEL_WATER_POOL_DECORATION_C);
+			public static final RegistryEntry<ConfiguredFeature<VegetationPatchFeatureConfig, ?>> DECORATED_GRAVEL_WATER_POOL = PFeatureRegistrer.config("water_pool/gravel/decorated", Feature.WATERLOGGED_VEGETATION_PATCH, buildDecoratedPool());
 
 			private static VegetationPatchFeatureConfig buildDecoratedPool() {
 				return new VegetationPatchFeatureConfig(
-						BlockTags.LUSH_GROUND_REPLACEABLE.getId(), BlockStateProvider.of(Blocks.GRAVEL),
-						Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(
-								List.of(new RandomFeatureEntry(VegetationConfiguredFeatures.BAMBOO_SOME_PODZOL.withPlacement(), 0.4f)),
-								VegetationConfiguredFeatures.PATCH_WATERLILY.withPlacement()
-						))::withPlacement,
+						BlockTags.LUSH_GROUND_REPLACEABLE, BlockStateProvider.of(Blocks.GRAVEL),
+						GRAVEL_WATER_POOL_DECORATION,
 						VerticalSurfaceType.FLOOR, ConstantIntProvider.create(3), 0.8f, 5, 0.15f, UniformIntProvider.create(4, 7), 0.7f);
 			}
 
@@ -135,7 +141,7 @@ public class CherryBundle extends PromenadeBundle {
 			}
 
 			private static RandomPatchFeatureConfig createRandomPatchFeatureConfig(BlockStateProvider block, int tries) {
-				return ConfiguredFeatures.createRandomPatchFeatureConfig(tries, Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(block)).withInAirFilter());
+				return ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(block), List.of(), tries);
 			}
 		}
 
@@ -143,35 +149,35 @@ public class CherryBundle extends PromenadeBundle {
 			/*---------*/
 			/*  TREES  */
 			/*---------*/
-			public static final PlacedFeature PINK_CHERRY_OAK = add(new PlacedFeatureCreator("tree/pink_cherry_oak/normal", Configured.PINK_CHERRY_OAK.withWouldSurviveFilter(PINK_CHERRY_OAK_SAPLING.getPlant())));
-			public static final PlacedFeature PINK_CHERRY_OAK_BEES_005 = add(new PlacedFeatureCreator("tree/pink_cherry_oak/bees_002", Configured.PINK_CHERRY_OAK_BEES_005.withWouldSurviveFilter(PINK_CHERRY_OAK_SAPLING.getPlant())));
-			public static final PlacedFeature FANCY_PINK_CHERRY_OAK = add(new PlacedFeatureCreator("tree/pink_cherry_oak/fancy", Configured.FANCY_PINK_CHERRY_OAK.withWouldSurviveFilter(PINK_CHERRY_OAK_SAPLING.getPlant())));
-			public static final PlacedFeature FANCY_PINK_CHERRY_OAK_BEES_005 = add(new PlacedFeatureCreator("tree/pink_cherry_oak/fancy_bees_005", Configured.FANCY_PINK_CHERRY_OAK_BEES_005.withWouldSurviveFilter(PINK_CHERRY_OAK_SAPLING.getPlant())));
+			public static final RegistryEntry<PlacedFeature> PINK_CHERRY_OAK = PFeatureRegistrer.place("tree/pink_cherry_oak/normal", Configured.PINK_CHERRY_OAK, BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(PINK_CHERRY_OAK_SAPLING.getPlant().getDefaultState(), BlockPos.ORIGIN)));
+			public static final RegistryEntry<PlacedFeature> PINK_CHERRY_OAK_BEES_005 = PFeatureRegistrer.place("tree/pink_cherry_oak/bees_002", Configured.PINK_CHERRY_OAK_BEES_005, BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(PINK_CHERRY_OAK_SAPLING.getPlant().getDefaultState(), BlockPos.ORIGIN)));
+			public static final RegistryEntry<PlacedFeature> FANCY_PINK_CHERRY_OAK = PFeatureRegistrer.place("tree/pink_cherry_oak/fancy", Configured.FANCY_PINK_CHERRY_OAK, BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(PINK_CHERRY_OAK_SAPLING.getPlant().getDefaultState(), BlockPos.ORIGIN)));
+			public static final RegistryEntry<PlacedFeature> FANCY_PINK_CHERRY_OAK_BEES_005 = PFeatureRegistrer.place("tree/pink_cherry_oak/fancy_bees_005", Configured.FANCY_PINK_CHERRY_OAK_BEES_005, BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(PINK_CHERRY_OAK_SAPLING.getPlant().getDefaultState(), BlockPos.ORIGIN)));
 
-			public static final PlacedFeature WHITE_CHERRY_OAK = add(new PlacedFeatureCreator("tree/white_cherry_oak/normal", Configured.WHITE_CHERRY_OAK.withWouldSurviveFilter(WHITE_CHERRY_OAK_SAPLING.getPlant())));
-			public static final PlacedFeature WHITE_CHERRY_OAK_BEES_005 = add(new PlacedFeatureCreator("tree/white_cherry_oak/bees_005", Configured.WHITE_CHERRY_OAK_BEES_005.withWouldSurviveFilter(WHITE_CHERRY_OAK_SAPLING.getPlant())));
-			public static final PlacedFeature FANCY_WHITE_CHERRY_OAK = add(new PlacedFeatureCreator("tree/white_cherry_oak/fancy", Configured.FANCY_WHITE_CHERRY_OAK.withWouldSurviveFilter(WHITE_CHERRY_OAK_SAPLING.getPlant())));
-			public static final PlacedFeature FANCY_WHITE_CHERRY_OAK_BEES_005 = add(new PlacedFeatureCreator("tree/white_cherry_oak/fancy_bees_005", Configured.FANCY_WHITE_CHERRY_OAK_BEES_005.withWouldSurviveFilter(WHITE_CHERRY_OAK_SAPLING.getPlant())));
+			public static final RegistryEntry<PlacedFeature> WHITE_CHERRY_OAK = PFeatureRegistrer.place("tree/white_cherry_oak/normal", Configured.WHITE_CHERRY_OAK, BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(WHITE_CHERRY_OAK_SAPLING.getPlant().getDefaultState(), BlockPos.ORIGIN)));
+			public static final RegistryEntry<PlacedFeature> WHITE_CHERRY_OAK_BEES_005 = PFeatureRegistrer.place("tree/white_cherry_oak/bees_005", Configured.WHITE_CHERRY_OAK_BEES_005, BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(WHITE_CHERRY_OAK_SAPLING.getPlant().getDefaultState(), BlockPos.ORIGIN)));
+			public static final RegistryEntry<PlacedFeature> FANCY_WHITE_CHERRY_OAK = PFeatureRegistrer.place("tree/white_cherry_oak/fancy", Configured.FANCY_WHITE_CHERRY_OAK, BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(WHITE_CHERRY_OAK_SAPLING.getPlant().getDefaultState(), BlockPos.ORIGIN)));
+			public static final RegistryEntry<PlacedFeature> FANCY_WHITE_CHERRY_OAK_BEES_005 = PFeatureRegistrer.place("tree/white_cherry_oak/fancy_bees_005", Configured.FANCY_WHITE_CHERRY_OAK_BEES_005, BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(WHITE_CHERRY_OAK_SAPLING.getPlant().getDefaultState(), BlockPos.ORIGIN)));
 
-			public static final ConfiguredFeature<RandomFeatureConfig, ?> PINK_CHERRY_OAK_FOREST_TREES_C = add(new ConfiguredFeatureCreator<>("trees/pink_cherry_oak_forest", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.WHITE_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_PINK_CHERRY_OAK, 0.1f)), Placed.PINK_CHERRY_OAK))));
-			public static final ConfiguredFeature<RandomFeatureConfig, ?> WHITE_CHERRY_OAK_FOREST_TREES_C = add(new ConfiguredFeatureCreator<>("trees/white_cherry_oak_forest", Feature.RANDOM_SELECTOR.configure(new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.PINK_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_WHITE_CHERRY_OAK, 0.1f)), Placed.WHITE_CHERRY_OAK))));
+			public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> PINK_CHERRY_OAK_FOREST_TREES_C = PFeatureRegistrer.config("trees/pink_cherry_oak_forest", Feature.RANDOM_SELECTOR, new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.WHITE_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_PINK_CHERRY_OAK, 0.1f)), Placed.PINK_CHERRY_OAK));
+			public static final RegistryEntry<ConfiguredFeature<RandomFeatureConfig, ?>> WHITE_CHERRY_OAK_FOREST_TREES_C = PFeatureRegistrer.config("trees/white_cherry_oak_forest", Feature.RANDOM_SELECTOR, new RandomFeatureConfig(List.of(new RandomFeatureEntry(Placed.PINK_CHERRY_OAK, 0.2f), new RandomFeatureEntry(Placed.FANCY_WHITE_CHERRY_OAK, 0.1f)), Placed.WHITE_CHERRY_OAK));
 
-			public static final PlacedFeature PINK_CHERRY_OAK_FOREST_TREES = add(new PlacedFeatureCreator("trees/pink_cherry_oak_forest", PINK_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(2, 0.1f, 1)))));
-			public static final PlacedFeature WHITE_CHERRY_OAK_FOREST_TREES = add(new PlacedFeatureCreator("trees/white_cherry_oak_forest", WHITE_CHERRY_OAK_FOREST_TREES_C.withPlacement(VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(2, 0.1f, 1)))));
+			public static final RegistryEntry<PlacedFeature> PINK_CHERRY_OAK_FOREST_TREES = PFeatureRegistrer.place("trees/pink_cherry_oak_forest", PINK_CHERRY_OAK_FOREST_TREES_C, VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(2, 0.1f, 1)));
+			public static final RegistryEntry<PlacedFeature> WHITE_CHERRY_OAK_FOREST_TREES = PFeatureRegistrer.place("trees/white_cherry_oak_forest", WHITE_CHERRY_OAK_FOREST_TREES_C, VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(2, 0.1f, 1)));
 
 			/*--------------*/
 			/*  LEAF PILES  */
 			/*--------------*/
-			public static final PlacedFeature PINK_CHERRY_OAK_LEAF_PILE_PATCH = add(new PlacedFeatureCreator("patch/leaf_pile/pink_cherry_oak/forest", Configured.PINK_CHERRY_OAK_LEAF_PILE_PATCH.withPlacement(VegetationPlacedFeatures.modifiers(3))));
-			public static final PlacedFeature WHITE_CHERRY_OAK_LEAF_PILE_PATCH = add(new PlacedFeatureCreator("patch/leaf_pile/white_cherry_oak/forest", Configured.WHITE_CHERRY_OAK_LEAF_PILE_PATCH.withPlacement(VegetationPlacedFeatures.modifiers(3))));
+			public static final RegistryEntry<PlacedFeature> PINK_CHERRY_OAK_LEAF_PILE_PATCH = PFeatureRegistrer.place("patch/leaf_pile/pink_cherry_oak/forest", Configured.PINK_CHERRY_OAK_LEAF_PILE_PATCH, VegetationPlacedFeatures.modifiers(3));
+			public static final RegistryEntry<PlacedFeature> WHITE_CHERRY_OAK_LEAF_PILE_PATCH = PFeatureRegistrer.place("patch/leaf_pile/white_cherry_oak/forest", Configured.WHITE_CHERRY_OAK_LEAF_PILE_PATCH, VegetationPlacedFeatures.modifiers(3));
 
 			/*---------*/
 			/*  OTHER  */
 			/*---------*/
-			public static final PlacedFeature CUTE_LITTLE_ROCKS = add(new PlacedFeatureCreator("cute_little_rocks", Configured.CUTE_LITTLE_ROCK.withPlacement(CountPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of())));
+			public static final RegistryEntry<PlacedFeature> CUTE_LITTLE_ROCKS = PFeatureRegistrer.place("cute_little_rocks", Configured.CUTE_LITTLE_ROCK, CountPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
-			public static final PlacedFeature GRAVEL_WATER_POOLS = add(new PlacedFeatureCreator("water_pools/gravel", Configured.GRAVEL_POOL.withPlacement(RarityFilterPlacementModifier.of(7), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of())));
-			public static final PlacedFeature DECORATED_GRAVEL_WATER_POOLS = add(new PlacedFeatureCreator("water_pools/gravel_decorated", Configured.DECORATED_GRAVEL_WATER_POOL.withPlacement(RarityFilterPlacementModifier.of(10), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of())));
+			public static final RegistryEntry<PlacedFeature> GRAVEL_WATER_POOLS = PFeatureRegistrer.place("water_pools/gravel", Configured.GRAVEL_POOL, RarityFilterPlacementModifier.of(7), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+			public static final RegistryEntry<PlacedFeature> DECORATED_GRAVEL_WATER_POOLS = PFeatureRegistrer.place("water_pools/gravel_decorated", Configured.DECORATED_GRAVEL_WATER_POOL, RarityFilterPlacementModifier.of(10), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 		}
 	}
 

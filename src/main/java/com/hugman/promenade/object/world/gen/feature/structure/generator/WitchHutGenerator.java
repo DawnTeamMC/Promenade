@@ -6,6 +6,7 @@ import com.hugman.promenade.init.OreBundle;
 import com.hugman.promenade.init.WitchHutBundle;
 import com.hugman.promenade.init.data.PromenadeLootTables;
 import com.hugman.promenade.init.data.PromenadeTags;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.LanternBlock;
 import net.minecraft.block.entity.BlockEntity;
@@ -26,18 +27,23 @@ import net.minecraft.structure.rule.AlwaysTrueRuleTest;
 import net.minecraft.structure.rule.BlockMatchRuleTest;
 import net.minecraft.structure.rule.RandomBlockMatchRuleTest;
 import net.minecraft.structure.rule.TagMatchRuleTest;
+import net.minecraft.tag.Tag;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.util.registry.RegistryEntryList;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.StructureAccessor;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 
+import java.util.Optional;
 import java.util.Random;
 
 public class WitchHutGenerator {
@@ -57,12 +63,20 @@ public class WitchHutGenerator {
 		}
 
 		private static StructurePlacementData createPlacementData(BlockRotation rotation, BlockMirror mirror, Random random) {
+			Optional<RegistryEntryList.Named<Block>> optional = Registry.BLOCK.getEntryList(PromenadeTags.Blocks.POTTED_MUSHROOMS);
+			Block block = random.nextBoolean() ? Blocks.POTTED_BROWN_MUSHROOM : Blocks.POTTED_RED_MUSHROOM;
+			if(optional.isPresent()) {
+				Optional<RegistryEntry<Block>> optional1 = optional.get().getRandom(random);
+				if(optional1.isPresent()) {
+					block = optional1.get().value();
+				}
+			}
 			StructurePlacementData placementData = (new StructurePlacementData())
 					.setRotation(rotation)
 					.setMirror(mirror)
 					.addProcessor(BlockIgnoreStructureProcessor.IGNORE_STRUCTURE_BLOCKS)
 					.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new RandomBlockMatchRuleTest(Blocks.COBBLESTONE, 0.4F), AlwaysTrueRuleTest.INSTANCE, Blocks.MOSSY_COBBLESTONE.getDefaultState()))))
-					.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new TagMatchRuleTest(PromenadeTags.Blocks.POTTED_MUSHROOMS), AlwaysTrueRuleTest.INSTANCE, PromenadeTags.Blocks.POTTED_MUSHROOMS.getRandom(random).getDefaultState()))));
+					.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new TagMatchRuleTest(PromenadeTags.Blocks.POTTED_MUSHROOMS), AlwaysTrueRuleTest.INSTANCE, block.getDefaultState()))));
 			if(random.nextBoolean()) {
 				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(OreBundle.POLISHED_CARBONITE.getBlock()), AlwaysTrueRuleTest.INSTANCE, Blocks.POLISHED_ANDESITE.getDefaultState()))));
 				placementData.addProcessor(new RuleStructureProcessor(ImmutableList.of(new StructureProcessorRule(new BlockMatchRuleTest(OreBundle.CARBONITE.getBlock()), AlwaysTrueRuleTest.INSTANCE, Blocks.ANDESITE_WALL.getDefaultState()))));

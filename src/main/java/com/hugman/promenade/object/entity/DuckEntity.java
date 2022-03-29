@@ -1,6 +1,7 @@
 package com.hugman.promenade.object.entity;
 
 import com.hugman.promenade.init.AnimalBundle;
+import com.hugman.promenade.init.data.PromenadeTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -13,9 +14,11 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -23,9 +26,11 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -68,12 +73,9 @@ public class DuckEntity extends AnimalEntity {
 
 	@Override
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-		Optional<RegistryKey<Biome>> optional = world.getBiomeKey(this.getBlockPos());
+		RegistryEntry<Biome> biomeEntry = world.getBiome(this.getBlockPos());
 
-		DuckEntity.Type type = DuckEntity.Type.PEKIN;
-		if(optional.isPresent()) {
-			type = DuckEntity.Type.fromBiome(optional.get());
-		}
+		DuckEntity.Type type = DuckEntity.Type.fromBiome(biomeEntry);
 		if(entityData instanceof DuckEntity.DuckData) {
 			type = ((DuckEntity.DuckData) entityData).type;
 		}
@@ -133,8 +135,9 @@ public class DuckEntity extends AnimalEntity {
 	}
 
 	@Override
-	public boolean canWalkOnFluid(Fluid fluid) {
-		return fluid == Fluids.WATER;
+	public boolean canWalkOnFluid(FluidState fluidState) {
+		// TODO: replace with fluid tag
+		return fluidState.isOf(Fluids.WATER);
 	}
 
 	@Override
@@ -212,20 +215,20 @@ public class DuckEntity extends AnimalEntity {
 	}
 
 	public enum Type {
-		PEKIN(0, "pekin", BiomeKeys.PLAINS, BiomeKeys.FOREST),
-		MALLARD(1, "mallard", BiomeKeys.PLAINS, BiomeKeys.RIVER, BiomeKeys.SWAMP);
+
+		PEKIN(0, "pekin", PromenadeTags.Biomes.PEKIN_DUCK_SPAWN),
+		MALLARD(1, "mallard", PromenadeTags.Biomes.MALLARD_DUCK_SPAWN);
 
 		private static final DuckEntity.Type[] typeList = Arrays.stream(values()).sorted(Comparator.comparingInt(DuckEntity.Type::getIndex)).toArray(Type[]::new);
 		private static final Map<String, DuckEntity.Type> TYPES_BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(DuckEntity.Type::getName, (type) -> type));
 		private final int index;
 		private final String name;
-		private final List<RegistryKey<Biome>> spawnBiomes;
+		private final TagKey<Biome> spawnBiomes;
 
-		@SafeVarargs
-		Type(int indexIn, String nameIn, RegistryKey<Biome>... spawnBiomesIn) {
+		Type(int indexIn, String nameIn, TagKey<Biome> spawnBiomes) {
 			this.index = indexIn;
 			this.name = nameIn;
-			this.spawnBiomes = Arrays.asList(spawnBiomesIn);
+			this.spawnBiomes = spawnBiomes;
 		}
 
 		public static DuckEntity.Type byName(String name) {
@@ -239,11 +242,11 @@ public class DuckEntity extends AnimalEntity {
 			return typeList[index];
 		}
 
-		public static DuckEntity.Type fromBiome(RegistryKey<Biome> biome) {
+		public static DuckEntity.Type fromBiome(RegistryEntry<Biome> biome) {
 			List<Type> shuffledList = Arrays.asList(typeList.clone());
 			Collections.shuffle(shuffledList);
 			for(DuckEntity.Type type : shuffledList) {
-				if(type.getSpawnBiomes().contains(biome)) {
+				if(biome.isIn(type.getSpawnBiomes())) {
 					return type;
 				}
 			}
@@ -254,7 +257,7 @@ public class DuckEntity extends AnimalEntity {
 			return this.name;
 		}
 
-		public List<RegistryKey<Biome>> getSpawnBiomes() {
+		public TagKey<Biome> getSpawnBiomes() {
 			return this.spawnBiomes;
 		}
 
