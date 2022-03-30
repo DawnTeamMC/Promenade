@@ -26,8 +26,7 @@ dependencies {
     modImplementation "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${terraform_shapes_version}"
     include "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${terraform_shapes_version}"
 
-
-    modCompileOnly ("curse.maven:columns-385230:${columns_version}"){
+    modImplementation ("curse.maven:columns-385230:${columns_version}"){
         exclude(group: "net.fabricmc.fabric-api")
     }
 

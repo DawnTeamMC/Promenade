@@ -80,11 +80,6 @@ public class TallerNetherForestBundle extends PromenadeBundle {
 					.additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_CRIMSON_FOREST_ADDITIONS, 0.0111))
 					.music(MusicType.createIngameMusic(SoundEvents.MUSIC_NETHER_CRIMSON_FOREST))
 					.build();
-			/* TODO
-					.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER)
-					.structureFeature(ConfiguredStructureFeatures.FORTRESS)
-					.structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT)
-			*/
 			return new Biome.Builder()
 					.precipitation(Biome.Precipitation.NONE)
 					.category(Biome.Category.NETHER)

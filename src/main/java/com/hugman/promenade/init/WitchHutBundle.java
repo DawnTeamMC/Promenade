@@ -30,9 +30,6 @@ public class WitchHutBundle extends PromenadeBundle {
 		if(Promenade.CONFIG.world_features.witch_huts) {
 			DARK_FOREST_HUTS = RegistryKey.of(Registry.STRUCTURE_SET_KEY, Promenade.MOD_DATA.id("dark_forests_huts"));
 			DARK_FOREST_HUTS_ENTRY = StructureSets.register(DARK_FOREST_HUTS, DARK_FOREST_WITCH_HUT.get(), new RandomSpreadStructurePlacement(32, 8, SpreadType.LINEAR, 14357620));
-			//TODO: fix this, see structure sets (https://gist.github.com/misode/45559d34627755ecaa52497daea83544)
-			// BiomeModifications.addFeature(biomeSelectionContext -> biomeSelectionContext.hasBuiltInFeature(VegetationConfiguredFeatures.DARK_FOREST_VEGETATION.value()), WitchHutBundle.DARK_FOREST_WITCH_HUT.get().getKey().orElseThrow());
-
 		}
 	}
 }

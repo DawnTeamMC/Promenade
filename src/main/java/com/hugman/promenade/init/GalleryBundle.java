@@ -85,11 +85,6 @@ public class GalleryBundle extends PromenadeBundle {
 					.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.PIGLIN, 15, 4, 4))
 					.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2))
 					.build();
-			/* TODO
-				genBuilder.structureFeature(ConfiguredStructureFeatures.RUINED_PORTAL_NETHER);
-				genBuilder.structureFeature(ConfiguredStructureFeatures.FORTRESS);
-				genBuilder.structureFeature(ConfiguredStructureFeatures.BASTION_REMNANT);
-			*/
 			BiomeEffects effects = BiomeUtil.genericEffectBuilder(2.0F)
 					.fogColor(0x330808)
 					.loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)

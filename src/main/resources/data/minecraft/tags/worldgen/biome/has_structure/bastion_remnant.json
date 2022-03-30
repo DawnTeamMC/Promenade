@@ -1,0 +1,8 @@
+{
+	"replace": false,
+	"values": [
+		"#promenade:nether_galleries",
+		"promenade:tall_crimson_forest",
+		"promenade:tall_warped_forest"
+	]
+}
