@@ -39,6 +39,7 @@ import java.util.List;
 
 public class AmaranthBundle extends PromenadeBundle {
 	public static final Block BLACK_DYLIUM = add(new BlockCreator.Builder("black_dylium", DyliumBlock::new, FabricBlockSettings.of(Material.STONE, MapColor.DULL_RED).requiresTool().strength(3.0F, 9.0F).sounds(BlockSoundGroup.NYLIUM).ticksRandomly()).itemGroup(ItemGroup.BUILDING_BLOCKS).build());
+
 	public static final Block DARK_AMARANTH_WART_BLOCK = add(new BlockCreator.Builder("dark_amaranth_wart_block", Block::new, FabricBlockSettings.of(Material.SOLID_ORGANIC, MapColor.BRIGHT_TEAL).strength(1.0F).sounds(BlockSoundGroup.WART_BLOCK)).itemGroup(ItemGroup.BUILDING_BLOCKS).build());
 	public static final Block DARK_AMARANTH_ROOTS = add(new BlockCreator.Builder("dark_amaranth_roots", RootsBlock::new, FabricBlockSettings.of(Material.NETHER_SHOOTS, MapColor.CYAN).noCollision().breakInstantly().sounds(BlockSoundGroup.ROOTS)).itemGroup(ItemGroup.DECORATIONS).render(BlockCreator.Render.CUTOUT).compostingChance(0.65F).build());
 	public static final NetherWoodBundle DARK_AMARANTH_WOOD = creator(new NetherWoodBundle.Builder("dark_amaranth", () -> TreeConfiguredFeatures.CRIMSON_FUNGUS_PLANTED, MapColor.LIGHT_GRAY, MapColor.DARK_DULL_PINK).build());
@@ -83,9 +84,6 @@ public class AmaranthBundle extends PromenadeBundle {
 			if(isTall) generationBuilder.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, Features.Placed.OBSIDIAN_SPIKES);
 			generationBuilder
 					.feature(GenerationStep.Feature.VEGETAL_DECORATION, isTall ? Features.Placed.TALL_AMARANTH_FUNGI : Features.Placed.AMARANTH_FUNGI)
-					/* TODO
-						.structureFeature(ConfiguredStructureFeatures.END_CITY)
-					 */
 					.feature(GenerationStep.Feature.SURFACE_STRUCTURES, EndPlacedFeatures.END_GATEWAY_RETURN)
 					.feature(GenerationStep.Feature.VEGETAL_DECORATION, Features.Placed.DARK_AMARANTH_FOREST_VEGETATION);
 			SpawnSettings.Builder spawnSettings = new SpawnSettings.Builder();

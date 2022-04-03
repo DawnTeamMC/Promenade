@@ -34,5 +34,5 @@ dependencies {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/promenade.aw")
+    accessWidenerPath = file("src/main/resources/promenade.accesswidener")
 }

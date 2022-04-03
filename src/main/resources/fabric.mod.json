@@ -29,7 +29,7 @@
 	"mixins": [
 		"promenade.mixins.json"
 	],
-	"accessWidener": "promenade.aw",
+	"accessWidener": "promenade.accesswidener",
 	"depends": {
 		"minecraft": ">=1.18.2",
 		"fabric": "*",
