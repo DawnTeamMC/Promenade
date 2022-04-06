@@ -222,6 +222,7 @@ public class CherryBundle extends PromenadeBundle {
 			BiomeEffects effects = BiomeUtil.genericEffectBuilder(0.6F)
 					.waterColor(6459391)
 					.waterFogColor(2170954)
+					.grassColor(6484135)
 					.particleConfig(new BiomeParticleConfig(isPink ? PINK_CHERRY_BLOSSOM : WHITE_CHERRY_BLOSSOM, 0.001F))
 					.moodSound(BiomeMoodSound.CAVE)
 					.build();
