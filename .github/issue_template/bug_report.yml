@@ -6,7 +6,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
-        Before continuing, you must be sure to be running on the LATEST version of the mod. Otherwise, you have to try to reproduce the bug on the latest version of the mod.
+        Before continuing, you must be sure to be running on the LATEST version of Promenade. Otherwise, you have to try to reproduce the bug on the latest version of Promenade.
   - type: textarea
     id: what-happened
     attributes:
