@@ -1,0 +1,15 @@
+name: Feature Request
+description: Suggest an idea for this mod
+labels: ["feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest an idea for this mod!
+  - type: textarea
+    id: content
+    attributes:
+      label: What is your idea about?
+      placeholder: A block, an item, a biome, an entity... anything, really!
+    validations:
+      required: true

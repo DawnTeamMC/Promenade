@@ -1,0 +1,39 @@
+name: Bug Report
+description: File a bug report
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+        Before continuing, you must be sure to be running on the LATEST version of the mod. Otherwise, you have to try to reproduce the bug on the latest version of the mod.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Tell us what has happened!
+    validations:
+      required: true
+  - type: input
+    id: dawn-version
+    attributes:
+      label: Dawn API version
+      description: What version of the Dawn API are you using?
+      placeholder: ex. 3.3.0
+    validations:
+      required: true
+  - type: input
+    id: fabric-version
+    attributes:
+      label: Fabric API version
+      description: What version of the Fabric API are you using?
+      placeholder: ex. 0.51.0+1.18.2
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
