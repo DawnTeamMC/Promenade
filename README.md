@@ -9,7 +9,7 @@
 [![Discord user count](https://img.shields.io/discord/504608980799062036.svg?logoColor=FFFFFF&logo=discord&color=7289DA&style=flat-square)](https://discord.gg/8ksTVJu)
 [![Twitter followers](https://img.shields.io/twitter/follow/DawnTeamMC.svg?logo=twitter&label=twitter&style=flat-square)](https://twitter.com/DawnTeamMC)
 
-Promenade is a mod for the latest version of Minecraft that will add a ton of features to the game related to exploration, diversity and will improve the beauty of you world.
+Promenade is a mod for the latest version of Minecraft that adds a ton of features to the game related to exploration, diversity and will improve the beauty of you world.
 
 **You can visit the [official website for Promenade for more information](https://dawnteammc.github.io/promenade).**
 
