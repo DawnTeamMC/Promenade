@@ -52,12 +52,23 @@ You can collect the undead coral they wear by overcoming the danger of their cro
 - Players can also craft [piles of leaves and flowers](https://dawnteammc.github.io/promenade/blocks#piles) to decorate their homes and villages.
 
 ## 📦 Download
-### Stable builds
 We use [CurseForge](https://www.curseforge.com/minecraft/mc-mods/promenade) and [Modrinth](https://modrinth.com/mod/promenade) to publish **stable builds** of Promenade for Minecraft.
 
 You can download the latest stable builds from both pages without signing up for an account, although [downloading on CurseForge](https://www.curseforge.com/minecraft/mc-mods/promenade) is currently preferred.
 
-## 🐛 Reporting Bugs
+### Required mods
+⚠ Promenade **needs** the following mods to be installed:
+
+- Fabric API: [GitHub](https://github.com/FabricMC/fabric) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) / [Modrinth](https://modrinth.com/mod/fabric-api)
+- Dawn API: [GitHub](https://github.com/DawnTeamMC/DawnTeamMC) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/dawn) / [Modrinth](https://modrinth.com/mod/dawn)
+
+### Compatible mods
+Promenade is compatible with the following mods:
+
+- Columns: [GitHub](https://github.com/haykam821/Columns) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/columns)
+- Farming for Blockheads: [GitHub](https://github.com/ModdingForBlockheads/FarmingForBlockheads) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/farming-for-blockheads-fabric)
+
+## 🐛 Reporting bugs
 If you're running into bugs or other problems, feel free to open an issue on our [issue tracker](https://github.com/DawnTeamMC/Promenade/issues).
 
 ## 🔧 Contributing
