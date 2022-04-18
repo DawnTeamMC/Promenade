@@ -33,6 +33,9 @@ You may also find [taller Nether forests](https://dawnteammc.github.io/promenade
 Barren places are also prominent in the ender. That's why you will encounter the new [dark amaranth forests](https://dawnteammc.github.io/promenade/biomes#dark-amaranth-forests).  
 Watch out for the spiders, who like to climb up the purple fungi of this gloomy forest. 
 
+### Structures
+[Witch huts](https://dawnteammc.github.io/promenade/structures#witch-huts) can be found in dark forests.
+
 ### Animals
 The [ducks](https://dawnteammc.github.io/promenade/animals#ducks) are gentle animals that can be found in any biome that features pigs, cows, chicken and sheep.  
 They are able to swim fast and to float on water. You can feed and breed ducks with seeds (not bread, that is bad for their digestion!).
@@ -43,7 +46,7 @@ You can collect the undead coral they wear by overcoming the danger of their cro
 
 [Lush Creepers](https://dawnteammc.github.io/promenade/monsters#lush-creepers) can be rarely found in caves, and will leave blocks found in lush caves upon explosion.
 
-### Other.
+### Other
 - New igneous rocks have been added underground (known as [blunite and carbonite](https://dawnteammc.github.io/promenade/blocks#blunite-and-carbonite))
 - [Blueberry bushes](https://dawnteammc.github.io/promenade/blocks#blueberry-bushes) can be found in cold biomes.
 - Players can also craft [piles of leaves and flowers](https://dawnteammc.github.io/promenade/blocks#piles) to decorate their homes and villages.
