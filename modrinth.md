@@ -60,7 +60,7 @@ You can collect the undead coral they wear by overcoming the danger of their cro
 ⚠ Promenade **needs** the following mods to be installed:
 
 - Fabric API: [GitHub](https://github.com/FabricMC/fabric) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) / [Modrinth](https://modrinth.com/mod/fabric-api)
-- Dawn API: [GitHub](https://github.com/DawnTeamMC/DawnTeamMC) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/dawn) / [Modrinth](https://modrinth.com/mod/dawn)
+- Dawn API: [GitHub](https://github.com/DawnTeamMC/DawnAPI) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/dawn) / [Modrinth](https://modrinth.com/mod/dawn)
 
 ### Compatible mods
 Promenade is compatible with the following mods:
