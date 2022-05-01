@@ -31,9 +31,9 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
 		public int cherry_oak_forests_weight = 10;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean tall_nether_forests = false;
+		public boolean tall_nether_forests = true;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean nether_galleries = false;
+		public boolean nether_galleries = true;
 		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
 		public int dark_amaranth_forests_weight = 10;
