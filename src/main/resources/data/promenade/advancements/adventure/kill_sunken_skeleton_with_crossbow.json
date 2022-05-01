@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:adventure/shoot_arrow",
+  "display": {
+    "icon": {
+      "item": "minecraft:bow",
+      "nbt": "{Damage:0}"
+    },
+    "title": {
+      "translate": "advancements.adventure.shoot_arrow.title"
+    },
+    "description": {
+      "translate": "advancements.adventure.shoot_arrow.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "shot_arrow": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "predicate": {
+              "type": "promenade:sunken_skeleton"
+            },
+            "entity": "this"
+          }
+        ],
+        "damage": {
+          "type": {
+            "is_projectile": true,
+            "direct_entity": {
+              "type": "#minecraft:arrows"
+            }
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "shot_arrow"
+    ]
+  ]
+}
