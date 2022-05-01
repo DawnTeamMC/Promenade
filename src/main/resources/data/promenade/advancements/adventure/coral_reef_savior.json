@@ -1,0 +1,88 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:crossbow"
+    },
+    "title": {
+      "translate": "advancements.promenade.adventure.coral_reef_savior.title"
+    },
+    "description": {
+      "translate": "advancements.promenade.adventure.coral_reef_savior.description"
+    },
+    "frame": "challenge"
+  },
+  "hidden": true,
+  "parent": "promenade:adventure/coral_bleacher_sniping",
+  "criteria": {
+    "kill_sunken_skeletons": {
+      "trigger": "minecraft:killed_by_crossbow",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "fluid": {
+                "tag": "minecraft:water"
+              }
+            }
+          }
+        ],
+        "victims": [
+          [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "type": "promenade:sunken_skeleton",
+                "nbt": "{Type:bubble}",
+                "location": {
+                  "fluid": {
+                    "tag": "minecraft:water"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "type": "promenade:sunken_skeleton",
+                "nbt": "{Type:fire}",
+                "location": {
+                  "fluid": {
+                    "tag": "minecraft:water"
+                  }
+                }
+              }
+            }
+          ],
+          [
+            {
+              "condition": "minecraft:entity_properties",
+              "entity": "this",
+              "predicate": {
+                "type": "promenade:sunken_skeleton",
+                "nbt": "{Type:horn}",
+                "location": {
+                  "fluid": {
+                    "tag": "minecraft:water"
+                  }
+                }
+              }
+            }
+          ]
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "kill_sunken_skeletons"
+    ]
+  ],
+  "rewards": {
+    "experience": 120
+  }
+}

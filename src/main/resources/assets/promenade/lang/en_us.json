@@ -190,6 +190,11 @@
 	"subtitles.promenade.entity.sunken_skeleton.death": "Sunken Skeleton dies",
 	"subtitles.promenade.entity.sunken_skeleton.shoot": "Sunken Skeleton shoots",
 
+	"advancements.promenade.adventure.coral_bleacher_sniping.title": "Coral Bleacher Sniping",
+	"advancements.promenade.adventure.coral_bleacher_sniping.description": "Kill a sunken skeleton using a crossbow underwater",
+	"advancements.promenade.adventure.coral_reef_savior.title": "Coral Reef Savior",
+	"advancements.promenade.adventure.coral_reef_savior.description": "Kill all the types of sunken skeleton with one crossbow shot underwater",
+
 	"text.autoconfig.promenade.title": "Promenade Configuration",
 	"text.autoconfig.promenade.category.biomes": "Biomes",
 	"text.autoconfig.promenade.category.world_features": "World Features",
