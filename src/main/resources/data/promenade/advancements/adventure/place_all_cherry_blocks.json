@@ -1,0 +1,308 @@
+{
+  "display": {
+    "icon": {
+      "item": "promenade:pink_cherry_oak_sapling"
+    },
+    "title": {
+      "translate": "advancements.promenade.adventure.place_all_cherry_blocks.title"
+    },
+    "description": {
+      "translate": "advancements.promenade.adventure.place_all_cherry_blocks.description"
+    },
+    "frame": "challenge"
+  },
+  "parent": "minecraft:adventure/play_jukebox_in_meadows",
+  "criteria": {
+    "planks_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_planks",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "planks_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_planks",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "log_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_log",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "log_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_log",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "stripped_log_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:stripped_cherry_oak_log",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "stripped_log_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:stripped_cherry_oak_log",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "wood_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_wood",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "wood_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_wood",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "stripped_wood_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:stripped_cherry_oak_wood",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "stripped_wood_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:stripped_cherry_oak_wood",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "stairs_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_stairs",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "stairs_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_stairs",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "slab_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_slab",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "slab_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_slab",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "trapdoor_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_trapdoor",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "trapdoor_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_trapdoor",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "pressure_plate_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_pressure_plate",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "pressure_plate_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_pressure_plate",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "button_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_button",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "button_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_button",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "fence_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_fence",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "fence_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_fence",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "fence_gate_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_fence_gate",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "fence_gate_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_fence_gate",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    },
+    "door_in_pink": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_door",
+        "location": {
+          "biome": "promenade:pink_cherry_oak_forest"
+        }
+      }
+    },
+    "door_in_white": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:cherry_oak_door",
+        "location": {
+          "biome": "promenade:white_cherry_oak_forest"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "planks_in_pink",
+      "planks_in_white"
+    ],
+    [
+      "log_in_pink",
+      "log_in_white"
+    ],
+    [
+      "stripped_log_in_pink",
+      "stripped_log_in_white"
+    ],
+    [
+      "wood_in_pink",
+      "wood_in_white"
+    ],
+    [
+      "stripped_wood_in_pink",
+      "stripped_wood_in_white"
+    ],
+    [
+      "stairs_in_pink",
+      "stairs_in_white"
+    ],
+    [
+      "slab_in_pink",
+      "slab_in_white"
+    ],
+    [
+      "trapdoor_in_pink",
+      "trapdoor_in_white"
+    ],
+    [
+      "pressure_plate_in_pink",
+      "pressure_plate_in_white"
+    ],
+    [
+      "button_in_pink",
+      "button_in_white"
+    ],
+    [
+      "fence_in_pink",
+      "fence_in_white"
+    ],
+    [
+      "fence_gate_in_pink",
+      "fence_gate_in_white"
+    ],
+    [
+      "door_in_pink",
+      "door_in_white"
+    ]
+  ],
+  "rewards": {
+    "experience": 40
+  }
+}
