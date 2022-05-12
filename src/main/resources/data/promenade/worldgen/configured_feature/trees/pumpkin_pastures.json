@@ -1,0 +1,16 @@
+{
+  "config": {
+    "features": [
+      {
+        "feature": "promenade:tree/autumn_oak/bees_002",
+        "chance": 0.2
+      },
+      {
+        "feature": "promenade:tree/autumn_birch/fancy_bees_002",
+        "chance": 0.1
+      }
+    ],
+    "default": "promenade:tree/autumn_birch/bees_002"
+  },
+  "type": "minecraft:random_selector"
+}

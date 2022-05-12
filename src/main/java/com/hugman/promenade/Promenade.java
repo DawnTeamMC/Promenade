@@ -76,6 +76,5 @@ public class Promenade implements ModInitializer {
 		OreBundle.addToGen();
 		PalmBundle.addToGen();
 		TallerNetherForestBundle.addToGen();
-		WitchHutBundle.addToGen();
 	}
 }

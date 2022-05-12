@@ -1,0 +1,12 @@
+{
+  "config": {
+    "features": [
+      {
+        "feature": "promenade:water_pool/gravel/decoration/bamboo",
+        "chance": 0.4
+      }
+    ],
+    "default": "promenade:water_pool/gravel/decoration/waterlily"
+  },
+  "type": "minecraft:random_selector"
+}

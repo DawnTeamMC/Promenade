@@ -1,0 +1,17 @@
+{
+  "feature": "promenade:tree/white_cherry_oak/fancy",
+  "placement": [
+    {
+      "predicate": {
+        "state": {
+          "Properties": {
+            "stage": "0"
+          },
+          "Name": "promenade:white_cherry_oak_sapling"
+        },
+        "type": "minecraft:would_survive"
+      },
+      "type": "minecraft:block_predicate_filter"
+    }
+  ]
+}

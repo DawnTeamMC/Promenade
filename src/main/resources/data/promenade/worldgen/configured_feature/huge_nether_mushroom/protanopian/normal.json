@@ -1,0 +1,32 @@
+{
+  "config": {
+    "features": [
+      {
+        "feature": {
+          "feature": "promenade:huge_nether_mushroom/flat/brown",
+          "placement": []
+        },
+        "chance": 0.25
+      },
+      {
+        "feature": {
+          "feature": "promenade:huge_nether_mushroom/yellow",
+          "placement": []
+        },
+        "chance": 0.25
+      },
+      {
+        "feature": {
+          "feature": "promenade:huge_nether_mushroom/cyan",
+          "placement": []
+        },
+        "chance": 0.25
+      }
+    ],
+    "default": {
+      "feature": "promenade:huge_nether_mushroom/blue",
+      "placement": []
+    }
+  },
+  "type": "minecraft:random_selector"
+}

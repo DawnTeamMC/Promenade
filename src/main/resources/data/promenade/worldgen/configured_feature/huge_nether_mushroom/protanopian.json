@@ -1,0 +1,32 @@
+{
+  "config": {
+    "features": [
+      {
+        "feature": {
+          "feature": "promenade:huge_nether_mushroom/protanopian/normal",
+          "placement": []
+        },
+        "chance": 0.25
+      },
+      {
+        "feature": {
+          "feature": "promenade:huge_nether_mushroom/protanopian/flat",
+          "placement": []
+        },
+        "chance": 0.25
+      },
+      {
+        "feature": {
+          "feature": "promenade:huge_nether_mushroom/protanopian/ceiling",
+          "placement": []
+        },
+        "chance": 0.25
+      }
+    ],
+    "default": {
+      "feature": "promenade:huge_nether_mushroom/protanopian/ceiling_flat",
+      "placement": []
+    }
+  },
+  "type": "minecraft:random_selector"
+}

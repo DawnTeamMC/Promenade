@@ -1,0 +1,16 @@
+{
+  "config": {
+    "features": [
+      {
+        "feature": "promenade:tree/pink_cherry_oak/normal",
+        "chance": 0.2
+      },
+      {
+        "feature": "promenade:tree/white_cherry_oak/fancy",
+        "chance": 0.1
+      }
+    ],
+    "default": "promenade:tree/white_cherry_oak/normal"
+  },
+  "type": "minecraft:random_selector"
+}
