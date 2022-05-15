@@ -3,7 +3,7 @@ package com.hugman.promenade.init;
 import com.hugman.dawn.api.creator.bundle.block.OverworldWoodBundle;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.PalmSaplingGenerator;
-import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
+import com.hugman.promenade.object.trade_offers.TradeOfferUtils;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.WorldGenUtil;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -26,7 +26,7 @@ public class PalmBundle extends PromenadeBundle
 
 	public static void addWanderingSales() {
 		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
-			factories.add(new SellSaplingFactory(PALM_WOOD.getSapling()));
+			factories.add(TradeOfferUtils.sapling(PALM_WOOD.getSapling()));
 		});
 	}
 

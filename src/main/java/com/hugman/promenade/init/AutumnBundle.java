@@ -6,7 +6,7 @@ import com.hugman.dawn.api.util.DefaultBlockBuilders;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.AutumnBirchSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.AutumnOakSaplingGenerator;
-import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
+import com.hugman.promenade.object.trade_offers.TradeOfferUtils;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.WorldGenUtil;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
@@ -34,8 +34,8 @@ public class AutumnBundle extends PromenadeBundle
 
 	public static void addWanderingSales() {
 		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
-			factories.add(new SellSaplingFactory(AUTUMN_OAK_SAPLING.getPlant()));
-			factories.add(new SellSaplingFactory(AUTUMN_BIRCH_SAPLING.getPlant()));
+			factories.add(TradeOfferUtils.sapling(AUTUMN_OAK_SAPLING.getPlant()));
+			factories.add(TradeOfferUtils.sapling(AUTUMN_BIRCH_SAPLING.getPlant()));
 		});
 	}
 }

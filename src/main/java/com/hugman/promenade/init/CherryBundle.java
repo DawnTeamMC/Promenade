@@ -9,7 +9,7 @@ import com.hugman.dawn.api.util.DefaultBlockSettings;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.PinkCherryOakSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.WhiteCherryOakSaplingGenerator;
-import com.hugman.promenade.object.trade_offers.SellSaplingFactory;
+import com.hugman.promenade.object.trade_offers.TradeOfferUtils;
 import com.hugman.promenade.util.BlockBuilders;
 import com.hugman.promenade.util.WorldGenUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -47,8 +47,8 @@ public class CherryBundle extends PromenadeBundle {
 
 	public static void addWanderingSales() {
 		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
-			factories.add(new SellSaplingFactory(PINK_CHERRY_OAK_SAPLING.getPlant()));
-			factories.add(new SellSaplingFactory(WHITE_CHERRY_OAK_SAPLING.getPlant()));
+			factories.add(TradeOfferUtils.sapling(PINK_CHERRY_OAK_SAPLING.getPlant()));
+			factories.add(TradeOfferUtils.sapling(WHITE_CHERRY_OAK_SAPLING.getPlant()));
 		});
 	}
 }
