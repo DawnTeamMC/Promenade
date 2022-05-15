@@ -18,12 +18,7 @@
       "type": "minecraft:weighted_state_provider"
     },
     "replaceable": [
-      {
-        "Properties": {
-          "snowy": "false"
-        },
-        "Name": "minecraft:grass_block"
-      }
+      "minecraft:grass_block"
     ],
     "count": {
       "type": "minecraft:uniform",

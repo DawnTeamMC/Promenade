@@ -7,10 +7,6 @@
     "base_radius": 2.0,
     "random_radius": 3.0,
     "base_ytheta": 0.0,
-    "valid_blocks": [
-      "promenade:black_dylium",
-      "minecraft:end_stone"
-    ],
     "base_height": 6,
     "random_height": 22,
     "state": {

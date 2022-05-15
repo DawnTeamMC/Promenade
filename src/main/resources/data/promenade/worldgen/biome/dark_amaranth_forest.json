@@ -1,5 +1,13 @@
 {
+  "temperature": 0.5,
+  "downfall": 0.5,
+  "precipitation": "none",
+  "category": "the_end",
   "effects": {
+    "sky_color": 0,
+    "fog_color": 10518688,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
       "tick_delay": 6000,
@@ -11,30 +19,8 @@
         "type": "minecraft:falling_obsidian_tear"
       },
       "probability": 0.002
-    },
-    "sky_color": 0,
-    "fog_color": 10518688,
-    "water_color": 4159204,
-    "water_fog_color": 329011
+    }
   },
-  "carvers": {},
-  "features": [
-    [],
-    [],
-    [],
-    [],
-    [
-      "minecraft:end_gateway_return"
-    ],
-    [],
-    [],
-    [],
-    [],
-    [
-      "promenade:amaranth_fungi",
-      "promenade:dark_amaranth_forest_vegetation"
-    ]
-  ],
   "spawners": {
     "monster": [
       {
@@ -65,8 +51,22 @@
     "misc": []
   },
   "spawn_costs": {},
-  "precipitation": "none",
-  "temperature": 0.5,
-  "downfall": 0.5,
-  "category": "the_end"
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:end_gateway_return"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [
+      "promenade:amaranth_fungi",
+      "promenade:dark_amaranth_forest_vegetation"
+    ]
+  ]
 }

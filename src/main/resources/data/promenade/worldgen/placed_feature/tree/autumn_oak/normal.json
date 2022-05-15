@@ -2,16 +2,16 @@
   "feature": "promenade:tree/autumn_oak/normal",
   "placement": [
     {
+      "type": "minecraft:block_predicate_filter",
       "predicate": {
+        "type": "minecraft:would_survive",
         "state": {
+          "Name": "promenade:autumn_oak_sapling",
           "Properties": {
             "stage": "0"
-          },
-          "Name": "promenade:autumn_oak_sapling"
-        },
-        "type": "minecraft:would_survive"
-      },
-      "type": "minecraft:block_predicate_filter"
+          }
+        }
+      }
     }
   ]
 }

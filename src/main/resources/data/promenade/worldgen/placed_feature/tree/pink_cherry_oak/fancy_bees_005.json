@@ -2,16 +2,16 @@
   "feature": "promenade:tree/pink_cherry_oak/fancy_bees_005",
   "placement": [
     {
+      "type": "minecraft:block_predicate_filter",
       "predicate": {
+        "type": "minecraft:would_survive",
         "state": {
+          "Name": "promenade:pink_cherry_oak_sapling",
           "Properties": {
             "stage": "0"
-          },
-          "Name": "promenade:pink_cherry_oak_sapling"
-        },
-        "type": "minecraft:would_survive"
-      },
-      "type": "minecraft:block_predicate_filter"
+          }
+        }
+      }
     }
   ]
 }

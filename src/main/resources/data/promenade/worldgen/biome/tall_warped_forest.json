@@ -1,5 +1,14 @@
 {
+  "temperature": 2,
+  "downfall": 0,
+  "precipitation": "none",
+  "category": "nether",
   "effects": {
+    "sky_color": 7254527,
+    "fog_color": 1705242,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "ambient_sound": "minecraft:ambient.warped_forest.loop",
     "mood_sound": {
       "sound": "minecraft:ambient.warped_forest.mood",
       "tick_delay": 6000,
@@ -21,12 +30,37 @@
         "type": "minecraft:warped_spore"
       },
       "probability": 0.01428
-    },
-    "ambient_sound": "minecraft:ambient.warped_forest.loop",
-    "sky_color": 7254527,
-    "fog_color": 1705242,
-    "water_color": 4159204,
-    "water_fog_color": 329011
+    }
+  },
+  "spawners": {
+    "monster": [
+      {
+        "type": "minecraft:enderman",
+        "weight": 1,
+        "minCount": 4,
+        "maxCount": 4
+      }
+    ],
+    "creature": [
+      {
+        "type": "minecraft:strider",
+        "weight": 60,
+        "minCount": 1,
+        "maxCount": 2
+      }
+    ],
+    "ambient": [],
+    "axolotls": [],
+    "underground_water_creature": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": []
+  },
+  "spawn_costs": {
+    "minecraft:enderman": {
+      "energy_budget": 0.12,
+      "charge": 1
+    }
   },
   "carvers": {
     "air": "minecraft:nether_cave"
@@ -64,39 +98,5 @@
       "minecraft:nether_sprouts",
       "minecraft:twisting_vines"
     ]
-  ],
-  "spawners": {
-    "monster": [
-      {
-        "type": "minecraft:enderman",
-        "weight": 1,
-        "minCount": 4,
-        "maxCount": 4
-      }
-    ],
-    "creature": [
-      {
-        "type": "minecraft:strider",
-        "weight": 60,
-        "minCount": 1,
-        "maxCount": 2
-      }
-    ],
-    "ambient": [],
-    "axolotls": [],
-    "underground_water_creature": [],
-    "water_creature": [],
-    "water_ambient": [],
-    "misc": []
-  },
-  "spawn_costs": {
-    "minecraft:enderman": {
-      "energy_budget": 0.12,
-      "charge": 1
-    }
-  },
-  "precipitation": "none",
-  "temperature": 2.0,
-  "downfall": 0.0,
-  "category": "nether"
+  ]
 }

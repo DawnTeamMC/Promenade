@@ -7,9 +7,7 @@
       "type": "minecraft:simple_state_provider"
     },
     "replaceable": [
-      {
-        "Name": "minecraft:end_stone"
-      }
+      "minecraft:end_stone"
     ],
     "count": 8
   },

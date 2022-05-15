@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.world.gen.feature.FeatureConfig;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 
 public class EHugeMushroomFeatureConfig implements FeatureConfig {
 	public static final Codec<EHugeMushroomFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(

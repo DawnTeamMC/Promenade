@@ -3,7 +3,7 @@ package com.hugman.promenade.init;
 import com.hugman.dawn.api.creator.StructureFeatureCreator;
 import com.hugman.dawn.api.creator.StructurePieceCreator;
 import com.hugman.promenade.object.world.gen.feature.structure.WitchHutFeature;
-import com.hugman.promenade.object.world.gen.feature.structure.generator.WitchHutGenerator;
+import com.hugman.promenade.object.world.gen.feature.structure.WitchHutGenerator;
 import net.minecraft.structure.StructurePieceType;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;

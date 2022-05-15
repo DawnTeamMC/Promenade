@@ -6,6 +6,7 @@ import com.hugman.dawn.api.object.block.RootsBlock;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.DyliumBlock;
 import com.hugman.promenade.util.WorldGenUtil;
+import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
@@ -28,11 +29,8 @@ public class AmaranthBundle extends PromenadeBundle
 
 	public static void addToGen() {
 		if(Promenade.CONFIG.biomes.dark_amaranth_forests_weight > 0) {
-			/*
-			TODO: fix the damn features
 			TheEndBiomes.addHighlandsBiome(TALL_DARK_AMARANTH_FOREST, Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 10.0D);
 			TheEndBiomes.addMidlandsBiome(TALL_DARK_AMARANTH_FOREST, DARK_AMARANTH_FOREST, Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 10.0D);
-			 */
 		}
 	}
 }

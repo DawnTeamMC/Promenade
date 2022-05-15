@@ -1,13 +1,13 @@
 {
+  "type": "minecraft:random_boolean_selector",
   "config": {
-    "feature_true": {
-      "feature": "promenade:huge_nether_mushroom/upside/pink",
-      "placement": []
-    },
     "feature_false": {
       "feature": "promenade:huge_nether_mushroom/upside/cyan",
       "placement": []
+    },
+    "feature_true": {
+      "feature": "promenade:huge_nether_mushroom/upside/pink",
+      "placement": []
     }
-  },
-  "type": "minecraft:random_boolean_selector"
+  }
 }

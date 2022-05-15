@@ -1,4 +1,4 @@
-package com.hugman.promenade.object.world.gen.feature.structure.generator;
+package com.hugman.promenade.object.world.gen.feature.structure;
 
 import com.google.common.collect.ImmutableList;
 import com.hugman.promenade.Promenade;

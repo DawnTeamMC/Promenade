@@ -22,7 +22,7 @@ public class PalmBundle extends PromenadeBundle
 	public static final OverworldWoodBundle PALM_WOOD = creator(new OverworldWoodBundle.Builder("palm", new PalmSaplingGenerator(), MapColor.ORANGE, MapColor.TERRACOTTA_CYAN).saplingSoil(blockState -> blockState.isIn(BlockTags.SAND)).build());
 	public static final Block PALM_LEAF_PILE = add(BlockBuilders.LEAF_PILE.copy("palm_leaf_pile").build());
 
-	public static final RegistryKey<PlacedFeature> PALMS = WorldGenUtil.placedFeatureKey("tree/palms");
+	public static final RegistryKey<PlacedFeature> PALMS = WorldGenUtil.placedFeatureKey("trees/palms");
 
 	public static void addWanderingSales() {
 		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
