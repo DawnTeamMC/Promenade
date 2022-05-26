@@ -1,0 +1,21 @@
+{
+  "type": "promenade:tall_huge_fungus",
+  "config": {
+    "hat_state": {
+      "Name": "promenade:dark_amaranth_wart_block"
+    },
+    "decor_state": {
+      "Name": "minecraft:cobweb"
+    },
+    "stem_state": {
+      "Name": "promenade:dark_amaranth_stem",
+      "Properties": {
+        "axis": "y"
+      }
+    },
+    "valid_base_block": {
+      "Name": "promenade:black_dylium"
+    },
+    "planted": false
+  }
+}

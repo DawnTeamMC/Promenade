@@ -1,0 +1,15 @@
+{
+  "config": {
+    "state": {
+      "state": {
+        "Name": "minecraft:obsidian"
+      },
+      "type": "minecraft:simple_state_provider"
+    },
+    "replaceable": [
+      "minecraft:end_stone"
+    ],
+    "count": 8
+  },
+  "type": "promenade:boulder"
+}

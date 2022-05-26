@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:random_boolean_selector",
+  "config": {
+    "feature_false": {
+      "feature": "promenade:huge_nether_mushroom/upside_flat/light_gray",
+      "placement": []
+    },
+    "feature_true": {
+      "feature": "promenade:huge_nether_mushroom/upside_flat/white",
+      "placement": []
+    }
+  }
+}

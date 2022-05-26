@@ -1,0 +1,6 @@
+{
+  "type": "promenade:witch_hut",
+  "biomes": "#promenade:has_structure/witch_hut",
+  "config": {},
+  "spawn_overrides": {}
+}

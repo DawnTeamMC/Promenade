@@ -1,0 +1,12 @@
+{
+  "feature": "promenade:amaranth_fungus/normal",
+  "placement": [
+    {
+      "count": 8,
+      "type": "minecraft:count_on_every_layer"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
