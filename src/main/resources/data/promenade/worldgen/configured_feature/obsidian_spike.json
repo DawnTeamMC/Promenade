@@ -1,0 +1,21 @@
+{
+  "config": {
+    "random_ytheta": 360.0,
+    "base_ztheta": 150.0,
+    "random_ztheta": 30.0,
+    "y_offset": -4.0,
+    "base_radius": 2.0,
+    "random_radius": 3.0,
+    "base_ytheta": 0.0,
+    "base_height": 6,
+    "random_height": 22,
+    "state": {
+      "Name": "minecraft:obsidian"
+    },
+    "decor_state": {
+      "Name": "minecraft:crying_obsidian"
+    },
+    "decor_chance": 0.08
+  },
+  "type": "promenade:spike"
+}

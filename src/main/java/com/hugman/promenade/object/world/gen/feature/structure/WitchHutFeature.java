@@ -1,6 +1,5 @@
 package com.hugman.promenade.object.world.gen.feature.structure;
 
-import com.hugman.promenade.object.world.gen.feature.structure.generator.WitchHutGenerator;
 import com.mojang.serialization.Codec;
 import net.minecraft.structure.StructureGeneratorFactory;
 import net.minecraft.structure.StructurePiecesCollector;

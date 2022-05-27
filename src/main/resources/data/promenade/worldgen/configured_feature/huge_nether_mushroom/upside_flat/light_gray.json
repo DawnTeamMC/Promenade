@@ -1,0 +1,38 @@
+{
+  "config": {
+    "decor_chance": 0.05000000074505806,
+    "vine_chance": 0.0,
+    "upside_down": true,
+    "hat_random_size": 1,
+    "flat_hat": true,
+    "decor_state": {
+      "Name": "minecraft:shroomlight"
+    },
+    "stem_random_height": 7,
+    "hat_state": {
+      "Properties": {
+        "west": "true",
+        "up": "true",
+        "south": "true",
+        "north": "true",
+        "east": "true",
+        "down": "true"
+      },
+      "Name": "promenade:light_gray_mushroom_block"
+    },
+    "hat_base_size": 3,
+    "stem_state": {
+      "Properties": {
+        "west": "true",
+        "up": "true",
+        "south": "true",
+        "north": "true",
+        "east": "true",
+        "down": "true"
+      },
+      "Name": "minecraft:mushroom_stem"
+    },
+    "stem_base_height": 4
+  },
+  "type": "promenade:huge_mushroom"
+}

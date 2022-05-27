@@ -1,0 +1,19 @@
+{
+  "feature": "promenade:water_pool/gravel",
+  "placement": [
+    {
+      "chance": 7,
+      "type": "minecraft:rarity_filter"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "heightmap": "WORLD_SURFACE_WG",
+      "type": "minecraft:heightmap"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
