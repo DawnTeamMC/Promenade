@@ -5,6 +5,7 @@ import com.hugman.promenade.init.AutumnBundle;
 import com.hugman.promenade.init.CherryBundle;
 import com.hugman.promenade.init.GalleryBundle;
 import com.hugman.promenade.init.TallerNetherForestBundle;
+import com.hugman.promenade.util.BiomeUtil;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -40,7 +41,7 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 		SurfaceRuleManager.addToDefaultSurfaceRulesAtStage(SurfaceRuleManager.RuleCategory.OVERWORLD, SurfaceRuleManager.RuleStage.AFTER_BEDROCK, 1,
 				MaterialRules.sequence(
 						MaterialRules.condition(
-								MaterialRules.biome(AutumnBundle.PUMPKIN_PASTURES),
+								MaterialRules.biome(BiomeUtil.PUMPKIN_PASTURES_KEY),
 								MaterialRules.condition(
 										MaterialRules.noiseThreshold(NoiseParametersKeys.CALCITE, -0.0125, 0.0125),
 										makeStateRule(Blocks.COARSE_DIRT)
@@ -60,11 +61,11 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 		public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
 			this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
 				if(Promenade.CONFIG.biomes.pumpkin_pastures_weight > 0) {
-					builder.replaceBiome(BiomeKeys.PLAINS, AutumnBundle.PUMPKIN_PASTURES);
+					builder.replaceBiome(BiomeKeys.PLAINS, AutumnBundle.Biomes.PUMPKIN_PASTURES.getRegistryKey());
 				}
 				if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
-					builder.replaceBiome(BiomeKeys.FOREST, CherryBundle.PINK_CHERRY_OAK_FOREST);
-					builder.replaceBiome(BiomeKeys.BIRCH_FOREST, CherryBundle.WHITE_CHERRY_OAK_FOREST);
+					builder.replaceBiome(BiomeKeys.FOREST, CherryBundle.Biomes.PINK_CHERRY_OAK_FOREST.getRegistryKey());
+					builder.replaceBiome(BiomeKeys.BIRCH_FOREST, CherryBundle.Biomes.WHITE_CHERRY_OAK_FOREST.getRegistryKey());
 				}
 			});
 		}
@@ -78,13 +79,13 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 		@Override
 		public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
 			if(Promenade.CONFIG.biomes.tall_nether_forests) {
-				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.3F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, TallerNetherForestBundle.TALL_CRIMSON_FOREST);
-				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.7F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.35F, TallerNetherForestBundle.TALL_WARPED_FOREST);
+				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.3F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, TallerNetherForestBundle.Biomes.TALL_CRIMSON_FOREST.getRegistryKey());
+				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.7F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.35F, TallerNetherForestBundle.Biomes.TALL_WARPED_FOREST.getRegistryKey());
 			}
 			if(Promenade.CONFIG.biomes.nether_galleries) {
-				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.2F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, GalleryBundle.TRITANOPIAN_GALLERY);
-				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(-0.2F), MultiNoiseUtil.ParameterRange.of(0.1F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, GalleryBundle.ACHROMATOPSIAN_GALLERY);
-				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(-0.2F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, GalleryBundle.PROTANOPIAN_GALLERY);
+				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.2F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, GalleryBundle.Biomes.TRITANOPIAN_GALLERY.getRegistryKey());
+				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(-0.2F), MultiNoiseUtil.ParameterRange.of(0.1F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, GalleryBundle.Biomes.ACHROMATOPSIAN_GALLERY.getRegistryKey());
+				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(-0.2F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, GalleryBundle.Biomes.PROTANOPIAN_GALLERY.getRegistryKey());
 			}
 		}
 	}

@@ -16,6 +16,7 @@ public class PromenadeTags {
 	}
 
 	public static class Biomes {
+		public static final TagKey<Biome> HAS_WITCH_HUT = register("has_structure/witch_hut");
 		public static final TagKey<Biome> SUNKEN_SKELETON_SPAWN = register("spawn/sunken_skeleton");
 		public static final TagKey<Biome> MALLARD_DUCK_SPAWN = register("spawn/duck/mallard");
 		public static final TagKey<Biome> PEKIN_DUCK_SPAWN = register("spawn/duck/pekin");

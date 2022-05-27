@@ -1,22 +1,16 @@
 package com.hugman.promenade.object.block.sapling_generator;
 
-import com.hugman.promenade.util.WorldGenUtil;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.registry.Registry;
+import com.hugman.promenade.init.PalmBundle;
+import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 
 import java.util.Random;
 
-public class PalmSaplingGenerator extends DynamicSaplingGenerator
-{
-	public static final RegistryKey<ConfiguredFeature<?, ?>> PALM = WorldGenUtil.configuredFeatureKey("tree/palm");
-
-	@Nullable
+public class PalmSaplingGenerator extends SaplingGenerator {
 	@Override
-	protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(ServerWorld world, Random random, boolean bees) {
-		return world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).getEntry(PALM).orElse(null);
+	protected RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> getTreeFeature(Random random, boolean beeHive) {
+		return PalmBundle.Features.Configured.PALM;
 	}
 }

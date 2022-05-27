@@ -1,24 +1,16 @@
 package com.hugman.promenade.object.block.sapling_generator;
 
-import com.hugman.promenade.util.WorldGenUtil;
-import net.minecraft.server.world.ServerWorld;
+import com.hugman.promenade.init.AutumnBundle;
+import net.minecraft.block.sapling.SaplingGenerator;
 import net.minecraft.util.registry.RegistryEntry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 
 import java.util.Random;
 
-public class AutumnBirchSaplingGenerator extends DynamicSaplingGenerator
-{
-	public static final RegistryKey<ConfiguredFeature<?, ?>> NORMAL = WorldGenUtil.configuredFeatureKey("tree/autumn_birch/normal");
-	public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY = WorldGenUtil.configuredFeatureKey("tree/autumn_birch/fancy");
-	public static final RegistryKey<ConfiguredFeature<?, ?>> BEES = WorldGenUtil.configuredFeatureKey("tree/autumn_birch/bees_002");
-	public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_BEES = WorldGenUtil.configuredFeatureKey("tree/autumn_birch/fancy_bees_002");
-
-	@Nullable
+public class AutumnBirchSaplingGenerator extends SaplingGenerator {
 	@Override
-	protected RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeFeature(ServerWorld world, Random random, boolean bees) {
-		return WorldGenUtil.treeEntryWithFancyBees(world, random, bees, NORMAL, BEES, FANCY, FANCY_BEES);
+	protected RegistryEntry<ConfiguredFeature<TreeFeatureConfig, ?>> getTreeFeature(Random random, boolean bees) {
+		return random.nextInt(10) == 0 ? bees ? AutumnBundle.Features.Configured.FANCY_AUTUMN_BIRCH_BEES_002 : AutumnBundle.Features.Configured.FANCY_AUTUMN_BIRCH : bees ? AutumnBundle.Features.Configured.AUTUMN_BIRCH_BEES_002 : AutumnBundle.Features.Configured.AUTUMN_BIRCH;
 	}
 }

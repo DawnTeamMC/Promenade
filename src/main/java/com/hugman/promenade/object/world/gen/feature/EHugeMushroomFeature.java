@@ -22,34 +22,6 @@ public class EHugeMushroomFeature extends Feature<EHugeMushroomFeatureConfig> {
 		super(codec);
 	}
 
-	@Override
-	public boolean generate(FeatureContext<EHugeMushroomFeatureConfig> context) {
-		Random random = context.getRandom();
-		EHugeMushroomFeatureConfig config = context.getConfig();
-		StructureWorldAccess world = context.getWorld();
-		BlockPos pos = context.getOrigin();
-		int stemHeight = getStemHeight(random, config);
-		int hatSize = getHatSize(random, config);
-		BlockPos origin = getOrigin(world, pos, stemHeight, config);
-		if(origin == null) {
-			return false;
-		}
-		else {
-			if(origin.getY() + stemHeight + 1 >= world.getHeight()) {
-				return false;
-			}
-			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
-			this.generateStem(world, random, origin, stemHeight, config);
-			if(config.flatHat) {
-				this.generateFlatHat(world, random, origin, stemHeight, hatSize, config);
-			}
-			else {
-				this.generateBubbleHat(world, random, origin, stemHeight, hatSize, config);
-			}
-			return true;
-		}
-	}
-
 	private static void generateVines(BlockPos pos, WorldAccess worldAccess, Random random, EHugeMushroomFeatureConfig config) {
 		BlockPos.Mutable mutable = pos.mutableCopy().move(config.upsideDown ? Direction.UP : Direction.DOWN);
 		if(worldAccess.isAir(mutable)) {
@@ -97,6 +69,34 @@ public class EHugeMushroomFeature extends Feature<EHugeMushroomFeatureConfig> {
 
 	public static boolean isValidGround(WorldAccess worldAccess, BlockPos blockPos) {
 		return worldAccess.testBlockState(blockPos, (blockState) -> blockState.isOf(Blocks.NETHERRACK) || blockState.isOf(Blocks.NETHER_QUARTZ_ORE) || blockState.isOf(Blocks.NETHER_GOLD_ORE));
+	}
+
+	@Override
+	public boolean generate(FeatureContext<EHugeMushroomFeatureConfig> context) {
+		Random random = context.getRandom();
+		EHugeMushroomFeatureConfig config = context.getConfig();
+		StructureWorldAccess world = context.getWorld();
+		BlockPos pos = context.getOrigin();
+		int stemHeight = getStemHeight(random, config);
+		int hatSize = getHatSize(random, config);
+		BlockPos origin = getOrigin(world, pos, stemHeight, config);
+		if(origin == null) {
+			return false;
+		}
+		else {
+			if(origin.getY() + stemHeight + 1 >= world.getHeight()) {
+				return false;
+			}
+			world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
+			this.generateStem(world, random, origin, stemHeight, config);
+			if(config.flatHat) {
+				this.generateFlatHat(world, random, origin, stemHeight, hatSize, config);
+			}
+			else {
+				this.generateBubbleHat(world, random, origin, stemHeight, hatSize, config);
+			}
+			return true;
+		}
 	}
 
 	private void generateStem(WorldAccess world, Random random, BlockPos origin, int stemHeight, EHugeMushroomFeatureConfig config) {

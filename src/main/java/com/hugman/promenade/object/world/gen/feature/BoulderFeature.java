@@ -4,9 +4,6 @@ import com.mojang.serialization.Codec;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.gen.feature.BlockColumnFeature;
-import net.minecraft.world.gen.feature.DesertPyramidFeature;
-import net.minecraft.world.gen.feature.DesertWellFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
@@ -26,7 +23,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
 		BlockPos pos = context.getOrigin();
 		for(; pos.getY() > world.getBottomY() + radius; pos = pos.down()) {
 			if(!world.isAir(pos)) {
-				if(world.getBlockState(pos).isIn(config.replaceableBlocks)) {
+				if(config.replaceableBlocks.contains(world.getBlockState(pos))) {
 					break;
 				}
 			}
@@ -42,7 +39,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
 				float f = (float) (j + k + l) * 0.333F + 0.5F;
 				for(BlockPos pos2 : BlockPos.iterate(pos.add(-j, -k, -l), pos.add(j, k, l))) {
 					if(pos2.getSquaredDistance(pos) <= (double) (f * f)) {
-						this.setBlockState(world, pos2, config.stateProvider.getBlockState(random, pos));
+						world.setBlockState(pos2, config.stateProvider.getBlockState(random, pos), 4);
 					}
 				}
 				pos = pos.add(-1 + random.nextInt(2), -random.nextInt(2), -1 + random.nextInt(2));

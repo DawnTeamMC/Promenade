@@ -14,8 +14,10 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
@@ -29,10 +31,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.registry.RegistryEntry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -40,12 +44,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class DuckEntity extends AnimalEntity {
 	private static final TrackedData<Integer> DUCK_TYPE = DataTracker.registerData(DuckEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.ofItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
-	public static final String TYPE_KEY = "Type";
 	public float wingRotation;
 	public float destPos;
 	public float oFlapSpeed;
@@ -97,13 +101,13 @@ public class DuckEntity extends AnimalEntity {
 	@Override
 	public void writeCustomDataToNbt(NbtCompound compound) {
 		super.writeCustomDataToNbt(compound);
-		compound.putString(TYPE_KEY, this.getVariant().getName());
+		compound.putString("Type", this.getVariant().getName());
 	}
 
 	@Override
 	public void readCustomDataFromNbt(NbtCompound compound) {
 		super.readCustomDataFromNbt(compound);
-		this.setVariant(DuckEntity.Type.byName(compound.getString(TYPE_KEY)));
+		this.setVariant(DuckEntity.Type.byName(compound.getString("Type")));
 	}
 
 	@Override
@@ -138,9 +142,8 @@ public class DuckEntity extends AnimalEntity {
 
 	@Override
 	public void travel(Vec3d movementInput) {
-		// TODO: replace with fluid tag
 		if(this.canMoveVoluntarily() && this.isTouchingWater()) {
-			this.updateVelocity(this.getMovementSpeed(), movementInput);
+			this.updateVelocity(0.1F, movementInput);
 			this.move(MovementType.SELF, this.getVelocity());
 			this.setVelocity(this.getVelocity().multiply(0.9D));
 			if(this.getTarget() == null) {

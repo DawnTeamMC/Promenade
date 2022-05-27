@@ -42,6 +42,8 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 	@Config(name = "world_features")
 	public static class WorldFeaturesCategory implements ConfigData {
 		@ConfigEntry.Gui.RequiresRestart
+		public boolean witch_huts = true;
+		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.Gui.Tooltip
 		public boolean igneous_rock_patches = true;
 		@ConfigEntry.Gui.RequiresRestart
