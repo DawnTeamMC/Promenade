@@ -14,13 +14,11 @@ import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.SpawnRestriction;
-import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.gen.feature.OceanConfiguredFeatures;
 
 public class MonsterBundle extends PromenadeBundle {
 	public static final EntityType<LushCreeperEntity> LUSH_CREEPER = add(new EntityCreator<>("lush_creeper", FabricEntityTypeBuilder.createMob()

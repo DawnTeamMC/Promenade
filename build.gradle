@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.11-SNAPSHOT'
+    id 'fabric-loom' version '0.12-SNAPSHOT'
 }
 
 apply from: 'https://dawnteammc.github.io/resources/gradle_scripts/fabric-mod/java-17.gradle'
@@ -19,9 +19,12 @@ repositories {
 }
 
 dependencies {
-    modApi "com.github.DawnTeamMC:DawnAPI:v${dawn_version}"
+    // TODO: update minecraft in fabric.mod.json when 1.19 releases
+    // TODO: add back the Dawn API to fabric.mod.json dependencies when it releases
+    modApi "com.github.DawnTeamMC:DawnAPI:1.19-SNAPSHOT"
 
-    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
+    // TODO: add back TerraBlender when updated
+    // modImplementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
 
     modImplementation "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${terraform_shapes_version}"
     include "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${terraform_shapes_version}"

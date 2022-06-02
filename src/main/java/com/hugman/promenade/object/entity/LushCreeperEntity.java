@@ -5,19 +5,13 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.GameRules;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.ConfiguredFeatures;
-import net.minecraft.world.gen.feature.TreeConfiguredFeatures;
 import net.minecraft.world.gen.feature.UndergroundConfiguredFeatures;
-import net.minecraft.world.gen.feature.VegetationConfiguredFeatures;
-
-import java.util.Random;
 
 public class LushCreeperEntity extends CreeperEntity {
 	public LushCreeperEntity(EntityType<? extends CreeperEntity> entityType, World world) {

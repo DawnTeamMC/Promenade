@@ -39,6 +39,7 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -49,7 +50,6 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements CrossbowUser {
@@ -203,8 +203,8 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 	}
 
 	@Override
-	protected void initEquipment(LocalDifficulty difficulty) {
-		super.initEquipment(difficulty);
+	protected void initEquipment(Random random, LocalDifficulty difficulty) {
+		super.initEquipment(random, difficulty);
 		this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.CROSSBOW));
 	}
 

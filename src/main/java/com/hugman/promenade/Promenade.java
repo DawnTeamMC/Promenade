@@ -52,8 +52,6 @@ public class Promenade implements ModInitializer {
 		initBundle(FoodBundle.class);
 		initBundle(PalmBundle.class);
 
-		initBundle(WitchHutBundle.class);
-
 		initBundle(TallerNetherForestBundle.class);
 		initBundle(GalleryBundle.class);
 

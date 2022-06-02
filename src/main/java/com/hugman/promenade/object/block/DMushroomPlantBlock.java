@@ -5,11 +5,10 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.MushroomPlantBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-
-import java.util.Random;
 
 public class DMushroomPlantBlock extends MushroomPlantBlock
 {

@@ -1,5 +1,6 @@
 package com.hugman.promenade.compat;
 
+/*
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.init.AutumnBundle;
 import com.hugman.promenade.init.CherryBundle;
@@ -23,8 +24,12 @@ import terrablender.api.TerraBlenderApi;
 import terrablender.worldgen.TBSurfaceRuleData;
 
 import java.util.function.Consumer;
+ */
 
-public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
+// TODO: add back TerraBlender when updated
+public class PromenadeTerraBlenderIntegration /* implements TerraBlenderApi */{
+
+	/*
 	private static MaterialRules.MaterialRule makeStateRule(Block block) {
 		return MaterialRules.block(block.getDefaultState());
 	}
@@ -88,4 +93,6 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 			}
 		}
 	}
+
+	 */
 }

@@ -2,12 +2,11 @@ package com.hugman.promenade.object.block.sapling_generator;
 
 import com.hugman.promenade.util.WorldGenUtil;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
 
 public class AutumnOakSaplingGenerator extends DynamicSaplingGenerator
 {

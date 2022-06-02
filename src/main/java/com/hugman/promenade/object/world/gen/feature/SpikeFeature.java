@@ -12,12 +12,11 @@ import com.terraformersmc.terraform.shapes.impl.layer.transform.RotateLayer;
 import com.terraformersmc.terraform.shapes.impl.layer.transform.TranslateLayer;
 import com.terraformersmc.terraform.shapes.impl.validator.AirValidator;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
-
-import java.util.Random;
 
 public class SpikeFeature extends Feature<SpikeFeatureConfig> {
 	public SpikeFeature(Codec<SpikeFeatureConfig> configCodec) {
@@ -50,7 +49,7 @@ public class SpikeFeature extends Feature<SpikeFeatureConfig> {
 				.validate(AirValidator.of((TestableWorld) world), (validShape) -> {
 					validShape = validShape.applyLayer(new TranslateLayer(Position.of(0, config.yOffset, 0)));
 					validShape.fill(new SimpleFiller(world, config.state));
-					validShape.fill(new RandomSimpleFiller(world, config.decorState, new Random(), config.decorChance));
+					validShape.fill(new RandomSimpleFiller(world, config.decorState, new  java.util.Random(), config.decorChance));
 				});
 		return true;
 	}

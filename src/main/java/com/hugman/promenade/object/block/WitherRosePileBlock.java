@@ -13,11 +13,10 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class WitherRosePileBlock extends PlantPileBlock {
 	public WitherRosePileBlock(Settings builder) {
