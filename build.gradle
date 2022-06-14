@@ -19,12 +19,10 @@ repositories {
 }
 
 dependencies {
-    // TODO: update minecraft in fabric.mod.json when 1.19 releases
     // TODO: add back the Dawn API to fabric.mod.json dependencies when it releases
     modApi "com.github.DawnTeamMC:DawnAPI:1.19-SNAPSHOT"
 
-    // TODO: add back TerraBlender when updated
-    // modImplementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
+    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
 
     modImplementation "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${terraform_shapes_version}"
     include "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${terraform_shapes_version}"
