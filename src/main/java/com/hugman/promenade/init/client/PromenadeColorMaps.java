@@ -1,7 +1,6 @@
 package com.hugman.promenade.init.client;
 
 import com.hugman.promenade.init.AutumnBundle;
-import com.hugman.promenade.init.CherryBundle;
 import com.hugman.promenade.init.PalmBundle;
 import com.hugman.promenade.init.VanillaPilesBundle;
 import net.fabricmc.api.EnvType;

@@ -3,7 +3,6 @@ package com.hugman.promenade.util;
 import com.hugman.promenade.Promenade;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.util.registry.RegistryKey;

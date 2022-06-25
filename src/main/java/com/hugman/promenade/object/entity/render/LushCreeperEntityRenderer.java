@@ -3,25 +3,14 @@ package com.hugman.promenade.object.entity.render;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.init.client.PromenadeEntityModelLayers;
 import com.hugman.promenade.object.entity.LushCreeperEntity;
-import com.hugman.promenade.object.entity.SunkenSkeletonEntity;
-import com.hugman.promenade.object.entity.model.SunkenSkeletonModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.entity.BipedEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.feature.ArmorFeatureRenderer;
-import net.minecraft.client.render.entity.feature.CreeperChargeFeatureRenderer;
 import net.minecraft.client.render.entity.model.CreeperEntityModel;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.mob.CreeperEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3f;
-import net.minecraft.world.biome.OverworldBiomeCreator;
 
 @Environment(EnvType.CLIENT)
 public class LushCreeperEntityRenderer extends MobEntityRenderer<LushCreeperEntity, CreeperEntityModel<LushCreeperEntity>> {
