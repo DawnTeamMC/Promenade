@@ -1,5 +1,5 @@
 {
-	"parent": "block/door_top",
+	"parent": "minecraft:block/door_top_right",
 	"textures": {
 		"bottom": "promenade:block/dark_amaranth_door/bottom",
 		"top": "promenade:block/dark_amaranth_door/top"

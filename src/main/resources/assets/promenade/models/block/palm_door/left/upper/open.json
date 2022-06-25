@@ -1,5 +1,5 @@
 {
-	"parent": "block/door_top",
+	"parent": "minecraft:block/door_top_left_open",
 	"textures": {
 		"bottom": "promenade:block/palm_door/bottom",
 		"top": "promenade:block/palm_door/top"
