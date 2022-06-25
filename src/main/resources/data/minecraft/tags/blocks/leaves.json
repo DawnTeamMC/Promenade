@@ -1,10 +1,6 @@
 {
 	"replace": false,
 	"values": [
-		"promenade:autumn_oak_leaves",
-		"promenade:autumn_birch_leaves",
-		"promenade:pink_cherry_oak_leaves",
-		"promenade:white_cherry_oak_leaves",
-		"promenade:palm_leaves"
+		"#promenade:leaves"
 	]
 }
