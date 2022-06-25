@@ -5,15 +5,11 @@ import com.hugman.dawn.api.object.ModData;
 import com.hugman.promenade.compat.init.ColumnsBundle;
 import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.*;
-import com.mojang.serialization.Codec;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.structure.rule.AlwaysTrueRuleTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

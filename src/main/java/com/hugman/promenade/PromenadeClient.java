@@ -11,7 +11,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.event.client.ClientSpriteRegistryCallback;
 import net.minecraft.client.texture.SpriteAtlasTexture;
-import net.minecraft.screen.PlayerScreenHandler;
 
 @Environment(EnvType.CLIENT)
 public class PromenadeClient implements ClientModInitializer {
@@ -20,7 +19,6 @@ public class PromenadeClient implements ClientModInitializer {
 		PromenadeColorMaps.registerColors();
 		PromenadeEntityModelLayers.init();
 		PromenadeEntityRenders.init();
-
 
 		ClientSpriteRegistryCallback.event(SpriteAtlasTexture.PARTICLE_ATLAS_TEXTURE).register(((atlasTexture, registry) -> {
 			registry.register(Promenade.MOD_DATA.id("particle/cherry_blossom/pink/1"));

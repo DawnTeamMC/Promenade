@@ -54,7 +54,7 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 
 	public static class PromenadeOverworldRegion extends Region {
 		public PromenadeOverworldRegion() {
-			super(Promenade.MOD_DATA.id("overworld_region"), RegionType.OVERWORLD, 2);
+			super(Promenade.MOD_DATA.id("overworld"), RegionType.OVERWORLD, 2);
 		}
 
 		@Override
@@ -73,7 +73,7 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 
 	public static class PromenadeNetherRegion extends Region {
 		public PromenadeNetherRegion() {
-			super(Promenade.MOD_DATA.id("nether_region"), RegionType.NETHER, 5);
+			super(Promenade.MOD_DATA.id("nether"), RegionType.NETHER, 5);
 		}
 
 		@Override
