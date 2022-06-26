@@ -4,7 +4,7 @@
   "step": "surface_structures",
   "spawn_overrides": {},
   "terrain_adaptation": "beard_thin",
-  "start_pool": "promenade:dark_forest_witch_hut",
+  "start_pool": "promenade:witch_huts",
   "size": 1,
   "start_height": {
     "absolute": 0

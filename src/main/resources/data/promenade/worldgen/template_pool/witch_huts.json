@@ -1,5 +1,5 @@
 {
-  "name": "promenade:dark_forest_witch_hut",
+  "name": "promenade:witch_huts",
   "fallback": "minecraft:empty",
   "elements": [
     {
@@ -7,7 +7,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "projection": "rigid",
-        "location": "promenade:dark_forest_witch_hut",
+        "location": "promenade:witch_hut",
         "processors": "minecraft:empty"
       }
     }
