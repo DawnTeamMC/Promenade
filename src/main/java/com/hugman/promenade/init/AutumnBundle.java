@@ -7,7 +7,7 @@ import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.block.sapling_generator.AutumnBirchSaplingGenerator;
 import com.hugman.promenade.object.block.sapling_generator.AutumnOakSaplingGenerator;
 import com.hugman.promenade.object.trade_offers.TradeOfferUtils;
-import com.hugman.promenade.util.BlockBuilders;
+import com.hugman.promenade.util.PromenadeBlockBuilders;
 import com.hugman.promenade.util.WorldGenUtil;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.Block;
@@ -18,10 +18,10 @@ public class AutumnBundle extends PromenadeBundle
 {
 	public static final PlantBundle AUTUMN_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("autumn_oak_sapling").provider(settings -> new SaplingBlock(new AutumnOakSaplingGenerator(), settings))));
 	public static final Block AUTUMN_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("autumn_oak_leaves").build());
-	public static final Block AUTUMN_OAK_LEAF_PILE = add(BlockBuilders.leafPile("autumn_oak_leaf_pile").build());
+	public static final Block AUTUMN_OAK_LEAF_PILE = add(PromenadeBlockBuilders.leafPile("autumn_oak_leaf_pile").build());
 	public static final PlantBundle AUTUMN_BIRCH_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("autumn_birch_sapling").provider(settings -> new SaplingBlock(new AutumnBirchSaplingGenerator(), settings))));
 	public static final Block AUTUMN_BIRCH_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("autumn_birch_leaves").build());
-	public static final Block AUTUMN_BIRCH_LEAF_PILE = add(BlockBuilders.leafPile("autumn_birch_leaf_pile").build());
+	public static final Block AUTUMN_BIRCH_LEAF_PILE = add(PromenadeBlockBuilders.leafPile("autumn_birch_leaf_pile").build());
 
 	public static final RegistryKey<Biome> PUMPKIN_PASTURES = WorldGenUtil.biomeKey("pumpkin_pastures");
 
