@@ -1,6 +1,5 @@
 package com.hugman.promenade.object.block;
 
-import com.hugman.dawn.api.object.block.PlantPileBlock;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.Block;
@@ -25,8 +24,7 @@ public class WitherRosePileBlock extends PlantPileBlock {
 
 	@Override
 	public boolean canPlantOnTop(BlockState state, BlockView worldIn, BlockPos pos) {
-		Block block = state.getBlock();
-		return super.canPlantOnTop(state, worldIn, pos) || block == Blocks.SOUL_SAND;
+		return super.canPlantOnTop(state, worldIn, pos) || state.getBlock() == Blocks.SOUL_SAND;
 	}
 
 	@Override
@@ -42,8 +40,7 @@ public class WitherRosePileBlock extends PlantPileBlock {
 	@Override
 	public void onEntityCollision(BlockState state, World worldIn, BlockPos pos, Entity entityIn) {
 		if(!worldIn.isClient && worldIn.getDifficulty() != Difficulty.PEACEFUL) {
-			if(entityIn instanceof LivingEntity) {
-				LivingEntity livingentity = (LivingEntity) entityIn;
+			if(entityIn instanceof LivingEntity livingentity) {
 				if(!livingentity.isInvulnerableTo(DamageSource.WITHER)) {
 					livingentity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 40));
 				}

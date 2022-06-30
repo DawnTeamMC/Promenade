@@ -1,5 +1,6 @@
 {
   "type": "promenade:tall_huge_fungus",
+  "planted": false,
   "config": {
     "hat_state": {
       "Name": "promenade:dark_amaranth_wart_block"
@@ -15,7 +16,6 @@
     },
     "valid_base_block": {
       "Name": "promenade:black_dylium"
-    },
-    "planted": false
+    }
   }
 }

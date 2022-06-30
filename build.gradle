@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    modApi "com.github.DawnTeamMC:DawnAPI:v${dawn_version}"
+    modApi "com.github.DawnTeamMC:DawnAPI:1.19-SNAPSHOT"
 
     modImplementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
 

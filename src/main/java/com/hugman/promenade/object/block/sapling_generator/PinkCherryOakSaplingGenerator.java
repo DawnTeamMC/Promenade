@@ -1,5 +1,6 @@
 package com.hugman.promenade.object.block.sapling_generator;
 
+import com.hugman.dawn.api.object.block.sapling_generator.DynamicSaplingGenerator;
 import com.hugman.promenade.util.WorldGenUtil;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.random.Random;

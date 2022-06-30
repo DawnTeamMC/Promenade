@@ -1,8 +1,8 @@
 package com.hugman.promenade.init;
 
 import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
+import com.hugman.dawn.api.object.block.DawnMushroomPlantBlock;
 import com.hugman.dawn.api.util.DefaultBlockBuilders;
-import com.hugman.promenade.object.block.DMushroomPlantBlock;
 import com.hugman.promenade.util.WorldGenUtil;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
@@ -44,18 +44,18 @@ public class MushroomBundle extends PromenadeBundle {
 	public static final RegistryKey<ConfiguredFeature<?, ?>> MAGENTA_HUGE_MUSHROOM = WorldGenUtil.configuredFeatureKey("magenta_huge_mushroom");
 	public static final RegistryKey<ConfiguredFeature<?, ?>> PINK_HUGE_MUSHROOM = WorldGenUtil.configuredFeatureKey("pink_huge_mushroom");
 
-	public static final PlantBundle WHITE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("white_mushroom").provider(s -> new DMushroomPlantBlock(s, WHITE_HUGE_MUSHROOM))));
-	public static final PlantBundle LIGHT_GRAY_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("light_gray_mushroom").provider(s -> new DMushroomPlantBlock(s, LIGHT_GRAY_HUGE_MUSHROOM))));
-	public static final PlantBundle GRAY_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("gray_mushroom").provider(s -> new DMushroomPlantBlock(s, GRAY_HUGE_MUSHROOM))));
-	public static final PlantBundle BLACK_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("black_mushroom").provider(s -> new DMushroomPlantBlock(s, BLACK_HUGE_MUSHROOM))));
-	public static final PlantBundle ORANGE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("orange_mushroom").provider(s -> new DMushroomPlantBlock(s, ORANGE_HUGE_MUSHROOM))));
-	public static final PlantBundle YELLOW_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("yellow_mushroom").provider(s -> new DMushroomPlantBlock(s, YELLOW_HUGE_MUSHROOM))));
-	public static final PlantBundle LIME_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("lime_mushroom").provider(s -> new DMushroomPlantBlock(s, LIME_HUGE_MUSHROOM))));
-	public static final PlantBundle GREEN_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("green_mushroom").provider(s -> new DMushroomPlantBlock(s, GREEN_HUGE_MUSHROOM))));
-	public static final PlantBundle CYAN_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("cyan_mushroom").provider(s -> new DMushroomPlantBlock(s, CYAN_HUGE_MUSHROOM))));
-	public static final PlantBundle LIGHT_BLUE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("light_blue_mushroom").provider(s -> new DMushroomPlantBlock(s, LIGHT_BLUE_HUGE_MUSHROOM))));
-	public static final PlantBundle BLUE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("blue_mushroom").provider(s -> new DMushroomPlantBlock(s, BLUE_HUGE_MUSHROOM))));
-	public static final PlantBundle PURPLE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("purple_mushroom").provider(s -> new DMushroomPlantBlock(s, PURPLE_HUGE_MUSHROOM))));
-	public static final PlantBundle MAGENTA_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("magenta_mushroom").provider(s -> new DMushroomPlantBlock(s, MAGENTA_HUGE_MUSHROOM))));
-	public static final PlantBundle PINK_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("pink_mushroom").provider(s -> new DMushroomPlantBlock(s, PINK_HUGE_MUSHROOM))));
+	public static final PlantBundle WHITE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("white_mushroom").provider(s -> new DawnMushroomPlantBlock(s, WHITE_HUGE_MUSHROOM))));
+	public static final PlantBundle LIGHT_GRAY_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("light_gray_mushroom").provider(s -> new DawnMushroomPlantBlock(s, LIGHT_GRAY_HUGE_MUSHROOM))));
+	public static final PlantBundle GRAY_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("gray_mushroom").provider(s -> new DawnMushroomPlantBlock(s, GRAY_HUGE_MUSHROOM))));
+	public static final PlantBundle BLACK_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("black_mushroom").provider(s -> new DawnMushroomPlantBlock(s, BLACK_HUGE_MUSHROOM))));
+	public static final PlantBundle ORANGE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("orange_mushroom").provider(s -> new DawnMushroomPlantBlock(s, ORANGE_HUGE_MUSHROOM))));
+	public static final PlantBundle YELLOW_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("yellow_mushroom").provider(s -> new DawnMushroomPlantBlock(s, YELLOW_HUGE_MUSHROOM))));
+	public static final PlantBundle LIME_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("lime_mushroom").provider(s -> new DawnMushroomPlantBlock(s, LIME_HUGE_MUSHROOM))));
+	public static final PlantBundle GREEN_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("green_mushroom").provider(s -> new DawnMushroomPlantBlock(s, GREEN_HUGE_MUSHROOM))));
+	public static final PlantBundle CYAN_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("cyan_mushroom").provider(s -> new DawnMushroomPlantBlock(s, CYAN_HUGE_MUSHROOM))));
+	public static final PlantBundle LIGHT_BLUE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("light_blue_mushroom").provider(s -> new DawnMushroomPlantBlock(s, LIGHT_BLUE_HUGE_MUSHROOM))));
+	public static final PlantBundle BLUE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("blue_mushroom").provider(s -> new DawnMushroomPlantBlock(s, BLUE_HUGE_MUSHROOM))));
+	public static final PlantBundle PURPLE_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("purple_mushroom").provider(s -> new DawnMushroomPlantBlock(s, PURPLE_HUGE_MUSHROOM))));
+	public static final PlantBundle MAGENTA_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("magenta_mushroom").provider(s -> new DawnMushroomPlantBlock(s, MAGENTA_HUGE_MUSHROOM))));
+	public static final PlantBundle PINK_MUSHROOM = creator(new PlantBundle(DefaultBlockBuilders.MUSHROOM.copy("pink_mushroom").provider(s -> new DawnMushroomPlantBlock(s, PINK_HUGE_MUSHROOM))));
 }

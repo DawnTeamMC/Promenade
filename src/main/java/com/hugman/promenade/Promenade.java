@@ -10,7 +10,6 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.fluid.WaterFluid;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

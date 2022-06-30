@@ -20,7 +20,7 @@ public class FloatingPetalParticle extends SpriteBillboardParticle {
 	private static final int FADE_OUT = 100;
 	private static final int GROUND_ALIVE = 100;
 
-	FloatingPetalParticle(ClientWorld world, SpriteProvider spriteProvider, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+	public FloatingPetalParticle(ClientWorld world, SpriteProvider spriteProvider, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 		super(world, x, y - 0.125, z, velocityX, velocityY, velocityZ);
 		this.setBoundingBoxSpacing(0.01f, 0.01f);
 		this.setSprite(spriteProvider);
