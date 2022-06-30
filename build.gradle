@@ -19,8 +19,7 @@ repositories {
 }
 
 dependencies {
-    // TODO: add back the Dawn API to fabric.mod.json dependencies when it releases
-    modApi "com.github.DawnTeamMC:DawnAPI:1.19-SNAPSHOT"
+    modApi "com.github.DawnTeamMC:DawnAPI:v${dawn_version}"
 
     modImplementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
 
