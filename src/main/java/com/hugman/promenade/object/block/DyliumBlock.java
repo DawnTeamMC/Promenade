@@ -1,7 +1,10 @@
 package com.hugman.promenade.object.block;
 
+import com.hugman.dawn.api.object.block.BoneMealSpreadable;
 import com.hugman.promenade.init.AmaranthBundle;
+import com.hugman.promenade.init.data.PromenadeTags;
 import com.hugman.promenade.util.WorldGenUtil;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.NyliumBlock;
@@ -11,13 +14,16 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryKey;
+import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.chunk.light.ChunkLightProvider;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
-public class DyliumBlock extends NyliumBlock
+import java.util.ArrayList;
+
+public class DyliumBlock extends NyliumBlock implements BoneMealSpreadable
 {
 	public static final RegistryKey<ConfiguredFeature<?, ?>> BONEMEAL_VEGETATION = WorldGenUtil.configuredFeatureKey("dark_amaranth_forest_vegetation/bonemeal");
 
@@ -32,6 +38,7 @@ public class DyliumBlock extends NyliumBlock
 		return i < world.getMaxLightLevel();
 	}
 
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		if(!stayAlive(state, world, pos)) {
 			world.setBlockState(pos, Blocks.END_STONE.getDefaultState());
@@ -44,6 +51,7 @@ public class DyliumBlock extends NyliumBlock
 		return configuredFeature != null && super.canGrow(world, random, pos, state);
 	}
 
+	@Override
 	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
 		BlockState blockState = world.getBlockState(pos);
 		BlockPos blockPos = pos.up();
@@ -52,5 +60,10 @@ public class DyliumBlock extends NyliumBlock
 			ConfiguredFeature<?, ?> configuredFeature = world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(BONEMEAL_VEGETATION);
 			if(configuredFeature != null) configuredFeature.generate(world, chunkGenerator, random, blockPos);
 		}
+	}
+
+	@Override
+	public boolean canSpreadAt(BlockView world, BlockPos pos) {
+		return world.getBlockState(pos).isIn(PromenadeTags.Blocks.CAN_SPREAD_BLACK_DYLIUM) && world.getBlockState(pos.up()).isTranslucent(world, pos);
 	}
 }
