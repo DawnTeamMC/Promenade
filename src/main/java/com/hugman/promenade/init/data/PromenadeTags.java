@@ -11,6 +11,7 @@ public class PromenadeTags {
 		public static final TagKey<Block> POTTED_MUSHROOMS = register("potted_mushrooms");
 		public static final TagKey<Block> DARK_AMARANTH_FUNGUS_GROWABLE_ON = register("growable_on/dark_amaranth_fungus");
 		public static final TagKey<Block> DARK_AMARANTH_FUNGUS_PLACEABLE_ON = register("placeable_on/dark_amaranth_fungus");
+		public static final TagKey<Block> DARK_AMARANTH_ROOTS_PLACEABLE_ON = register("placeable_on/dark_amaranth_roots");
 
 		private static TagKey<Block> register(String name) {
 			return TagKey.of(Registry.BLOCK_KEY, Promenade.MOD_DATA.id(name));

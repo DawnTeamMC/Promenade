@@ -1,24 +1,41 @@
 {
-  "type": "minecraft:nether_forest_vegetation",
+  "type": "minecraft:random_patch",
   "config": {
-    "state_provider": {
-      "type": "minecraft:weighted_state_provider",
-      "entries": [
-        {
-          "weight": 87,
-          "data": {
-            "Name": "promenade:dark_amaranth_roots"
+    "tries": 32,
+    "xz_spread": 3,
+    "y_spread": 1,
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "weight": 87,
+                "data": {
+                  "Name": "promenade:dark_amaranth_roots"
+                }
+              },
+              {
+                "weight": 13,
+                "data": {
+                  "Name": "promenade:dark_amaranth_fungus"
+                }
+              }
+            ]
           }
-        },
+        }
+      },
+      "placement": [
         {
-          "weight": 13,
-          "data": {
-            "Name": "promenade:dark_amaranth_fungus"
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": "minecraft:air"
           }
         }
       ]
-    },
-    "spread_width": 3,
-    "spread_height": 1
+    }
   }
 }
