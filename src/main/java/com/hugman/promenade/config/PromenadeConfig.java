@@ -46,6 +46,8 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 		public boolean igneous_rock_patches = true;
 		@ConfigEntry.Gui.RequiresRestart
 		public boolean blueberry_bushes = true;
+		@ConfigEntry.Gui.RequiresRestart
+		public boolean palms = true;
 	}
 
 	@Config(name = "animals")
