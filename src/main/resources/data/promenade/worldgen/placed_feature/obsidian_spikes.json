@@ -18,16 +18,13 @@
     {
       "type": "minecraft:block_predicate_filter",
       "predicate": {
-        "type": "minecraft:matching_blocks",
+        "type": "minecraft:matching_block_tag",
         "offset": [
           0,
           -1,
           0
         ],
-        "blocks": [
-          "promenade:black_dylium",
-          "minecraft:end_stone"
-        ]
+        "tag": "promenade:placeable_on/obsidian_spike"
       }
     }
   ]

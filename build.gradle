@@ -19,12 +19,9 @@ repositories {
 }
 
 dependencies {
-    modApi "com.github.DawnTeamMC:DawnAPI:v${dawn_version}"
+    modApi "com.github.DawnTeamMC:DawnAPI:1.19-SNAPSHOT"
 
     modImplementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
-
-    modImplementation "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${terraform_shapes_version}"
-    include "com.terraformersmc.terraform-api:terraform-shapes-api-v1:${terraform_shapes_version}"
 
     modImplementation ("curse.maven:columns-385230:${columns_version}"){
         exclude(group: "net.fabricmc.fabric-api")

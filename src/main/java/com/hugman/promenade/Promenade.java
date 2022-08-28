@@ -1,7 +1,10 @@
 package com.hugman.promenade;
 
 import com.google.common.reflect.Reflection;
+import com.hugman.dawn.Dawn;
 import com.hugman.dawn.api.object.ModData;
+import com.hugman.dawn.api.object.shape.EllipticalPrismShape;
+import com.hugman.dawn.api.object.shape.EllipticalPyramidShape;
 import com.hugman.promenade.compat.init.ColumnsBundle;
 import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.*;
@@ -26,35 +29,35 @@ public class Promenade implements ModInitializer {
 		postInitBundles();
 	}
 
-	public static void initBundle(Class<?> clazz) {
-		Reflection.initialize(clazz);
-		for(Class<?> clazz2 : clazz.getClasses()) {
-			initBundle(clazz2);
+	public static void initClass(Class<?> klass) {
+		Reflection.initialize(klass);
+		for(Class<?> subKlass : klass.getClasses()) {
+			initClass(subKlass);
 		}
 	}
 
 	public static void initBundles() {
-		initBundle(CommonBundle.class);
+		initClass(CommonBundle.class);
 
-		initBundle(OreBundle.class);
-		initBundle(VanillaPilesBundle.class);
-		initBundle(MushroomBundle.class);
+		initClass(OreBundle.class);
+		initClass(VanillaPilesBundle.class);
+		initClass(MushroomBundle.class);
 
-		initBundle(AnimalBundle.class);
-		initBundle(MonsterBundle.class);
+		initClass(AnimalBundle.class);
+		initClass(MonsterBundle.class);
 
-		initBundle(AutumnBundle.class);
-		initBundle(CherryBundle.class);
-		initBundle(FoodBundle.class);
-		initBundle(PalmBundle.class);
+		initClass(AutumnBundle.class);
+		initClass(CherryBundle.class);
+		initClass(FoodBundle.class);
+		initClass(PalmBundle.class);
 
-		initBundle(TallerNetherForestBundle.class);
-		initBundle(GalleryBundle.class);
+		initClass(TallerNetherForestBundle.class);
+		initClass(GalleryBundle.class);
 
-		initBundle(AmaranthBundle.class);
+		initClass(AmaranthBundle.class);
 
 		if(FabricLoader.getInstance().isModLoaded("columns")) {
-			initBundle(ColumnsBundle.class);
+			initClass(ColumnsBundle.class);
 			Promenade.LOGGER.info("Initialized Columns compatibility");
 		}
 	}
