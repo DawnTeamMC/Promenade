@@ -1,8 +1,6 @@
 {
 	"replace": false,
-	"values": [
-		"#promenade:mushroom_blocks",
-		"#promenade:mushrooms",
+	"values": [s
 		"promenade:dark_amaranth_fungus"
 	]
 }

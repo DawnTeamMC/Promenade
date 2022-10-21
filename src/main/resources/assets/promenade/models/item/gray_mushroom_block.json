@@ -1,6 +1,0 @@
-{
-	"parent": "block/cube_all",
-	"textures": {
-		"all": "promenade:block/gray_mushroom_block"
-	}
-}

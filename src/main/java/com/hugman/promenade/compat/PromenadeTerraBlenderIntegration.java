@@ -3,8 +3,6 @@ package com.hugman.promenade.compat;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.init.AutumnBundle;
 import com.hugman.promenade.init.CherryBundle;
-import com.hugman.promenade.init.GalleryBundle;
-import com.hugman.promenade.init.TallerNetherForestBundle;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
