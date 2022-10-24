@@ -214,7 +214,7 @@
 	"text.autoconfig.promenade.option.world_features.igneous_rock_patches.@Tooltip": "Generate Blunite and Carbonite patches",
 	"text.autoconfig.promenade.option.world_features.palms": "Generate Palms",
 	"text.autoconfig.promenade.option.world_features.blueberry_bushes": "Generate Blueberry Bushes",
-	"text.autoconfig.promenade.option.animals.ducks": "Natural spawning of Ducks",
-	"text.autoconfig.promenade.option.monsters.lush_creepers": "Natural spawning of Lush Creepers",
-	"text.autoconfig.promenade.option.monsters.sunken_skeletons": "Natural spawning of Sunken Skeletons"
+	"text.autoconfig.promenade.option.animals.ducks_weight": "Spawning weight of Ducks",
+	"text.autoconfig.promenade.option.monsters.lush_creepers_weight": "Spawning weight of Lush Creepers",
+	"text.autoconfig.promenade.option.monsters.sunken_skeletons_weight": "Spawning weight of Sunken Skeletons"
 }

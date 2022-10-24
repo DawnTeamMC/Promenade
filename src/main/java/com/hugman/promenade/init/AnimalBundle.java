@@ -42,7 +42,7 @@ public class AnimalBundle extends PromenadeBundle {
 	public static final Item COOKED_DUCK_FOOD = add(new ItemCreator.Builder("cooked_duck", Item::new, new Item.Settings().group(ItemGroup.FOOD).food(PromenadeFoods.COOKED_DUCK)).build());
 
 	public static void addToGen() {
-		if(Promenade.CONFIG.animals.ducks) {
+		if(Promenade.CONFIG.animals.ducks_weight != 0) {
 			Predicate<BiomeSelectionContext> hasFarmAnimals = BiomeSelectors.spawnsOneOf(EntityType.COW).and(BiomeSelectors.spawnsOneOf(EntityType.SHEEP)).and(BiomeSelectors.spawnsOneOf(EntityType.CHICKEN)).and(BiomeSelectors.spawnsOneOf(EntityType.PIG));
 			BiomeModifications.addSpawn(hasFarmAnimals, SpawnGroup.CREATURE, DUCK, 10, 4, 4);
 		}

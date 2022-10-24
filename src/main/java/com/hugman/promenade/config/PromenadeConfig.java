@@ -53,14 +53,17 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 	@Config(name = "animals")
 	public static class AnimalsCategory implements ConfigData {
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean ducks = true;
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+		public int ducks_weight = 10;
 	}
 
 	@Config(name = "monsters")
 	public static class MonstersCategory implements ConfigData {
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean lush_creepers = true;
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+		public int lush_creepers_weight = 15;
 		@ConfigEntry.Gui.RequiresRestart
-		public boolean sunken_skeletons = true;
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+		public int sunken_skeletons_weight = 20;
 	}
 }
