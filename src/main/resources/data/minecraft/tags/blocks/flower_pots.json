@@ -1,7 +1,6 @@
 {
 	"replace": false,
 	"values": [
-		"#promenade:potted_mushrooms",
 		"promenade:potted_autumn_oak_sapling",
 		"promenade:potted_autumn_birch_sapling",
 		"promenade:potted_pink_cherry_oak_sapling",
