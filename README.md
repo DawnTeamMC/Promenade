@@ -28,13 +28,6 @@ This warm place is home to thousands of bees and bring up a unique orange-yellow
 ![](https://dawnteammc.github.io/promenade/images/screenshots/palms.png)
 Promenade also adds a [new palm wood type](https://dawnteammc.github.io/promenade/blocks#palm-wood) that can be obtained from [palms](https://dawnteammc.github.io/promenade/biomes#palms) located in the deserts of Minecraft.
 
-![](https://dawnteammc.github.io/promenade/images/screenshots/tritanopian_gallery.png)
-The Nether got new [galleries](https://dawnteammc.github.io/promenade/biomes#nether-galleries) to replace with most of the barren nether wastes.  
-Nether galleries feature mushrooms in 3 different variants that reflect some types of color blindness: protanopia, achromatopsia and tritanopia.
-
-![](https://dawnteammc.github.io/promenade/images/screenshots/tall_warped_forest.png)
-You may also find [taller Nether forests](https://dawnteammc.github.io/promenade/biomes#taller-nether-forests) for more dramatic landscapes and darker areas at the ground level.
-
 ![](https://dawnteammc.github.io/promenade/images/screenshots/dark_amaranth_forest.png)
 Barren places are also prominent in the ender. That's why you will encounter the new [dark amaranth forests](https://dawnteammc.github.io/promenade/biomes#dark-amaranth-forests).  
 Watch out for the spiders, who like to climb up the purple fungi of this gloomy forest. 
