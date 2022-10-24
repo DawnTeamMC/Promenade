@@ -21,8 +21,7 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
-public class AmaranthBundle extends PromenadeBundle
-{
+public class AmaranthBundle extends PromenadeBundle {
 	public static final RegistryKey<ConfiguredFeature<?, ?>> PLANTED_AMARANTH_FUNGUS = WorldGenUtil.configuredFeatureKey("amaranth_fungus/planted");
 
 	public static final Block BLACK_DYLIUM = add(new BlockCreator.Builder("black_dylium", DyliumBlock::new, FabricBlockSettings.of(Material.STONE, MapColor.DULL_RED).requiresTool().strength(3.0F, 9.0F).sounds(BlockSoundGroup.NYLIUM).ticksRandomly()).itemGroup(ItemGroup.BUILDING_BLOCKS).build());
@@ -33,7 +32,6 @@ public class AmaranthBundle extends PromenadeBundle
 
 	public static final RegistryKey<Biome> DARK_AMARANTH_FOREST = WorldGenUtil.biomeKey("dark_amaranth_forest");
 	public static final RegistryKey<Biome> TALL_DARK_AMARANTH_FOREST = WorldGenUtil.biomeKey("tall_dark_amaranth_forest");
-
 
 	public static void addToGen() {
 		if(Promenade.CONFIG.biomes.dark_amaranth_forests_weight > 0) {
