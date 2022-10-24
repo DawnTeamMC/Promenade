@@ -211,9 +211,7 @@
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
       "promenade:trees/white_cherry_oak_forest",
-      "promenade:patch/leaf_pile/white_cherry_oak/forest",
-      "promenade:patch/mushroom/normal/white",
-      "promenade:patch/mushroom/normal/light_gray"
+      "promenade:patch/leaf_pile/white_cherry_oak/forest"
     ],
     [
       "minecraft:freeze_top_layer"

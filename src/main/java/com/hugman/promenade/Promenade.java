@@ -3,8 +3,6 @@ package com.hugman.promenade;
 import com.google.common.reflect.Reflection;
 import com.hugman.dawn.Dawn;
 import com.hugman.dawn.api.object.ModData;
-import com.hugman.dawn.api.object.shape.EllipticalPrismShape;
-import com.hugman.dawn.api.object.shape.EllipticalPyramidShape;
 import com.hugman.promenade.compat.init.ColumnsBundle;
 import com.hugman.promenade.config.PromenadeConfig;
 import com.hugman.promenade.init.*;
@@ -41,7 +39,6 @@ public class Promenade implements ModInitializer {
 
 		initClass(OreBundle.class);
 		initClass(VanillaPilesBundle.class);
-		initClass(MushroomBundle.class);
 
 		initClass(AnimalBundle.class);
 		initClass(MonsterBundle.class);
@@ -50,9 +47,6 @@ public class Promenade implements ModInitializer {
 		initClass(CherryBundle.class);
 		initClass(FoodBundle.class);
 		initClass(PalmBundle.class);
-
-		initClass(TallerNetherForestBundle.class);
-		initClass(GalleryBundle.class);
 
 		initClass(AmaranthBundle.class);
 
@@ -72,10 +66,8 @@ public class Promenade implements ModInitializer {
 		AutumnBundle.addToGen();
 		CherryBundle.addToGen();
 		FoodBundle.addToGen();
-		GalleryBundle.addToGen();
 		MonsterBundle.addToGen();
 		OreBundle.addToGen();
 		PalmBundle.addToGen();
-		TallerNetherForestBundle.addToGen();
 	}
 }

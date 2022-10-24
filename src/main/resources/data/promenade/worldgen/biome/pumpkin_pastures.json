@@ -190,9 +190,7 @@
       "minecraft:patch_pumpkin",
       "promenade:trees/pumpkin_pastures",
       "promenade:patch/leaf_pile/autumn_oak/forest",
-      "promenade:patch/leaf_pile/autumn_birch/forest",
-      "promenade:patch/mushroom/normal/yellow",
-      "promenade:patch/mushroom/normal/orange"
+      "promenade:patch/leaf_pile/autumn_birch/forest"
     ],
     [
       "minecraft:freeze_top_layer"

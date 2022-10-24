@@ -12,15 +12,6 @@
       }
     },
     {
-      "weight": 3,
-      "element": {
-        "element_type": "minecraft:single_pool_element",
-        "projection": "rigid",
-        "location": "promenade:witch_hut/interior/mushroom_fanatic",
-        "processors": "minecraft:empty"
-      }
-    },
-    {
       "weight": 1,
       "element": {
         "element_type": "minecraft:single_pool_element",

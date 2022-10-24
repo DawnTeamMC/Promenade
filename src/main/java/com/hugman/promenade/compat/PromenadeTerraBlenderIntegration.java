@@ -31,7 +31,6 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 	@Override
 	public void onTerraBlenderInitialized() {
 		Regions.register(new PromenadeOverworldRegion());
-		Regions.register(new PromenadeNetherRegion());
 		registerOverworldMaterialRules();
 	}
 
@@ -66,25 +65,6 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 					builder.replaceBiome(BiomeKeys.BIRCH_FOREST, CherryBundle.WHITE_CHERRY_OAK_FOREST);
 				}
 			});
-		}
-	}
-
-	public static class PromenadeNetherRegion extends Region {
-		public PromenadeNetherRegion() {
-			super(Promenade.MOD_DATA.id("nether"), RegionType.NETHER, 5);
-		}
-
-		@Override
-		public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
-			if(Promenade.CONFIG.biomes.tall_nether_forests) {
-				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.3F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, TallerNetherForestBundle.TALL_CRIMSON_FOREST);
-				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.7F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.35F, TallerNetherForestBundle.TALL_WARPED_FOREST);
-			}
-			if(Promenade.CONFIG.biomes.nether_galleries) {
-				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.2F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, GalleryBundle.TRITANOPIAN_GALLERY);
-				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(-0.2F), MultiNoiseUtil.ParameterRange.of(0.1F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, GalleryBundle.ACHROMATOPSIAN_GALLERY);
-				this.addBiome(mapper, MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(0.0F), MultiNoiseUtil.ParameterRange.of(-0.2F), MultiNoiseUtil.ParameterRange.of(0.0F), 0.0F, GalleryBundle.PROTANOPIAN_GALLERY);
-			}
 		}
 	}
 }
