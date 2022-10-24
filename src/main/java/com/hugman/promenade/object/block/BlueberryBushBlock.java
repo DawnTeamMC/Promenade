@@ -3,6 +3,9 @@ package com.hugman.promenade.object.block;
 import com.hugman.promenade.init.FoodBundle;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SweetBerryBushBlock;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -12,6 +15,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
@@ -41,6 +45,13 @@ public class BlueberryBushBlock extends SweetBerryBushBlock {
 		}
 		else {
 			return super.onUse(state, worldIn, pos, player, handIn, hit);
+		}
+	}
+
+	@Override
+	public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+		if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
+			entity.slowMovement(state, new Vec3d(0.800000011920929, 0.75, 0.800000011920929));
 		}
 	}
 }
