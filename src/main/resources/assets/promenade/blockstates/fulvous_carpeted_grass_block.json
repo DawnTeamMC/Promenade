@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "snowy=false": [
+      {
+        "model": "promenade:block/maple/fulvous/carpeted_grass_block"
+      },
+      {
+        "model": "promenade:block/maple/fulvous/carpeted_grass_block",
+        "y": 90
+      },
+      {
+        "model": "promenade:block/maple/fulvous/carpeted_grass_block",
+        "y": 180
+      },
+      {
+        "model": "promenade:block/maple/fulvous/carpeted_grass_block",
+        "y": 270
+      }
+    ],
+    "snowy=true": {
+      "model": "minecraft:block/grass_block_snow"
+    }
+  }
+}

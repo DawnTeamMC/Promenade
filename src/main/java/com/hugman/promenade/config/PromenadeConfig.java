@@ -26,7 +26,7 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 	public static class BiomesCategory implements ConfigData {
 		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
-		public int pumpkin_pastures_weight = 10;
+		public int carnelian_treeway_weight = 10;
 		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
 		public int cherry_oak_forests_weight = 10;

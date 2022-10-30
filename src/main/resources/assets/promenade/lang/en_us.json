@@ -42,14 +42,25 @@
 	"block.promenade.polished_carbonite_stairs": "Polished Carbonite Stairs",
 	"block.promenade.polished_carbonite_slab": "Polished Carbonite Slab",
 
-	"block.promenade.potted_autumn_oak_sapling": "Potted Autumn Oak Sapling",
-	"block.promenade.autumn_oak_sapling": "Autumn Oak Sapling",
-	"block.promenade.autumn_oak_leaves": "Autumn Oak Leaves",
-	"block.promenade.autumn_oak_leaf_pile": "Autumn Oak Leaf Pile",
-	"block.promenade.potted_autumn_birch_sapling": "Potted Autumn Birch Sapling",
-	"block.promenade.autumn_birch_sapling": "Autumn Birch Sapling",
-	"block.promenade.autumn_birch_leaves": "Autumn Birch Leaves",
-	"block.promenade.autumn_birch_leaf_pile": "Autumn Birch Leaf Pile",
+	"block.promenade.vermilion_maple_sapling": "Vermilion Maple Sapling",
+	"block.promenade.potted_vermilion_maple_sapling": "Potted Vermilion Maple Sapling",
+	"block.promenade.vermilion_maple_leaves": "Vermilion Maple Leaves",
+	"block.promenade.vermilion_maple_leaf_pile": "Vermilion Maple Leaf Pile",
+
+	"block.promenade.fulvous_maple_sapling": "Fulvous Maple Sapling",
+	"block.promenade.potted_fulvous_maple_sapling": "Potted Fulvous Maple Sapling",
+	"block.promenade.fulvous_maple_leaves": "Fulvous Maple Leaves",
+	"block.promenade.fulvous_maple_leaf_pile": "Fulvous Maple Leaf Pile",
+
+	"block.promenade.mikado_maple_sapling": "Mikado Maple Sapling",
+	"block.promenade.potted_mikado_maple_sapling": "Potted Mikado Maple Sapling",
+	"block.promenade.mikado_maple_leaves": "Mikado Maple Leaves",
+	"block.promenade.mikado_maple_leaf_pile": "Mikado Maple Leaf Pile",
+
+	"block.promenade.sap_maple_sapling": "Sap Maple Sapling",
+	"block.promenade.potted_sap_maple_sapling": "Potted Sap Maple Sapling",
+	"block.promenade.sap_maple_leaves": "Sap Maple Leaves",
+	"block.promenade.sap_maple_leaf_pile": "Sap Maple Leaf Pile",
 
 	"block.promenade.pink_cherry_oak_sapling": "Pink Cherry Oak Sapling",
 	"block.promenade.potted_pink_cherry_oak_sapling": "Potted Pink Cherry Oak Sapling",
@@ -75,6 +86,7 @@
 
 	"block.promenade.palm_planks": "Palm Planks",
 	"block.promenade.palm_sapling": "Palm Sapling",
+	"block.promenade.potted_palm_sapling": "Potted Palm Sapling",
 	"block.promenade.palm_log": "Palm Log",
 	"block.promenade.stripped_palm_log": "Stripped Palm Log",
 	"block.promenade.palm_wood": "Palm Wood",
@@ -95,6 +107,7 @@
 	"block.promenade.dark_amaranth_wart_block": "Dark Amaranth Wart Block",
 	"block.promenade.dark_amaranth_planks": "Dark Amaranth Planks",
 	"block.promenade.dark_amaranth_fungus": "Dark Amaranth Fungus",
+	"block.promenade.potted_dark_amaranth_fungus": "Potted Dark Amaranth Fungus",
 	"block.promenade.dark_amaranth_stem": "Dark Amaranth Stem",
 	"block.promenade.stripped_dark_amaranth_stem": "Stripped Dark Amaranth Stem",
 	"block.promenade.dark_amaranth_hyphae": "Dark Amaranth Hyphae",
@@ -108,9 +121,6 @@
 	"block.promenade.dark_amaranth_fence": "Dark Amaranth Fence",
 	"block.promenade.dark_amaranth_door": "Dark Amaranth Door",
 	"block.promenade.blueberry_bush": "Blueberry Bush",
-
-	"block.promenade.potted_palm_sapling": "Potted Palm Sapling",
-	"block.promenade.potted_dark_amaranth_fungus": "Potted Dark Amaranth Fungus",
 
 	"item.promenade.blueberries": "Blueberries",
 	"item.promenade.banana": "Banana",
@@ -127,7 +137,7 @@
 	"entity.promenade.lush_creeper": "Lush Creeper",
 	"entity.promenade.sunken_skeleton": "Sunken Skeleton",
 
-	"biome.promenade.pumpkin_pastures": "Pumpkin Pastures",
+	"biome.promenade.carnelian_treeway": "Carnelian Treeway",
 	"biome.promenade.pink_cherry_oak_forest": "Pink Cherry Oak Forest",
 	"biome.promenade.white_cherry_oak_forest": "White Cherry Oak Forest",
 	"biome.promenade.dark_amaranth_forest": "Dark Amaranth Forest",
@@ -154,7 +164,7 @@
 	"text.autoconfig.promenade.category.structures": "Structures",
 	"text.autoconfig.promenade.category.animals": "Animals",
 	"text.autoconfig.promenade.category.monsters": "Monsters",
-	"text.autoconfig.promenade.option.biomes.pumpkin_pastures_weight": "Generation weight of Pumpkin Pastures",
+	"text.autoconfig.promenade.option.biomes.carnelian_treeway_weight": "Generation weight of Carnelian Treeways",
 	"text.autoconfig.promenade.option.biomes.cherry_oak_forests_weight": "Generation weight of Cherry Oak Forests",
 	"text.autoconfig.promenade.option.biomes.dark_amaranth_forests_weight": "Generation weight of Dark Amaranth Forests",
 	"text.autoconfig.promenade.option.world_features.igneous_rock_patches": "Generate patches of new igneous rocks",
