@@ -1,0 +1,6 @@
+{
+  "parent": "promenade:block/carpeted_grass_block",
+  "textures": {
+    "leaves": "promenade:block/maple/vermilion/leaves/mixed"
+  }
+}

@@ -1,6 +1,6 @@
 {
 	"parent": "promenade:block/pile",
 	"textures": {
-		"pile": "promenade:block/maple/mikado/leaves"
+		"pile": "promenade:block/maple/mikado/leaves/mixed"
 	}
 }

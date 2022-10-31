@@ -8,6 +8,7 @@
     "water_color": 155336,
     "water_fog_color": 541,
     "foliage_color": 10931465,
+    "grass_color": 9090320,
     "mood_sound": {
       "sound": "minecraft:ambient.cave",
       "tick_delay": 6000,
@@ -186,8 +187,13 @@
       "minecraft:red_mushroom_normal",
       "minecraft:patch_sugar_cane",
       "minecraft:patch_pumpkin",
-      "promenade:trees/carnelian_treeway",
-      "promenade:patch/leaf_pile/carnelian_treeway"
+      "promenade:trees/carnelian_treeway/vermilion",
+      "promenade:trees/carnelian_treeway/fulvous",
+      "promenade:trees/carnelian_treeway/mikado",
+      "promenade:trees/carnelian_treeway/sap",
+      "promenade:patch/leaf_pile/maple/vermilion",
+      "promenade:patch/leaf_pile/maple/fulvous",
+      "promenade:patch/leaf_pile/maple/mikado"
     ],
     [
       "minecraft:freeze_top_layer"

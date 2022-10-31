@@ -1,0 +1,26 @@
+{
+  "feature": "promenade:patch/leaf_pile/maple/fulvous",
+  "placement": [
+    {
+      "count": 25,
+      "type": "minecraft:count"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "promenade:noise_interval_count",
+      "noise_level_min": -0.45,
+      "noise_level_max": 0.45,
+      "inside_value": 1,
+      "outside_value": 0
+    },
+    {
+      "heightmap": "WORLD_SURFACE_WG",
+      "type": "minecraft:heightmap"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}

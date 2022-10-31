@@ -1,7 +1,28 @@
 {
 	"variants": {
-		"": {
-			"model": "promenade:block/maple/fulvous/leaves"
+		"distance=1": {
+			"model": "promenade:block/maple/fulvous/leaves/regular"
+		},
+		"distance=2": {
+			"model": "promenade:block/maple/fulvous/leaves/regular"
+		},
+		"distance=3": {
+			"model": "promenade:block/maple/fulvous/leaves/regular"
+		},
+		"distance=4": {
+			"model": "promenade:block/maple/fulvous/leaves/mixed"
+		},
+		"distance=5": {
+			"model": "promenade:block/maple/fulvous/leaves/mixed"
+		},
+		"distance=6": {
+			"model": "promenade:block/maple/fulvous/leaves/mixed"
+		},
+		"distance=7": {
+			"model": "promenade:block/maple/fulvous/leaves/mixed"
+		},
+		"persistent=true": {
+			"model": "promenade:block/maple/fulvous/leaves/regular"
 		}
 	}
 }

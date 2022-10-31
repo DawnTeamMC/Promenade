@@ -1,6 +1,6 @@
 {
 	"parent": "minecraft:block/leaves",
 	"textures": {
-		"all": "promenade:block/maple/vermilion/leaves"
+		"all": "promenade:block/maple/mikado/leaves/mixed"
 	}
 }

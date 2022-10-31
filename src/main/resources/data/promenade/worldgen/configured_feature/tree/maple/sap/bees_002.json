@@ -37,14 +37,20 @@
     "trunk_placer": {
       "type": "minecraft:straight_trunk_placer",
       "base_height": 5,
-      "height_rand_a": 2,
+      "height_rand_a": 4,
       "height_rand_b": 0
     },
     "foliage_placer": {
-      "type": "minecraft:blob_foliage_placer",
-      "radius": 2,
-      "offset": 0,
-      "height": 3
+      "type": "minecraft:fancy_foliage_placer",
+      "radius": {
+        "type": "minecraft:biased_to_bottom",
+        "value": {
+          "min_inclusive": 2,
+          "max_inclusive": 3
+        }
+      },
+      "offset": 1,
+      "height": 4
     },
     "decorators": [
       {

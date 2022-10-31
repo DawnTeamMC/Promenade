@@ -14,7 +14,7 @@ public class SingleSaplingGenerator extends DynamicSaplingGenerator {
 	public final RegistryKey<ConfiguredFeature<?, ?>> registryKey;
 
 	public SingleSaplingGenerator(String name) {
-		this.registryKey = WorldGenUtil.configuredFeatureKey("tree/palm");
+		this.registryKey = WorldGenUtil.configuredFeatureKey("tree/" + name);
 	}
 
 	@Nullable
