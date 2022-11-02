@@ -1,6 +1,7 @@
 package com.hugman.promenade.util;
 
 import com.hugman.dawn.api.creator.BlockCreator;
+import com.hugman.promenade.object.block.CarpetedGrassBlock;
 import com.hugman.promenade.object.block.PlantPileBlock;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.AbstractBlock;
@@ -36,7 +37,7 @@ public final class PromenadeBlockBuilders
 	public static BlockCreator.Builder carpetedGrassBlock(String name) {
 		return new BlockCreator.Builder()
 				.name(name)
-				.provider(GrassBlock::new)
+				.provider(CarpetedGrassBlock::new)
 				.settings(FabricBlockSettings.of(Material.SOLID_ORGANIC).ticksRandomly().strength(0.6F).sounds(BlockSoundGroup.GRASS))
 				.itemGroup(ItemGroup.BUILDING_BLOCKS)
 				.compostingChance(0.3f)
