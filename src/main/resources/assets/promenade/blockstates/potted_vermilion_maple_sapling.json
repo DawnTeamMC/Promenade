@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/maple/vermilion/potted_sapling"
+			"model": "promenade:block/maple/potted_sapling/vermilion"
 		}
 	}
 }

@@ -2,33 +2,33 @@
   "variants": {
     "snowy=false": [
       {
-        "model": "promenade:block/maple/fulvous/carpeted_grass_block/mixed"
+        "model": "promenade:block/maple/carpeted_grass_block/fulvous/mixed"
       },
       {
-        "model": "promenade:block/maple/fulvous/carpeted_grass_block/mixed",
+        "model": "promenade:block/maple/carpeted_grass_block/fulvous/mixed",
         "y": 90
       },
       {
-        "model": "promenade:block/maple/fulvous/carpeted_grass_block/mixed",
+        "model": "promenade:block/maple/carpeted_grass_block/fulvous/mixed",
         "y": 180
       },
       {
-        "model": "promenade:block/maple/fulvous/carpeted_grass_block/mixed",
+        "model": "promenade:block/maple/carpeted_grass_block/fulvous/mixed",
         "y": 270
       },
       {
-        "model": "promenade:block/maple/fulvous/carpeted_grass_block/regular"
+        "model": "promenade:block/maple/carpeted_grass_block/fulvous/regular"
       },
       {
-        "model": "promenade:block/maple/fulvous/carpeted_grass_block/regular",
+        "model": "promenade:block/maple/carpeted_grass_block/fulvous/regular",
         "y": 90
       },
       {
-        "model": "promenade:block/maple/fulvous/carpeted_grass_block/regular",
+        "model": "promenade:block/maple/carpeted_grass_block/fulvous/regular",
         "y": 180
       },
       {
-        "model": "promenade:block/maple/fulvous/carpeted_grass_block/regular",
+        "model": "promenade:block/maple/carpeted_grass_block/fulvous/regular",
         "y": 270
       }
     ],

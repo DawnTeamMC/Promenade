@@ -2,6 +2,7 @@
 	"replace": false,
 	"values": [
 		"#promenade:cherry_oak_logs",
+		"#promenade:maple_logs",
 		"#promenade:palm_logs"
 	]
 }

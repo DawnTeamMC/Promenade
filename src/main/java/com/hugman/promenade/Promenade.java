@@ -42,7 +42,7 @@ public class Promenade implements ModInitializer {
 		initClass(AnimalBundle.class);
 		initClass(MonsterBundle.class);
 
-		initClass(MapleBundle.class);
+		MapleBundle.init();
 		initClass(CherryBundle.class);
 		initClass(FoodBundle.class);
 		initClass(PalmBundle.class);

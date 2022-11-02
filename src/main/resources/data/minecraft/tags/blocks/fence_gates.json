@@ -1,8 +1,9 @@
 {
 	"replace": false,
 	"values": [
-		"promenade:dark_amaranth_fence_gate",
+		"promenade:cherry_oak_fence_gate",
+		"promenade:maple_fence_gate",
 		"promenade:palm_fence_gate",
-		"promenade:cherry_oak_fence_gate"
+		"promenade:dark_amaranth_fence_gate"
 	]
 }

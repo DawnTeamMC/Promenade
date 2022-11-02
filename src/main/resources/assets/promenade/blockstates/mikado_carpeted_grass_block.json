@@ -2,33 +2,33 @@
   "variants": {
     "snowy=false": [
       {
-        "model": "promenade:block/maple/mikado/carpeted_grass_block/mixed"
+        "model": "promenade:block/maple/carpeted_grass_block/mikado/mixed"
       },
       {
-        "model": "promenade:block/maple/mikado/carpeted_grass_block/mixed",
+        "model": "promenade:block/maple/carpeted_grass_block/mikado/mixed",
         "y": 90
       },
       {
-        "model": "promenade:block/maple/mikado/carpeted_grass_block/mixed",
+        "model": "promenade:block/maple/carpeted_grass_block/mikado/mixed",
         "y": 180
       },
       {
-        "model": "promenade:block/maple/mikado/carpeted_grass_block/mixed",
+        "model": "promenade:block/maple/carpeted_grass_block/mikado/mixed",
         "y": 270
       },
       {
-        "model": "promenade:block/maple/mikado/carpeted_grass_block/regular"
+        "model": "promenade:block/maple/carpeted_grass_block/mikado/regular"
       },
       {
-        "model": "promenade:block/maple/mikado/carpeted_grass_block/regular",
+        "model": "promenade:block/maple/carpeted_grass_block/mikado/regular",
         "y": 90
       },
       {
-        "model": "promenade:block/maple/mikado/carpeted_grass_block/regular",
+        "model": "promenade:block/maple/carpeted_grass_block/mikado/regular",
         "y": 180
       },
       {
-        "model": "promenade:block/maple/mikado/carpeted_grass_block/regular",
+        "model": "promenade:block/maple/carpeted_grass_block/mikado/regular",
         "y": 270
       }
     ],
