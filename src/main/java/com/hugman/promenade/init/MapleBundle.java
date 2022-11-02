@@ -2,6 +2,7 @@ package com.hugman.promenade.init;
 
 import com.hugman.dawn.api.creator.BlockCreator;
 import com.hugman.dawn.api.creator.ItemCreator;
+import com.hugman.dawn.api.creator.ParticleCreator;
 import com.hugman.dawn.api.creator.bundle.block.PlantBundle;
 import com.hugman.dawn.api.util.DefaultBlockBuilders;
 import com.hugman.promenade.Promenade;
@@ -15,6 +16,7 @@ import com.hugman.promenade.util.WorldGenUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -26,6 +28,7 @@ import net.minecraft.item.HoneyBottleItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
+import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.registry.RegistryKey;
@@ -98,6 +101,8 @@ public class MapleBundle extends PromenadeBundle {
 					.food(PromenadeFoods.MAPLE_SYRUP)
 					.recipeRemainder(Items.GLASS_BOTTLE))
 			.build());
+
+	public static final DefaultParticleType MAPLE_LEAF = add(new ParticleCreator<>("maple_leaf", FabricParticleTypes.simple()));
 
 	//Red
 	public static final PlantBundle VERMILION_MAPLE_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("vermilion_maple_sapling").provider(settings -> new SaplingBlock(new SimpleSaplingGenerator("maple/vermilion", "002"), settings))));
