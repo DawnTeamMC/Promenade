@@ -1,0 +1,13 @@
+{
+	"variants": {
+		"type=bottom": {
+			"model": "promenade:block/maple/slab/bottom"
+		},
+		"type=top": {
+			"model": "promenade:block/maple/slab/top"
+		},
+		"type=double": {
+			"model": "promenade:block/maple/planks"
+		}
+	}
+}

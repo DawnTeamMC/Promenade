@@ -1,8 +1,10 @@
 {
 	"replace": false,
 	"values": [
-		"promenade:potted_autumn_oak_sapling",
-		"promenade:potted_autumn_birch_sapling",
+		"promenade:potted_vermilion_maple_sapling",
+		"promenade:potted_fulvous_maple_sapling",
+		"promenade:potted_mikado_maple_sapling",
+		"promenade:potted_sap_maple_sapling",
 		"promenade:potted_pink_cherry_oak_sapling",
 		"promenade:potted_white_cherry_oak_sapling",
 		"promenade:potted_palm_sapling",

@@ -1,0 +1,124 @@
+{
+	"variants": {
+		"facing=east,half=lower,hinge=left,open=false": {
+			"model": "promenade:block/maple/door/left/lower/closed"
+		},
+		"facing=east,half=lower,hinge=left,open=true": {
+			"model": "promenade:block/maple/door/left/lower/open",
+			"y": 90
+		},
+		"facing=east,half=lower,hinge=right,open=false": {
+			"model": "promenade:block/maple/door/right/lower/closed"
+		},
+		"facing=east,half=lower,hinge=right,open=true": {
+			"model": "promenade:block/maple/door/right/lower/open",
+			"y": 270
+		},
+		"facing=east,half=upper,hinge=left,open=false": {
+			"model": "promenade:block/maple/door/left/upper/closed"
+		},
+		"facing=east,half=upper,hinge=left,open=true": {
+			"model": "promenade:block/maple/door/left/upper/open",
+			"y": 90
+		},
+		"facing=east,half=upper,hinge=right,open=false": {
+			"model": "promenade:block/maple/door/right/upper/closed"
+		},
+		"facing=east,half=upper,hinge=right,open=true": {
+			"model": "promenade:block/maple/door/right/upper/open",
+			"y": 270
+		},
+		"facing=north,half=lower,hinge=left,open=false": {
+			"model": "promenade:block/maple/door/left/lower/closed",
+			"y": 270
+		},
+		"facing=north,half=lower,hinge=left,open=true": {
+			"model": "promenade:block/maple/door/left/lower/open"
+		},
+		"facing=north,half=lower,hinge=right,open=false": {
+			"model": "promenade:block/maple/door/right/lower/closed",
+			"y": 270
+		},
+		"facing=north,half=lower,hinge=right,open=true": {
+			"model": "promenade:block/maple/door/right/lower/open",
+			"y": 180
+		},
+		"facing=north,half=upper,hinge=left,open=false": {
+			"model": "promenade:block/maple/door/left/upper/closed",
+			"y": 270
+		},
+		"facing=north,half=upper,hinge=left,open=true": {
+			"model": "promenade:block/maple/door/left/upper/open"
+		},
+		"facing=north,half=upper,hinge=right,open=false": {
+			"model": "promenade:block/maple/door/right/upper/closed",
+			"y": 270
+		},
+		"facing=north,half=upper,hinge=right,open=true": {
+			"model": "promenade:block/maple/door/right/upper/open",
+			"y": 180
+		},
+		"facing=south,half=lower,hinge=left,open=false": {
+			"model": "promenade:block/maple/door/left/lower/closed",
+			"y": 90
+		},
+		"facing=south,half=lower,hinge=left,open=true": {
+			"model": "promenade:block/maple/door/left/lower/open",
+			"y": 180
+		},
+		"facing=south,half=lower,hinge=right,open=false": {
+			"model": "promenade:block/maple/door/right/lower/closed",
+			"y": 90
+		},
+		"facing=south,half=lower,hinge=right,open=true": {
+			"model": "promenade:block/maple/door/left/lower/open"
+		},
+		"facing=south,half=upper,hinge=left,open=false": {
+			"model": "promenade:block/maple/door/left/upper/closed",
+			"y": 90
+		},
+		"facing=south,half=upper,hinge=left,open=true": {
+			"model": "promenade:block/maple/door/left/upper/open",
+			"y": 180
+		},
+		"facing=south,half=upper,hinge=right,open=false": {
+			"model": "promenade:block/maple/door/right/upper/closed",
+			"y": 90
+		},
+		"facing=south,half=upper,hinge=right,open=true": {
+			"model": "promenade:block/maple/door/right/upper/open"
+		},
+		"facing=west,half=lower,hinge=left,open=false": {
+			"model": "promenade:block/maple/door/left/lower/closed",
+			"y": 180
+		},
+		"facing=west,half=lower,hinge=left,open=true": {
+			"model": "promenade:block/maple/door/left/lower/open",
+			"y": 270
+		},
+		"facing=west,half=lower,hinge=right,open=false": {
+			"model": "promenade:block/maple/door/right/lower/closed",
+			"y": 180
+		},
+		"facing=west,half=lower,hinge=right,open=true": {
+			"model": "promenade:block/maple/door/left/lower/open",
+			"y": 90
+		},
+		"facing=west,half=upper,hinge=left,open=false": {
+			"model": "promenade:block/maple/door/left/upper/closed",
+			"y": 180
+		},
+		"facing=west,half=upper,hinge=left,open=true": {
+			"model": "promenade:block/maple/door/left/upper/open",
+			"y": 270
+		},
+		"facing=west,half=upper,hinge=right,open=false": {
+			"model": "promenade:block/maple/door/right/upper/closed",
+			"y": 180
+		},
+		"facing=west,half=upper,hinge=right,open=true": {
+			"model": "promenade:block/maple/door/right/upper/open",
+			"y": 90
+		}
+	}
+}

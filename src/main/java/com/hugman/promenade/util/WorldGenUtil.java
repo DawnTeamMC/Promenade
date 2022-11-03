@@ -26,7 +26,7 @@ public final class WorldGenUtil
 	}
 
 	@Nullable
-	public static RegistryEntry<? extends ConfiguredFeature<?, ?>> treeEntryWithFancyBees(ServerWorld world, Random random, boolean bees, RegistryKey<ConfiguredFeature<?, ?>> keyNormal, RegistryKey<ConfiguredFeature<?, ?>> keyNormalBees, RegistryKey<ConfiguredFeature<?, ?>> keyFancy, RegistryKey<ConfiguredFeature<?, ?>> keyFancyBees) {
+	public static RegistryEntry<? extends ConfiguredFeature<?, ?>> getTreeEntryWithFancyBees(ServerWorld world, Random random, boolean bees, RegistryKey<ConfiguredFeature<?, ?>> keyNormal, RegistryKey<ConfiguredFeature<?, ?>> keyNormalBees, RegistryKey<ConfiguredFeature<?, ?>> keyFancy, RegistryKey<ConfiguredFeature<?, ?>> keyFancyBees) {
 		Registry<ConfiguredFeature<?, ?>> registry = world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY);
 		RegistryEntry<ConfiguredFeature<?, ?>> normal = registry.getEntry(keyNormal).orElse(null);
 		RegistryEntry<ConfiguredFeature<?, ?>> normalBees = registry.getEntry(keyNormalBees).orElse(normal);

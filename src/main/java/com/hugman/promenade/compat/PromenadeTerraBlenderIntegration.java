@@ -1,7 +1,7 @@
 package com.hugman.promenade.compat;
 
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.init.AutumnBundle;
+import com.hugman.promenade.init.MapleBundle;
 import com.hugman.promenade.init.CherryBundle;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
@@ -38,7 +38,7 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 		SurfaceRuleManager.addToDefaultSurfaceRulesAtStage(SurfaceRuleManager.RuleCategory.OVERWORLD, SurfaceRuleManager.RuleStage.AFTER_BEDROCK, 1,
 				MaterialRules.sequence(
 						MaterialRules.condition(
-								MaterialRules.biome(AutumnBundle.PUMPKIN_PASTURES),
+								MaterialRules.biome(MapleBundle.CARNELIAN_TREEWAY),
 								MaterialRules.condition(
 										MaterialRules.noiseThreshold(NoiseParametersKeys.CALCITE, -0.0125, 0.0125),
 										makeStateRule(Blocks.COARSE_DIRT)
@@ -57,8 +57,8 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 		@Override
 		public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
 			this.addModifiedVanillaOverworldBiomes(mapper, builder -> {
-				if(Promenade.CONFIG.biomes.pumpkin_pastures_weight > 0) {
-					builder.replaceBiome(BiomeKeys.PLAINS, AutumnBundle.PUMPKIN_PASTURES);
+				if(Promenade.CONFIG.biomes.carnelian_treeway_weight > 0) {
+					builder.replaceBiome(BiomeKeys.PLAINS, MapleBundle.CARNELIAN_TREEWAY);
 				}
 				if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
 					builder.replaceBiome(BiomeKeys.FOREST, CherryBundle.PINK_CHERRY_OAK_FOREST);

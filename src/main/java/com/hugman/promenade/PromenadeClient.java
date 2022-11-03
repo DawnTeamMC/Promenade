@@ -1,10 +1,11 @@
 package com.hugman.promenade;
 
 import com.hugman.promenade.init.CherryBundle;
+import com.hugman.promenade.init.MapleBundle;
 import com.hugman.promenade.init.client.PromenadeColorMaps;
 import com.hugman.promenade.init.client.PromenadeEntityModelLayers;
 import com.hugman.promenade.init.client.PromenadeEntityRenders;
-import com.hugman.promenade.object.particle.FloatingPetalParticle;
+import com.hugman.promenade.object.particle.FloatingParticle;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -25,8 +26,12 @@ public class PromenadeClient implements ClientModInitializer {
 			registry.register(Promenade.MOD_DATA.id("particle/cherry_blossom/pink/2"));
 			registry.register(Promenade.MOD_DATA.id("particle/cherry_blossom/white/1"));
 			registry.register(Promenade.MOD_DATA.id("particle/cherry_blossom/white/2"));
+			registry.register(Promenade.MOD_DATA.id("particle/maple_leaf/vermilion"));
+			registry.register(Promenade.MOD_DATA.id("particle/maple_leaf/fulvous"));
+			registry.register(Promenade.MOD_DATA.id("particle/maple_leaf/mikado"));
 		}));
-		ParticleFactoryRegistry.getInstance().register(CherryBundle.PINK_CHERRY_BLOSSOM, FloatingPetalParticle.CherryBlossomFactory::new);
-		ParticleFactoryRegistry.getInstance().register(CherryBundle.WHITE_CHERRY_BLOSSOM, FloatingPetalParticle.CherryBlossomFactory::new);
+		ParticleFactoryRegistry.getInstance().register(CherryBundle.PINK_CHERRY_BLOSSOM, FloatingParticle.CherryBlossomFactory::new);
+		ParticleFactoryRegistry.getInstance().register(CherryBundle.WHITE_CHERRY_BLOSSOM, FloatingParticle.CherryBlossomFactory::new);
+		ParticleFactoryRegistry.getInstance().register(MapleBundle.MAPLE_LEAF, FloatingParticle.MapleLeafFactory::new);
 	}
 }

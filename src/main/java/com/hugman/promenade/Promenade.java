@@ -1,7 +1,6 @@
 package com.hugman.promenade;
 
 import com.google.common.reflect.Reflection;
-import com.hugman.dawn.Dawn;
 import com.hugman.dawn.api.object.ModData;
 import com.hugman.promenade.compat.init.ColumnsBundle;
 import com.hugman.promenade.config.PromenadeConfig;
@@ -43,7 +42,7 @@ public class Promenade implements ModInitializer {
 		initClass(AnimalBundle.class);
 		initClass(MonsterBundle.class);
 
-		initClass(AutumnBundle.class);
+		MapleBundle.init();
 		initClass(CherryBundle.class);
 		initClass(FoodBundle.class);
 		initClass(PalmBundle.class);
@@ -57,13 +56,13 @@ public class Promenade implements ModInitializer {
 	}
 
 	public static void postInitBundles() {
-		AutumnBundle.addWanderingSales();
+		MapleBundle.addWanderingSales();
 		CherryBundle.addWanderingSales();
 		PalmBundle.addWanderingSales();
 
 		AmaranthBundle.addToGen();
 		AnimalBundle.addToGen();
-		AutumnBundle.addToGen();
+		MapleBundle.addToGen();
 		CherryBundle.addToGen();
 		FoodBundle.addToGen();
 		MonsterBundle.addToGen();

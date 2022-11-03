@@ -1,0 +1,28 @@
+{
+	"variants": {
+		"distance=1,persistent=false": {
+			"model": "promenade:block/maple/leaves/vermilion/regular"
+		},
+		"distance=2,persistent=false": {
+			"model": "promenade:block/maple/leaves/vermilion/regular"
+		},
+		"distance=3,persistent=false": {
+			"model": "promenade:block/maple/leaves/vermilion/regular"
+		},
+		"distance=4,persistent=false": {
+			"model": "promenade:block/maple/leaves/vermilion/mixed"
+		},
+		"distance=5,persistent=false": {
+			"model": "promenade:block/maple/leaves/vermilion/mixed"
+		},
+		"distance=6,persistent=false": {
+			"model": "promenade:block/maple/leaves/vermilion/mixed"
+		},
+		"distance=7,persistent=false": {
+			"model": "promenade:block/maple/leaves/vermilion/mixed"
+		},
+		"persistent=true": {
+			"model": "promenade:block/maple/leaves/vermilion/regular"
+		}
+	}
+}
