@@ -25,12 +25,12 @@ import net.minecraft.world.biome.Biome;
 public class CherryBundle extends PromenadeBundle {
 	public static final WoodBundle CHERRY_OAK_WOOD = creator(new WoodBundle.Builder("cherry_oak", MapColor.DULL_RED, MapColor.DULL_PINK, MapColor.DARK_DULL_PINK, false).build());
 
-	public static final PlantBundle PINK_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("pink_cherry_oak_sapling").provider(s -> new SaplingBlock(new SimpleSaplingGenerator("pink_cherry_oak", "005"), s))));
+	public static final PlantBundle PINK_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("pink_cherry_oak_sapling").provider(s -> new SaplingBlock(new SimpleSaplingGenerator("cherry_oak/pink", "005"), s))));
 	public static final Block PINK_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("pink_cherry_oak_leaves").settings(FabricBlockSettings.of(Material.LEAVES).strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.AZALEA_LEAVES).nonOpaque().allowsSpawning(DefaultBlockSettings::canSpawnOnLeaves).suffocates(DefaultBlockSettings::never).blockVision(DefaultBlockSettings::never)).build());
 	public static final Block PINK_CHERRY_OAK_LEAF_PILE = add(PromenadeBlockBuilders.leafPile("pink_cherry_oak_leaf_pile", BlockSoundGroup.AZALEA_LEAVES).build());
 	public static final DefaultParticleType PINK_CHERRY_BLOSSOM = add(new ParticleCreator<>("pink_cherry_blossom", FabricParticleTypes.simple()));
 
-	public static final PlantBundle WHITE_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("white_cherry_oak_sapling").provider(s -> new SaplingBlock(new SimpleSaplingGenerator("pink_cherry_oak", "005"), s))));
+	public static final PlantBundle WHITE_CHERRY_OAK_SAPLING = creator(new PlantBundle(DefaultBlockBuilders.SAPLING.copy("white_cherry_oak_sapling").provider(s -> new SaplingBlock(new SimpleSaplingGenerator("cherry_oak/white", "005"), s))));
 	public static final Block WHITE_CHERRY_OAK_LEAVES = add(DefaultBlockBuilders.LEAVES.copy("white_cherry_oak_leaves").settings(FabricBlockSettings.of(Material.LEAVES).strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.AZALEA_LEAVES).nonOpaque().allowsSpawning(DefaultBlockSettings::canSpawnOnLeaves).suffocates(DefaultBlockSettings::never).blockVision(DefaultBlockSettings::never)).build());
 	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = add(PromenadeBlockBuilders.leafPile("white_cherry_oak_leaf_pile", BlockSoundGroup.AZALEA_LEAVES).build());
 	public static final DefaultParticleType WHITE_CHERRY_BLOSSOM = add(new ParticleCreator<>("white_cherry_blossom", FabricParticleTypes.simple()));

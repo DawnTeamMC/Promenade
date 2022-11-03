@@ -5,14 +5,14 @@
       "features": [
         {
           "chance": 0.2,
-          "feature": "promenade:tree/pink_cherry_oak/normal"
+          "feature": "promenade:tree/cherry_oak/pink/regular"
         },
         {
           "chance": 0.1,
-          "feature": "promenade:tree/white_cherry_oak/fancy"
+          "feature": "promenade:tree/cherry_oak/white/fancy"
         }
       ],
-      "default": "promenade:tree/white_cherry_oak/normal"
+      "default": "promenade:tree/cherry_oak/white/regular"
     }
   },
   "placement": [
