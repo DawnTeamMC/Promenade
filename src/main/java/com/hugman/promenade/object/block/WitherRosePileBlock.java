@@ -2,7 +2,6 @@ package com.hugman.promenade.object.block;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -17,7 +16,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
-public class WitherRosePileBlock extends PlantPileBlock {
+public class WitherRosePileBlock extends PileBlock {
 	public WitherRosePileBlock(Settings builder) {
 		super(builder);
 	}

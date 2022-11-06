@@ -1,6 +1,7 @@
 package com.hugman.promenade.object.block;
 
-import com.hugman.promenade.init.MapleBundle;
+import com.hugman.promenade.Promenade;
+import com.hugman.promenade.init.MapleContent;
 import com.hugman.promenade.util.PromenadeBlockProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -42,10 +43,11 @@ public class StrippedMapleLogBlock extends PillarBlock {
 			if(stack.getItem() == Items.GLASS_BOTTLE) {
 				stack.decrement(1);
 				world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
-				if (stack.isEmpty()) {
-					player.setStackInHand(hand, new ItemStack(MapleBundle.MAPLE_SYRUP_BOTTLE));
-				} else if (!player.getInventory().insertStack(new ItemStack(MapleBundle.MAPLE_SYRUP_BOTTLE))) {
-					player.dropItem(new ItemStack(MapleBundle.MAPLE_SYRUP_BOTTLE), false);
+				if(stack.isEmpty()) {
+					player.setStackInHand(hand, new ItemStack(MapleContent.MAPLE_SYRUP_BOTTLE));
+				}
+				else if(!player.getInventory().insertStack(new ItemStack(MapleContent.MAPLE_SYRUP_BOTTLE))) {
+					player.dropItem(new ItemStack(MapleContent.MAPLE_SYRUP_BOTTLE), false);
 				}
 				world.emitGameEvent(player, GameEvent.FLUID_PICKUP, pos);
 				player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));

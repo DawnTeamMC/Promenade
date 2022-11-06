@@ -1,6 +1,7 @@
 package com.hugman.promenade.mixin;
 
-import com.hugman.promenade.init.MapleBundle;
+import com.hugman.promenade.Promenade;
+import com.hugman.promenade.init.MapleContent;
 import com.hugman.promenade.object.block.MapleLogBlock;
 import com.hugman.promenade.object.block.StrippedMapleLogBlock;
 import net.minecraft.block.BlockState;
@@ -17,9 +18,9 @@ import java.util.Optional;
 public class AxeItemMixin {
 	@Inject(method = "getStrippedState", at = @At("RETURN"), cancellable = true)
 	private void promenade$appendCustomStrip(BlockState state, CallbackInfoReturnable<Optional<BlockState>> cir) {
-		if(state.getBlock() == MapleBundle.MAPLE_LOG) {
+		if(state.getBlock() == MapleContent.MAPLE_LOG) {
 			// if the log is natural, it has a 10% chance to be stripped into a stripped log with the state "has_syrup" set to true
-			cir.setReturnValue(Optional.of(MapleBundle.STRIPPED_MAPLE_LOG.getDefaultState()
+			cir.setReturnValue(Optional.of(MapleContent.STRIPPED_MAPLE_LOG.getDefaultState()
 					.with(PillarBlock.AXIS, state.get(PillarBlock.AXIS))
 					.with(StrippedMapleLogBlock.DRIP, state.get(MapleLogBlock.NATURAL) && Math.random() < 0.1f)));
 		}
