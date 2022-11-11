@@ -4,7 +4,7 @@
 package com.hugman.promenade.object.entity.render;
 
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.init.client.PromenadeEntityModelLayers;
+import com.hugman.promenade.client.PromenadeEntityModelLayers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -19,7 +19,7 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class LushCreeperOverlayFeatureRenderer<T extends CreeperEntity>
 extends FeatureRenderer<T, CreeperEntityModel<T>> {
-    private static final Identifier TEXTURE = Promenade.MOD_DATA.id("textures/entity/lush_creeper/overlay.png");
+    private static final Identifier TEXTURE = Promenade.id("textures/entity/lush_creeper/overlay.png");
     private final CreeperEntityModel<T> model;
 
     public LushCreeperOverlayFeatureRenderer(FeatureRendererContext<T, CreeperEntityModel<T>> context, EntityModelLoader loader) {

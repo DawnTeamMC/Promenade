@@ -1,4 +1,4 @@
-package com.hugman.promenade.init.client;
+package com.hugman.promenade.client;
 
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.object.entity.model.DuckEntityModel;
@@ -38,11 +38,11 @@ public class PromenadeEntityModelLayers {
 	}
 
 	private static EntityModelLayer createModelLayer(String name) {
-		return new EntityModelLayer(Promenade.MOD_DATA.id(name), "main");
+		return new EntityModelLayer(Promenade.id(name), "main");
 	}
 
 	private static EntityModelLayer createModelLayer(String name, String layer) {
-		return new EntityModelLayer(Promenade.MOD_DATA.id(name), layer);
+		return new EntityModelLayer(Promenade.id(name), layer);
 	}
 
 	private static EntityModelLayer createModelLayerInnerArmor(String name) {

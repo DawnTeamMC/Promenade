@@ -7,6 +7,6 @@ public class PromenadeLootTables {
 	public static final Identifier WITCH_HUT_CHEST = chest("witch_hut");
 
 	public static Identifier chest(String name) {
-		return Promenade.MOD_DATA.id("chests/" + name);
+		return Promenade.id("chests/" + name);
 	}
 }

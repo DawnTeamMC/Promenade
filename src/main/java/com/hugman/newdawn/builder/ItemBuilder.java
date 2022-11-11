@@ -12,7 +12,7 @@ import net.minecraft.util.registry.Registry;
 public class ItemBuilder {
 	protected final Item item;
 
-	protected ItemBuilder(Item item) {
+	private ItemBuilder(Item item) {
 		this.item = item;
 	}
 
@@ -21,15 +21,11 @@ public class ItemBuilder {
 		return new ItemBuilder(item);
 	}
 
-	public static ItemBuilder of(Identifier id, ItemGroup group) {
-		return of(id, new Item(new Item.Settings().group(group)));
-	}
-
 	/**
 	 * @see AbstractFurnaceBlockEntity#createFuelTimeMap() Vanilla fuel times
 	 */
 	public ItemBuilder fuelTime(int i) {
-		FuelRegistry.INSTANCE.add(this.item, i);
+		if(i > 0) FuelRegistry.INSTANCE.add(this.item, i);
 		return this;
 	}
 
@@ -37,7 +33,7 @@ public class ItemBuilder {
 	 * @see ComposterBlock#registerDefaultCompostableItems() Vanilla composting chances
 	 */
 	public ItemBuilder compostingChance(float i) {
-		CompostingChanceRegistry.INSTANCE.add(this.item, i);
+		if(i > 0.0f) CompostingChanceRegistry.INSTANCE.add(this.item, i);
 		return this;
 	}
 

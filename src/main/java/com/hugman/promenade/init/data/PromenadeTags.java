@@ -14,7 +14,7 @@ public class PromenadeTags {
 		public static final TagKey<Block> CAN_SPREAD_BLACK_DYLIUM = register("can_spread_black_dylium");
 
 		private static TagKey<Block> register(String name) {
-			return TagKey.of(Registry.BLOCK_KEY, Promenade.MOD_DATA.id(name));
+			return TagKey.of(Registry.BLOCK_KEY, Promenade.id(name));
 		}
 	}
 
@@ -25,7 +25,7 @@ public class PromenadeTags {
 		public static final TagKey<Biome> HAS_PALMS = register("has_palms");
 
 		private static TagKey<Biome> register(String name) {
-			return TagKey.of(Registry.BIOME_KEY, Promenade.MOD_DATA.id(name));
+			return TagKey.of(Registry.BIOME_KEY, Promenade.id(name));
 		}
 	}
 }

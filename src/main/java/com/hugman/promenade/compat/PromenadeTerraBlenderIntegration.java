@@ -1,8 +1,8 @@
 package com.hugman.promenade.compat;
 
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.init.CherryBundle;
-import com.hugman.promenade.init.MapleContent;
+import com.hugman.promenade.content.CherryContent;
+import com.hugman.promenade.content.MapleContent;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -51,7 +51,7 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 
 	public static class PromenadeOverworldRegion extends Region {
 		public PromenadeOverworldRegion() {
-			super(Promenade.MOD_DATA.id("overworld"), RegionType.OVERWORLD, 2);
+			super(Promenade.id("overworld"), RegionType.OVERWORLD, 2);
 		}
 
 		@Override
@@ -61,8 +61,8 @@ public class PromenadeTerraBlenderIntegration implements TerraBlenderApi {
 					builder.replaceBiome(BiomeKeys.PLAINS, MapleContent.CARNELIAN_TREEWAY);
 				}
 				if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
-					builder.replaceBiome(BiomeKeys.FOREST, CherryBundle.PINK_CHERRY_OAK_FOREST);
-					builder.replaceBiome(BiomeKeys.BIRCH_FOREST, CherryBundle.WHITE_CHERRY_OAK_FOREST);
+					builder.replaceBiome(BiomeKeys.FOREST, CherryContent.PINK_CHERRY_OAK_FOREST);
+					builder.replaceBiome(BiomeKeys.BIRCH_FOREST, CherryContent.WHITE_CHERRY_OAK_FOREST);
 				}
 			});
 		}

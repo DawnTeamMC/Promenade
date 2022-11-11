@@ -1,7 +1,7 @@
 package com.hugman.promenade.object.entity.render;
 
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.init.client.PromenadeEntityModelLayers;
+import com.hugman.promenade.client.PromenadeEntityModelLayers;
 import com.hugman.promenade.object.entity.DuckEntity;
 import com.hugman.promenade.object.entity.model.DuckEntityModel;
 import net.fabricmc.api.EnvType;
@@ -19,8 +19,8 @@ public class DuckEntityRenderer extends MobEntityRenderer<DuckEntity, DuckEntity
 
 	@Override
 	public Identifier getTexture(DuckEntity entity) {
-		if(entity.isBaby()) return Promenade.MOD_DATA.id("textures/entity/duck/duckling.png");
-		return Promenade.MOD_DATA.id("textures/entity/duck/" + entity.getVariant().getName() + ".png");
+		if(entity.isBaby()) return Promenade.id("textures/entity/duck/duckling.png");
+		return Promenade.id("textures/entity/duck/" + entity.getVariant().getName() + ".png");
 	}
 
 	protected float getAnimationProgress(DuckEntity entity, float p_77044_2_) {

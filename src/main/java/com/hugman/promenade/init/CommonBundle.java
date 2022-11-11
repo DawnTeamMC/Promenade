@@ -26,6 +26,6 @@ public class CommonBundle extends PromenadeBundle {
 	public static final PlacementModifierType<NoiseIntervalCountPlacementModifier> NOISE_INTERVAL_COUNT = register("noise_interval_count", NoiseIntervalCountPlacementModifier.MODIFIER_CODEC);
 
 	private static <P extends PlacementModifier> PlacementModifierType<P> register(String id, Codec<P> codec) {
-		return Registry.register(Registry.PLACEMENT_MODIFIER_TYPE, Promenade.MOD_DATA.id(id), () -> codec);
+		return Registry.register(Registry.PLACEMENT_MODIFIER_TYPE, Promenade.id(id), () -> codec);
 	}
 }

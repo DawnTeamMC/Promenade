@@ -1,8 +1,9 @@
 package com.hugman.promenade.object.block.sapling_generator;
 
 import com.hugman.dawn.api.object.block.sapling_generator.DynamicSaplingGenerator;
-import com.hugman.promenade.util.WorldGenUtil;
+import com.hugman.newdawn.DawnFactory;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.RegistryEntry;
@@ -13,8 +14,8 @@ import org.jetbrains.annotations.Nullable;
 public class SingleSaplingGenerator extends DynamicSaplingGenerator {
 	public final RegistryKey<ConfiguredFeature<?, ?>> registryKey;
 
-	public SingleSaplingGenerator(String name) {
-		this.registryKey = WorldGenUtil.configuredFeatureKey("tree/" + name);
+	public SingleSaplingGenerator(Identifier id) {
+		this.registryKey = DawnFactory.configuredFeatureKey(id);
 	}
 
 	@Nullable

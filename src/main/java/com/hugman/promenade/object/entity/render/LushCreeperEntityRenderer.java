@@ -1,7 +1,7 @@
 package com.hugman.promenade.object.entity.render;
 
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.init.client.PromenadeEntityModelLayers;
+import com.hugman.promenade.client.PromenadeEntityModelLayers;
 import com.hugman.promenade.object.entity.LushCreeperEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -14,7 +14,7 @@ import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
 public class LushCreeperEntityRenderer extends MobEntityRenderer<LushCreeperEntity, CreeperEntityModel<LushCreeperEntity>> {
-	private static final Identifier TEXTURE = Promenade.MOD_DATA.id("textures/entity/lush_creeper/base.png");
+	private static final Identifier TEXTURE = Promenade.id("textures/entity/lush_creeper/base.png");
 
 	public LushCreeperEntityRenderer(EntityRendererFactory.Context context) {
 		super(context, new CreeperEntityModel<>(context.getPart(PromenadeEntityModelLayers.LUSH_CREEPER)), 0.5F);

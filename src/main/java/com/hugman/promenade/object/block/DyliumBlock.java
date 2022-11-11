@@ -1,10 +1,10 @@
 package com.hugman.promenade.object.block;
 
 import com.hugman.dawn.api.object.block.BoneMealSpreadable;
-import com.hugman.promenade.init.AmaranthBundle;
+import com.hugman.newdawn.DawnFactory;
+import com.hugman.promenade.Promenade;
+import com.hugman.promenade.content.AmaranthContent;
 import com.hugman.promenade.init.data.PromenadeTags;
-import com.hugman.promenade.util.WorldGenUtil;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.NyliumBlock;
@@ -21,11 +21,9 @@ import net.minecraft.world.chunk.light.ChunkLightProvider;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
-import java.util.ArrayList;
-
 public class DyliumBlock extends NyliumBlock implements BoneMealSpreadable
 {
-	public static final RegistryKey<ConfiguredFeature<?, ?>> BONEMEAL_VEGETATION = WorldGenUtil.configuredFeatureKey("dark_amaranth_forest_vegetation/bonemeal");
+	public static final RegistryKey<ConfiguredFeature<?, ?>> BONEMEAL_VEGETATION = DawnFactory.configuredFeatureKey(Promenade.id("dark_amaranth_forest_vegetation/bonemeal"));
 
 	public DyliumBlock(Settings settings) {
 		super(settings);
@@ -56,7 +54,7 @@ public class DyliumBlock extends NyliumBlock implements BoneMealSpreadable
 		BlockState blockState = world.getBlockState(pos);
 		BlockPos blockPos = pos.up();
 		ChunkGenerator chunkGenerator = world.getChunkManager().getChunkGenerator();
-		if(blockState.isOf(AmaranthBundle.BLACK_DYLIUM)) {
+		if(blockState.isOf(AmaranthContent.BLACK_DYLIUM)) {
 			ConfiguredFeature<?, ?> configuredFeature = world.getRegistryManager().get(Registry.CONFIGURED_FEATURE_KEY).get(BONEMEAL_VEGETATION);
 			if(configuredFeature != null) configuredFeature.generate(world, chunkGenerator, random, blockPos);
 		}

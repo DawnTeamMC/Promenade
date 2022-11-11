@@ -1,7 +1,6 @@
 package com.hugman.promenade.mixin;
 
-import com.hugman.promenade.Promenade;
-import com.hugman.promenade.init.MapleContent;
+import com.hugman.promenade.content.MapleContent;
 import com.hugman.promenade.object.block.MapleLogBlock;
 import com.hugman.promenade.object.block.StrippedMapleLogBlock;
 import net.minecraft.block.BlockState;

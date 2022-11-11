@@ -1,7 +1,6 @@
 package com.hugman.promenade.object.block;
 
-import com.hugman.promenade.Promenade;
-import com.hugman.promenade.init.MapleContent;
+import com.hugman.promenade.content.MapleContent;
 import com.hugman.promenade.util.PromenadeBlockProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,6 +22,8 @@ import net.minecraft.world.event.GameEvent;
 
 public class StrippedMapleLogBlock extends PillarBlock {
 	public static final BooleanProperty DRIP = PromenadeBlockProperties.DRIP;
+
+	//TODO : add dispenser behavior
 
 	public StrippedMapleLogBlock(Settings settings) {
 		super(settings);

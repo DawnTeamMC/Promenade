@@ -1,6 +1,6 @@
 package com.hugman.promenade.mixin;
 
-import com.hugman.promenade.init.AmaranthBundle;
+import com.hugman.promenade.content.AmaranthContent;
 import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import net.minecraft.world.gen.surfacebuilder.VanillaSurfaceRules;
@@ -15,14 +15,14 @@ public class VanillaSurfaceRulesMixin {
 	private static void promenade$appendEndSurfaces(CallbackInfoReturnable<MaterialRules.MaterialRule> cir) {
 		MaterialRules.MaterialRule previousRules = cir.getReturnValue();
 		MaterialRules.MaterialCondition isSurface = MaterialRules.aboveY(YOffset.fixed(31), 0);
-		MaterialRules.MaterialCondition isDarkAmaranthForest = MaterialRules.biome(AmaranthBundle.DARK_AMARANTH_FOREST, AmaranthBundle.TALL_DARK_AMARANTH_FOREST);
+		MaterialRules.MaterialCondition isDarkAmaranthForest = MaterialRules.biome(AmaranthContent.DARK_AMARANTH_FOREST, AmaranthContent.TALL_DARK_AMARANTH_FOREST);
 
 		cir.setReturnValue(MaterialRules.sequence(
 				MaterialRules.condition(isDarkAmaranthForest,
 						MaterialRules.sequence(
 								MaterialRules.condition(
 										MaterialRules.STONE_DEPTH_FLOOR,
-										MaterialRules.block(AmaranthBundle.BLACK_DYLIUM.getDefaultState())
+										MaterialRules.block(AmaranthContent.BLACK_DYLIUM.getDefaultState())
 								)
 						)
 				),

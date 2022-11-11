@@ -1,7 +1,7 @@
 package com.hugman.promenade.object.entity.render;
 
 import com.hugman.promenade.Promenade;
-import com.hugman.promenade.init.client.PromenadeEntityModelLayers;
+import com.hugman.promenade.client.PromenadeEntityModelLayers;
 import com.hugman.promenade.object.entity.SunkenSkeletonEntity;
 import com.hugman.promenade.object.entity.model.SunkenSkeletonModel;
 import net.fabricmc.api.EnvType;
@@ -66,6 +66,6 @@ public class SunkenSkeletonEntityRenderer extends BipedEntityRenderer<SunkenSkel
 
 	@Override
 	public Identifier getTexture(SunkenSkeletonEntity entity) {
-		return Promenade.MOD_DATA.id("textures/entity/sunken_skeleton/" + entity.getVariant().getName() + ".png");
+		return Promenade.id("textures/entity/sunken_skeleton/" + entity.getVariant().getName() + ".png");
 	}
 }

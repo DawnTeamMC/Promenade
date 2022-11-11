@@ -1,5 +1,6 @@
 package com.hugman.newdawn.builder;
 
+import com.hugman.newdawn.DawnFactory;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.Block;
@@ -16,7 +17,7 @@ import java.util.function.Consumer;
 public class BlockBuilder {
 	protected final Block block;
 
-	protected BlockBuilder(Block block) {
+	private BlockBuilder(Block block) {
 		this.block = block;
 	}
 
@@ -26,7 +27,7 @@ public class BlockBuilder {
 	}
 
 	private ItemBuilder makeItem(BlockItem item) {
-		ItemBuilder itemBuilder = ItemBuilder.of(Registry.BLOCK.getId(this.block), item);
+		ItemBuilder itemBuilder = DawnFactory.item(Registry.BLOCK.getId(this.block), item);
 		if(itemBuilder.get() instanceof BlockItem blockItem) blockItem.appendBlocks(Item.BLOCK_ITEMS, blockItem);
 		return itemBuilder;
 	}
