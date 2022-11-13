@@ -1,12 +1,13 @@
 package com.hugman.promenade;
 
-import com.hugman.promenade.content.CherryContent;
-import com.hugman.promenade.content.MapleContent;
 import com.hugman.promenade.client.PromenadeColorMaps;
 import com.hugman.promenade.client.PromenadeEntityModelLayers;
 import com.hugman.promenade.client.PromenadeEntityRenders;
-import com.hugman.promenade.content.PalmContent;
 import com.hugman.promenade.content.AmaranthContent;
+import com.hugman.promenade.content.CherryContent;
+import com.hugman.promenade.content.MapleContent;
+import com.hugman.promenade.content.PalmContent;
+import com.hugman.promenade.init.FoodBundle;
 import com.hugman.promenade.object.particle.FloatingParticle;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -87,6 +88,8 @@ public class PromenadeClient implements ClientModInitializer {
 
 		BlockRenderLayerMap.INSTANCE.putBlock(AmaranthContent.DARK_AMARANTH_ROOTS, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(AmaranthContent.DARK_AMARANTH_FUNGUS, RenderLayer.getCutoutMipped());
+
+		BlockRenderLayerMap.INSTANCE.putBlock(FoodBundle.BLUEBERRY_BUSH, RenderLayer.getCutout());
 
 	}
 }

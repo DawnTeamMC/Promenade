@@ -1,6 +1,7 @@
 package com.hugman.promenade.content;
 
 import com.hugman.newdawn.DawnFactory;
+import com.hugman.newdawn.RegistryHelper;
 import com.hugman.promenade.PromenadeFactory;
 import com.hugman.promenade.Promenade;
 import com.hugman.promenade.init.data.PromenadeTags;
@@ -11,6 +12,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
+import net.minecraft.block.PillarBlock;
 import net.minecraft.tag.BlockTags;
 import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.gen.GenerationStep;
@@ -20,29 +22,49 @@ public class PalmContent {
 	private static final MapColor BARK_COLOR = MapColor.TERRACOTTA_CYAN;
 	private static final MapColor WOOD_COLOR = MapColor.ORANGE;
 
-	public static final Block PALM_LOG = DawnFactory.log(Promenade.id("palm_log"), WOOD_COLOR, BARK_COLOR, false).get();
-	public static final Block STRIPPED_PALM_LOG = DawnFactory.log(Promenade.id("stripped_palm_log"), WOOD_COLOR, false).strippedFrom(PALM_LOG).get();
-	public static final Block PALM_WOOD = DawnFactory.log(Promenade.id("palm_wood"), BARK_COLOR, false).get();
-	public static final Block STRIPPED_PALM_WOOD = DawnFactory.log(Promenade.id("stripped_palm_wood"), WOOD_COLOR, false).strippedFrom(PALM_WOOD).get();
+	public static final Block STRIPPED_PALM_LOG = new PillarBlock(DawnFactory.logSettings(false, WOOD_COLOR));
+	public static final Block PALM_LOG = new PillarBlock(DawnFactory.logSettings(false, WOOD_COLOR, BARK_COLOR).stripInto(STRIPPED_PALM_LOG));
+	public static final Block STRIPPED_PALM_WOOD = new PillarBlock(DawnFactory.logSettings(false, WOOD_COLOR));
+	public static final Block PALM_WOOD = new PillarBlock(DawnFactory.logSettings(false, BARK_COLOR).stripInto(STRIPPED_PALM_WOOD));
 
-	public static final Block PALM_PLANKS = DawnFactory.planks(Promenade.id("palm_planks"), WOOD_COLOR, false).get();
-	public static final Block PALM_STAIRS = DawnFactory.stairs(Promenade.id("palm_stairs"), PALM_PLANKS, false).get();
-	public static final Block PALM_SLAB = DawnFactory.slab(Promenade.id("palm_slab"), PALM_PLANKS, false).get();
-	public static final Block PALM_TRAPDOOR = DawnFactory.trapdoor(Promenade.id("palm_trapdoor"), PALM_PLANKS, false).get();
-	public static final Block PALM_PRESSURE_PLATE = DawnFactory.pressurePlate(Promenade.id("palm_pressure_plate"), PALM_PLANKS, false).get();
-	public static final Block PALM_BUTTON = DawnFactory.woodenButton(Promenade.id("palm_button"), false).get();
-	public static final Block PALM_FENCE = DawnFactory.fence(Promenade.id("palm_fence"), PALM_PLANKS, false).get();
-	public static final Block PALM_FENCE_GATE = DawnFactory.fenceGate(Promenade.id("palm_fence_gate"), PALM_PLANKS, false).get();
-	public static final Block PALM_DOOR = DawnFactory.door(Promenade.id("palm_door"), PALM_PLANKS).get();
+	public static final Block PALM_PLANKS = DawnFactory.planks(false, WOOD_COLOR);
+	public static final Block PALM_STAIRS = DawnFactory.stairs(PALM_PLANKS);
+	public static final Block PALM_SLAB = DawnFactory.slab(PALM_PLANKS);
+	public static final Block PALM_FENCE = DawnFactory.fence(false, PALM_PLANKS);
+	public static final Block PALM_FENCE_GATE = DawnFactory.fenceGate(false, PALM_PLANKS);
+	public static final Block PALM_DOOR = DawnFactory.door(PALM_PLANKS);
+	public static final Block PALM_TRAPDOOR = DawnFactory.trapdoor(PALM_PLANKS);
+	public static final Block PALM_BUTTON = DawnFactory.woodenButton(false);
+	public static final Block PALM_PRESSURE_PLATE = DawnFactory.pressurePlate(PALM_PLANKS);
 
-	public static final Block PALM_SAPLING = DawnFactory.sapling(Promenade.id("palm_sapling"), new SingleSaplingGenerator(Promenade.id("tree/palm")), state -> state.isIn(BlockTags.SAND)).get();
-	public static final Block POTTED_PALM_SAPLING = DawnFactory.potted(PALM_SAPLING).get();
-	public static final Block PALM_LEAVES = DawnFactory.leaves(Promenade.id("palm_leaves")).get();
-	public static final Block PALM_LEAF_PILE = PromenadeFactory.leafPile(Promenade.id("palm_leaf_pile")).get();
+	public static final Block PALM_SAPLING = DawnFactory.sapling(new SingleSaplingGenerator(Promenade.id("tree/palm")), state -> state.isIn(BlockTags.SAND));
+	public static final Block POTTED_PALM_SAPLING = DawnFactory.potted(PALM_SAPLING);
+	public static final Block PALM_LEAVES = DawnFactory.leaves();
+	public static final Block PALM_LEAF_PILE = PromenadeFactory.leafPile();
 
 	public static final RegistryKey<PlacedFeature> PALMS = DawnFactory.placedFeatureKey(Promenade.id("trees/palms"));
 
 	public static void init() {
+		RegistryHelper.block(Promenade.id("palm_log"), PALM_LOG);
+		RegistryHelper.block(Promenade.id("stripped_palm_log"), STRIPPED_PALM_LOG);
+		RegistryHelper.block(Promenade.id("palm_wood"), PALM_WOOD);
+		RegistryHelper.block(Promenade.id("stripped_palm_wood"), STRIPPED_PALM_WOOD);
+
+		RegistryHelper.block(Promenade.id("palm_planks"), PALM_PLANKS);
+		RegistryHelper.block(Promenade.id("palm_stairs"), PALM_STAIRS);
+		RegistryHelper.block(Promenade.id("palm_slab"), PALM_SLAB);
+		RegistryHelper.block(Promenade.id("palm_fence"), PALM_FENCE);
+		RegistryHelper.block(Promenade.id("palm_fence_gate"), PALM_FENCE_GATE);
+		RegistryHelper.block(Promenade.id("palm_door"), PALM_DOOR);
+		RegistryHelper.block(Promenade.id("palm_trapdoor"), PALM_TRAPDOOR);
+		RegistryHelper.block(Promenade.id("palm_button"), PALM_BUTTON);
+		RegistryHelper.block(Promenade.id("palm_pressure_plate"), PALM_PRESSURE_PLATE);
+
+		RegistryHelper.block(Promenade.id("palm_sapling"), PALM_SAPLING);
+		RegistryHelper.block(Promenade.id("potted_palm_sapling"), POTTED_PALM_SAPLING);
+		RegistryHelper.block(Promenade.id("palm_leaves"), PALM_LEAVES);
+		RegistryHelper.block(Promenade.id("palm_leaf_pile"), PALM_LEAF_PILE);
+
 		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add(TradeOfferUtils.sapling(PALM_SAPLING)));
 
 		if(Promenade.CONFIG.world_features.palms) {
