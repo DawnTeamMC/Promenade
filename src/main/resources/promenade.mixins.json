@@ -1,8 +1,8 @@
 {
   "required": true,
-  "package": "com.hugman.promenade.mixin",
+  "package": "fr.hugman.promenade.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": ["AxeItemMixin", "ItemMixin", "RegistryMixin", "VanillaSurfaceRulesMixin"],
+  "mixins": ["AxeItemMixin", "VanillaSurfaceRulesMixin"],
   "injectors": {
     "defaultRequire": 1
   }

@@ -15,16 +15,16 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"com.hugman.promenade.Promenade"
+      "fr.hugman.promenade.Promenade"
 		],
 		"client": [
-			"com.hugman.promenade.PromenadeClient"
+      "fr.hugman.promenade.PromenadeClient"
 		],
 		"modmenu": [
-			"com.hugman.promenade.config.PromenadeModMenuIntegration"
+			"fr.hugman.promenade.compat.PromenadeMMIntegration"
 		],
 		"terrablender": [
-			"com.hugman.promenade.compat.PromenadeTerraBlenderIntegration"
+			"fr.hugman.promenade.compat.PromenadeTBIntegration"
 		]
 	},
 	"mixins": [
@@ -32,8 +32,7 @@
 	],
 	"accessWidener": "promenade.accesswidener",
 	"depends": {
-		"minecraft": ">=1.19",
-		"fabric": "*"
+		"fabric-api": "*"
 	},
 	"suggests": {
 		"columns": "*",

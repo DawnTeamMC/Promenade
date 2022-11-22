@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.12-SNAPSHOT'
+    id 'fabric-loom' version '1.0-SNAPSHOT'
 }
 
 apply from: 'https://dawnteammc.github.io/resources/gradle_scripts/fabric-mod/java-17.gradle'
@@ -19,13 +19,16 @@ repositories {
 }
 
 dependencies {
-    modApi "com.github.DawnTeamMC:DawnAPI:1.19-SNAPSHOT"
+    modApi "com.github.DawnTeamMC:DawnAPI:v${dawn_version}"
 
-    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
+    // TODO TerraBlender
+    //modImplementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
 
+    /* TODO haykam
     modImplementation ("curse.maven:columns-385230:${columns_version}"){
         exclude(group: "net.fabricmc.fabric-api")
     }
+     */
 
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
