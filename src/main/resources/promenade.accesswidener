@@ -4,3 +4,7 @@ extendable method net/minecraft/entity/mob/CreeperEntity                     exp
 accessible method net/minecraft/block/SpreadableBlock                        canSurvive   (Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z
 accessible method net/minecraft/block/SpreadableBlock                        canSpread    (Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z
 accessible method net/minecraft/world/gen/surfacebuilder/VanillaSurfaceRules block        (Lnet/minecraft/block/Block;)Lnet/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRule;
+
+accessible    method    net/minecraft/sound/SoundEvent    of    (Lnet/minecraft/util/Identifier;F)Lnet/minecraft/sound/SoundEvent;
+accessible    method    net/minecraft/sound/SoundEvent    of    (Lnet/minecraft/util/Identifier;)Lnet/minecraft/sound/SoundEvent;
+

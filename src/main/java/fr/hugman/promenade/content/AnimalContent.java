@@ -21,6 +21,7 @@ import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
+import net.minecraft.predicate.entity.EntityTypePredicate;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.Heightmap;
 
@@ -37,10 +38,10 @@ public class AnimalContent {
 			.spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn)
 			.build();
 	public static final Item DUCK_SPAWN_EGG = DawnFactory.spawnEgg(DUCK, 10592673, 15904341);
-	public static final SoundEvent DUCK_AMBIENT_SOUND = new SoundEvent(Promenade.id("entity.duck.ambient"));
-	public static final SoundEvent DUCK_HURT_SOUND = new SoundEvent(Promenade.id("entity.duck.hurt"));
-	public static final SoundEvent DUCK_DEATH_SOUND = new SoundEvent(Promenade.id("entity.duck.death"));
-	public static final SoundEvent DUCK_STEP_SOUND = new SoundEvent(Promenade.id("entity.duck.step"));
+	public static final SoundEvent DUCK_AMBIENT_SOUND = SoundEvent.of(Promenade.id("entity.duck.ambient"));
+	public static final SoundEvent DUCK_HURT_SOUND = SoundEvent.of(Promenade.id("entity.duck.hurt"));
+	public static final SoundEvent DUCK_DEATH_SOUND = SoundEvent.of(Promenade.id("entity.duck.death"));
+	public static final SoundEvent DUCK_STEP_SOUND = SoundEvent.of(Promenade.id("entity.duck.step"));
 
 	public static final Item DUCK_FOOD = new Item(new DawnItemSettings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F).meat().build()));
 	public static final Item COOKED_DUCK_FOOD = new Item(new DawnItemSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).meat().build()));

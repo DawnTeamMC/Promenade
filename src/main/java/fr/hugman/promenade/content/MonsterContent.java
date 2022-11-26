@@ -39,11 +39,11 @@ public class MonsterContent {
 			.spawnRestriction(SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SunkenSkeletonEntity::canSpawn)
 			.build();
 	public static final Item SUNKEN_SKELETON_SPAWN_EGG = DawnFactory.spawnEgg(SUNKEN_SKELETON, 12233882, 6191682);
-	public static final SoundEvent SUNKEN_SKELETON_AMBIENT_SOUND = new SoundEvent(Promenade.id("entity.sunken_skeleton.ambient"));
-	public static final SoundEvent SUNKEN_SKELETON_HURT_SOUND = new SoundEvent(Promenade.id("entity.sunken_skeleton.hurt"));
-	public static final SoundEvent SUNKEN_SKELETON_DEATH_SOUND = new SoundEvent(Promenade.id("entity.sunken_skeleton.death"));
-	public static final SoundEvent SUNKEN_SKELETON_STEP_SOUND = new SoundEvent(Promenade.id("entity.sunken_skeleton.step"));
-	public static final SoundEvent SUNKEN_SKELETON_SHOOT_SOUND = new SoundEvent(Promenade.id("entity.sunken_skeleton.shoot"));
+	public static final SoundEvent SUNKEN_SKELETON_AMBIENT_SOUND = SoundEvent.of(Promenade.id("entity.sunken_skeleton.ambient"));
+	public static final SoundEvent SUNKEN_SKELETON_HURT_SOUND = SoundEvent.of(Promenade.id("entity.sunken_skeleton.hurt"));
+	public static final SoundEvent SUNKEN_SKELETON_DEATH_SOUND = SoundEvent.of(Promenade.id("entity.sunken_skeleton.death"));
+	public static final SoundEvent SUNKEN_SKELETON_STEP_SOUND = SoundEvent.of(Promenade.id("entity.sunken_skeleton.step"));
+	public static final SoundEvent SUNKEN_SKELETON_SHOOT_SOUND = SoundEvent.of(Promenade.id("entity.sunken_skeleton.shoot"));
 
 	public static void init() {
 		Registrar.add(Promenade.id("lush_creeper"), LUSH_CREEPER);
