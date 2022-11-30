@@ -2,6 +2,7 @@ package fr.hugman.promenade.registry.tag;
 
 import fr.hugman.promenade.Promenade;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.biome.Biome;
@@ -17,6 +18,15 @@ public class PromenadeTags {
 			return TagKey.of(RegistryKeys.BLOCK, Promenade.id(name));
 		}
 	}
+
+	public static class Items {
+		public static final TagKey<Item> CAPYBARA_FOOD = register("capybara_food");
+
+		private static TagKey<Item> register(String name) {
+			return TagKey.of(RegistryKeys.ITEM, Promenade.id(name));
+		}
+	}
+
 
 	public static class Biomes {
 		public static final TagKey<Biome> PEKIN_DUCK_SPAWN = register("spawns/duck/pekin");

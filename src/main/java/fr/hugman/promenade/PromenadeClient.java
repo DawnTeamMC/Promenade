@@ -1,10 +1,11 @@
 package fr.hugman.promenade;
 
 import fr.hugman.promenade.client.PromenadeEntityModelLayers;
+import fr.hugman.promenade.client.render.entity.CapybaraRenderer;
+import fr.hugman.promenade.client.render.entity.DuckRenderer;
+import fr.hugman.promenade.client.render.entity.LushCreeperRenderer;
+import fr.hugman.promenade.client.render.entity.SunkenSkeletonRenderer;
 import fr.hugman.promenade.content.*;
-import fr.hugman.promenade.entity.render.DuckEntityRenderer;
-import fr.hugman.promenade.entity.render.LushCreeperEntityRenderer;
-import fr.hugman.promenade.entity.render.SunkenSkeletonEntityRenderer;
 import fr.hugman.promenade.particle.FloatingParticle;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -135,8 +136,9 @@ public class PromenadeClient implements ClientModInitializer {
 	}
 
 	public static void registerEntityRenderers() {
-		EntityRendererRegistry.register(AnimalContent.DUCK, DuckEntityRenderer::new);
-		EntityRendererRegistry.register(MonsterContent.LUSH_CREEPER, LushCreeperEntityRenderer::new);
-		EntityRendererRegistry.register(MonsterContent.SUNKEN_SKELETON, SunkenSkeletonEntityRenderer::new);
+		EntityRendererRegistry.register(AnimalContent.CAPYBARA, CapybaraRenderer::new);
+		EntityRendererRegistry.register(AnimalContent.DUCK, DuckRenderer::new);
+		EntityRendererRegistry.register(MonsterContent.LUSH_CREEPER, LushCreeperRenderer::new);
+		EntityRendererRegistry.register(MonsterContent.SUNKEN_SKELETON, SunkenSkeletonRenderer::new);
 	}
 }

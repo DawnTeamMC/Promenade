@@ -4,6 +4,7 @@ import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
 import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.entity.CapybaraEntity;
 import fr.hugman.promenade.entity.DuckEntity;
 import fr.hugman.promenade.item.ItemGroupHelper;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -21,13 +22,21 @@ import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
-import net.minecraft.predicate.entity.EntityTypePredicate;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.Heightmap;
 
 import java.util.function.Predicate;
 
 public class AnimalContent {
+	public static final EntityType<CapybaraEntity> CAPYBARA = FabricEntityTypeBuilder.createMob()
+			.entityFactory(CapybaraEntity::new)
+			.spawnGroup(SpawnGroup.CREATURE)
+			.dimensions(EntityDimensions.fixed(0.7f, 0.875f))
+			.defaultAttributes(CapybaraEntity::createCapybaraAttributes)
+			.spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn)
+			.build();
+	public static final Item CAPYBARA_SPAWN_EGG = DawnFactory.spawnEgg(CAPYBARA, 13075263, 3945258);
+
 	public static final EntityType<DuckEntity> DUCK = FabricEntityTypeBuilder.createMob()
 			.entityFactory(DuckEntity::new)
 			.spawnGroup(SpawnGroup.CREATURE)
@@ -47,6 +56,9 @@ public class AnimalContent {
 	public static final Item COOKED_DUCK_FOOD = new Item(new DawnItemSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).meat().build()));
 
 	public static void init() {
+		Registrar.add(Promenade.id("capybara"), CAPYBARA);
+		Registrar.add(Promenade.id("capybara_spawn_egg"), CAPYBARA_SPAWN_EGG);
+
 		Registrar.add(Promenade.id("duck"), DUCK);
 		Registrar.add(Promenade.id("duck_spawn_egg"), DUCK_SPAWN_EGG);
 		Registrar.add(DUCK_AMBIENT_SOUND);
@@ -62,6 +74,7 @@ public class AnimalContent {
 			BiomeModifications.addSpawn(hasFarmAnimals, SpawnGroup.CREATURE, DUCK, 10, 4, 4);
 		}
 
+		ItemGroupHelper.appendSpawnEgg(CAPYBARA_SPAWN_EGG);
 		ItemGroupHelper.appendSpawnEgg(DUCK_SPAWN_EGG);
 		ItemGroupHelper.append(ItemGroups.FOOD_AND_DRINK, e -> e.addAfter(Items.COOKED_CHICKEN, DUCK_FOOD, COOKED_DUCK_FOOD));
 	}

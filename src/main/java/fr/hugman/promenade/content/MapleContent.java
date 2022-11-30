@@ -19,7 +19,6 @@ import net.minecraft.block.PillarBlock;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.HoneyBottleItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.particle.DefaultParticleType;
@@ -74,6 +73,8 @@ public class MapleContent {
 	public static final Block MIKADO_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock();
 
 	public static final DefaultParticleType MAPLE_LEAF = FabricParticleTypes.simple();
+
+	// TODO: add acorns
 
 	public static final RegistryKey<Biome> CARNELIAN_TREEWAY = DawnFactory.biome(Promenade.id("carnelian_treeway"));
 
@@ -132,22 +133,21 @@ public class MapleContent {
 			factories.add(TradeOfferUtils.sapling(MapleContent.SAP_MAPLE_SAPLING));
 		});
 
-		ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> {
-			e.addAfter(CherryContent.CHERRY_OAK_BUTTON,
-					MAPLE_LOG,
-					MAPLE_WOOD,
-					STRIPPED_MAPLE_LOG,
-					STRIPPED_MAPLE_WOOD,
-					MAPLE_PLANKS,
-					MAPLE_STAIRS,
-					MAPLE_SLAB,
-					MAPLE_FENCE,
-					MAPLE_FENCE_GATE,
-					MAPLE_DOOR,
-					MAPLE_TRAPDOOR,
-					MAPLE_PRESSURE_PLATE,
-					MAPLE_BUTTON);
-		});
+		ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e ->
+				e.addAfter(CherryContent.CHERRY_OAK_BUTTON,
+						MAPLE_LOG,
+						MAPLE_WOOD,
+						STRIPPED_MAPLE_LOG,
+						STRIPPED_MAPLE_WOOD,
+						MAPLE_PLANKS,
+						MAPLE_STAIRS,
+						MAPLE_SLAB,
+						MAPLE_FENCE,
+						MAPLE_FENCE_GATE,
+						MAPLE_DOOR,
+						MAPLE_TRAPDOOR,
+						MAPLE_PRESSURE_PLATE,
+						MAPLE_BUTTON));
 		ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
 			e.addAfter(Blocks.GRASS_BLOCK, VERMILION_CARPETED_GRASS_BLOCK, FULVOUS_CARPETED_GRASS_BLOCK, MIKADO_CARPETED_GRASS_BLOCK);
 			e.addAfter(CherryContent.CHERRY_OAK_LOG, MAPLE_LOG);

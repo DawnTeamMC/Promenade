@@ -1,9 +1,9 @@
-package fr.hugman.promenade.entity.render;
+package fr.hugman.promenade.client.render.entity;
 
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.client.PromenadeEntityModelLayers;
+import fr.hugman.promenade.client.render.entity.model.SunkenSkeletonModel;
 import fr.hugman.promenade.entity.SunkenSkeletonEntity;
-import fr.hugman.promenade.entity.model.SunkenSkeletonModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.BipedEntityRenderer;
@@ -17,12 +17,12 @@ import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
 
 @Environment(EnvType.CLIENT)
-public class SunkenSkeletonEntityRenderer extends BipedEntityRenderer<SunkenSkeletonEntity, SunkenSkeletonModel> {
-	public SunkenSkeletonEntityRenderer(EntityRendererFactory.Context context) {
+public class SunkenSkeletonRenderer extends BipedEntityRenderer<SunkenSkeletonEntity, SunkenSkeletonModel> {
+	public SunkenSkeletonRenderer(EntityRendererFactory.Context context) {
 		this(context, PromenadeEntityModelLayers.SUNKEN_SKELETON, PromenadeEntityModelLayers.SUNKEN_SKELETON_INNER_ARMOR, PromenadeEntityModelLayers.SUNKEN_SKELETON_OUTER_ARMOR);
 	}
 
-	public SunkenSkeletonEntityRenderer(EntityRendererFactory.Context ctx, EntityModelLayer layer, EntityModelLayer legArmorLayer, EntityModelLayer bodyArmorLayer) {
+	public SunkenSkeletonRenderer(EntityRendererFactory.Context ctx, EntityModelLayer layer, EntityModelLayer legArmorLayer, EntityModelLayer bodyArmorLayer) {
 		super(ctx, new SunkenSkeletonModel(ctx.getPart(layer)), 0.5F);
 		this.addFeature(new ArmorFeatureRenderer<>(this, new SunkenSkeletonModel(ctx.getPart(legArmorLayer)), new SunkenSkeletonModel(ctx.getPart(bodyArmorLayer))));
 	}

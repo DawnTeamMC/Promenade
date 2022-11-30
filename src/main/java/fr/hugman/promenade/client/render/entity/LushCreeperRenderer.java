@@ -1,4 +1,4 @@
-package fr.hugman.promenade.entity.render;
+package fr.hugman.promenade.client.render.entity;
 
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.client.PromenadeEntityModelLayers;
@@ -13,12 +13,12 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
-public class LushCreeperEntityRenderer extends MobEntityRenderer<LushCreeperEntity, CreeperEntityModel<LushCreeperEntity>> {
+public class LushCreeperRenderer extends MobEntityRenderer<LushCreeperEntity, CreeperEntityModel<LushCreeperEntity>> {
 	private static final Identifier TEXTURE = Promenade.id("textures/entity/lush_creeper/base.png");
 
-	public LushCreeperEntityRenderer(EntityRendererFactory.Context context) {
+	public LushCreeperRenderer(EntityRendererFactory.Context context) {
 		super(context, new CreeperEntityModel<>(context.getPart(PromenadeEntityModelLayers.LUSH_CREEPER)), 0.5F);
-		this.addFeature(new LushCreeperOverlayFeatureRenderer<>(this, context.getModelLoader()));
+		this.addFeature(new LushCreeperOverlayRenderer<>(this, context.getModelLoader()));
 	}
 
 	@Override

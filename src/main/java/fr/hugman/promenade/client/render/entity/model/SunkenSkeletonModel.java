@@ -1,4 +1,4 @@
-package fr.hugman.promenade.entity.model;
+package fr.hugman.promenade.client.render.entity.model;
 
 import fr.hugman.promenade.entity.SunkenSkeletonEntity;
 import net.fabricmc.api.EnvType;

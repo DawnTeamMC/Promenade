@@ -1,8 +1,9 @@
 package fr.hugman.promenade.client;
 
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.entity.model.DuckEntityModel;
-import fr.hugman.promenade.entity.model.SunkenSkeletonModel;
+import fr.hugman.promenade.client.render.entity.model.CapybaraModel;
+import fr.hugman.promenade.client.render.entity.model.DuckModel;
+import fr.hugman.promenade.client.render.entity.model.SunkenSkeletonModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
@@ -14,6 +15,8 @@ import net.minecraft.client.render.entity.model.EntityModelLayer;
 
 @Environment(EnvType.CLIENT)
 public class PromenadeEntityModelLayers {
+	public static final EntityModelLayer CAPYBARA = createModelLayer("capybara");
+
 	public static final EntityModelLayer DUCK = createModelLayer("duck");
 
 	public static final EntityModelLayer LUSH_CREEPER = createModelLayer("lush_creeper");
@@ -29,7 +32,8 @@ public class PromenadeEntityModelLayers {
 	private static final TexturedModelData OUTER_ARMOR_MODEL_DATA = TexturedModelData.of(BipedEntityModel.getModelData(ARMOR_DILATION, 0.0F), 64, 32);
 
 	public static void init() {
-		EntityModelLayerRegistry.registerModelLayer(DUCK, DuckEntityModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(CAPYBARA, CapybaraModel::getTexturedModelData);
+		EntityModelLayerRegistry.registerModelLayer(DUCK, DuckModel::getTexturedModelData);
 		EntityModelLayerRegistry.registerModelLayer(LUSH_CREEPER, () -> CreeperEntityModel.getTexturedModelData(Dilation.NONE));
 		EntityModelLayerRegistry.registerModelLayer(LUSH_CREEPER_OUTER, () -> CreeperEntityModel.getTexturedModelData(new Dilation(0.25f)));
 		EntityModelLayerRegistry.registerModelLayer(SUNKEN_SKELETON, SunkenSkeletonModel::getTexturedModelData);
