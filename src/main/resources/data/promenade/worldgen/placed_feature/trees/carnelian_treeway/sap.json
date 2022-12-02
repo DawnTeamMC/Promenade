@@ -5,14 +5,14 @@
       "features": [
         {
           "chance": 0.2,
-          "feature": "promenade:tree/maple/sap/bees_002"
+          "feature": "promenade:tree/maple/sap/bees"
         },
         {
           "chance": 0.1,
-          "feature": "promenade:tree/maple/sap/fancy_bees_002"
+          "feature": "promenade:tree/maple/sap/fancy_bees"
         }
       ],
-      "default": "promenade:tree/maple/sap/bees_002"
+      "default": "promenade:tree/maple/sap/bees"
     }
   },
   "placement": [

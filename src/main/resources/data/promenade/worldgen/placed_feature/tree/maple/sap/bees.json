@@ -1,5 +1,5 @@
 {
-  "feature": "promenade:tree/maple/sap/fancy_bees_002",
+  "feature": "promenade:tree/maple/sap/bees",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",

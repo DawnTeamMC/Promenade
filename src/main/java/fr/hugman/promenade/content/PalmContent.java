@@ -2,9 +2,9 @@ package fr.hugman.promenade.content;
 
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
+import fr.hugman.dawn.block.sapling.SingleSaplingGenerator;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
-import fr.hugman.promenade.block.sapling.SingleSaplingGenerator;
 import fr.hugman.promenade.item.ItemGroupHelper;
 import fr.hugman.promenade.registry.tag.PromenadeTags;
 import fr.hugman.promenade.village.TradeOfferUtils;

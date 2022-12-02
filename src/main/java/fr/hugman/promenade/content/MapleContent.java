@@ -2,12 +2,12 @@ package fr.hugman.promenade.content;
 
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
+import fr.hugman.dawn.block.sapling.OakLikeSaplingGenerator;
 import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.block.MapleLogBlock;
 import fr.hugman.promenade.block.StrippedMapleLogBlock;
-import fr.hugman.promenade.block.sapling.SimpleSaplingGenerator;
 import fr.hugman.promenade.item.ItemGroupHelper;
 import fr.hugman.promenade.village.TradeOfferUtils;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
@@ -49,24 +49,24 @@ public class MapleContent {
 			.food(new FoodComponent.Builder().hunger(6).saturationModifier(0.1F).build())
 			.recipeRemainder(Items.GLASS_BOTTLE));
 
-	public static final Block SAP_MAPLE_SAPLING = DawnFactory.sapling(new SimpleSaplingGenerator("maple/sap", "002"));
+	public static final Block SAP_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/sap")));
 	public static final Block POTTED_SAP_MAPLE_SAPLING = DawnFactory.potted(SAP_MAPLE_SAPLING);
 	public static final Block SAP_MAPLE_LEAVES = DawnFactory.leaves();
 	public static final Block SAP_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
 
-	public static final Block VERMILION_MAPLE_SAPLING = DawnFactory.sapling(new SimpleSaplingGenerator("maple/vermilion", "002"));
+	public static final Block VERMILION_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/vermilion")));
 	public static final Block POTTED_VERMILION_MAPLE_SAPLING = DawnFactory.potted(VERMILION_MAPLE_SAPLING);
 	public static final Block VERMILION_MAPLE_LEAVES = DawnFactory.leaves();
 	public static final Block VERMILION_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
 	public static final Block VERMILION_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock();
 
-	public static final Block FULVOUS_MAPLE_SAPLING = DawnFactory.sapling(new SimpleSaplingGenerator("maple/fulvous", "002"));
+	public static final Block FULVOUS_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/fulvous")));
 	public static final Block POTTED_FULVOUS_MAPLE_SAPLING = DawnFactory.potted(FULVOUS_MAPLE_SAPLING);
 	public static final Block FULVOUS_MAPLE_LEAVES = DawnFactory.leaves();
 	public static final Block FULVOUS_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
 	public static final Block FULVOUS_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock();
 
-	public static final Block MIKADO_MAPLE_SAPLING = DawnFactory.sapling(new SimpleSaplingGenerator("maple/mikado", "002"));
+	public static final Block MIKADO_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/mikado")));
 	public static final Block POTTED_MIKADO_MAPLE_SAPLING = DawnFactory.potted(MIKADO_MAPLE_SAPLING);
 	public static final Block MIKADO_MAPLE_LEAVES = DawnFactory.leaves();
 	public static final Block MIKADO_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();

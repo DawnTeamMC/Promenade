@@ -1,7 +1,7 @@
 package fr.hugman.promenade.entity;
 
+import fr.hugman.dawn.entity.ai.goal.AnimalTemptGoal;
 import fr.hugman.promenade.content.AnimalContent;
-import fr.hugman.promenade.entity.ai.goal.AnimalTemptGoal;
 import fr.hugman.promenade.registry.tag.PromenadeTags;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityDimensions;
@@ -36,12 +36,12 @@ public class CapybaraEntity extends AnimalEntity {
 	protected void initGoals() {
 		this.goalSelector.add(0, new SwimGoal(this));
 		this.goalSelector.add(1, new EscapeDangerGoal(this, 1.4D));
-		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
-		this.goalSelector.add(3, new AnimalTemptGoal(this, 1.0D, false));
-		this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
-		this.goalSelector.add(5, new WanderAroundFarGoal(this, 1.0D));
-		this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
-		this.goalSelector.add(7, new LookAroundGoal(this));
+		this.goalSelector.add(3, new AnimalMateGoal(this, 1.0D));
+		this.goalSelector.add(4, new AnimalTemptGoal(this, 1.0D, false));
+		this.goalSelector.add(5, new FollowParentGoal(this, 1.1D));
+		this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0D));
+		this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+		this.goalSelector.add(8, new LookAroundGoal(this));
 	}
 
 	public static DefaultAttributeContainer.Builder createCapybaraAttributes() {

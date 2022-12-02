@@ -1,12 +1,12 @@
 {
-  "feature": "promenade:tree/maple/fulvous/bees_002",
+  "feature": "promenade:tree/cherry_oak/pink/bees",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "promenade:fulvous_maple_sapling",
+          "Name": "promenade:pink_cherry_oak_sapling",
           "Properties": {
             "stage": "0"
           }

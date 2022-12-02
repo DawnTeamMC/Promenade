@@ -1,12 +1,12 @@
 {
-  "feature": "promenade:tree/maple/mikado/fancy_bees_002",
+  "feature": "promenade:tree/cherry_oak/white/bees",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "promenade:mikado_maple_sapling",
+          "Name": "promenade:white_cherry_oak_sapling",
           "Properties": {
             "stage": "0"
           }

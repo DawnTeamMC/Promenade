@@ -1,12 +1,12 @@
 {
-  "feature": "promenade:tree/maple/vermilion/fancy_bees_002",
+  "feature": "promenade:tree/maple/sap/fancy_bees",
   "placement": [
     {
       "type": "minecraft:block_predicate_filter",
       "predicate": {
         "type": "minecraft:would_survive",
         "state": {
-          "Name": "promenade:vermilion_maple_sapling",
+          "Name": "promenade:sap_maple_sapling",
           "Properties": {
             "stage": "0"
           }

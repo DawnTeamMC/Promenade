@@ -5,14 +5,14 @@
       "features": [
         {
           "chance": 0.2,
-          "feature": "promenade:tree/maple/vermilion/bees_002"
+          "feature": "promenade:tree/maple/vermilion/bees"
         },
         {
           "chance": 0.1,
-          "feature": "promenade:tree/maple/vermilion/fancy_bees_002"
+          "feature": "promenade:tree/maple/vermilion/fancy_bees"
         }
       ],
-      "default": "promenade:tree/maple/vermilion/bees_002"
+      "default": "promenade:tree/maple/vermilion/bees"
     }
   },
   "placement": [

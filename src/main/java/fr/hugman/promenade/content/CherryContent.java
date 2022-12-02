@@ -2,9 +2,9 @@ package fr.hugman.promenade.content;
 
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
+import fr.hugman.dawn.block.sapling.OakLikeSaplingGenerator;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
-import fr.hugman.promenade.block.sapling.SimpleSaplingGenerator;
 import fr.hugman.promenade.item.ItemGroupHelper;
 import fr.hugman.promenade.village.TradeOfferUtils;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
@@ -39,13 +39,13 @@ public class CherryContent {
 	public static final Block CHERRY_OAK_BUTTON = DawnFactory.woodenButton(false);
 	public static final Block CHERRY_OAK_PRESSURE_PLATE = DawnFactory.pressurePlate(CHERRY_OAK_PLANKS);
 
-	public static final Block PINK_CHERRY_OAK_SAPLING = DawnFactory.sapling(new SimpleSaplingGenerator("cherry_oak/pink", "005"));
+	public static final Block PINK_CHERRY_OAK_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("cherry_oak/pink")));
 	public static final Block POTTED_PINK_CHERRY_OAK_SAPLING = DawnFactory.potted(PINK_CHERRY_OAK_SAPLING);
 	public static final Block PINK_CHERRY_OAK_LEAVES = DawnFactory.leaves(BlockSoundGroup.AZALEA_LEAVES);
 	public static final Block PINK_CHERRY_OAK_LEAF_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
 	public static final DefaultParticleType PINK_CHERRY_BLOSSOM = FabricParticleTypes.simple();
 
-	public static final Block WHITE_CHERRY_OAK_SAPLING = DawnFactory.sapling(new SimpleSaplingGenerator("cherry_oak/white", "005"));
+	public static final Block WHITE_CHERRY_OAK_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("cherry_oak/white")));
 	public static final Block POTTED_WHITE_CHERRY_OAK_SAPLING = DawnFactory.potted(WHITE_CHERRY_OAK_SAPLING);
 	public static final Block WHITE_CHERRY_OAK_LEAVES = DawnFactory.leaves(BlockSoundGroup.AZALEA_LEAVES);
 	public static final Block WHITE_CHERRY_OAK_LEAF_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
