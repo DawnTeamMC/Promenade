@@ -189,7 +189,7 @@ public class DuckEntity extends AnimalEntity {
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return TEMPTATION_ITEMS.test(stack);
+		return stack.isIn(PromenadeTags.Items.BREEDING_DUCK);
 	}
 
 	@Override
@@ -212,7 +212,6 @@ public class DuckEntity extends AnimalEntity {
 	}
 
 	public enum Type {
-
 		PEKIN(0, "pekin", PromenadeTags.Biomes.PEKIN_DUCK_SPAWN),
 		MALLARD(1, "mallard", PromenadeTags.Biomes.MALLARD_DUCK_SPAWN);
 

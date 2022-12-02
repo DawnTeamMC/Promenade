@@ -61,7 +61,7 @@ public class CapybaraEntity extends AnimalEntity {
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.isIn(PromenadeTags.Items.CAPYBARA_FOOD);
+		return stack.isIn(PromenadeTags.Items.BREEDING_CAPYBARA);
 	}
 
 	@Override

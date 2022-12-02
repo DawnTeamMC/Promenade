@@ -20,7 +20,8 @@ public class PromenadeTags {
 	}
 
 	public static class Items {
-		public static final TagKey<Item> CAPYBARA_FOOD = register("capybara_food");
+		public static final TagKey<Item> BREEDING_CAPYBARA = register("breeding/capybara");
+		public static final TagKey<Item> BREEDING_DUCK = register("breeding/duck");
 
 		private static TagKey<Item> register(String name) {
 			return TagKey.of(RegistryKeys.ITEM, Promenade.id(name));
