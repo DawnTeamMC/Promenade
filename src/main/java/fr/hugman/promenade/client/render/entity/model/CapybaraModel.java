@@ -46,7 +46,7 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 		ModelPartData head = root.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
 						.uv(20, 23).cuboid(-3.0F, 1.0F, -5.0F, 6.0F, 1.0F, 5.0F)
 						.uv(0, 23).cuboid(-3.0F, -4.0F, -8.0F, 6.0F, 5.0F, 8.0F),
-				ModelTransform.of(0.0F, -3.0F, -6.5F, -0.0F, 0.0F, 0.0F));
+				ModelTransform.of(-0.5F, -2.5F, -6.5F, -0.0436F, 0.0F, 0.0F));
 		ModelPartData jaw = head.addChild(EntityModelPartNames.JAW, ModelPartBuilder.create().uv(28, 29).cuboid(-3.0F, 0.0F, -3.0F, 6.0F, 1.0F, 3.0F), ModelTransform.pivot(0.0F, 1.0F, -5.0F));
 
 		head.addChild(EntityModelPartNames.LEFT_EAR, ModelPartBuilder.create().uv(0, 10).cuboid(0.0F, -2.0F, 0.0F, 1.0F, 2.0F, 2.0F), ModelTransform.of(2.0F, -3.0F, -1.0F, -0.2F, 0.2F, 0.0F));
