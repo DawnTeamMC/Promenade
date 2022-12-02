@@ -21,11 +21,14 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 	private static final String LOWER_TEETH = "lower_teeth";
 	private static final String UPPER_TEETH = "upper_teeth";
 
+	private static final float BABY_SCALE = 0.6f;
+	private static final float BABY_Y_OFFSET = 1.0f;
+
 	private final ModelPart root;
 	private final ModelPart head;
 
-	public CapybaraModel(ModelPart root) {
-		this.root = root.getChild(EntityModelPartNames.ROOT);
+	public CapybaraModel(ModelPart part) {
+		this.root = part.getChild(EntityModelPartNames.ROOT);
 		this.head = this.root.getChild(EntityModelPartNames.HEAD);
 	}
 
@@ -78,10 +81,6 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 		return this.root;
 	}
 
-	public ModelPart getHead() {
-		return head;
-	}
-
 	private void updateAnimations(E capybara, float progress) {
 		float v = (float) capybara.getVelocity().horizontalLengthSquared();
 		float speed = MathHelper.clamp(v * 400.0F, 0.3F, 2.0F);
@@ -90,17 +89,12 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 		this.updateAnimation(capybara.walkingAnimationState, CapybaraAnimations.WALKING, progress, speed * 2);
 	}
 
-	private static final float BABY_SCALE = 0.6f;
-	private static final float BABY_HEAD_SCALE = 1.2f;
-	private static final float BABY_Y_OFFSET = -3.75f;
-
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
 		if(this.child) {
 			matrices.push();
 			matrices.scale(BABY_SCALE, BABY_SCALE, BABY_SCALE);
 			matrices.translate(0.0F, BABY_Y_OFFSET, 0.0F);
-			// TODO: scale head
 			this.getPart().render(matrices, vertices, light, overlay, red, green, blue, alpha);
 			matrices.pop();
 		}
