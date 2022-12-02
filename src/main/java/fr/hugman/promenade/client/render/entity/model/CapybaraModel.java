@@ -85,8 +85,10 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 		float v = (float) capybara.getVelocity().horizontalLengthSquared();
 		float speed = MathHelper.clamp(v * 400.0F, 0.3F, 2.0F);
 
-		this.updateAnimation(capybara.idleAnimState, CapybaraAnimations.EAR_WIGGLE, progress, 1.0F);
 		this.updateAnimation(capybara.walkingAnimationState, CapybaraAnimations.WALKING, progress, speed * 2);
+		this.updateAnimation(capybara.earWiggleAnimState, CapybaraAnimations.EAR_WIGGLE, progress, 1.0F);
+		this.updateAnimation(capybara.fallOverAnimState, CapybaraAnimations.FALL_OVER, progress, 1.0F);
+		this.updateAnimation(capybara.sleepingAnimState, CapybaraAnimations.SLEEP, progress, 1.0F);
 	}
 
 	@Override

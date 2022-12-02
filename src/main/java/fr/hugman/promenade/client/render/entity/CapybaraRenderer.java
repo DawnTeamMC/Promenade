@@ -21,6 +21,4 @@ public class CapybaraRenderer extends MobEntityRenderer<CapybaraEntity, Capybara
 		String type = entity.isBaby() ? BABY : REGULAR;
 		return Promenade.id("textures/entity/capybara/" + type + ".png");
 	}
-
-
 }

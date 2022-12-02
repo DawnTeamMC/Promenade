@@ -22,11 +22,13 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class CapybaraEntity extends AnimalEntity {
-	private static final IntProvider IDLE_ANIM_COOLDOWN = BiasedToBottomIntProvider.create(4, 10);
+	private static final IntProvider EAR_WIGGLE_COOLDOWN_PROVIDER = BiasedToBottomIntProvider.create(4, 64); // Minimum MUST be the length of the anim
 
 	public final AnimationState walkingAnimationState = new AnimationState();
-	public final AnimationState idleAnimState = new AnimationState();
-	private int idleAnimCooldown = 0;
+	public final AnimationState earWiggleAnimState = new AnimationState();
+	public final AnimationState fallOverAnimState = new AnimationState();
+	public final AnimationState sleepingAnimState = new AnimationState();
+	private int earWiggleCooldown = 0;
 
 	public CapybaraEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
@@ -78,12 +80,12 @@ public class CapybaraEntity extends AnimalEntity {
 	}
 
 	private void updateAnimations() {
-		if(this.idleAnimCooldown <= 0) {
-			this.idleAnimCooldown = IDLE_ANIM_COOLDOWN.get(this.random);
-			this.idleAnimState.start(this.age);
+		if(this.earWiggleCooldown <= 0) {
+			this.earWiggleCooldown = EAR_WIGGLE_COOLDOWN_PROVIDER.get(this.random);
+			this.earWiggleAnimState.start(this.age);
 		}
 		else {
-			--this.idleAnimCooldown;
+			--this.earWiggleCooldown;
 		}
 		if(this.getPose() == EntityPose.STANDING) {
 			this.walkingAnimationState.setRunning((this.onGround || this.hasPrimaryPassenger()) && this.getVelocity().horizontalLengthSquared() > 1.0E-6, this.age);
