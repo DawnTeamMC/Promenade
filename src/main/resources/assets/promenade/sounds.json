@@ -29,6 +29,25 @@
 			"minecraft:mob/chicken/step2"
 		]
 	},
+	"entity.capybara.ambient.baby": {
+		"subtitle": "subtitles.promenade.entity.capybara.ambient",
+		"sounds": [
+			"promenade:entity/capybara/ambient/baby/1",
+			"promenade:entity/capybara/ambient/baby/2",
+			"promenade:entity/capybara/ambient/baby/3",
+			"promenade:entity/capybara/ambient/baby/4",
+			"promenade:entity/capybara/ambient/baby/5",
+			"promenade:entity/capybara/ambient/baby/6"
+		]
+	},
+	"entity.capybara.ambient": {
+		"subtitle": "subtitles.promenade.entity.capybara.ambient",
+		"sounds": [
+			"promenade:entity/capybara/ambient/1",
+			"promenade:entity/capybara/ambient/2"
+		]
+	},
+
 	"entity.sunken_skeleton.ambient": {
 		"subtitle": "subtitles.promenade.entity.sunken_skeleton.ambient",
 		"sounds": [

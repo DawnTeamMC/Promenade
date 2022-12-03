@@ -7,6 +7,7 @@ import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.entity.CapybaraEntity;
 import fr.hugman.promenade.entity.DuckEntity;
 import fr.hugman.promenade.item.ItemGroupHelper;
+import fr.hugman.promenade.registry.tag.PromenadeTags;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -36,6 +37,8 @@ public class AnimalContent {
 			.spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn)
 			.build();
 	public static final Item CAPYBARA_SPAWN_EGG = DawnFactory.spawnEgg(CAPYBARA, 13075263, 3945258);
+	public static final SoundEvent CAPYBARA_AMBIENT_SOUND = SoundEvent.of(Promenade.id("entity.capybara.ambient"));
+	public static final SoundEvent CAPYBARA_AMBIENT_BABY_SOUND = SoundEvent.of(Promenade.id("entity.capybara.ambient.baby"));
 
 	public static final EntityType<DuckEntity> DUCK = FabricEntityTypeBuilder.createMob()
 			.entityFactory(DuckEntity::new)
@@ -58,6 +61,8 @@ public class AnimalContent {
 	public static void init() {
 		Registrar.add(Promenade.id("capybara"), CAPYBARA);
 		Registrar.add(Promenade.id("capybara_spawn_egg"), CAPYBARA_SPAWN_EGG);
+		Registrar.add(CAPYBARA_AMBIENT_SOUND);
+		Registrar.add(CAPYBARA_AMBIENT_BABY_SOUND);
 
 		Registrar.add(Promenade.id("duck"), DUCK);
 		Registrar.add(Promenade.id("duck_spawn_egg"), DUCK_SPAWN_EGG);

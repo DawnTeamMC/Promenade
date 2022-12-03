@@ -16,6 +16,7 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.world.World;
@@ -28,11 +29,24 @@ public class CapybaraEntity extends AnimalEntity {
 	public final AnimationState earWiggleAnimState = new AnimationState();
 	public final AnimationState fallOverAnimState = new AnimationState();
 	public final AnimationState sleepingAnimState = new AnimationState();
+
 	private int earWiggleCooldown = 0;
 
 	public CapybaraEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
 	}
+
+	@Override
+	public void tick() {
+		super.tick();
+		if(this.world.isClient()) {
+			this.updateAnimations();
+		}
+	}
+
+	/*========*/
+	/*   AI   */
+	/*========*/
 
 	@Override
 	protected void initGoals() {
@@ -47,18 +61,9 @@ public class CapybaraEntity extends AnimalEntity {
 	}
 
 	public static DefaultAttributeContainer.Builder createCapybaraAttributes() {
-		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2);
-	}
-
-	@Override
-	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions size) {
-		return size.height * 13 / 14;
-	}
-
-	@Nullable
-	@Override
-	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-		return AnimalContent.CAPYBARA.create(this.world);
+		return MobEntity.createMobAttributes()
+				.add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0)
+				.add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2);
 	}
 
 	@Override
@@ -66,17 +71,13 @@ public class CapybaraEntity extends AnimalEntity {
 		return stack.isIn(PromenadeTags.Items.BREEDING_CAPYBARA);
 	}
 
-	@Override
-	public void tick() {
-		super.tick();
-		if(this.world.isClient()) {
-			this.updateAnimations();
-		}
-	}
+	/*================*/
+	/*   ANIMATIONS   */
+	/*================*/
 
-	public void setStanding() {
-		this.setPose(EntityPose.STANDING);
-		//this.setLastPoseTick(this.world.getTime() - 52L);
+	@Override
+	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions size) {
+		return size.height * 13 / 14;
 	}
 
 	private void updateAnimations() {
@@ -90,5 +91,44 @@ public class CapybaraEntity extends AnimalEntity {
 		if(this.getPose() == EntityPose.STANDING) {
 			this.walkingAnimationState.setRunning((this.onGround || this.hasPrimaryPassenger()) && this.getVelocity().horizontalLengthSquared() > 1.0E-6, this.age);
 		}
+	}
+
+	public void setStanding() {
+		this.setPose(EntityPose.STANDING);
+		//this.setLastPoseTick(this.world.getTime() - 52L);
+	}
+
+	/*============*/
+	/*   SOUNDS   */
+	/*============*/
+
+	@Override
+	public void playAmbientSound() {
+		SoundEvent soundEvent = this.getAmbientSound();
+		if(soundEvent != null) {
+			// do not pitch up if the sound for babies as it is a custom one
+			this.playSound(soundEvent, this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+		}
+	}
+
+	@Nullable
+	@Override
+	protected SoundEvent getAmbientSound() {
+		return this.isBaby() ? AnimalContent.CAPYBARA_AMBIENT_BABY_SOUND : AnimalContent.CAPYBARA_AMBIENT_SOUND;
+	}
+
+	@Override
+	public int getMinAmbientSoundDelay() {
+		return this.isBaby() ? 20 : super.getMinAmbientSoundDelay();
+	}
+
+	/*==============*/
+	/*   VARIANTS   */
+	/*==============*/
+
+	@Nullable
+	@Override
+	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
+		return AnimalContent.CAPYBARA.create(this.world);
 	}
 }
