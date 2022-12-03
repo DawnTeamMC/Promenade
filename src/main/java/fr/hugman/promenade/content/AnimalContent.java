@@ -73,6 +73,9 @@ public class AnimalContent {
 			Predicate<BiomeSelectionContext> hasFarmAnimals = BiomeSelectors.spawnsOneOf(EntityType.COW).and(BiomeSelectors.spawnsOneOf(EntityType.SHEEP)).and(BiomeSelectors.spawnsOneOf(EntityType.CHICKEN)).and(BiomeSelectors.spawnsOneOf(EntityType.PIG));
 			BiomeModifications.addSpawn(hasFarmAnimals, SpawnGroup.CREATURE, DUCK, Promenade.CONFIG.animals.ducks_weight, 4, 4);
 		}
+		if(Promenade.CONFIG.animals.capybaras_weight != 0) {
+			BiomeModifications.addSpawn(BiomeSelectors.tag(PromenadeTags.Biomes.CAPYBARA_SPAWN), SpawnGroup.CREATURE, CAPYBARA, Promenade.CONFIG.animals.capybaras_weight, 4, 4);
+		}
 
 		ItemGroupHelper.appendSpawnEgg(CAPYBARA_SPAWN_EGG);
 		ItemGroupHelper.appendSpawnEgg(DUCK_SPAWN_EGG);
