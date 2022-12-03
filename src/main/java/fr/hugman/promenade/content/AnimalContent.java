@@ -37,7 +37,7 @@ public class AnimalContent {
 			.defaultAttributes(CapybaraEntity::createCapybaraAttributes)
 			.spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn)
 			.build();
-	public static final Item CAPYBARA_SPAWN_EGG = DawnFactory.spawnEgg(CAPYBARA, 13075263, 3945258);
+	public static final Item CAPYBARA_SPAWN_EGG = DawnFactory.spawnEgg(CAPYBARA, 0xa0704e, 0x433930);
 	public static final SoundEvent CAPYBARA_AMBIENT_SOUND = SoundEvent.of(Promenade.id("entity.capybara.ambient"));
 	public static final SoundEvent CAPYBARA_AMBIENT_BABY_SOUND = SoundEvent.of(Promenade.id("entity.capybara.ambient.baby"));
 
