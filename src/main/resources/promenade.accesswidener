@@ -8,3 +8,5 @@ accessible method net/minecraft/world/gen/surfacebuilder/VanillaSurfaceRules blo
 accessible    method    net/minecraft/sound/SoundEvent    of    (Lnet/minecraft/util/Identifier;F)Lnet/minecraft/sound/SoundEvent;
 accessible    method    net/minecraft/sound/SoundEvent    of    (Lnet/minecraft/util/Identifier;)Lnet/minecraft/sound/SoundEvent;
 
+accessible    method    net/minecraft/registry/Registries    create    (Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/registry/Registries$Initializer;)Lnet/minecraft/registry/Registry;
+accessible    class    net/minecraft/registry/Registries$Initializer

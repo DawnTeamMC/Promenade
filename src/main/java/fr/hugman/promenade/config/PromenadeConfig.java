@@ -49,6 +49,9 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 	public static class AnimalsCategory implements ConfigData {
 		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+		public int capybaras_weight = 10;
+		@ConfigEntry.Gui.RequiresRestart
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 100)
 		public int ducks_weight = 10;
 	}
 

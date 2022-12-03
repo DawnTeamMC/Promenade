@@ -5,6 +5,7 @@ import fr.hugman.dawn.Registrar;
 import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.entity.CapybaraEntity;
+import fr.hugman.promenade.entity.CapybaraVariants;
 import fr.hugman.promenade.entity.DuckEntity;
 import fr.hugman.promenade.item.ItemGroupHelper;
 import fr.hugman.promenade.registry.tag.PromenadeTags;
@@ -59,6 +60,7 @@ public class AnimalContent {
 	public static final Item COOKED_DUCK_FOOD = new Item(new DawnItemSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).meat().build()));
 
 	public static void init() {
+		CapybaraVariants.init();
 		Registrar.add(Promenade.id("capybara"), CAPYBARA);
 		Registrar.add(Promenade.id("capybara_spawn_egg"), CAPYBARA_SPAWN_EGG);
 		Registrar.add(CAPYBARA_AMBIENT_SOUND);

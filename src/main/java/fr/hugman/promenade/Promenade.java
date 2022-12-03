@@ -1,8 +1,8 @@
 package fr.hugman.promenade;
 
-import fr.hugman.promenade.compat.ColumnsContent;
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.content.*;
+import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
@@ -19,6 +19,8 @@ public class Promenade implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		PromenadeTrackedData.init();
+
 		CommonContent.init();
 		VanillaPilesContent.init();
 		FoodContent.init();
