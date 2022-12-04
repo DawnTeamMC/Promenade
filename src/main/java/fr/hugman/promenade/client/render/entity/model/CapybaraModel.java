@@ -89,6 +89,7 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 		this.updateAnimation(capybara.earWiggleAnimState, CapybaraAnimations.EAR_WIGGLE, progress, 1.0F);
 		this.updateAnimation(capybara.fallOverAnimState, CapybaraAnimations.FALL_OVER, progress, 1.0F);
 		this.updateAnimation(capybara.sleepingAnimState, CapybaraAnimations.SLEEP, progress, 1.0F);
+		this.updateAnimation(capybara.fartAnimState, CapybaraAnimations.FART, progress, 1.0F);
 	}
 
 	@Override

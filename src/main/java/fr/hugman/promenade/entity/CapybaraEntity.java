@@ -5,12 +5,15 @@ import fr.hugman.promenade.content.AnimalContent;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.registry.PromenadeRegistries;
 import fr.hugman.promenade.registry.tag.PromenadeTags;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
@@ -28,16 +31,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class CapybaraEntity extends AnimalEntity implements VariantHolder<CapybaraVariant> {
-	private static final TrackedData<CapybaraVariant> VARIANT = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_VARIANT);
-	public static final String VARIANT_KEY = "variant";
-
-	private static final IntProvider EAR_WIGGLE_COOLDOWN_PROVIDER = BiasedToBottomIntProvider.create(4, 64); // Minimum MUST be the length of the anim
-	public final AnimationState walkingAnimationState = new AnimationState();
-	public final AnimationState earWiggleAnimState = new AnimationState();
-	public final AnimationState fallOverAnimState = new AnimationState();
-	public final AnimationState sleepingAnimState = new AnimationState();
-	private int earWiggleCooldown = 0;
-
 	public CapybaraEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
 	}
@@ -86,6 +79,14 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	/*   ANIMATIONS   */
 	/*================*/
 
+	private static final IntProvider EAR_WIGGLE_COOLDOWN_PROVIDER = BiasedToBottomIntProvider.create(4, 64); // Minimum MUST be the length of the anim
+	public final AnimationState walkingAnimationState = new AnimationState();
+	public final AnimationState earWiggleAnimState = new AnimationState();
+	public final AnimationState fallOverAnimState = new AnimationState();
+	public final AnimationState sleepingAnimState = new AnimationState();
+	public final AnimationState fartAnimState = new AnimationState();
+	private int earWiggleCooldown = 0;
+
 	@Override
 	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions size) {
 		return size.height * 13 / 14;
@@ -109,23 +110,42 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		//this.setLastPoseTick(this.world.getTime() - 52L);
 	}
 
+	public boolean isSurprisedByFart() {
+		return this.fartAnimState.isRunning() && this.fartAnimState.getTimeRunning() < (1.7F * 20L);
+	}
+
+	@Environment(EnvType.CLIENT)
+	public boolean hasLargeEyes() {
+		return isBaby() || isSurprisedByFart();
+	}
+
 	/*============*/
 	/*   SOUNDS   */
 	/*============*/
 
 	@Override
 	public void playAmbientSound() {
-		SoundEvent soundEvent = this.getAmbientSound();
-		if(soundEvent != null) {
-			// do not pitch up if the sound for babies as it is a custom one
-			this.playSound(soundEvent, this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+		if(this.shouldFart()) {
+			this.playSound(AnimalContent.CAPYBARA_FART_SOUND, this.getSoundVolume(), this.getSoundPitch());
+
+			if(this.getPose() == EntityPose.STANDING) {
+				this.fartAnimState.start(this.age);
+			}
+		}
+		else {
+			SoundEvent soundEvent = this.getAmbientSound();
+			if(soundEvent != null) {
+				// do not pitch up if the sound for babies as it is a custom one
+				this.playSound(soundEvent, this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+			}
 		}
 	}
 
 	@Nullable
 	@Override
 	protected SoundEvent getAmbientSound() {
-		return this.isBaby() ? AnimalContent.CAPYBARA_AMBIENT_BABY_SOUND : AnimalContent.CAPYBARA_AMBIENT_SOUND;
+		if(this.isBaby()) return AnimalContent.CAPYBARA_AMBIENT_BABY_SOUND;
+		return AnimalContent.CAPYBARA_AMBIENT_SOUND;
 	}
 
 	@Override
@@ -136,6 +156,9 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	/*==============*/
 	/*   VARIANTS   */
 	/*==============*/
+
+	private static final TrackedData<CapybaraVariant> VARIANT = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_VARIANT);
+	private static final TrackedData<Float> FART_CHANCE = DataTracker.registerData(CapybaraEntity.class, TrackedDataHandlerRegistry.FLOAT);
 
 	@Nullable
 	@Override
@@ -153,19 +176,35 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		this.dataTracker.set(VARIANT, variant);
 	}
 
+	public float getFartChance() {
+		return this.dataTracker.get(FART_CHANCE);
+	}
+
+	public void setFartChance(float frequency) {
+		this.dataTracker.set(FART_CHANCE, frequency);
+	}
+
+	public boolean shouldFart() {
+		return this.random.nextFloat() < this.getFartChance();
+	}
+
 	/*==========*/
 	/*   DATA   */
 	/*==========*/
+	public static final String VARIANT_KEY = "variant";
+	public static final String FART_CHANCE_KEY = "fart_chance";
 
 	@Override
 	protected void initDataTracker() {
 		super.initDataTracker();
 		this.dataTracker.startTracking(VARIANT, CapybaraVariants.getDefault());
+		this.dataTracker.startTracking(FART_CHANCE, 0.0f);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		nbt.putString(VARIANT_KEY, PromenadeRegistries.CAPYBARA_VARIANT.getId(this.getVariant()).toString());
+		nbt.putFloat(FART_CHANCE_KEY, this.getFartChance());
 	}
 
 	public void readCustomDataFromNbt(NbtCompound nbt) {
@@ -174,6 +213,6 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		if(variant != null) {
 			this.setVariant(variant);
 		}
-
+		this.setFartChance(nbt.getFloat(FART_CHANCE_KEY));
 	}
 }
