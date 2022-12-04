@@ -47,7 +47,14 @@
 			"promenade:entity/capybara/ambient/2"
 		]
 	},
-
+	"entity.capybara.fart": {
+		"subtitle": "subtitles.promenade.entity.capybara.fart",
+		"sounds": [
+			"promenade:entity/capybara/fart/1",
+			"promenade:entity/capybara/fart/2",
+			"promenade:entity/capybara/fart/3"
+		]
+	},
 	"entity.sunken_skeleton.ambient": {
 		"subtitle": "subtitles.promenade.entity.sunken_skeleton.ambient",
 		"sounds": [

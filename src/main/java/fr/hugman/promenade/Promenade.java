@@ -2,6 +2,7 @@ package fr.hugman.promenade;
 
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.content.*;
+import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
@@ -20,6 +21,7 @@ public class Promenade implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		PromenadeTrackedData.init();
+		PromenadeSensorTypes.init();
 
 		CommonContent.init();
 		VanillaPilesContent.init();
