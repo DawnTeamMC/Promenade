@@ -19,12 +19,9 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.CamelEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
@@ -72,8 +69,6 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	/*========*/
 	/*   AI   */
 	/*========*/
-	public static final Ingredient BREEDING_INGREDIENT = Ingredient.ofItems(Items.CARROT);
-
 	protected Brain.Profile<CapybaraEntity> createBrainProfile() {
 		return CapybaraBrain.createProfile();
 	}
@@ -258,12 +253,8 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	public boolean isChangingPose() {
 		long l = this.getLastPoseTickDelta();
 		return switch(this.getPose()) {
-			case STANDING -> {
-				yield l < STAND_UP_LENGTH;
-			}
-			case SLEEPING -> {
-				yield l < FALL_OVER_LENGTH;
-			}
+			case STANDING -> l < STAND_UP_LENGTH;
+			case SLEEPING -> l < FALL_OVER_LENGTH;
 			default -> false;
 		};
 	}
@@ -331,7 +322,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	/*==========*/
 	/*   DATA   */
 	/*==========*/
-	public static final TrackedData<Long> LAST_POSE_TICK = DataTracker.registerData(CamelEntity.class, TrackedDataHandlerRegistry.LONG);
+	public static final TrackedData<Long> LAST_POSE_TICK = DataTracker.registerData(CapybaraEntity.class, TrackedDataHandlerRegistry.LONG);
 	public static final long FALL_OVER_LENGTH = 39L;
 	public static final long STAND_UP_LENGTH = 39L;
 	public static final long FART_LENGTH = 77L;
