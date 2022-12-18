@@ -59,7 +59,9 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 
 	public void setAngles(E capybara, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 		this.getPart().traverse().forEach(ModelPart::resetTransform);
-		this.setHeadAngles(headYaw, headPitch);
+		if(capybara.canAngleHead()) {
+			this.setHeadAngles(headYaw, headPitch);
+		}
 		this.updateVisibleParts(capybara);
 		this.updateAnimations(capybara, animationProgress);
 	}
@@ -72,7 +74,7 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 		this.head.pitch = headPitch * 0.017453292F;
 	}
 
-	private void updateVisibleParts(E entity) {
+	private void updateVisibleParts(E capybara) {
 		//TODO: add haircuts
 	}
 
@@ -86,9 +88,10 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 		float speed = MathHelper.clamp(v * 400.0F, 0.3F, 2.0F);
 
 		this.updateAnimation(capybara.walkingAnimationState, CapybaraAnimations.WALKING, progress, speed * 2);
-		this.updateAnimation(capybara.earWiggleAnimState, CapybaraAnimations.EAR_WIGGLE, progress, 1.0F);
+		this.updateAnimation(capybara.earWiggleAnimState, CapybaraAnimations.EAR_WIGGLE, progress, capybara.getEarWiggleSpeed());
 		this.updateAnimation(capybara.fallOverAnimState, CapybaraAnimations.FALL_OVER, progress, 1.0F);
 		this.updateAnimation(capybara.sleepingAnimState, CapybaraAnimations.SLEEP, progress, 1.0F);
+		this.updateAnimation(capybara.wakeUpAnimState, CapybaraAnimations.WAKE_UP, progress, 1.0F);
 		this.updateAnimation(capybara.fartAnimState, CapybaraAnimations.FART, progress, 1.0F);
 	}
 

@@ -15,8 +15,6 @@ import net.minecraft.entity.ai.brain.sensor.Sensor;
 import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.brain.task.*;
 import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.entity.passive.CamelBrain;
-import net.minecraft.entity.passive.FrogBrain;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.random.Random;
@@ -31,6 +29,7 @@ public class CapybaraBrain {
 			SensorType.HURT_BY,
 			PromenadeSensorTypes.CAPYBARA_TEMPTATIONS,
 			SensorType.NEAREST_ADULT);
+
 	private static final ImmutableList<MemoryModuleType<?>> MEMORY_MODULES = ImmutableList.of(
 			MemoryModuleType.IS_PANICKING,
 			MemoryModuleType.HURT_BY,
@@ -66,7 +65,7 @@ public class CapybaraBrain {
 	private static void addCoreActivities(Brain<CapybaraEntity> brain) {
 		brain.setTaskList(Activity.CORE, 0, ImmutableList.of(
 				new StayAboveWaterTask(0.8f),
-				new WalkTask(0.5f),
+				new WalkTask(3.0f),
 				new LookAroundTask(45, 90),
 				new WanderAroundTask(),
 				new TemptationCooldownTask(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS),
@@ -82,9 +81,10 @@ public class CapybaraBrain {
 				Pair.of(5, new RandomTask<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryModuleState.VALUE_ABSENT), ImmutableList.of(
 						Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), StrollTask.create(2.0f)), 1),
 						Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), GoTowardsLookTargetTask.create(2.0f, 3)), 1),
-						Pair.of(new FartTask(10), 1),
 						Pair.of(new SleepTask(20), 1),
-						Pair.of(new WaitTask(30, 60), 1))))));
+						Pair.of(new FartTask(10), 1),
+						Pair.of(new WaitTask(30, 60), 1)
+				)))));
 	}
 
 	public static void updateActivities(CapybaraEntity capybara) {
@@ -115,16 +115,16 @@ public class CapybaraBrain {
 
 		@Override
 		protected boolean shouldRun(ServerWorld world, CapybaraEntity capybara) {
-			return !capybara.isTouchingWater() && capybara.getLastPoseTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasPrimaryPassenger();
+			return !capybara.isTouchingWater() && capybara.getLastStateTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasPrimaryPassenger();
 		}
 
 		@Override
 		protected void run(ServerWorld world, CapybaraEntity capybara, long l) {
-			if(capybara.isSleeping()) {
-				capybara.startStanding();
+			if(capybara.shouldStopSleeping()) {
+				capybara.stopSleeping();
 			}
-			else if(!capybara.isPanicking() && !capybara.isFarting()) {
-				capybara.fallOverToSleep();
+			else if(capybara.canSleep()) {
+				capybara.startSleeping();
 			}
 		}
 	}
@@ -139,12 +139,12 @@ public class CapybaraBrain {
 
 		@Override
 		protected boolean shouldRun(ServerWorld world, CapybaraEntity capybara) {
-			return capybara.shouldFart() && !capybara.isTouchingWater() && capybara.getLastPoseTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasPrimaryPassenger();
+			return capybara.shouldFart() && !capybara.isTouchingWater() && capybara.getLastStateTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasPrimaryPassenger();
 		}
 
 		@Override
 		protected void run(ServerWorld world, CapybaraEntity capybara, long l) {
-			if(!capybara.isPanicking() && !capybara.isSleeping()) {
+			if(capybara.canFart()) {
 				capybara.fart();
 			}
 		}

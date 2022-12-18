@@ -19,14 +19,13 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.CamelBrain;
-import net.minecraft.entity.passive.CamelEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
@@ -47,6 +46,9 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		if(this.world.isClient()) {
 			this.updateAnimations();
 		}
+		if(this.isFarting() && this.getLastStateTickDelta() > FART_LENGTH) {
+			this.stopFart();
+		}
 	}
 
 	@Override
@@ -64,13 +66,16 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
 		CapybaraBrain.method_45367(this, world.getRandom());
 		this.setVariant(CapybaraVariants.getRandom(this.random));
-		this.dataTracker.set(LAST_POSE_TICK, world.toServerWorld().getTime() - FALL_OVER_LENGTH);
+		this.dataTracker.set(LAST_STATE_TICK, world.toServerWorld().getTime() - WAKE_UP_LENGTH);
 		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
 	}
+
+
 
 	/*========*/
 	/*   AI   */
 	/*========*/
+
 	protected Brain.Profile<CapybaraEntity> createBrainProfile() {
 		return CapybaraBrain.createProfile();
 	}
@@ -104,7 +109,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	}
 
 	public boolean isStationary() {
-		return this.isFarting() || this.isSleeping() || this.isChangingPose();
+		return this.isFarting() || this.isSleeping() || this.isChangingState();
 	}
 
 	public boolean isPanicking() {
@@ -129,43 +134,40 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		}
 	}
 
+
+
 	/*================*/
 	/*   ANIMATIONS   */
 	/*================*/
 
-
-	private static final IntProvider EAR_WIGGLE_COOLDOWN_PROVIDER = BiasedToBottomIntProvider.create(4, 64); // Minimum MUST be the length of the anim
+	private static final int EAR_WIGGLE_LENGHT = (int) (0.2f * 20);
+	private static final IntProvider EAR_WIGGLE_COOLDOWN_PROVIDER = BiasedToBottomIntProvider.create(EAR_WIGGLE_LENGHT, 64); // Minimum MUST be the length of the anim
 	public final AnimationState walkingAnimationState = new AnimationState();
 	public final AnimationState earWiggleAnimState = new AnimationState();
 	public final AnimationState fallOverAnimState = new AnimationState();
 	public final AnimationState sleepingAnimState = new AnimationState();
+	public final AnimationState wakeUpAnimState = new AnimationState();
 	public final AnimationState fartAnimState = new AnimationState();
 	private int earWiggleCooldown = 0;
 
-	@Override
-	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions size) {
-		return size.height * 13 / 14;
-	}
-
 	private void updateAnimations() {
 		if(this.earWiggleCooldown <= 0) {
-			this.earWiggleCooldown = EAR_WIGGLE_COOLDOWN_PROVIDER.get(this.random);
+			this.earWiggleCooldown = MathHelper.clamp(EAR_WIGGLE_COOLDOWN_PROVIDER.get(this.random), (int) (EAR_WIGGLE_LENGHT / this.getEarWiggleSpeed()), Integer.MAX_VALUE);
 			this.earWiggleAnimState.start(this.age);
 		}
 		else {
 			--this.earWiggleCooldown;
 		}
 
-		switch(this.getPose()) {
-			case STANDING: {
+		switch(this.getState()) {
+			case STANDING -> {
 				this.walkingAnimationState.setRunning((this.onGround || this.hasPrimaryPassenger()) && this.getVelocity().horizontalLengthSquared() > 1.0E-6, this.age);
 				this.sleepingAnimState.stop();
-				//this.standingTransitionAnimationState.setRunning(this.isChangingPose(), this.age);
+				this.wakeUpAnimState.setRunning(this.isChangingState(), this.age);
 				this.fallOverAnimState.stop();
 				this.fartAnimState.stop();
-				break;
 			}
-			case SLEEPING: {
+			case SLEEPING -> {
 				this.walkingAnimationState.stop();
 				if(this.shouldPlayFallOverAnimation()) {
 					this.fallOverAnimState.startIfNotRunning(this.age);
@@ -175,85 +177,113 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 					this.fallOverAnimState.stop();
 					this.sleepingAnimState.startIfNotRunning(this.age);
 				}
-				//this.standingTransitionAnimationState.stop();
+				this.wakeUpAnimState.stop();
 				this.fartAnimState.stop();
-				break;
 			}
-			case CROUCHING: {
+			case FARTING -> {
 				this.walkingAnimationState.stop();
 				this.sleepingAnimState.stop();
 				this.fallOverAnimState.stop();
-				// this.standingTransitionAnimationState.stop();
+				this.wakeUpAnimState.stop();
 				this.fartAnimState.startIfNotRunning(this.age);
-				break;
 			}
 		}
 	}
 
-	public void setLastPoseTick(long lastPoseTick) {
-		this.dataTracker.set(LAST_POSE_TICK, lastPoseTick);
-	}
-
-	public long getLastPoseTickDelta() {
-		return this.world.getTime() - this.dataTracker.get(LAST_POSE_TICK);
-	}
-
-	public void fart() {
-		if(!this.isInPose(EntityPose.CROUCHING)) {
-			this.playSound(AnimalContent.CAPYBARA_FART_SOUND, 1.0f, 1.0f);
-			this.setPose(EntityPose.CROUCHING);
-			this.setLastPoseTick(this.world.getTime());
-		}
-	}
-
-	public void fallOverToSleep() {
-		if(!this.isInPose(EntityPose.SLEEPING)) {
-			this.setPose(EntityPose.SLEEPING);
-			this.setLastPoseTick(this.world.getTime());
-		}
-	}
-
-	public void startStanding() {
-		if(!this.isInPose(EntityPose.STANDING)) {
-			this.setPose(EntityPose.STANDING);
-			this.setLastPoseTick(this.world.getTime());
-		}
-	}
-
-	public void setStanding() {
-		this.setPose(EntityPose.STANDING);
-		this.setLastPoseTick(this.world.getTime() - STAND_UP_LENGTH);
-	}
-
-	private boolean shouldPlayFallOverAnimation() {
-		return isSleeping() && this.getLastPoseTickDelta() < FALL_OVER_LENGTH;
-	}
-
-	public boolean isSleeping() {
-		return this.getPose() == EntityPose.SLEEPING;
-	}
-
-	public boolean isFarting() {
-		return this.getPose() == EntityPose.CROUCHING;
-	}
-
-	public boolean isChangingPose() {
-		long l = this.getLastPoseTickDelta();
-		return switch(this.getPose()) {
-			case STANDING -> l < STAND_UP_LENGTH;
+	public boolean isChangingState() {
+		long l = this.getLastStateTickDelta();
+		return switch(this.getState()) {
+			case STANDING -> l < WAKE_UP_LENGTH;
 			case SLEEPING -> l < FALL_OVER_LENGTH;
 			default -> false;
 		};
 	}
 
+	private boolean shouldPlayFallOverAnimation() {
+		return isSleeping() && this.getLastStateTickDelta() < FALL_OVER_LENGTH;
+	}
+
+	public void startSleeping() {
+		if(!this.isSleeping()) {
+			this.setState(CapybaraState.SLEEPING);
+			this.setLastStateTick(this.world.getTime());
+		}
+	}
+
+	public boolean canSleep() {
+		return !this.isPanicking() && !this.isFarting();
+	}
+
+	public boolean isSleeping() {
+		return this.getState() == CapybaraState.SLEEPING;
+	}
+
+	public void stopSleeping() {
+		if(this.getState() != CapybaraState.STANDING) {
+			this.setState(CapybaraState.STANDING);
+			this.setLastStateTick(this.world.getTime());
+		}
+	}
+
+	public boolean shouldStopSleeping() {
+		return this.isSleeping() && this.world.isDay();
+	}
+
+	public void setStanding() {
+		this.setState(CapybaraState.STANDING);
+		this.setLastStateTick(this.world.getTime() - WAKE_UP_LENGTH);
+	}
+
+	public void fart() {
+		if(!this.isFarting()) {
+			this.playSound(AnimalContent.CAPYBARA_FART_SOUND, getSoundVolume(), getSoundPitch());
+			this.setState(CapybaraState.FARTING);
+			this.setLastStateTick(this.world.getTime());
+		}
+	}
+
+	public void stopFart() {
+		if(this.isFarting()) {
+			this.setStanding();
+		}
+	}
+
+	public boolean isFarting() {
+		return this.getState() == CapybaraState.FARTING;
+	}
+
+	public boolean canFart() {
+		return !this.isPanicking() && !this.isSleeping();
+	}
+
+	public boolean shouldFart() {
+		return this.random.nextFloat() < this.getFartChance();
+	}
+
 	public boolean isSurprisedByFart() {
-		return this.fartAnimState.isRunning() && this.fartAnimState.getTimeRunning() < (1.7F * 1000L / 20L);
+		return this.isFarting() && this.getLastStateTickDelta() < 40L;
+	}
+
+	@Override
+	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions size) {
+		return size.height * 13 / 14;
 	}
 
 	@Environment(EnvType.CLIENT)
 	public boolean hasLargeEyes() {
 		return isBaby() || isSurprisedByFart();
 	}
+
+	@Environment(EnvType.CLIENT)
+	public boolean canAngleHead() {
+		return !this.isSleeping() && !this.isChangingState();
+	}
+
+	public float getEarWiggleSpeed() {
+		return this.isSleeping() ? 0.5f : 1.0f;
+	}
+
+
 
 	/*============*/
 	/*   SOUNDS   */
@@ -262,6 +292,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	@Nullable
 	@Override
 	protected SoundEvent getAmbientSound() {
+		if(this.isSleeping()) return null; //TODO: Sleeping sound
 		if(this.isBaby()) return AnimalContent.CAPYBARA_AMBIENT_BABY_SOUND;
 		return AnimalContent.CAPYBARA_AMBIENT_SOUND;
 	}
@@ -275,10 +306,12 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	public void playAmbientSound() {
 		SoundEvent soundEvent = this.getAmbientSound();
 		if(soundEvent != null) {
-			// do not pitch up if the sound for babies as it is a custom one
+			// Do not pitch up if the sound for babies as it is already pitched up
 			this.playSound(soundEvent, this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
 		}
 	}
+
+
 
 	/*==============*/
 	/*   VARIANTS   */
@@ -311,21 +344,21 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		this.dataTracker.set(FART_CHANCE, frequency);
 	}
 
-	public boolean shouldFart() {
-		return this.random.nextFloat() < this.getFartChance();
-	}
+
 
 	/*==========*/
 	/*   DATA   */
 	/*==========*/
-	public static final TrackedData<Long> LAST_POSE_TICK = DataTracker.registerData(CapybaraEntity.class, TrackedDataHandlerRegistry.LONG);
+
+	public static final TrackedData<Long> LAST_STATE_TICK = DataTracker.registerData(CapybaraEntity.class, TrackedDataHandlerRegistry.LONG);
+	protected static final TrackedData<CapybaraState> STATE = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_STATE);
 	public static final long FALL_OVER_LENGTH = 39L;
-	public static final long STAND_UP_LENGTH = 39L;
+	public static final long WAKE_UP_LENGTH = 116L;
 	public static final long FART_LENGTH = 77L;
 
 	public static final String VARIANT_KEY = "Variant";
 	public static final String FART_CHANCE_KEY = "FartChance";
-	public static final String LAST_POSE_TICK_KEY = "LastPoseTick";
+	public static final String LAST_STATE_TICK_KEY = "LastStateTick";
 	public static final String FARTING_KEY = "IsFarting";
 	public static final String SLEEPING_KEY = "IsSleeping";
 
@@ -334,16 +367,17 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		super.initDataTracker();
 		this.dataTracker.startTracking(VARIANT, CapybaraVariants.getDefault());
 		this.dataTracker.startTracking(FART_CHANCE, 0.0f);
-		this.dataTracker.startTracking(LAST_POSE_TICK, -FALL_OVER_LENGTH);
+		this.dataTracker.startTracking(STATE, CapybaraState.STANDING);
+		this.dataTracker.startTracking(LAST_STATE_TICK, -WAKE_UP_LENGTH);
 	}
 
 	public void writeCustomDataToNbt(NbtCompound nbt) {
 		super.writeCustomDataToNbt(nbt);
 		nbt.putString(VARIANT_KEY, PromenadeRegistries.CAPYBARA_VARIANT.getId(this.getVariant()).toString());
 		nbt.putFloat(FART_CHANCE_KEY, this.getFartChance());
-		nbt.putLong(LAST_POSE_TICK_KEY, this.dataTracker.get(LAST_POSE_TICK));
-		nbt.putBoolean(FARTING_KEY, this.getPose() == EntityPose.CROUCHING);
-		nbt.putBoolean(SLEEPING_KEY, this.getPose() == EntityPose.SLEEPING);
+		nbt.putLong(LAST_STATE_TICK_KEY, this.dataTracker.get(LAST_STATE_TICK));
+		nbt.putBoolean(FARTING_KEY, this.isFarting());
+		nbt.putBoolean(SLEEPING_KEY, this.isSleeping());
 	}
 
 	public void readCustomDataFromNbt(NbtCompound nbt) {
@@ -353,11 +387,27 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 			this.setVariant(variant);
 		}
 		if(nbt.getBoolean(FARTING_KEY)) {
-			this.setPose(EntityPose.CROUCHING);
+			this.setState(CapybaraState.FARTING);
 		}
 		if(nbt.getBoolean(SLEEPING_KEY)) {
-			this.setPose(EntityPose.SLEEPING);
+			this.setState(CapybaraState.SLEEPING);
 		}
 		this.setFartChance(nbt.getFloat(FART_CHANCE_KEY));
+	}
+
+	public void setLastStateTick(long t) {
+		this.dataTracker.set(LAST_STATE_TICK, t);
+	}
+
+	public long getLastStateTickDelta() {
+		return this.world.getTime() - this.dataTracker.get(LAST_STATE_TICK);
+	}
+
+	public CapybaraState getState() {
+		return this.dataTracker.get(STATE);
+	}
+
+	public void setState(CapybaraState state) {
+		this.dataTracker.set(STATE, state);
 	}
 }
