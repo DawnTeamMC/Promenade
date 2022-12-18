@@ -15,6 +15,8 @@ import net.minecraft.entity.ai.brain.sensor.Sensor;
 import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.brain.task.*;
 import net.minecraft.entity.mob.PathAwareEntity;
+import net.minecraft.entity.passive.CamelBrain;
+import net.minecraft.entity.passive.FrogBrain;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.random.Random;
@@ -42,7 +44,8 @@ public class CapybaraBrain {
 			MemoryModuleType.TEMPTATION_COOLDOWN_TICKS,
 			MemoryModuleType.GAZE_COOLDOWN_TICKS,
 			MemoryModuleType.IS_TEMPTED,
-			MemoryModuleType.BREED_TARGET, MemoryModuleType.NEAREST_VISIBLE_ADULT);
+			MemoryModuleType.BREED_TARGET,
+			MemoryModuleType.NEAREST_VISIBLE_ADULT);
 
 	protected static void method_45367(CapybaraEntity capybara, Random random) {
 	}
@@ -63,7 +66,7 @@ public class CapybaraBrain {
 	private static void addCoreActivities(Brain<CapybaraEntity> brain) {
 		brain.setTaskList(Activity.CORE, 0, ImmutableList.of(
 				new StayAboveWaterTask(0.8f),
-				new WalkTask(4.0f),
+				new WalkTask(0.5f),
 				new LookAroundTask(45, 90),
 				new WanderAroundTask(),
 				new TemptationCooldownTask(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS),
@@ -120,8 +123,8 @@ public class CapybaraBrain {
 			if(capybara.isSleeping()) {
 				capybara.startStanding();
 			}
-			else if(!capybara.isPanicking()) {
-				capybara.startSleeping();
+			else if(!capybara.isPanicking() && !capybara.isFarting()) {
+				capybara.fallOverToSleep();
 			}
 		}
 	}

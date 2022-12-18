@@ -19,6 +19,8 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.CamelBrain;
+import net.minecraft.entity.passive.CamelEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -158,6 +160,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 			case STANDING: {
 				this.walkingAnimationState.setRunning((this.onGround || this.hasPrimaryPassenger()) && this.getVelocity().horizontalLengthSquared() > 1.0E-6, this.age);
 				this.sleepingAnimState.stop();
+				//this.standingTransitionAnimationState.setRunning(this.isChangingPose(), this.age);
 				this.fallOverAnimState.stop();
 				this.fartAnimState.stop();
 				break;
@@ -172,6 +175,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 					this.fallOverAnimState.stop();
 					this.sleepingAnimState.startIfNotRunning(this.age);
 				}
+				//this.standingTransitionAnimationState.stop();
 				this.fartAnimState.stop();
 				break;
 			}
@@ -179,25 +183,11 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 				this.walkingAnimationState.stop();
 				this.sleepingAnimState.stop();
 				this.fallOverAnimState.stop();
+				// this.standingTransitionAnimationState.stop();
 				this.fartAnimState.startIfNotRunning(this.age);
 				break;
 			}
 		}
-		if(this.getPose() == EntityPose.STANDING) {
-			this.walkingAnimationState.setRunning((this.onGround || this.hasPrimaryPassenger()) && this.getVelocity().horizontalLengthSquared() > 1.0E-6, this.age);
-		}
-		else {
-			this.walkingAnimationState.setRunning(false, this.age);
-		}
-	}
-
-	public boolean isSurprisedByFart() {
-		return this.fartAnimState.isRunning() && this.fartAnimState.getTimeRunning() < (1.7F * 20L);
-	}
-
-	@Environment(EnvType.CLIENT)
-	public boolean hasLargeEyes() {
-		return isBaby() || isSurprisedByFart();
 	}
 
 	public void setLastPoseTick(long lastPoseTick) {
@@ -209,28 +199,25 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	}
 
 	public void fart() {
-		if(this.isInPose(EntityPose.CROUCHING)) {
-			return;
+		if(!this.isInPose(EntityPose.CROUCHING)) {
+			this.playSound(AnimalContent.CAPYBARA_FART_SOUND, 1.0f, 1.0f);
+			this.setPose(EntityPose.CROUCHING);
+			this.setLastPoseTick(this.world.getTime());
 		}
-		this.playSound(AnimalContent.CAPYBARA_FART_SOUND, 1.0f, 1.0f);
-		this.setPose(EntityPose.CROUCHING);
-		this.setLastPoseTick(this.world.getTime());
 	}
 
-	public void startSleeping() {
-		if(this.isInPose(EntityPose.SLEEPING)) {
-			return;
+	public void fallOverToSleep() {
+		if(!this.isInPose(EntityPose.SLEEPING)) {
+			this.setPose(EntityPose.SLEEPING);
+			this.setLastPoseTick(this.world.getTime());
 		}
-		this.setPose(EntityPose.SLEEPING);
-		this.setLastPoseTick(this.world.getTime());
 	}
 
 	public void startStanding() {
-		if(this.isInPose(EntityPose.STANDING)) {
-			return;
+		if(!this.isInPose(EntityPose.STANDING)) {
+			this.setPose(EntityPose.STANDING);
+			this.setLastPoseTick(this.world.getTime());
 		}
-		this.setPose(EntityPose.STANDING);
-		this.setLastPoseTick(this.world.getTime());
 	}
 
 	public void setStanding() {
@@ -259,18 +246,18 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		};
 	}
 
+	public boolean isSurprisedByFart() {
+		return this.fartAnimState.isRunning() && this.fartAnimState.getTimeRunning() < (1.7F * 1000L / 20L);
+	}
+
+	@Environment(EnvType.CLIENT)
+	public boolean hasLargeEyes() {
+		return isBaby() || isSurprisedByFart();
+	}
+
 	/*============*/
 	/*   SOUNDS   */
 	/*============*/
-
-	@Override
-	public void playAmbientSound() {
-		SoundEvent soundEvent = this.getAmbientSound();
-		if(soundEvent != null) {
-			// do not pitch up if the sound for babies as it is a custom one
-			this.playSound(soundEvent, this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
-		}
-	}
 
 	@Nullable
 	@Override
@@ -282,6 +269,15 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	@Override
 	public int getMinAmbientSoundDelay() {
 		return this.isBaby() ? 20 : super.getMinAmbientSoundDelay();
+	}
+
+	@Override
+	public void playAmbientSound() {
+		SoundEvent soundEvent = this.getAmbientSound();
+		if(soundEvent != null) {
+			// do not pitch up if the sound for babies as it is a custom one
+			this.playSound(soundEvent, this.getSoundVolume(), (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
+		}
 	}
 
 	/*==============*/
