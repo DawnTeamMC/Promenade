@@ -47,7 +47,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 			this.updateAnimations();
 		}
 		if(this.isFarting() && this.getLastStateTickDelta() > FART_LENGTH) {
-			this.stopFart();
+			this.setStanding();
 		}
 	}
 
@@ -169,7 +169,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 			}
 			case SLEEPING -> {
 				this.walkingAnimationState.stop();
-				if(this.shouldPlayFallOverAnimation()) {
+				if(this.isFallingOver()) {
 					this.fallOverAnimState.startIfNotRunning(this.age);
 					this.sleepingAnimState.stop();
 				}
@@ -190,6 +190,11 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		}
 	}
 
+	public boolean isWakingUp() {
+		return this.getState() == CapybaraState.STANDING && this.isChangingState();
+
+	}
+
 	public boolean isChangingState() {
 		long l = this.getLastStateTickDelta();
 		return switch(this.getState()) {
@@ -199,7 +204,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		};
 	}
 
-	private boolean shouldPlayFallOverAnimation() {
+	private boolean isFallingOver() {
 		return isSleeping() && this.getLastStateTickDelta() < FALL_OVER_LENGTH;
 	}
 
@@ -214,6 +219,9 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		return !this.isPanicking() && !this.isFarting();
 	}
 
+	/**
+	 * Checks if the capybara is sleeping. Note that this also includes the fall over animation.
+	 */
 	public boolean isSleeping() {
 		return this.getState() == CapybaraState.SLEEPING;
 	}
@@ -225,7 +233,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		}
 	}
 
-	public boolean shouldStopSleeping() {
+	public boolean canStopSleeping() {
 		return this.isSleeping() && this.world.isDay();
 	}
 
@@ -242,26 +250,12 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		}
 	}
 
-	public void stopFart() {
-		if(this.isFarting()) {
-			this.setStanding();
-		}
-	}
-
 	public boolean isFarting() {
 		return this.getState() == CapybaraState.FARTING;
 	}
 
 	public boolean canFart() {
-		return !this.isPanicking() && !this.isSleeping();
-	}
-
-	public boolean shouldFart() {
-		return this.random.nextFloat() < this.getFartChance();
-	}
-
-	public boolean isSurprisedByFart() {
-		return this.isFarting() && this.getLastStateTickDelta() < 40L;
+		return !this.isPanicking() && !this.isSleeping() &&  this.random.nextFloat() < this.getFartChance();
 	}
 
 	@Override
@@ -271,7 +265,18 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 
 	@Environment(EnvType.CLIENT)
 	public boolean hasLargeEyes() {
-		return isBaby() || isSurprisedByFart();
+		boolean surprisedByFart = this.isFarting() && this.getLastStateTickDelta() < 40L;
+		return isBaby() || surprisedByFart;
+	}
+
+	@Environment(EnvType.CLIENT)
+	public boolean hasClosedEyes() {
+		boolean aboutToStartToSleep = this.isFallingOver() && this.getLastStateTickDelta() > 31L;
+		boolean deepSleeping = !this.isFallingOver() && this.isSleeping();
+		boolean shakingHead = this.isFarting() && (40L < this.getLastStateTickDelta() && this.getLastStateTickDelta() < 65L);
+		boolean wakingUp = this.isWakingUp() && (this.getLastStateTickDelta() < 5L || (18L < this.getLastStateTickDelta() && this.getLastStateTickDelta() < 34L));
+
+		return aboutToStartToSleep || deepSleeping || shakingHead || wakingUp;
 	}
 
 	@Environment(EnvType.CLIENT)
@@ -280,7 +285,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	}
 
 	public float getEarWiggleSpeed() {
-		return this.isSleeping() ? 0.5f : 1.0f;
+		return this.isSleeping() ? 0.3f : 1.0f;
 	}
 
 

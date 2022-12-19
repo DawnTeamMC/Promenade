@@ -96,7 +96,7 @@ public class PalmContent {
 			e.addAfter(Blocks.ACACIA_SAPLING, PALM_SAPLING);
 			e.addAfter(VanillaPilesContent.ACACIA_LEAF_PILE, PALM_LEAF_PILE);
 		});
-		// TODO
+		// TODO hanging signs
 		// ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.ACACIA_HANGING_SIGN, PALM_SIGN, PALM_HANGING_SIGN));
 		// ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Item.ACACIA_CHEST_BOAT, PALM_BOAT, PALM_CHEST_BOAT));
 	}

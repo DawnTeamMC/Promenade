@@ -156,7 +156,7 @@ public class MapleContent {
 			e.addAfter(CherryContent.WHITE_CHERRY_OAK_LEAF_PILE, SAP_MAPLE_LEAF_PILE, VERMILION_MAPLE_LEAF_PILE, FULVOUS_MAPLE_LEAF_PILE, MIKADO_MAPLE_LEAF_PILE);
 		});
 		ItemGroupHelper.append(ItemGroups.FOOD_AND_DRINK, e -> e.addAfter(Items.HONEY_BOTTLE, MAPLE_SYRUP_BOTTLE));
-		// TODO
+		// TODO hanging signs
 		// ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(CherryContent.CHERRY_OAK_HANGING_SIGN, MAPLE_SIGN, MAPLE_HANGING_SIGN));
 		// ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(CherryContent.CHERRY_OAK_CHEST_BOAT, MAPLE_BOAT, MAPLE_CHEST_BOAT));
 	}

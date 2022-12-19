@@ -82,7 +82,7 @@ public class AnimalContent {
 			BiomeModifications.addSpawn(hasFarmAnimals, SpawnGroup.CREATURE, DUCK, Promenade.CONFIG.animals.ducks_weight, 4, 4);
 		}
 		if(Promenade.CONFIG.animals.capybaras_weight != 0) {
-			BiomeModifications.addSpawn(BiomeSelectors.tag(PromenadeTags.Biomes.CAPYBARA_SPAWN), SpawnGroup.CREATURE, CAPYBARA, Promenade.CONFIG.animals.capybaras_weight, 4, 4);
+			BiomeModifications.addSpawn(BiomeSelectors.tag(PromenadeTags.Biomes.CAPYBARA_SPAWN), SpawnGroup.CREATURE, CAPYBARA, Promenade.CONFIG.animals.capybaras_weight, 3, 5);
 		}
 
 		ItemGroupHelper.appendSpawnEgg(CAPYBARA_SPAWN_EGG);

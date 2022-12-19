@@ -57,7 +57,7 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 		return TexturedModelData.of(modelData, 64, 64);
 	}
 
-	public void setAngles(E capybara, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+	public void setAngles(CapybaraEntity capybara, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
 		this.getPart().traverse().forEach(ModelPart::resetTransform);
 		if(capybara.canAngleHead()) {
 			this.setHeadAngles(headYaw, headPitch);
@@ -74,7 +74,7 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 		this.head.pitch = headPitch * 0.017453292F;
 	}
 
-	private void updateVisibleParts(E capybara) {
+	private void updateVisibleParts(CapybaraEntity capybara) {
 		//TODO: add haircuts
 	}
 
@@ -83,7 +83,7 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 		return this.root;
 	}
 
-	private void updateAnimations(E capybara, float progress) {
+	private void updateAnimations(CapybaraEntity capybara, float progress) {
 		float v = (float) capybara.getVelocity().horizontalLengthSquared();
 		float speed = MathHelper.clamp(v * 400.0F, 0.3F, 2.0F);
 

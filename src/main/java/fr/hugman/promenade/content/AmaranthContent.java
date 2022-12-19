@@ -118,7 +118,7 @@ public class AmaranthContent {
 			e.addAfter(Blocks.WARPED_FUNGUS, DARK_AMARANTH_FUNGUS);
 			e.addAfter(Blocks.WARPED_ROOTS, DARK_AMARANTH_ROOTS);
 		});
-		// TODO
+		// TODO hanging signs
 		// ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.WARPED_HANGING_SIGN, DARK_AMARANTH_SIGN, DARK_AMARANTH_HANGING_SIGN));
 	}
 }

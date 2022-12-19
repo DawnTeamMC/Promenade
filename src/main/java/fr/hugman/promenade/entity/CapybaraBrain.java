@@ -120,7 +120,7 @@ public class CapybaraBrain {
 
 		@Override
 		protected void run(ServerWorld world, CapybaraEntity capybara, long l) {
-			if(capybara.shouldStopSleeping()) {
+			if(capybara.canStopSleeping()) {
 				capybara.stopSleeping();
 			}
 			else if(capybara.canSleep()) {
@@ -139,14 +139,12 @@ public class CapybaraBrain {
 
 		@Override
 		protected boolean shouldRun(ServerWorld world, CapybaraEntity capybara) {
-			return capybara.shouldFart() && !capybara.isTouchingWater() && capybara.getLastStateTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasPrimaryPassenger();
+			return capybara.canFart() && !capybara.isTouchingWater() && capybara.getLastStateTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasPrimaryPassenger();
 		}
 
 		@Override
 		protected void run(ServerWorld world, CapybaraEntity capybara, long l) {
-			if(capybara.canFart()) {
-				capybara.fart();
-			}
+			capybara.fart();
 		}
 	}
 }

@@ -115,7 +115,7 @@ public class CherryContent {
 			e.addAfter(Blocks.BIRCH_SAPLING, PINK_CHERRY_OAK_SAPLING, WHITE_CHERRY_OAK_SAPLING);
 			e.addAfter(VanillaPilesContent.BIRCH_LEAF_PILE, PINK_CHERRY_OAK_LEAF_PILE, WHITE_CHERRY_OAK_LEAF_PILE);
 		});
-		// TODO
+		// TODO hanging signs
 		// ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.BIRCH_HANGING_SIGN, CHERRY_OAK_SIGN, CHERRY_OAK_HANGING_SIGN));
 		// ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Item.BIRCH_CHEST_BOAT, CHERRY_OAK_BOAT, CHERRY_OAK_CHEST_BOAT));
 	}

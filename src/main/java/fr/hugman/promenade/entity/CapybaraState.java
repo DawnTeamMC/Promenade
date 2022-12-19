@@ -4,4 +4,5 @@ public enum CapybaraState {
 	STANDING,
 	FARTING,
 	SLEEPING
+	//TODO : add falling over and waking up
 }
