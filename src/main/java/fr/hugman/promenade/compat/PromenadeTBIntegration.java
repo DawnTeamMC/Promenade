@@ -1,6 +1,5 @@
 package fr.hugman.promenade.compat;
 
-/* // TODO TerraBlender
 import com.mojang.datafixers.util.Pair;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.content.CherryContent;
@@ -23,12 +22,7 @@ import terrablender.worldgen.TBSurfaceRuleData;
 
 import java.util.function.Consumer;
 
- */
-
-// TODO add back TerraBlender compat
-public class PromenadeTBIntegration /*implements TerraBlenderApi*/ {
-
-	/*
+public class PromenadeTBIntegration implements TerraBlenderApi {
 	private static MaterialRules.MaterialRule makeStateRule(Block block) {
 		return MaterialRules.block(block.getDefaultState());
 	}
@@ -72,6 +66,4 @@ public class PromenadeTBIntegration /*implements TerraBlenderApi*/ {
 			});
 		}
 	}
-
-	 */
 }
