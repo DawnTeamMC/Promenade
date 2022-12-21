@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/spruce_leaf_pile"
+			"model": "promenade:block/vanilla_piles/spruce_leaf"
 		}
 	}
 }

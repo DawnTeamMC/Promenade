@@ -1,9 +1,9 @@
 package fr.hugman.promenade;
 
 import fr.hugman.promenade.config.PromenadeConfig;
-import fr.hugman.promenade.content.*;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
+import fr.hugman.promenade.registry.content.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
@@ -37,6 +37,7 @@ public class Promenade implements ModInitializer {
 		MonsterContent.init();
 
 		if(FabricLoader.getInstance().isModLoaded("columns")) {
+			//TODO: haykam
 			//ColumnsContent.init();
 			//Promenade.LOGGER.info("Initialized Columns compatibility");
 			Promenade.LOGGER.warn("Columns compatibility has not yet been implemented");

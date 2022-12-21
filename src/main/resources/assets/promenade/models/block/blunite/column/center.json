@@ -1,0 +1,6 @@
+{
+	"parent": "columns:block/column_center",
+	"textures": {
+		"all": "promenade:block/blunite/block"
+	}
+}

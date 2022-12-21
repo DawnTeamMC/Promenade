@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
-import fr.hugman.promenade.content.AnimalContent;
+import fr.hugman.promenade.registry.content.AnimalContent;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.brain.Activity;

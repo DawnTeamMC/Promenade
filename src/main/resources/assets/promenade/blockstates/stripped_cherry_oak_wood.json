@@ -1,14 +1,14 @@
 {
 	"variants": {
 		"axis=y": {
-			"model": "promenade:block/stripped_cherry_oak_wood"
+			"model": "promenade:block/cherry_oak/stripped_wood"
 		},
 		"axis=z": {
-			"model": "promenade:block/stripped_cherry_oak_wood",
+			"model": "promenade:block/cherry_oak/stripped_wood",
 			"x": 90
 		},
 		"axis=x": {
-			"model": "promenade:block/stripped_cherry_oak_wood",
+			"model": "promenade:block/cherry_oak/stripped_wood",
 			"x": 90,
 			"y": 90
 		}

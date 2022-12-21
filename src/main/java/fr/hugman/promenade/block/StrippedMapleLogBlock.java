@@ -1,6 +1,6 @@
 package fr.hugman.promenade.block;
 
-import fr.hugman.promenade.content.MapleContent;
+import fr.hugman.promenade.registry.content.MapleContent;
 import fr.hugman.promenade.state.property.PromenadeBlockProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

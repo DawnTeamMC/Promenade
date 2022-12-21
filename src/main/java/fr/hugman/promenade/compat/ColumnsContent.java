@@ -1,11 +1,7 @@
 package fr.hugman.promenade.compat;
 
-import fr.hugman.dawn.Registrar;
-import fr.hugman.dawn.block.DawnBlockSettings;
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.content.IgneousContent;
 // import io.github.haykam821.columns.block.ColumnBlock;
-import net.minecraft.block.Block;
+
 
 public class ColumnsContent {
 	/*

@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/white_cherry_oak_leaf_pile"
+			"model": "promenade:block/cherry_oak/leaf_pile/white"
 		}
 	}
 }

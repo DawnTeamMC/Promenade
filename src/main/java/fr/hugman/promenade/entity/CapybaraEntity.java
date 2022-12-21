@@ -1,7 +1,7 @@
 package fr.hugman.promenade.entity;
 
 import com.mojang.serialization.Dynamic;
-import fr.hugman.promenade.content.AnimalContent;
+import fr.hugman.promenade.registry.content.AnimalContent;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.registry.PromenadeRegistries;
 import fr.hugman.promenade.registry.tag.PromenadeTags;

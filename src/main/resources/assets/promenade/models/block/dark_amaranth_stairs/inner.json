@@ -1,8 +1,0 @@
-{
-	"parent": "block/inner_stairs",
-	"textures": {
-		"bottom": "promenade:block/dark_amaranth_planks",
-		"top": "promenade:block/dark_amaranth_planks",
-		"side": "promenade:block/dark_amaranth_planks"
-	}
-}

@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/potted_dark_amaranth_fungus"
+			"model": "promenade:block/dark_amaranth/potted_fungus"
 		}
 	}
 }

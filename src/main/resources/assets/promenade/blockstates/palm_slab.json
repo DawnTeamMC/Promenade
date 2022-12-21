@@ -1,13 +1,13 @@
 {
 	"variants": {
 		"type=bottom": {
-			"model": "promenade:block/palm_slab/bottom"
+			"model": "promenade:block/palm/slab/bottom"
 		},
 		"type=top": {
-			"model": "promenade:block/palm_slab/top"
+			"model": "promenade:block/palm/slab/top"
 		},
 		"type=double": {
-			"model": "promenade:block/palm_planks"
+			"model": "promenade:block/palm/planks"
 		}
 	}
 }

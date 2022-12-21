@@ -2,7 +2,7 @@
 	"multipart": [
 		{
 			"apply": {
-				"model": "promenade:block/carbonite_column/center"
+				"model": "promenade:block/carbonite/column/center"
 			}
 		},
 		{
@@ -10,7 +10,7 @@
 				"down": true
 			},
 			"apply": {
-				"model": "promenade:block/carbonite_column/end"
+				"model": "promenade:block/carbonite/column/end"
 			}
 		},
 		{
@@ -18,7 +18,7 @@
 				"up": true
 			},
 			"apply": {
-				"model": "promenade:block/carbonite_column/end",
+				"model": "promenade:block/carbonite/column/end",
 				"x": 180,
 				"uvlock": true
 			}

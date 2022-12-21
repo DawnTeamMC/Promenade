@@ -1,14 +1,14 @@
 {
 	"variants": {
 		"axis=y": {
-			"model": "promenade:block/stripped_dark_amaranth_hyphae"
+			"model": "promenade:block/dark_amaranth/stripped_hyphae"
 		},
 		"axis=z": {
-			"model": "promenade:block/stripped_dark_amaranth_hyphae",
+			"model": "promenade:block/dark_amaranth/stripped_hyphae",
 			"x": 90
 		},
 		"axis=x": {
-			"model": "promenade:block/stripped_dark_amaranth_hyphae",
+			"model": "promenade:block/dark_amaranth/stripped_hyphae",
 			"x": 90,
 			"y": 90
 		}

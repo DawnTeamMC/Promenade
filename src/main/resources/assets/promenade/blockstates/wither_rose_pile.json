@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/wither_rose_pile"
+			"model": "promenade:block/vanilla_piles/wither_rose"
 		}
 	}
 }

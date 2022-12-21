@@ -1,10 +1,10 @@
 {
 	"variants": {
 		"powered=false": {
-			"model": "promenade:block/palm_pressure_plate/unpressed"
+			"model": "promenade:block/palm/pressure_plate/unpressed"
 		},
 		"powered=true": {
-			"model": "promenade:block/palm_pressure_plate/pressed"
+			"model": "promenade:block/palm/pressure_plate/pressed"
 		}
 	}
 }

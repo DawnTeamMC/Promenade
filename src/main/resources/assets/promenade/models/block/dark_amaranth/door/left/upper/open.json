@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/door_top_left_open",
+	"textures": {
+		"bottom": "promenade:block/dark_amaranth/door/bottom",
+		"top": "promenade:block/dark_amaranth/door/top"
+	}
+}

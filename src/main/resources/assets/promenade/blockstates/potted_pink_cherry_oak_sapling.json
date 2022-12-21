@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/potted_pink_cherry_oak_sapling"
+			"model": "promenade:block/cherry_oak/potted_sapling/pink"
 		}
 	}
 }

@@ -1,0 +1,6 @@
+{
+	"parent": "promenade:block/pile",
+	"textures": {
+		"pile": "promenade:block/vanilla_piles/red_tulip"
+	}
+}

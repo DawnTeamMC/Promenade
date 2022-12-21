@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/leaves",
+	"textures": {
+		"all": "promenade:block/cherry_oak/leaves/white"
+	}
+}

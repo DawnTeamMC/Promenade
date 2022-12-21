@@ -1,6 +1,6 @@
 {
 	"parent": "columns:block/column_inventory",
 	"textures": {
-		"all": "promenade:block/blunite"
+		"all": "promenade:block/blunite/block"
 	}
 }

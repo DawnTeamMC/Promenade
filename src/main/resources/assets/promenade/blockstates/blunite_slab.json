@@ -1,13 +1,13 @@
 {
 	"variants": {
 		"type=bottom": {
-			"model": "promenade:block/blunite_slab/bottom"
+			"model": "promenade:block/blunite/slab/bottom"
 		},
 		"type=top": {
-			"model": "promenade:block/blunite_slab/top"
+			"model": "promenade:block/blunite/slab/top"
 		},
 		"type=double": {
-			"model": "promenade:block/blunite"
+			"model": "promenade:block/blunite/block"
 		}
 	}
 }

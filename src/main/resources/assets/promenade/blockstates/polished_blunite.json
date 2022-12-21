@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/polished_blunite"
+			"model": "promenade:block/blunite/polished_block"
 		}
 	}
 }

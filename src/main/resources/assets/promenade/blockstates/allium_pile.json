@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/allium_pile"
+			"model": "promenade:block/vanilla_piles/allium"
 		}
 	}
 }

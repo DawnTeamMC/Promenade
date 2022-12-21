@@ -1,13 +1,13 @@
 {
 	"variants": {
 		"type=bottom": {
-			"model": "promenade:block/cherry_oak_slab/bottom"
+			"model": "promenade:block/cherry_oak/slab/bottom"
 		},
 		"type=top": {
-			"model": "promenade:block/cherry_oak_slab/top"
+			"model": "promenade:block/cherry_oak/slab/top"
 		},
 		"type=double": {
-			"model": "promenade:block/cherry_oak_planks"
+			"model": "promenade:block/cherry_oak/planks"
 		}
 	}
 }

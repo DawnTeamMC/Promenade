@@ -1,0 +1,6 @@
+{
+	"parent": "block/fence_post",
+	"textures": {
+		"texture": "promenade:block/cherry_oak/planks"
+	}
+}

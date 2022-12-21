@@ -1,6 +1,6 @@
 package fr.hugman.promenade.mixin;
 
-import fr.hugman.promenade.content.AmaranthContent;
+import fr.hugman.promenade.registry.content.AmaranthContent;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import net.minecraft.world.gen.surfacebuilder.VanillaSurfaceRules;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,6 +1,0 @@
-{
-	"parent": "promenade:block/pile",
-	"textures": {
-		"pile": "promenade:block/blue_orchid_pile"
-	}
-}

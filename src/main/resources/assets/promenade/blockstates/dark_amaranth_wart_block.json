@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/dark_amaranth_wart_block"
+			"model": "promenade:block/dark_amaranth/wart_block"
 		}
 	}
 }

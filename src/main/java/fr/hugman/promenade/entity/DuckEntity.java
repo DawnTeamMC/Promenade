@@ -1,6 +1,6 @@
 package fr.hugman.promenade.entity;
 
-import fr.hugman.promenade.content.AnimalContent;
+import fr.hugman.promenade.registry.content.AnimalContent;
 import fr.hugman.promenade.registry.tag.PromenadeTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;

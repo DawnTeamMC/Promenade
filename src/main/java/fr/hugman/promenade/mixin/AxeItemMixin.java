@@ -2,7 +2,7 @@ package fr.hugman.promenade.mixin;
 
 import fr.hugman.promenade.block.MapleLogBlock;
 import fr.hugman.promenade.block.StrippedMapleLogBlock;
-import fr.hugman.promenade.content.MapleContent;
+import fr.hugman.promenade.registry.content.MapleContent;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.item.AxeItem;

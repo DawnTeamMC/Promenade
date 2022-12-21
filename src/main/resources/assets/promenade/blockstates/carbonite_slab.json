@@ -1,13 +1,13 @@
 {
 	"variants": {
 		"type=bottom": {
-			"model": "promenade:block/carbonite_slab/bottom"
+			"model": "promenade:block/carbonite/slab/bottom"
 		},
 		"type=top": {
-			"model": "promenade:block/carbonite_slab/top"
+			"model": "promenade:block/carbonite/slab/top"
 		},
 		"type=double": {
-			"model": "promenade:block/carbonite"
+			"model": "promenade:block/carbonite/block"
 		}
 	}
 }

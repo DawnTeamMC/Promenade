@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/white_cherry_oak_sapling"
+			"model": "promenade:block/cherry_oak/sapling/white"
 		}
 	}
 }

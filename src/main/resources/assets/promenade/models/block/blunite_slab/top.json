@@ -1,8 +1,0 @@
-{
-	"parent": "block/slab_top",
-	"textures": {
-		"bottom": "promenade:block/blunite",
-		"top": "promenade:block/blunite",
-		"side": "promenade:block/blunite"
-	}
-}

@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "promenade:block/pink_cherry_oak_sapling"
+		"layer0": "promenade:block/cherry_oak/sapling/pink"
 	}
 }

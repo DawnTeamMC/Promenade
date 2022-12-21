@@ -1,8 +1,0 @@
-{
-	"parent": "block/slab",
-	"textures": {
-		"bottom": "promenade:block/polished_carbonite",
-		"top": "promenade:block/polished_carbonite",
-		"side": "promenade:block/polished_carbonite"
-	}
-}

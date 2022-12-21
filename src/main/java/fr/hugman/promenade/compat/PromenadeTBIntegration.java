@@ -2,8 +2,8 @@ package fr.hugman.promenade.compat;
 
 import com.mojang.datafixers.util.Pair;
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.content.CherryContent;
-import fr.hugman.promenade.content.MapleContent;
+import fr.hugman.promenade.registry.content.CherryContent;
+import fr.hugman.promenade.registry.content.MapleContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registry;

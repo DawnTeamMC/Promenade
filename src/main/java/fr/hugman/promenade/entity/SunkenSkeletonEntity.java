@@ -1,6 +1,6 @@
 package fr.hugman.promenade.entity;
 
-import fr.hugman.promenade.content.MonsterContent;
+import fr.hugman.promenade.registry.content.MonsterContent;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.NoPenaltyTargeting;
 import net.minecraft.entity.ai.control.MoveControl;

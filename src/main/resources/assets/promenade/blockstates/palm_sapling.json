@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/palm_sapling"
+			"model": "promenade:block/palm/sapling"
 		}
 	}
 }

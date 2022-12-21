@@ -1,6 +1,6 @@
 package fr.hugman.promenade.block;
 
-import fr.hugman.promenade.content.FoodContent;
+import fr.hugman.promenade.registry.content.FoodContent;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.entity.Entity;

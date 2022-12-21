@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "promenade:block/azure_bluet_pile"
+			"model": "promenade:block/vanilla_piles/azure_bluet"
 		}
 	}
 }

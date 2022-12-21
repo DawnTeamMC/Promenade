@@ -1,0 +1,8 @@
+{
+	"parent": "block/outer_stairs",
+	"textures": {
+		"bottom": "promenade:block/carbonite/polished_block",
+		"top": "promenade:block/carbonite/polished_block",
+		"side": "promenade:block/carbonite/polished_block"
+	}
+}

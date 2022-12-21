@@ -1,8 +1,0 @@
-{
-	"parent": "block/inner_stairs",
-	"textures": {
-		"bottom": "promenade:block/blunite",
-		"top": "promenade:block/blunite",
-		"side": "promenade:block/blunite"
-	}
-}

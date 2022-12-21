@@ -1,6 +1,6 @@
 {
 	"parent": "block/fence_inventory",
 	"textures": {
-		"texture": "promenade:block/dark_amaranth_planks"
+		"texture": "promenade:block/dark_amaranth/planks"
 	}
 }
