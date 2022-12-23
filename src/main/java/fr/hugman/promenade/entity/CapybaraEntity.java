@@ -1,10 +1,10 @@
 package fr.hugman.promenade.entity;
 
 import com.mojang.serialization.Dynamic;
-import fr.hugman.promenade.registry.content.AnimalContent;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.registry.PromenadeRegistries;
-import fr.hugman.promenade.registry.tag.PromenadeTags;
+import fr.hugman.promenade.registry.content.AnimalContent;
+import fr.hugman.promenade.registry.tag.PromenadeItemTags;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.entity.*;
@@ -93,7 +93,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.isIn(PromenadeTags.Items.BREEDING_CAPYBARA);
+		return stack.isIn(PromenadeItemTags.BREEDING_CAPYBARA);
 	}
 
 	@Override

@@ -6,7 +6,11 @@ import fr.hugman.promenade.block.CarpetedGrassBlock;
 import fr.hugman.promenade.block.PileBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
+import net.minecraft.item.Item;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.world.biome.Biome;
 
 public final class PromenadeFactory {
 	public static Block leafPile() {
@@ -29,5 +33,17 @@ public final class PromenadeFactory {
 				.ticksRandomly()
 				.strength(0.6F)
 				.sounds(BlockSoundGroup.GRASS));
+	}
+
+	public static TagKey<Block> blockTag(String name) {
+		return TagKey.of(RegistryKeys.BLOCK, Promenade.id(name));
+	}
+
+	public static TagKey<Item> itemTag(String name) {
+		return TagKey.of(RegistryKeys.ITEM, Promenade.id(name));
+	}
+
+	public static TagKey<Biome> biomeTag(String name) {
+		return TagKey.of(RegistryKeys.BIOME, Promenade.id(name));
 	}
 }

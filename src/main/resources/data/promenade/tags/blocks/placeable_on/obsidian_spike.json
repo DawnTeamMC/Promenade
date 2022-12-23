@@ -1,8 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#promenade:growable_on/dark_amaranth_fungus",
     "minecraft:end_stone",
-    "minecraft:mycelium"
+    "promenade:black_dylium"
   ]
 }

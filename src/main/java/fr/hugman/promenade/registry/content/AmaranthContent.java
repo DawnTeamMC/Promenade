@@ -9,7 +9,7 @@ import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.DyliumBlock;
 import fr.hugman.promenade.item.ItemGroupHelper;
-import fr.hugman.promenade.registry.tag.PromenadeTags;
+import fr.hugman.promenade.registry.tag.PromenadeBlockTags;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -40,7 +40,7 @@ public class AmaranthContent {
 					.item()
 					.strength(1.0F)
 					.sounds(BlockSoundGroup.WART_BLOCK));
-	public static final Block DARK_AMARANTH_ROOTS = new DawnRootsBlock(state -> state.isIn(PromenadeTags.Blocks.DARK_AMARANTH_ROOTS_PLACEABLE_ON),
+	public static final Block DARK_AMARANTH_ROOTS = new DawnRootsBlock(state -> state.isIn(PromenadeBlockTags.DARK_AMARANTH_ROOTS_PLACEABLE_ON),
 			DawnBlockSettings.of(Material.NETHER_SHOOTS, MapColor.CYAN)
 					.noCollision()
 					.breakInstantly()
@@ -64,7 +64,7 @@ public class AmaranthContent {
 
 	public static final SignBlocks DARK_AMARANTH_SIGNS = DawnFactory.signs(Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS);
 
-	public static final Block DARK_AMARANTH_FUNGUS = DawnFactory.fungus(PLANTED_AMARANTH_FUNGUS, PromenadeTags.Blocks.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeTags.Blocks.DARK_AMARANTH_FUNGUS_GROWABLE_ON);
+	public static final Block DARK_AMARANTH_FUNGUS = DawnFactory.fungus(PLANTED_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON);
 	public static final Block POTTED_DARK_AMARANTH_FUNGUS = DawnFactory.potted(DARK_AMARANTH_FUNGUS);
 
 	public static final RegistryKey<Biome> DARK_AMARANTH_FOREST = DawnFactory.biome(Promenade.id("dark_amaranth_forest"));

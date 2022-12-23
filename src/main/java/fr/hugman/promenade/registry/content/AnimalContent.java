@@ -8,7 +8,7 @@ import fr.hugman.promenade.entity.CapybaraEntity;
 import fr.hugman.promenade.entity.CapybaraVariants;
 import fr.hugman.promenade.entity.DuckEntity;
 import fr.hugman.promenade.item.ItemGroupHelper;
-import fr.hugman.promenade.registry.tag.PromenadeTags;
+import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -82,7 +82,7 @@ public class AnimalContent {
 			BiomeModifications.addSpawn(hasFarmAnimals, SpawnGroup.CREATURE, DUCK, Promenade.CONFIG.animals.ducks_weight, 4, 4);
 		}
 		if(Promenade.CONFIG.animals.capybaras_weight != 0) {
-			BiomeModifications.addSpawn(BiomeSelectors.tag(PromenadeTags.Biomes.CAPYBARA_SPAWN), SpawnGroup.CREATURE, CAPYBARA, Promenade.CONFIG.animals.capybaras_weight, 3, 5);
+			BiomeModifications.addSpawn(BiomeSelectors.tag(PromenadeBiomeTags.CAPYBARA_SPAWN), SpawnGroup.CREATURE, CAPYBARA, Promenade.CONFIG.animals.capybaras_weight, 3, 5);
 		}
 
 		ItemGroupHelper.appendSpawnEgg(CAPYBARA_SPAWN_EGG);

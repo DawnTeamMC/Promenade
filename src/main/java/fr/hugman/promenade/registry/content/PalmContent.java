@@ -8,7 +8,7 @@ import fr.hugman.dawn.block.sapling.SingleSaplingGenerator;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.item.ItemGroupHelper;
-import fr.hugman.promenade.registry.tag.PromenadeTags;
+import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
 import fr.hugman.promenade.village.TradeOfferUtils;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -80,7 +80,7 @@ public class PalmContent {
 		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add(TradeOfferUtils.sapling(PALM_SAPLING)));
 
 		if(Promenade.CONFIG.world_features.palms) {
-			BiomeModifications.addFeature(BiomeSelectors.tag(PromenadeTags.Biomes.HAS_PALMS), GenerationStep.Feature.VEGETAL_DECORATION, PALMS);
+			BiomeModifications.addFeature(BiomeSelectors.tag(PromenadeBiomeTags.HAS_PALMS), GenerationStep.Feature.VEGETAL_DECORATION, PALMS);
 		}
 
 		ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> {

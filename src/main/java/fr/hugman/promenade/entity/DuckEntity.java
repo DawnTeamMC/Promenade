@@ -1,7 +1,8 @@
 package fr.hugman.promenade.entity;
 
 import fr.hugman.promenade.registry.content.AnimalContent;
-import fr.hugman.promenade.registry.tag.PromenadeTags;
+import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
+import fr.hugman.promenade.registry.tag.PromenadeItemTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -189,7 +190,7 @@ public class DuckEntity extends AnimalEntity {
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.isIn(PromenadeTags.Items.BREEDING_DUCK);
+		return stack.isIn(PromenadeItemTags.BREEDING_DUCK);
 	}
 
 	@Override
@@ -212,8 +213,8 @@ public class DuckEntity extends AnimalEntity {
 	}
 
 	public enum Type {
-		PEKIN(0, "pekin", PromenadeTags.Biomes.PEKIN_DUCK_SPAWN),
-		MALLARD(1, "mallard", PromenadeTags.Biomes.MALLARD_DUCK_SPAWN);
+		PEKIN(0, "pekin", PromenadeBiomeTags.PEKIN_DUCK_SPAWN),
+		MALLARD(1, "mallard", PromenadeBiomeTags.MALLARD_DUCK_SPAWN);
 
 		private static final DuckEntity.Type[] typeList = Arrays.stream(values()).sorted(Comparator.comparingInt(DuckEntity.Type::getIndex)).toArray(Type[]::new);
 		private static final Map<String, DuckEntity.Type> TYPES_BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(DuckEntity.Type::getName, (type) -> type));

@@ -6,7 +6,7 @@ import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.entity.LushCreeperEntity;
 import fr.hugman.promenade.entity.SunkenSkeletonEntity;
 import fr.hugman.promenade.item.ItemGroupHelper;
-import fr.hugman.promenade.registry.tag.PromenadeTags;
+import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -62,7 +62,7 @@ public class MonsterContent {
 			BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.LUSH_CAVES), SpawnGroup.MONSTER, LUSH_CREEPER, Promenade.CONFIG.monsters.lush_creepers_weight * 4, 2, 4);
 		}
 		if(Promenade.CONFIG.monsters.sunken_skeletons_weight != 0) {
-			BiomeModifications.addSpawn(biomeSelectionContext -> biomeSelectionContext.hasTag(PromenadeTags.Biomes.SUNKEN_SKELETON_SPAWN), SpawnGroup.MONSTER, SUNKEN_SKELETON, Promenade.CONFIG.monsters.sunken_skeletons_weight, 1, 3);
+			BiomeModifications.addSpawn(biomeSelectionContext -> biomeSelectionContext.hasTag(PromenadeBiomeTags.SUNKEN_SKELETON_SPAWN), SpawnGroup.MONSTER, SUNKEN_SKELETON, Promenade.CONFIG.monsters.sunken_skeletons_weight, 1, 3);
 		}
 
 		ItemGroupHelper.appendSpawnEgg(LUSH_CREEPER_SPAWN_EGG);
