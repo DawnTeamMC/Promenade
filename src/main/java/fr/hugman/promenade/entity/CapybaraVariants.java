@@ -6,7 +6,7 @@ import fr.hugman.promenade.registry.PromenadeRegistries;
 import net.minecraft.util.math.random.Random;
 
 public class CapybaraVariants {
-	public static final CapybaraVariant BROWN = new CapybaraVariant(50);
+	public static final CapybaraVariant BROWN = new CapybaraVariant(49);
 	public static final CapybaraVariant ALBINO = new CapybaraVariant(1);
 
 	public static void init() {

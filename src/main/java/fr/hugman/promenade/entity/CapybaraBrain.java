@@ -4,8 +4,8 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
-import fr.hugman.promenade.registry.content.AnimalContent;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
+import fr.hugman.promenade.registry.content.AnimalContent;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.brain.Activity;
 import net.minecraft.entity.ai.brain.Brain;
@@ -65,7 +65,7 @@ public class CapybaraBrain {
 	private static void addCoreActivities(Brain<CapybaraEntity> brain) {
 		brain.setTaskList(Activity.CORE, 0, ImmutableList.of(
 				new StayAboveWaterTask(0.8f),
-				new WalkTask(3.0f),
+				new WalkTask(1.0f),
 				new LookAroundTask(45, 90),
 				new WanderAroundTask(),
 				new TemptationCooldownTask(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS),
@@ -75,12 +75,13 @@ public class CapybaraBrain {
 	private static void addIdleActivities(Brain<CapybaraEntity> brain) {
 		brain.setTaskList(Activity.IDLE, ImmutableList.of(
 				Pair.of(0, FollowMobWithIntervalTask.follow(EntityType.PLAYER, 6.0f, UniformIntProvider.create(30, 60))),
-				Pair.of(1, new BreedTask(AnimalContent.CAPYBARA, 1.0f)), Pair.of(2, new TemptTask(entity -> 2.5f)),
-				Pair.of(3, TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), WalkTowardClosestAdultTask.create(WALK_TOWARD_ADULT_RANGE, 2.5f))),
-				Pair.of(4, new RandomLookAroundTask(UniformIntProvider.create(150, 250), 30.0f, 0.0f, 0.0f)),
+				Pair.of(1, new BreedTask(AnimalContent.CAPYBARA, 1.0f)),
+				Pair.of(2, new TemptTask(entity -> 1.5f)),
+				Pair.of(3, TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), WalkTowardClosestAdultTask.create(WALK_TOWARD_ADULT_RANGE, 1.5f))),
+				Pair.of(4, new RandomLookAroundTask(UniformIntProvider.create(150, 250), 30.0f, -50.0f, 10.0f)),
 				Pair.of(5, new RandomTask<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryModuleState.VALUE_ABSENT), ImmutableList.of(
-						Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), StrollTask.create(2.0f)), 1),
-						Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), GoTowardsLookTargetTask.create(2.0f, 3)), 1),
+						Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), StrollTask.create(1.0f)), 1),
+						Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), GoTowardsLookTargetTask.create(1.0f, 3)), 1),
 						Pair.of(new SleepTask(20), 1),
 						Pair.of(new FartTask(10), 1),
 						Pair.of(new WaitTask(30, 60), 1)

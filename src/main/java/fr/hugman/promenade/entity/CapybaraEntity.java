@@ -67,6 +67,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 		CapybaraBrain.method_45367(this, world.getRandom());
 		this.setVariant(CapybaraVariants.getRandom(this.random));
 		this.dataTracker.set(LAST_STATE_TICK, world.toServerWorld().getTime() - WAKE_UP_LENGTH);
+		this.dataTracker.set(FART_CHANCE, (this.random.nextFloat() * 0.5F) + 0.15F);
 		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
 	}
 
