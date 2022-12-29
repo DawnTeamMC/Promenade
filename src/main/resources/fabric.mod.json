@@ -33,7 +33,7 @@
 	"accessWidener": "promenade.accesswidener",
 	"depends": {
 		"fabric": "*",
-		"dawn": "*",
+		"dawn": ">=4.0.0",
 		"cloth-config": "*"
 	},
 	"suggests": {
