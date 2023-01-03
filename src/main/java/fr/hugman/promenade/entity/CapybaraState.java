@@ -3,6 +3,7 @@ package fr.hugman.promenade.entity;
 public enum CapybaraState {
 	STANDING,
 	FARTING,
-	SLEEPING
-	//TODO : add falling over and waking up
+	SLEEPING,
+	FALL_TO_SLEEP,
+	WAKE_UP
 }

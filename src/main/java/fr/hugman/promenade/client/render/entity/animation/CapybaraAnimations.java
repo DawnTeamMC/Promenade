@@ -47,7 +47,7 @@ public class CapybaraAnimations {
 					new Keyframe(0.75f, AnimationHelper.createRotationalVector(-27.5f, 0f, 0f), Transformation.Interpolations.CUBIC),
 					new Keyframe(1.5f, AnimationHelper.createRotationalVector(27.5f, 0f, 0f), Transformation.Interpolations.CUBIC))).build();
 
-	public static final Animation FALL_OVER = Animation.Builder.create(1.9167667f)
+	public static final Animation FALL_TO_SLEEP = Animation.Builder.create(1.9167667f)
 			.addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.TRANSLATE,
 					new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
 					new Keyframe(0.8343334f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.CUBIC),

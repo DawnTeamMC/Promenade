@@ -100,7 +100,7 @@ public class CapybaraBrain {
 		@Override
 		protected void run(ServerWorld world, PathAwareEntity entity, long l) {
 			if(entity instanceof CapybaraEntity capybara) {
-				capybara.setStanding();
+				capybara.standUp();
 			}
 			super.run(world, entity, l);
 		}
@@ -124,8 +124,8 @@ public class CapybaraBrain {
 			if(capybara.canStopSleeping()) {
 				capybara.stopSleeping();
 			}
-			else if(capybara.canSleep()) {
-				capybara.startSleeping();
+			else if(capybara.canFallToSleep()) {
+				capybara.fallToSleep();
 			}
 		}
 	}
