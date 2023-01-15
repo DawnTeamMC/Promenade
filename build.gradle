@@ -8,8 +8,7 @@ apply from: 'https://dawnteammc.github.io/resources/gradle_scripts/fabric-transl
 
 repositories {
     maven { url 'https://jitpack.io' }                // Required for Dawn API
-
-    maven { url 'https://maven.terraformersmc.com/' } // Required for Mod Menu
+    maven { url 'https://maven.terraformersmc.com/' } // Required for Mod Menu and Terraform APIs
     maven { url 'https://maven.shedaniel.me/' }       // Required for Cloth Config
     maven { url 'https://maven.ryanliptak.com/' }     // Required for AppleSkin
 
@@ -21,9 +20,6 @@ repositories {
 
 dependencies {
     modApi "com.github.DawnTeamMC:DawnAPI:v${dawn_version}"
-
-    modImplementation "me.shedaniel.cloth:cloth-config-fabric:${cloth_version}"
-    include           "me.shedaniel.cloth:cloth-config-fabric:${cloth_version}"
 
     modImplementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
 
