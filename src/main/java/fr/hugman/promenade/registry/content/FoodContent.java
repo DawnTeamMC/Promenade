@@ -36,13 +36,13 @@ public class FoodContent {
 	public static final Item APRICOT = new Item(new DawnItemSettings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).build()).compostingChance(0.65F));
 	public static final Item MANGO = new Item(new DawnItemSettings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).build()).compostingChance(0.65F));
 
-	public static void init() {
-		Registrar.add(Promenade.id("blueberry_bush"), BLUEBERRY_BUSH);
-		Registrar.add(Promenade.id("blueberries"), BLUEBERRIES);
+	public static void register(Registrar r) {
+		r.add(("blueberry_bush"), BLUEBERRY_BUSH);
+		r.add(("blueberries"), BLUEBERRIES);
 
-		Registrar.add(Promenade.id("banana"), BANANA);
-		Registrar.add(Promenade.id("apricot"), APRICOT);
-		Registrar.add(Promenade.id("mango"), MANGO);
+		r.add(("banana"), BANANA);
+		r.add(("apricot"), APRICOT);
+		r.add(("mango"), MANGO);
 
 		if(Promenade.CONFIG.world_features.blueberry_bushes) {
 			BiomeModifications.addFeature(c -> c.hasPlacedFeature(VegetationPlacedFeatures.PATCH_BERRY_COMMON), GenerationStep.Feature.VEGETAL_DECORATION, PATCH_BLUEBERRY_BUSH_COMMON);

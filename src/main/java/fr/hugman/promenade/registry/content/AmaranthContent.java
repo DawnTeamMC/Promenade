@@ -70,30 +70,30 @@ public class AmaranthContent {
 	public static final RegistryKey<Biome> DARK_AMARANTH_FOREST = DawnFactory.biome(Promenade.id("dark_amaranth_forest"));
 	public static final RegistryKey<Biome> TALL_DARK_AMARANTH_FOREST = DawnFactory.biome(Promenade.id("tall_dark_amaranth_forest"));
 
-	public static void init() {
-		Registrar.add(Promenade.id("black_dylium"), BLACK_DYLIUM);
-		Registrar.add(Promenade.id("dark_amaranth_wart_block"), DARK_AMARANTH_WART_BLOCK);
-		Registrar.add(Promenade.id("dark_amaranth_roots"), DARK_AMARANTH_ROOTS);
+	public static void register(Registrar r) {
+		r.add(("black_dylium"), BLACK_DYLIUM);
+		r.add(("dark_amaranth_wart_block"), DARK_AMARANTH_WART_BLOCK);
+		r.add(("dark_amaranth_roots"), DARK_AMARANTH_ROOTS);
 
-		Registrar.add(Promenade.id("dark_amaranth_stem"), DARK_AMARANTH_STEM);
-		Registrar.add(Promenade.id("stripped_dark_amaranth_stem"), STRIPPED_DARK_AMARANTH_STEM);
-		Registrar.add(Promenade.id("dark_amaranth_hyphae"), DARK_AMARANTH_HYPHAE);
-		Registrar.add(Promenade.id("stripped_dark_amaranth_hyphae"), STRIPPED_DARK_AMARANTH_HYPHAE);
+		r.add(("dark_amaranth_stem"), DARK_AMARANTH_STEM);
+		r.add(("stripped_dark_amaranth_stem"), STRIPPED_DARK_AMARANTH_STEM);
+		r.add(("dark_amaranth_hyphae"), DARK_AMARANTH_HYPHAE);
+		r.add(("stripped_dark_amaranth_hyphae"), STRIPPED_DARK_AMARANTH_HYPHAE);
 
-		Registrar.add(Promenade.id("dark_amaranth_planks"), DARK_AMARANTH_PLANKS);
-		Registrar.add(Promenade.id("dark_amaranth_stairs"), DARK_AMARANTH_STAIRS);
-		Registrar.add(Promenade.id("dark_amaranth_slab"), DARK_AMARANTH_SLAB);
-		Registrar.add(Promenade.id("dark_amaranth_fence"), DARK_AMARANTH_FENCE);
-		Registrar.add(Promenade.id("dark_amaranth_fence_gate"), DARK_AMARANTH_FENCE_GATE);
-		Registrar.add(Promenade.id("dark_amaranth_door"), DARK_AMARANTH_DOOR);
-		Registrar.add(Promenade.id("dark_amaranth_trapdoor"), DARK_AMARANTH_TRAPDOOR);
-		Registrar.add(Promenade.id("dark_amaranth_button"), DARK_AMARANTH_BUTTON);
-		Registrar.add(Promenade.id("dark_amaranth_pressure_plate"), DARK_AMARANTH_PRESSURE_PLATE);
+		r.add(("dark_amaranth_planks"), DARK_AMARANTH_PLANKS);
+		r.add(("dark_amaranth_stairs"), DARK_AMARANTH_STAIRS);
+		r.add(("dark_amaranth_slab"), DARK_AMARANTH_SLAB);
+		r.add(("dark_amaranth_fence"), DARK_AMARANTH_FENCE);
+		r.add(("dark_amaranth_fence_gate"), DARK_AMARANTH_FENCE_GATE);
+		r.add(("dark_amaranth_door"), DARK_AMARANTH_DOOR);
+		r.add(("dark_amaranth_trapdoor"), DARK_AMARANTH_TRAPDOOR);
+		r.add(("dark_amaranth_button"), DARK_AMARANTH_BUTTON);
+		r.add(("dark_amaranth_pressure_plate"), DARK_AMARANTH_PRESSURE_PLATE);
 
-		Registrar.add(Promenade.id("dark_amaranth"), DARK_AMARANTH_SIGNS);
+		r.add(("dark_amaranth"), DARK_AMARANTH_SIGNS);
 
-		Registrar.add(Promenade.id("dark_amaranth_fungus"), DARK_AMARANTH_FUNGUS);
-		Registrar.add(Promenade.id("potted_dark_amaranth_fungus"), POTTED_DARK_AMARANTH_FUNGUS);
+		r.add(("dark_amaranth_fungus"), DARK_AMARANTH_FUNGUS);
+		r.add(("potted_dark_amaranth_fungus"), POTTED_DARK_AMARANTH_FUNGUS);
 
 		if(Promenade.CONFIG.biomes.dark_amaranth_forests_weight > 0) {
 			TheEndBiomes.addHighlandsBiome(TALL_DARK_AMARANTH_FOREST, Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 10.0D);

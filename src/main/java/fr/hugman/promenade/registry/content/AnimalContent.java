@@ -60,22 +60,23 @@ public class AnimalContent {
 	public static final Item DUCK_FOOD = new Item(new DawnItemSettings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F).meat().build()));
 	public static final Item COOKED_DUCK_FOOD = new Item(new DawnItemSettings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).meat().build()));
 
-	public static void init() {
-		CapybaraVariants.init();
-		Registrar.add(Promenade.id("capybara"), CAPYBARA);
-		Registrar.add(Promenade.id("capybara_spawn_egg"), CAPYBARA_SPAWN_EGG);
+	public static void register(Registrar r) {
+		CapybaraVariants.register(r);
+
+		r.add(("capybara"), CAPYBARA);
+		r.add(("capybara_spawn_egg"), CAPYBARA_SPAWN_EGG);
 		Registrar.add(CAPYBARA_AMBIENT_SOUND);
 		Registrar.add(CAPYBARA_AMBIENT_BABY_SOUND);
 
-		Registrar.add(Promenade.id("duck"), DUCK);
-		Registrar.add(Promenade.id("duck_spawn_egg"), DUCK_SPAWN_EGG);
+		r.add(("duck"), DUCK);
+		r.add(("duck_spawn_egg"), DUCK_SPAWN_EGG);
 		Registrar.add(DUCK_AMBIENT_SOUND);
 		Registrar.add(DUCK_HURT_SOUND);
 		Registrar.add(DUCK_DEATH_SOUND);
 		Registrar.add(DUCK_STEP_SOUND);
 
-		Registrar.add(Promenade.id("duck"), DUCK_FOOD);
-		Registrar.add(Promenade.id("cooked_duck"), COOKED_DUCK_FOOD);
+		r.add(("duck"), DUCK_FOOD);
+		r.add(("cooked_duck"), COOKED_DUCK_FOOD);
 
 		if(Promenade.CONFIG.animals.ducks_weight != 0) {
 			Predicate<BiomeSelectionContext> hasFarmAnimals = BiomeSelectors.spawnsOneOf(EntityType.COW).and(BiomeSelectors.spawnsOneOf(EntityType.SHEEP)).and(BiomeSelectors.spawnsOneOf(EntityType.CHICKEN)).and(BiomeSelectors.spawnsOneOf(EntityType.PIG));

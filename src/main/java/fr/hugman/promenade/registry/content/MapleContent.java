@@ -81,51 +81,51 @@ public class MapleContent {
 
 	public static final RegistryKey<Biome> CARNELIAN_TREEWAY = DawnFactory.biome(Promenade.id("carnelian_treeway"));
 
-	public static void init() {
-		Registrar.add(Promenade.id("maple_log"), MAPLE_LOG);
-		Registrar.add(Promenade.id("stripped_maple_log"), STRIPPED_MAPLE_LOG);
-		Registrar.add(Promenade.id("maple_wood"), MAPLE_WOOD);
-		Registrar.add(Promenade.id("stripped_maple_wood"), STRIPPED_MAPLE_WOOD);
+	public static void register(Registrar r) {
+		r.add(("maple_log"), MAPLE_LOG);
+		r.add(("stripped_maple_log"), STRIPPED_MAPLE_LOG);
+		r.add(("maple_wood"), MAPLE_WOOD);
+		r.add(("stripped_maple_wood"), STRIPPED_MAPLE_WOOD);
 
-		Registrar.add(Promenade.id("maple_planks"), MAPLE_PLANKS);
-		Registrar.add(Promenade.id("maple_stairs"), MAPLE_STAIRS);
-		Registrar.add(Promenade.id("maple_slab"), MAPLE_SLAB);
-		Registrar.add(Promenade.id("maple_fence"), MAPLE_FENCE);
-		Registrar.add(Promenade.id("maple_fence_gate"), MAPLE_FENCE_GATE);
-		Registrar.add(Promenade.id("maple_door"), MAPLE_DOOR);
-		Registrar.add(Promenade.id("maple_trapdoor"), MAPLE_TRAPDOOR);
-		Registrar.add(Promenade.id("maple_button"), MAPLE_BUTTON);
-		Registrar.add(Promenade.id("maple_pressure_plate"), MAPLE_PRESSURE_PLATE);
+		r.add(("maple_planks"), MAPLE_PLANKS);
+		r.add(("maple_stairs"), MAPLE_STAIRS);
+		r.add(("maple_slab"), MAPLE_SLAB);
+		r.add(("maple_fence"), MAPLE_FENCE);
+		r.add(("maple_fence_gate"), MAPLE_FENCE_GATE);
+		r.add(("maple_door"), MAPLE_DOOR);
+		r.add(("maple_trapdoor"), MAPLE_TRAPDOOR);
+		r.add(("maple_button"), MAPLE_BUTTON);
+		r.add(("maple_pressure_plate"), MAPLE_PRESSURE_PLATE);
 
-		Registrar.add(Promenade.id("maple"), MAPLE_SIGNS);
-		Registrar.add(Promenade.id("maple"), MAPLE_BOAT_TYPE);
+		r.add(("maple"), MAPLE_SIGNS);
+		r.add(("maple"), MAPLE_BOAT_TYPE);
 
-		Registrar.add(Promenade.id("maple_syrup_bottle"), MAPLE_SYRUP_BOTTLE);
+		r.add(("maple_syrup_bottle"), MAPLE_SYRUP_BOTTLE);
 
-		Registrar.add(Promenade.id("sap_maple_sapling"), SAP_MAPLE_SAPLING);
-		Registrar.add(Promenade.id("potted_sap_maple_sapling"), POTTED_SAP_MAPLE_SAPLING);
-		Registrar.add(Promenade.id("sap_maple_leaves"), SAP_MAPLE_LEAVES);
-		Registrar.add(Promenade.id("sap_maple_leaf_pile"), SAP_MAPLE_LEAF_PILE);
+		r.add(("sap_maple_sapling"), SAP_MAPLE_SAPLING);
+		r.add(("potted_sap_maple_sapling"), POTTED_SAP_MAPLE_SAPLING);
+		r.add(("sap_maple_leaves"), SAP_MAPLE_LEAVES);
+		r.add(("sap_maple_leaf_pile"), SAP_MAPLE_LEAF_PILE);
 
-		Registrar.add(Promenade.id("vermilion_maple_sapling"), VERMILION_MAPLE_SAPLING);
-		Registrar.add(Promenade.id("potted_vermilion_maple_sapling"), POTTED_VERMILION_MAPLE_SAPLING);
-		Registrar.add(Promenade.id("vermilion_maple_leaves"), VERMILION_MAPLE_LEAVES);
-		Registrar.add(Promenade.id("vermilion_maple_leaf_pile"), VERMILION_MAPLE_LEAF_PILE);
-		Registrar.add(Promenade.id("vermilion_carpeted_grass_block"), VERMILION_CARPETED_GRASS_BLOCK);
+		r.add(("vermilion_maple_sapling"), VERMILION_MAPLE_SAPLING);
+		r.add(("potted_vermilion_maple_sapling"), POTTED_VERMILION_MAPLE_SAPLING);
+		r.add(("vermilion_maple_leaves"), VERMILION_MAPLE_LEAVES);
+		r.add(("vermilion_maple_leaf_pile"), VERMILION_MAPLE_LEAF_PILE);
+		r.add(("vermilion_carpeted_grass_block"), VERMILION_CARPETED_GRASS_BLOCK);
 
-		Registrar.add(Promenade.id("fulvous_maple_sapling"), FULVOUS_MAPLE_SAPLING);
-		Registrar.add(Promenade.id("potted_fulvous_maple_sapling"), POTTED_FULVOUS_MAPLE_SAPLING);
-		Registrar.add(Promenade.id("fulvous_maple_leaves"), FULVOUS_MAPLE_LEAVES);
-		Registrar.add(Promenade.id("fulvous_maple_leaf_pile"), FULVOUS_MAPLE_LEAF_PILE);
-		Registrar.add(Promenade.id("fulvous_carpeted_grass_block"), FULVOUS_CARPETED_GRASS_BLOCK);
+		r.add(("fulvous_maple_sapling"), FULVOUS_MAPLE_SAPLING);
+		r.add(("potted_fulvous_maple_sapling"), POTTED_FULVOUS_MAPLE_SAPLING);
+		r.add(("fulvous_maple_leaves"), FULVOUS_MAPLE_LEAVES);
+		r.add(("fulvous_maple_leaf_pile"), FULVOUS_MAPLE_LEAF_PILE);
+		r.add(("fulvous_carpeted_grass_block"), FULVOUS_CARPETED_GRASS_BLOCK);
 
-		Registrar.add(Promenade.id("mikado_maple_sapling"), MIKADO_MAPLE_SAPLING);
-		Registrar.add(Promenade.id("potted_mikado_maple_sapling"), POTTED_MIKADO_MAPLE_SAPLING);
-		Registrar.add(Promenade.id("mikado_maple_leaves"), MIKADO_MAPLE_LEAVES);
-		Registrar.add(Promenade.id("mikado_maple_leaf_pile"), MIKADO_MAPLE_LEAF_PILE);
-		Registrar.add(Promenade.id("mikado_carpeted_grass_block"), MIKADO_CARPETED_GRASS_BLOCK);
+		r.add(("mikado_maple_sapling"), MIKADO_MAPLE_SAPLING);
+		r.add(("potted_mikado_maple_sapling"), POTTED_MIKADO_MAPLE_SAPLING);
+		r.add(("mikado_maple_leaves"), MIKADO_MAPLE_LEAVES);
+		r.add(("mikado_maple_leaf_pile"), MIKADO_MAPLE_LEAF_PILE);
+		r.add(("mikado_carpeted_grass_block"), MIKADO_CARPETED_GRASS_BLOCK);
 
-		Registrar.add(Promenade.id("maple_leaf"), MAPLE_LEAF);
+		r.add(("maple_leaf"), MAPLE_LEAF);
 
 		if(Promenade.CONFIG.biomes.carnelian_treeway_weight > 0) {
 			//TODO : add back to overworld generation when the Biome API supports that

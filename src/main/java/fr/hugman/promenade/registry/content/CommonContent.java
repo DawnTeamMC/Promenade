@@ -2,7 +2,6 @@ package fr.hugman.promenade.registry.content;
 
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
-import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.gen.feature.BoulderFeature;
 import fr.hugman.promenade.gen.feature.BoulderFeatureConfig;
 import fr.hugman.promenade.gen.feature.TallHugeFungusFeature;
@@ -23,12 +22,12 @@ public class CommonContent {
 
 	public static final PlacementModifierType<NoiseIntervalCountPlacementModifier> NOISE_INTERVAL_COUNT = () -> NoiseIntervalCountPlacementModifier.MODIFIER_CODEC;
 
-	public static void init() {
-		Registrar.add(Promenade.id("leaping"), LEAPING_TRUNK_PLACER);
-		Registrar.add(Promenade.id("palm"), PALM_FOLIAGE_PLACER);
-		Registrar.add(Promenade.id("tall_huge_fungus"), TALL_HUGE_FUNGUS);
-		Registrar.add(Promenade.id("boulder"), BOULDER);
+	public static void register(Registrar r) {
+		r.add(("leaping"), LEAPING_TRUNK_PLACER);
+		r.add(("palm"), PALM_FOLIAGE_PLACER);
+		r.add(("tall_huge_fungus"), TALL_HUGE_FUNGUS);
+		r.add(("boulder"), BOULDER);
 
-		Registrar.add(Promenade.id("noise_interval_count"), NOISE_INTERVAL_COUNT);
+		r.add(("noise_interval_count"), NOISE_INTERVAL_COUNT);
 	}
 }

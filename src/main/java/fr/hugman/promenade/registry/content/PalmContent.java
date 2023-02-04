@@ -53,29 +53,29 @@ public class PalmContent {
 
 	public static final RegistryKey<PlacedFeature> PALMS = DawnFactory.placedFeature(Promenade.id("trees/palms"));
 
-	public static void init() {
-		Registrar.add(Promenade.id("palm_log"), PALM_LOG);
-		Registrar.add(Promenade.id("stripped_palm_log"), STRIPPED_PALM_LOG);
-		Registrar.add(Promenade.id("palm_wood"), PALM_WOOD);
-		Registrar.add(Promenade.id("stripped_palm_wood"), STRIPPED_PALM_WOOD);
+	public static void register(Registrar r) {
+		r.add(("palm_log"), PALM_LOG);
+		r.add(("stripped_palm_log"), STRIPPED_PALM_LOG);
+		r.add(("palm_wood"), PALM_WOOD);
+		r.add(("stripped_palm_wood"), STRIPPED_PALM_WOOD);
 
-		Registrar.add(Promenade.id("palm_planks"), PALM_PLANKS);
-		Registrar.add(Promenade.id("palm_stairs"), PALM_STAIRS);
-		Registrar.add(Promenade.id("palm_slab"), PALM_SLAB);
-		Registrar.add(Promenade.id("palm_fence"), PALM_FENCE);
-		Registrar.add(Promenade.id("palm_fence_gate"), PALM_FENCE_GATE);
-		Registrar.add(Promenade.id("palm_door"), PALM_DOOR);
-		Registrar.add(Promenade.id("palm_trapdoor"), PALM_TRAPDOOR);
-		Registrar.add(Promenade.id("palm_button"), PALM_BUTTON);
-		Registrar.add(Promenade.id("palm_pressure_plate"), PALM_PRESSURE_PLATE);
+		r.add(("palm_planks"), PALM_PLANKS);
+		r.add(("palm_stairs"), PALM_STAIRS);
+		r.add(("palm_slab"), PALM_SLAB);
+		r.add(("palm_fence"), PALM_FENCE);
+		r.add(("palm_fence_gate"), PALM_FENCE_GATE);
+		r.add(("palm_door"), PALM_DOOR);
+		r.add(("palm_trapdoor"), PALM_TRAPDOOR);
+		r.add(("palm_button"), PALM_BUTTON);
+		r.add(("palm_pressure_plate"), PALM_PRESSURE_PLATE);
 
-		Registrar.add(Promenade.id("palm"), PALM_SIGNS);
-		Registrar.add(Promenade.id("palm"), PALM_BOAT_TYPE);
+		r.add(("palm"), PALM_SIGNS);
+		r.add(("palm"), PALM_BOAT_TYPE);
 
-		Registrar.add(Promenade.id("palm_sapling"), PALM_SAPLING);
-		Registrar.add(Promenade.id("potted_palm_sapling"), POTTED_PALM_SAPLING);
-		Registrar.add(Promenade.id("palm_leaves"), PALM_LEAVES);
-		Registrar.add(Promenade.id("palm_leaf_pile"), PALM_LEAF_PILE);
+		r.add(("palm_sapling"), PALM_SAPLING);
+		r.add(("potted_palm_sapling"), POTTED_PALM_SAPLING);
+		r.add(("palm_leaves"), PALM_LEAVES);
+		r.add(("palm_leaf_pile"), PALM_LEAF_PILE);
 
 		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add(TradeOfferUtils.sapling(PALM_SAPLING)));
 

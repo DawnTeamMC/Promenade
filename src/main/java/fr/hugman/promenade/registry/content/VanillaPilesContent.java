@@ -3,7 +3,6 @@ package fr.hugman.promenade.registry.content;
 import fr.hugman.dawn.Registrar;
 import fr.hugman.dawn.block.DawnBlockSettings;
 import fr.hugman.dawn.item.DawnItemSettings;
-import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.block.WitherRosePileBlock;
 import fr.hugman.promenade.item.ItemGroupHelper;
@@ -44,30 +43,30 @@ public class VanillaPilesContent {
 			.noCollision()
 			.nonOpaque());
 
-	public static void init() {
-		Registrar.add(Promenade.id("oak_leaf_pile"), OAK_LEAF_PILE);
-		Registrar.add(Promenade.id("spruce_leaf_pile"), SPRUCE_LEAF_PILE);
-		Registrar.add(Promenade.id("birch_leaf_pile"), BIRCH_LEAF_PILE);
-		Registrar.add(Promenade.id("jungle_leaf_pile"), JUNGLE_LEAF_PILE);
-		Registrar.add(Promenade.id("acacia_leaf_pile"), ACACIA_LEAF_PILE);
-		Registrar.add(Promenade.id("dark_oak_leaf_pile"), DARK_OAK_LEAF_PILE);
-		Registrar.add(Promenade.id("mangrove_leaf_pile"), MANGROVE_LEAF_PILE);
-		Registrar.add(Promenade.id("azalea_leaf_pile"), AZALEA_LEAF_PILE);
-		Registrar.add(Promenade.id("flowering_azalea_leaf_pile"), FLOWERING_AZALEA_LEAF_PILE);
+	public static void register(Registrar r) {
+		r.add(("oak_leaf_pile"), OAK_LEAF_PILE);
+		r.add(("spruce_leaf_pile"), SPRUCE_LEAF_PILE);
+		r.add(("birch_leaf_pile"), BIRCH_LEAF_PILE);
+		r.add(("jungle_leaf_pile"), JUNGLE_LEAF_PILE);
+		r.add(("acacia_leaf_pile"), ACACIA_LEAF_PILE);
+		r.add(("dark_oak_leaf_pile"), DARK_OAK_LEAF_PILE);
+		r.add(("mangrove_leaf_pile"), MANGROVE_LEAF_PILE);
+		r.add(("azalea_leaf_pile"), AZALEA_LEAF_PILE);
+		r.add(("flowering_azalea_leaf_pile"), FLOWERING_AZALEA_LEAF_PILE);
 
-		Registrar.add(Promenade.id("dandelion_pile"), DANDELION_PILE);
-		Registrar.add(Promenade.id("poppy_pile"), POPPY_PILE);
-		Registrar.add(Promenade.id("blue_orchid_pile"), BLUE_ORCHID_PILE);
-		Registrar.add(Promenade.id("allium_pile"), ALLIUM_PILE);
-		Registrar.add(Promenade.id("azure_bluet_pile"), AZURE_BLUET_PILE);
-		Registrar.add(Promenade.id("red_tulip_pile"), RED_TULIP_PILE);
-		Registrar.add(Promenade.id("orange_tulip_pile"), ORANGE_TULIP_PILE);
-		Registrar.add(Promenade.id("white_tulip_pile"), WHITE_TULIP_PILE);
-		Registrar.add(Promenade.id("pink_tulip_pile"), PINK_TULIP_PILE);
-		Registrar.add(Promenade.id("oxeye_daisy_pile"), OXEYE_DAISY_PILE);
-		Registrar.add(Promenade.id("cornflower_pile"), CORNFLOWER_PILE);
-		Registrar.add(Promenade.id("lily_of_the_valley_pile"), LILY_OF_THE_VALLEY_PILE);
-		Registrar.add(Promenade.id("wither_rose_pile"), WITHER_ROSE_PILE);
+		r.add(("dandelion_pile"), DANDELION_PILE);
+		r.add(("poppy_pile"), POPPY_PILE);
+		r.add(("blue_orchid_pile"), BLUE_ORCHID_PILE);
+		r.add(("allium_pile"), ALLIUM_PILE);
+		r.add(("azure_bluet_pile"), AZURE_BLUET_PILE);
+		r.add(("red_tulip_pile"), RED_TULIP_PILE);
+		r.add(("orange_tulip_pile"), ORANGE_TULIP_PILE);
+		r.add(("white_tulip_pile"), WHITE_TULIP_PILE);
+		r.add(("pink_tulip_pile"), PINK_TULIP_PILE);
+		r.add(("oxeye_daisy_pile"), OXEYE_DAISY_PILE);
+		r.add(("cornflower_pile"), CORNFLOWER_PILE);
+		r.add(("lily_of_the_valley_pile"), LILY_OF_THE_VALLEY_PILE);
+		r.add(("wither_rose_pile"), WITHER_ROSE_PILE);
 
 		ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
 			e.addAfter(Blocks.FLOWERING_AZALEA_LEAVES,

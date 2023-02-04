@@ -43,24 +43,24 @@ public class IgneousContent {
 	public static final RegistryKey<PlacedFeature> ORE_CARBONITE_UPPER = DawnFactory.placedFeature(Promenade.id("ore/carbonite/upper"));
 	public static final RegistryKey<PlacedFeature> ORE_CARBONITE_LOWER = DawnFactory.placedFeature(Promenade.id("ore/carbonite/lower"));
 
-	public static void init() {
-		Registrar.add(Promenade.id("blunite"), BLUNITE);
-		Registrar.add(Promenade.id("blunite_slab"), BLUNITE_SLAB);
-		Registrar.add(Promenade.id("blunite_stairs"), BLUNITE_STAIRS);
-		Registrar.add(Promenade.id("blunite_wall"), BLUNITE_WALL);
+	public static void register(Registrar r) {
+		r.add(("blunite"), BLUNITE);
+		r.add(("blunite_slab"), BLUNITE_SLAB);
+		r.add(("blunite_stairs"), BLUNITE_STAIRS);
+		r.add(("blunite_wall"), BLUNITE_WALL);
 
-		Registrar.add(Promenade.id("carbonite"), CARBONITE);
-		Registrar.add(Promenade.id("carbonite_slab"), CARBONITE_SLAB);
-		Registrar.add(Promenade.id("carbonite_stairs"), CARBONITE_STAIRS);
-		Registrar.add(Promenade.id("carbonite_wall"), CARBONITE_WALL);
+		r.add(("carbonite"), CARBONITE);
+		r.add(("carbonite_slab"), CARBONITE_SLAB);
+		r.add(("carbonite_stairs"), CARBONITE_STAIRS);
+		r.add(("carbonite_wall"), CARBONITE_WALL);
 
-		Registrar.add(Promenade.id("polished_blunite"), POLISHED_BLUNITE);
-		Registrar.add(Promenade.id("polished_blunite_slab"), POLISHED_BLUNITE_SLAB);
-		Registrar.add(Promenade.id("polished_blunite_stairs"), POLISHED_BLUNITE_STAIRS);
+		r.add(("polished_blunite"), POLISHED_BLUNITE);
+		r.add(("polished_blunite_slab"), POLISHED_BLUNITE_SLAB);
+		r.add(("polished_blunite_stairs"), POLISHED_BLUNITE_STAIRS);
 
-		Registrar.add(Promenade.id("polished_carbonite"), POLISHED_CARBONITE);
-		Registrar.add(Promenade.id("polished_carbonite_slab"), POLISHED_CARBONITE_SLAB);
-		Registrar.add(Promenade.id("polished_carbonite_stairs"), POLISHED_CARBONITE_STAIRS);
+		r.add(("polished_carbonite"), POLISHED_CARBONITE);
+		r.add(("polished_carbonite_slab"), POLISHED_CARBONITE_SLAB);
+		r.add(("polished_carbonite_stairs"), POLISHED_CARBONITE_STAIRS);
 
 		if(Promenade.CONFIG.world_features.igneous_rock_patches) {
 			Predicate<BiomeSelectionContext> hasIgneousRocks = c -> c.hasFeature(OreConfiguredFeatures.ORE_ANDESITE) && c.hasFeature(OreConfiguredFeatures.ORE_DIORITE) && c.hasFeature(OreConfiguredFeatures.ORE_GRANITE);

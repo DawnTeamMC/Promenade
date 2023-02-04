@@ -45,12 +45,12 @@ public class MonsterContent {
 	public static final SoundEvent SUNKEN_SKELETON_STEP_SOUND = SoundEvent.of(Promenade.id("entity.sunken_skeleton.step"));
 	public static final SoundEvent SUNKEN_SKELETON_SHOOT_SOUND = SoundEvent.of(Promenade.id("entity.sunken_skeleton.shoot"));
 
-	public static void init() {
-		Registrar.add(Promenade.id("lush_creeper"), LUSH_CREEPER);
-		Registrar.add(Promenade.id("lush_creeper_spawn_egg"), LUSH_CREEPER_SPAWN_EGG);
+	public static void register(Registrar r) {
+		r.add(("lush_creeper"), LUSH_CREEPER);
+		r.add(("lush_creeper_spawn_egg"), LUSH_CREEPER_SPAWN_EGG);
 
-		Registrar.add(Promenade.id("sunken_skeleton"), SUNKEN_SKELETON);
-		Registrar.add(Promenade.id("sunken_skeleton_spawn_egg"), SUNKEN_SKELETON_SPAWN_EGG);
+		r.add(("sunken_skeleton"), SUNKEN_SKELETON);
+		r.add(("sunken_skeleton_spawn_egg"), SUNKEN_SKELETON_SPAWN_EGG);
 		Registrar.add(SUNKEN_SKELETON_AMBIENT_SOUND);
 		Registrar.add(SUNKEN_SKELETON_HURT_SOUND);
 		Registrar.add(SUNKEN_SKELETON_DEATH_SOUND);

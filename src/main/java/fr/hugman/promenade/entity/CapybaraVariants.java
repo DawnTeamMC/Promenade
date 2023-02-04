@@ -1,5 +1,6 @@
 package fr.hugman.promenade.entity;
 
+import fr.hugman.dawn.Registrar;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeRegistrar;
 import fr.hugman.promenade.registry.PromenadeRegistries;
@@ -9,9 +10,9 @@ public class CapybaraVariants {
 	public static final CapybaraVariant BROWN = new CapybaraVariant(49);
 	public static final CapybaraVariant ALBINO = new CapybaraVariant(1);
 
-	public static void init() {
-		PromenadeRegistrar.add(Promenade.id("brown"), BROWN);
-		PromenadeRegistrar.add(Promenade.id("albino"), ALBINO);
+	public static void register(Registrar r) {
+		PromenadeRegistrar.add(r.id("brown"), BROWN);
+		PromenadeRegistrar.add(r.id("albino"), ALBINO);
 	}
 
 	public static CapybaraVariant getRandom(Random random) {

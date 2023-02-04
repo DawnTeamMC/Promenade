@@ -1,5 +1,6 @@
 package fr.hugman.promenade;
 
+import fr.hugman.dawn.Registrar;
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
@@ -14,27 +15,27 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Promenade implements ModInitializer {
-	public static final String MOD_ID = "promenade";
+	public static final Registrar REGISTRAR = new Registrar("promenade");
 	public static final Logger LOGGER = LogManager.getLogger();
 	public static final PromenadeConfig CONFIG = AutoConfig.register(PromenadeConfig.class, PartitioningSerializer.wrap(GsonConfigSerializer::new)).getConfig();
 
 	@Override
 	public void onInitialize() {
 		PromenadeTrackedData.init();
-		PromenadeSensorTypes.init();
+		PromenadeSensorTypes.register(REGISTRAR);
 
-		CommonContent.init();
-		VanillaPilesContent.init();
-		FoodContent.init();
-		IgneousContent.init();
+		AnimalContent.register(REGISTRAR);
+		MonsterContent.register(REGISTRAR);
 
-		CherryContent.init();
-		MapleContent.init();
-		PalmContent.init();
-		AmaranthContent.init();
+		CommonContent.register(REGISTRAR);
+		VanillaPilesContent.register(REGISTRAR);
+		FoodContent.register(REGISTRAR);
+		IgneousContent.register(REGISTRAR);
 
-		AnimalContent.init();
-		MonsterContent.init();
+		CherryContent.register(REGISTRAR);
+		MapleContent.register(REGISTRAR);
+		PalmContent.register(REGISTRAR);
+		AmaranthContent.register(REGISTRAR);
 
 		if(FabricLoader.getInstance().isModLoaded("columns")) {
 			//TODO: haykam
@@ -45,6 +46,6 @@ public class Promenade implements ModInitializer {
 	}
 
 	public static Identifier id(String path) {
-		return new Identifier(MOD_ID, path);
+		return REGISTRAR.id(path);
 	}
 }

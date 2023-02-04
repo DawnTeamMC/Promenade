@@ -60,36 +60,36 @@ public class CherryContent {
 	public static final RegistryKey<Biome> PINK_CHERRY_OAK_FOREST = DawnFactory.biome(Promenade.id("pink_cherry_oak_forest"));
 	public static final RegistryKey<Biome> WHITE_CHERRY_OAK_FOREST = DawnFactory.biome(Promenade.id("white_cherry_oak_forest"));
 
-	public static void init() {
-		Registrar.add(Promenade.id("cherry_oak_log"), CHERRY_OAK_LOG);
-		Registrar.add(Promenade.id("stripped_cherry_oak_log"), STRIPPED_CHERRY_OAK_LOG);
-		Registrar.add(Promenade.id("cherry_oak_wood"), CHERRY_OAK_WOOD);
-		Registrar.add(Promenade.id("stripped_cherry_oak_wood"), STRIPPED_CHERRY_OAK_WOOD);
+	public static void register(Registrar r) {
+		r.add(("cherry_oak_log"), CHERRY_OAK_LOG);
+		r.add(("stripped_cherry_oak_log"), STRIPPED_CHERRY_OAK_LOG);
+		r.add(("cherry_oak_wood"), CHERRY_OAK_WOOD);
+		r.add(("stripped_cherry_oak_wood"), STRIPPED_CHERRY_OAK_WOOD);
 
-		Registrar.add(Promenade.id("cherry_oak_planks"), CHERRY_OAK_PLANKS);
-		Registrar.add(Promenade.id("cherry_oak_stairs"), CHERRY_OAK_STAIRS);
-		Registrar.add(Promenade.id("cherry_oak_slab"), CHERRY_OAK_SLAB);
-		Registrar.add(Promenade.id("cherry_oak_fence"), CHERRY_OAK_FENCE);
-		Registrar.add(Promenade.id("cherry_oak_fence_gate"), CHERRY_OAK_FENCE_GATE);
-		Registrar.add(Promenade.id("cherry_oak_door"), CHERRY_OAK_DOOR);
-		Registrar.add(Promenade.id("cherry_oak_trapdoor"), CHERRY_OAK_TRAPDOOR);
-		Registrar.add(Promenade.id("cherry_oak_button"), CHERRY_OAK_BUTTON);
-		Registrar.add(Promenade.id("cherry_oak_pressure_plate"), CHERRY_OAK_PRESSURE_PLATE);
+		r.add(("cherry_oak_planks"), CHERRY_OAK_PLANKS);
+		r.add(("cherry_oak_stairs"), CHERRY_OAK_STAIRS);
+		r.add(("cherry_oak_slab"), CHERRY_OAK_SLAB);
+		r.add(("cherry_oak_fence"), CHERRY_OAK_FENCE);
+		r.add(("cherry_oak_fence_gate"), CHERRY_OAK_FENCE_GATE);
+		r.add(("cherry_oak_door"), CHERRY_OAK_DOOR);
+		r.add(("cherry_oak_trapdoor"), CHERRY_OAK_TRAPDOOR);
+		r.add(("cherry_oak_button"), CHERRY_OAK_BUTTON);
+		r.add(("cherry_oak_pressure_plate"), CHERRY_OAK_PRESSURE_PLATE);
 
-		Registrar.add(Promenade.id("cherry_oak"), CHERRY_OAK_SIGNS);
-		Registrar.add(Promenade.id("cherry_oak"), CHERRY_OAK_BOAT_TYPE);
+		r.add(("cherry_oak"), CHERRY_OAK_SIGNS);
+		r.add(("cherry_oak"), CHERRY_OAK_BOAT_TYPE);
 
-		Registrar.add(Promenade.id("pink_cherry_oak_sapling"), PINK_CHERRY_OAK_SAPLING);
-		Registrar.add(Promenade.id("potted_pink_cherry_oak_sapling"), POTTED_PINK_CHERRY_OAK_SAPLING);
-		Registrar.add(Promenade.id("pink_cherry_oak_leaves"), PINK_CHERRY_OAK_LEAVES);
-		Registrar.add(Promenade.id("pink_cherry_oak_leaf_pile"), PINK_CHERRY_OAK_LEAF_PILE);
-		Registrar.add(Promenade.id("pink_cherry_blossom"), PINK_CHERRY_BLOSSOM);
+		r.add(("pink_cherry_oak_sapling"), PINK_CHERRY_OAK_SAPLING);
+		r.add(("potted_pink_cherry_oak_sapling"), POTTED_PINK_CHERRY_OAK_SAPLING);
+		r.add(("pink_cherry_oak_leaves"), PINK_CHERRY_OAK_LEAVES);
+		r.add(("pink_cherry_oak_leaf_pile"), PINK_CHERRY_OAK_LEAF_PILE);
+		r.add(("pink_cherry_blossom"), PINK_CHERRY_BLOSSOM);
 
-		Registrar.add(Promenade.id("white_cherry_oak_sapling"), WHITE_CHERRY_OAK_SAPLING);
-		Registrar.add(Promenade.id("potted_white_cherry_oak_sapling"), POTTED_WHITE_CHERRY_OAK_SAPLING);
-		Registrar.add(Promenade.id("white_cherry_oak_leaves"), WHITE_CHERRY_OAK_LEAVES);
-		Registrar.add(Promenade.id("white_cherry_oak_leaf_pile"), WHITE_CHERRY_OAK_LEAF_PILE);
-		Registrar.add(Promenade.id("white_cherry_blossom"), WHITE_CHERRY_BLOSSOM);
+		r.add(("white_cherry_oak_sapling"), WHITE_CHERRY_OAK_SAPLING);
+		r.add(("potted_white_cherry_oak_sapling"), POTTED_WHITE_CHERRY_OAK_SAPLING);
+		r.add(("white_cherry_oak_leaves"), WHITE_CHERRY_OAK_LEAVES);
+		r.add(("white_cherry_oak_leaf_pile"), WHITE_CHERRY_OAK_LEAF_PILE);
+		r.add(("white_cherry_blossom"), WHITE_CHERRY_BLOSSOM);
 
 		if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
 			//TODO : add back to overworld generation when the Biome API supports that
