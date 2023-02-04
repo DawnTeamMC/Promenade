@@ -2,69 +2,63 @@
   "type": "dawn:shape",
   "config": {
     "shape": {
+      "type": "dawn:empty",
       "shape": {
-        "type": "dawn:empty"
-      },
-      "processors": [
-        {
-          "processor": {
-            "type": "dawn:add",
-            "shape": {
-              "shape": {
-                "type": "dawn:elliptical_pyramid",
-                "a": {
+        "type": "dawn:repeat",
+        "count": {
+          "type": "minecraft:uniform",
+          "value": {
+            "min_inclusive": 2,
+            "max_inclusive": 5
+          }
+        },
+        "shape": {
+          "type": "dawn:add",
+          "shape": {
+            "type": "dawn:elliptical_pyramid",
+            "a": {
+              "type": "minecraft:uniform",
+              "value": {
+                "min_inclusive": 2.0,
+                "max_exclusive": 5.0
+              }
+            },
+            "b": {
+              "type": "minecraft:uniform",
+              "value": {
+                "min_inclusive": 2.0,
+                "max_exclusive": 5.0
+              }
+            },
+            "height": {
+              "type": "minecraft:uniform",
+              "value": {
+                "min_inclusive": 6.0,
+                "max_exclusive": 28.0
+              }
+            },
+            "processors": [
+              {
+                "type": "dawn:rotate",
+                "y_theta": {
                   "type": "minecraft:uniform",
                   "value": {
-                    "min_inclusive": 2.0,
-                    "max_exclusive": 5.0
+                    "min_inclusive": 0.0,
+                    "max_exclusive": 360.0
                   }
                 },
-                "b": {
+                "z_theta": {
                   "type": "minecraft:uniform",
                   "value": {
-                    "min_inclusive": 2.0,
-                    "max_exclusive": 5.0
-                  }
-                },
-                "height": {
-                  "type": "minecraft:uniform",
-                  "value": {
-                    "min_inclusive": 6.0,
-                    "max_exclusive": 28.0
+                    "min_inclusive": 150.0,
+                    "max_exclusive": 180.0
                   }
                 }
-              },
-              "processors":
-              [
-                {
-                  "type": "dawn:rotate",
-                  "y_theta": {
-                    "type": "minecraft:uniform",
-                    "value": {
-                      "min_inclusive": 0.0,
-                      "max_exclusive": 360.0
-                    }
-                  },
-                  "z_theta": {
-                    "type": "minecraft:uniform",
-                    "value": {
-                      "min_inclusive": 150.0,
-                      "max_exclusive": 180.0
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "repeat": {
-            "type": "minecraft:uniform",
-            "value": {
-              "min_inclusive": 2,
-              "max_inclusive": 5
-            }
+              }
+            ]
           }
         }
-      ]
+      }
     },
     "state": {
       "type": "minecraft:weighted_state_provider",

@@ -12,8 +12,7 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 
-public class PileBlock extends PlantBlock
-{
+public class PileBlock extends PlantBlock {
 	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 
 	public PileBlock(Settings settings) {

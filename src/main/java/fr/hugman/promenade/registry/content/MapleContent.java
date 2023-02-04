@@ -79,8 +79,6 @@ public class MapleContent {
 
 	public static final DefaultParticleType MAPLE_LEAF = FabricParticleTypes.simple();
 
-	// TODO: add acorns
-
 	public static final RegistryKey<Biome> CARNELIAN_TREEWAY = DawnFactory.biome(Promenade.id("carnelian_treeway"));
 
 	public static void init() {

@@ -35,8 +35,8 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 
 		int i = radius + treeNode.getFoliageRadius();
 		if(i > 1) this.generateSquare(world, replacer, random, config, blockPos, i, 2, bl);
-		this.generateSquare(world, replacer, random, config, blockPos, i + 1,  1, bl);
-		this.generateSquare(world, replacer, random, config, blockPos, i + 2,  0, bl);
+		this.generateSquare(world, replacer, random, config, blockPos, i + 1, 1, bl);
+		this.generateSquare(world, replacer, random, config, blockPos, i + 2, 0, bl);
 		this.generateSquare(world, replacer, random, config, blockPos, i + 2, -1, bl);
 		this.generateSquare(world, replacer, random, config, blockPos, i + 1, -2, bl);
 	}
@@ -69,9 +69,7 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 			// Corner leafs
 			if(dx == radius - 2 && dz == radius - 2) return false;
 			if(dx == radius - 2 && dz == radius - 1) return false;
-			if(dx == radius - 1 && dz == radius - 2) return false;
-
-			return true;
+			return dx != radius - 1 || dz != radius - 2;
 		}
 		else if(y == -1) {
 			if(d == 0) return false;
@@ -82,15 +80,11 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 			if(dz == radius) return dx != 0;
 
 			// Corner leafs
-			if(d == (radius - 1) * 2 && dx == dz) return false;
-
-			return true;
+			return d != (radius - 1) * 2 || dx != dz;
 		}
 		else if(y == -2) {
 			// Corner leafs
-			if(d == radius * 2 && dx == dz) return false;
-
-			return true;
+			return d != radius * 2 || dx != dz;
 		}
 		return true;
 	}

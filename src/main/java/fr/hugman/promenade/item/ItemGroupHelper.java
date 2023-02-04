@@ -10,6 +10,7 @@ import net.minecraft.registry.Registries;
 import java.util.Collections;
 import java.util.function.Predicate;
 
+//TODO: move to Dawn API
 public final class ItemGroupHelper {
 	public static void append(ItemGroup group, ItemGroupEvents.ModifyEntries modifier) {
 		ItemGroupEvents.modifyEntriesEvent(group).register(modifier);

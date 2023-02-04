@@ -75,13 +75,13 @@ public class LushCreeperEntity extends CreeperEntity {
 
 	private void spawnEffectsCloud() {
 		Collection<StatusEffectInstance> statusEffects = this.getStatusEffects();
-		if (!statusEffects.isEmpty()) {
+		if(!statusEffects.isEmpty()) {
 			AreaEffectCloudEntity aec = new AreaEffectCloudEntity(this.world, this.getX(), this.getY(), this.getZ());
 			aec.setRadius(2.5F);
 			aec.setRadiusOnUse(-0.5F);
 			aec.setWaitTime(10);
 			aec.setDuration(aec.getDuration() / 2);
-			aec.setRadiusGrowth(-aec.getRadius() / (float)aec.getDuration());
+			aec.setRadiusGrowth(-aec.getRadius() / (float) aec.getDuration());
 
 			for(StatusEffectInstance statusEffectInstance : statusEffects) {
 				aec.addEffect(new StatusEffectInstance(statusEffectInstance));

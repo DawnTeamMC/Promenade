@@ -133,13 +133,11 @@ public class DuckEntity extends AnimalEntity {
 
 	@Override
 	public boolean canWalkOnFluid(FluidState fluidState) {
-		// TODO: replace with fluid tag
 		return fluidState.isOf(Fluids.WATER);
 	}
 
 	@Override
 	public void travel(Vec3d movementInput) {
-		// TODO: replace with fluid tag
 		if(this.canMoveVoluntarily() && this.isTouchingWater()) {
 			this.updateVelocity(this.getMovementSpeed(), movementInput);
 			this.move(MovementType.SELF, this.getVelocity());

@@ -25,7 +25,7 @@ public class CapybaraEyesRenderer<E extends CapybaraEntity> extends FeatureRende
 	@Override
 	public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, E capybara, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 		VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutoutNoCull(eyeTexture(capybara)));
-		((Model)this.getContextModel()).render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
+		((Model) this.getContextModel()).render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f);
 	}
 
 	public Identifier eyeTexture(CapybaraEntity capybara) {

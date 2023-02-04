@@ -14,14 +14,14 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.Optional;
 
-@Environment(value=EnvType.CLIENT)
+@Environment(value = EnvType.CLIENT)
 public class FloatingParticle extends SpriteBillboardParticle {
 	private static final int FADE_IN = 50;
 	private static final int FADE_OUT = 100;
 	private static final int GROUND_ALIVE = 100;
 
 	private float bobbingAmplitude = 1.0F;
-	private float bobbingSpeed = 0.1F;
+	private final float bobbingSpeed = 0.1F;
 
 	public FloatingParticle(ClientWorld world, SpriteProvider spriteProvider, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 		super(world, x, y - 0.125, z, velocityX, velocityY, velocityZ);
@@ -45,10 +45,10 @@ public class FloatingParticle extends SpriteBillboardParticle {
 		if(this.age <= FADE_IN) {
 			this.alpha = this.age / (float) FADE_IN;
 		}
-		if (this.maxAge - this.age <= FADE_OUT) {
+		if(this.maxAge - this.age <= FADE_OUT) {
 			this.alpha = this.maxAge - this.age / (float) FADE_OUT;
 		}
-		else if (this.onGround && this.maxAge >= this.age + FADE_OUT + GROUND_ALIVE) {
+		else if(this.onGround && this.maxAge >= this.age + FADE_OUT + GROUND_ALIVE) {
 			this.maxAge = this.age + FADE_OUT + GROUND_ALIVE;
 		}
 	}

@@ -62,7 +62,6 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 		if(capybara.canAngleHead()) {
 			this.setHeadAngles(headYaw, headPitch);
 		}
-		this.updateVisibleParts(capybara);
 		this.updateAnimations(capybara, animationProgress);
 	}
 
@@ -72,10 +71,6 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
 
 		this.head.yaw = headYaw * 0.017453292F;
 		this.head.pitch = headPitch * 0.017453292F;
-	}
-
-	private void updateVisibleParts(CapybaraEntity capybara) {
-		//TODO: add haircuts
 	}
 
 	@Override

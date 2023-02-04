@@ -77,7 +77,6 @@ public class PromenadeClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(VanillaPilesContent.WITHER_ROSE_PILE, RenderLayer.getCutoutMipped());
 
 
-
 		BlockRenderLayerMap.INSTANCE.putBlock(CherryContent.CHERRY_OAK_DOOR, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(CherryContent.CHERRY_OAK_TRAPDOOR, RenderLayer.getCutout());
 
@@ -150,7 +149,7 @@ public class PromenadeClient implements ClientModInitializer {
 	private static void registerItemColors() {
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> GrassColors.getColor(1.0D, 0.0D), PalmContent.PALM_LEAVES, PalmContent.PALM_LEAF_PILE);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
-			Block block = ((BlockItem)stack.getItem()).getBlock();
+			Block block = ((BlockItem) stack.getItem()).getBlock();
 			BlockState blockState = block.getDefaultState();
 			return ColorProviderRegistry.BLOCK.get(block).getColor(blockState, null, null, tintIndex);
 		}, VanillaPilesContent.OAK_LEAF_PILE, VanillaPilesContent.SPRUCE_LEAF_PILE, VanillaPilesContent.BIRCH_LEAF_PILE, VanillaPilesContent.JUNGLE_LEAF_PILE, VanillaPilesContent.ACACIA_LEAF_PILE, VanillaPilesContent.DARK_OAK_LEAF_PILE, MapleContent.VERMILION_CARPETED_GRASS_BLOCK, MapleContent.FULVOUS_CARPETED_GRASS_BLOCK, MapleContent.MIKADO_CARPETED_GRASS_BLOCK);
