@@ -3,9 +3,10 @@ package fr.hugman.promenade.registry.content;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
 import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.PromenadeFactory;
+import fr.hugman.promenade.block.SnowyLeavesBlock;
 import fr.hugman.promenade.gen.feature.FreezeTopLayerFeature;
 import fr.hugman.promenade.item.ItemGroupHelper;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -20,7 +21,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 
 public class GlaglaglaContent {
-	public static final Block SNOWY_SPRUCE_LEAVES = DawnFactory.leaves();
+	public static final SnowyLeavesBlock SNOWY_SPRUCE_LEAVES = PromenadeFactory.snowyLeaves();
 
 	public static final FreezeTopLayerFeature FREEZE_TOP_LAYER = new FreezeTopLayerFeature(DefaultFeatureConfig.CODEC);
 

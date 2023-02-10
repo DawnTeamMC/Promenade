@@ -1,7 +1,10 @@
 {
   "variants": {
-    "": {
-      "model": "promenade:block/snowy_spruce_leaves"
+    "bottom=false": {
+      "model": "promenade:block/vanilla_snowy_leaves/spruce/normal"
+    },
+    "bottom=true": {
+      "model": "promenade:block/vanilla_snowy_leaves/spruce/bottom"
     }
   }
 }
