@@ -68,6 +68,8 @@ public class PromenadeTBIntegration implements TerraBlenderApi {
 					builder.replaceBiome(BiomeKeys.TAIGA, GlaglaglaContent.GLACARIAN_TAIGA);
 					builder.replaceBiome(BiomeKeys.SNOWY_TAIGA, GlaglaglaContent.GLACARIAN_TAIGA);
 					builder.replaceBiome(BiomeKeys.SNOWY_SLOPES, GlaglaglaContent.GLACARIAN_TAIGA);
+					builder.replaceBiome(BiomeKeys.JAGGED_PEAKS, GlaglaglaContent.GLACARIAN_TAIGA);
+					builder.replaceBiome(BiomeKeys.GROVE, GlaglaglaContent.GLACARIAN_TAIGA);
 				}
 			});
 		}

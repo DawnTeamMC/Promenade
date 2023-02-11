@@ -28,6 +28,16 @@ public class GlaglaglaContent {
 	public static final RegistryKey<Biome> GLACARIAN_TAIGA = DawnFactory.biome(Promenade.id("glacarian_taiga"));
 	public static final TagKey<Biome> CAN_FREEZE_DURING_SNOWFALL = DawnFactory.biomeTag(Promenade.id("can_freeze_during_snowfall"));
 
+	public static void register(Registrar r) {
+		r.add(("snowy_spruce_leaves"), SNOWY_SPRUCE_LEAVES);
+
+		r.add(("freeze_top_layer"), FREEZE_TOP_LAYER);
+
+		ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
+			e.addAfter(Blocks.SPRUCE_LEAVES, SNOWY_SPRUCE_LEAVES);
+		});
+	}
+
 	public static boolean canFreezeFromBiomeAndWeather(LivingEntity entity) {
 		RegistryEntry<Biome> biome = entity.world.getBiome(entity.getBlockPos());
 		if(entity.getType().isIn(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)) {
@@ -58,15 +68,5 @@ public class GlaglaglaContent {
 			return false;
 		}
 		return true;
-	}
-
-	public static void register(Registrar r) {
-		r.add(("snowy_spruce_leaves"), SNOWY_SPRUCE_LEAVES);
-
-		r.add(("freeze_top_layer"), FREEZE_TOP_LAYER);
-
-		ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
-			e.addAfter(Blocks.SPRUCE_LEAVES, SNOWY_SPRUCE_LEAVES);
-		});
 	}
 }
