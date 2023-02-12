@@ -5,6 +5,7 @@ import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.promenade.block.CarpetedGrassBlock;
 import fr.hugman.promenade.block.PileBlock;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
+import fr.hugman.promenade.registry.content.GlaglaglaContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.entity.EntityType;
@@ -34,7 +35,7 @@ public final class PromenadeFactory {
 	}
 
 	public static SnowyLeavesBlock snowyLeaves() {
-		return snowyLeaves(BlockSoundGroup.GRASS); //TODO: snowy sounds
+		return snowyLeaves(GlaglaglaContent.SNOWY_LEAVES_SOUNDS);
 	}
 
 	public static SnowyLeavesBlock snowyLeaves(BlockSoundGroup soundGroup) {
