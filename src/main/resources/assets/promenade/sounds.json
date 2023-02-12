@@ -103,7 +103,7 @@
 				"name": "promenade:music/brise_couleur_pastel",
 				"stream": true,
 				"volume": 0.4,
-				"weight": 5
+				"weight": 6
 			},
 			{
 				"name": "minecraft:music/game/left_to_bloom",
