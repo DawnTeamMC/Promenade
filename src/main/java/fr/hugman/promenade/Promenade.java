@@ -32,7 +32,7 @@ public class Promenade implements ModInitializer {
 		FoodContent.register(REGISTRAR);
 		IgneousContent.register(REGISTRAR);
 
-		CherryContent.register(REGISTRAR);
+		SakuraContent.register(REGISTRAR);
 		MapleContent.register(REGISTRAR);
 		PalmContent.register(REGISTRAR);
 		AmaranthContent.register(REGISTRAR);

@@ -59,7 +59,7 @@ public class FloatingParticle extends SpriteBillboardParticle {
 	}
 
 	@Environment(value = EnvType.CLIENT)
-	public record CherryBlossomFactory(SpriteProvider spriteProvider) implements ParticleFactory<DefaultParticleType> {
+	public record BlossomFactory(SpriteProvider spriteProvider) implements ParticleFactory<DefaultParticleType> {
 		@Override
 		public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
 			FloatingParticle particle = new FloatingParticle(clientWorld, this.spriteProvider, x, y, z, 0.0f, -0.8f, 0.0f) {
