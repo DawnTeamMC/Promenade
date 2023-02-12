@@ -1,0 +1,308 @@
+{
+  "display": {
+    "icon": {
+      "item": "promenade:blush_sakura_sapling"
+    },
+    "title": {
+      "translate": "advancements.promenade.adventure.place_all_sakura_blocks.title"
+    },
+    "description": {
+      "translate": "advancements.promenade.adventure.place_all_sakura_blocks.description"
+    },
+    "frame": "challenge"
+  },
+  "parent": "minecraft:adventure/play_jukebox_in_meadows",
+  "criteria": {
+    "planks_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_planks",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "planks_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_planks",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "log_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_log",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "log_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_log",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "stripped_log_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:stripped_sakura_log",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "stripped_log_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:stripped_sakura_log",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "wood_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_wood",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "wood_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_wood",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "stripped_wood_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:stripped_sakura_wood",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "stripped_wood_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:stripped_sakura_wood",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "stairs_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_stairs",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "stairs_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_stairs",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "slab_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_slab",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "slab_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_slab",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "trapdoor_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_trapdoor",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "trapdoor_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_trapdoor",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "pressure_plate_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_pressure_plate",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "pressure_plate_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_pressure_plate",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "button_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_button",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "button_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_button",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "fence_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_fence",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "fence_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_fence",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "fence_gate_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_fence_gate",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "fence_gate_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_fence_gate",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    },
+    "door_in_blush": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_door",
+        "location": {
+          "biome": "promenade:blush_sakura_grove"
+        }
+      }
+    },
+    "door_in_cotton": {
+      "trigger": "minecraft:placed_block",
+      "conditions": {
+        "block": "promenade:sakura_door",
+        "location": {
+          "biome": "promenade:cotton_sakura_grove"
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "planks_in_blush",
+      "planks_in_cotton"
+    ],
+    [
+      "log_in_blush",
+      "log_in_cotton"
+    ],
+    [
+      "stripped_log_in_blush",
+      "stripped_log_in_cotton"
+    ],
+    [
+      "wood_in_blush",
+      "wood_in_cotton"
+    ],
+    [
+      "stripped_wood_in_blush",
+      "stripped_wood_in_cotton"
+    ],
+    [
+      "stairs_in_blush",
+      "stairs_in_cotton"
+    ],
+    [
+      "slab_in_blush",
+      "slab_in_cotton"
+    ],
+    [
+      "trapdoor_in_blush",
+      "trapdoor_in_cotton"
+    ],
+    [
+      "pressure_plate_in_blush",
+      "pressure_plate_in_cotton"
+    ],
+    [
+      "button_in_blush",
+      "button_in_cotton"
+    ],
+    [
+      "fence_in_blush",
+      "fence_in_cotton"
+    ],
+    [
+      "fence_gate_in_blush",
+      "fence_gate_in_cotton"
+    ],
+    [
+      "door_in_blush",
+      "door_in_cotton"
+    ]
+  ],
+  "rewards": {
+    "experience": 40
+  }
+}

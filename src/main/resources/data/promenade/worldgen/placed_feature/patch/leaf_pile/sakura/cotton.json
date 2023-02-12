@@ -1,0 +1,19 @@
+{
+  "feature": "promenade:patch/leaf_pile/sakura/cotton",
+  "placement": [
+    {
+      "count": 3,
+      "type": "minecraft:count"
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "heightmap": "WORLD_SURFACE_WG",
+      "type": "minecraft:heightmap"
+    },
+    {
+      "type": "minecraft:biome"
+    }
+  ]
+}
