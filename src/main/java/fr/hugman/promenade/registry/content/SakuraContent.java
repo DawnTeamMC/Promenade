@@ -45,13 +45,13 @@ public class SakuraContent {
 	public static final SignBlocks SAKURA_SIGNS = DawnFactory.signs(Promenade.id("sakura"), SAKURA_PLANKS);
 	public static final TerraformBoatType SAKURA_BOAT_TYPE = DawnFactory.boat(Promenade.id("sakura"), Items.OAK_PLANKS); //TODO change when possible (PR #72 on TerraformersMC/Terraform)
 
-	public static final Block BLUSH_SAKURA_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("sakura/pink")));
+	public static final Block BLUSH_SAKURA_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("sakura/blush")));
 	public static final Block POTTED_BLUSH_SAKURA_SAPLING = DawnFactory.potted(BLUSH_SAKURA_SAPLING);
 	public static final Block BLUSH_SAKURA_BLOSSOMS = DawnFactory.leaves(BlockSoundGroup.AZALEA_LEAVES);
 	public static final Block BLUSH_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
 	public static final DefaultParticleType BLUSH_SAKURA_BLOSSOM = FabricParticleTypes.simple();
 
-	public static final Block COTTON_SAKURA_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("sakura/white")));
+	public static final Block COTTON_SAKURA_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("sakura/cotton")));
 	public static final Block POTTED_COTTON_SAKURA_SAPLING = DawnFactory.potted(COTTON_SAKURA_SAPLING);
 	public static final Block COTTON_SAKURA_BLOSSOMS = DawnFactory.leaves(BlockSoundGroup.AZALEA_LEAVES);
 	public static final Block COTTON_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
