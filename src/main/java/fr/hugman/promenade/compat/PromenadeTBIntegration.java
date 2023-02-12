@@ -3,6 +3,7 @@ package fr.hugman.promenade.compat;
 import com.mojang.datafixers.util.Pair;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.registry.content.SakuraContent;
+import fr.hugman.promenade.registry.content.GlaglaglaContent;
 import fr.hugman.promenade.registry.content.MapleContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -62,6 +63,13 @@ public class PromenadeTBIntegration implements TerraBlenderApi {
 				if(Promenade.CONFIG.biomes.sakura_groves_weight > 0) {
 					builder.replaceBiome(BiomeKeys.FOREST, SakuraContent.BLUSH_SAKURA_GROVE);
 					builder.replaceBiome(BiomeKeys.BIRCH_FOREST, SakuraContent.COTTON_SAKURA_GROVE);
+				}
+				if(Promenade.CONFIG.biomes.glacarian_taiga > 0) {
+					builder.replaceBiome(BiomeKeys.TAIGA, GlaglaglaContent.GLACARIAN_TAIGA);
+					builder.replaceBiome(BiomeKeys.SNOWY_TAIGA, GlaglaglaContent.GLACARIAN_TAIGA);
+					builder.replaceBiome(BiomeKeys.SNOWY_SLOPES, GlaglaglaContent.GLACARIAN_TAIGA);
+					builder.replaceBiome(BiomeKeys.JAGGED_PEAKS, GlaglaglaContent.GLACARIAN_TAIGA);
+					builder.replaceBiome(BiomeKeys.GROVE, GlaglaglaContent.GLACARIAN_TAIGA);
 				}
 			});
 		}

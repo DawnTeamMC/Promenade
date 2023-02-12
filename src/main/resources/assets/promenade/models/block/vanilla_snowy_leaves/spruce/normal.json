@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "promenade:block/vanilla_snowy_leaves/spruce/normal"
+  }
+}
