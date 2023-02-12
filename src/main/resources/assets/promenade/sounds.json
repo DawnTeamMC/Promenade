@@ -1,4 +1,54 @@
 {
+	"block.snowy_leaves.break": {
+		"subtitle": "subtitles.block.generic.break",
+		"sounds": [
+			"promenade:block/snowy_leaves/break/1",
+			"promenade:block/snowy_leaves/break/2",
+			"promenade:block/snowy_leaves/break/3",
+			"promenade:block/snowy_leaves/break/4"
+		]
+	},
+	"block.snowy_leaves.fall": {
+		"sounds": [
+			"promenade:block/snowy_leaves/hit/1",
+			"promenade:block/snowy_leaves/hit/2",
+			"promenade:block/snowy_leaves/hit/3",
+			"promenade:block/snowy_leaves/hit/4",
+			"promenade:block/snowy_leaves/hit/5",
+			"promenade:block/snowy_leaves/hit/6"
+		]
+	},
+	"block.snowy_leaves.hit": {
+		"subtitle": "subtitles.block.generic.hit",
+		"sounds": [
+			"promenade:block/snowy_leaves/hit/1",
+			"promenade:block/snowy_leaves/hit/2",
+			"promenade:block/snowy_leaves/hit/3",
+			"promenade:block/snowy_leaves/hit/4",
+			"promenade:block/snowy_leaves/hit/5",
+			"promenade:block/snowy_leaves/hit/6"
+		]
+	},
+	"block.snowy_leaves.place": {
+		"subtitle": "subtitles.block.generic.place",
+		"sounds": [
+			"promenade:block/snowy_leaves/break/1",
+			"promenade:block/snowy_leaves/break/2",
+			"promenade:block/snowy_leaves/break/3",
+			"promenade:block/snowy_leaves/break/4"
+		]
+	},
+	"block.snowy_leaves.step": {
+		"subtitle": "subtitles.block.generic.footsteps",
+		"sounds": [
+			"promenade:block/snowy_leaves/hit/1",
+			"promenade:block/snowy_leaves/hit/2",
+			"promenade:block/snowy_leaves/hit/3",
+			"promenade:block/snowy_leaves/hit/4",
+			"promenade:block/snowy_leaves/hit/5",
+			"promenade:block/snowy_leaves/hit/6"
+		]
+	},
 	"entity.duck.ambient": {
 		"subtitle": "subtitles.promenade.entity.duck.ambient",
 		"sounds": [
