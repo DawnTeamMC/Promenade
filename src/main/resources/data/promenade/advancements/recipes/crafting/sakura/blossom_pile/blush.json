@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:crafting/sakura/blossom_pile/blush"
+		]
+	},
+	"criteria": {
+		"has_blossoms": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": ["promenade:blush_sakura_blossoms"]
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:crafting/sakura/blossom_pile/cotton"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_blossoms",
+			"has_the_recipe"
+		]
+	]
+}

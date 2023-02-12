@@ -28,7 +28,7 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 		public int carnelian_treeway_weight = 10;
 		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
-		public int cherry_oak_forests_weight = 10;
+		public int sakura_groves_weight = 10;
 		@ConfigEntry.Gui.RequiresRestart
 		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
 		public int glacarian_taiga = 10;

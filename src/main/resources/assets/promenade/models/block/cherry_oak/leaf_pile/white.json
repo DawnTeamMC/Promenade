@@ -1,6 +1,0 @@
-{
-	"parent": "promenade:block/pile",
-	"textures": {
-		"pile": "promenade:block/cherry_oak/leaves/white"
-	}
-}
