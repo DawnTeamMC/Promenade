@@ -1,0 +1,8 @@
+{
+	"parent": "block/slab",
+	"textures": {
+		"bottom": "promenade:block/sakura/planks",
+		"top": "promenade:block/sakura/planks",
+		"side": "promenade:block/sakura/planks"
+	}
+}

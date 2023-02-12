@@ -140,7 +140,7 @@ public class MapleContent {
 		});
 
 		ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e ->
-				e.addAfter(CherryContent.CHERRY_OAK_BUTTON,
+				e.addAfter(SakuraContent.SAKURA_BUTTON,
 						MAPLE_LOG,
 						MAPLE_WOOD,
 						STRIPPED_MAPLE_LOG,
@@ -157,13 +157,13 @@ public class MapleContent {
 
 		ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
 			e.addAfter(Blocks.GRASS_BLOCK, VERMILION_CARPETED_GRASS_BLOCK, FULVOUS_CARPETED_GRASS_BLOCK, MIKADO_CARPETED_GRASS_BLOCK);
-			e.addAfter(CherryContent.CHERRY_OAK_LOG, MAPLE_LOG);
-			e.addAfter(CherryContent.WHITE_CHERRY_OAK_LEAVES, SAP_MAPLE_LEAVES, VERMILION_MAPLE_LEAVES, FULVOUS_MAPLE_LEAVES, MIKADO_MAPLE_LEAVES);
-			e.addAfter(CherryContent.WHITE_CHERRY_OAK_SAPLING, SAP_MAPLE_SAPLING, VERMILION_MAPLE_SAPLING, FULVOUS_MAPLE_SAPLING, MIKADO_MAPLE_SAPLING);
-			e.addAfter(CherryContent.WHITE_CHERRY_OAK_LEAF_PILE, SAP_MAPLE_LEAF_PILE, VERMILION_MAPLE_LEAF_PILE, FULVOUS_MAPLE_LEAF_PILE, MIKADO_MAPLE_LEAF_PILE);
+			e.addAfter(SakuraContent.SAKURA_LOG, MAPLE_LOG);
+			e.addAfter(SakuraContent.COTTON_SAKURA_BLOSSOMS, SAP_MAPLE_LEAVES, VERMILION_MAPLE_LEAVES, FULVOUS_MAPLE_LEAVES, MIKADO_MAPLE_LEAVES);
+			e.addAfter(SakuraContent.COTTON_SAKURA_SAPLING, SAP_MAPLE_SAPLING, VERMILION_MAPLE_SAPLING, FULVOUS_MAPLE_SAPLING, MIKADO_MAPLE_SAPLING);
+			e.addAfter(SakuraContent.COTTON_SAKURA_BLOSSOM_PILE, SAP_MAPLE_LEAF_PILE, VERMILION_MAPLE_LEAF_PILE, FULVOUS_MAPLE_LEAF_PILE, MIKADO_MAPLE_LEAF_PILE);
 		});
-		ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(CherryContent.CHERRY_OAK_SIGNS.hangingSign(), MAPLE_SIGNS.sign(), MAPLE_SIGNS.hangingSign()));
-		ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(CherryContent.CHERRY_OAK_BOAT_TYPE.getChestItem(), MAPLE_BOAT_TYPE.getItem(), MAPLE_BOAT_TYPE.getChestItem()));
+		ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(SakuraContent.SAKURA_SIGNS.hangingSign(), MAPLE_SIGNS.sign(), MAPLE_SIGNS.hangingSign()));
+		ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(SakuraContent.SAKURA_BOAT_TYPE.getChestItem(), MAPLE_BOAT_TYPE.getItem(), MAPLE_BOAT_TYPE.getChestItem()));
 		ItemGroupHelper.append(ItemGroups.FOOD_AND_DRINK, e -> e.addAfter(Items.HONEY_BOTTLE, MAPLE_SYRUP_BOTTLE));
 	}
 }

@@ -2,7 +2,7 @@ package fr.hugman.promenade.compat;
 
 import com.mojang.datafixers.util.Pair;
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.registry.content.CherryContent;
+import fr.hugman.promenade.registry.content.SakuraContent;
 import fr.hugman.promenade.registry.content.MapleContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -59,9 +59,9 @@ public class PromenadeTBIntegration implements TerraBlenderApi {
 				if(Promenade.CONFIG.biomes.carnelian_treeway_weight > 0) {
 					builder.replaceBiome(BiomeKeys.PLAINS, MapleContent.CARNELIAN_TREEWAY);
 				}
-				if(Promenade.CONFIG.biomes.cherry_oak_forests_weight > 0) {
-					builder.replaceBiome(BiomeKeys.FOREST, CherryContent.PINK_CHERRY_OAK_FOREST);
-					builder.replaceBiome(BiomeKeys.BIRCH_FOREST, CherryContent.WHITE_CHERRY_OAK_FOREST);
+				if(Promenade.CONFIG.biomes.sakura_groves_weight > 0) {
+					builder.replaceBiome(BiomeKeys.FOREST, SakuraContent.BLUSH_SAKURA_GROVE);
+					builder.replaceBiome(BiomeKeys.BIRCH_FOREST, SakuraContent.COTTON_SAKURA_GROVE);
 				}
 			});
 		}

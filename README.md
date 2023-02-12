@@ -18,7 +18,7 @@ Promenade is a mod for the latest version of Minecraft that adds a ton of featur
 
 ### Biomes
 
-* **Cherry Oak Forests** (japanese cherry blossoms)
+* **Sakura Groves** (japanese cherry blossoms)
 * **Carnelian Treeway** (maple trees)
 * **Dark Amaranth Forests**
 * **Palms** in deserts
