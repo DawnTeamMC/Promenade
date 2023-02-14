@@ -34,7 +34,7 @@ Promenade is a mod for the latest version of Minecraft that adds a ton of featur
 ### Monsters
 
 * **Sunken Skeleton** in oceans
-* **Lush Creepers** in any cave
+* **Lush Creepers** in caves
 
 
 ### Structures

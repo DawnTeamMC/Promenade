@@ -29,7 +29,7 @@ diversity and will improve the beauty of you world.
 ### Monsters
 
 * **Sunken Skeleton** in oceans
-* **Lush Creepers** in any cave
+* **Lush Creepers** in caves
 
 
 ### Structures
