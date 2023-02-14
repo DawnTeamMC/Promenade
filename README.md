@@ -1,6 +1,6 @@
 [![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://dawnteammc.github.io/promenade)
 
-# 🌸 Promenade
+# 🍁 Promenade
 [![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg)](https://github.com/DawnTeamMC/Promenade/releases/latest)
 [![CurseForge downloads](http://cf.way2muchnoise.eu/full_promenade_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/promenade)
 [![License (LGPL v3.0)](https://img.shields.io/badge/code%20license-LGPL%20v3.0-green.svg?style=flat-square)](https://www.gnu.org/licenses/lgpl-3.0.en.html)
@@ -20,6 +20,7 @@ Promenade is a mod for the latest version of Minecraft that adds a ton of featur
 
 * **Sakura Groves** (japanese cherry blossoms)
 * **Carnelian Treeway** (maple trees)
+* **Glacarian Taiga**
 * **Dark Amaranth Forests**
 * **Palms** in deserts
 
