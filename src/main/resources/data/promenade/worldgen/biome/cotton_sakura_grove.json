@@ -16,7 +16,7 @@
     },
     "particle": {
       "options": {
-        "type": "promenade:white_cherry_blossom"
+        "type": "promenade:cotton_sakura_blossom"
       },
       "probability": 0.001
     }
