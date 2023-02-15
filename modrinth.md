@@ -3,9 +3,10 @@
 [![Discord user count](https://img.shields.io/discord/504608980799062036?label=&color=424549&labelColor=7289da&style=for-the-badge&logo=Discord&logoColor=DDE4EF)](https://discord.gg/8ksTVJu)
 [![Twitter followers](https://img.shields.io/twitter/follow/DawnTeamMC?label=&color=424549&labelColor=1DA1F2&style=for-the-badge&logo=Twitter&logoColor=DDE4EF)](https://twitter.com/DawnTeamMC)
 
-Promenade is a mod for the latest version of Minecraft that adds a ton of features to the game related to exploration, diversity and will improve the beauty of you world.
+Promenade is a mod for the latest version of Minecraft that adds a ton of features to the game related to exploration,
+diversity and will improve the beauty of you world.
 
-**You can visit the [official website for Promenade for more information](https://dawnteammc.github. io/promenade).**
+**You can visit the [official website for Promenade for more information](https://dawnteammc.github.io/promenade).**
 
 ## 👾 Features
 **Due to a missing Fabric API module, Promenade v2.5.0 and higher versions require [TerraBlender](https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric) to be installed for overworld biomes to appear in your world.**
@@ -14,6 +15,7 @@ Promenade is a mod for the latest version of Minecraft that adds a ton of featur
 
 * **Sakura Groves** (japanese cherry blossoms)
 * **Carnelian Treeway** (maple trees)
+* **Glacarian Taiga**
 * **Dark Amaranth Forests**
 * **Palms** in deserts
 
@@ -27,7 +29,7 @@ Promenade is a mod for the latest version of Minecraft that adds a ton of featur
 ### Monsters
 
 * **Sunken Skeleton** in oceans
-* **Lush Creepers** in any cave
+* **Lush Creepers** in caves
 
 
 ### Structures
