@@ -44,6 +44,7 @@ Promenade is a mod for the latest version of Minecraft that adds a ton of featur
 
 ### Other
 
+* Moai 🗿 (use tuff in a stonecutter)
 * New igneous rocks: blunite and carbonite
 * Piles of flowers and leaves
 * Blueberries
