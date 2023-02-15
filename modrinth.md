@@ -39,6 +39,7 @@ diversity and will improve the beauty of you world.
 
 ### Other
 
+* Moai 🗿 (use tuff in a stonecutter)
 * New igneous rocks: blunite and carbonite
 * Piles of flowers and leaves
 * Blueberries

@@ -3,10 +3,13 @@ package fr.hugman.promenade.registry.content;
 import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
+import fr.hugman.dawn.block.DawnBlockSettings;
 import fr.hugman.dawn.block.SignBlocks;
 import fr.hugman.dawn.block.sapling.SingleSaplingGenerator;
+import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
+import fr.hugman.promenade.block.MoaiBlock;
 import fr.hugman.promenade.item.ItemGroupHelper;
 import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
 import fr.hugman.promenade.village.TradeOfferUtils;
@@ -17,6 +20,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.PillarBlock;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
@@ -51,6 +55,8 @@ public class PalmContent {
 	public static final Block PALM_LEAVES = DawnFactory.leaves();
 	public static final Block PALM_LEAF_PILE = PromenadeFactory.leafPile();
 
+	public static final Block MOAI = new MoaiBlock(DawnBlockSettings.copyOf(Blocks.TUFF).item(new DawnItemSettings().equipmentSlot(stack -> EquipmentSlot.HEAD)));
+
 	public static final RegistryKey<PlacedFeature> PALMS = DawnFactory.placedFeature(Promenade.id("trees/palms"));
 
 	public static void register(Registrar r) {
@@ -76,6 +82,8 @@ public class PalmContent {
 		r.add(("potted_palm_sapling"), POTTED_PALM_SAPLING);
 		r.add(("palm_leaves"), PALM_LEAVES);
 		r.add(("palm_leaf_pile"), PALM_LEAF_PILE);
+
+		r.add(("moai"), MOAI);
 
 		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add(TradeOfferUtils.sapling(PALM_SAPLING)));
 
@@ -108,5 +116,7 @@ public class PalmContent {
 		});
 		ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.ACACIA_HANGING_SIGN, PALM_SIGNS.sign(), PALM_SIGNS.hangingSign()));
 		ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Items.ACACIA_CHEST_BOAT, PALM_BOAT_TYPE.getItem(), PALM_BOAT_TYPE.getChestItem()));
+
+		ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> e.addAfter(Blocks.CUT_RED_SANDSTONE_SLAB, MOAI));
 	}
 }

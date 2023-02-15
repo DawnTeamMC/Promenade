@@ -1,0 +1,8 @@
+{
+  "parent": "promenade:block/moai",
+  "textures": {
+    "front": "promenade:block/moai/front/single",
+    "back": "promenade:block/moai/back/single",
+    "side": "promenade:block/moai/side/single"
+  }
+}
