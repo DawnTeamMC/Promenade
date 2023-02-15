@@ -146,5 +146,102 @@
 			"promenade:entity/sunken_skeleton/shoot/2",
 			"promenade:entity/sunken_skeleton/shoot/3"
 		]
+	},
+	"music.overworld.sakura_groves": {
+		"sounds": [
+			{
+				"name": "promenade:music/brise_couleur_pastel",
+				"stream": true,
+				"volume": 0.4,
+				"weight": 6
+			},
+			{
+				"name": "minecraft:music/game/left_to_bloom",
+				"stream": true,
+				"volume": 0.4,
+				"weight": 3
+			},
+			{
+				"name": "minecraft:music/game/one_more_day",
+				"stream": true,
+				"volume": 0.4,
+				"weight": 3
+			},
+			{
+				"name": "minecraft:music/game/calm1",
+				"stream": true,
+				"weight": 2
+			},
+			{
+				"name": "minecraft:music/game/calm2",
+				"stream": true,
+				"weight": 2
+			},
+			{
+				"name": "minecraft:music/game/calm3",
+				"stream": true,
+				"weight": 2
+			},
+			{
+				"name": "minecraft:music/game/comforting_memories",
+				"stream": true,
+				"volume": 0.4,
+				"weight": 2
+			},
+			{
+				"name": "minecraft:music/game/floating_dream",
+				"stream": true,
+				"volume": 0.4,
+				"weight": 2
+			},
+			{
+				"name": "minecraft:music/game/hal1",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/hal2",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/hal3",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/hal4",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/nuance1",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/nuance2",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/piano1",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/piano2",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/piano3",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/swamp/aerie",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/swamp/firebugs",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/swamp/labyrinthine",
+				"stream": true
+			}
+		]
 	}
 }

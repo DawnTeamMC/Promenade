@@ -19,6 +19,12 @@
         "type": "promenade:cotton_sakura_blossom"
       },
       "probability": 0.001
+    },
+    "music": {
+      "sound": "promenade:music.overworld.sakura_groves",
+      "min_delay": 12000,
+      "max_delay": 24000,
+      "replace_current_music": false
     }
   },
   "spawners": {
