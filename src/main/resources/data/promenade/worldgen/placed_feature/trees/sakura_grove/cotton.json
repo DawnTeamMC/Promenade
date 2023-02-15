@@ -4,7 +4,7 @@
     "config": {
       "features": [
         {
-          "chance": 0.05,
+          "chance": 0.2,
           "feature": "promenade:tree/sakura/blush/regular"
         },
         {
