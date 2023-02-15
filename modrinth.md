@@ -1,4 +1,4 @@
-[![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://dawnteammc.github.io/promenade)
+[![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://hugman.gitbook.io/promenade/)
 
 [![Discord user count](https://img.shields.io/discord/504608980799062036?label=&color=424549&labelColor=7289da&style=for-the-badge&logo=Discord&logoColor=DDE4EF)](https://discord.gg/8ksTVJu)
 [![Twitter followers](https://img.shields.io/twitter/follow/DawnTeamMC?label=&color=424549&labelColor=1DA1F2&style=for-the-badge&logo=Twitter&logoColor=DDE4EF)](https://twitter.com/DawnTeamMC)
@@ -6,7 +6,7 @@
 Promenade is a mod for the latest version of Minecraft that adds a ton of features to the game related to exploration,
 diversity and will improve the beauty of you world.
 
-**You can visit the [official website for Promenade for more information](https://dawnteammc.github.io/promenade).**
+**You can visit the [official wiki for Promenade for more information](https://hugman.gitbook.io/promenade/).**
 
 ## 👾 Features
 **Due to a missing Fabric API module, Promenade v2.5.0 and higher versions require [TerraBlender](https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric) to be installed for overworld biomes to appear in your world.**
@@ -43,12 +43,11 @@ diversity and will improve the beauty of you world.
 * Piles of flowers and leaves
 * Blueberries
 
-[![Check out the wiki!](https://dawnteammc.github.io/promenade/images/header/wiki.png)](https://hugman.gitbook.io/promenade/)
+## 🎶 Soundtrack
+Sakura Groves feature a new track composed by [**LudoCrypt**](https://ludocrypt.crd.co/): **Brise couleur pastel**!  
+Listen to **Brise couleur pastel** on [Bandcamp](https://ludocrypt.bandcamp.com/track/brise-couleur-pastel) or YouTube:
 
-### Other
-- New igneous rocks have been added underground (known as [blunite and carbonite](https://dawnteammc.github.io/promenade/blocks#blunite-and-carbonite))
-- [Blueberry bushes](https://dawnteammc.github.io/promenade/blocks#blueberry-bushes) can be found in cold biomes.
-- Players can also craft [piles of leaves and flowers](https://dawnteammc.github.io/promenade/blocks#piles) to decorate their homes and villages.
+[![Brise couleur pastel](https://img.youtube.com/vi/NUTTAB_-uY0/0.jpg)](https://www.youtube.com/watch?v=NUTTAB_-uY0)
 
 ## 📦 Download
 ### Required mods
