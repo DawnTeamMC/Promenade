@@ -273,7 +273,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 
 		switch(this.getState()) {
 			case STANDING -> {
-				this.walkingAnimationState.setRunning((this.onGround || this.hasPrimaryPassenger()) && this.getVelocity().horizontalLengthSquared() > 1.0E-6, this.age);
+				this.walkingAnimationState.setRunning((this.onGround || this.hasControllingPassenger()) && this.getVelocity().horizontalLengthSquared() > 1.0E-6, this.age);
 				this.fallToSleepAnimState.stop();
 				this.sleepingAnimState.stop();
 				this.wakeUpAnimState.stop();

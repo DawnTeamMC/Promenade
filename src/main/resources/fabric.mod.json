@@ -34,7 +34,7 @@
 	"depends": {
 		"fabric": "*",
 		"cloth-config": "*",
-		"dawn": ">=4.1.1"
+		"dawn": ">=4.2.0"
 	},
 	"suggests": {
 		"columns": "*",

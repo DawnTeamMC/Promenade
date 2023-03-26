@@ -2,7 +2,6 @@ package fr.hugman.promenade.mixin;
 
 import fr.hugman.promenade.registry.content.GlaglaglaContent;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.registry.tag.EntityTypeTags;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,7 +18,7 @@ public class LivingEntityMixin {
 		if(GlaglaglaContent.canFreezeFromBiomeAndWeather(entity)) {
 			entity.setFrozenTicks(Math.min(entity.getMinFreezeDamageTicks(), frozenTicks + 1));
 			if (entity.age % 40 == 0 && entity.isFrozen()) {
-				entity.damage(DamageSource.FREEZE, entity.getType().isIn(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES) ? 5 : 1);
+				entity.damage(entity.getDamageSources().freeze(), entity.getType().isIn(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES) ? 5 : 1);
 			}
 			ci.cancel();
 		}

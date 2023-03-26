@@ -24,7 +24,7 @@ public class SunkenSkeletonRenderer extends BipedEntityRenderer<SunkenSkeletonEn
 
 	public SunkenSkeletonRenderer(EntityRendererFactory.Context ctx, EntityModelLayer layer, EntityModelLayer legArmorLayer, EntityModelLayer bodyArmorLayer) {
 		super(ctx, new SunkenSkeletonModel(ctx.getPart(layer)), 0.5F);
-		this.addFeature(new ArmorFeatureRenderer<>(this, new SunkenSkeletonModel(ctx.getPart(legArmorLayer)), new SunkenSkeletonModel(ctx.getPart(bodyArmorLayer))));
+		this.addFeature(new ArmorFeatureRenderer<>(this, new SunkenSkeletonModel(ctx.getPart(legArmorLayer)), new SunkenSkeletonModel(ctx.getPart(bodyArmorLayer)), ctx.getModelManager()));
 	}
 
 	@Override

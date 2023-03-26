@@ -61,6 +61,6 @@ public class DyliumBlock extends NyliumBlock implements BoneMealSpreadable {
 
 	@Override
 	public boolean canSpreadAt(BlockView world, BlockPos pos) {
-		return world.getBlockState(pos).isIn(PromenadeBlockTags.CAN_SPREAD_BLACK_DYLIUM) && world.getBlockState(pos.up()).isTranslucent(world, pos);
+		return world.getBlockState(pos).isIn(PromenadeBlockTags.CAN_SPREAD_BLACK_DYLIUM) && world.getBlockState(pos.up()).isAir();
 	}
 }

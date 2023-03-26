@@ -74,7 +74,7 @@ public class CapybaraBrain {
 
 	private static void addIdleActivities(Brain<CapybaraEntity> brain) {
 		brain.setTaskList(Activity.IDLE, ImmutableList.of(
-				Pair.of(0, FollowMobWithIntervalTask.follow(EntityType.PLAYER, 6.0f, UniformIntProvider.create(30, 60))),
+				Pair.of(0, LookAtMobWithIntervalTask.follow(EntityType.PLAYER, 6.0f, UniformIntProvider.create(30, 60))),
 				Pair.of(1, new BreedTask(AnimalContent.CAPYBARA, 1.0f)),
 				Pair.of(2, new TemptTask(entity -> 1.5f)),
 				Pair.of(3, TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), WalkTowardClosestAdultTask.create(WALK_TOWARD_ADULT_RANGE, 1.5f))),
@@ -92,7 +92,7 @@ public class CapybaraBrain {
 		capybara.getBrain().resetPossibleActivities(ImmutableList.of(Activity.IDLE));
 	}
 
-	public static class WalkTask extends net.minecraft.entity.ai.brain.task.WalkTask {
+	public static class WalkTask extends FleeTask {
 		public WalkTask(float speed) {
 			super(speed);
 		}
@@ -116,7 +116,7 @@ public class CapybaraBrain {
 
 		@Override
 		protected boolean shouldRun(ServerWorld world, CapybaraEntity capybara) {
-			return !capybara.isTouchingWater() && capybara.getLastStateTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasPrimaryPassenger();
+			return !capybara.isTouchingWater() && capybara.getLastStateTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasControllingPassenger();
 		}
 
 		@Override
@@ -140,7 +140,7 @@ public class CapybaraBrain {
 
 		@Override
 		protected boolean shouldRun(ServerWorld world, CapybaraEntity capybara) {
-			return capybara.canFart() && !capybara.isTouchingWater() && capybara.getLastStateTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasPrimaryPassenger();
+			return capybara.canFart() && !capybara.isTouchingWater() && capybara.getLastStateTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasControllingPassenger();
 		}
 
 		@Override

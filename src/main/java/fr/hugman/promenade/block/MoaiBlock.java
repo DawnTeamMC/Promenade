@@ -33,7 +33,7 @@ public class MoaiBlock extends HorizontalFacingBlock {
 	public BlockState getPlacementState(ItemPlacementContext context) {
 		var world = context.getWorld();
 		boolean sneaking = context.shouldCancelInteraction(); // stupid yarn name
-		var direction = context.getPlayerFacing().getOpposite();
+		var direction = context.getPlayerLookDirection().getOpposite();
 		var hitSide = context.getSide();
 
 		var posBelow = context.getBlockPos().down();
