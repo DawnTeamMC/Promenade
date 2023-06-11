@@ -9,6 +9,8 @@ import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
+import fr.hugman.promenade.block.MapleLogBlock;
+import fr.hugman.promenade.block.StrippedMapleLogBlock;
 import fr.hugman.promenade.village.TradeOfferUtils;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
@@ -28,8 +30,8 @@ public class MapleContent {
 	private static final MapColor BARK_COLOR = MapColor.ORANGE;
 	private static final MapColor WOOD_COLOR = MapColor.ORANGE;
 
-	public static final Block STRIPPED_MAPLE_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
-	public static final Block MAPLE_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_MAPLE_LOG));
+	public static final Block STRIPPED_MAPLE_LOG = new StrippedMapleLogBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
+	public static final Block MAPLE_LOG = new MapleLogBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_MAPLE_LOG));
 	public static final Block STRIPPED_MAPLE_WOOD = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
 	public static final Block MAPLE_WOOD = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_MAPLE_WOOD));
 
