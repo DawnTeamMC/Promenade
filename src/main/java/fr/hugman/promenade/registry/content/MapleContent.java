@@ -6,45 +6,42 @@ import fr.hugman.dawn.Registrar;
 import fr.hugman.dawn.block.SignBlocks;
 import fr.hugman.dawn.block.sapling.OakLikeSaplingGenerator;
 import fr.hugman.dawn.item.DawnItemSettings;
+import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
-import fr.hugman.promenade.block.MapleLogBlock;
-import fr.hugman.promenade.block.StrippedMapleLogBlock;
-import fr.hugman.promenade.item.ItemGroupHelper;
 import fr.hugman.promenade.village.TradeOfferUtils;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.item.FoodComponent;
-import net.minecraft.item.HoneyBottleItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.item.Items;
+import net.minecraft.block.*;
+import net.minecraft.item.*;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.world.biome.Biome;
 
 public class MapleContent {
+	public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.registerWood(Promenade.id("maple"));
+	public static final WoodType WOOD_TYPE = WoodTypeRegistry.register(Promenade.id("maple"), BLOCK_SET_TYPE);
+	private static final BlockSoundGroup WOOD_SOUNDS = BlockSoundGroup.WOOD;
 	private static final MapColor BARK_COLOR = MapColor.ORANGE;
 	private static final MapColor WOOD_COLOR = MapColor.ORANGE;
 
-	public static final Block STRIPPED_MAPLE_LOG = new StrippedMapleLogBlock(DawnFactory.logSettings(false, WOOD_COLOR));
-	public static final Block MAPLE_LOG = new MapleLogBlock(DawnFactory.logSettings(false, WOOD_COLOR, BARK_COLOR).stripInto(STRIPPED_MAPLE_LOG));
-	public static final Block STRIPPED_MAPLE_WOOD = new PillarBlock(DawnFactory.logSettings(false, WOOD_COLOR));
-	public static final Block MAPLE_WOOD = new PillarBlock(DawnFactory.logSettings(false, BARK_COLOR).stripInto(STRIPPED_MAPLE_WOOD));
+	public static final Block STRIPPED_MAPLE_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
+	public static final Block MAPLE_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_MAPLE_LOG));
+	public static final Block STRIPPED_MAPLE_WOOD = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
+	public static final Block MAPLE_WOOD = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_MAPLE_WOOD));
 
-	public static final Block MAPLE_PLANKS = DawnFactory.planks(false, WOOD_COLOR);
+	public static final Block MAPLE_PLANKS = DawnFactory.planks(WOOD_COLOR, WOOD_SOUNDS, true);
 	public static final Block MAPLE_STAIRS = DawnFactory.stairs(MAPLE_PLANKS);
 	public static final Block MAPLE_SLAB = DawnFactory.slab(MAPLE_PLANKS);
-	public static final Block MAPLE_FENCE = DawnFactory.fence(false, MAPLE_PLANKS);
-	public static final Block MAPLE_FENCE_GATE = DawnFactory.fenceGate(false, MAPLE_PLANKS);
-	public static final Block MAPLE_DOOR = DawnFactory.woodenDoor(MAPLE_PLANKS);
-	public static final Block MAPLE_TRAPDOOR = DawnFactory.woodenTrapdoor(MAPLE_PLANKS);
-	public static final Block MAPLE_BUTTON = DawnFactory.woodenButton(false);
-	public static final Block MAPLE_PRESSURE_PLATE = DawnFactory.pressurePlate(MAPLE_PLANKS);
+	public static final Block MAPLE_FENCE = DawnFactory.fence(MAPLE_PLANKS);
+	public static final Block MAPLE_FENCE_GATE = DawnFactory.fenceGate(MAPLE_PLANKS, WOOD_TYPE);
+	public static final Block MAPLE_DOOR = DawnFactory.door(MAPLE_PLANKS, BLOCK_SET_TYPE);
+	public static final Block MAPLE_TRAPDOOR = DawnFactory.trapdoor(MAPLE_PLANKS, BLOCK_SET_TYPE);
+	public static final Block MAPLE_BUTTON = DawnFactory.woodenButton(BLOCK_SET_TYPE, WOOD_SOUNDS);
+	public static final Block MAPLE_PRESSURE_PLATE = DawnFactory.pressurePlate(MAPLE_PLANKS, BLOCK_SET_TYPE);
 
 	public static final SignBlocks MAPLE_SIGNS = DawnFactory.signs(Promenade.id("maple"), MAPLE_PLANKS);
 	public static final TerraformBoatType MAPLE_BOAT_TYPE = DawnFactory.boat(Promenade.id("maple"), Items.OAK_PLANKS); //TODO change when possible (PR #72 on TerraformersMC/Terraform)
@@ -59,23 +56,26 @@ public class MapleContent {
 	public static final Block SAP_MAPLE_LEAVES = DawnFactory.leaves();
 	public static final Block SAP_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
 
+	public static final MapColor VERMILION_COLOR = MapColor.RED;
 	public static final Block VERMILION_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/vermilion")));
 	public static final Block POTTED_VERMILION_MAPLE_SAPLING = DawnFactory.potted(VERMILION_MAPLE_SAPLING);
 	public static final Block VERMILION_MAPLE_LEAVES = DawnFactory.leaves();
 	public static final Block VERMILION_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
-	public static final Block VERMILION_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock();
+	public static final Block VERMILION_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(VERMILION_COLOR);
 
+	public static final MapColor FULVOUS_COLOR = MapColor.ORANGE;
 	public static final Block FULVOUS_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/fulvous")));
 	public static final Block POTTED_FULVOUS_MAPLE_SAPLING = DawnFactory.potted(FULVOUS_MAPLE_SAPLING);
 	public static final Block FULVOUS_MAPLE_LEAVES = DawnFactory.leaves();
 	public static final Block FULVOUS_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
-	public static final Block FULVOUS_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock();
+	public static final Block FULVOUS_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(FULVOUS_COLOR);
 
+	public static final MapColor MIKADO_COLOR = MapColor.GOLD;
 	public static final Block MIKADO_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/mikado")));
 	public static final Block POTTED_MIKADO_MAPLE_SAPLING = DawnFactory.potted(MIKADO_MAPLE_SAPLING);
 	public static final Block MIKADO_MAPLE_LEAVES = DawnFactory.leaves();
 	public static final Block MIKADO_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
-	public static final Block MIKADO_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock();
+	public static final Block MIKADO_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(MIKADO_COLOR);
 
 	public static final DefaultParticleType MAPLE_LEAF = FabricParticleTypes.simple();
 

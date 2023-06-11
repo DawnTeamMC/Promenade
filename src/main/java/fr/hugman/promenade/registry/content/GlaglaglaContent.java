@@ -2,11 +2,11 @@ package fr.hugman.promenade.registry.content;
 
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
+import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
 import fr.hugman.promenade.gen.feature.FreezeTopLayerFeature;
-import fr.hugman.promenade.item.ItemGroupHelper;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -54,31 +54,31 @@ public class GlaglaglaContent {
 	}
 
 	public static boolean canFreezeFromBiomeAndWeather(LivingEntity entity) {
-		RegistryEntry<Biome> biome = entity.world.getBiome(entity.getBlockPos());
+        RegistryEntry<Biome> biome = entity.getWorld().getBiome(entity.getBlockPos());
 		if(entity.getType().isIn(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)) {
 			// is immune
 			return false;
-		}
-		if(!biome.isIn(CAN_FREEZE_DURING_SNOWFALL) || entity.isSpectator()) {
-			// is not the correct biome
-			// is spectator
-			return false;
-		}
-		if(!entity.world.isRaining()) {
-			// is not snowing
-			return false;
-		}
-		boolean exposedToSky = entity.world.getLightLevel(LightType.SKY, entity.getBlockPos()) >= 5;
-		boolean lightSourceNear = entity.world.getLightLevel(LightType.BLOCK, entity.getBlockPos()) >= 5;
-		if(lightSourceNear || !exposedToSky) {
-			// is near a light source
-			// is not exposed much to sky
-			return false;
-		}
-		// wear any leather piece
-		return !entity.getEquippedStack(EquipmentSlot.HEAD).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
-				!entity.getEquippedStack(EquipmentSlot.CHEST).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
-				!entity.getEquippedStack(EquipmentSlot.LEGS).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
-				!entity.getEquippedStack(EquipmentSlot.FEET).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES);
+        }
+        if (!biome.isIn(CAN_FREEZE_DURING_SNOWFALL) || entity.isSpectator()) {
+            // is not the correct biome
+            // is spectator
+            return false;
+        }
+        if (!entity.getWorld().isRaining()) {
+            // is not snowing
+            return false;
+        }
+        boolean exposedToSky = entity.getWorld().getLightLevel(LightType.SKY, entity.getBlockPos()) >= 5;
+        boolean lightSourceNear = entity.getWorld().getLightLevel(LightType.BLOCK, entity.getBlockPos()) >= 5;
+        if (lightSourceNear || !exposedToSky) {
+            // is near a light source
+            // is not exposed much to sky
+            return false;
+        }
+        // wear any leather piece
+        return !entity.getEquippedStack(EquipmentSlot.HEAD).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
+                !entity.getEquippedStack(EquipmentSlot.CHEST).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
+                !entity.getEquippedStack(EquipmentSlot.LEGS).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
+                !entity.getEquippedStack(EquipmentSlot.FEET).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES);
 	}
 }

@@ -1,10 +1,10 @@
 package fr.hugman.promenade.gen.feature;
 
 import com.mojang.serialization.Codec;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.MathHelper;
@@ -21,19 +21,20 @@ public class TallHugeFungusFeature extends Feature<HugeFungusFeatureConfig> {
 		super(codec);
 	}
 
-	private static boolean isReplaceable(WorldAccess worldAccess, BlockPos blockPos, boolean canReplaceAllPlants) {
-		return worldAccess.testBlockState(blockPos, (blockState) -> {
-			Material material = blockState.getMaterial();
-			return blockState.isAir() || blockState.isOf(Blocks.WATER) || blockState.isOf(Blocks.LAVA) || material == Material.REPLACEABLE_PLANT || canReplaceAllPlants && material == Material.PLANT;
-		});
+	private static boolean isReplaceable(StructureWorldAccess world, BlockPos pos, HugeFungusFeatureConfig config, boolean checkConfig) {
+		if (world.testBlockState(pos, AbstractBlock.AbstractBlockState::isReplaceable)) {
+			return true;
+		} else {
+			return checkConfig && config.replaceableBlocks.test(world, pos);
+		}
 	}
 
 	private static BlockPos.Mutable getStartPos(WorldAccess world, BlockPos origin, Block block) {
 		BlockPos.Mutable mutable = origin.mutableCopy();
-		for(int i = origin.getY(); i >= 1; --i) {
+		for (int i = origin.getY(); i >= 1; --i) {
 			mutable.setY(i);
 			Block block2 = world.getBlockState(mutable.down()).getBlock();
-			if(block2 == block) {
+			if (block2 == block) {
 				return mutable;
 			}
 		}
@@ -87,24 +88,23 @@ public class TallHugeFungusFeature extends Feature<HugeFungusFeatureConfig> {
 		}
 	}
 
-	private void generateStem(WorldAccess world, Random random, HugeFungusFeatureConfig config, BlockPos blockPos, int stemHeight, boolean thickStem) {
+	private void generateStem(StructureWorldAccess world, Random random, HugeFungusFeatureConfig config, BlockPos blockPos, int stemHeight, boolean thickStem) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable();
 		BlockState blockState = config.stemState;
 		int i = thickStem ? 1 : 0;
-		for(int j = -i; j <= i; ++j) {
-			for(int k = -i; k <= i; ++k) {
+		for (int j = -i; j <= i; ++j) {
+			for (int k = -i; k <= i; ++k) {
 				boolean bl = thickStem && MathHelper.abs(j) == i && MathHelper.abs(k) == i;
-				for(int l = 0; l < stemHeight; ++l) {
+				for (int l = 0; l < stemHeight; ++l) {
 					mutable.set(blockPos, j, l, k);
-					if(isReplaceable(world, mutable, true)) {
-						if(config.planted) {
-							if(!world.getBlockState(mutable.down()).isAir()) {
+					if (isReplaceable(world, mutable, config, true)) {
+						if (config.planted) {
+							if (!world.getBlockState(mutable.down()).isAir()) {
 								world.breakBlock(mutable, true);
 							}
 							world.setBlockState(mutable, blockState, 3);
-						}
-						else if(bl) {
-							if(random.nextFloat() < 0.1F) {
+						} else if (bl) {
+							if (random.nextFloat() < 0.1F) {
 								this.setBlockState(world, mutable, blockState);
 							}
 						}
@@ -118,17 +118,17 @@ public class TallHugeFungusFeature extends Feature<HugeFungusFeatureConfig> {
 
 	}
 
-	private void generateHat(WorldAccess world, Random random, HugeFungusFeatureConfig config, BlockPos blockPos, int hatHeight, boolean thickStem) {
+	private void generateHat(StructureWorldAccess world, Random random, HugeFungusFeatureConfig config, BlockPos blockPos, int hatHeight, boolean thickStem) {
 		BlockPos.Mutable mutable = new BlockPos.Mutable();
 		boolean bl = config.hatState.isOf(Blocks.NETHER_WART_BLOCK);
 		int i = Math.min(random.nextInt(1 + hatHeight / 3) + 5, hatHeight);
 		int j = hatHeight - i;
-		for(int k = j; k <= hatHeight; ++k) {
+		for (int k = j; k <= hatHeight; ++k) {
 			int l = k < hatHeight - random.nextInt(3) ? 2 : 1;
-			if(i > 8 && k < j + 4) {
+			if (i > 8 && k < j + 4) {
 				l = 3;
 			}
-			if(thickStem) {
+			if (thickStem) {
 				++l;
 			}
 			for(int m = -l; m <= l; ++m) {
@@ -139,16 +139,15 @@ public class TallHugeFungusFeature extends Feature<HugeFungusFeatureConfig> {
 					boolean bl5 = bl2 && bl3;
 					boolean bl6 = k < j + 3;
 					mutable.set(blockPos, m, k, n);
-					if(isReplaceable(world, mutable, false)) {
-						if(config.planted && !world.getBlockState(mutable.down()).isAir()) {
+					if (isReplaceable(world, mutable, config, false)) {
+						if (config.planted && !world.getBlockState(mutable.down()).isAir()) {
 							world.breakBlock(mutable, true);
 						}
-						if(bl6) {
-							if(!bl4) {
+						if (bl6) {
+							if (!bl4) {
 								this.tryGenerateVines(world, random, mutable, config.hatState, bl);
 							}
-						}
-						else if(bl4) {
+						} else if (bl4) {
 							this.generateHatBlock(world, random, config, mutable, 0.1F, 0.2F, bl ? 0.1F : 0.0F);
 						}
 						else if(bl5) {
