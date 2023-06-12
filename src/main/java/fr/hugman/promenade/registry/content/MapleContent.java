@@ -62,21 +62,21 @@ public class MapleContent {
 	public static final Block VERMILION_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/vermilion")));
 	public static final Block POTTED_VERMILION_MAPLE_SAPLING = DawnFactory.potted(VERMILION_MAPLE_SAPLING);
 	public static final Block VERMILION_MAPLE_LEAVES = DawnFactory.leaves();
-	public static final Block VERMILION_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
+	public static final Block VERMILION_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(VERMILION_COLOR);
 	public static final Block VERMILION_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(VERMILION_COLOR);
 
 	public static final MapColor FULVOUS_COLOR = MapColor.ORANGE;
 	public static final Block FULVOUS_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/fulvous")));
 	public static final Block POTTED_FULVOUS_MAPLE_SAPLING = DawnFactory.potted(FULVOUS_MAPLE_SAPLING);
 	public static final Block FULVOUS_MAPLE_LEAVES = DawnFactory.leaves();
-	public static final Block FULVOUS_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
+	public static final Block FULVOUS_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(FULVOUS_COLOR);
 	public static final Block FULVOUS_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(FULVOUS_COLOR);
 
 	public static final MapColor MIKADO_COLOR = MapColor.GOLD;
 	public static final Block MIKADO_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/mikado")));
 	public static final Block POTTED_MIKADO_MAPLE_SAPLING = DawnFactory.potted(MIKADO_MAPLE_SAPLING);
 	public static final Block MIKADO_MAPLE_LEAVES = DawnFactory.leaves();
-	public static final Block MIKADO_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
+	public static final Block MIKADO_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(MIKADO_COLOR);
 	public static final Block MIKADO_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(MIKADO_COLOR);
 
 	public static final DefaultParticleType MAPLE_LEAF = FabricParticleTypes.simple();
