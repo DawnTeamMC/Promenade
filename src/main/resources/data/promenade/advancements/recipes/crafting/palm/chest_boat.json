@@ -1,17 +1,12 @@
 {
 	"parent": "minecraft:recipes/root",
-	"rewards": {
-		"recipes": [
-			"promenade:crafting/maple/leaf_pile/vermilion"
-		]
-	},
 	"criteria": {
-		"has_leaves": {
+		"has_boat": {
 			"trigger": "minecraft:inventory_changed",
 			"conditions": {
 				"items": [
 					{
-						"items": ["promenade:vermilion_maple_leaves"]
+						"tag": "minecraft:boats"
 					}
 				]
 			}
@@ -19,14 +14,19 @@
 		"has_the_recipe": {
 			"trigger": "minecraft:recipe_unlocked",
 			"conditions": {
-				"recipe": "promenade:crafting/maple/leaf_pile/vermilion"
+				"recipe": "promenade:crafting/palm/chest_boat"
 			}
 		}
 	},
 	"requirements": [
 		[
-			"has_leaves",
+			"has_boat",
 			"has_the_recipe"
 		]
-	]
+	],
+	"rewards": {
+		"recipes": [
+			"promenade:crafting/palm/chest_boat"
+		]
+	}
 }

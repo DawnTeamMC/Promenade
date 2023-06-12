@@ -2,16 +2,16 @@
 	"parent": "minecraft:recipes/root",
 	"rewards": {
 		"recipes": [
-			"promenade:crafting/maple/leaf_pile/vermilion"
+			"promenade:crafting/palm/fence_gate"
 		]
 	},
 	"criteria": {
-		"has_leaves": {
+		"has_planks": {
 			"trigger": "minecraft:inventory_changed",
 			"conditions": {
 				"items": [
 					{
-						"items": ["promenade:vermilion_maple_leaves"]
+						"items": ["promenade:palm_planks"]
 					}
 				]
 			}
@@ -19,13 +19,13 @@
 		"has_the_recipe": {
 			"trigger": "minecraft:recipe_unlocked",
 			"conditions": {
-				"recipe": "promenade:crafting/maple/leaf_pile/vermilion"
+				"recipe": "promenade:crafting/palm/fence_gate"
 			}
 		}
 	},
 	"requirements": [
 		[
-			"has_leaves",
+			"has_planks",
 			"has_the_recipe"
 		]
 	]

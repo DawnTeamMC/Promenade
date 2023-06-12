@@ -1,17 +1,14 @@
 {
 	"parent": "minecraft:recipes/root",
-	"rewards": {
-		"recipes": [
-			"promenade:crafting/maple/leaf_pile/vermilion"
-		]
-	},
 	"criteria": {
-		"has_leaves": {
+		"has_stripped_log": {
 			"trigger": "minecraft:inventory_changed",
 			"conditions": {
 				"items": [
 					{
-						"items": ["promenade:vermilion_maple_leaves"]
+						"items": [
+							"promenade:stripped_dark_amaranth_stem"
+						]
 					}
 				]
 			}
@@ -19,14 +16,19 @@
 		"has_the_recipe": {
 			"trigger": "minecraft:recipe_unlocked",
 			"conditions": {
-				"recipe": "promenade:crafting/maple/leaf_pile/vermilion"
+				"recipe": "promenade:crafting/dark_amaranth/hanging_sign"
 			}
 		}
 	},
 	"requirements": [
 		[
-			"has_leaves",
+			"has_stripped_log",
 			"has_the_recipe"
 		]
-	]
+	],
+	"rewards": {
+		"recipes": [
+			"promenade:crafting/dark_amaranth/hanging_sign"
+		]
+	}
 }

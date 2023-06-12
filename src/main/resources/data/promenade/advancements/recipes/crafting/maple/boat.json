@@ -2,30 +2,26 @@
 	"parent": "minecraft:recipes/root",
 	"rewards": {
 		"recipes": [
-			"promenade:crafting/maple/leaf_pile/sap"
+			"promenade:crafting/maple/boat"
 		]
 	},
 	"criteria": {
-		"has_leaves": {
-			"trigger": "minecraft:inventory_changed",
+		"in_water": {
+			"trigger": "minecraft:enter_block",
 			"conditions": {
-				"items": [
-					{
-						"items": ["promenade:sap_maple_leaves"]
-					}
-				]
+				"block": "minecraft:water"
 			}
 		},
 		"has_the_recipe": {
 			"trigger": "minecraft:recipe_unlocked",
 			"conditions": {
-				"recipe": "promenade:crafting/maple/leaf_pile/sap"
+				"recipe": "promenade:crafting/maple/boat"
 			}
 		}
 	},
 	"requirements": [
 		[
-			"has_leaves",
+			"in_water",
 			"has_the_recipe"
 		]
 	]
