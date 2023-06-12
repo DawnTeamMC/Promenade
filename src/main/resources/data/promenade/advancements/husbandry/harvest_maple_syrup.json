@@ -15,18 +15,26 @@
     "harvest_maple_syrup": {
       "trigger": "minecraft:item_used_on_block",
       "conditions": {
-        "item": {
-          "items": [
-            "minecraft:glass_bottle"
-          ]
-        },
-        "location": {
-          "block": {
-            "blocks": [
-              "promenade:stripped_maple_log"
-            ]
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "promenade:stripped_maple_log"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": [
+                "minecraft:glass_bottle"
+              ]
+            }
           }
-        }
+        ]
       }
     }
   },

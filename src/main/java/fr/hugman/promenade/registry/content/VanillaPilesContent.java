@@ -3,12 +3,12 @@ package fr.hugman.promenade.registry.content;
 import fr.hugman.dawn.Registrar;
 import fr.hugman.dawn.block.DawnBlockSettings;
 import fr.hugman.dawn.item.DawnItemSettings;
+import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.block.WitherRosePileBlock;
-import fr.hugman.promenade.item.ItemGroupHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.Material;
+import net.minecraft.block.MapColor;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.sound.BlockSoundGroup;
 
@@ -23,30 +23,33 @@ public class VanillaPilesContent {
 	public static final Block AZALEA_LEAF_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
 	public static final Block FLOWERING_AZALEA_LEAF_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
 
-	public static final Block DANDELION_PILE = PromenadeFactory.leafPile();
+    //TODO: change map colors
+    public static final Block DANDELION_PILE = PromenadeFactory.leafPile();
 	public static final Block POPPY_PILE = PromenadeFactory.leafPile();
-	public static final Block BLUE_ORCHID_PILE = PromenadeFactory.leafPile();
-	public static final Block ALLIUM_PILE = PromenadeFactory.leafPile();
-	public static final Block AZURE_BLUET_PILE = PromenadeFactory.leafPile();
-	public static final Block RED_TULIP_PILE = PromenadeFactory.leafPile();
-	public static final Block ORANGE_TULIP_PILE = PromenadeFactory.leafPile();
-	public static final Block WHITE_TULIP_PILE = PromenadeFactory.leafPile();
-	public static final Block PINK_TULIP_PILE = PromenadeFactory.leafPile();
-	public static final Block OXEYE_DAISY_PILE = PromenadeFactory.leafPile();
-	public static final Block CORNFLOWER_PILE = PromenadeFactory.leafPile();
-	public static final Block LILY_OF_THE_VALLEY_PILE = PromenadeFactory.leafPile();
-	public static final Block WITHER_ROSE_PILE = new WitherRosePileBlock(DawnBlockSettings.of(Material.PLANT)
-			.item(new DawnItemSettings().compostingChance(0.3f)).flammability(30, 60)
-			.strength(0.1f)
-			.ticksRandomly()
-			.sounds(BlockSoundGroup.GRASS)
-			.noCollision()
-			.nonOpaque());
+    public static final Block BLUE_ORCHID_PILE = PromenadeFactory.leafPile();
+    public static final Block ALLIUM_PILE = PromenadeFactory.leafPile();
+    public static final Block AZURE_BLUET_PILE = PromenadeFactory.leafPile();
+    public static final Block RED_TULIP_PILE = PromenadeFactory.leafPile();
+    public static final Block ORANGE_TULIP_PILE = PromenadeFactory.leafPile();
+    public static final Block WHITE_TULIP_PILE = PromenadeFactory.leafPile();
+    public static final Block PINK_TULIP_PILE = PromenadeFactory.leafPile();
+    public static final Block OXEYE_DAISY_PILE = PromenadeFactory.leafPile();
+    public static final Block CORNFLOWER_PILE = PromenadeFactory.leafPile();
+    public static final Block LILY_OF_THE_VALLEY_PILE = PromenadeFactory.leafPile();
+    public static final Block WITHER_ROSE_PILE = new WitherRosePileBlock(DawnBlockSettings.create()
+            .item(new DawnItemSettings().compostingChance(0.3f))
+            .mapColor(MapColor.DARK_GREEN)
+            .burnable(30, 60)
+            .strength(0.1f)
+            .ticksRandomly()
+            .sounds(BlockSoundGroup.GRASS)
+            .noCollision()
+            .nonOpaque());
 
-	public static void register(Registrar r) {
-		r.add(("oak_leaf_pile"), OAK_LEAF_PILE);
-		r.add(("spruce_leaf_pile"), SPRUCE_LEAF_PILE);
-		r.add(("birch_leaf_pile"), BIRCH_LEAF_PILE);
+    public static void register(Registrar r) {
+        r.add(("oak_leaf_pile"), OAK_LEAF_PILE);
+        r.add(("spruce_leaf_pile"), SPRUCE_LEAF_PILE);
+        r.add(("birch_leaf_pile"), BIRCH_LEAF_PILE);
 		r.add(("jungle_leaf_pile"), JUNGLE_LEAF_PILE);
 		r.add(("acacia_leaf_pile"), ACACIA_LEAF_PILE);
 		r.add(("dark_oak_leaf_pile"), DARK_OAK_LEAF_PILE);

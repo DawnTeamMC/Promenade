@@ -7,45 +7,48 @@ import fr.hugman.dawn.block.DawnBlockSettings;
 import fr.hugman.dawn.block.SignBlocks;
 import fr.hugman.dawn.block.sapling.SingleSaplingGenerator;
 import fr.hugman.dawn.item.DawnItemSettings;
+import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.block.MoaiBlock;
-import fr.hugman.promenade.item.ItemGroupHelper;
 import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
 import fr.hugman.promenade.village.TradeOfferUtils;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.PillarBlock;
+import net.minecraft.block.*;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.PlacedFeature;
 
 public class PalmContent {
+	public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.registerWood(Promenade.id("palm"));
+	public static final WoodType WOOD_TYPE = WoodTypeRegistry.register(Promenade.id("palm"), BLOCK_SET_TYPE);
+	private static final BlockSoundGroup WOOD_SOUNDS = BlockSoundGroup.WOOD;
 	private static final MapColor BARK_COLOR = MapColor.TERRACOTTA_CYAN;
 	private static final MapColor WOOD_COLOR = MapColor.ORANGE;
 
-	public static final Block STRIPPED_PALM_LOG = new PillarBlock(DawnFactory.logSettings(false, WOOD_COLOR));
-	public static final Block PALM_LOG = new PillarBlock(DawnFactory.logSettings(false, WOOD_COLOR, BARK_COLOR).stripInto(STRIPPED_PALM_LOG));
-	public static final Block STRIPPED_PALM_WOOD = new PillarBlock(DawnFactory.logSettings(false, WOOD_COLOR));
-	public static final Block PALM_WOOD = new PillarBlock(DawnFactory.logSettings(false, BARK_COLOR).stripInto(STRIPPED_PALM_WOOD));
+	public static final Block STRIPPED_PALM_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
+	public static final Block PALM_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_PALM_LOG));
+	public static final Block STRIPPED_PALM_WOOD = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
+	public static final Block PALM_WOOD = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_PALM_WOOD));
 
-	public static final Block PALM_PLANKS = DawnFactory.planks(false, WOOD_COLOR);
+	public static final Block PALM_PLANKS = DawnFactory.planks(WOOD_COLOR, WOOD_SOUNDS, true);
 	public static final Block PALM_STAIRS = DawnFactory.stairs(PALM_PLANKS);
 	public static final Block PALM_SLAB = DawnFactory.slab(PALM_PLANKS);
-	public static final Block PALM_FENCE = DawnFactory.fence(false, PALM_PLANKS);
-	public static final Block PALM_FENCE_GATE = DawnFactory.fenceGate(false, PALM_PLANKS);
-	public static final Block PALM_DOOR = DawnFactory.woodenDoor(PALM_PLANKS);
-	public static final Block PALM_TRAPDOOR = DawnFactory.woodenTrapdoor(PALM_PLANKS);
-	public static final Block PALM_BUTTON = DawnFactory.woodenButton(false);
-	public static final Block PALM_PRESSURE_PLATE = DawnFactory.pressurePlate(PALM_PLANKS);
+	public static final Block PALM_FENCE = DawnFactory.fence(PALM_PLANKS);
+	public static final Block PALM_FENCE_GATE = DawnFactory.fenceGate(PALM_PLANKS, WOOD_TYPE);
+	public static final Block PALM_DOOR = DawnFactory.door(PALM_PLANKS, BLOCK_SET_TYPE);
+	public static final Block PALM_TRAPDOOR = DawnFactory.trapdoor(PALM_PLANKS, BLOCK_SET_TYPE);
+	public static final Block PALM_BUTTON = DawnFactory.woodenButton(BLOCK_SET_TYPE, WOOD_SOUNDS);
+	public static final Block PALM_PRESSURE_PLATE = DawnFactory.pressurePlate(PALM_PLANKS, BLOCK_SET_TYPE);
 
 	public static final SignBlocks PALM_SIGNS = DawnFactory.signs(Promenade.id("palm"), PALM_PLANKS);
 	public static final TerraformBoatType PALM_BOAT_TYPE = DawnFactory.boat(Promenade.id("palm"), Items.OAK_PLANKS); //TODO change when possible (PR #72 on TerraformersMC/Terraform)

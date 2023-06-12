@@ -44,7 +44,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	@Override
 	public void tick() {
 		super.tick();
-		if(this.world.isClient()) {
+		if (this.getWorld().isClient()) {
 			this.updateAnimations();
 		}
 		this.updateState();
@@ -52,13 +52,13 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 
 	@Override
 	protected void mobTick() {
-		this.world.getProfiler().push("capybaraBrain");
+		this.getWorld().getProfiler().push("capybaraBrain");
 		Brain<CapybaraEntity> brain = (Brain<CapybaraEntity>) this.getBrain();
-		brain.tick((ServerWorld) this.world, this);
-		this.world.getProfiler().pop();
-		this.world.getProfiler().push("capybaraActivityUpdate");
+		brain.tick((ServerWorld) this.getWorld(), this);
+		this.getWorld().getProfiler().pop();
+		this.getWorld().getProfiler().push("capybaraActivityUpdate");
 		CapybaraBrain.updateActivities(this);
-		this.world.getProfiler().pop();
+		this.getWorld().getProfiler().pop();
 		super.mobTick();
 	}
 
@@ -185,7 +185,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 
 	public void fallToSleep() {
 		this.setState(CapybaraState.FALL_TO_SLEEP);
-		this.setLastStateTick(this.world.getTime());
+		this.setLastStateTick(this.getWorld().getTime());
 	}
 
 	// SLEEP
@@ -200,7 +200,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 
 	public void sleep() {
 		this.setState(CapybaraState.SLEEPING);
-		this.setLastStateTick(this.world.getTime());
+		this.setLastStateTick(this.getWorld().getTime());
 	}
 
 	// WAKE UP
@@ -210,12 +210,12 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	}
 
 	public boolean canStopSleeping() {
-		return this.isAsleep() && this.world.isDay();
+		return this.isAsleep() && this.getWorld().isDay();
 	}
 
 	public void stopSleeping() {
 		this.setState(CapybaraState.WAKE_UP);
-		this.setLastStateTick(this.world.getTime());
+		this.setLastStateTick(this.getWorld().getTime());
 	}
 
 	// STAND
@@ -226,7 +226,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 
 	public void standUp() {
 		this.setState(CapybaraState.STANDING);
-		this.setLastStateTick(this.world.getTime() - WAKE_UP_LENGTH);
+		this.setLastStateTick(this.getWorld().getTime() - WAKE_UP_LENGTH);
 	}
 
 	// FART
@@ -242,7 +242,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	public void fart() {
 		this.playSound(AnimalContent.CAPYBARA_FART_SOUND, getSoundVolume(), getSoundPitch());
 		this.setState(CapybaraState.FARTING);
-		this.setLastStateTick(this.world.getTime());
+		this.setLastStateTick(this.getWorld().getTime());
 	}
 
 
@@ -273,7 +273,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 
 		switch(this.getState()) {
 			case STANDING -> {
-				this.walkingAnimationState.setRunning((this.onGround || this.hasControllingPassenger()) && this.getVelocity().horizontalLengthSquared() > 1.0E-6, this.age);
+				this.walkingAnimationState.setRunning((this.isOnGround() || this.hasControllingPassenger()) && this.getVelocity().horizontalLengthSquared() > 1.0E-6, this.age);
 				this.fallToSleepAnimState.stop();
 				this.sleepingAnimState.stop();
 				this.wakeUpAnimState.stop();
@@ -374,7 +374,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	@Nullable
 	@Override
 	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-		return AnimalContent.CAPYBARA.create(this.world);
+		return AnimalContent.CAPYBARA.create(this.getWorld());
 	}
 
 	@Override
@@ -448,7 +448,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 	}
 
 	public long getLastStateTickDelta() {
-		return this.world.getTime() - this.dataTracker.get(LAST_STATE_TICK);
+		return this.getWorld().getTime() - this.dataTracker.get(LAST_STATE_TICK);
 	}
 
 	public CapybaraState getState() {
