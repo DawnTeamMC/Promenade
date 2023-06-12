@@ -2,16 +2,16 @@
 	"parent": "minecraft:recipes/root",
 	"rewards": {
 		"recipes": [
-			"promenade:stonecutting/carbonite_slab"
+			"promenade:stonecutting/blunite/wall"
 		]
 	},
 	"criteria": {
-		"has_carbonite": {
+		"has_blunite": {
 			"trigger": "minecraft:inventory_changed",
 			"conditions": {
 				"items": [
 					{
-						"items": ["promenade:carbonite"]
+						"items": ["promenade:blunite"]
 					}
 				]
 			}
@@ -19,13 +19,13 @@
 		"has_the_recipe": {
 			"trigger": "minecraft:recipe_unlocked",
 			"conditions": {
-				"recipe": "promenade:stonecutting/carbonite_slab"
+				"recipe": "promenade:stonecutting/blunite/wall"
 			}
 		}
 	},
 	"requirements": [
 		[
-			"has_carbonite",
+			"has_blunite",
 			"has_the_recipe"
 		]
 	]

@@ -2,7 +2,7 @@
 	"parent": "minecraft:recipes/root",
 	"rewards": {
 		"recipes": [
-			"promenade:stonecutting/carbonite_column"
+			"promenade:stonecutting/carbonite/wall"
 		]
 	},
 	"criteria": {
@@ -19,7 +19,7 @@
 		"has_the_recipe": {
 			"trigger": "minecraft:recipe_unlocked",
 			"conditions": {
-				"recipe": "promenade:stonecutting/carbonite_column"
+				"recipe": "promenade:stonecutting/carbonite/wall"
 			}
 		}
 	},
@@ -28,13 +28,5 @@
 			"has_carbonite",
 			"has_the_recipe"
 		]
-	],
-	"fabric:load_conditions": [
-		{
-			"condition": "fabric:all_mods_loaded",
-			"values": [
-				"columns"
-			]
-		}
 	]
 }

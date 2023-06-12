@@ -2,7 +2,7 @@
 	"parent": "minecraft:recipes/root",
 	"rewards": {
 		"recipes": [
-			"promenade:stonecutting/polished_blunite_stairs"
+			"promenade:stonecutting/blunite/column"
 		]
 	},
 	"criteria": {
@@ -16,28 +16,25 @@
 				]
 			}
 		},
-		"has_polished_blunite": {
-			"trigger": "minecraft:inventory_changed",
-			"conditions": {
-				"items": [
-					{
-						"items": ["promenade:polished_blunite"]
-					}
-				]
-			}
-		},
 		"has_the_recipe": {
 			"trigger": "minecraft:recipe_unlocked",
 			"conditions": {
-				"recipe": "promenade:stonecutting/polished_blunite_stairs"
+				"recipe": "promenade:stonecutting/blunite/column"
 			}
 		}
 	},
 	"requirements": [
 		[
 			"has_blunite",
-			"has_polished_blunite",
 			"has_the_recipe"
 		]
+	],
+	"fabric:load_conditions": [
+		{
+			"condition": "fabric:all_mods_loaded",
+			"values": [
+				"columns"
+			]
+		}
 	]
 }

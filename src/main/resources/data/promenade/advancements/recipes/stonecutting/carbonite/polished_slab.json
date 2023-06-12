@@ -2,7 +2,7 @@
 	"parent": "minecraft:recipes/root",
 	"rewards": {
 		"recipes": [
-			"promenade:stonecutting/carbonite_stairs"
+			"promenade:stonecutting/carbonite/polished_slab"
 		]
 	},
 	"criteria": {
@@ -16,16 +16,27 @@
 				]
 			}
 		},
+		"has_polished_carbonite": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": ["promenade:polished_carbonite"]
+					}
+				]
+			}
+		},
 		"has_the_recipe": {
 			"trigger": "minecraft:recipe_unlocked",
 			"conditions": {
-				"recipe": "promenade:stonecutting/carbonite_stairs"
+				"recipe": "promenade:stonecutting/carbonite/polished_slab"
 			}
 		}
 	},
 	"requirements": [
 		[
 			"has_carbonite",
+			"has_polished_carbonite",
 			"has_the_recipe"
 		]
 	]
