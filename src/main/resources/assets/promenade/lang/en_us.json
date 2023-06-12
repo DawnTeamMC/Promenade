@@ -203,16 +203,14 @@
 	"subtitles.promenade.entity.sunken_skeleton.hurt": "Sunken Skeleton hurts",
 	"subtitles.promenade.entity.sunken_skeleton.death": "Sunken Skeleton dies",
 	"subtitles.promenade.entity.sunken_skeleton.shoot": "Sunken Skeleton shoots",
-
 	"advancements.promenade.adventure.coral_bleacher_sniping.title": "Coral Bleacher Sniping",
 	"advancements.promenade.adventure.coral_bleacher_sniping.description": "Kill a sunken skeleton using a crossbow underwater",
 	"advancements.promenade.adventure.coral_reef_savior.title": "Coral Reef Savior",
 	"advancements.promenade.adventure.coral_reef_savior.description": "Kill all the types of sunken skeleton with one crossbow shot underwater",
-	"advancements.promenade.adventure.place_all_cherry_blocks.title": "Minka House Foundations",
-	"advancements.promenade.adventure.place_all_cherry_blocks.description": "Place down all the different cherry oak blocks in a cherry oak forest",
+	"advancements.promenade.adventure.place_all_sakura_blocks.title": "Minka House Foundations",
+	"advancements.promenade.adventure.place_all_sakura_blocks.description": "Place down all the different sakura wood blocks in a sakura grove",
 	"advancements.promenade.husbandry.harvest_maple_syrup.title": "Don't Worry, Be Sappy!",
 	"advancements.promenade.husbandry.harvest_maple_syrup.description": "Strip a natural Maple tree using an Axe to collect Maple Syrup with a Bottle",
-
 	"text.autoconfig.promenade.title": "Promenade Configuration",
 	"text.autoconfig.promenade.category.biomes": "Biomes",
 	"text.autoconfig.promenade.category.world_features": "World Features",
