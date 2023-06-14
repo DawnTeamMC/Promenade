@@ -50,14 +50,14 @@ public class SakuraContent {
 
     public static final Block BLUSH_SAKURA_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("sakura/blush")));
     public static final Block POTTED_BLUSH_SAKURA_SAPLING = DawnFactory.potted(BLUSH_SAKURA_SAPLING);
-    public static final Block BLUSH_SAKURA_BLOSSOMS = DawnFactory.leaves(BlockSoundGroup.AZALEA_LEAVES);
-    public static final Block BLUSH_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
+    public static final Block BLUSH_SAKURA_BLOSSOMS = DawnFactory.leaves(BlockSoundGroup.CHERRY_LEAVES);
+    public static final Block BLUSH_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(BlockSoundGroup.CHERRY_LEAVES);
     public static final DefaultParticleType BLUSH_SAKURA_BLOSSOM = FabricParticleTypes.simple();
 
     public static final Block COTTON_SAKURA_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("sakura/cotton")));
     public static final Block POTTED_COTTON_SAKURA_SAPLING = DawnFactory.potted(COTTON_SAKURA_SAPLING);
-    public static final Block COTTON_SAKURA_BLOSSOMS = DawnFactory.leaves(BlockSoundGroup.AZALEA_LEAVES);
-    public static final Block COTTON_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
+    public static final Block COTTON_SAKURA_BLOSSOMS = DawnFactory.leaves(BlockSoundGroup.CHERRY_LEAVES);
+    public static final Block COTTON_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(BlockSoundGroup.CHERRY_LEAVES);
     public static final DefaultParticleType COTTON_SAKURA_BLOSSOM = FabricParticleTypes.simple();
 
     public static final RegistryKey<Biome> BLUSH_SAKURA_GROVE = DawnFactory.biome(Promenade.id("blush_sakura_grove"));
