@@ -10,6 +10,7 @@ import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
+import fr.hugman.promenade.block.HangingLeavesBlock;
 import fr.hugman.promenade.block.MoaiBlock;
 import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
 import fr.hugman.promenade.village.TradeOfferUtils;
@@ -19,6 +20,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
@@ -56,6 +58,14 @@ public class PalmContent {
 	public static final Block PALM_SAPLING = DawnFactory.sapling(new SingleSaplingGenerator(Promenade.id("tree/palm")), state -> state.isIn(BlockTags.SAND));
 	public static final Block POTTED_PALM_SAPLING = DawnFactory.potted(PALM_SAPLING);
 	public static final Block PALM_LEAVES = DawnFactory.leaves();
+	public static final Block PALM_HANGING_LEAVES = new HangingLeavesBlock(DawnBlockSettings.create()
+			.item(new DawnItemSettings().compostingChance(0.3F))
+			.mapColor(MapColor.DARK_GREEN)
+			.sounds(BlockSoundGroup.GRASS)
+			.replaceable().noCollision().breakInstantly()
+			.burnable(30, 60)
+			.pistonBehavior(PistonBehavior.DESTROY)
+	);
 	public static final Block PALM_LEAF_PILE = PromenadeFactory.leafPile();
 
 	public static final Block MOAI = new MoaiBlock(DawnBlockSettings.copyOf(Blocks.TUFF).item(new DawnItemSettings().equipmentSlot(stack -> EquipmentSlot.HEAD)));
@@ -84,6 +94,7 @@ public class PalmContent {
 		r.add(("palm_sapling"), PALM_SAPLING);
 		r.add(("potted_palm_sapling"), POTTED_PALM_SAPLING);
 		r.add(("palm_leaves"), PALM_LEAVES);
+		r.add(("palm_hanging_leaves"), PALM_HANGING_LEAVES);
 		r.add(("palm_leaf_pile"), PALM_LEAF_PILE);
 
 		r.add(("moai"), MOAI);
@@ -113,7 +124,7 @@ public class PalmContent {
 
 		ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
 			e.addAfter(Blocks.ACACIA_LOG, PALM_LOG);
-			e.addAfter(Blocks.ACACIA_LEAVES, PALM_LEAVES);
+			e.addAfter(Blocks.ACACIA_LEAVES, PALM_LEAVES, PALM_HANGING_LEAVES);
 			e.addAfter(Blocks.ACACIA_SAPLING, PALM_SAPLING);
 			e.addAfter(VanillaPilesContent.ACACIA_LEAF_PILE, PALM_LEAF_PILE);
 		});
