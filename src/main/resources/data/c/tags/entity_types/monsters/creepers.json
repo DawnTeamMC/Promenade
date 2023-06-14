@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:creeper",
+    "promenade:lush_creeper"
+  ]
+}
