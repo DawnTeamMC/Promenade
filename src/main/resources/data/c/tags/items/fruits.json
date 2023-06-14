@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#c:fruits/apricots",
+    "#c:fruits/bananas",
+    "#c:fruits/blueberries",
+    "#c:fruits/mangos"
+  ]
+}
