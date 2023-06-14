@@ -2,9 +2,9 @@ package fr.hugman.promenade.compat;
 
 import com.mojang.datafixers.util.Pair;
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.registry.content.SakuraContent;
 import fr.hugman.promenade.registry.content.GlaglaglaContent;
 import fr.hugman.promenade.registry.content.MapleContent;
+import fr.hugman.promenade.registry.content.SakuraContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registry;
@@ -14,11 +14,7 @@ import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import net.minecraft.world.gen.noise.NoiseParametersKeys;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
-import terrablender.api.Region;
-import terrablender.api.RegionType;
-import terrablender.api.Regions;
-import terrablender.api.SurfaceRuleManager;
-import terrablender.api.TerraBlenderApi;
+import terrablender.api.*;
 import terrablender.worldgen.TBSurfaceRuleData;
 
 import java.util.function.Consumer;
@@ -60,11 +56,11 @@ public class PromenadeTBIntegration implements TerraBlenderApi {
 				if(Promenade.CONFIG.biomes.carnelian_treeway_weight > 0) {
 					builder.replaceBiome(BiomeKeys.PLAINS, MapleContent.CARNELIAN_TREEWAY);
 				}
-				if(Promenade.CONFIG.biomes.sakura_groves_weight > 0) {
+				if (Promenade.CONFIG.biomes.sakura_groves_weight > 0) {
 					builder.replaceBiome(BiomeKeys.FOREST, SakuraContent.BLUSH_SAKURA_GROVE);
 					builder.replaceBiome(BiomeKeys.BIRCH_FOREST, SakuraContent.COTTON_SAKURA_GROVE);
 				}
-				if(Promenade.CONFIG.biomes.glacarian_taiga > 0) {
+				if (Promenade.CONFIG.biomes.glacarian_taiga_weight > 0) {
 					builder.replaceBiome(BiomeKeys.TAIGA, GlaglaglaContent.GLACARIAN_TAIGA);
 					builder.replaceBiome(BiomeKeys.SNOWY_TAIGA, GlaglaglaContent.GLACARIAN_TAIGA);
 					builder.replaceBiome(BiomeKeys.SNOWY_SLOPES, GlaglaglaContent.GLACARIAN_TAIGA);
