@@ -10,6 +10,7 @@ import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
+import fr.hugman.promenade.block.ExtendedLeavesBlock;
 import fr.hugman.promenade.block.HangingLeavesBlock;
 import fr.hugman.promenade.block.MoaiBlock;
 import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
@@ -21,6 +22,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.*;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
@@ -57,7 +59,19 @@ public class TropicalContent {
 
 	public static final Block PALM_SAPLING = DawnFactory.sapling(new SingleSaplingGenerator(Promenade.id("tree/palm")), state -> state.isIn(BlockTags.SAND));
 	public static final Block POTTED_PALM_SAPLING = DawnFactory.potted(PALM_SAPLING);
-	public static final Block PALM_LEAVES = DawnFactory.leaves();
+	public static final Block PALM_LEAVES = new ExtendedLeavesBlock(DawnBlockSettings.create()
+			.item(new DawnItemSettings().compostingChance(0.3f))
+			.mapColor(MapColor.DARK_GREEN)
+			.strength(0.2f)
+			.ticksRandomly()
+			.sounds(BlockSoundGroup.GRASS)
+			.nonOpaque()
+			.allowsSpawning((state, world, pos, type) -> type == EntityType.OCELOT || type == EntityType.PARROT)
+			.suffocates((state, world, pos) -> false)
+			.blockVision((state, world, pos) -> false)
+			.burnable(30, 60)
+			.pistonBehavior(PistonBehavior.DESTROY)
+			.solidBlock((state, world, pos) -> false));
 	public static final Block PALM_HANGING_LEAVES = new HangingLeavesBlock(DawnBlockSettings.create()
 			.item(new DawnItemSettings().compostingChance(0.3F))
 			.mapColor(MapColor.DARK_GREEN)
