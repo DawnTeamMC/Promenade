@@ -43,8 +43,8 @@ public class PromenadeClient implements ClientModInitializer {
 		ClientRegistrar.add(MapleContent.MAPLE_SIGNS);
 		ClientRegistrar.add(MapleContent.MAPLE_BOAT_TYPE);
 
-		ClientRegistrar.add(PalmContent.PALM_SIGNS);
-		ClientRegistrar.add(PalmContent.PALM_BOAT_TYPE);
+		ClientRegistrar.add(TropicalContent.PALM_SIGNS);
+		ClientRegistrar.add(TropicalContent.PALM_BOAT_TYPE);
 
 		ClientRegistrar.add(AmaranthContent.DARK_AMARANTH_SIGNS);
 	}
@@ -116,14 +116,14 @@ public class PromenadeClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(MapleContent.SAP_MAPLE_LEAF_PILE, RenderLayer.getCutoutMipped());
 
 
-		BlockRenderLayerMap.INSTANCE.putBlock(PalmContent.PALM_DOOR, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(PalmContent.PALM_TRAPDOOR, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_DOOR, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_TRAPDOOR, RenderLayer.getCutout());
 
-		BlockRenderLayerMap.INSTANCE.putBlock(PalmContent.PALM_SAPLING, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(PalmContent.POTTED_PALM_SAPLING, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(PalmContent.PALM_LEAVES, RenderLayer.getCutoutMipped());
-		BlockRenderLayerMap.INSTANCE.putBlock(PalmContent.PALM_HANGING_LEAVES, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(PalmContent.PALM_LEAF_PILE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.POTTED_PALM_SAPLING, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_LEAVES, RenderLayer.getCutoutMipped());
+		BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_HANGING_LEAVES, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_LEAF_PILE, RenderLayer.getCutout());
 
 
 		BlockRenderLayerMap.INSTANCE.putBlock(AmaranthContent.DARK_AMARANTH_DOOR, RenderLayer.getCutout());
@@ -139,7 +139,7 @@ public class PromenadeClient implements ClientModInitializer {
 	private static final int SAP_MAPLE_COLOR = 10931465; // 'foliage_color' in 'carnelian_treeway.json'
 
 	private static void registerBlockColors() {
-		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> pos != null && world != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.getDefaultColor(), PalmContent.PALM_LEAVES, PalmContent.PALM_HANGING_LEAVES, PalmContent.PALM_LEAF_PILE, VanillaPilesContent.OAK_LEAF_PILE, VanillaPilesContent.JUNGLE_LEAF_PILE, VanillaPilesContent.ACACIA_LEAF_PILE, VanillaPilesContent.DARK_OAK_LEAF_PILE, VanillaPilesContent.MANGROVE_LEAF_PILE, MapleContent.SAP_MAPLE_LEAVES, MapleContent.SAP_MAPLE_LEAF_PILE);
+		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> pos != null && world != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.getDefaultColor(), TropicalContent.PALM_LEAVES, TropicalContent.PALM_HANGING_LEAVES, TropicalContent.PALM_LEAF_PILE, VanillaPilesContent.OAK_LEAF_PILE, VanillaPilesContent.JUNGLE_LEAF_PILE, VanillaPilesContent.ACACIA_LEAF_PILE, VanillaPilesContent.DARK_OAK_LEAF_PILE, VanillaPilesContent.MANGROVE_LEAF_PILE, MapleContent.SAP_MAPLE_LEAVES, MapleContent.SAP_MAPLE_LEAF_PILE);
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> FoliageColors.getSpruceColor(), VanillaPilesContent.SPRUCE_LEAF_PILE, GlaglaglaContent.SNOWY_SPRUCE_LEAVES);
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> FoliageColors.getBirchColor(), VanillaPilesContent.BIRCH_LEAF_PILE);
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
@@ -151,7 +151,7 @@ public class PromenadeClient implements ClientModInitializer {
 	}
 
 	private static void registerItemColors() {
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> GrassColors.getColor(1.0D, 0.0D), PalmContent.PALM_LEAVES, PalmContent.PALM_HANGING_LEAVES, PalmContent.PALM_LEAF_PILE);
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> GrassColors.getColor(1.0D, 0.0D), TropicalContent.PALM_LEAVES, TropicalContent.PALM_HANGING_LEAVES, TropicalContent.PALM_LEAF_PILE);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			Block block = ((BlockItem) stack.getItem()).getBlock();
 			BlockState blockState = block.getDefaultState();

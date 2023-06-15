@@ -30,7 +30,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.PlacedFeature;
 
-public class PalmContent {
+public class TropicalContent {
 	public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.registerWood(Promenade.id("palm"));
 	public static final WoodType WOOD_TYPE = WoodTypeRegistry.register(Promenade.id("palm"), BLOCK_SET_TYPE);
 	private static final BlockSoundGroup WOOD_SOUNDS = BlockSoundGroup.WOOD;
