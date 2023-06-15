@@ -5,7 +5,6 @@ on:
     paths:
       - 'src/main/resources/assets/promenade/lang/en_us.json'
     branches: [ main, dev ]
-  pull_request: # this is only for testing purposes
 
 jobs:
   crowdin:
