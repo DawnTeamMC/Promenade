@@ -1,11 +1,11 @@
 name: Upload translations to Crowdin
 
 on:
-  pull_request: # this is only for testing
   push:
     paths:
       - 'src/main/resources/assets/promenade/lang/en_us.json'
     branches: [ dev ]
+  pull_request: # this is only for testing purposes
 
 jobs:
   crowdin:
@@ -17,7 +17,6 @@ jobs:
       - name: Crowdin push
         uses: crowdin/github-action@v1
         with:
-          upload_config: 'crowdin.yml'
           upload_sources: true
           upload_translations: false
           download_translations: false
