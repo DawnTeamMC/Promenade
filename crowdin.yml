@@ -1,4 +1,6 @@
 project_id: "427504"
+api_token_env: "CROWDIN_PERSONAL_TOKEN"
+preserve_hierarchy: true
 
 files:
   - source: "src/main/resources/assets/promenade/lang/en_us.json"

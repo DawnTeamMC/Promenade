@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'src/main/resources/assets/promenade/lang/en_us.json'
-    branches: [ dev ]
+    branches: [ main, dev ]
   pull_request: # this is only for testing purposes
 
 jobs:
