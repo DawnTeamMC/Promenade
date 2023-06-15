@@ -1,0 +1,8 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": {
+		"item": "promenade:asphalt"
+	},
+	"result": "promenade:polished_asphalt",
+	"count": 1
+}

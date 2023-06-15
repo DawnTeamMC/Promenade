@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:stonecutting/asphalt/slab"
+		]
+	},
+	"criteria": {
+		"has_asphalt": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": ["promenade:asphalt"]
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:stonecutting/asphalt/slab"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_asphalt",
+			"has_the_recipe"
+		]
+	]
+}

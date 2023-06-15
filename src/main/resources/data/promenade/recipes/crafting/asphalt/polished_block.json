@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"XX",
+		"XX"
+	],
+	"key": {
+		"X": {
+			"item": "promenade:asphalt"
+		}
+	},
+	"result": {
+		"item": "promenade:polished_asphalt",
+		"count": 4
+	}
+}

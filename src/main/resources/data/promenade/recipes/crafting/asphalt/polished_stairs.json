@@ -1,0 +1,17 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"#  ",
+		"## ",
+		"###"
+	],
+	"key": {
+		"#": {
+			"item": "promenade:polished_asphalt"
+		}
+	},
+	"result": {
+		"item": "promenade:polished_asphalt_stairs",
+		"count": 4
+	}
+}

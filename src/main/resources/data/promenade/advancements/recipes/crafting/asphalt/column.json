@@ -1,0 +1,40 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:crafting/asphalt/column"
+		]
+	},
+	"criteria": {
+		"has_asphalt": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": ["promenade:asphalt"]
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:crafting/asphalt/column"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_asphalt",
+			"has_the_recipe"
+		]
+	],
+	"fabric:load_conditions": [
+		{
+			"condition": "fabric:all_mods_loaded",
+			"values": [
+				"columns"
+			]
+		}
+	]
+}
