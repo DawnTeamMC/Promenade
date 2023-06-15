@@ -1,0 +1,6 @@
+project_id: "427504"
+
+files:
+    - source: "src/main/resources/assets/promenade/lang/en_us.json",
+    - translation: "src/main/resources/assets/promenade/lang/%locale_with_underscore%.json",
+    - dest: "promenade.json"
