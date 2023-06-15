@@ -137,9 +137,11 @@ public class PromenadeClient implements ClientModInitializer {
 	}
 
 	private static final int SAP_MAPLE_COLOR = 10931465; // 'foliage_color' in 'carnelian_treeway.json'
+	private static final int PALM_COLOR = 8237614;
 
 	private static void registerBlockColors() {
-		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> pos != null && world != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.getDefaultColor(), TropicalContent.PALM_LEAVES, TropicalContent.PALM_HANGING_LEAVES, TropicalContent.PALM_LEAF_PILE, VanillaPilesContent.OAK_LEAF_PILE, VanillaPilesContent.JUNGLE_LEAF_PILE, VanillaPilesContent.ACACIA_LEAF_PILE, VanillaPilesContent.DARK_OAK_LEAF_PILE, VanillaPilesContent.MANGROVE_LEAF_PILE, MapleContent.SAP_MAPLE_LEAVES, MapleContent.SAP_MAPLE_LEAF_PILE);
+		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> PALM_COLOR, TropicalContent.PALM_LEAVES, TropicalContent.PALM_HANGING_LEAVES, TropicalContent.PALM_LEAF_PILE);
+		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> pos != null && world != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.getDefaultColor(), VanillaPilesContent.OAK_LEAF_PILE, VanillaPilesContent.JUNGLE_LEAF_PILE, VanillaPilesContent.ACACIA_LEAF_PILE, VanillaPilesContent.DARK_OAK_LEAF_PILE, VanillaPilesContent.MANGROVE_LEAF_PILE, MapleContent.SAP_MAPLE_LEAVES, MapleContent.SAP_MAPLE_LEAF_PILE);
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> FoliageColors.getSpruceColor(), VanillaPilesContent.SPRUCE_LEAF_PILE, GlaglaglaContent.SNOWY_SPRUCE_LEAVES);
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> FoliageColors.getBirchColor(), VanillaPilesContent.BIRCH_LEAF_PILE);
 		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
@@ -151,7 +153,7 @@ public class PromenadeClient implements ClientModInitializer {
 	}
 
 	private static void registerItemColors() {
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> GrassColors.getColor(1.0D, 0.0D), TropicalContent.PALM_LEAVES, TropicalContent.PALM_HANGING_LEAVES, TropicalContent.PALM_LEAF_PILE);
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> PALM_COLOR, TropicalContent.PALM_LEAVES, TropicalContent.PALM_HANGING_LEAVES, TropicalContent.PALM_LEAF_PILE);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
 			Block block = ((BlockItem) stack.getItem()).getBlock();
 			BlockState blockState = block.getDefaultState();
