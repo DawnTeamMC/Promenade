@@ -222,7 +222,7 @@
 	"text.autoconfig.promenade.option.biomes.glacarian_taiga_weight": "Generation weight of Glacarian Taigas",
 	"text.autoconfig.promenade.option.biomes.dark_amaranth_forests_weight": "Generation weight of Dark Amaranth Forests",
 	"text.autoconfig.promenade.option.world_features.igneous_rock_patches": "Generate patches of new igneous rocks",
-	"text.autoconfig.promenade.option.world_features.igneous_rock_patches.@Tooltip": "Generate Asphalt and Blunite patches",
+	"text.autoconfig.promenade.option.world_features.igneous_rock_patches.@Tooltip": "Generate patches of Asphalt and Blunite",
 	"text.autoconfig.promenade.option.world_features.palms": "Generate Palms",
 	"text.autoconfig.promenade.option.world_features.blueberry_bushes": "Generate Blueberry Bushes",
 	"text.autoconfig.promenade.option.animals.capybaras_weight": "Spawning weight of Capybaras",
