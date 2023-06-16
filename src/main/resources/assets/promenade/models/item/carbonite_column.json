@@ -1,6 +1,0 @@
-{
-	"parent": "columns:block/column_inventory",
-	"textures": {
-		"all": "promenade:block/carbonite/block"
-	}
-}

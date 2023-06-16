@@ -1,0 +1,6 @@
+{
+	"parent": "columns:block/column_inventory",
+	"textures": {
+		"all": "promenade:block/asphalt/block"
+	}
+}

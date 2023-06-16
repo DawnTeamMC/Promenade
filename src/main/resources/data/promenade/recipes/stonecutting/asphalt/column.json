@@ -1,0 +1,16 @@
+{
+	"type": "minecraft:stonecutting",
+	"ingredient": {
+		"item": "promenade:asphalt"
+	},
+	"result": "promenade:asphalt_column",
+	"count": 1,
+	"fabric:load_conditions": [
+		{
+			"condition": "fabric:all_mods_loaded",
+			"values": [
+				"columns"
+			]
+		}
+	]
+}

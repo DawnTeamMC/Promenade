@@ -1,0 +1,8 @@
+{
+	"parent": "block/outer_stairs",
+	"textures": {
+		"bottom": "promenade:block/asphalt/block",
+		"top": "promenade:block/asphalt/block",
+		"side": "promenade:block/asphalt/block"
+	}
+}

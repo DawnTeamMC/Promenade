@@ -6,12 +6,12 @@ package fr.hugman.promenade.compat;
 public class ColumnsContent {
 	/*
 	TODO haykam
+	public static final Block ASPHALT_COLUMN = new ColumnBlock(DawnBlockSettings.copyOf(IgneousContent.ASPHALT));
 	public static final Block BLUNITE_COLUMN = new ColumnBlock(DawnBlockSettings.copyOf(IgneousContent.BLUNITE));
-	public static final Block CARBONITE_COLUMN = new ColumnBlock(DawnBlockSettings.copyOf(IgneousContent.CARBONITE));
 
 	public static void init() {
+		Registrar.add(Promenade.id("asphalt_column"), ASPHALT_COLUMN);
 		Registrar.add(Promenade.id("blunite_column"), BLUNITE_COLUMN);
-		Registrar.add(Promenade.id("carbonite_column"), CARBONITE_COLUMN);
 	}
 
 	 */

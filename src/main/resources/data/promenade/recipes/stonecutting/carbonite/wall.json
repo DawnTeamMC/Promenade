@@ -1,8 +1,0 @@
-{
-	"type": "minecraft:stonecutting",
-	"ingredient": {
-		"item": "promenade:carbonite"
-	},
-	"result": "promenade:carbonite_wall",
-	"count": 1
-}
