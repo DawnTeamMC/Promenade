@@ -14,21 +14,17 @@ import net.minecraft.sound.BlockSoundGroup;
 
 public final class PromenadeFactory {
 	public static Block leafPile() {
-		return leafPile(BlockSoundGroup.GRASS, MapColor.DARK_GREEN);
+		return leafPile(MapColor.DARK_GREEN, BlockSoundGroup.GRASS);
 	}
 
-	public static Block leafPile(MapColor color) {
-		return leafPile(BlockSoundGroup.GRASS, color);
+	public static Block leafPile(MapColor mapColor) {
+		return leafPile(mapColor, BlockSoundGroup.GRASS);
 	}
 
-	public static Block leafPile(BlockSoundGroup soundGroup) {
-		return leafPile(soundGroup, MapColor.DARK_GREEN);
-	}
-
-	public static Block leafPile(BlockSoundGroup soundGroup, MapColor color) {
+	public static Block leafPile(MapColor mapColor, BlockSoundGroup soundGroup) {
 		return new PileBlock(DawnBlockSettings.create()
 				.item(new DawnItemSettings().compostingChance(0.3f))
-				.mapColor(color)
+				.mapColor(mapColor)
 				.burnable(30, 60)
 				.strength(0.1f)
 				.ticksRandomly()
@@ -53,6 +49,7 @@ public final class PromenadeFactory {
 	public static SnowyLeavesBlock snowyLeaves(BlockSoundGroup soundGroup) {
 		return new SnowyLeavesBlock(DawnBlockSettings.create()
 				.item(new DawnItemSettings().compostingChance(0.3f))
+				.mapColor(MapColor.WHITE)
 				.strength(0.2f)
 				.ticksRandomly()
 				.sounds(soundGroup)

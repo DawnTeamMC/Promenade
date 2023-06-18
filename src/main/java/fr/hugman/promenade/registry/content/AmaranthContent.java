@@ -56,9 +56,9 @@ public class AmaranthContent {
 					.sounds(BlockSoundGroup.ROOTS));
 
 	public static final Block STRIPPED_DARK_AMARANTH_STEM = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, false));
-	public static final Block DARK_AMARANTH_STEM = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, false).stripInto(STRIPPED_DARK_AMARANTH_STEM));
+	public static final Block DARK_AMARANTH_STEM = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, false).stripsInto(STRIPPED_DARK_AMARANTH_STEM));
 	public static final Block STRIPPED_DARK_AMARANTH_HYPHAE = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, false));
-	public static final Block DARK_AMARANTH_HYPHAE = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, false).stripInto(STRIPPED_DARK_AMARANTH_HYPHAE));
+	public static final Block DARK_AMARANTH_HYPHAE = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, false).stripsInto(STRIPPED_DARK_AMARANTH_HYPHAE));
 
 	public static final Block DARK_AMARANTH_PLANKS = DawnFactory.planks(WOOD_COLOR, WOOD_SOUNDS, false);
 	public static final Block DARK_AMARANTH_STAIRS = DawnFactory.stairs(DARK_AMARANTH_PLANKS);
@@ -67,7 +67,7 @@ public class AmaranthContent {
 	public static final Block DARK_AMARANTH_FENCE_GATE = DawnFactory.fenceGate(DARK_AMARANTH_PLANKS, WOOD_TYPE);
 	public static final Block DARK_AMARANTH_DOOR = DawnFactory.door(DARK_AMARANTH_PLANKS, BLOCK_SET_TYPE);
 	public static final Block DARK_AMARANTH_TRAPDOOR = DawnFactory.trapdoor(DARK_AMARANTH_PLANKS, BLOCK_SET_TYPE);
-	public static final Block DARK_AMARANTH_BUTTON = DawnFactory.woodenButton(BLOCK_SET_TYPE, WOOD_SOUNDS);
+	public static final Block DARK_AMARANTH_BUTTON = DawnFactory.woodenButton(DARK_AMARANTH_PLANKS, BLOCK_SET_TYPE);
 	public static final Block DARK_AMARANTH_PRESSURE_PLATE = DawnFactory.pressurePlate(DARK_AMARANTH_PLANKS, BLOCK_SET_TYPE);
 
 	public static final SignBlocks DARK_AMARANTH_SIGNS = DawnFactory.signs(Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS);

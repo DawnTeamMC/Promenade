@@ -30,10 +30,15 @@ public class MapleContent {
 	private static final MapColor BARK_COLOR = MapColor.ORANGE;
 	private static final MapColor WOOD_COLOR = MapColor.ORANGE;
 
+	public static final MapColor SAP_LEAVES_COLOR = MapColor.DARK_GREEN;
+	public static final MapColor VERMILION_LEAVES_COLOR = MapColor.RED;
+	public static final MapColor FULVOUS_LEAVES_COLOR = MapColor.ORANGE;
+	public static final MapColor MIKADO_LEAVES_COLOR = MapColor.GOLD;
+
 	public static final Block STRIPPED_MAPLE_LOG = new StrippedMapleLogBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
-	public static final Block MAPLE_LOG = new MapleLogBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_MAPLE_LOG));
+	public static final Block MAPLE_LOG = new MapleLogBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, true).stripsInto(STRIPPED_MAPLE_LOG));
 	public static final Block STRIPPED_MAPLE_WOOD = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
-	public static final Block MAPLE_WOOD = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_MAPLE_WOOD));
+	public static final Block MAPLE_WOOD = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, true).stripsInto(STRIPPED_MAPLE_WOOD));
 
 	public static final Block MAPLE_PLANKS = DawnFactory.planks(WOOD_COLOR, WOOD_SOUNDS, true);
 	public static final Block MAPLE_STAIRS = DawnFactory.stairs(MAPLE_PLANKS);
@@ -42,7 +47,7 @@ public class MapleContent {
 	public static final Block MAPLE_FENCE_GATE = DawnFactory.fenceGate(MAPLE_PLANKS, WOOD_TYPE);
 	public static final Block MAPLE_DOOR = DawnFactory.door(MAPLE_PLANKS, BLOCK_SET_TYPE);
 	public static final Block MAPLE_TRAPDOOR = DawnFactory.trapdoor(MAPLE_PLANKS, BLOCK_SET_TYPE);
-	public static final Block MAPLE_BUTTON = DawnFactory.woodenButton(BLOCK_SET_TYPE, WOOD_SOUNDS);
+	public static final Block MAPLE_BUTTON = DawnFactory.woodenButton(MAPLE_PLANKS, BLOCK_SET_TYPE);
 	public static final Block MAPLE_PRESSURE_PLATE = DawnFactory.pressurePlate(MAPLE_PLANKS, BLOCK_SET_TYPE);
 
 	public static final SignBlocks MAPLE_SIGNS = DawnFactory.signs(Promenade.id("maple"), MAPLE_PLANKS);
@@ -53,31 +58,28 @@ public class MapleContent {
 			.food(new FoodComponent.Builder().hunger(6).saturationModifier(0.1F).build())
 			.recipeRemainder(Items.GLASS_BOTTLE));
 
-	public static final Block SAP_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/sap")));
+	public static final Block SAP_MAPLE_SAPLING = DawnFactory.sapling(SAP_LEAVES_COLOR, OakLikeSaplingGenerator.of(Promenade.id("maple/sap")));
 	public static final Block POTTED_SAP_MAPLE_SAPLING = DawnFactory.potted(SAP_MAPLE_SAPLING);
-	public static final Block SAP_MAPLE_LEAVES = DawnFactory.leaves();
+	public static final Block SAP_MAPLE_LEAVES = DawnFactory.leaves(SAP_LEAVES_COLOR);
 	public static final Block SAP_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
 
-	public static final MapColor VERMILION_COLOR = MapColor.RED;
-	public static final Block VERMILION_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/vermilion")));
+	public static final Block VERMILION_MAPLE_SAPLING = DawnFactory.sapling(VERMILION_LEAVES_COLOR, OakLikeSaplingGenerator.of(Promenade.id("maple/vermilion")));
 	public static final Block POTTED_VERMILION_MAPLE_SAPLING = DawnFactory.potted(VERMILION_MAPLE_SAPLING);
-	public static final Block VERMILION_MAPLE_LEAVES = DawnFactory.leaves();
-	public static final Block VERMILION_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(VERMILION_COLOR);
-	public static final Block VERMILION_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(VERMILION_COLOR);
+	public static final Block VERMILION_MAPLE_LEAVES = DawnFactory.leaves(VERMILION_LEAVES_COLOR);
+	public static final Block VERMILION_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(VERMILION_LEAVES_COLOR);
+	public static final Block VERMILION_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(VERMILION_LEAVES_COLOR);
 
-	public static final MapColor FULVOUS_COLOR = MapColor.ORANGE;
-	public static final Block FULVOUS_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/fulvous")));
+	public static final Block FULVOUS_MAPLE_SAPLING = DawnFactory.sapling(FULVOUS_LEAVES_COLOR, OakLikeSaplingGenerator.of(Promenade.id("maple/fulvous")));
 	public static final Block POTTED_FULVOUS_MAPLE_SAPLING = DawnFactory.potted(FULVOUS_MAPLE_SAPLING);
-	public static final Block FULVOUS_MAPLE_LEAVES = DawnFactory.leaves();
-	public static final Block FULVOUS_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(FULVOUS_COLOR);
-	public static final Block FULVOUS_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(FULVOUS_COLOR);
+	public static final Block FULVOUS_MAPLE_LEAVES = DawnFactory.leaves(FULVOUS_LEAVES_COLOR);
+	public static final Block FULVOUS_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(FULVOUS_LEAVES_COLOR);
+	public static final Block FULVOUS_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(FULVOUS_LEAVES_COLOR);
 
-	public static final MapColor MIKADO_COLOR = MapColor.GOLD;
-	public static final Block MIKADO_MAPLE_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("maple/mikado")));
+	public static final Block MIKADO_MAPLE_SAPLING = DawnFactory.sapling(MIKADO_LEAVES_COLOR, OakLikeSaplingGenerator.of(Promenade.id("maple/mikado")));
 	public static final Block POTTED_MIKADO_MAPLE_SAPLING = DawnFactory.potted(MIKADO_MAPLE_SAPLING);
-	public static final Block MIKADO_MAPLE_LEAVES = DawnFactory.leaves();
-	public static final Block MIKADO_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(MIKADO_COLOR);
-	public static final Block MIKADO_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(MIKADO_COLOR);
+	public static final Block MIKADO_MAPLE_LEAVES = DawnFactory.leaves(MIKADO_LEAVES_COLOR);
+	public static final Block MIKADO_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(MIKADO_LEAVES_COLOR);
+	public static final Block MIKADO_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(MIKADO_LEAVES_COLOR);
 
 	public static final DefaultParticleType MAPLE_LEAF = FabricParticleTypes.simple();
 

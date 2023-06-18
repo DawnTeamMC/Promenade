@@ -30,10 +30,13 @@ public class SakuraContent {
     private static final MapColor WOOD_COLOR = MapColor.DULL_PINK;
     private static final MapColor PLANKS_COLOR = MapColor.DULL_RED;
 
+    private static final MapColor BLUSH_BLOSSOMS_COLOR = MapColor.PINK;
+    private static final MapColor COTTON_BLOSSOMS_COLOR = MapColor.OFF_WHITE;
+
     public static final Block STRIPPED_SAKURA_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
-    public static final Block SAKURA_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_SAKURA_LOG));
+    public static final Block SAKURA_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, true).stripsInto(STRIPPED_SAKURA_LOG));
     public static final Block STRIPPED_SAKURA_WOOD = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
-    public static final Block SAKURA_WOOD = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_SAKURA_WOOD));
+    public static final Block SAKURA_WOOD = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, true).stripsInto(STRIPPED_SAKURA_WOOD));
 
     public static final Block SAKURA_PLANKS = DawnFactory.planks(PLANKS_COLOR, WOOD_SOUNDS, true);
     public static final Block SAKURA_STAIRS = DawnFactory.stairs(SAKURA_PLANKS);
@@ -42,22 +45,22 @@ public class SakuraContent {
     public static final Block SAKURA_FENCE_GATE = DawnFactory.fenceGate(SAKURA_PLANKS, WOOD_TYPE);
     public static final Block SAKURA_DOOR = DawnFactory.door(SAKURA_PLANKS, BLOCK_SET_TYPE);
     public static final Block SAKURA_TRAPDOOR = DawnFactory.trapdoor(SAKURA_PLANKS, BLOCK_SET_TYPE);
-    public static final Block SAKURA_BUTTON = DawnFactory.woodenButton(BLOCK_SET_TYPE, WOOD_SOUNDS);
+    public static final Block SAKURA_BUTTON = DawnFactory.woodenButton(SAKURA_PLANKS, BLOCK_SET_TYPE);
     public static final Block SAKURA_PRESSURE_PLATE = DawnFactory.pressurePlate(SAKURA_PLANKS, BLOCK_SET_TYPE);
 
     public static final SignBlocks SAKURA_SIGNS = DawnFactory.signs(Promenade.id("sakura"), SAKURA_PLANKS);
     public static final TerraformBoatType SAKURA_BOAT_TYPE = DawnFactory.boat(Promenade.id("sakura"), Items.OAK_PLANKS); //TODO change when possible (PR #72 on TerraformersMC/Terraform)
 
-    public static final Block BLUSH_SAKURA_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("sakura/blush")));
+    public static final Block BLUSH_SAKURA_SAPLING = DawnFactory.sapling(BLUSH_BLOSSOMS_COLOR, OakLikeSaplingGenerator.of(Promenade.id("sakura/blush")));
     public static final Block POTTED_BLUSH_SAKURA_SAPLING = DawnFactory.potted(BLUSH_SAKURA_SAPLING);
-    public static final Block BLUSH_SAKURA_BLOSSOMS = DawnFactory.leaves(BlockSoundGroup.CHERRY_LEAVES);
-    public static final Block BLUSH_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(BlockSoundGroup.CHERRY_LEAVES);
+    public static final Block BLUSH_SAKURA_BLOSSOMS = DawnFactory.leaves(BLUSH_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES);
+    public static final Block BLUSH_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(BLUSH_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES);
     public static final DefaultParticleType BLUSH_SAKURA_BLOSSOM = FabricParticleTypes.simple();
 
-    public static final Block COTTON_SAKURA_SAPLING = DawnFactory.sapling(OakLikeSaplingGenerator.of(Promenade.id("sakura/cotton")));
+    public static final Block COTTON_SAKURA_SAPLING = DawnFactory.sapling(COTTON_BLOSSOMS_COLOR, OakLikeSaplingGenerator.of(Promenade.id("sakura/cotton")));
     public static final Block POTTED_COTTON_SAKURA_SAPLING = DawnFactory.potted(COTTON_SAKURA_SAPLING);
-    public static final Block COTTON_SAKURA_BLOSSOMS = DawnFactory.leaves(BlockSoundGroup.CHERRY_LEAVES);
-    public static final Block COTTON_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(BlockSoundGroup.CHERRY_LEAVES);
+    public static final Block COTTON_SAKURA_BLOSSOMS = DawnFactory.leaves(COTTON_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES);
+    public static final Block COTTON_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(COTTON_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES);
     public static final DefaultParticleType COTTON_SAKURA_BLOSSOM = FabricParticleTypes.simple();
 
     public static final RegistryKey<Biome> BLUSH_SAKURA_GROVE = DawnFactory.biome(Promenade.id("blush_sakura_grove"));

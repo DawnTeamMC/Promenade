@@ -34,11 +34,12 @@ public class PalmContent {
 	private static final BlockSoundGroup WOOD_SOUNDS = BlockSoundGroup.WOOD;
 	private static final MapColor BARK_COLOR = MapColor.TERRACOTTA_CYAN;
 	private static final MapColor WOOD_COLOR = MapColor.ORANGE;
+	private static final MapColor LEAVES_COLOR = MapColor.DARK_GREEN;
 
 	public static final Block STRIPPED_PALM_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
-	public static final Block PALM_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_PALM_LOG));
+	public static final Block PALM_LOG = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, true).stripsInto(STRIPPED_PALM_LOG));
 	public static final Block STRIPPED_PALM_WOOD = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
-	public static final Block PALM_WOOD = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, true).stripInto(STRIPPED_PALM_WOOD));
+	public static final Block PALM_WOOD = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, true).stripsInto(STRIPPED_PALM_WOOD));
 
 	public static final Block PALM_PLANKS = DawnFactory.planks(WOOD_COLOR, WOOD_SOUNDS, true);
 	public static final Block PALM_STAIRS = DawnFactory.stairs(PALM_PLANKS);
@@ -47,16 +48,16 @@ public class PalmContent {
 	public static final Block PALM_FENCE_GATE = DawnFactory.fenceGate(PALM_PLANKS, WOOD_TYPE);
 	public static final Block PALM_DOOR = DawnFactory.door(PALM_PLANKS, BLOCK_SET_TYPE);
 	public static final Block PALM_TRAPDOOR = DawnFactory.trapdoor(PALM_PLANKS, BLOCK_SET_TYPE);
-	public static final Block PALM_BUTTON = DawnFactory.woodenButton(BLOCK_SET_TYPE, WOOD_SOUNDS);
+	public static final Block PALM_BUTTON = DawnFactory.woodenButton(PALM_PLANKS, BLOCK_SET_TYPE);
 	public static final Block PALM_PRESSURE_PLATE = DawnFactory.pressurePlate(PALM_PLANKS, BLOCK_SET_TYPE);
 
 	public static final SignBlocks PALM_SIGNS = DawnFactory.signs(Promenade.id("palm"), PALM_PLANKS);
 	public static final TerraformBoatType PALM_BOAT_TYPE = DawnFactory.boat(Promenade.id("palm"), Items.OAK_PLANKS); //TODO change when possible (PR #72 on TerraformersMC/Terraform)
 
-	public static final Block PALM_SAPLING = DawnFactory.sapling(new SingleSaplingGenerator(Promenade.id("tree/palm")), state -> state.isIn(BlockTags.SAND));
+	public static final Block PALM_SAPLING = DawnFactory.sapling(LEAVES_COLOR, new SingleSaplingGenerator(Promenade.id("tree/palm")), state -> state.isIn(BlockTags.SAND));
 	public static final Block POTTED_PALM_SAPLING = DawnFactory.potted(PALM_SAPLING);
-	public static final Block PALM_LEAVES = DawnFactory.leaves();
-	public static final Block PALM_LEAF_PILE = PromenadeFactory.leafPile();
+	public static final Block PALM_LEAVES = DawnFactory.leaves(LEAVES_COLOR);
+	public static final Block PALM_LEAF_PILE = PromenadeFactory.leafPile(LEAVES_COLOR);
 
 	public static final Block MOAI = new MoaiBlock(DawnBlockSettings.copyOf(Blocks.TUFF).item(new DawnItemSettings().equipmentSlot(stack -> EquipmentSlot.HEAD)));
 
