@@ -10,6 +10,8 @@ import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
+import fr.hugman.promenade.block.ExtendedLeavesBlock;
+import fr.hugman.promenade.block.HangingLeavesBlock;
 import fr.hugman.promenade.block.MoaiBlock;
 import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
 import fr.hugman.promenade.village.TradeOfferUtils;
@@ -19,6 +21,8 @@ import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
@@ -28,7 +32,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.PlacedFeature;
 
-public class PalmContent {
+public class TropicalContent {
 	public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.registerWood(Promenade.id("palm"));
 	public static final WoodType WOOD_TYPE = WoodTypeRegistry.register(Promenade.id("palm"), BLOCK_SET_TYPE);
 	private static final BlockSoundGroup WOOD_SOUNDS = BlockSoundGroup.WOOD;
@@ -56,8 +60,28 @@ public class PalmContent {
 
 	public static final Block PALM_SAPLING = DawnFactory.sapling(LEAVES_COLOR, new SingleSaplingGenerator(Promenade.id("tree/palm")), state -> state.isIn(BlockTags.SAND));
 	public static final Block POTTED_PALM_SAPLING = DawnFactory.potted(PALM_SAPLING);
-	public static final Block PALM_LEAVES = DawnFactory.leaves(LEAVES_COLOR);
-	public static final Block PALM_LEAF_PILE = PromenadeFactory.leafPile(LEAVES_COLOR);
+	public static final Block PALM_LEAVES = new ExtendedLeavesBlock(DawnBlockSettings.create()
+			.item(new DawnItemSettings().compostingChance(0.3f))
+			.mapColor(LEAVES_COLOR)
+			.strength(0.2f)
+			.ticksRandomly()
+			.sounds(BlockSoundGroup.GRASS)
+			.nonOpaque()
+			.allowsSpawning((state, world, pos, type) -> type == EntityType.OCELOT || type == EntityType.PARROT)
+			.suffocates((state, world, pos) -> false)
+			.blockVision((state, world, pos) -> false)
+			.burnable(30, 60)
+			.pistonBehavior(PistonBehavior.DESTROY)
+			.solidBlock((state, world, pos) -> false));
+	public static final Block PALM_HANGING_LEAVES = new HangingLeavesBlock(DawnBlockSettings.create()
+			.item(new DawnItemSettings().compostingChance(0.3F))
+			.mapColor(LEAVES_COLOR)
+			.sounds(BlockSoundGroup.GRASS)
+			.replaceable().noCollision().breakInstantly()
+			.burnable(30, 60)
+			.pistonBehavior(PistonBehavior.DESTROY)
+	);
+	public static final Block PALM_LEAF_PILE = PromenadeFactory.leafPile();
 
 	public static final Block MOAI = new MoaiBlock(DawnBlockSettings.copyOf(Blocks.TUFF).item(new DawnItemSettings().equipmentSlot(stack -> EquipmentSlot.HEAD)));
 
@@ -85,6 +109,7 @@ public class PalmContent {
 		r.add(("palm_sapling"), PALM_SAPLING);
 		r.add(("potted_palm_sapling"), POTTED_PALM_SAPLING);
 		r.add(("palm_leaves"), PALM_LEAVES);
+		r.add(("palm_hanging_leaves"), PALM_HANGING_LEAVES);
 		r.add(("palm_leaf_pile"), PALM_LEAF_PILE);
 
 		r.add(("moai"), MOAI);
@@ -114,7 +139,7 @@ public class PalmContent {
 
 		ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
 			e.addAfter(Blocks.ACACIA_LOG, PALM_LOG);
-			e.addAfter(Blocks.ACACIA_LEAVES, PALM_LEAVES);
+			e.addAfter(Blocks.ACACIA_LEAVES, PALM_LEAVES, PALM_HANGING_LEAVES);
 			e.addAfter(Blocks.ACACIA_SAPLING, PALM_SAPLING);
 			e.addAfter(VanillaPilesContent.ACACIA_LEAF_PILE, PALM_LEAF_PILE);
 		});
