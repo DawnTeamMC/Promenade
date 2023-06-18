@@ -20,8 +20,8 @@ public class VanillaPilesContent {
 	public static final Block ACACIA_LEAF_PILE = PromenadeFactory.leafPile();
 	public static final Block DARK_OAK_LEAF_PILE = PromenadeFactory.leafPile();
 	public static final Block MANGROVE_LEAF_PILE = PromenadeFactory.leafPile();
-	public static final Block AZALEA_LEAF_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
-	public static final Block FLOWERING_AZALEA_LEAF_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
+	public static final Block AZALEA_LEAF_PILE = PromenadeFactory.leafPile(MapColor.DARK_GREEN, BlockSoundGroup.AZALEA_LEAVES);
+	public static final Block FLOWERING_AZALEA_LEAF_PILE = PromenadeFactory.leafPile(MapColor.DARK_GREEN, BlockSoundGroup.AZALEA_LEAVES);
 
     //TODO: change map colors
     public static final Block DANDELION_PILE = PromenadeFactory.leafPile();

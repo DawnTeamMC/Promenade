@@ -1,0 +1,13 @@
+{
+	"variants": {
+		"type=bottom": {
+			"model": "promenade:block/asphalt/slab/bottom"
+		},
+		"type=top": {
+			"model": "promenade:block/asphalt/slab/top"
+		},
+		"type=double": {
+			"model": "promenade:block/asphalt/block"
+		}
+	}
+}
