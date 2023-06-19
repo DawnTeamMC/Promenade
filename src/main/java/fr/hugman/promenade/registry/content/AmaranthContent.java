@@ -55,10 +55,10 @@ public class AmaranthContent {
 					.noCollision()
 					.sounds(BlockSoundGroup.ROOTS));
 
-	public static final Block STRIPPED_DARK_AMARANTH_STEM = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, false));
-	public static final Block DARK_AMARANTH_STEM = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, WOOD_SOUNDS, false).stripsInto(STRIPPED_DARK_AMARANTH_STEM));
-	public static final Block STRIPPED_DARK_AMARANTH_HYPHAE = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, false));
-	public static final Block DARK_AMARANTH_HYPHAE = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, false).stripsInto(STRIPPED_DARK_AMARANTH_HYPHAE));
+	public static final Block STRIPPED_DARK_AMARANTH_STEM = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BlockSoundGroup.NETHER_STEM, false));
+	public static final Block DARK_AMARANTH_STEM = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, BlockSoundGroup.NETHER_STEM, false).stripsInto(STRIPPED_DARK_AMARANTH_STEM));
+	public static final Block STRIPPED_DARK_AMARANTH_HYPHAE = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BlockSoundGroup.NETHER_STEM, false));
+	public static final Block DARK_AMARANTH_HYPHAE = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, BlockSoundGroup.NETHER_STEM, false).stripsInto(STRIPPED_DARK_AMARANTH_HYPHAE));
 
 	public static final Block DARK_AMARANTH_PLANKS = DawnFactory.planks(WOOD_COLOR, WOOD_SOUNDS, false);
 	public static final Block DARK_AMARANTH_STAIRS = DawnFactory.stairs(DARK_AMARANTH_PLANKS);
