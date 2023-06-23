@@ -27,11 +27,11 @@ public class MapleContent {
 	public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.registerWood(Promenade.id("maple"));
 	public static final WoodType WOOD_TYPE = WoodTypeRegistry.register(Promenade.id("maple"), BLOCK_SET_TYPE);
 	private static final BlockSoundGroup WOOD_SOUNDS = BlockSoundGroup.WOOD;
-	private static final MapColor BARK_COLOR = MapColor.ORANGE;
-	private static final MapColor WOOD_COLOR = MapColor.ORANGE;
+	private static final MapColor BARK_COLOR = MapColor.DEEPSLATE_GRAY;
+	private static final MapColor WOOD_COLOR = MapColor.TERRACOTTA_WHITE;
 
 	public static final MapColor SAP_LEAVES_COLOR = MapColor.DARK_GREEN;
-	public static final MapColor VERMILION_LEAVES_COLOR = MapColor.RED;
+	public static final MapColor VERMILION_LEAVES_COLOR = MapColor.DULL_RED;
 	public static final MapColor FULVOUS_LEAVES_COLOR = MapColor.ORANGE;
 	public static final MapColor MIKADO_LEAVES_COLOR = MapColor.GOLD;
 

@@ -20,25 +20,25 @@ public class VanillaPilesContent {
 	public static final Block ACACIA_LEAF_PILE = PromenadeFactory.leafPile();
 	public static final Block DARK_OAK_LEAF_PILE = PromenadeFactory.leafPile();
 	public static final Block MANGROVE_LEAF_PILE = PromenadeFactory.leafPile();
-	public static final Block AZALEA_LEAF_PILE = PromenadeFactory.leafPile(MapColor.DARK_GREEN, BlockSoundGroup.AZALEA_LEAVES);
-	public static final Block FLOWERING_AZALEA_LEAF_PILE = PromenadeFactory.leafPile(MapColor.DARK_GREEN, BlockSoundGroup.AZALEA_LEAVES);
+	public static final Block AZALEA_LEAF_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
+	public static final Block FLOWERING_AZALEA_LEAF_PILE = PromenadeFactory.leafPile(BlockSoundGroup.AZALEA_LEAVES);
 
     //TODO: change map colors
-    public static final Block DANDELION_PILE = PromenadeFactory.leafPile();
-	public static final Block POPPY_PILE = PromenadeFactory.leafPile();
-    public static final Block BLUE_ORCHID_PILE = PromenadeFactory.leafPile();
-    public static final Block ALLIUM_PILE = PromenadeFactory.leafPile();
-    public static final Block AZURE_BLUET_PILE = PromenadeFactory.leafPile();
-    public static final Block RED_TULIP_PILE = PromenadeFactory.leafPile();
-    public static final Block ORANGE_TULIP_PILE = PromenadeFactory.leafPile();
-    public static final Block WHITE_TULIP_PILE = PromenadeFactory.leafPile();
-    public static final Block PINK_TULIP_PILE = PromenadeFactory.leafPile();
-    public static final Block OXEYE_DAISY_PILE = PromenadeFactory.leafPile();
-    public static final Block CORNFLOWER_PILE = PromenadeFactory.leafPile();
-    public static final Block LILY_OF_THE_VALLEY_PILE = PromenadeFactory.leafPile();
+    public static final Block DANDELION_PILE = PromenadeFactory.leafPile(MapColor.GOLD);
+	public static final Block POPPY_PILE = PromenadeFactory.leafPile(MapColor.DULL_RED);
+    public static final Block BLUE_ORCHID_PILE = PromenadeFactory.leafPile(MapColor.LIGHT_BLUE);
+    public static final Block ALLIUM_PILE = PromenadeFactory.leafPile(MapColor.MAGENTA);
+    public static final Block AZURE_BLUET_PILE = PromenadeFactory.leafPile(MapColor.PALE_YELLOW);
+    public static final Block RED_TULIP_PILE = PromenadeFactory.leafPile(MapColor.DULL_RED);
+    public static final Block ORANGE_TULIP_PILE = PromenadeFactory.leafPile(MapColor.ORANGE);
+    public static final Block WHITE_TULIP_PILE = PromenadeFactory.leafPile(MapColor.WHITE);
+    public static final Block PINK_TULIP_PILE = PromenadeFactory.leafPile(MapColor.PINK);
+    public static final Block OXEYE_DAISY_PILE = PromenadeFactory.leafPile(MapColor.GOLD);
+    public static final Block CORNFLOWER_PILE = PromenadeFactory.leafPile(MapColor.LAPIS_BLUE);
+    public static final Block LILY_OF_THE_VALLEY_PILE = PromenadeFactory.leafPile(MapColor.WHITE);
     public static final Block WITHER_ROSE_PILE = new WitherRosePileBlock(DawnBlockSettings.create()
             .item(new DawnItemSettings().compostingChance(0.3f))
-            .mapColor(MapColor.DARK_GREEN)
+            .mapColor(MapColor.BLACK)
             .burnable(30, 60)
             .strength(0.1f)
             .ticksRandomly()

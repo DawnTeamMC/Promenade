@@ -36,7 +36,7 @@ public class TropicalContent {
 	public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.registerWood(Promenade.id("palm"));
 	public static final WoodType WOOD_TYPE = WoodTypeRegistry.register(Promenade.id("palm"), BLOCK_SET_TYPE);
 	private static final BlockSoundGroup WOOD_SOUNDS = BlockSoundGroup.WOOD;
-	private static final MapColor BARK_COLOR = MapColor.TERRACOTTA_CYAN;
+	private static final MapColor BARK_COLOR = MapColor.SPRUCE_BROWN;
 	private static final MapColor WOOD_COLOR = MapColor.ORANGE;
 	private static final MapColor LEAVES_COLOR = MapColor.DARK_GREEN;
 
@@ -83,7 +83,7 @@ public class TropicalContent {
 	);
 	public static final Block PALM_LEAF_PILE = PromenadeFactory.leafPile();
 
-	public static final Block MOAI = new MoaiBlock(DawnBlockSettings.copyOf(Blocks.TUFF).item(new DawnItemSettings().equipmentSlot(stack -> EquipmentSlot.HEAD)));
+	public static final Block MOAI = new MoaiBlock(DawnBlockSettings.copyOf(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).item(new DawnItemSettings().equipmentSlot(stack -> EquipmentSlot.HEAD)));
 
 	public static final RegistryKey<PlacedFeature> PALMS = DawnFactory.placedFeature(Promenade.id("trees/palms"));
 

@@ -27,7 +27,7 @@ public class AmaranthContent {
 	public static final WoodType WOOD_TYPE = WoodTypeRegistry.register(Promenade.id("dark_amaranth"), BLOCK_SET_TYPE, BlockSoundGroup.NETHER_WOOD, BlockSoundGroup.NETHER_WOOD_HANGING_SIGN, SoundEvents.BLOCK_NETHER_WOOD_FENCE_GATE_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_FENCE_GATE_OPEN);
 	private static final BlockSoundGroup WOOD_SOUNDS = BlockSoundGroup.NETHER_WOOD;
 	private static final MapColor BARK_COLOR = MapColor.DARK_DULL_PINK;
-	private static final MapColor WOOD_COLOR = MapColor.DULL_PINK;
+	private static final MapColor WOOD_COLOR = MapColor.GRAY;
 
 	public static final RegistryKey<ConfiguredFeature<?, ?>> PLANTED_AMARANTH_FUNGUS = DawnFactory.configuredFeature(Promenade.id("amaranth_fungus/planted"));
 

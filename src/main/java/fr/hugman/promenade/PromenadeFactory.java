@@ -21,6 +21,10 @@ public final class PromenadeFactory {
 		return leafPile(mapColor, BlockSoundGroup.GRASS);
 	}
 
+	public static Block leafPile(BlockSoundGroup soundGroup) {
+		return leafPile(MapColor.DARK_GREEN, soundGroup);
+	}
+
 	public static Block leafPile(MapColor mapColor, BlockSoundGroup soundGroup) {
 		return new PileBlock(DawnBlockSettings.create()
 				.item(new DawnItemSettings().compostingChance(0.3f))

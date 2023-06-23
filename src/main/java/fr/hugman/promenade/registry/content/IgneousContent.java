@@ -20,7 +20,7 @@ import net.minecraft.world.gen.feature.PlacedFeature;
 import java.util.function.Predicate;
 
 public class IgneousContent {
-	public static final Block ASPHALT = new Block(DawnBlockSettings.copyOf(Blocks.ANDESITE).item().mapColor(MapColor.BLACK).sounds(BlockSoundGroup.BASALT));
+	public static final Block ASPHALT = new Block(DawnBlockSettings.copyOf(Blocks.ANDESITE).item().mapColor(MapColor.DEEPSLATE_GRAY).sounds(BlockSoundGroup.BASALT));
 	public static final Block ASPHALT_SLAB = DawnFactory.slab(ASPHALT);
 	public static final Block ASPHALT_STAIRS = DawnFactory.stairs(ASPHALT);
 	public static final Block ASPHALT_WALL = DawnFactory.wall(ASPHALT);
@@ -29,7 +29,7 @@ public class IgneousContent {
 	public static final Block POLISHED_ASPHALT_SLAB = DawnFactory.slab(POLISHED_ASPHALT);
 	public static final Block POLISHED_ASPHALT_STAIRS = DawnFactory.stairs(POLISHED_ASPHALT);
 
-	public static final Block BLUNITE = new Block(DawnBlockSettings.copyOf(Blocks.ANDESITE).item().mapColor(MapColor.TERRACOTTA_LIGHT_BLUE).sounds(BlockSoundGroup.TUFF));
+	public static final Block BLUNITE = new Block(DawnBlockSettings.copyOf(Blocks.ANDESITE).item().mapColor(MapColor.TERRACOTTA_CYAN).sounds(BlockSoundGroup.TUFF));
 	public static final Block BLUNITE_SLAB = DawnFactory.slab(BLUNITE);
 	public static final Block BLUNITE_STAIRS = DawnFactory.stairs(BLUNITE);
 	public static final Block BLUNITE_WALL = DawnFactory.wall(BLUNITE);

@@ -26,9 +26,8 @@ public class SakuraContent {
     public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.register(Promenade.id("sakura"), true, BlockSoundGroup.CHERRY_WOOD, SoundEvents.BLOCK_CHERRY_WOOD_DOOR_CLOSE, SoundEvents.BLOCK_CHERRY_WOOD_DOOR_OPEN, SoundEvents.BLOCK_CHERRY_WOOD_TRAPDOOR_CLOSE, SoundEvents.BLOCK_CHERRY_WOOD_TRAPDOOR_OPEN, SoundEvents.BLOCK_CHERRY_WOOD_PRESSURE_PLATE_CLICK_OFF, SoundEvents.BLOCK_CHERRY_WOOD_PRESSURE_PLATE_CLICK_ON, SoundEvents.BLOCK_CHERRY_WOOD_BUTTON_CLICK_OFF, SoundEvents.BLOCK_CHERRY_WOOD_BUTTON_CLICK_ON);
     public static final WoodType WOOD_TYPE = WoodTypeRegistry.register(Promenade.id("sakura"), BLOCK_SET_TYPE, BlockSoundGroup.CHERRY_WOOD, BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN, SoundEvents.BLOCK_CHERRY_WOOD_FENCE_GATE_CLOSE, SoundEvents.BLOCK_CHERRY_WOOD_FENCE_GATE_OPEN);
     private static final BlockSoundGroup WOOD_SOUNDS = BlockSoundGroup.CHERRY_WOOD;
-    private static final MapColor BARK_COLOR = MapColor.DARK_DULL_PINK;
-    private static final MapColor WOOD_COLOR = MapColor.DULL_PINK;
-    private static final MapColor PLANKS_COLOR = MapColor.DULL_RED;
+    private static final MapColor BARK_COLOR = MapColor.TERRACOTTA_BROWN;
+    private static final MapColor WOOD_COLOR = MapColor.TERRACOTTA_BROWN;
 
     private static final MapColor BLUSH_BLOSSOMS_COLOR = MapColor.PINK;
     private static final MapColor COTTON_BLOSSOMS_COLOR = MapColor.OFF_WHITE;
@@ -38,7 +37,7 @@ public class SakuraContent {
     public static final Block STRIPPED_SAKURA_WOOD = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, WOOD_SOUNDS, true));
     public static final Block SAKURA_WOOD = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, WOOD_SOUNDS, true).stripsInto(STRIPPED_SAKURA_WOOD));
 
-    public static final Block SAKURA_PLANKS = DawnFactory.planks(PLANKS_COLOR, WOOD_SOUNDS, true);
+    public static final Block SAKURA_PLANKS = DawnFactory.planks(WOOD_COLOR, WOOD_SOUNDS, true);
     public static final Block SAKURA_STAIRS = DawnFactory.stairs(SAKURA_PLANKS);
     public static final Block SAKURA_SLAB = DawnFactory.slab(SAKURA_PLANKS);
     public static final Block SAKURA_FENCE = DawnFactory.fence(SAKURA_PLANKS);
