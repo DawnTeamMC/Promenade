@@ -33,7 +33,7 @@
   "accessWidener": "promenade.accesswidener",
   "depends": {
     "minecraft": "1.20.x",
-    "dawn": "*",
+    "dawn": ">=5.0.0",
     "fabric-api": ">=0.83.1",
     "cloth-config": "*"
   },
