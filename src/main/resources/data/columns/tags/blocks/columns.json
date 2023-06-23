@@ -6,7 +6,7 @@
 			"required": false
 		},
 		{
-			"id": "promenade:carbonite_column",
+			"id": "promenade:asphalt_column",
 			"required": false
 		}
 	]

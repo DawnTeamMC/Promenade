@@ -1,3 +1,22 @@
 {
-  "parent": "promenade:block/moai/single"
+  "parent": "promenade:block/moai/single",
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [
+        0,
+        135,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.4,
+        0.4,
+        0.4
+      ]
+    }
+  }
 }

@@ -45,7 +45,7 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 
 	@Override
 	protected boolean isInvalidForLeaves(Random random, int dx, int y, int dz, int radius, boolean giantTrunk) {
-		int d = dx + dz;
+		int d = dx + dz; // Distance from center
 
 		if(y == 2) {
 			return (d <= radius - 2) || (d > radius);
@@ -61,12 +61,17 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 
 			// NESW leafs
 			if(dx == radius) return dz != 0;
+			if(dx == radius - 1 && dz == 0) return false;
 			if(dz == radius) return dx != 0;
+			if(dz == radius - 1 && dx == 0) return false;
 
 			// Corner leafs
 			if(dx == radius - 2 && dz == radius - 2) return false;
 			if(dx == radius - 2 && dz == radius - 1) return false;
-			return dx != radius - 1 || dz != radius - 2;
+			if(dx == radius - 1 && dz == radius - 2) return false;
+			if(d  == (radius - 1) * 2 && dx == dz) return false;
+
+			return true;
 		}
 		else if(y == -1) {
 			if(d == 0) return false;
@@ -77,11 +82,15 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 			if(dz == radius) return dx != 0;
 
 			// Corner leafs
-			return d != (radius - 1) * 2 || dx != dz;
+			if(d  == (radius - 1) * 2 && dx == dz) return false;
+
+			return true;
 		}
 		else if(y == -2) {
 			// Corner leafs
-			return d != radius * 2 || dx != dz;
+			if(d  == radius * 2 && dx == dz) return false;
+
+			return true;
 		}
 		return true;
 	}

@@ -6,65 +6,73 @@ import fr.hugman.dawn.block.DawnBlockSettings;
 import fr.hugman.dawn.block.DawnRootsBlock;
 import fr.hugman.dawn.block.SignBlocks;
 import fr.hugman.dawn.item.DawnItemSettings;
+import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.DyliumBlock;
-import fr.hugman.promenade.item.ItemGroupHelper;
 import fr.hugman.promenade.registry.tag.PromenadeBlockTags;
 import net.fabricmc.fabric.api.biome.v1.TheEndBiomes;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.Material;
-import net.minecraft.block.PillarBlock;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
+import net.minecraft.block.*;
+import net.minecraft.block.enums.Instrument;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 public class AmaranthContent {
+	public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.register(Promenade.id("dark_amaranth"), true, BlockSoundGroup.NETHER_WOOD, SoundEvents.BLOCK_NETHER_WOOD_DOOR_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_DOOR_OPEN, SoundEvents.BLOCK_NETHER_WOOD_TRAPDOOR_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_TRAPDOOR_OPEN, SoundEvents.BLOCK_NETHER_WOOD_PRESSURE_PLATE_CLICK_OFF, SoundEvents.BLOCK_NETHER_WOOD_PRESSURE_PLATE_CLICK_ON, SoundEvents.BLOCK_NETHER_WOOD_BUTTON_CLICK_OFF, SoundEvents.BLOCK_NETHER_WOOD_BUTTON_CLICK_ON);
+	public static final WoodType WOOD_TYPE = WoodTypeRegistry.register(Promenade.id("dark_amaranth"), BLOCK_SET_TYPE, BlockSoundGroup.NETHER_WOOD, BlockSoundGroup.NETHER_WOOD_HANGING_SIGN, SoundEvents.BLOCK_NETHER_WOOD_FENCE_GATE_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_FENCE_GATE_OPEN);
+	private static final BlockSoundGroup WOOD_SOUNDS = BlockSoundGroup.NETHER_WOOD;
 	private static final MapColor BARK_COLOR = MapColor.DARK_DULL_PINK;
-	private static final MapColor WOOD_COLOR = MapColor.DULL_PINK;
+	private static final MapColor WOOD_COLOR = MapColor.GRAY;
 
 	public static final RegistryKey<ConfiguredFeature<?, ?>> PLANTED_AMARANTH_FUNGUS = DawnFactory.configuredFeature(Promenade.id("amaranth_fungus/planted"));
 
 	public static final Block BLACK_DYLIUM = new DyliumBlock(
-			DawnBlockSettings.of(Material.STONE, MapColor.DULL_RED)
+			DawnBlockSettings.create()
 					.item()
+					.mapColor(MapColor.BLACK)
+					.instrument(Instrument.BASEDRUM)
 					.requiresTool()
 					.strength(3.0F, 9.0F)
 					.sounds(BlockSoundGroup.NYLIUM)
 					.ticksRandomly());
 	public static final Block DARK_AMARANTH_WART_BLOCK = new Block(
-			DawnBlockSettings.of(Material.SOLID_ORGANIC, MapColor.BRIGHT_TEAL)
+			DawnBlockSettings.create()
 					.item()
+					.mapColor(MapColor.PURPLE)
 					.strength(1.0F)
 					.sounds(BlockSoundGroup.WART_BLOCK));
 	public static final Block DARK_AMARANTH_ROOTS = new DawnRootsBlock(state -> state.isIn(PromenadeBlockTags.DARK_AMARANTH_ROOTS_PLACEABLE_ON),
-			DawnBlockSettings.of(Material.NETHER_SHOOTS, MapColor.CYAN)
-					.noCollision()
+			DawnBlockSettings.create()
+					.item(new DawnItemSettings().compostingChance(0.65F))
+					.mapColor(MapColor.PURPLE)
+					.replaceable()
 					.breakInstantly()
-					.sounds(BlockSoundGroup.ROOTS)
-					.item(new DawnItemSettings().compostingChance(0.65F)));
+					.noCollision()
+					.sounds(BlockSoundGroup.ROOTS));
 
-	public static final Block STRIPPED_DARK_AMARANTH_STEM = new PillarBlock(DawnFactory.logSettings(true, WOOD_COLOR));
-	public static final Block DARK_AMARANTH_STEM = new PillarBlock(DawnFactory.logSettings(true, WOOD_COLOR, BARK_COLOR).stripInto(STRIPPED_DARK_AMARANTH_STEM));
-	public static final Block STRIPPED_DARK_AMARANTH_HYPHAE = new PillarBlock(DawnFactory.logSettings(true, WOOD_COLOR));
-	public static final Block DARK_AMARANTH_HYPHAE = new PillarBlock(DawnFactory.logSettings(true, BARK_COLOR).stripInto(STRIPPED_DARK_AMARANTH_HYPHAE));
+	public static final Block STRIPPED_DARK_AMARANTH_STEM = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BlockSoundGroup.NETHER_STEM, false));
+	public static final Block DARK_AMARANTH_STEM = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BARK_COLOR, BlockSoundGroup.NETHER_STEM, false).stripsInto(STRIPPED_DARK_AMARANTH_STEM));
+	public static final Block STRIPPED_DARK_AMARANTH_HYPHAE = new PillarBlock(DawnFactory.logSettings(WOOD_COLOR, BlockSoundGroup.NETHER_STEM, false));
+	public static final Block DARK_AMARANTH_HYPHAE = new PillarBlock(DawnFactory.logSettings(BARK_COLOR, BlockSoundGroup.NETHER_STEM, false).stripsInto(STRIPPED_DARK_AMARANTH_HYPHAE));
 
-	public static final Block DARK_AMARANTH_PLANKS = DawnFactory.planks(true, WOOD_COLOR);
+	public static final Block DARK_AMARANTH_PLANKS = DawnFactory.planks(WOOD_COLOR, WOOD_SOUNDS, false);
 	public static final Block DARK_AMARANTH_STAIRS = DawnFactory.stairs(DARK_AMARANTH_PLANKS);
 	public static final Block DARK_AMARANTH_SLAB = DawnFactory.slab(DARK_AMARANTH_PLANKS);
-	public static final Block DARK_AMARANTH_FENCE = DawnFactory.fence(true, DARK_AMARANTH_PLANKS);
-	public static final Block DARK_AMARANTH_FENCE_GATE = DawnFactory.fenceGate(true, DARK_AMARANTH_PLANKS);
-	public static final Block DARK_AMARANTH_DOOR = DawnFactory.woodenDoor(DARK_AMARANTH_PLANKS);
-	public static final Block DARK_AMARANTH_TRAPDOOR = DawnFactory.woodenTrapdoor(DARK_AMARANTH_PLANKS);
-	public static final Block DARK_AMARANTH_BUTTON = DawnFactory.woodenButton(true);
-	public static final Block DARK_AMARANTH_PRESSURE_PLATE = DawnFactory.pressurePlate(DARK_AMARANTH_PLANKS);
+	public static final Block DARK_AMARANTH_FENCE = DawnFactory.fence(DARK_AMARANTH_PLANKS);
+	public static final Block DARK_AMARANTH_FENCE_GATE = DawnFactory.fenceGate(DARK_AMARANTH_PLANKS, WOOD_TYPE);
+	public static final Block DARK_AMARANTH_DOOR = DawnFactory.door(DARK_AMARANTH_PLANKS, BLOCK_SET_TYPE);
+	public static final Block DARK_AMARANTH_TRAPDOOR = DawnFactory.trapdoor(DARK_AMARANTH_PLANKS, BLOCK_SET_TYPE);
+	public static final Block DARK_AMARANTH_BUTTON = DawnFactory.woodenButton(DARK_AMARANTH_PLANKS, BLOCK_SET_TYPE);
+	public static final Block DARK_AMARANTH_PRESSURE_PLATE = DawnFactory.pressurePlate(DARK_AMARANTH_PLANKS, BLOCK_SET_TYPE);
 
 	public static final SignBlocks DARK_AMARANTH_SIGNS = DawnFactory.signs(Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS);
 
-	public static final Block DARK_AMARANTH_FUNGUS = DawnFactory.fungus(PLANTED_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON);
+	public static final Block DARK_AMARANTH_FUNGUS = DawnFactory.fungus(MapColor.PURPLE, PLANTED_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON);
 	public static final Block POTTED_DARK_AMARANTH_FUNGUS = DawnFactory.potted(DARK_AMARANTH_FUNGUS);
 
 	public static final RegistryKey<Biome> DARK_AMARANTH_FOREST = DawnFactory.biome(Promenade.id("dark_amaranth_forest"));

@@ -34,7 +34,7 @@ public class Promenade implements ModInitializer {
 
 		SakuraContent.register(REGISTRAR);
 		MapleContent.register(REGISTRAR);
-		PalmContent.register(REGISTRAR);
+		TropicalContent.register(REGISTRAR);
 		GlaglaglaContent.register(REGISTRAR);
 		AmaranthContent.register(REGISTRAR);
 

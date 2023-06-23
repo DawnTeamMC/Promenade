@@ -1,6 +1,5 @@
 {
   "config": {
-    "decorators": [],
     "ignore_vines": true,
     "force_dirt": false,
     "dirt_provider": {
@@ -50,7 +49,7 @@
       "state": {
         "Properties": {
           "persistent": "false",
-          "distance": "7"
+          "distance": "14"
         },
         "Name": "promenade:palm_leaves"
       },
@@ -60,7 +59,28 @@
       "radius": 0,
       "offset": 0,
       "type": "promenade:palm"
-    }
+    },
+    "decorators": [
+      {
+        "type": "minecraft:attached_to_leaves",
+        "probability": 0.8,
+        "exclusion_radius_xz": 1,
+        "exclusion_radius_y": 0,
+        "required_empty_blocks": 2,
+        "block_provider": {
+          "type": "minecraft:simple_state_provider",
+          "state": {
+            "Name": "promenade:palm_hanging_leaves",
+            "Properties": {
+              "waterlogged": "false"
+            }
+          }
+        },
+        "directions": [
+          "down"
+        ]
+      }
+    ]
   },
   "type": "minecraft:tree"
 }

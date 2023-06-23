@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "promenade:duck",
+    "promenade:cooked_duck",
+    "#c:fruits"
+  ]
+}

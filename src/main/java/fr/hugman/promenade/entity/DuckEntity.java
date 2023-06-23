@@ -36,11 +36,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class DuckEntity extends AnimalEntity {
@@ -115,7 +111,7 @@ public class DuckEntity extends AnimalEntity {
 	@Override
 	public void tickMovement() {
 		super.tickMovement();
-		boolean isAirBorne = !this.onGround && !this.isTouchingWater();
+		boolean isAirBorne = !this.isOnGround() && !this.isTouchingWater();
 		this.oFlap = this.wingRotation;
 		this.oFlapSpeed = this.destPos;
 		this.destPos = (float) ((double) this.destPos + (double) (!isAirBorne ? -1 : 4) * 0.3D);
@@ -179,7 +175,7 @@ public class DuckEntity extends AnimalEntity {
 	@Nullable
 	@Override
 	public DuckEntity createChild(ServerWorld serverWorld, PassiveEntity mate) {
-		DuckEntity child = AnimalContent.DUCK.create(this.world);
+		DuckEntity child = AnimalContent.DUCK.create(this.getWorld());
 		if(child != null) {
 			child.setVariant(this.random.nextFloat() < 0.5f ? ((DuckEntity) (mate)).getVariant() : this.getVariant());
 		}
@@ -192,13 +188,15 @@ public class DuckEntity extends AnimalEntity {
 	}
 
 	@Override
-	public void updatePassengerPosition(Entity entity) {
-		super.updatePassengerPosition(entity);
-		float f = MathHelper.sin(this.bodyYaw * ((float) Math.PI / 180F));
-		float f1 = MathHelper.cos(this.bodyYaw * ((float) Math.PI / 180F));
-		entity.updatePosition(this.getX() + (double) (0.1F * f), this.getBodyY(0.5D) + entity.getHeightOffset() + 0.0D, this.getZ() - (double) (0.1F * f1));
-		if(entity instanceof LivingEntity) {
-			((LivingEntity) entity).bodyYaw = this.bodyYaw;
+	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater) {
+		super.updatePassengerPosition(passenger, positionUpdater);
+		float f = MathHelper.sin(this.bodyYaw * 0.017453292F);
+		float g = MathHelper.cos(this.bodyYaw * 0.017453292F);
+		float h = 0.1F;
+		float i = 0.0F;
+		positionUpdater.accept(passenger, this.getX() + (double) (0.1F * f), this.getBodyY(0.5) + passenger.getHeightOffset() + 0.0, this.getZ() - (double) (0.1F * g));
+		if (passenger instanceof LivingEntity) {
+			((LivingEntity) passenger).bodyYaw = this.bodyYaw;
 		}
 	}
 

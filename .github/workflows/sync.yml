@@ -1,0 +1,27 @@
+# Automatically upload translations to Crowdin for every push to the main or dev branch.
+# This allows strings to be translated before a new version is released.
+
+name: Synchronize Project
+
+on:
+  push:
+    paths:
+      - 'src/main/resources/assets/promenade/lang/en_us.json'
+    branches: [main, dev]
+
+jobs:
+  crowdin:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Upload translations source file to Crowdin
+      uses: crowdin/github-action@v1
+      with:
+        upload_sources: true
+        upload_translations: false
+        download_translations: false
+      env:
+        CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}

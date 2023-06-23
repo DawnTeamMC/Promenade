@@ -7,18 +7,29 @@ import fr.hugman.promenade.block.PileBlock;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
 import fr.hugman.promenade.registry.content.GlaglaglaContent;
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.minecraft.block.MapColor;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EntityType;
 import net.minecraft.sound.BlockSoundGroup;
 
 public final class PromenadeFactory {
 	public static Block leafPile() {
-		return leafPile(BlockSoundGroup.GRASS);
+		return leafPile(MapColor.DARK_GREEN, BlockSoundGroup.GRASS);
+	}
+
+	public static Block leafPile(MapColor mapColor) {
+		return leafPile(mapColor, BlockSoundGroup.GRASS);
 	}
 
 	public static Block leafPile(BlockSoundGroup soundGroup) {
-		return new PileBlock(DawnBlockSettings.of(Material.PLANT)
-				.item(new DawnItemSettings().compostingChance(0.3f)).flammability(30, 60)
+		return leafPile(MapColor.DARK_GREEN, soundGroup);
+	}
+
+	public static Block leafPile(MapColor mapColor, BlockSoundGroup soundGroup) {
+		return new PileBlock(DawnBlockSettings.create()
+				.item(new DawnItemSettings().compostingChance(0.3f))
+				.mapColor(mapColor)
+				.burnable(30, 60)
 				.strength(0.1f)
 				.ticksRandomly()
 				.sounds(soundGroup)
@@ -26,9 +37,10 @@ public final class PromenadeFactory {
 				.nonOpaque());
 	}
 
-	public static Block carpetedGrassBlock() {
-		return new CarpetedGrassBlock(DawnBlockSettings.of(Material.SOLID_ORGANIC)
+	public static Block carpetedGrassBlock(MapColor color) {
+		return new CarpetedGrassBlock(DawnBlockSettings.create()
 				.item(new DawnItemSettings().compostingChance(0.3f))
+				.mapColor(color)
 				.ticksRandomly()
 				.strength(0.6F)
 				.sounds(BlockSoundGroup.GRASS));
@@ -39,8 +51,9 @@ public final class PromenadeFactory {
 	}
 
 	public static SnowyLeavesBlock snowyLeaves(BlockSoundGroup soundGroup) {
-		return new SnowyLeavesBlock(DawnBlockSettings.of(Material.LEAVES)
+		return new SnowyLeavesBlock(DawnBlockSettings.create()
 				.item(new DawnItemSettings().compostingChance(0.3f))
+				.mapColor(MapColor.WHITE)
 				.strength(0.2f)
 				.ticksRandomly()
 				.sounds(soundGroup)
@@ -48,6 +61,8 @@ public final class PromenadeFactory {
 				.allowsSpawning((state, world, pos, type) -> type == EntityType.OCELOT || type == EntityType.PARROT)
 				.suffocates((state, world, pos) -> false)
 				.blockVision((state, world, pos) -> false)
-				.flammability(30, 60));
+				.burnable(30, 60)
+				.pistonBehavior(PistonBehavior.DESTROY)
+				.solidBlock((state, world, pos) -> false));
 	}
 }

@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:crafting/spruce_leaf"
+		]
+	},
+	"criteria": {
+		"has_leaves": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": ["minecraft:spruce_leaves"]
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:crafting/vanilla_piles/spruce_leaf"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_leaves",
+			"has_the_recipe"
+		]
+	]
+}

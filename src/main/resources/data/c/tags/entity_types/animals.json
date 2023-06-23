@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "#c:animals/birds",
+    "#c:animals/rodents"
+  ]
+}

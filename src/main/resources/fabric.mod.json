@@ -1,62 +1,76 @@
 {
-	"schemaVersion": 1,
-	"name": "${mod_name}",
-	"id": "${mod_id}",
-	"version": "${version}",
-	"icon": "assets/${mod_id}/textures/logo.png",
-	"authors": [
-		"Hugman"
-	],
-	"contact": {
-		"homepage": "https://dawnteammc.github.io/${mod_id}",
-		"sources": "https://github.com/DawnTeamMC/${github_name}",
-		"issues": "https://github.com/DawnTeamMC/${github_name}/issues"
-	},
-	"environment": "*",
-	"entrypoints": {
-		"main": [
+  "schemaVersion": 1,
+  "name": "Promenade",
+  "id": "promenade",
+  "version": "${version}",
+  "icon": "assets/promenade/textures/logo.png",
+  "authors": [
+    "Hugman"
+  ],
+  "contact": {
+    "homepage": "https://dawnteammc.github.io/promenade",
+    "sources": "https://github.com/DawnTeamMC/Promenade",
+    "issues": "https://github.com/DawnTeamMC/Promenade/issues"
+  },
+  "environment": "*",
+  "entrypoints": {
+    "main": [
       "fr.hugman.promenade.Promenade"
-		],
-		"client": [
+    ],
+    "client": [
       "fr.hugman.promenade.PromenadeClient"
-		],
-		"modmenu": [
-			"fr.hugman.promenade.compat.PromenadeMMIntegration"
-		],
-		"terrablender": [
-			"fr.hugman.promenade.compat.PromenadeTBIntegration"
-		]
-	},
-	"mixins": [
-		"promenade.mixins.json"
-	],
-	"accessWidener": "promenade.accesswidener",
-	"depends": {
-		"fabric": "*",
-		"cloth-config": "*",
-		"dawn": ">=4.2.0"
-	},
-	"suggests": {
-		"columns": "*",
-		"farmingforblockheads": "*",
-		"terrablender": "*"
-	},
-	"custom": {
-		"modmenu": {
-			"links": {
-				"modmenu.twitter": "https://twitter.com/DawnTeamMC",
-				"modmenu.discord": "https://discord.gg/8ksTVJu",
-				"modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/${curseforge_slug}",
-				"modmenu.modrinth": "https://modrinth.com/mod/${modrinth_slug}",
-				"modmenu.github_releases": "https://github.com/DawnTeamMC/${github_name}/releases/",
-				"modmenu.crowdin": "https://crowdin.com/project/dawnteam",
-				"modmenu.wiki": "https://hugman.gitbook.io/promenade/"
-			}
-		},
-		"modupdater": {
-			"strategy": "curseforge",
-			"projectID": 399648
-		}
-	},
-	"license": "LGPL v3.0"
+    ],
+    "modmenu": [
+      "fr.hugman.promenade.compat.PromenadeMMIntegration"
+    ],
+    "terrablender": [
+      "fr.hugman.promenade.compat.PromenadeTBIntegration"
+    ]
+  },
+  "mixins": [
+    "promenade.mixins.json"
+  ],
+  "accessWidener": "promenade.accesswidener",
+  "depends": {
+    "minecraft": "1.20.x",
+    "dawn": "*",
+    "fabric-api": ">=0.83.1",
+    "cloth-config": "*"
+  },
+  "suggests": {
+    "columns": "*",
+    "farmingforblockheads": "*",
+    "terrablender": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.twitter": "https://twitter.com/DawnTeamMC",
+        "modmenu.discord": "https://discord.gg/8ksTVJu",
+        "modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/promenade",
+        "modmenu.modrinth": "https://modrinth.com/mod/promenade",
+        "modmenu.github_releases": "https://github.com/DawnTeamMC/Promenade/releases/",
+        "modmenu.crowdin": "https://crowdin.com/project/dawnteam",
+        "modmenu.wiki": "https://hugman.gitbook.io/promenade/"
+      }
+    },
+    "modupdater": {
+      "strategy": "curseforge",
+      "projectID": 399648
+    },
+    "mc-publish": {
+      "curseforge": 399648,
+      "modrinth": "GuE5FpvB",
+      "loaders": [
+        "fabric",
+        "quilt"
+      ],
+      "dependencies": [
+        "farmingforblockheads(optional){curseforge:farming-for-blockheads-fabric}{modrinth:farming-for-blockheads}",
+        "terrablender(optional){curseforge:terrablender-fabric}",
+        "cloth-config(embedded)"
+      ]
+    }
+  },
+  "license": "LGPL v3.0"
 }

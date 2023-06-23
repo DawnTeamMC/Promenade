@@ -4,23 +4,23 @@
 		"promenade:blunite",
 		"promenade:blunite_stairs",
 		"promenade:blunite_slab",
-		"promenade:carbonite",
-		"promenade:carbonite_stairs",
-		"promenade:carbonite_slab",
+		"promenade:asphalt",
+		"promenade:asphalt_stairs",
+		"promenade:asphalt_slab",
 		"promenade:moai",
 		"promenade:polished_blunite",
 		"promenade:polished_blunite_stairs",
 		"promenade:polished_blunite_slab",
-		"promenade:polished_carbonite",
-		"promenade:polished_carbonite_stairs",
-		"promenade:polished_carbonite_slab",
+		"promenade:polished_asphalt",
+		"promenade:polished_asphalt_stairs",
+		"promenade:polished_asphalt_slab",
 		"promenade:black_dylium",
 		{
 			"id": "promenade:blunite_column",
 			"required": false
 		},
 		{
-			"id": "promenade:carbonite_column",
+			"id": "promenade:asphalt_column",
 			"required": false
 		}
 	]

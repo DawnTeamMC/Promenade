@@ -1,0 +1,98 @@
+# Automatically builds and publishes the mod when a new release is created on GitHub.
+# It uploads the mod to GitHub, CurseForge and Modrinth.
+
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    name: Build & Publish
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download translations from Crowdin
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: false
+          upload_translations: false
+          download_translations: true
+          create_pull_request: false
+          push_translations: false
+        env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew clean build -Pversion=${{ github.event.release.tag_name }}
+
+      - name: Read Gradle properties
+        id: gradle_properties
+        uses: christian-draeger/read-properties@1.1.1
+        with:
+          path: './gradle.properties'
+          properties: 'mod_id mod_name mod_logo mod_color loader_name loader_icon minecraft_version'
+
+      - name: Publish mod to GitHub, CurseForge and Modrinth
+        id: publish
+        uses: Kir-Antipov/mc-publish@v3.3
+        with:
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+          changelog: ${{ github.event.release.body }}
+          java: 17
+
+          modrinth-featured: false
+
+      - name: Add job summary
+        run: |
+          echo "# Results" >> $GITHUB_STEP_SUMMARY
+          echo "- Mod ID: ${{ steps.gradle_properties.outputs.mod_id }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Mod Name: ${{ steps.gradle_properties.outputs.mod_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Mod Version: ${{ github.event.release.tag_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Release Name: ${{ github.event.release.name }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Minecraft Version: ${{ steps.gradle_properties.outputs.minecraft_version }}" >> $GITHUB_STEP_SUMMARY
+          echo "- [CurseForge Link](${{ steps.publish.outputs.curseforge-url }})" >> $GITHUB_STEP_SUMMARY
+          echo "- [Modrinth Link](${{ steps.publish.outputs.modrinth-url }})" >> $GITHUB_STEP_SUMMARY
+          echo "- [GitHub Link](${{ steps.publish.outputs.github-url }})" >> $GITHUB_STEP_SUMMARY
+          echo "# Changelog" >> $GITHUB_STEP_SUMMARY
+          echo "${{ github.event.release.body }}" >> $GITHUB_STEP_SUMMARY
+
+      - name: Send Discord webhook
+        uses: Ilshidur/action-discord@0.3.2
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          DISCORD_EMBEDS: |
+            [{
+              "title": "${{ github.event.release.name }} for ${{ steps.gradle_properties.outputs.minecraft_version }} Released",
+              "color": ${{ steps.gradle_properties.outputs.mod_color }},
+              "thumbnail": {
+                "url": "${{ steps.gradle_properties.outputs.mod_logo }}"
+              },
+              "url": "${{ steps.publish.outputs.curseforge-url }}",
+              "fields": [
+                  {
+                    "name": "Download now:",
+                    "value": "[<:curseforge:805066577871110196> CurseForge](${{ steps.publish.outputs.curseforge-url }})\n[<:modrinth:805066578215043092> Modrinth](${{ steps.publish.outputs.modrinth-url }})\n[<:github:805066578164580392> GitHub](${{ steps.publish.outputs.github-url }})",
+                    "inline": true
+                  }
+              ],
+              "footer": {
+                "text": "A ${{ steps.gradle_properties.outputs.loader_name }} Mod",
+                "icon_url": "${{ steps.gradle_properties.outputs.loader_icon }}"
+              }
+            }]

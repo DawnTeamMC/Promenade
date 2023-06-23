@@ -1,0 +1,32 @@
+{
+	"parent": "minecraft:recipes/root",
+	"rewards": {
+		"recipes": [
+			"promenade:crafting/blue_orchid"
+		]
+	},
+	"criteria": {
+		"has_flower": {
+			"trigger": "minecraft:inventory_changed",
+			"conditions": {
+				"items": [
+					{
+						"items": ["minecraft:blue_orchid"]
+					}
+				]
+			}
+		},
+		"has_the_recipe": {
+			"trigger": "minecraft:recipe_unlocked",
+			"conditions": {
+				"recipe": "promenade:crafting/vanilla_piles/blue_orchid"
+			}
+		}
+	},
+	"requirements": [
+		[
+			"has_flower",
+			"has_the_recipe"
+		]
+	]
+}

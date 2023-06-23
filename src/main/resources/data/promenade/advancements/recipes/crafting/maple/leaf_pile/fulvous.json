@@ -2,7 +2,7 @@
 	"parent": "minecraft:recipes/root",
 	"rewards": {
 		"recipes": [
-			"promenade:crafting/acacia_leaf_pile"
+			"promenade:crafting/maple/leaf_pile/fulvous"
 		]
 	},
 	"criteria": {
@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"items": ["minecraft:acacia_leaves"]
+						"items": ["promenade:fulvous_maple_leaves"]
 					}
 				]
 			}
@@ -19,7 +19,7 @@
 		"has_the_recipe": {
 			"trigger": "minecraft:recipe_unlocked",
 			"conditions": {
-				"recipe": "promenade:crafting/acacia_leaf_pile"
+				"recipe": "promenade:crafting/maple/leaf_pile/fulvous"
 			}
 		}
 	},
