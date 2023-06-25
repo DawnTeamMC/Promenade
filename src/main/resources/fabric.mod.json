@@ -22,9 +22,6 @@
     ],
     "modmenu": [
       "fr.hugman.promenade.compat.PromenadeMMIntegration"
-    ],
-    "terrablender": [
-      "fr.hugman.promenade.compat.PromenadeTBIntegration"
     ]
   },
   "mixins": [
@@ -35,12 +32,12 @@
     "minecraft": "1.20.x",
     "dawn": ">=5.0.0",
     "fabric-api": ">=0.83.1",
-    "cloth-config": "*"
+    "cloth-config": "*",
+    "biolith": "*"
   },
   "suggests": {
     "columns": "*",
-    "farmingforblockheads": "*",
-    "terrablender": "*"
+    "farmingforblockheads": "*"
   },
   "custom": {
     "modmenu": {
@@ -68,7 +65,8 @@
       "dependencies": [
         "farmingforblockheads(optional){curseforge:farming-for-blockheads-fabric}{modrinth:farming-for-blockheads}",
         "terrablender(optional){curseforge:terrablender-fabric}",
-        "cloth-config(embedded)"
+        "cloth-config(embedded)",
+        "biolith(embedded)"
       ]
     }
   },

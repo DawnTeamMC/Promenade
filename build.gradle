@@ -19,7 +19,7 @@ repositories {
 dependencies {
     modApi "com.github.DawnTeamMC:DawnAPI:${dawn_version}"
 
-    modImplementation "com.github.glitchfiend:TerraBlender-fabric:${terrablender_version}"
+    includeMod "com.terraformersmc:biolith:${biolith_version}"
 
     /* TODO haykam
     modImplementation ("curse.maven:columns-385230:${columns_version}"){

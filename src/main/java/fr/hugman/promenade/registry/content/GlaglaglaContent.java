@@ -1,5 +1,6 @@
 package fr.hugman.promenade.registry.content;
 
+import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
 import fr.hugman.dawn.item.ItemGroupHelper;
@@ -20,6 +21,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.LightType;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 
 public class GlaglaglaContent {
@@ -48,9 +50,26 @@ public class GlaglaglaContent {
 
 		r.add(("freeze_top_layer"), FREEZE_TOP_LAYER);
 
+		appendItemGroups();
+		appendWorldGen();
+	}
+
+	private static void appendItemGroups() {
 		ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
 			e.addAfter(Blocks.SPRUCE_LEAVES, SNOWY_SPRUCE_LEAVES);
 		});
+	}
+
+	private static void appendWorldGen() {
+		if (Promenade.CONFIG.biomes.glacarian_taiga_weight <= 0) {
+			return;
+		}
+		double weight = Promenade.CONFIG.biomes.glacarian_taiga_weight / 100.0D;
+		BiomePlacement.replaceOverworld(BiomeKeys.TAIGA, GlaglaglaContent.GLACARIAN_TAIGA, weight);
+		BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_TAIGA, GlaglaglaContent.GLACARIAN_TAIGA, weight);
+		BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_SLOPES, GlaglaglaContent.GLACARIAN_TAIGA, weight);
+		BiomePlacement.replaceOverworld(BiomeKeys.JAGGED_PEAKS, GlaglaglaContent.GLACARIAN_TAIGA, weight);
+		BiomePlacement.replaceOverworld(BiomeKeys.GROVE, GlaglaglaContent.GLACARIAN_TAIGA, weight);
 	}
 
 	public static boolean canFreezeFromBiomeAndWeather(LivingEntity entity) {

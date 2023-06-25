@@ -1,5 +1,6 @@
 package fr.hugman.promenade.registry.content;
 
+import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
@@ -21,6 +22,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 
 public class SakuraContent {
     public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.register(Promenade.id("sakura"), true, BlockSoundGroup.CHERRY_WOOD, SoundEvents.BLOCK_CHERRY_WOOD_DOOR_CLOSE, SoundEvents.BLOCK_CHERRY_WOOD_DOOR_OPEN, SoundEvents.BLOCK_CHERRY_WOOD_TRAPDOOR_CLOSE, SoundEvents.BLOCK_CHERRY_WOOD_TRAPDOOR_OPEN, SoundEvents.BLOCK_CHERRY_WOOD_PRESSURE_PLATE_CLICK_OFF, SoundEvents.BLOCK_CHERRY_WOOD_PRESSURE_PLATE_CLICK_ON, SoundEvents.BLOCK_CHERRY_WOOD_BUTTON_CLICK_OFF, SoundEvents.BLOCK_CHERRY_WOOD_BUTTON_CLICK_ON);
@@ -96,18 +98,13 @@ public class SakuraContent {
         r.add(("cotton_sakura_blossom_pile"), COTTON_SAKURA_BLOSSOM_PILE);
         r.add(("cotton_sakura_blossom"), COTTON_SAKURA_BLOSSOM);
 
-        if (Promenade.CONFIG.biomes.sakura_groves_weight > 0) {
-            //TODO : add back to overworld generation when the Biome API supports that
-            //OverworldBiomes.addContinentalBiome(BLUSH_SAKURA_GROVE.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.sakura_forests_weight / 10.0D)
-            //OverworldBiomes.addContinentalBiome(PASTEL_SAKURA_GROVE.getRegistryKey(), OverworldClimate.COOL, BIOMES_CONFIG.sakura_forests_weight / 10.0D);
-        }
-
-        TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
-            factories.add(TradeOfferUtils.sapling(BLUSH_SAKURA_SAPLING));
-            factories.add(TradeOfferUtils.sapling(COTTON_SAKURA_SAPLING));
-        });
+        appendItemGroups();
+        appendVillagerTrades();
+        appendWorldGen();
+    }
 
 
+    private static void appendItemGroups() {
         ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> e.addAfter(Blocks.BIRCH_BUTTON,
                 SAKURA_LOG,
                 SAKURA_WOOD,
@@ -131,5 +128,21 @@ public class SakuraContent {
         });
         ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.BIRCH_HANGING_SIGN, SAKURA_SIGNS.sign(), SAKURA_SIGNS.hangingSign()));
         ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Items.BIRCH_CHEST_BOAT, SAKURA_BOAT_TYPE.getItem(), SAKURA_BOAT_TYPE.getChestItem()));
+    }
+
+    private static void appendVillagerTrades() {
+        TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
+            factories.add(TradeOfferUtils.sapling(BLUSH_SAKURA_SAPLING));
+            factories.add(TradeOfferUtils.sapling(COTTON_SAKURA_SAPLING));
+        });
+    }
+
+    private static void appendWorldGen() {
+        if (Promenade.CONFIG.biomes.sakura_groves_weight <= 0) {
+            return;
+        }
+        double weight = Promenade.CONFIG.biomes.sakura_groves_weight / 100.0D;
+        BiomePlacement.replaceOverworld(BiomeKeys.FOREST, BLUSH_SAKURA_GROVE, weight);
+        BiomePlacement.replaceOverworld(BiomeKeys.BIRCH_FOREST, COTTON_SAKURA_GROVE, weight);
     }
 }
