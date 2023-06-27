@@ -24,17 +24,17 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
 	@Config(name = "biomes")
 	public static class BiomesCategory implements ConfigData {
 		@ConfigEntry.Gui.RequiresRestart
-		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
-		public int carnelian_treeway_weight = 10;
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+		public int carnelian_treeway_weight = 20;
 		@ConfigEntry.Gui.RequiresRestart
-		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
-		public int sakura_groves_weight = 10;
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+		public int sakura_groves_weight = 20;
 		@ConfigEntry.Gui.RequiresRestart
-		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 100)
 		public int glacarian_taiga_weight = 10;
 		@ConfigEntry.Gui.RequiresRestart
-		@ConfigEntry.BoundedDiscrete(min = 0, max = 25)
-		public int dark_amaranth_forests_weight = 10;
+		@ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+		public int dark_amaranth_forests_weight = 20;
 	}
 
 	@Config(name = "world_features")

@@ -1,5 +1,6 @@
 package fr.hugman.promenade.registry.content;
 
+import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
@@ -22,6 +23,7 @@ import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 
 public class MapleContent {
 	public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.registerWood(Promenade.id("maple"));
@@ -131,18 +133,12 @@ public class MapleContent {
 
 		r.add(("maple_leaf"), MAPLE_LEAF);
 
-		if(Promenade.CONFIG.biomes.carnelian_treeway_weight > 0) {
-			//TODO : add back to overworld generation when the Biome API supports that
-			//OverworldBiomes.addContinentalBiome(MapleContent.CARNELIAN_TREEWAY, OverworldClimate.COOL, Promenade.CONFIG.biomes.carnelian_treeways_weight / 10.0D);
-		}
+		appendItemGroups();
+		appendVillagerTrades();
+		appendWorldGen();
+	}
 
-		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
-			factories.add(TradeOfferUtils.sapling(MapleContent.VERMILION_MAPLE_SAPLING));
-			factories.add(TradeOfferUtils.sapling(MapleContent.FULVOUS_MAPLE_SAPLING));
-			factories.add(TradeOfferUtils.sapling(MapleContent.MIKADO_MAPLE_SAPLING));
-			factories.add(TradeOfferUtils.sapling(MapleContent.SAP_MAPLE_SAPLING));
-		});
-
+	private static void appendItemGroups() {
 		ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e ->
 				e.addAfter(SakuraContent.SAKURA_BUTTON,
 						MAPLE_LOG,
@@ -169,5 +165,22 @@ public class MapleContent {
 		ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(SakuraContent.SAKURA_SIGNS.hangingSign(), MAPLE_SIGNS.sign(), MAPLE_SIGNS.hangingSign()));
 		ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(SakuraContent.SAKURA_BOAT_TYPE.getChestItem(), MAPLE_BOAT_TYPE.getItem(), MAPLE_BOAT_TYPE.getChestItem()));
 		ItemGroupHelper.append(ItemGroups.FOOD_AND_DRINK, e -> e.addAfter(Items.HONEY_BOTTLE, MAPLE_SYRUP_BOTTLE));
+	}
+
+	private static void appendVillagerTrades() {
+		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
+			factories.add(TradeOfferUtils.sapling(MapleContent.VERMILION_MAPLE_SAPLING));
+			factories.add(TradeOfferUtils.sapling(MapleContent.FULVOUS_MAPLE_SAPLING));
+			factories.add(TradeOfferUtils.sapling(MapleContent.MIKADO_MAPLE_SAPLING));
+			factories.add(TradeOfferUtils.sapling(MapleContent.SAP_MAPLE_SAPLING));
+		});
+	}
+
+	private static void appendWorldGen() {
+		if (Promenade.CONFIG.biomes.carnelian_treeway_weight <= 0) {
+			return;
+		}
+		double weight = Promenade.CONFIG.biomes.carnelian_treeway_weight / 100.0D;
+		BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, CARNELIAN_TREEWAY, weight);
 	}
 }

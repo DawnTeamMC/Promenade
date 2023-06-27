@@ -114,12 +114,12 @@ public class TropicalContent {
 
 		r.add(("moai"), MOAI);
 
-		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add(TradeOfferUtils.sapling(PALM_SAPLING)));
+		appendItemGroups();
+		appendVillagerTrades();
+		appendWorldGen();
+	}
 
-		if(Promenade.CONFIG.world_features.palms) {
-			BiomeModifications.addFeature(BiomeSelectors.tag(PromenadeBiomeTags.HAS_PALMS), GenerationStep.Feature.VEGETAL_DECORATION, PALMS);
-		}
-
+	private static void appendItemGroups() {
 		ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> {
 			e.addAfter(Blocks.ACACIA_BUTTON,
 					PALM_LOG,
@@ -147,5 +147,15 @@ public class TropicalContent {
 		ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Items.ACACIA_CHEST_BOAT, PALM_BOAT_TYPE.getItem(), PALM_BOAT_TYPE.getChestItem()));
 
 		ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> e.addAfter(Blocks.CUT_RED_SANDSTONE_SLAB, MOAI));
+	}
+
+	private static void appendVillagerTrades() {
+		TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add(TradeOfferUtils.sapling(PALM_SAPLING)));
+	}
+
+	private static void appendWorldGen() {
+		if(Promenade.CONFIG.world_features.palms) {
+			BiomeModifications.addFeature(BiomeSelectors.tag(PromenadeBiomeTags.HAS_PALMS), GenerationStep.Feature.VEGETAL_DECORATION, PALMS);
+		}
 	}
 }
