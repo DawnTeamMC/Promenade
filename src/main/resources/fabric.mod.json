@@ -65,7 +65,6 @@
       ],
       "dependencies": [
         "farmingforblockheads(optional){curseforge:farming-for-blockheads-fabric}{modrinth:farming-for-blockheads}",
-        "terrablender(optional){curseforge:terrablender-fabric}",
         "cloth-config(embedded)",
         "biolith(embedded)"
       ]
