@@ -9,7 +9,7 @@ diversity and will improve the beauty of you world.
 **You can visit the [official wiki for Promenade for more information](https://hugman.gitbook.io/promenade/).**
 
 ## 👾 Features
-Due to a missing Fabric API module, versions from v2.5.0 to v5.0.0 require [TerraBlender](https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric) to be installed for overworld biomes to appear in your world.
+Due to a missing Fabric API module, versions from v2.5.0 to v4.0.0 require [TerraBlender](https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric) to be installed for overworld biomes to appear in your world.
 
 ### Biomes
 

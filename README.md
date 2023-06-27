@@ -14,7 +14,7 @@ Promenade is a mod for the latest version of Minecraft that adds a ton of featur
 **You can visit the [official wiki for Promenade for more information](https://dawnteammc.github.io/promenade).**
 
 ## 👾 Features
-**Due to a missing Fabric API module, Promenade v2.5.0 and higher versions require [TerraBlender](https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric) to be installed for overworld biomes to appear in your world.**
+Due to a missing Fabric API module, versions from v2.5.0 to v4.0.0 require [TerraBlender](https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric) to be installed for overworld biomes to appear in your world.
 
 ### Biomes
 
@@ -45,7 +45,7 @@ Promenade is a mod for the latest version of Minecraft that adds a ton of featur
 ### Other
 
 * Moai 🗿 (use tuff in a stonecutter)
-* New igneous rocks: blunite and carbonite
+* New rocks: asphalt and blunite
 * Piles of flowers and leaves
 * Blueberries
 
