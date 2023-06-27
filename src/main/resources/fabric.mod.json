@@ -37,7 +37,8 @@
   },
   "suggests": {
     "columns": "*",
-    "farmingforblockheads": "*"
+    "farmingforblockheads": "*",
+    "appleskin": "*"
   },
   "custom": {
     "modmenu": {
