@@ -18,9 +18,13 @@ import net.minecraft.block.*;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 
@@ -98,6 +102,8 @@ public class SakuraContent {
         r.add(("cotton_sakura_blossom_pile"), COTTON_SAKURA_BLOSSOM_PILE);
         r.add(("cotton_sakura_blossom"), COTTON_SAKURA_BLOSSOM);
 
+        registerMusic();
+
         appendItemGroups();
         appendVillagerTrades();
         appendWorldGen();
@@ -144,5 +150,11 @@ public class SakuraContent {
         double weight = Promenade.CONFIG.biomes.sakura_groves_weight / 100.0D;
         BiomePlacement.replaceOverworld(BiomeKeys.FOREST, BLUSH_SAKURA_GROVE, weight);
         BiomePlacement.replaceOverworld(BiomeKeys.BIRCH_FOREST, COTTON_SAKURA_GROVE, weight);
+    }
+
+    private static void registerMusic() {
+        Identifier id = Promenade.id("music.overworld.sakura_groves");
+        Registry.registerReference(Registries.SOUND_EVENT, id, SoundEvent.of(id));
+
     }
 }
