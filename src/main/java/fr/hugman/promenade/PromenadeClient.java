@@ -35,7 +35,10 @@ public class PromenadeClient implements ClientModInitializer {
 
 		ParticleFactoryRegistry.getInstance().register(SakuraContent.BLUSH_SAKURA_BLOSSOM, FloatingParticle.BlossomFactory::new);
 		ParticleFactoryRegistry.getInstance().register(SakuraContent.COTTON_SAKURA_BLOSSOM, FloatingParticle.BlossomFactory::new);
-		ParticleFactoryRegistry.getInstance().register(MapleContent.MAPLE_LEAF, FloatingParticle.MapleLeafFactory::new);
+
+		ParticleFactoryRegistry.getInstance().register(MapleContent.MIKADO_MAPLE_LEAF, FloatingParticle.MapleLeafFactory::new);
+		ParticleFactoryRegistry.getInstance().register(MapleContent.FULVOUS_MAPLE_LEAF, FloatingParticle.MapleLeafFactory::new);
+		ParticleFactoryRegistry.getInstance().register(MapleContent.VERMILION_MAPLE_LEAF, FloatingParticle.MapleLeafFactory::new);
 
 		ClientRegistrar.add(SakuraContent.SAKURA_SIGNS);
 		ClientRegistrar.add(SakuraContent.SAKURA_BOAT_TYPE);

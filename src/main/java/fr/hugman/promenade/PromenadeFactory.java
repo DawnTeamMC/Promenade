@@ -1,15 +1,19 @@
 package fr.hugman.promenade;
 
+import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.block.DawnBlockSettings;
 import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.promenade.block.CarpetedGrassBlock;
+import fr.hugman.promenade.block.DecoratedLeavesBlock;
 import fr.hugman.promenade.block.PileBlock;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
 import fr.hugman.promenade.registry.content.GlaglaglaContent;
 import net.minecraft.block.Block;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EntityType;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.BlockSoundGroup;
 
 public final class PromenadeFactory {
@@ -64,5 +68,21 @@ public final class PromenadeFactory {
 				.burnable(30, 60)
 				.pistonBehavior(PistonBehavior.DESTROY)
 				.solidBlock((state, world, pos) -> false));
+	}
+
+	public static DecoratedLeavesBlock decoratedLeaves(MapColor mapColor, BlockSoundGroup soundGroup, int bound, ParticleEffect particle) {
+		return new DecoratedLeavesBlock(DawnFactory.leavesSettings(mapColor, soundGroup), bound, particle);
+	}
+
+	public static DecoratedLeavesBlock decoratedLeaves(MapColor mapColor, BlockSoundGroup soundGroup, ParticleEffect particle) {
+		return decoratedLeaves(mapColor, soundGroup, 10, particle);
+	}
+
+	public static DecoratedLeavesBlock decoratedLeaves(MapColor mapColor, int bound, ParticleEffect particle) {
+		return decoratedLeaves(mapColor, BlockSoundGroup.GRASS, bound, particle);
+	}
+
+	public static DecoratedLeavesBlock decoratedLeaves(MapColor mapColor, ParticleEffect particle) {
+		return decoratedLeaves(mapColor, BlockSoundGroup.GRASS, 10, particle);
 	}
 }

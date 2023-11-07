@@ -65,25 +65,26 @@ public class MapleContent {
 	public static final Block SAP_MAPLE_LEAVES = DawnFactory.leaves(SAP_LEAVES_COLOR);
 	public static final Block SAP_MAPLE_LEAF_PILE = PromenadeFactory.leafPile();
 
+	public static final DefaultParticleType VERMILION_MAPLE_LEAF = FabricParticleTypes.simple();
 	public static final Block VERMILION_MAPLE_SAPLING = DawnFactory.sapling(VERMILION_LEAVES_COLOR, OakLikeSaplingGenerator.of(Promenade.id("maple/vermilion")));
 	public static final Block POTTED_VERMILION_MAPLE_SAPLING = DawnFactory.potted(VERMILION_MAPLE_SAPLING);
 	public static final Block VERMILION_MAPLE_LEAVES = DawnFactory.leaves(VERMILION_LEAVES_COLOR);
-	public static final Block VERMILION_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(VERMILION_LEAVES_COLOR);
+	public static final Block VERMILION_MAPLE_LEAF_PILE = PromenadeFactory.decoratedLeaves(VERMILION_LEAVES_COLOR, VERMILION_MAPLE_LEAF);
 	public static final Block VERMILION_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(VERMILION_LEAVES_COLOR);
 
+	public static final DefaultParticleType FULVOUS_MAPLE_LEAF = FabricParticleTypes.simple();
 	public static final Block FULVOUS_MAPLE_SAPLING = DawnFactory.sapling(FULVOUS_LEAVES_COLOR, OakLikeSaplingGenerator.of(Promenade.id("maple/fulvous")));
 	public static final Block POTTED_FULVOUS_MAPLE_SAPLING = DawnFactory.potted(FULVOUS_MAPLE_SAPLING);
-	public static final Block FULVOUS_MAPLE_LEAVES = DawnFactory.leaves(FULVOUS_LEAVES_COLOR);
+	public static final Block FULVOUS_MAPLE_LEAVES = PromenadeFactory.decoratedLeaves(FULVOUS_LEAVES_COLOR, FULVOUS_MAPLE_LEAF);
 	public static final Block FULVOUS_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(FULVOUS_LEAVES_COLOR);
 	public static final Block FULVOUS_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(FULVOUS_LEAVES_COLOR);
 
+	public static final DefaultParticleType MIKADO_MAPLE_LEAF = FabricParticleTypes.simple();
 	public static final Block MIKADO_MAPLE_SAPLING = DawnFactory.sapling(MIKADO_LEAVES_COLOR, OakLikeSaplingGenerator.of(Promenade.id("maple/mikado")));
 	public static final Block POTTED_MIKADO_MAPLE_SAPLING = DawnFactory.potted(MIKADO_MAPLE_SAPLING);
-	public static final Block MIKADO_MAPLE_LEAVES = DawnFactory.leaves(MIKADO_LEAVES_COLOR);
+	public static final Block MIKADO_MAPLE_LEAVES = PromenadeFactory.decoratedLeaves(MIKADO_LEAVES_COLOR, MIKADO_MAPLE_LEAF);
 	public static final Block MIKADO_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(MIKADO_LEAVES_COLOR);
 	public static final Block MIKADO_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(MIKADO_LEAVES_COLOR);
-
-	public static final DefaultParticleType MAPLE_LEAF = FabricParticleTypes.simple();
 
 	public static final RegistryKey<Biome> CARNELIAN_TREEWAY = DawnFactory.biome(Promenade.id("carnelian_treeway"));
 
@@ -113,25 +114,26 @@ public class MapleContent {
 		r.add(("sap_maple_leaves"), SAP_MAPLE_LEAVES);
 		r.add(("sap_maple_leaf_pile"), SAP_MAPLE_LEAF_PILE);
 
+		r.add(("vermilion_maple_leaf"), VERMILION_MAPLE_LEAF);
 		r.add(("vermilion_maple_sapling"), VERMILION_MAPLE_SAPLING);
 		r.add(("potted_vermilion_maple_sapling"), POTTED_VERMILION_MAPLE_SAPLING);
 		r.add(("vermilion_maple_leaves"), VERMILION_MAPLE_LEAVES);
 		r.add(("vermilion_maple_leaf_pile"), VERMILION_MAPLE_LEAF_PILE);
 		r.add(("vermilion_carpeted_grass_block"), VERMILION_CARPETED_GRASS_BLOCK);
 
+		r.add(("fulvous_maple_leaf"), FULVOUS_MAPLE_LEAF);
 		r.add(("fulvous_maple_sapling"), FULVOUS_MAPLE_SAPLING);
 		r.add(("potted_fulvous_maple_sapling"), POTTED_FULVOUS_MAPLE_SAPLING);
 		r.add(("fulvous_maple_leaves"), FULVOUS_MAPLE_LEAVES);
 		r.add(("fulvous_maple_leaf_pile"), FULVOUS_MAPLE_LEAF_PILE);
 		r.add(("fulvous_carpeted_grass_block"), FULVOUS_CARPETED_GRASS_BLOCK);
 
+		r.add(("mikado_maple_leaf"), MIKADO_MAPLE_LEAF);
 		r.add(("mikado_maple_sapling"), MIKADO_MAPLE_SAPLING);
 		r.add(("potted_mikado_maple_sapling"), POTTED_MIKADO_MAPLE_SAPLING);
 		r.add(("mikado_maple_leaves"), MIKADO_MAPLE_LEAVES);
 		r.add(("mikado_maple_leaf_pile"), MIKADO_MAPLE_LEAF_PILE);
 		r.add(("mikado_carpeted_grass_block"), MIKADO_CARPETED_GRASS_BLOCK);
-
-		r.add(("maple_leaf"), MAPLE_LEAF);
 
 		appendItemGroups();
 		appendVillagerTrades();
