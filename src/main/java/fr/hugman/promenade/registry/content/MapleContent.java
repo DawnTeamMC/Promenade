@@ -68,8 +68,8 @@ public class MapleContent {
 	public static final DefaultParticleType VERMILION_MAPLE_LEAF = FabricParticleTypes.simple();
 	public static final Block VERMILION_MAPLE_SAPLING = DawnFactory.sapling(VERMILION_LEAVES_COLOR, OakLikeSaplingGenerator.of(Promenade.id("maple/vermilion")));
 	public static final Block POTTED_VERMILION_MAPLE_SAPLING = DawnFactory.potted(VERMILION_MAPLE_SAPLING);
-	public static final Block VERMILION_MAPLE_LEAVES = DawnFactory.leaves(VERMILION_LEAVES_COLOR);
-	public static final Block VERMILION_MAPLE_LEAF_PILE = PromenadeFactory.decoratedLeaves(VERMILION_LEAVES_COLOR, VERMILION_MAPLE_LEAF);
+	public static final Block VERMILION_MAPLE_LEAVES = PromenadeFactory.decoratedLeaves(VERMILION_LEAVES_COLOR, VERMILION_MAPLE_LEAF);
+	public static final Block VERMILION_MAPLE_LEAF_PILE = PromenadeFactory.leafPile(VERMILION_LEAVES_COLOR);
 	public static final Block VERMILION_CARPETED_GRASS_BLOCK = PromenadeFactory.carpetedGrassBlock(VERMILION_LEAVES_COLOR);
 
 	public static final DefaultParticleType FULVOUS_MAPLE_LEAF = FabricParticleTypes.simple();
