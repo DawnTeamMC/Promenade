@@ -2,6 +2,7 @@ package fr.hugman.promenade;
 
 import fr.hugman.dawn.client.ClientRegistrar;
 import fr.hugman.promenade.client.PromenadeEntityModelLayers;
+import fr.hugman.promenade.client.color.world.GradientColors;
 import fr.hugman.promenade.client.render.entity.CapybaraRenderer;
 import fr.hugman.promenade.client.render.entity.DuckRenderer;
 import fr.hugman.promenade.client.render.entity.LushCreeperRenderer;
@@ -162,7 +163,7 @@ public class PromenadeClient implements ClientModInitializer {
 			}
 			return BiomeColors.getGrassColor(world, pos);
 		}, MapleContent.VERMILION_CARPETED_GRASS_BLOCK, MapleContent.FULVOUS_CARPETED_GRASS_BLOCK, MapleContent.MIKADO_CARPETED_GRASS_BLOCK);
-		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> FoliageColors.getBirchColor(), DuskContent.DUSK_CYPRESS_LEAVES, DuskContent.DUSK_CYPRESS_LEAF_PILE); //TODO
+		ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> GradientColors.getDuskFoliageColor(world, pos), DuskContent.DUSK_CYPRESS_LEAVES, DuskContent.DUSK_CYPRESS_LEAF_PILE);
 	}
 
 	private static void registerItemColors() {
@@ -174,7 +175,7 @@ public class PromenadeClient implements ClientModInitializer {
 		}, VanillaPilesContent.OAK_LEAF_PILE, VanillaPilesContent.SPRUCE_LEAF_PILE, VanillaPilesContent.BIRCH_LEAF_PILE, VanillaPilesContent.JUNGLE_LEAF_PILE, VanillaPilesContent.ACACIA_LEAF_PILE, VanillaPilesContent.DARK_OAK_LEAF_PILE, MapleContent.VERMILION_CARPETED_GRASS_BLOCK, MapleContent.FULVOUS_CARPETED_GRASS_BLOCK, MapleContent.MIKADO_CARPETED_GRASS_BLOCK, GlaglaglaContent.SNOWY_SPRUCE_LEAVES);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> FoliageColors.getMangroveColor(), VanillaPilesContent.MANGROVE_LEAF_PILE);
 		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> SAP_MAPLE_COLOR, MapleContent.SAP_MAPLE_LEAVES, MapleContent.SAP_MAPLE_LEAF_PILE);
-		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> FoliageColors.getBirchColor(), DuskContent.DUSK_CYPRESS_LEAVES, DuskContent.DUSK_CYPRESS_LEAF_PILE); //TODO
+		ColorProviderRegistry.ITEM.register((stack, tintIndex) -> GradientColors.getDuskFoliageColor(null, null), DuskContent.DUSK_CYPRESS_LEAVES, DuskContent.DUSK_CYPRESS_LEAF_PILE);
 	}
 
 	public static void registerEntityRenderers() {
