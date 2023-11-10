@@ -36,6 +36,7 @@ public class Promenade implements ModInitializer {
 		MapleContent.register(REGISTRAR);
 		TropicalContent.register(REGISTRAR);
 		GlaglaglaContent.register(REGISTRAR);
+		DuskContent.register(REGISTRAR);
 		AmaranthContent.register(REGISTRAR);
 
 		if(FabricLoader.getInstance().isModLoaded("columns")) {

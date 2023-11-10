@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=y": {
+			"model": "promenade:block/dusk_cypress/stripped_wood"
+		},
+		"axis=z": {
+			"model": "promenade:block/dusk_cypress/stripped_wood",
+			"x": 90
+		},
+		"axis=x": {
+			"model": "promenade:block/dusk_cypress/stripped_wood",
+			"x": 90,
+			"y": 90
+		}
+	}
+}

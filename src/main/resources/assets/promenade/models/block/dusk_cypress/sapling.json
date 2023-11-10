@@ -1,0 +1,6 @@
+{
+	"parent": "block/cross",
+	"textures": {
+		"cross": "promenade:block/dusk_cypress/sapling"
+	}
+}
