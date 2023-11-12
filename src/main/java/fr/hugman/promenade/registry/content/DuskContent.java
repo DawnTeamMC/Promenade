@@ -11,7 +11,6 @@ import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.block.MapleLogBlock;
 import fr.hugman.promenade.block.StrippedMapleLogBlock;
-import fr.hugman.promenade.gen.tree.foliage.OvalFoliagePlacer;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
 import net.minecraft.block.*;
@@ -21,7 +20,6 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.gen.foliage.FoliagePlacerType;
 
 public class DuskContent {
     public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.registerWood(Promenade.id("dusk_cypress"));

@@ -41,7 +41,7 @@
       "height_rand_b": 2
     },
     "foliage_placer": {
-      "type": "promenade:oval",
+      "type": "promenade:cypress",
       "radius": 2,
       "offset": 3
     },
