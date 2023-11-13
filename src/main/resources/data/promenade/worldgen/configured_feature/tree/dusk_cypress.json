@@ -43,7 +43,8 @@
     "foliage_placer": {
       "type": "promenade:cypress",
       "radius": 2,
-      "offset": 3
+      "offset": 1,
+      "bonus_height": 2
     },
     "decorators": []
   }
