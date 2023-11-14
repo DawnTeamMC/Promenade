@@ -18,7 +18,7 @@ public class GradientColors {
     public static final int DUSK_TURQUOISE = 0x12e6ad;
     public static final int DUSK_BLUE = 0x45bbff;
     public static final int DUSK_PURPLE = 0x702eff;
-    public static final int DUSK_MAGENTA = 0xc453f5;
+    public static final int DUSK_MAGENTA = 0xf284fa;
     public static final int DUSK_MID = ColorUtil.lerp(0.5f, DUSK_TURQUOISE, DUSK_BLUE, DUSK_PURPLE, DUSK_MAGENTA);
     public static final Random RANDOM = new Xoroshiro128PlusPlusRandom(0L);
     public static final PerlinNoiseSampler PERLIN_NOISE = new PerlinNoiseSampler(RANDOM);
