@@ -80,7 +80,7 @@ public class DuskContent {
         r.add("dusk_cypress_leaf_pile", DUSK_CYPRESS_LEAF_PILE);
 
         appendItemGroups();
-        //appendWorldGen();
+        appendWorldGen();
     }
 
     private static void appendItemGroups() {
