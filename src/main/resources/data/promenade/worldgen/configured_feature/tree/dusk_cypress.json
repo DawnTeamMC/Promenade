@@ -42,9 +42,27 @@
     },
     "foliage_placer": {
       "type": "promenade:cypress",
-      "radius": 2,
-      "offset": 1,
-      "bonus_height": 2
+      "radius": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 2,
+          "max_inclusive": 3
+        }
+      },
+      "offset": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 1,
+          "max_inclusive": 2
+        }
+      },
+      "bonus_height": {
+        "type": "minecraft:uniform",
+        "value": {
+          "min_inclusive": 3,
+          "max_inclusive": 5
+        }
+      }
     },
     "decorators": []
   }

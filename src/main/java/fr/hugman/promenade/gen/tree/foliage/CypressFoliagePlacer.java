@@ -35,7 +35,7 @@ public class CypressFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected void generate(TestableWorld world, BlockPlacer placer, Random random, TreeFeatureConfig config, int trunkHeight, TreeNode treeNode, int foliageHeight, int radius, int offset) {
-        var pos = treeNode.getCenter().down(trunkHeight - offset);
+        var pos = treeNode.getCenter().down(trunkHeight - offset + 1);
 
         //TODO: support giant trunks
         //TODO: more configurability?
@@ -45,8 +45,8 @@ public class CypressFoliagePlacer extends FoliagePlacer {
                 int d = Math.abs(dx) + Math.abs(dz);
 
                 // the further we are from the trunk, the lower the height
-                int y1 = Math.max(0, d - 1 + offset);
-                int y2 = Math.min(foliageHeight, foliageHeight - d * 3); //TODO: radius higher => higher height malus (*1 - *1.5 - *2 - *2.5 - *3...)
+                int y1 = Math.max(0, d - 1);
+                int y2 = Math.min(foliageHeight, foliageHeight - d * 3);
 
                 if(y2 <= y1) continue;
 
