@@ -14,11 +14,11 @@ import org.jetbrains.annotations.Nullable;
 
 @Environment(value= EnvType.CLIENT)
 public class GradientColors {
-    public static final double SCALE = 10.0;
+    public static final double DUSK_SCALE = 15.0;
     public static final int DUSK_TURQUOISE = 0x12e6ad;
     public static final int DUSK_BLUE = 0x45bbff;
-    public static final int DUSK_PURPLE = 0x702eff;
-    public static final int DUSK_MAGENTA = 0xf284fa;
+    public static final int DUSK_PURPLE = 0xbb39f7;
+    public static final int DUSK_MAGENTA = 0xf25eeb;
     public static final int DUSK_MID = ColorUtil.lerp(0.5f, DUSK_TURQUOISE, DUSK_BLUE, DUSK_PURPLE, DUSK_MAGENTA);
     public static final Random RANDOM = new Xoroshiro128PlusPlusRandom(0L);
     public static final PerlinNoiseSampler PERLIN_NOISE = new PerlinNoiseSampler(RANDOM);
@@ -28,7 +28,7 @@ public class GradientColors {
             return DUSK_MID;
         }
         //TODO: is a cache needed here?
-        var v = (float) PERLIN_NOISE.sample(pos.getX() / SCALE, pos.getY() / SCALE, pos.getZ() / SCALE, 0.0, 0.0);
+        var v = (float) PERLIN_NOISE.sample(pos.getX() / DUSK_SCALE, pos.getY() / DUSK_SCALE, pos.getZ() / DUSK_SCALE);
         float i = MathHelper.clamp((v + 1) / 2, 0.0f, 1.0f);
         return ColorUtil.lerp(i, DUSK_TURQUOISE, DUSK_BLUE, DUSK_PURPLE, DUSK_MAGENTA);
     }
