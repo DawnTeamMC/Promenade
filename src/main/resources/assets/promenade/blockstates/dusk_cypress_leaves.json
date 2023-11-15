@@ -1,7 +1,7 @@
 {
 	"variants": {
 		"": {
-			"model": "minecraft:block/birch_leaves"
+			"model": "promenade:block/dusk_cypress/leaves"
 		}
 	}
 }
