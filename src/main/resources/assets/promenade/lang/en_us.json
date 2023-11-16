@@ -215,6 +215,7 @@
 	"biome.promenade.cotton_sakura_grove": "Cotton Sakura Grove",
 	"biome.promenade.carnelian_treeway": "Carnelian Treeway",
 	"biome.promenade.glacarian_taiga": "Glacarian Taiga",
+	"biome.promenade.dusk_cypress_forest": "Dusk Cypress Forest",
 	"biome.promenade.dark_amaranth_forest": "Dark Amaranth Forest",
 	"biome.promenade.tall_dark_amaranth_forest": "Tall Dark Amaranth Forest",
 
@@ -246,6 +247,7 @@
 	"text.autoconfig.promenade.option.biomes.carnelian_treeway_weight": "Generation weight of Carnelian Treeways",
 	"text.autoconfig.promenade.option.biomes.sakura_groves_weight": "Generation weight of Sakura Groves",
 	"text.autoconfig.promenade.option.biomes.glacarian_taiga_weight": "Generation weight of Glacarian Taigas",
+	"text.autoconfig.promenade.option.biomes.dusk_cypress_forest_weight": "Generation weight of Dusk Cypress Forests",
 	"text.autoconfig.promenade.option.biomes.dark_amaranth_forests_weight": "Generation weight of Dark Amaranth Forests",
 	"text.autoconfig.promenade.option.world_features.igneous_rock_patches": "Generate patches of new igneous rocks",
 	"text.autoconfig.promenade.option.world_features.igneous_rock_patches.@Tooltip": "Generate patches of Asphalt and Blunite",

@@ -23,7 +23,6 @@ public class Promenade implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		PromenadeSurfaceBuilders.init();
-
 		PromenadeTrackedData.init();
 		PromenadeSensorTypes.register(REGISTRAR);
 
