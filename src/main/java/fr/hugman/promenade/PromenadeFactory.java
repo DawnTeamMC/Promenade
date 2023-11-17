@@ -1,12 +1,15 @@
 package fr.hugman.promenade;
 
+import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.block.DawnBlockSettings;
 import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.promenade.block.CarpetedGrassBlock;
 import fr.hugman.promenade.block.PileBlock;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
+import fr.hugman.promenade.block.StarryLeavesBlock;
 import fr.hugman.promenade.registry.content.GlaglaglaContent;
 import net.minecraft.block.Block;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EntityType;
@@ -64,5 +67,14 @@ public final class PromenadeFactory {
 				.burnable(30, 60)
 				.pistonBehavior(PistonBehavior.DESTROY)
 				.solidBlock((state, world, pos) -> false));
+	}
+
+	public static StarryLeavesBlock starryLeaves(MapColor mapColor) {
+		return starryLeaves(mapColor, BlockSoundGroup.GRASS);
+	}
+
+	public static StarryLeavesBlock starryLeaves(MapColor mapColor, BlockSoundGroup soundGroup) {
+		return new StarryLeavesBlock(DawnFactory.leavesSettings(mapColor, soundGroup)
+				.luminance(state -> state.get(StarryLeavesBlock.HAS_STARS) ? 8 : 0));
 	}
 }

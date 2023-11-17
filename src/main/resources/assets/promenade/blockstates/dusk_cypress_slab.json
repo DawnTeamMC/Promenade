@@ -1,0 +1,13 @@
+{
+	"variants": {
+		"type=bottom": {
+			"model": "promenade:block/dusk_cypress/slab/bottom"
+		},
+		"type=top": {
+			"model": "promenade:block/dusk_cypress/slab/top"
+		},
+		"type=double": {
+			"model": "promenade:block/dusk_cypress/planks"
+		}
+	}
+}

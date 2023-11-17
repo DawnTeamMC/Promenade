@@ -50,7 +50,7 @@ public class DuskContent {
 
     public static final Block DUSK_CYPRESS_SAPLING = DawnFactory.sapling(LEAVES_COLOR, new SingleSaplingGenerator(Promenade.id("tree/dusk_cypress")));
     public static final Block POTTED_DUSK_CYPRESS_SAPLING = DawnFactory.potted(DUSK_CYPRESS_SAPLING);
-    public static final Block DUSK_CYPRESS_LEAVES = DawnFactory.leaves(LEAVES_COLOR);
+    public static final Block DUSK_CYPRESS_LEAVES = PromenadeFactory.starryLeaves(LEAVES_COLOR);
     public static final Block DUSK_CYPRESS_LEAF_PILE = PromenadeFactory.leafPile(LEAVES_COLOR);
 
     public static final RegistryKey<Biome> DUSK_CYPRESS_FOREST = DawnFactory.biome(Promenade.id("dusk_cypress_forest"));
