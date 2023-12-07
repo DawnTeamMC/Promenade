@@ -1,6 +1,7 @@
 package fr.hugman.promenade;
 
 import fr.hugman.dawn.Registrar;
+import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
@@ -37,6 +38,8 @@ public class Promenade implements ModInitializer {
 		TropicalContent.register(REGISTRAR);
 		GlaglaglaContent.register(REGISTRAR);
 		AmaranthContent.register(REGISTRAR);
+
+		PromenadeBlocks.register(REGISTRAR);
 
 		if(FabricLoader.getInstance().isModLoaded("columns")) {
 			//TODO: haykam
