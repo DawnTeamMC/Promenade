@@ -9,6 +9,7 @@ import net.minecraft.block.entity.DispenserBlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -102,7 +103,7 @@ public class SparklerBlock extends FacingBlock {
             world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
             return ActionResult.SUCCESS;
         }
-        return ActionResult.CONSUME;
+        return super.onUse(state, world, pos, player, hand, hit);
     }
 
     // =======================
@@ -147,12 +148,21 @@ public class SparklerBlock extends FacingBlock {
         this.sparkle(world, pos);
     }
 
-
     /**
      * Dispenses particles from the front face of the block.
      */
     protected void sparkle(ServerWorld world, BlockPos pos) {
         var state = world.getBlockState(pos);
         var direction = state.get(FACING);
+        var sparklerPos = pos.offset(direction);
+        var sparklerState = world.getBlockState(sparklerPos);
+
+        //TODO: the block behind the sparkler will define the type of particle to dispense
+        // for now we will have a generic particle
+        var particle = ParticleTypes.SNOWFLAKE;
+
+
+
+
     }
 }

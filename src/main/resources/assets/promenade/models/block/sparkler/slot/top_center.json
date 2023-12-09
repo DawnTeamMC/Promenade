@@ -1,0 +1,14 @@
+{
+  "textures": {
+    "texture": "promenade:block/sparkler/front/blocked"
+  },
+  "elements": [
+    {
+      "from": [6, 11, 0],
+      "to": [10, 15, 0],
+      "faces": {
+        "north": {"uv": [0, 0, 6, 8], "texture": "#texture", "cullface": "north"}
+      }
+    }
+  ]
+}

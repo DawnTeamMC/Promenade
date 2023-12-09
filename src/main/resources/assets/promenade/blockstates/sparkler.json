@@ -1,0 +1,158 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/body",
+        "uvlock": true,
+        "y": 0
+      },
+      "when": {
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/top_left",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_0_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/top_center",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_1_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/top_right",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_2_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/middle_left",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_3_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/middle_center",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_4_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/middle_right",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_5_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/bottom_left",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_6_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/bottom_center",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_7_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/bottom_right",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_8_open": "true"
+          }
+        ]
+      }
+    }
+  ]
+}
