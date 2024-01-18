@@ -2,7 +2,6 @@
   "parent": "minecraft:block/block",
   "textures": {
     "block": "minecraft:block/quartz_block_side",
-    "front": "promenade:block/sparkler/front/frame",
     "particle": "minecraft:block/quartz_block_side"
   },
   "elements": [
@@ -19,11 +18,6 @@
           "texture": "#block",
           "uv": [0, 16, 16, 0],
           "cullface": "up"
-        },
-        "north": {
-          "texture": "#front",
-          "uv": [0, 0, 16, 16],
-          "cullface": "north"
         },
         "south": {
           "texture": "#block",

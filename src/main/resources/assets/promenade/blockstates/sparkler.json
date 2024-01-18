@@ -12,7 +12,23 @@
     },
     {
       "apply": {
-        "model": "promenade:block/sparkler/slot/top_left",
+        "model": "promenade:block/sparkler/slot/blocked/top_left",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_0_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_left",
         "y": 0
       },
       "when": {
@@ -28,7 +44,23 @@
     },
     {
       "apply": {
-        "model": "promenade:block/sparkler/slot/top_center",
+        "model": "promenade:block/sparkler/slot/blocked/top_center",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_1_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_center",
         "y": 0
       },
       "when": {
@@ -44,7 +76,23 @@
     },
     {
       "apply": {
-        "model": "promenade:block/sparkler/slot/top_right",
+        "model": "promenade:block/sparkler/slot/blocked/top_right",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_2_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_right",
         "y": 0
       },
       "when": {
@@ -60,7 +108,23 @@
     },
     {
       "apply": {
-        "model": "promenade:block/sparkler/slot/middle_left",
+        "model": "promenade:block/sparkler/slot/blocked/middle_left",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_3_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_left",
         "y": 0
       },
       "when": {
@@ -76,7 +140,23 @@
     },
     {
       "apply": {
-        "model": "promenade:block/sparkler/slot/middle_center",
+        "model": "promenade:block/sparkler/slot/blocked/middle_center",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_4_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_center",
         "y": 0
       },
       "when": {
@@ -92,7 +172,23 @@
     },
     {
       "apply": {
-        "model": "promenade:block/sparkler/slot/middle_right",
+        "model": "promenade:block/sparkler/slot/blocked/middle_right",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_5_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_right",
         "y": 0
       },
       "when": {
@@ -108,7 +204,23 @@
     },
     {
       "apply": {
-        "model": "promenade:block/sparkler/slot/bottom_left",
+        "model": "promenade:block/sparkler/slot/blocked/bottom_left",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_6_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_left",
         "y": 0
       },
       "when": {
@@ -124,7 +236,23 @@
     },
     {
       "apply": {
-        "model": "promenade:block/sparkler/slot/bottom_center",
+        "model": "promenade:block/sparkler/slot/blocked/bottom_center",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_7_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_center",
         "y": 0
       },
       "when": {
@@ -140,13 +268,1527 @@
     },
     {
       "apply": {
-        "model": "promenade:block/sparkler/slot/bottom_right",
+        "model": "promenade:block/sparkler/slot/blocked/bottom_right",
         "y": 0
       },
       "when": {
         "AND": [
           {
             "facing": "north"
+          },
+          {
+            "slot_8_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_right",
+        "y": 0
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "north"
+          },
+          {
+            "slot_8_open": "true"
+          }
+        ]
+      }
+    },
+
+
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/body",
+        "uvlock": true,
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_left",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_0_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_left",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_0_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_center",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_1_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_center",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_1_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_right",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_2_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_right",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_2_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_left",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_3_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_left",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_3_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_center",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_4_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_center",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_4_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_right",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_5_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_right",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_5_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_left",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_6_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_left",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_6_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_center",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_7_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_center",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_7_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_right",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_8_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_right",
+        "y": 180
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "south"
+          },
+          {
+            "slot_8_open": "true"
+          }
+        ]
+      }
+    },
+
+
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/body",
+        "uvlock": true,
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_left",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_0_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_left",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_0_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_center",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_1_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_center",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_1_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_right",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_2_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_right",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_2_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_left",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_3_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_left",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_3_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_center",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_4_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_center",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_4_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_right",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_5_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_right",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_5_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_left",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_6_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_left",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_6_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_center",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_7_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_center",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_7_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_right",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_8_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_right",
+        "y": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "west"
+          },
+          {
+            "slot_8_open": "true"
+          }
+        ]
+      }
+    },
+
+
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/body",
+        "uvlock": true,
+        "y": 90
+      },
+      "when": {
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_left",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_0_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_left",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_0_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_center",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_1_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_center",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_1_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_right",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_2_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_right",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_2_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_left",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_3_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_left",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_3_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_center",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_4_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_center",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_4_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_right",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_5_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_right",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_5_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_left",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_6_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_left",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_6_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_center",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_7_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_center",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_7_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_right",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_8_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_right",
+        "y": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "east"
+          },
+          {
+            "slot_8_open": "true"
+          }
+        ]
+      }
+    },
+
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/body",
+        "uvlock": true,
+        "x": 90
+      },
+      "when": {
+        "facing": "down"
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_left",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_0_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_left",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_0_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_center",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_1_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_center",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_1_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_right",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_2_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_right",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_2_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_left",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_3_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_left",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_3_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_center",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_4_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_center",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_4_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_right",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_5_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_right",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_5_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_left",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_6_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_left",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_6_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_center",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_7_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_center",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_7_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_right",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_8_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_right",
+        "x": 90
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "down"
+          },
+          {
+            "slot_8_open": "true"
+          }
+        ]
+      }
+    },
+
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/body",
+        "uvlock": true,
+        "x": 270
+      },
+      "when": {
+        "facing": "up"
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_left",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_0_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_left",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_0_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_center",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_1_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_center",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_1_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/top_right",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_2_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/top_right",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_2_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_left",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_3_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_left",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_3_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_center",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_4_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_center",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_4_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/middle_right",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_5_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/middle_right",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_5_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_left",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_6_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_left",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_6_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_center",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_7_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_center",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_7_open": "true"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/blocked/bottom_right",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
+          },
+          {
+            "slot_8_open": "false"
+          }
+        ]
+      }
+    },
+    {
+      "apply": {
+        "model": "promenade:block/sparkler/slot/open/bottom_right",
+        "x": 270
+      },
+      "when": {
+        "AND": [
+          {
+            "facing": "up"
           },
           {
             "slot_8_open": "true"

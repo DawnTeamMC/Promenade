@@ -52,7 +52,7 @@ public class SparklerBlock extends FacingBlock {
         super(settings);
         BlockState state = this.stateManager.getDefaultState().with(FACING, Direction.SOUTH).with(TRIGGERED, false);
         for (BooleanProperty property : SLOT_OPEN_PROPERTIES) {
-            state = state.with(property, false);
+            state = state.with(property, true);
         }
         this.setDefaultState(state);
     }

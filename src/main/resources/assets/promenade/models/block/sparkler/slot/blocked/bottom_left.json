@@ -1,0 +1,15 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"texture": "promenade:block/sparkler/front/blocked"
+	},
+	"elements": [
+		{
+			"from": [10, 0, 0],
+			"to": [16, 5, 0],
+			"faces": {
+				"north": {"uv": [0, 11, 6, 16], "texture": "#texture", "cullface": "north"}
+			}
+		}
+	]
+}
