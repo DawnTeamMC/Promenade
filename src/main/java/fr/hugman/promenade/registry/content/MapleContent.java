@@ -181,6 +181,6 @@ public class MapleContent {
 			return;
 		}
 		double weight = Promenade.CONFIG.biomes.carnelian_treeway_weight / 100.0D;
-		BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, CARNELIAN_TREEWAY, weight);
+		BiomePlacement.replaceOverworld(BiomeKeys.BIRCH_FOREST, CARNELIAN_TREEWAY, weight);
 	}
 }

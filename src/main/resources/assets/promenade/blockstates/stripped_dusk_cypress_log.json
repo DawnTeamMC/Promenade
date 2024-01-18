@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=y": {
+			"model": "promenade:block/dusk_cypress/stripped_log"
+		},
+		"axis=z": {
+			"model": "promenade:block/dusk_cypress/stripped_log",
+			"x": 90
+		},
+		"axis=x": {
+			"model": "promenade:block/dusk_cypress/stripped_log",
+			"x": 90,
+			"y": 90
+		}
+	}
+}

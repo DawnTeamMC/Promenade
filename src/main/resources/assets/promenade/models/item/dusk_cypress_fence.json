@@ -1,0 +1,6 @@
+{
+	"parent": "block/fence_inventory",
+	"textures": {
+		"texture": "promenade:block/dusk_cypress/planks"
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"powered=false": {
+			"model": "promenade:block/dusk_cypress/pressure_plate/unpressed"
+		},
+		"powered=true": {
+			"model": "promenade:block/dusk_cypress/pressure_plate/pressed"
+		}
+	}
+}

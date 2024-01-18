@@ -4,6 +4,7 @@ import fr.hugman.dawn.Registrar;
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
+import fr.hugman.promenade.gen.surface.PromenadeSurfaceBuilders;
 import fr.hugman.promenade.registry.content.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
@@ -21,6 +22,7 @@ public class Promenade implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		PromenadeSurfaceBuilders.init();
 		PromenadeTrackedData.init();
 		PromenadeSensorTypes.register(REGISTRAR);
 
@@ -36,6 +38,7 @@ public class Promenade implements ModInitializer {
 		MapleContent.register(REGISTRAR);
 		TropicalContent.register(REGISTRAR);
 		GlaglaglaContent.register(REGISTRAR);
+		DuskContent.register(REGISTRAR);
 		AmaranthContent.register(REGISTRAR);
 
 		if(FabricLoader.getInstance().isModLoaded("columns")) {
