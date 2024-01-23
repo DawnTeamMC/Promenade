@@ -57,7 +57,7 @@ public class DefaultedRegistryMixin {
 		promenadeUpdatedIDs.put("polished_carbonite_slab", "polished_asphalt_slab");
 		promenadeUpdatedIDs.put("polished_carbonite_stairs", "polished_asphalt_stairs");
 		if (id != null) {
-			// Various MOD_ID renames across mod versions, including Mythic Metals Decorations
+			// Remap the IDs whenever one in the HashMap pops up
 			if (id.getNamespace().equals("promenade")) {
 				String objectPath = id.getPath();
 				if (promenadeUpdatedIDs.containsKey(objectPath)) {
