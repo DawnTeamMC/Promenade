@@ -19,14 +19,57 @@ public class DefaultedRegistryMixin {
 	Identifier fixMissingFromRegistry(@Nullable Identifier id) {
 		if (id != null) {
 			// Various MOD_ID renames across mod versions, including Mythic Metals Decorations
-			if (id.getPath().equals("mm_decorations"))
-				return new Identifier("mythicmetals_decorations", id.getPath());
-			if (id.getNamespace().equals("mythicaddons") && !id.getPath().contains("aegis"))
-				return new Identifier("mythicmetals_decorations", id.getPath());
-			if (id.getNamespace().equals("mythicaddons") && id.getPath().contains("aegis"))
-				return new Identifier(MythicMetals.MOD_ID, id.getPath());
-			if (LegacyIds.getLegacyIds().containsKey(id))
-				return LegacyIds.getLegacyIds().get(id);
+			if (id.getNamespace().equals("promenade")) {
+				if (id.getPath().equals("autumn_oak_leaves")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("autumn_birch_leaves")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("autumn_oak_sapling")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("autumn_birch_sapling")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("autumn_oak_leaf_pile")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("autumn_birch_leaf_pile")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("potted_autumn_oak_sapling")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("potted_autumn_birch_sapling")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("pink_cherry_oak_leaves")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("white_cherry_oak_leaves")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("pink_cherry_oak_sapling")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("white_cherry_oak_sapling")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("pink_cherry_oak_leaf_pile")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("white_cherry_oak_leaf_pile")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("potted_pink_cherry_oak_sapling")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("potted_white_cherry_oak_sapling")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("cherry_oak_door")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("carbonite")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("carbonite_slab")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("carbonite_stairs")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("carbonite_wall")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("polished_carbonite")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("polished_carbonite_slab")) {
+					return new Identifier("promenade", "");
+				} else if (id.getPath().equals("polished_carbonite_stairs")) {
+					return new Identifier("promenade", "");
+				}
+			}
 		}
 		return id;
 	}
