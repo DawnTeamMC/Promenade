@@ -9,6 +9,45 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
+// A map for storing and retrieving remapped IDs
+Map promenadeUpdatedIDs = new HashMap();
+promenadeUpdatedIDs.put("autumn_oak_leaves", "fulvous_maple_leaves");
+promenadeUpdatedIDs.put("autumn_birch_leaves", "mikado_maple_leaves");
+promenadeUpdatedIDs.put("autumn_oak_sapling", "fulvous_maple_sapling");
+promenadeUpdatedIDs.put("autumn_birch_sapling", "mikado_maple_sapling");
+promenadeUpdatedIDs.put("autumn_oak_leaf_pile", "fulvous_maple_leaf_pile");
+promenadeUpdatedIDs.put("autumn_birch_leaf_pile", "mikado_maple_leaf_pile");
+promenadeUpdatedIDs.put("potted_autumn_oak_sapling", "potted_fulvous_maple_sapling");
+promenadeUpdatedIDs.put("potted_autumn_birch_sapling", "potted_mikado_maple_sapling");
+promenadeUpdatedIDs.put("pink_cherry_oak_leaves", "blush_sakura_blossoms");
+promenadeUpdatedIDs.put("white_cherry_oak_leaves", "cotton_sakura_blossoms");
+promenadeUpdatedIDs.put("pink_cherry_oak_sapling", "blush_sakura_sapling");
+promenadeUpdatedIDs.put("white_cherry_oak_sapling", "cotton_sakura_sapling");
+promenadeUpdatedIDs.put("pink_cherry_oak_leaf_pile", "blush_sakura_blossom_pile");
+promenadeUpdatedIDs.put("white_cherry_oak_leaf_pile", "cotton_sakura_blossom_pile");
+promenadeUpdatedIDs.put("potted_pink_cherry_oak_sapling", "potted_blush_sakura_sapling");
+promenadeUpdatedIDs.put("potted_white_cherry_oak_sapling", "potted_cotton_sakura_sapling");
+promenadeUpdatedIDs.put("cherry_oak_door", "sakura_door");
+promenadeUpdatedIDs.put("cherry_oak_fence_gate", "sakura_fence_gate");
+promenadeUpdatedIDs.put("cherry_oak_fence", "sakura_fence");
+promenadeUpdatedIDs.put("cherry_oak_button", "sakura_button");
+promenadeUpdatedIDs.put("cherry_oak_pressure_plate", "sakura_pressure_plate");
+promenadeUpdatedIDs.put("cherry_oak_trapdoor", "sakura_trapdoor");
+promenadeUpdatedIDs.put("cherry_oak_planks", "sakura_planks");
+promenadeUpdatedIDs.put("cherry_oak_log", "sakura_log");
+promenadeUpdatedIDs.put("cherry_oak_wood", "sakura_wood");
+promenadeUpdatedIDs.put("stripped_cherry_oak_log", "stripped_sakura_log");
+promenadeUpdatedIDs.put("stripped_cherry_oak_wood", "stripped_sakura_wood");
+promenadeUpdatedIDs.put("cherry_oak_stairs", "sakura_stairs");
+promenadeUpdatedIDs.put("cherry_oak_slab", "sakura_slab");
+promenadeUpdatedIDs.put("carbonite", "asphalt");
+promenadeUpdatedIDs.put("carbonite_slab", "asphalt_slab");
+promenadeUpdatedIDs.put("carbonite_stairs", "asphalt_stairs");
+promenadeUpdatedIDs.put("carbonite_wall", "asphalt_wall");
+promenadeUpdatedIDs.put("polished_carbonite", "polished_asphalt");
+promenadeUpdatedIDs.put("polished_carbonite_slab", "polished_asphalt_slab");
+promenadeUpdatedIDs.put("polished_carbonite_stairs", "polished_asphalt_stairs");
+
 // This Mixin is a class that works as a datafixer.
 // Upon loading a world it will check for missing objects in the recipe and replace them in order to
 // prevent air pockets when upgrading from older worlds, as well as returning changed/removed items.
@@ -20,81 +59,12 @@ public class DefaultedRegistryMixin {
 		if (id != null) {
 			// Various MOD_ID renames across mod versions, including Mythic Metals Decorations
 			if (id.getNamespace().equals("promenade")) {
-				if (id.getPath().equals("autumn_oak_leaves")) {
-					return new Identifier("promenade", "fulvous_maple_leaves");
-				} else if (id.getPath().equals("autumn_birch_leaves")) {
-					return new Identifier("promenade", "mikado_maple_leaves");
-				} else if (id.getPath().equals("autumn_oak_sapling")) {
-					return new Identifier("promenade", "fulvous_maple_sapling");
-				} else if (id.getPath().equals("autumn_birch_sapling")) {
-					return new Identifier("promenade", "mikado_maple_sapling");
-				} else if (id.getPath().equals("autumn_oak_leaf_pile")) {
-					return new Identifier("promenade", "fulvous_maple_leaf_pile");
-				} else if (id.getPath().equals("autumn_birch_leaf_pile")) {
-					return new Identifier("promenade", "mikado_maple_leaf_pile");
-				} else if (id.getPath().equals("potted_autumn_oak_sapling")) {
-					return new Identifier("promenade", "potted_fulvous_maple_sapling");
-				} else if (id.getPath().equals("potted_autumn_birch_sapling")) {
-					return new Identifier("promenade", "potted_mikado_maple_sapling");
-				} else if (id.getPath().equals("pink_cherry_oak_leaves")) {
-					return new Identifier("promenade", "blush_sakura_blossoms");
-				} else if (id.getPath().equals("white_cherry_oak_leaves")) {
-					return new Identifier("promenade", "cotton_sakura_blossoms");
-				} else if (id.getPath().equals("pink_cherry_oak_sapling")) {
-					return new Identifier("promenade", "blush_sakura_sapling");
-				} else if (id.getPath().equals("white_cherry_oak_sapling")) {
-					return new Identifier("promenade", "cotton_sakura_sapling");
-				} else if (id.getPath().equals("pink_cherry_oak_leaf_pile")) {
-					return new Identifier("promenade", "blush_sakura_blossom_pile");
-				} else if (id.getPath().equals("white_cherry_oak_leaf_pile")) {
-					return new Identifier("promenade", "cotton_sakura_blossom_pile");
-				} else if (id.getPath().equals("potted_pink_cherry_oak_sapling")) {
-					return new Identifier("promenade", "potted_blush_sakura_sapling");
-				} else if (id.getPath().equals("potted_white_cherry_oak_sapling")) {
-					return new Identifier("promenade", "potted_cotton_sakura_sapling");
-				} else if (id.getPath().equals("cherry_oak_door")) {
-					return new Identifier("promenade", "sakura_door");
-				} else if (id.getPath().equals("cherry_oak_fence_gate")) {
-					return new Identifier("promenade", "sakura_fence_gate");
-				} else if (id.getPath().equals("cherry_oak_fence")) {
-					return new Identifier("promenade", "sakura_fence");
-				} else if (id.getPath().equals("cherry_oak_button")) {
-					return new Identifier("promenade", "sakura_button");
-				} else if (id.getPath().equals("cherry_oak_pressure_plate")) {
-					return new Identifier("promenade", "sakura_pressure_plate");
-				} else if (id.getPath().equals("cherry_oak_trapdoor")) {
-					return new Identifier("promenade", "sakura_trapdoor");
-				} else if (id.getPath().equals("cherry_oak_planks")) {
-					return new Identifier("promenade", "sakura_planks");
-				} else if (id.getPath().equals("cherry_oak_log")) {
-					return new Identifier("promenade", "sakura_log");
-				} else if (id.getPath().equals("cherry_oak_wood")) {
-					return new Identifier("promenade", "sakura_wood");
-				} else if (id.getPath().equals("stripped_cherry_oak_log")) {
-					return new Identifier("promenade", "stripped_sakura_log");
-				} else if (id.getPath().equals("stripped_cherry_oak_wood")) {
-					return new Identifier("promenade", "stripped_sakura_wood");
-				} else if (id.getPath().equals("cherry_oak_stairs")) {
-					return new Identifier("promenade", "sakura_stairs");
-				} else if (id.getPath().equals("cherry_oak_slab")) {
-					return new Identifier("promenade", "sakura_slab");
-				} else if (id.getPath().equals("carbonite")) {
-					return new Identifier("promenade", "asphalt");
-				} else if (id.getPath().equals("carbonite_slab")) {
-					return new Identifier("promenade", "asphalt_slab");
-				} else if (id.getPath().equals("carbonite_stairs")) {
-					return new Identifier("promenade", "asphalt_stairs");
-				} else if (id.getPath().equals("carbonite_wall")) {
-					return new Identifier("promenade", "asphalt_wall");
-				} else if (id.getPath().equals("polished_carbonite")) {
-					return new Identifier("promenade", "polished_asphalt");
-				} else if (id.getPath().equals("polished_carbonite_slab")) {
-					return new Identifier("promenade", "polished_asphalt_slab");
-				} else if (id.getPath().equals("polished_carbonite_stairs")) {
-					return new Identifier("promenade", "polished_asphalt_stairs");
+			  String objectPath = id.getPath();
+				if (promenadeUpdatedIDs.containsKey(objectPath)) {
+				  return new Identifier("promenade", promenadeUpdatedIDs.get(objectPath).getValue());
 				} else {
-					return id;
-				}
+				  return id;
+				};
 			} else {
 				return id;
 			}
