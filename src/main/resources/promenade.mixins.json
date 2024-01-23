@@ -2,7 +2,7 @@
   "required": true,
   "package": "fr.hugman.promenade.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": ["AxeItemMixin", "LivingEntityMixin"],
+  "mixins": ["AxeItemMixin", "LivingEntityMixin", "DefaultedRegistryMixin"],
   "injectors": {
     "defaultRequire": 1
   }
