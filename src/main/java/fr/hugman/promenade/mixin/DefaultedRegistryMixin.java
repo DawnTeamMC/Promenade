@@ -92,7 +92,11 @@ public class DefaultedRegistryMixin {
 					return new Identifier("promenade", "polished_asphalt_slab");
 				} else if (id.getPath().equals("polished_carbonite_stairs")) {
 					return new Identifier("promenade", "polished_asphalt_stairs");
+				} else {
+					return id;
 				}
+			} else {
+				return id;
 			}
 		}
 		return id;
