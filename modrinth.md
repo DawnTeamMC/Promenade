@@ -63,6 +63,11 @@ Promenade is compatible with the following mods:
 - Columns: [GitHub](https://github.com/haykam821/Columns) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/columns)
 - Farming for Blockheads: [GitHub](https://github.com/ModdingForBlockheads/FarmingForBlockheads) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/farming-for-blockheads-fabric)
 
+## 🌟 Special Thanks
+
+- **Monika Carpenter** ([LudoCrypt](https://ludocrypt.crd.co/)) - Musician
+- **Lylian** ([@LYLIVN](https://twitter.com/LYLIVN)) - Sound Artist
+
 ## ❤️ Support
 [![Patreon supporters](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3DHugman%26type%3Dpatrons&style=flat-square)](https://patreon.com/Hugman)
 
