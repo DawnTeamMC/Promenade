@@ -94,7 +94,10 @@
 		"subtitle": "subtitles.promenade.entity.capybara.ambient",
 		"sounds": [
 			"promenade:entity/capybara/ambient/1",
-			"promenade:entity/capybara/ambient/2"
+			"promenade:entity/capybara/ambient/2",
+			"promenade:entity/capybara/ambient/3",
+			"promenade:entity/capybara/ambient/4",
+			"promenade:entity/capybara/ambient/5"
 		]
 	},
 	"entity.capybara.fart": {

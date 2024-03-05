@@ -270,6 +270,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
             this.earWiggleAnimState.start(this.age);
         } else {
             --this.earWiggleCooldown;
+            
         }
 
         switch (this.getState()) {
