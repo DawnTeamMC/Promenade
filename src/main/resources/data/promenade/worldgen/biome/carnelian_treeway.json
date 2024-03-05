@@ -14,12 +14,6 @@
       "tick_delay": 6000,
       "block_search_extent": 8,
       "offset": 2
-    },
-    "particle": {
-      "options": {
-        "type": "promenade:maple_leaf"
-      },
-      "probability": 0.001
     }
   },
   "spawners": {

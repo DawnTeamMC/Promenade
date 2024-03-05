@@ -6,6 +6,7 @@ import fr.hugman.promenade.client.render.entity.CapybaraRenderer;
 import fr.hugman.promenade.client.render.entity.DuckRenderer;
 import fr.hugman.promenade.client.render.entity.LushCreeperRenderer;
 import fr.hugman.promenade.client.render.entity.SunkenSkeletonRenderer;
+import fr.hugman.promenade.particle.FallingLeafParticle;
 import fr.hugman.promenade.particle.FloatingParticle;
 import fr.hugman.promenade.registry.content.*;
 import net.fabricmc.api.ClientModInitializer;
@@ -20,6 +21,8 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.color.world.FoliageColors;
 import net.minecraft.client.color.world.GrassColors;
+import net.minecraft.client.particle.CherryLeavesParticle;
+import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 
@@ -33,9 +36,12 @@ public class PromenadeClient implements ClientModInitializer {
 		PromenadeClient.registerItemColors();
 		PromenadeClient.registerEntityRenderers();
 
-		ParticleFactoryRegistry.getInstance().register(SakuraContent.BLUSH_SAKURA_BLOSSOM, FloatingParticle.BlossomFactory::new);
-		ParticleFactoryRegistry.getInstance().register(SakuraContent.COTTON_SAKURA_BLOSSOM, FloatingParticle.BlossomFactory::new);
-		ParticleFactoryRegistry.getInstance().register(MapleContent.MAPLE_LEAF, FloatingParticle.MapleLeafFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SakuraContent.BLUSH_SAKURA_BLOSSOM, FallingLeafParticle.BlossomFactory::new);
+		ParticleFactoryRegistry.getInstance().register(SakuraContent.COTTON_SAKURA_BLOSSOM, FallingLeafParticle.BlossomFactory::new);
+
+		ParticleFactoryRegistry.getInstance().register(MapleContent.MIKADO_MAPLE_LEAF, FallingLeafParticle.MapleLeafFactory::new);
+		ParticleFactoryRegistry.getInstance().register(MapleContent.FULVOUS_MAPLE_LEAF, FallingLeafParticle.MapleLeafFactory::new);
+		ParticleFactoryRegistry.getInstance().register(MapleContent.VERMILION_MAPLE_LEAF, FallingLeafParticle.MapleLeafFactory::new);
 
 		ClientRegistrar.add(SakuraContent.SAKURA_SIGNS);
 		ClientRegistrar.add(SakuraContent.SAKURA_BOAT_TYPE);
