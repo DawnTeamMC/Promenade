@@ -8,11 +8,9 @@ import net.minecraft.particle.DefaultParticleType;
 
 @Environment(value = EnvType.CLIENT)
 public class FallingLeafParticle extends SpriteBillboardParticle {
-    private static final float field_43372 = 0.0025f;
-    private static final int field_43373 = 300;
-    private static final int field_43366 = 300;
-    private static final float field_43367 = 0.25f;
-    private static final float field_43368 = 2.0f;
+    private static final float velocityIncrement = 0.0025f;
+    private static final int MAX_AGE = 300;
+    private static final float SPEED = 2.0f;
     private float field_43369;
     private final float field_43370;
     private final float field_43371;
@@ -24,7 +22,7 @@ public class FallingLeafParticle extends SpriteBillboardParticle {
         this.field_43369 = (float)Math.toRadians(this.random.nextBoolean() ? -30.0 : 30.0);
         this.field_43370 = this.random.nextFloat();
         this.field_43371 = (float)Math.toRadians(this.random.nextBoolean() ? -5.0 : 5.0);
-        this.maxAge = 300;
+        this.maxAge = MAX_AGE;
         this.gravityStrength = 7.5E-4f;
         this.scale = f = this.random.nextBoolean() ? 0.05f : 0.075f;
         this.setBoundingBoxSpacing(f, f);
@@ -48,12 +46,12 @@ public class FallingLeafParticle extends SpriteBillboardParticle {
         if (this.dead) {
             return;
         }
-        float f = 300 - this.maxAge;
-        float g = Math.min(f / 300.0f, 1.0f);
-        double d = Math.cos(Math.toRadians(this.field_43370 * 60.0f)) * 2.0 * Math.pow(g, 1.25);
-        double e = Math.sin(Math.toRadians(this.field_43370 * 60.0f)) * 2.0 * Math.pow(g, 1.25);
-        this.velocityX += d * (double)field_43372;
-        this.velocityZ += e * (double)field_43372;
+        float f = MAX_AGE - this.maxAge;
+        float g = Math.min(f / MAX_AGE, 1.0f);
+        double d = Math.cos(Math.toRadians(this.field_43370 * 60.0f)) * SPEED * Math.pow(g, 1.25);
+        double e = Math.sin(Math.toRadians(this.field_43370 * 60.0f)) * SPEED * Math.pow(g, 1.25);
+        this.velocityX += d * (double) velocityIncrement;
+        this.velocityZ += e * (double) velocityIncrement;
         this.velocityY -= this.gravityStrength;
         this.field_43369 += this.field_43371 / 20.0f;
         this.prevAngle = this.angle;
