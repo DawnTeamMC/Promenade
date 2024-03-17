@@ -15,11 +15,13 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
+//TODO add Codec
 public class StrippedMapleLogBlock extends PillarBlock {
 	public static final BooleanProperty DRIP = PromenadeBlockProperties.DRIP;
 
@@ -37,10 +39,9 @@ public class StrippedMapleLogBlock extends PillarBlock {
 	}
 
 	@Override
-	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+	protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		// if the player is holding a bottle, they can collect the syrup
 		if(state.get(DRIP)) {
-			ItemStack stack = player.getStackInHand(hand);
 			if(stack.getItem() == Items.GLASS_BOTTLE) {
 				stack.decrement(1);
 				world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
@@ -53,9 +54,9 @@ public class StrippedMapleLogBlock extends PillarBlock {
 				world.emitGameEvent(player, GameEvent.FLUID_PICKUP, pos);
 				player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
 				world.setBlockState(pos, state.with(DRIP, false));
-				return ActionResult.success(world.isClient);
+				return ItemActionResult.success(world.isClient);
 			}
 		}
-		return super.onUse(state, world, pos, player, hand, hit);
+		return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
 	}
 }

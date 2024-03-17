@@ -1,6 +1,8 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.state.property.PromenadeBlockProperties;
+import net.minecraft.block.BigDripleafBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
@@ -16,11 +18,17 @@ import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 public class MoaiBlock extends HorizontalFacingBlock {
+	public static final MapCodec<MoaiBlock> CODEC = createCodec(MoaiBlock::new);
 	public static final EnumProperty<MoaiType> TYPE = PromenadeBlockProperties.MOAI_TYPE;
 
 	public MoaiBlock(Settings settings) {
 		super(settings);
 		this.setDefaultState(this.stateManager.getDefaultState().with(TYPE, MoaiType.SINGLE).with(FACING, Direction.NORTH));
+	}
+
+	@Override
+	protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+		return CODEC;
 	}
 
 	@Override

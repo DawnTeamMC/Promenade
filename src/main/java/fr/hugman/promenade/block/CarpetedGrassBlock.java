@@ -8,6 +8,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 
+//TODO add Codec
 public class CarpetedGrassBlock extends GrassBlock {
 	public CarpetedGrassBlock(AbstractBlock.Settings settings) {
 		super(settings);

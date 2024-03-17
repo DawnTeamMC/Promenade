@@ -21,6 +21,7 @@ import net.minecraft.world.chunk.light.ChunkLightProvider;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
+//TODO: make generic
 public class DyliumBlock extends NyliumBlock implements BoneMealSpreadable {
 	public static final RegistryKey<ConfiguredFeature<?, ?>> BONEMEAL_VEGETATION = DawnFactory.configuredFeature(Promenade.id("dark_amaranth_forest_vegetation/bonemeal"));
 

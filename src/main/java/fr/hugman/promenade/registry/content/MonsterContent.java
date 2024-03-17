@@ -13,7 +13,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.SpawnRestriction;
+import net.minecraft.entity.SpawnLocationTypes;
 import net.minecraft.item.Item;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.Heightmap;
@@ -26,7 +26,7 @@ public class MonsterContent {
             .dimensions(EntityDimensions.fixed(0.6f, 1.7f))
             .trackRangeChunks(8)
             .defaultAttributes(LushCreeperEntity::createCreeperAttributes)
-            .spawnRestriction(SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LushCreeperEntity::canSpawn)
+            .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LushCreeperEntity::canSpawn)
             .build();
     public static final Item LUSH_CREEPER_SPAWN_EGG = DawnFactory.spawnEgg(LUSH_CREEPER, 4347181, 4262661);
 
@@ -36,7 +36,7 @@ public class MonsterContent {
             .dimensions(EntityDimensions.fixed(0.6F, 1.99F))
             .trackRangeChunks(8)
             .defaultAttributes(SunkenSkeletonEntity::createSunkenSkeletonAttributes)
-            .spawnRestriction(SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SunkenSkeletonEntity::canSpawn)
+            .spawnRestriction(SpawnLocationTypes.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SunkenSkeletonEntity::canSpawn)
             .build();
     public static final Item SUNKEN_SKELETON_SPAWN_EGG = DawnFactory.spawnEgg(SUNKEN_SKELETON, 12233882, 6191682);
     public static final SoundEvent SUNKEN_SKELETON_AMBIENT_SOUND = SoundEvent.of(Promenade.id("entity.sunken_skeleton.ambient"));

@@ -10,6 +10,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
+//TODO add Codec
 public class DecoratedLeavesBlock extends LeavesBlock {
     private final int bound;
     private final ParticleEffect particle;

@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.WorldAccess;
 
+//TODO add Codec
 public class SnowyLeavesBlock extends LeavesBlock {
 	public static final BooleanProperty BOTTOM = Properties.BOTTOM;
 

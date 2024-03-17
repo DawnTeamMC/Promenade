@@ -25,58 +25,58 @@ import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 
 public class GlaglaglaContent {
-	public static final SoundEvent BLOCK_SNOWY_LEAVES_BREAK = SoundEvent.of(Promenade.id("block.snowy_leaves.break"));
-	public static final SoundEvent BLOCK_SNOWY_LEAVES_STEP = SoundEvent.of(Promenade.id("block.snowy_leaves.step"));
-	public static final SoundEvent BLOCK_SNOWY_LEAVES_PLACE = SoundEvent.of(Promenade.id("block.snowy_leaves.place"));
-	public static final SoundEvent BLOCK_SNOWY_LEAVES_HIT = SoundEvent.of(Promenade.id("block.snowy_leaves.hit"));
-	public static final SoundEvent BLOCK_SNOWY_LEAVES_FALL = SoundEvent.of(Promenade.id("block.snowy_leaves.fall"));
-	public static final BlockSoundGroup SNOWY_LEAVES_SOUNDS = new BlockSoundGroup(1.0f, 1.0f, BLOCK_SNOWY_LEAVES_BREAK, BLOCK_SNOWY_LEAVES_STEP, BLOCK_SNOWY_LEAVES_PLACE, BLOCK_SNOWY_LEAVES_HIT, BLOCK_SNOWY_LEAVES_FALL);
+    public static final SoundEvent BLOCK_SNOWY_LEAVES_BREAK = SoundEvent.of(Promenade.id("block.snowy_leaves.break"));
+    public static final SoundEvent BLOCK_SNOWY_LEAVES_STEP = SoundEvent.of(Promenade.id("block.snowy_leaves.step"));
+    public static final SoundEvent BLOCK_SNOWY_LEAVES_PLACE = SoundEvent.of(Promenade.id("block.snowy_leaves.place"));
+    public static final SoundEvent BLOCK_SNOWY_LEAVES_HIT = SoundEvent.of(Promenade.id("block.snowy_leaves.hit"));
+    public static final SoundEvent BLOCK_SNOWY_LEAVES_FALL = SoundEvent.of(Promenade.id("block.snowy_leaves.fall"));
+    public static final BlockSoundGroup SNOWY_LEAVES_SOUNDS = new BlockSoundGroup(1.0f, 1.0f, BLOCK_SNOWY_LEAVES_BREAK, BLOCK_SNOWY_LEAVES_STEP, BLOCK_SNOWY_LEAVES_PLACE, BLOCK_SNOWY_LEAVES_HIT, BLOCK_SNOWY_LEAVES_FALL);
 
-	public static final SnowyLeavesBlock SNOWY_SPRUCE_LEAVES = PromenadeFactory.snowyLeaves();
+    public static final SnowyLeavesBlock SNOWY_SPRUCE_LEAVES = PromenadeFactory.snowyLeaves();
 
-	public static final FreezeTopLayerFeature FREEZE_TOP_LAYER = new FreezeTopLayerFeature(DefaultFeatureConfig.CODEC);
+    public static final FreezeTopLayerFeature FREEZE_TOP_LAYER = new FreezeTopLayerFeature(DefaultFeatureConfig.CODEC);
 
-	public static final RegistryKey<Biome> GLACARIAN_TAIGA = DawnFactory.biome(Promenade.id("glacarian_taiga"));
-	public static final TagKey<Biome> CAN_FREEZE_DURING_SNOWFALL = DawnFactory.biomeTag(Promenade.id("can_freeze_during_snowfall"));
+    public static final RegistryKey<Biome> GLACARIAN_TAIGA = DawnFactory.biome(Promenade.id("glacarian_taiga"));
+    public static final TagKey<Biome> CAN_FREEZE_DURING_SNOWFALL = DawnFactory.biomeTag(Promenade.id("can_freeze_during_snowfall"));
 
-	public static void register(Registrar r) {
-		Registrar.add(BLOCK_SNOWY_LEAVES_BREAK);
-		Registrar.add(BLOCK_SNOWY_LEAVES_STEP);
-		Registrar.add(BLOCK_SNOWY_LEAVES_PLACE);
-		Registrar.add(BLOCK_SNOWY_LEAVES_HIT);
-		Registrar.add(BLOCK_SNOWY_LEAVES_FALL);
+    public static void register(Registrar r) {
+        Registrar.add(BLOCK_SNOWY_LEAVES_BREAK);
+        Registrar.add(BLOCK_SNOWY_LEAVES_STEP);
+        Registrar.add(BLOCK_SNOWY_LEAVES_PLACE);
+        Registrar.add(BLOCK_SNOWY_LEAVES_HIT);
+        Registrar.add(BLOCK_SNOWY_LEAVES_FALL);
 
-		r.add(("snowy_spruce_leaves"), SNOWY_SPRUCE_LEAVES);
+        r.add(("snowy_spruce_leaves"), SNOWY_SPRUCE_LEAVES);
 
-		r.add(("freeze_top_layer"), FREEZE_TOP_LAYER);
+        r.add(("freeze_top_layer"), FREEZE_TOP_LAYER);
 
-		appendItemGroups();
-		appendWorldGen();
-	}
+        appendItemGroups();
+        appendWorldGen();
+    }
 
-	private static void appendItemGroups() {
-		ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
-			e.addAfter(Blocks.SPRUCE_LEAVES, SNOWY_SPRUCE_LEAVES);
-		});
-	}
+    private static void appendItemGroups() {
+        ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
+            e.addAfter(Blocks.SPRUCE_LEAVES, SNOWY_SPRUCE_LEAVES);
+        });
+    }
 
-	private static void appendWorldGen() {
-		if (Promenade.CONFIG.biomes.glacarian_taiga_weight <= 0) {
-			return;
-		}
-		double weight = Promenade.CONFIG.biomes.glacarian_taiga_weight / 100.0D;
-		BiomePlacement.replaceOverworld(BiomeKeys.TAIGA, GlaglaglaContent.GLACARIAN_TAIGA, weight);
-		BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_TAIGA, GlaglaglaContent.GLACARIAN_TAIGA, weight);
-		BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_SLOPES, GlaglaglaContent.GLACARIAN_TAIGA, weight);
-		BiomePlacement.replaceOverworld(BiomeKeys.JAGGED_PEAKS, GlaglaglaContent.GLACARIAN_TAIGA, weight);
-		BiomePlacement.replaceOverworld(BiomeKeys.GROVE, GlaglaglaContent.GLACARIAN_TAIGA, weight);
-	}
+    private static void appendWorldGen() {
+        if (Promenade.CONFIG.biomes.glacarian_taiga_weight <= 0) {
+            return;
+        }
+        double weight = Promenade.CONFIG.biomes.glacarian_taiga_weight / 100.0D;
+        BiomePlacement.replaceOverworld(BiomeKeys.TAIGA, GlaglaglaContent.GLACARIAN_TAIGA, weight);
+        BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_TAIGA, GlaglaglaContent.GLACARIAN_TAIGA, weight);
+        BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_SLOPES, GlaglaglaContent.GLACARIAN_TAIGA, weight);
+        BiomePlacement.replaceOverworld(BiomeKeys.JAGGED_PEAKS, GlaglaglaContent.GLACARIAN_TAIGA, weight);
+        BiomePlacement.replaceOverworld(BiomeKeys.GROVE, GlaglaglaContent.GLACARIAN_TAIGA, weight);
+    }
 
-	public static boolean canFreezeFromBiomeAndWeather(LivingEntity entity) {
+    public static boolean canFreezeFromBiomeAndWeather(LivingEntity entity) {
         RegistryEntry<Biome> biome = entity.getWorld().getBiome(entity.getBlockPos());
-		if(entity.getType().isIn(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)) {
-			// is immune
-			return false;
+        if (entity.getType().isIn(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)) {
+            // is immune
+            return false;
         }
         if (!biome.isIn(CAN_FREEZE_DURING_SNOWFALL) || entity.isSpectator()) {
             // is not the correct biome
@@ -99,5 +99,5 @@ public class GlaglaglaContent {
                 !entity.getEquippedStack(EquipmentSlot.CHEST).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
                 !entity.getEquippedStack(EquipmentSlot.LEGS).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
                 !entity.getEquippedStack(EquipmentSlot.FEET).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES);
-	}
+    }
 }

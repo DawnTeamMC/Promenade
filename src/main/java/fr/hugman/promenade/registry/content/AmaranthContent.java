@@ -4,22 +4,20 @@ import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
-import fr.hugman.dawn.block.DawnBlockSettings;
 import fr.hugman.dawn.block.DawnRootsBlock;
 import fr.hugman.dawn.block.SignBlocks;
-import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.DyliumBlock;
 import fr.hugman.promenade.registry.tag.PromenadeBlockTags;
-import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeRegistry;
-import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
+import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.Instrument;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
@@ -27,8 +25,8 @@ import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import net.minecraft.world.gen.surfacebuilder.VanillaSurfaceRules;
 
 public class AmaranthContent {
-    public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeRegistry.register(Promenade.id("dark_amaranth"), true, BlockSoundGroup.NETHER_WOOD, SoundEvents.BLOCK_NETHER_WOOD_DOOR_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_DOOR_OPEN, SoundEvents.BLOCK_NETHER_WOOD_TRAPDOOR_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_TRAPDOOR_OPEN, SoundEvents.BLOCK_NETHER_WOOD_PRESSURE_PLATE_CLICK_OFF, SoundEvents.BLOCK_NETHER_WOOD_PRESSURE_PLATE_CLICK_ON, SoundEvents.BLOCK_NETHER_WOOD_BUTTON_CLICK_OFF, SoundEvents.BLOCK_NETHER_WOOD_BUTTON_CLICK_ON);
-    public static final WoodType WOOD_TYPE = WoodTypeRegistry.register(Promenade.id("dark_amaranth"), BLOCK_SET_TYPE, BlockSoundGroup.NETHER_WOOD, BlockSoundGroup.NETHER_WOOD_HANGING_SIGN, SoundEvents.BLOCK_NETHER_WOOD_FENCE_GATE_CLOSE, SoundEvents.BLOCK_NETHER_WOOD_FENCE_GATE_OPEN);
+    public static final BlockSetType BLOCK_SET_TYPE = BlockSetTypeBuilder.copyOf(BlockSetType.CRIMSON).register(Promenade.id("dark_amaranth"));
+    public static final WoodType WOOD_TYPE = WoodTypeBuilder.copyOf(WoodType.CRIMSON).register(Promenade.id("dark_amaranth"), BLOCK_SET_TYPE);
     private static final BlockSoundGroup WOOD_SOUNDS = BlockSoundGroup.NETHER_WOOD;
     private static final MapColor BARK_COLOR = MapColor.DARK_DULL_PINK;
     private static final MapColor WOOD_COLOR = MapColor.GRAY;
@@ -36,7 +34,7 @@ public class AmaranthContent {
     public static final RegistryKey<ConfiguredFeature<?, ?>> PLANTED_AMARANTH_FUNGUS = DawnFactory.configuredFeature(Promenade.id("amaranth_fungus/planted"));
 
     public static final Block BLACK_DYLIUM = new DyliumBlock(
-            DawnBlockSettings.create()
+            AbstractBlock.Settings.create()
                     .item()
                     .mapColor(MapColor.BLACK)
                     .instrument(Instrument.BASEDRUM)
@@ -45,14 +43,14 @@ public class AmaranthContent {
                     .sounds(BlockSoundGroup.NYLIUM)
                     .ticksRandomly());
     public static final Block DARK_AMARANTH_WART_BLOCK = new Block(
-            DawnBlockSettings.create()
+            AbstractBlock.Settings.create()
                     .item()
                     .mapColor(MapColor.PURPLE)
                     .strength(1.0F)
                     .sounds(BlockSoundGroup.WART_BLOCK));
     public static final Block DARK_AMARANTH_ROOTS = new DawnRootsBlock(state -> state.isIn(PromenadeBlockTags.DARK_AMARANTH_ROOTS_PLACEABLE_ON),
-            DawnBlockSettings.create()
-                    .item(new DawnItemSettings().compostingChance(0.65F))
+            AbstractBlock.Settings.create()
+                    .item(new Item.Settings().compostingChance(0.65F))
                     .mapColor(MapColor.PURPLE)
                     .replaceable()
                     .breakInstantly()
