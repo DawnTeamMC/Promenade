@@ -1,18 +1,17 @@
 package fr.hugman.promenade;
 
 import fr.hugman.dawn.DawnFactory;
-import fr.hugman.dawn.block.DawnBlockSettings;
-import fr.hugman.dawn.item.DawnItemSettings;
 import fr.hugman.promenade.block.CarpetedGrassBlock;
 import fr.hugman.promenade.block.DecoratedLeavesBlock;
 import fr.hugman.promenade.block.PileBlock;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
 import fr.hugman.promenade.registry.content.GlaglaglaContent;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.BlockSoundGroup;
 
@@ -30,8 +29,8 @@ public final class PromenadeFactory {
 	}
 
 	public static Block leafPile(MapColor mapColor, BlockSoundGroup soundGroup) {
-		return new PileBlock(DawnBlockSettings.create()
-				.item(new DawnItemSettings().compostingChance(0.3f))
+		return new PileBlock(AbstractBlock.Settings.create()
+				.item(new Item.Settings().compostingChance(0.3f))
 				.mapColor(mapColor)
 				.burnable(30, 60)
 				.strength(0.1f)
@@ -42,8 +41,8 @@ public final class PromenadeFactory {
 	}
 
 	public static Block carpetedGrassBlock(MapColor color) {
-		return new CarpetedGrassBlock(DawnBlockSettings.create()
-				.item(new DawnItemSettings().compostingChance(0.3f))
+		return new CarpetedGrassBlock(AbstractBlock.Settings.create()
+				.item(new Item.Settings().compostingChance(0.3f))
 				.mapColor(color)
 				.ticksRandomly()
 				.strength(0.6F)
@@ -55,8 +54,8 @@ public final class PromenadeFactory {
 	}
 
 	public static SnowyLeavesBlock snowyLeaves(BlockSoundGroup soundGroup) {
-		return new SnowyLeavesBlock(DawnBlockSettings.create()
-				.item(new DawnItemSettings().compostingChance(0.3f))
+		return new SnowyLeavesBlock(AbstractBlock.Settings.create()
+				.item(new Item.Settings().compostingChance(0.3f))
 				.mapColor(MapColor.WHITE)
 				.strength(0.2f)
 				.ticksRandomly()

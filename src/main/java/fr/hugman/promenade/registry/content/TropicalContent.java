@@ -4,13 +4,13 @@ import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
 import fr.hugman.dawn.block.SignBlocks;
-import fr.hugman.dawn.block.sapling.SingleSaplingGenerator;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.block.ExtendedLeavesBlock;
 import fr.hugman.promenade.block.HangingLeavesBlock;
 import fr.hugman.promenade.block.MoaiBlock;
+import fr.hugman.promenade.content.PromenadeSaplingGenerators;
 import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
 import fr.hugman.promenade.village.TradeOfferUtils;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -57,7 +57,7 @@ public class TropicalContent {
     public static final SignBlocks PALM_SIGNS = DawnFactory.signs(Promenade.id("palm"), PALM_PLANKS);
     public static final TerraformBoatType PALM_BOAT_TYPE = DawnFactory.boat(Promenade.id("palm"), Items.OAK_PLANKS); //TODO change when possible (PR #72 on TerraformersMC/Terraform)
 
-    public static final Block PALM_SAPLING = DawnFactory.sapling(LEAVES_COLOR, new SingleSaplingGenerator(Promenade.id("tree/palm")), state -> state.isIn(BlockTags.SAND));
+    public static final Block PALM_SAPLING = DawnFactory.sapling(LEAVES_COLOR, PromenadeSaplingGenerators.PALM_SAPLING_GENERATOR, state -> state.isIn(BlockTags.SAND));
     public static final Block POTTED_PALM_SAPLING = DawnFactory.potted(PALM_SAPLING);
     public static final Block PALM_LEAVES = new ExtendedLeavesBlock(AbstractBlock.Settings.create()
             .item(new Item.Settings().compostingChance(0.3f))

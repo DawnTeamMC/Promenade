@@ -3,8 +3,10 @@ package fr.hugman.promenade.entity;
 import com.mojang.serialization.Dynamic;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.registry.PromenadeRegistries;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.registry.content.AnimalContent;
 import fr.hugman.promenade.registry.tag.PromenadeItemTags;
+import io.netty.buffer.ByteBuf;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.SharedConstants;
@@ -20,12 +22,21 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.CatVariant;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.codec.PacketCodec;
+import net.minecraft.network.codec.PacketCodecs;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.function.ValueLists;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.floatprovider.FloatProvider;
@@ -37,8 +48,15 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class CapybaraEntity extends AnimalEntity implements VariantHolder<CapybaraVariant> {
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.IntFunction;
+
+public class CapybaraEntity extends AnimalEntity implements VariantHolder<RegistryEntry<CapybaraVariant>> {
     private static final FloatProvider FART_CHANCE_PROVIDER = TrapezoidFloatProvider.create(0.1F, 0.55F, 0.2F);
+    //TODO: fix eye height
+    private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityType.CHICKEN.getDimensions().scaled(0.5F).withEyeHeight(0.2975F);
+
 
     public CapybaraEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -66,15 +84,13 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
         super.mobTick();
     }
 
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
-        CapybaraBrain.method_45367(this, world.getRandom());
-        this.setVariant(CapybaraVariants.getRandom(this.random));
+    @Override
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
+        this.setVariant(CapybaraVariant.getRandom(this.random));
         this.dataTracker.set(LAST_STATE_TICK, world.toServerWorld().getTime() - WAKE_UP_LENGTH);
         this.dataTracker.set(FART_CHANCE, FART_CHANCE_PROVIDER.get(this.random));
-        return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+        return super.initialize(world, difficulty, spawnReason, entityData);
     }
-
-
 
     /*========*/
     /*   AI   */
@@ -121,8 +137,8 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
     }
 
     @Override
-    protected float getActiveEyeHeight(EntityPose pose, EntityDimensions size) {
-        return size.height * 13 / 14;
+    protected EntityDimensions getBaseDimensions(EntityPose pose) {
+        return this.isBaby() ? BABY_BASE_DIMENSIONS : super.getBaseDimensions(pose);
     }
 
     @Override
@@ -178,7 +194,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
     // FALL TO SLEEP
 
     public boolean isFallingToSleep() {
-        return this.getState() == CapybaraState.FALL_TO_SLEEP;
+        return this.getState() == State.FALL_TO_SLEEP;
     }
 
     public boolean canFallToSleep() {
@@ -186,14 +202,14 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
     }
 
     public void fallToSleep() {
-        this.setState(CapybaraState.FALL_TO_SLEEP);
+        this.setState(State.FALL_TO_SLEEP);
         this.setLastStateTick(this.getWorld().getTime());
     }
 
     // SLEEP
 
     public boolean isAsleep() {
-        return this.getState() == CapybaraState.SLEEPING;
+        return this.getState() == State.SLEEPING;
     }
 
     public boolean canSleep() {
@@ -201,14 +217,14 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
     }
 
     public void sleep() {
-        this.setState(CapybaraState.SLEEPING);
+        this.setState(State.SLEEPING);
         this.setLastStateTick(this.getWorld().getTime());
     }
 
     // WAKE UP
 
     private boolean isWakingUp() {
-        return this.getState() == CapybaraState.WAKE_UP;
+        return this.getState() == State.WAKE_UP;
     }
 
     public boolean canStopSleeping() {
@@ -216,25 +232,25 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
     }
 
     public void stopSleeping() {
-        this.setState(CapybaraState.WAKE_UP);
+        this.setState(State.WAKE_UP);
         this.setLastStateTick(this.getWorld().getTime());
     }
 
     // STAND
 
     public boolean isStanding() {
-        return this.getState() == CapybaraState.STANDING;
+        return this.getState() == State.STANDING;
     }
 
     public void standUp() {
-        this.setState(CapybaraState.STANDING);
+        this.setState(State.STANDING);
         this.setLastStateTick(this.getWorld().getTime() - WAKE_UP_LENGTH);
     }
 
     // FART
 
     public boolean isFarting() {
-        return this.getState() == CapybaraState.FARTING;
+        return this.getState() == State.FARTING;
     }
 
     public boolean canFart() {
@@ -243,7 +259,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 
     public void fart() {
         this.playSound(AnimalContent.CAPYBARA_FART_SOUND, getSoundVolume(), getSoundPitch());
-        this.setState(CapybaraState.FARTING);
+        this.setState(State.FARTING);
         this.setLastStateTick(this.getWorld().getTime());
     }
 
@@ -370,7 +386,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
     /*   VARIANTS   */
     /*==============*/
 
-    private static final TrackedData<CapybaraVariant> VARIANT = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_VARIANT);
+    private static final TrackedData<RegistryEntry<CapybaraVariant>> VARIANT = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_VARIANT);
     private static final TrackedData<Float> FART_CHANCE = DataTracker.registerData(CapybaraEntity.class, TrackedDataHandlerRegistry.FLOAT);
 
     @Nullable
@@ -380,12 +396,12 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
     }
 
     @Override
-    public CapybaraVariant getVariant() {
+    public RegistryEntry<CapybaraVariant> getVariant() {
         return this.dataTracker.get(VARIANT);
     }
 
     @Override
-    public void setVariant(CapybaraVariant variant) {
+    public void setVariant(RegistryEntry<CapybaraVariant> variant) {
         this.dataTracker.set(VARIANT, variant);
     }
 
@@ -404,26 +420,26 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
     /*==========*/
 
     public static final TrackedData<Long> LAST_STATE_TICK = DataTracker.registerData(CapybaraEntity.class, TrackedDataHandlerRegistry.LONG);
-    protected static final TrackedData<CapybaraState> STATE = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_STATE);
+    protected static final TrackedData<State> STATE = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_STATE);
 
-    public static final String VARIANT_KEY = "Variant";
-    public static final String FART_CHANCE_KEY = "FartChance";
-    public static final String LAST_STATE_TICK_KEY = "LastStateTick";
-    public static final String FARTING_KEY = "IsFarting";
-    public static final String SLEEPING_KEY = "IsSleeping";
+    public static final String VARIANT_KEY = "variant";
+    public static final String FART_CHANCE_KEY = "fart_chance";
+    public static final String LAST_STATE_TICK_KEY = "last_state_tick";
+    public static final String FARTING_KEY = "is_farting";
+    public static final String SLEEPING_KEY = "is_sleeping";
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(VARIANT, CapybaraVariants.getDefault());
-        this.dataTracker.startTracking(FART_CHANCE, 0.0f);
-        this.dataTracker.startTracking(STATE, CapybaraState.STANDING);
-        this.dataTracker.startTracking(LAST_STATE_TICK, -WAKE_UP_LENGTH);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(VARIANT, PromenadeRegistries.CAPYBARA_VARIANT.entryOf(CapybaraVariant.getDefault()));
+        builder.add(FART_CHANCE, 0.0f);
+        builder.add(STATE, State.STANDING);
+        builder.add(LAST_STATE_TICK, -WAKE_UP_LENGTH);
     }
 
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        nbt.putString(VARIANT_KEY, PromenadeRegistries.CAPYBARA_VARIANT.getId(this.getVariant()).toString());
+        nbt.putString(VARIANT_KEY, this.getVariant().getKey().orElse(CapybaraVariant.getDefault()).getValue().toString());
         nbt.putFloat(FART_CHANCE_KEY, this.getFartChance());
         nbt.putLong(LAST_STATE_TICK_KEY, this.dataTracker.get(LAST_STATE_TICK));
         nbt.putBoolean(FARTING_KEY, this.isFarting());
@@ -432,15 +448,17 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
 
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
-        CapybaraVariant variant = PromenadeRegistries.CAPYBARA_VARIANT.get(Identifier.tryParse(nbt.getString(VARIANT_KEY)));
-        if (variant != null) {
-            this.setVariant(variant);
-        }
+
+        Optional<RegistryKey<CapybaraVariant>> variantKey = Optional.ofNullable(Identifier.tryParse(nbt.getString(VARIANT_KEY))).map((identifier) -> RegistryKey.of(PromenadeRegistryKeys.CAPYBARA_VARIANT, identifier));
+        Registry<CapybaraVariant> registry = PromenadeRegistries.CAPYBARA_VARIANT;
+        Objects.requireNonNull(registry);
+        variantKey.flatMap(registry::getEntry).ifPresent(this::setVariant);
+
         if (nbt.getBoolean(FARTING_KEY)) {
-            this.setState(CapybaraState.FARTING);
+            this.setState(State.FARTING);
         }
         if (nbt.getBoolean(SLEEPING_KEY)) {
-            this.setState(CapybaraState.SLEEPING);
+            this.setState(State.SLEEPING);
         }
         this.setFartChance(nbt.getFloat(FART_CHANCE_KEY));
     }
@@ -453,11 +471,43 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Capyba
         return this.getWorld().getTime() - this.dataTracker.get(LAST_STATE_TICK);
     }
 
-    public CapybaraState getState() {
+    public State getState() {
         return this.dataTracker.get(STATE);
     }
 
-    public void setState(CapybaraState state) {
+    public void setState(State state) {
         this.dataTracker.set(STATE, state);
+    }
+
+    public enum State implements StringIdentifiable {
+        STANDING("standing", 0),
+        FARTING("farting", 1),
+        SLEEPING("sleeping", 2),
+        FALL_TO_SLEEP("fall_to_sleep", 3),
+        WAKE_UP("wake_up", 4);
+
+        private final String name;
+        private final int index;
+
+        private static final StringIdentifiable.EnumCodec<State> CODEC = StringIdentifiable.createCodec(State::values);
+        private static final IntFunction<State> INDEX_TO_VALUE = ValueLists.createIdToValueFunction(State::getIndex, values(), ValueLists.OutOfBoundsHandling.ZERO);
+        public static final PacketCodec<ByteBuf, State> PACKET_CODEC = PacketCodecs.indexed(INDEX_TO_VALUE, State::getIndex);
+
+        State(String name, int index) {
+            this.name = name;
+            this.index = index;
+        }
+
+        public static State fromName(String name) {
+            return (State)CODEC.byId(name, STANDING);
+        }
+
+        public String asString() {
+            return this.name;
+        }
+
+        private int getIndex() {
+            return this.index;
+        }
     }
 }

@@ -28,19 +28,19 @@ public class SunkenSkeletonRenderer extends BipedEntityRenderer<SunkenSkeletonEn
 	}
 
 	@Override
-	protected void setupTransforms(SunkenSkeletonEntity sunkenSkeletonEntity, MatrixStack matrixStack, float f, float g, float h) {
-		float i = sunkenSkeletonEntity.getLeaningPitch(h);
+	protected void setupTransforms(SunkenSkeletonEntity sunkenSkeletonEntity, MatrixStack matrixStack, float animationProgress, float bodyYaw, float tickDelta, float scale) {
+		float i = sunkenSkeletonEntity.getLeaningPitch(tickDelta);
 		float n;
 		float k;
 		if(sunkenSkeletonEntity.isFallFlying()) {
-			super.setupTransforms(sunkenSkeletonEntity, matrixStack, f, g, h);
-			n = (float) sunkenSkeletonEntity.getRoll() + h;
+			super.setupTransforms(sunkenSkeletonEntity, matrixStack, animationProgress, bodyYaw, tickDelta, scale);
+			n = (float) sunkenSkeletonEntity.getFallFlyingTicks() + tickDelta;
 			k = MathHelper.clamp(n * n / 100.0F, 0.0F, 1.0F);
 			if(!sunkenSkeletonEntity.isUsingRiptide()) {
 				matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(k * (-90.0F - sunkenSkeletonEntity.getPitch())));
 			}
 
-			Vec3d vec3d = sunkenSkeletonEntity.getRotationVec(h);
+			Vec3d vec3d = sunkenSkeletonEntity.getRotationVec(tickDelta);
 			Vec3d vec3d2 = sunkenSkeletonEntity.getVelocity();
 			double d = vec3d2.horizontalLengthSquared();
 			double e = vec3d.horizontalLengthSquared();
@@ -51,7 +51,7 @@ public class SunkenSkeletonRenderer extends BipedEntityRenderer<SunkenSkeletonEn
 			}
 		}
 		else if(i > 0.0F) {
-			super.setupTransforms(sunkenSkeletonEntity, matrixStack, f, g, h);
+			super.setupTransforms(sunkenSkeletonEntity, matrixStack, animationProgress, bodyYaw, tickDelta, scale);
 			n = sunkenSkeletonEntity.isTouchingWater() ? -90.0F - sunkenSkeletonEntity.getPitch() : -90.0F;
 			k = MathHelper.lerp(i, 0.0F, n);
 			matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(k));
@@ -60,7 +60,7 @@ public class SunkenSkeletonRenderer extends BipedEntityRenderer<SunkenSkeletonEn
 			}
 		}
 		else {
-			super.setupTransforms(sunkenSkeletonEntity, matrixStack, f, g, h);
+			super.setupTransforms(sunkenSkeletonEntity, matrixStack, animationProgress, bodyYaw, tickDelta, scale);
 		}
 	}
 

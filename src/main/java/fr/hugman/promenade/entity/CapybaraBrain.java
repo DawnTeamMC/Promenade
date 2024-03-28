@@ -46,9 +46,6 @@ public class CapybaraBrain {
 			MemoryModuleType.BREED_TARGET,
 			MemoryModuleType.NEAREST_VISIBLE_ADULT);
 
-	protected static void method_45367(CapybaraEntity capybara, Random random) {
-	}
-
 	public static Brain.Profile<CapybaraEntity> createProfile() {
 		return Brain.createProfile(MEMORY_MODULES, SENSORS);
 	}
@@ -75,7 +72,7 @@ public class CapybaraBrain {
 	private static void addIdleActivities(Brain<CapybaraEntity> brain) {
 		brain.setTaskList(Activity.IDLE, ImmutableList.of(
 				Pair.of(0, LookAtMobWithIntervalTask.follow(EntityType.PLAYER, 6.0f, UniformIntProvider.create(30, 60))),
-				Pair.of(1, new BreedTask(AnimalContent.CAPYBARA, 1.0f)),
+				Pair.of(1, new BreedTask(AnimalContent.CAPYBARA)),
 				Pair.of(2, new TemptTask(entity -> 1.5f)),
 				Pair.of(3, TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), WalkTowardClosestAdultTask.create(WALK_TOWARD_ADULT_RANGE, 1.5f))),
 				Pair.of(4, new RandomLookAroundTask(UniformIntProvider.create(150, 250), 30.0f, -50.0f, 10.0f)),
@@ -92,17 +89,15 @@ public class CapybaraBrain {
 		capybara.getBrain().resetPossibleActivities(ImmutableList.of(Activity.IDLE));
 	}
 
-	public static class WalkTask extends FleeTask {
+	public static class WalkTask extends FleeTask<CapybaraEntity> {
 		public WalkTask(float speed) {
 			super(speed);
 		}
 
 		@Override
-		protected void run(ServerWorld world, PathAwareEntity entity, long l) {
-			if(entity instanceof CapybaraEntity capybara) {
-				capybara.standUp();
-			}
-			super.run(world, entity, l);
+		protected void run(ServerWorld world, CapybaraEntity capybara, long l) {
+			capybara.standUp();
+			super.run(world, capybara, l);
 		}
 	}
 

@@ -29,8 +29,8 @@ public class CapybaraEyesRenderer<E extends CapybaraEntity> extends FeatureRende
 	}
 
 	public Identifier eyeTexture(CapybaraEntity capybara) {
-		CapybaraVariant variant = capybara.getVariant();
-		Identifier variantId = PromenadeRegistries.CAPYBARA_VARIANT.getId(variant);
+		var variant = capybara.getVariant().value();
+		var variantId = PromenadeRegistries.CAPYBARA_VARIANT.getId(variant);
 		if(variantId == null) {
 			throw new IllegalStateException("Capybara variant is not registered: " + variant);
 		}

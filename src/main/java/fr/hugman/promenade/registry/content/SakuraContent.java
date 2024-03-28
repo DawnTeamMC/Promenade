@@ -5,10 +5,10 @@ import com.terraformersmc.terraform.boat.api.TerraformBoatType;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
 import fr.hugman.dawn.block.SignBlocks;
-import fr.hugman.dawn.block.sapling.OakLikeSaplingGenerator;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
+import fr.hugman.promenade.content.PromenadeSaplingGenerators;
 import fr.hugman.promenade.village.TradeOfferUtils;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
@@ -56,13 +56,13 @@ public class SakuraContent {
     public static final TerraformBoatType SAKURA_BOAT_TYPE = DawnFactory.boat(Promenade.id("sakura"), Items.OAK_PLANKS); //TODO change when possible (PR #72 on TerraformersMC/Terraform)
 
     public static final DefaultParticleType BLUSH_SAKURA_BLOSSOM = FabricParticleTypes.simple();
-    public static final Block BLUSH_SAKURA_SAPLING = DawnFactory.sapling(BLUSH_BLOSSOMS_COLOR, OakLikeSaplingGenerator.of(Promenade.id("sakura/blush")));
+    public static final Block BLUSH_SAKURA_SAPLING = DawnFactory.sapling(BLUSH_BLOSSOMS_COLOR, PromenadeSaplingGenerators.BLUSH_SAKURA_SAPLING_GENERATOR);
     public static final Block POTTED_BLUSH_SAKURA_SAPLING = DawnFactory.potted(BLUSH_SAKURA_SAPLING);
     public static final Block BLUSH_SAKURA_BLOSSOMS = PromenadeFactory.decoratedLeaves(BLUSH_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES, BLUSH_SAKURA_BLOSSOM);
     public static final Block BLUSH_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(BLUSH_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES);
 
     public static final DefaultParticleType COTTON_SAKURA_BLOSSOM = FabricParticleTypes.simple();
-    public static final Block COTTON_SAKURA_SAPLING = DawnFactory.sapling(COTTON_BLOSSOMS_COLOR, OakLikeSaplingGenerator.of(Promenade.id("sakura/cotton")));
+    public static final Block COTTON_SAKURA_SAPLING = DawnFactory.sapling(COTTON_BLOSSOMS_COLOR, PromenadeSaplingGenerators.COTTON_SAKURA_SAPLING_GENERATOR);
     public static final Block POTTED_COTTON_SAKURA_SAPLING = DawnFactory.potted(COTTON_SAKURA_SAPLING);
     public static final Block COTTON_SAKURA_BLOSSOMS = PromenadeFactory.decoratedLeaves(COTTON_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES, COTTON_SAKURA_BLOSSOM);
     public static final Block COTTON_SAKURA_BLOSSOM_PILE = PromenadeFactory.leafPile(COTTON_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES);

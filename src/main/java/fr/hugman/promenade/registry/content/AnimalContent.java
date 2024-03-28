@@ -5,7 +5,7 @@ import fr.hugman.dawn.Registrar;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.entity.CapybaraEntity;
-import fr.hugman.promenade.entity.CapybaraVariants;
+import fr.hugman.promenade.entity.CapybaraVariant;
 import fr.hugman.promenade.entity.DuckEntity;
 import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -32,6 +32,7 @@ public class AnimalContent {
     public static final EntityType<CapybaraEntity> CAPYBARA = FabricEntityTypeBuilder.createMob()
             .entityFactory(CapybaraEntity::new)
             .spawnGroup(SpawnGroup.CREATURE)
+            //TODO: fix eye height
             .dimensions(EntityDimensions.fixed(0.7f, 0.875f))
             .defaultAttributes(CapybaraEntity::createCapybaraAttributes)
             .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn)
@@ -44,6 +45,7 @@ public class AnimalContent {
     public static final EntityType<DuckEntity> DUCK = FabricEntityTypeBuilder.createMob()
             .entityFactory(DuckEntity::new)
             .spawnGroup(SpawnGroup.CREATURE)
+            //TODO: fix eye height
             .dimensions(EntityDimensions.fixed(0.4F, 0.8F))
             .trackRangeChunks(10)
             .trackedUpdateRate(3)
@@ -56,11 +58,11 @@ public class AnimalContent {
     public static final SoundEvent DUCK_DEATH_SOUND = SoundEvent.of(Promenade.id("entity.duck.death"));
     public static final SoundEvent DUCK_STEP_SOUND = SoundEvent.of(Promenade.id("entity.duck.step"));
 
-    public static final Item DUCK_FOOD = new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F).meat().build()));
-    public static final Item COOKED_DUCK_FOOD = new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).meat().build()));
+    public static final Item DUCK_FOOD = new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F).build()));
+    public static final Item COOKED_DUCK_FOOD = new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build()));
+    //TODO: they're meat (tag)
 
     public static void register(Registrar r) {
-        CapybaraVariants.register(r);
 
         r.add(("capybara"), CAPYBARA);
         r.add(("capybara_spawn_egg"), CAPYBARA_SPAWN_EGG);

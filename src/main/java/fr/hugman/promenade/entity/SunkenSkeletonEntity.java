@@ -45,6 +45,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements CrossbowUser {
+    //TODO: make a registry for types
     private static final TrackedData<Integer> SUNKEN_SKELETON_TYPE = DataTracker.registerData(SunkenSkeletonEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final TrackedData<Boolean> CHARGING = DataTracker.registerData(SunkenSkeletonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> SWIMMING = DataTracker.registerData(SunkenSkeletonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -115,8 +116,9 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
         return this.isSubmergedIn(FluidTags.WATER) ? MonsterContent.SUNKEN_SKELETON_SHOOT_SOUND : (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem) ? SoundEvents.ITEM_CROSSBOW_SHOOT : SoundEvents.ENTITY_SKELETON_SHOOT);
     }
 
+    //TODO: test changes made in 1.20.5
     @Override
-    public void attack(LivingEntity target, float pullProgress) {
+    public void shootAt(LivingEntity target, float pullProgress) {
         if (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem)) {
             this.shoot(this, 1.6F);
         } else {
@@ -133,19 +135,8 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
     }
 
     @Override
-    public void shoot(LivingEntity target, ItemStack crossbow, ProjectileEntity projectile, float multiShotSpray) {
-        this.shoot(this, target, projectile, multiShotSpray, 1.6F);
-    }
-
-    @Override
-    public void shoot(LivingEntity entity, LivingEntity target, ProjectileEntity projectile, float multishotSpray, float speed) {
-        double d = target.getX() - entity.getX();
-        double e = target.getZ() - entity.getZ();
-        double f = Math.sqrt(d * d + e * e);
-        double g = target.getBodyY(0.3333333333333333D) - projectile.getY() + f * 0.20000000298023224D;
-        Vector3f vec3f = this.getProjectileLaunchVelocity(entity, new Vec3d(d, g, e), multishotSpray);
-        projectile.setVelocity(vec3f.x(), vec3f.y(), vec3f.z(), speed, (float) (14 - entity.getWorld().getDifficulty().getId() * 4));
-        entity.playSound(getShootSound(), 1.0F, 1.0F / (entity.getRandom().nextFloat() * 0.4F + 0.8F));
+    public void shoot(LivingEntity entity, float speed) {
+        CrossbowUser.super.shoot(entity, speed);
     }
 
     protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
@@ -157,18 +148,19 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
         return persistentProjectileEntity;
     }
 
+    @Nullable
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
         this.setVariant(Type.fromId(world.getRandom().nextInt(Type.values().length)));
-        return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+        return super.initialize(world, difficulty, spawnReason, entityData);
     }
 
     @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(SUNKEN_SKELETON_TYPE, 0);
-        this.dataTracker.startTracking(CHARGING, false);
-        this.dataTracker.startTracking(SWIMMING, false);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(SUNKEN_SKELETON_TYPE, 0);
+        builder.add(CHARGING, false);
+        builder.add(SWIMMING, false);
     }
 
     @Override

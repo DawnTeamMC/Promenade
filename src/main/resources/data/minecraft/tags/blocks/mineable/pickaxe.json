@@ -14,14 +14,6 @@
 		"promenade:polished_asphalt",
 		"promenade:polished_asphalt_stairs",
 		"promenade:polished_asphalt_slab",
-		"promenade:black_dylium",
-		{
-			"id": "promenade:blunite_column",
-			"required": false
-		},
-		{
-			"id": "promenade:asphalt_column",
-			"required": false
-		}
+		"promenade:black_dylium"
 	]
 }

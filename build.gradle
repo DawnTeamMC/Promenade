@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.5-SNAPSHOT'
+    id 'fabric-loom' version '1.6-SNAPSHOT'
 }
 
 apply from: 'https://dawnteammc.github.io/resources/gradle_scripts/fabric-mod/java-17.gradle'
@@ -16,7 +16,9 @@ repositories {
 }
 
 dependencies {
-    modApi "com.github.DawnTeamMC:DawnAPI:${dawn_version}"
+    modApi ("com.github.DawnTeamMC:DawnAPI:${dawn_version}"){
+        exclude(group: "net.fabricmc.fabric-api")
+    }
 
     includeMod "com.terraformersmc:biolith-fabric:${biolith_version}"
 

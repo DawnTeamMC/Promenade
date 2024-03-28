@@ -42,7 +42,9 @@ import java.util.stream.Collectors;
 public class DuckEntity extends AnimalEntity {
 	private static final TrackedData<Integer> DUCK_TYPE = DataTracker.registerData(DuckEntity.class, TrackedDataHandlerRegistry.INTEGER);
 	private static final Ingredient TEMPTATION_ITEMS = Ingredient.ofItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
-	public static final String TYPE_KEY = "Type";
+	//TODO: fix eye height
+	private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityType.CHICKEN.getDimensions().scaled(0.5F).withEyeHeight(0.2975F);
+	public static final String TYPE_KEY = "type";
 	public float wingRotation;
 	public float destPos;
 	public float oFlapSpeed;
@@ -59,13 +61,13 @@ public class DuckEntity extends AnimalEntity {
 	}
 
 	@Override
-	protected void initDataTracker() {
-		super.initDataTracker();
-		this.dataTracker.startTracking(DUCK_TYPE, 0);
+	protected void initDataTracker(DataTracker.Builder builder) {
+		super.initDataTracker(builder);
+		builder.add(DUCK_TYPE, 0);
 	}
 
 	@Override
-	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+	public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @org.jetbrains.annotations.Nullable EntityData entityData) {
 		RegistryEntry<Biome> biomeEntry = world.getBiome(this.getBlockPos());
 
 		DuckEntity.Type type = DuckEntity.Type.fromBiome(biomeEntry);
@@ -76,7 +78,12 @@ public class DuckEntity extends AnimalEntity {
 			entityData = new DuckEntity.DuckData(type);
 		}
 		this.setVariant(type);
-		return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+		return super.initialize(world, difficulty, spawnReason, entityData);
+	}
+
+	@Override
+	protected EntityDimensions getBaseDimensions(EntityPose pose) {
+		return this.isBaby() ? BABY_BASE_DIMENSIONS : super.getBaseDimensions(pose);
 	}
 
 	@Override
@@ -101,11 +108,6 @@ public class DuckEntity extends AnimalEntity {
 	public void readCustomDataFromNbt(NbtCompound compound) {
 		super.readCustomDataFromNbt(compound);
 		this.setVariant(DuckEntity.Type.byName(compound.getString(TYPE_KEY)));
-	}
-
-	@Override
-	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions size) {
-		return this.isBaby() ? size.height * 0.85F : size.height * 0.92F;
 	}
 
 	@Override
@@ -188,18 +190,13 @@ public class DuckEntity extends AnimalEntity {
 	}
 
 	@Override
-	protected void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater) {
+	protected void updatePassengerPosition(Entity passenger, Entity.PositionUpdater positionUpdater) {
 		super.updatePassengerPosition(passenger, positionUpdater);
-		float f = MathHelper.sin(this.bodyYaw * 0.017453292F);
-		float g = MathHelper.cos(this.bodyYaw * 0.017453292F);
-		float h = 0.1F;
-		float i = 0.0F;
-		positionUpdater.accept(passenger, this.getX() + (double) (0.1F * f), this.getBodyY(0.5) + passenger.getHeightOffset() + 0.0, this.getZ() - (double) (0.1F * g));
 		if (passenger instanceof LivingEntity) {
-			((LivingEntity) passenger).bodyYaw = this.bodyYaw;
+			((LivingEntity)passenger).bodyYaw = this.bodyYaw;
 		}
 	}
-
+	
 	public DuckEntity.Type getVariant() {
 		return DuckEntity.Type.fromId(this.dataTracker.get(DUCK_TYPE));
 	}

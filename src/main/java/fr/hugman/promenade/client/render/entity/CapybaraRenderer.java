@@ -19,10 +19,7 @@ public class CapybaraRenderer<E extends CapybaraEntity> extends MobEntityRendere
 
 	@Override
 	public Identifier getTexture(CapybaraEntity entity) {
-		Identifier variantId = PromenadeRegistries.CAPYBARA_VARIANT.getId(entity.getVariant());
-		if(variantId == null) {
-			throw new IllegalStateException("Capybara variant is not registered: " + this);
-		}
+		var variantId = entity.getVariant().getKey().orElseThrow().getValue();
 		return Identifier.of(variantId.getNamespace(), "textures/entity/capybara/" + variantId.getPath() + ".png");
 	}
 }
