@@ -11,7 +11,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:maple_wood",
+		"id": "promenade:maple_wood",
 		"count": 3
 	}
 }

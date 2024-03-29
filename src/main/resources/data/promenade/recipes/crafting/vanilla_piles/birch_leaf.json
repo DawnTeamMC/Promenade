@@ -10,7 +10,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:birch_leaf_pile",
+		"id": "promenade:birch_leaf_pile",
 		"count": 2
 	}
 }

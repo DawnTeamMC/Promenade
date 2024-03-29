@@ -10,7 +10,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:sap_maple_leaf_pile",
+		"id": "promenade:sap_maple_leaf_pile",
 		"count": 2
 	}
 }

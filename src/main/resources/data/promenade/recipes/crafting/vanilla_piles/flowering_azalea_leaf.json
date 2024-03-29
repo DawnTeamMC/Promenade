@@ -10,7 +10,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:flowering_azalea_leaf_pile",
+		"id": "promenade:flowering_azalea_leaf_pile",
 		"count": 2
 	}
 }

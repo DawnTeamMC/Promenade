@@ -11,7 +11,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:maple_trapdoor",
+		"id": "promenade:maple_trapdoor",
 		"count": 2
 	}
 }

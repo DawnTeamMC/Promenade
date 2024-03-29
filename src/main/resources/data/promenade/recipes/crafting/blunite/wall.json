@@ -10,7 +10,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:blunite_wall",
+		"id": "promenade:blunite_wall",
 		"count": 6
 	}
 }

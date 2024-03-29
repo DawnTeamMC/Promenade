@@ -8,6 +8,7 @@
 			"item": "promenade:polished_blunite"
 		}
 	],
-	"result": "promenade:polished_blunite_stairs",
-	"count": 1
+	"result": {
+		"id": "promenade:polished_blunite_stairs"
+	}
 }

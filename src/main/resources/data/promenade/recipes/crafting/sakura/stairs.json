@@ -12,7 +12,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:sakura_stairs",
+		"id": "promenade:sakura_stairs",
 		"count": 4
 	}
 }

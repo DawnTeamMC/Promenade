@@ -10,7 +10,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:jungle_leaf_pile",
+		"id": "promenade:jungle_leaf_pile",
 		"count": 2
 	}
 }

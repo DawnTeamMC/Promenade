@@ -3,6 +3,7 @@
   "ingredient": {
     "item": "minecraft:tuff"
   },
-  "result": "promenade:moai",
-  "count": 1
+  "result": {
+    "id": "promenade:moai"
+  }
 }

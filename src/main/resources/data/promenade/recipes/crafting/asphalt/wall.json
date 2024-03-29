@@ -10,7 +10,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:asphalt_wall",
+		"id": "promenade:asphalt_wall",
 		"count": 6
 	}
 }

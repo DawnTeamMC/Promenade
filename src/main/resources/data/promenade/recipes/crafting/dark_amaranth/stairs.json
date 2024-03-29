@@ -12,7 +12,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:dark_amaranth_stairs",
+		"id": "promenade:dark_amaranth_stairs",
 		"count": 4
 	}
 }

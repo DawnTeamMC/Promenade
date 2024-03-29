@@ -12,7 +12,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:maple_door",
+		"id": "promenade:maple_door",
 		"count": 3
 	}
 }

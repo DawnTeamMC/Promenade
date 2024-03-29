@@ -10,7 +10,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:dark_oak_leaf_pile",
+		"id": "promenade:dark_oak_leaf_pile",
 		"count": 2
 	}
 }

@@ -11,7 +11,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:dark_amaranth_trapdoor",
+		"id": "promenade:dark_amaranth_trapdoor",
 		"count": 2
 	}
 }

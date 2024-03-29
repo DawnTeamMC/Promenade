@@ -11,7 +11,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:asphalt_stairs",
+		"id": "promenade:asphalt_stairs",
 		"count": 4
 	}
 }

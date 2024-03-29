@@ -3,6 +3,7 @@
 	"ingredient": {
 		"item": "promenade:asphalt"
 	},
-	"result": "promenade:polished_asphalt",
-	"count": 1
+	"result": {
+		"id": "promenade:polished_asphalt"
+	}
 }

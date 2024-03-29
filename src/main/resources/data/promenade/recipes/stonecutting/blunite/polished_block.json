@@ -3,6 +3,7 @@
 	"ingredient": {
 		"item": "promenade:blunite"
 	},
-	"result": "promenade:polished_blunite",
-	"count": 1
+	"result": {
+		"id": "promenade:polished_blunite"
+	}
 }

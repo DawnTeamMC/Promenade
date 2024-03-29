@@ -3,7 +3,9 @@
 	"ingredient": {
 		"item": "promenade:duck"
 	},
-	"result": "promenade:cooked_duck",
+	"result": {
+		"id": "promenade:cooked_duck"
+	},
 	"experience": 0.35,
 	"cookingtime": 200
 }

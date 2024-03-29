@@ -12,7 +12,7 @@
 		}
 	},
 	"result": {
-		"item": "promenade:maple_stairs",
+		"id": "promenade:maple_stairs",
 		"count": 4
 	}
 }
