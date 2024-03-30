@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "promenade:blush_sakura_sapling"
+      "id": "promenade:blush_sakura_sapling"
     },
     "title": {
       "translate": "advancements.promenade.adventure.place_all_sakura_blocks.title"
