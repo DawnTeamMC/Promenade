@@ -19,7 +19,6 @@ public class CapybaraRenderer<E extends CapybaraEntity> extends MobEntityRendere
 
 	@Override
 	public Identifier getTexture(CapybaraEntity entity) {
-		var variantId = entity.getVariant().getKey().orElseThrow().getValue();
-		return Identifier.of(variantId.getNamespace(), "textures/entity/capybara/" + variantId.getPath() + ".png");
+		return entity.getBaseTexture();
 	}
 }

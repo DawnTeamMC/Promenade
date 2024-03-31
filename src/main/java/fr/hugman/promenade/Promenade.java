@@ -1,6 +1,5 @@
 package fr.hugman.promenade;
 
-import com.google.common.reflect.Reflection;
 import fr.hugman.dawn.Registrar;
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.content.PromenadeBlocks;
@@ -8,7 +7,6 @@ import fr.hugman.promenade.content.PromenadeBiomes;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.registry.PromenadeRegistries;
-import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.registry.content.*;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
@@ -25,8 +23,8 @@ public class Promenade implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        Reflection.initialize(PromenadeRegistryKeys.class);
-        Reflection.initialize(PromenadeRegistries.class);
+        PromenadeRegistries.register();
+
         PromenadeBlocks.appendItemGroups();
         PromenadeBlocks.appendVillagerTrades();
         PromenadeBiomes.appendWorldGen();

@@ -21,16 +21,14 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.CatVariant;
-import net.minecraft.entity.passive.PassiveEntity;
+import net.minecraft.entity.passive.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -86,7 +84,15 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-        this.setVariant(CapybaraVariant.getRandom(this.random));
+        RegistryEntry<CapybaraVariant> variant;
+        if (entityData instanceof Data capybaraData) {
+            variant = capybaraData.variant;
+        } else {
+            variant = CapybaraVariants.getRandom(this.getRegistryManager(), this.random);
+            entityData = new Data(variant);
+        }
+
+        this.setVariant(variant);
         this.dataTracker.set(LAST_STATE_TICK, world.toServerWorld().getTime() - WAKE_UP_LENGTH);
         this.dataTracker.set(FART_CHANCE, FART_CHANCE_PROVIDER.get(this.random));
         return super.initialize(world, difficulty, spawnReason, entityData);
@@ -392,7 +398,15 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        return AnimalContent.CAPYBARA.create(this.getWorld());
+        var capy = AnimalContent.CAPYBARA.create(this.getWorld());
+        if (capy != null && entity instanceof CapybaraEntity capyParent) {
+            if (this.random.nextBoolean()) {
+                capy.setVariant(this.getVariant());
+            } else {
+                capy.setVariant(capyParent.getVariant());
+            }
+        }
+        return capy;
     }
 
     @Override
@@ -431,7 +445,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
-        builder.add(VARIANT, PromenadeRegistries.CAPYBARA_VARIANT.entryOf(CapybaraVariant.getDefault()));
+        builder.add(VARIANT, this.getRegistryManager().get(PromenadeRegistryKeys.CAPYBARA_VARIANT).entryOf(CapybaraVariants.BROWN));
         builder.add(FART_CHANCE, 0.0f);
         builder.add(STATE, State.STANDING);
         builder.add(LAST_STATE_TICK, -WAKE_UP_LENGTH);
@@ -439,7 +453,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
 
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        nbt.putString(VARIANT_KEY, this.getVariant().getKey().orElse(CapybaraVariant.getDefault()).getValue().toString());
+        nbt.putString(VARIANT_KEY, (this.getVariant().getKey().orElse(CapybaraVariants.BROWN)).getValue().toString());
         nbt.putFloat(FART_CHANCE_KEY, this.getFartChance());
         nbt.putLong(LAST_STATE_TICK_KEY, this.dataTracker.get(LAST_STATE_TICK));
         nbt.putBoolean(FARTING_KEY, this.isFarting());
@@ -449,10 +463,10 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
 
-        Optional<RegistryKey<CapybaraVariant>> variantKey = Optional.ofNullable(Identifier.tryParse(nbt.getString(VARIANT_KEY))).map((identifier) -> RegistryKey.of(PromenadeRegistryKeys.CAPYBARA_VARIANT, identifier));
-        Registry<CapybaraVariant> registry = PromenadeRegistries.CAPYBARA_VARIANT;
-        Objects.requireNonNull(registry);
-        variantKey.flatMap(registry::getEntry).ifPresent(this::setVariant);
+        Optional.ofNullable(Identifier.tryParse(nbt.getString(VARIANT_KEY)))
+                .map(variantId -> RegistryKey.of(PromenadeRegistryKeys.CAPYBARA_VARIANT, variantId))
+                .flatMap(variantKey -> this.getRegistryManager().get(PromenadeRegistryKeys.CAPYBARA_VARIANT).getEntry(variantKey))
+                .ifPresent(this::setVariant);
 
         if (nbt.getBoolean(FARTING_KEY)) {
             this.setState(State.FARTING);
@@ -508,6 +522,33 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
 
         private int getIndex() {
             return this.index;
+        }
+    }
+
+    public static class Data extends PassiveEntity.PassiveData {
+        public final RegistryEntry<CapybaraVariant> variant;
+
+        public Data(RegistryEntry<CapybaraVariant> variant) {
+            super(false);
+            this.variant = variant;
+        }
+    }
+
+
+    /*==============*/
+    /*   TEXTURES   */
+    /*==============*/
+
+    public Identifier getBaseTexture() {
+        return this.getVariant().value().baseTexture();
+    }
+
+    public Identifier getEyesTexture() {
+        var variant = this.getVariant().value();
+        if(this.hasLargeEyes()) {
+            return this.hasClosedEyes() ? variant.largeClosedEyesTexture() : variant.largeOpenEyesTexture();
+        } else {
+            return this.hasClosedEyes() ? variant.regularClosedEyesTexture() : variant.regularOpenEyesTexture();
         }
     }
 }
