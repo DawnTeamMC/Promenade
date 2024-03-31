@@ -8,6 +8,7 @@ import fr.hugman.dawn.block.SignBlocks;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.content.PromenadeBlocks;
+import net.minecraft.component.type.FoodComponent;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;

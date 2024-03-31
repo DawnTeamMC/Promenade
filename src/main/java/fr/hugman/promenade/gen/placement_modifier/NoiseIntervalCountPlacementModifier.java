@@ -1,6 +1,7 @@
 package fr.hugman.promenade.gen.placement_modifier;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
@@ -9,7 +10,7 @@ import net.minecraft.world.gen.placementmodifier.AbstractCountPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 public class NoiseIntervalCountPlacementModifier extends AbstractCountPlacementModifier {
-	public static final Codec<NoiseIntervalCountPlacementModifier> MODIFIER_CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+	public static final MapCodec<NoiseIntervalCountPlacementModifier> MODIFIER_CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
 					Codec.DOUBLE.fieldOf("noise_level_min").forGetter((pm) -> pm.noiseLevelMin),
 					Codec.DOUBLE.fieldOf("noise_level_max").forGetter((pm) -> pm.noiseLevelMax),
 					Codec.INT.fieldOf("inside_value").forGetter((pm) -> pm.insideValue),

@@ -1,6 +1,7 @@
 package fr.hugman.promenade.gen.tree.foliage;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.promenade.registry.content.CommonContent;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +13,7 @@ import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
 
 public class PalmFoliagePlacer extends FoliagePlacer {
-	public static final Codec<PalmFoliagePlacer> CODEC = RecordCodecBuilder.create(instance ->
+	public static final MapCodec<PalmFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance ->
 			PalmFoliagePlacer.fillFoliagePlacerFields(instance)
 					.apply(instance, PalmFoliagePlacer::new));
 

@@ -2,6 +2,7 @@ package fr.hugman.promenade.gen.tree.trunk;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.promenade.registry.content.CommonContent;
 import net.minecraft.block.BlockState;
@@ -20,7 +21,7 @@ import java.util.List;
 import java.util.function.BiConsumer;
 
 public class LeapingTrunkPlacer extends TrunkPlacer {
-	public static final Codec<LeapingTrunkPlacer> CODEC = RecordCodecBuilder.create(instance -> fillTrunkPlacerFields(instance).and(instance.group(
+	public static final MapCodec<LeapingTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(instance -> fillTrunkPlacerFields(instance).and(instance.group(
 			IntProvider.createValidatingCodec(0, 80).fieldOf("straight_max").forGetter(placer -> placer.straightMax),
 			IntProvider.VALUE_CODEC.fieldOf("straight_difference").forGetter(placer -> placer.straightDifference),
 			Codec.FLOAT.fieldOf("decline_chance").forGetter(placer -> placer.declineChance),
