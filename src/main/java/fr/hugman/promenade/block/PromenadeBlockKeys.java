@@ -64,6 +64,11 @@ public class PromenadeBlockKeys {
     public static final RegistryKey<Block> MIKADO_MAPLE_LEAF_PILE = of("mikado_maple_leaf_pile");
     public static final RegistryKey<Block> MIKADO_CARPETED_GRASS_BLOCK = of("mikado_carpeted_grass_block");
 
+    public static final RegistryKey<Block> MAPLE_SIGN = of("maple_sign");
+    public static final RegistryKey<Block> MAPLE_WALL_SIGN = of("maple_wall_sign");
+    public static final RegistryKey<Block> MAPLE_HANGING_SIGN = of("maple_hanging_sign");
+    public static final RegistryKey<Block> MAPLE_WALL_HANGING_SIGN = of("maple_wall_hanging_sign");
+
     private static RegistryKey<Block> of(String path) {
         return RegistryKey.of(RegistryKeys.BLOCK, Promenade.id(path));
     }

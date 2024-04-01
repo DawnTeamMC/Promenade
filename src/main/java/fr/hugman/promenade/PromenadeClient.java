@@ -2,6 +2,7 @@ package fr.hugman.promenade;
 
 import fr.hugman.dawn.client.ClientRegistrar;
 import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.boat.PromenadeBoatTypes;
 import fr.hugman.promenade.client.render.entity.CapybaraRenderer;
 import fr.hugman.promenade.client.render.entity.DuckRenderer;
 import fr.hugman.promenade.client.render.entity.LushCreeperRenderer;
@@ -43,7 +44,7 @@ public class PromenadeClient implements ClientModInitializer {
 		ParticleFactoryRegistry.getInstance().register(PromenadeParticleTypes.VERMILION_MAPLE_LEAF, FallingLeafParticle.MapleLeafFactory::new);
 
 		ClientRegistrar.add(SakuraContent.SAKURA_BOAT_TYPE);
-		ClientRegistrar.add(MapleContent.MAPLE_BOAT_TYPE);
+		ClientRegistrar.add(PromenadeBoatTypes.MAPLE);
 		ClientRegistrar.add(TropicalContent.PALM_BOAT_TYPE);
 	}
 

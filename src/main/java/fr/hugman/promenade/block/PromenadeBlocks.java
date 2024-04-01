@@ -4,6 +4,7 @@ import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
+import fr.hugman.promenade.sign.PromenadeSigns;
 import fr.hugman.promenade.particle.PromenadeParticleTypes;
 import fr.hugman.promenade.registry.content.SakuraContent;
 import fr.hugman.promenade.village.TradeOfferUtils;
@@ -61,6 +62,11 @@ public class PromenadeBlocks {
     public static final Block MAPLE_BUTTON = register(PromenadeBlockKeys.MAPLE_BUTTON, DawnFactory.woodenButton(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
     public static final Block MAPLE_PRESSURE_PLATE = register(PromenadeBlockKeys.MAPLE_PRESSURE_PLATE, DawnFactory.pressurePlate(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
 
+    public static final Block MAPLE_SIGN = register(PromenadeBlockKeys.MAPLE_SIGN, PromenadeSigns.MAPLE.sign());
+    public static final Block MAPLE_WALL_SIGN = register(PromenadeBlockKeys.MAPLE_WALL_SIGN, PromenadeSigns.MAPLE.wallSign());
+    public static final Block MAPLE_HANGING_SIGN = register(PromenadeBlockKeys.MAPLE_HANGING_SIGN, PromenadeSigns.MAPLE.hangingSign());
+    public static final Block MAPLE_WALL_HANGING_SIGN = register(PromenadeBlockKeys.MAPLE_WALL_HANGING_SIGN, PromenadeSigns.MAPLE.wallHangingSign());
+
     public static final Block SAP_MAPLE_SAPLING = register(PromenadeBlockKeys.SAP_MAPLE_SAPLING, DawnFactory.sapling(MAPLE_SAP_LEAVES_COLOR, PromenadeSaplingGenerators.SAP_MAPLE_SAPLING_GENERATOR));
     public static final Block POTTED_SAP_MAPLE_SAPLING = register(PromenadeBlockKeys.POTTED_SAP_MAPLE_SAPLING, DawnFactory.potted(SAP_MAPLE_SAPLING));
     public static final Block SAP_MAPLE_LEAVES = register(PromenadeBlockKeys.SAP_MAPLE_LEAVES, DawnFactory.leaves(MAPLE_SAP_LEAVES_COLOR));
@@ -84,6 +90,7 @@ public class PromenadeBlocks {
     public static final Block MIKADO_MAPLE_LEAF_PILE = register(PromenadeBlockKeys.MIKADO_MAPLE_LEAF_PILE, PromenadeFactory.leafPile(MAPLE_MIKADO_LEAVES_COLOR));
     public static final Block MIKADO_CARPETED_GRASS_BLOCK = register(PromenadeBlockKeys.MIKADO_CARPETED_GRASS_BLOCK, PromenadeFactory.carpetedGrassBlock(MAPLE_MIKADO_LEAVES_COLOR));
 
+    @Deprecated
     public static <B extends Block> B register(String path, B block) {
         return Registry.register(Registries.BLOCK, Promenade.id(path), block);
     }

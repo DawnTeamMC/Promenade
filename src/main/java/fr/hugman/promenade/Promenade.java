@@ -3,9 +3,11 @@ package fr.hugman.promenade;
 import com.google.common.reflect.Reflection;
 import fr.hugman.dawn.Registrar;
 import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.boat.PromenadeBoatTypes;
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
+import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.registry.PromenadeRegistries;
 import fr.hugman.promenade.registry.content.*;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
@@ -25,10 +27,15 @@ public class Promenade implements ModInitializer {
     @Override
     public void onInitialize() {
         PromenadeRegistries.register();
-        Reflection.initialize(PromenadeSensorTypes.class);
 
         PromenadeBlocks.appendItemGroups();
         PromenadeBlocks.appendVillagerTrades();
+
+        PromenadeItems.appendItemGroups();
+
+        Reflection.initialize(PromenadeSensorTypes.class);
+        Reflection.initialize(PromenadeBoatTypes.class);
+
         PromenadeBiomes.appendWorldGen();
 
         PromenadeTrackedData.init();
@@ -42,7 +49,6 @@ public class Promenade implements ModInitializer {
         IgneousContent.register(REGISTRAR);
 
         SakuraContent.register(REGISTRAR);
-        MapleContent.register(REGISTRAR);
         TropicalContent.register(REGISTRAR);
         GlaglaglaContent.register(REGISTRAR);
         AmaranthContent.register(REGISTRAR);
