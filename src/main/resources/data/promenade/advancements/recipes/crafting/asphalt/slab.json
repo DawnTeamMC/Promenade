@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"items": ["promenade:asphalt"]
+						"items": "promenade:asphalt"
 					}
 				]
 			}

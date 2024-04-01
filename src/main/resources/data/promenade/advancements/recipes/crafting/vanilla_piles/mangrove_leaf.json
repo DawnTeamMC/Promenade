@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"items": ["minecraft:mangrove_leaves"]
+						"items": "minecraft:mangrove_leaves"
 					}
 				]
 			}

@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"items": ["promenade:dark_amaranth_stem"]
+						"items": "promenade:dark_amaranth_stem"
 					}
 				]
 			}

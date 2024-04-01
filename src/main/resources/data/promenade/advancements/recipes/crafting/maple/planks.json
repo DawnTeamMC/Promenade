@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"tag": "promenade:maple_logs"
+						"items": "#promenade:maple_logs"
 					}
 				]
 			}

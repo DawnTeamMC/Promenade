@@ -11,7 +11,7 @@
 			"conditions": {
 				"items": [
 					{
-						"tag": "promenade:sakura_logs"
+						"items": "#promenade:sakura_logs"
 					}
 				]
 			}

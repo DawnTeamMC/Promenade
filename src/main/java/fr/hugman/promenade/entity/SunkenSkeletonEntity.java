@@ -23,7 +23,6 @@ import net.minecraft.entity.passive.PufferfishEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
@@ -36,7 +35,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
-import org.joml.Vector3f;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -116,7 +114,6 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
         return this.isSubmergedIn(FluidTags.WATER) ? MonsterContent.SUNKEN_SKELETON_SHOOT_SOUND : (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem) ? SoundEvents.ITEM_CROSSBOW_SHOOT : SoundEvents.ENTITY_SKELETON_SHOOT);
     }
 
-    //TODO: test changes made in 1.20.5
     @Override
     public void shootAt(LivingEntity target, float pullProgress) {
         if (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem)) {
