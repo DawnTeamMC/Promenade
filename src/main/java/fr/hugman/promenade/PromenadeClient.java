@@ -1,15 +1,14 @@
 package fr.hugman.promenade;
 
 import fr.hugman.dawn.client.ClientRegistrar;
-import fr.hugman.promenade.client.PromenadeEntityModelLayers;
+import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.client.render.entity.CapybaraRenderer;
 import fr.hugman.promenade.client.render.entity.DuckRenderer;
 import fr.hugman.promenade.client.render.entity.LushCreeperRenderer;
 import fr.hugman.promenade.client.render.entity.SunkenSkeletonRenderer;
-import fr.hugman.promenade.content.PromenadeBlocks;
-import fr.hugman.promenade.content.PromenadeParticleTypes;
+import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.particle.FallingLeafParticle;
-import fr.hugman.promenade.particle.FloatingParticle;
+import fr.hugman.promenade.particle.PromenadeParticleTypes;
 import fr.hugman.promenade.registry.content.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -23,8 +22,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.color.world.FoliageColors;
 import net.minecraft.client.color.world.GrassColors;
-import net.minecraft.client.particle.CherryLeavesParticle;
-import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
 

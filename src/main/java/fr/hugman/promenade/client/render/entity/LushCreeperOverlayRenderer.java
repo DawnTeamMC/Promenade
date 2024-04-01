@@ -1,7 +1,7 @@
 package fr.hugman.promenade.client.render.entity;
 
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.client.PromenadeEntityModelLayers;
+import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.VertexConsumerProvider;

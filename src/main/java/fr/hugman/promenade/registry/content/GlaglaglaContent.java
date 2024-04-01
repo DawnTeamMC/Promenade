@@ -7,7 +7,7 @@ import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
-import fr.hugman.promenade.gen.feature.FreezeTopLayerFeature;
+import fr.hugman.promenade.world.gen.feature.FreezeTopLayerFeature;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;

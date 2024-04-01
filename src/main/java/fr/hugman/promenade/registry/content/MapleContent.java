@@ -7,7 +7,7 @@ import fr.hugman.dawn.Registrar;
 import fr.hugman.dawn.block.SignBlocks;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.content.PromenadeBlocks;
+import fr.hugman.promenade.block.PromenadeBlocks;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.item.*;
 import net.minecraft.registry.RegistryKey;
@@ -16,7 +16,7 @@ import net.minecraft.world.biome.BiomeKeys;
 
 public class MapleContent {
     public static final SignBlocks MAPLE_SIGNS = DawnFactory.signs(Promenade.id("maple"), PromenadeBlocks.MAPLE_PLANKS);
-    public static final TerraformBoatType MAPLE_BOAT_TYPE = DawnFactory.boat(Promenade.id("maple"), PromenadeBlocks.MAPLE_PLANKS); //TODO change when possible (PR #72 on TerraformersMC/Terraform)
+    public static final TerraformBoatType MAPLE_BOAT_TYPE = DawnFactory.boat(Promenade.id("maple"), PromenadeBlocks.MAPLE_PLANKS);
 
     public static final Item MAPLE_SYRUP_BOTTLE = new HoneyBottleItem(new Item.Settings()
             .maxCount(16)

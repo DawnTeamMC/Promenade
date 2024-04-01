@@ -1,13 +1,14 @@
 package fr.hugman.promenade;
 
+import com.google.common.reflect.Reflection;
 import fr.hugman.dawn.Registrar;
+import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.config.PromenadeConfig;
-import fr.hugman.promenade.content.PromenadeBlocks;
-import fr.hugman.promenade.content.PromenadeBiomes;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.registry.PromenadeRegistries;
 import fr.hugman.promenade.registry.content.*;
+import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
@@ -24,13 +25,13 @@ public class Promenade implements ModInitializer {
     @Override
     public void onInitialize() {
         PromenadeRegistries.register();
+        Reflection.initialize(PromenadeSensorTypes.class);
 
         PromenadeBlocks.appendItemGroups();
         PromenadeBlocks.appendVillagerTrades();
         PromenadeBiomes.appendWorldGen();
 
         PromenadeTrackedData.init();
-        PromenadeSensorTypes.register(REGISTRAR);
 
         AnimalContent.register(REGISTRAR);
         MonsterContent.register(REGISTRAR);

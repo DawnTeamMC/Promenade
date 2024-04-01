@@ -4,7 +4,6 @@ import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.block.BoneMealSpreadable;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.registry.content.AmaranthContent;
-import fr.hugman.promenade.registry.tag.PromenadeBlockTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.NyliumBlock;

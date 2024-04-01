@@ -6,7 +6,7 @@ import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.entity.CapybaraEntity;
 import fr.hugman.promenade.entity.DuckEntity;
-import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
+import fr.hugman.promenade.world.biome.PromenadeBiomeTags;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;

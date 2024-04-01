@@ -1,7 +1,7 @@
 package fr.hugman.promenade.client.render.entity;
 
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.client.PromenadeEntityModelLayers;
+import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.SunkenSkeletonModel;
 import fr.hugman.promenade.entity.SunkenSkeletonEntity;
 import net.fabricmc.api.EnvType;

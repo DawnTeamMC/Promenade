@@ -8,7 +8,7 @@ import fr.hugman.dawn.block.SignBlocks;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
-import fr.hugman.promenade.content.PromenadeSaplingGenerators;
+import fr.hugman.promenade.block.PromenadeSaplingGenerators;
 import fr.hugman.promenade.village.TradeOfferUtils;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;

@@ -1,8 +1,8 @@
 package fr.hugman.promenade.entity;
 
+import fr.hugman.promenade.item.PromenadeItemTags;
 import fr.hugman.promenade.registry.content.AnimalContent;
-import fr.hugman.promenade.registry.tag.PromenadeBiomeTags;
-import fr.hugman.promenade.registry.tag.PromenadeItemTags;
+import fr.hugman.promenade.world.biome.PromenadeBiomeTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;

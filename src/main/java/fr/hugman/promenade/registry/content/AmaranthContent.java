@@ -9,7 +9,7 @@ import fr.hugman.dawn.block.SignBlocks;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.DyliumBlock;
-import fr.hugman.promenade.registry.tag.PromenadeBlockTags;
+import fr.hugman.promenade.block.PromenadeBlockTags;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
 import net.fabricmc.fabric.api.object.builder.v1.block.type.WoodTypeBuilder;
 import net.minecraft.block.*;

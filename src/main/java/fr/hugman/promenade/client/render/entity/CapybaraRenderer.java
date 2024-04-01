@@ -1,7 +1,7 @@
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.client.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.CapybaraModel;
+import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.entity.CapybaraEntity;
 import fr.hugman.promenade.registry.PromenadeRegistries;
 import net.fabricmc.api.EnvType;

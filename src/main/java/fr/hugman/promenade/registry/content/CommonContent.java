@@ -2,12 +2,12 @@ package fr.hugman.promenade.registry.content;
 
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
-import fr.hugman.promenade.gen.feature.BoulderFeature;
-import fr.hugman.promenade.gen.feature.BoulderFeatureConfig;
-import fr.hugman.promenade.gen.feature.TallHugeFungusFeature;
-import fr.hugman.promenade.gen.placement_modifier.NoiseIntervalCountPlacementModifier;
-import fr.hugman.promenade.gen.tree.foliage.PalmFoliagePlacer;
-import fr.hugman.promenade.gen.tree.trunk.LeapingTrunkPlacer;
+import fr.hugman.promenade.world.gen.feature.BoulderFeature;
+import fr.hugman.promenade.world.gen.feature.BoulderFeatureConfig;
+import fr.hugman.promenade.world.gen.feature.TallHugeFungusFeature;
+import fr.hugman.promenade.world.gen.placement_modifier.NoiseIntervalCountPlacementModifier;
+import fr.hugman.promenade.world.gen.tree.foliage.PalmFoliagePlacer;
+import fr.hugman.promenade.world.gen.tree.trunk.LeapingTrunkPlacer;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.HugeFungusFeatureConfig;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
