@@ -36,7 +36,7 @@ public class AnimalContent {
             .defaultAttributes(CapybaraEntity::createCapybaraAttributes)
             .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn)
             .build();
-    public static final Item CAPYBARA_SPAWN_EGG = DawnFactory.spawnEgg(CAPYBARA, 0xa0704e, 0x433930);
+    public static final Item CAPYBARA_SPAWN_EGG = DawnFactory.spawnEgg(CAPYBARA, 0xa0704e, 0x433930); //TODO: review colors
     public static final SoundEvent CAPYBARA_AMBIENT_SOUND = SoundEvent.of(Promenade.id("entity.capybara.ambient"));
     public static final SoundEvent CAPYBARA_AMBIENT_BABY_SOUND = SoundEvent.of(Promenade.id("entity.capybara.ambient.baby"));
     public static final SoundEvent CAPYBARA_FART_SOUND = SoundEvent.of(Promenade.id("entity.capybara.fart"));
@@ -59,7 +59,6 @@ public class AnimalContent {
 
     public static final Item DUCK_FOOD = new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F).build()));
     public static final Item COOKED_DUCK_FOOD = new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build()));
-    //TODO: they're meat (tag)
 
     public static void register(Registrar r) {
 

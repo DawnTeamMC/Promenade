@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
+import fr.hugman.promenade.item.PromenadeItemTags;
 import fr.hugman.promenade.registry.content.AnimalContent;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.brain.Activity;
@@ -14,6 +15,7 @@ import net.minecraft.entity.ai.brain.MemoryModuleType;
 import net.minecraft.entity.ai.brain.sensor.Sensor;
 import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.brain.task.*;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
@@ -85,6 +87,10 @@ public class CapybaraBrain {
 
 	public static void updateActivities(CapybaraEntity capybara) {
 		capybara.getBrain().resetPossibleActivities(ImmutableList.of(Activity.IDLE));
+	}
+
+	public static Predicate<ItemStack> getTemptItemPredicate() {
+		return (stack) -> stack.isIn(PromenadeItemTags.CAPYBARA_FOOD);
 	}
 
 	public static class WalkTask extends FleeTask<CapybaraEntity> {

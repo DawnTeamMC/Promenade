@@ -116,7 +116,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return stack.isIn(PromenadeItemTags.BREEDING_CAPYBARA);
+        return stack.isIn(PromenadeItemTags.CAPYBARA_FOOD);
     }
 
     @Override

@@ -186,7 +186,7 @@ public class DuckEntity extends AnimalEntity {
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack) {
-		return stack.isIn(PromenadeItemTags.BREEDING_DUCK);
+		return stack.isIn(PromenadeItemTags.DUCK_FOOD);
 	}
 
 	@Override
