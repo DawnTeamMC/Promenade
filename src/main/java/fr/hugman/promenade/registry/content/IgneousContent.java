@@ -2,17 +2,10 @@ package fr.hugman.promenade.registry.content;
 
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.Registrar;
-import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.MapColor;
-import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.OreConfiguredFeatures;
 import net.minecraft.world.gen.feature.PlacedFeature;

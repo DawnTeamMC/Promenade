@@ -10,8 +10,8 @@ import net.minecraft.client.gui.screen.Screen;
 
 @Environment(EnvType.CLIENT)
 public class PromenadeMMIntegration implements ModMenuApi {
-	@Override
-	public ConfigScreenFactory<?> getModConfigScreenFactory() {
-		return parent -> (Screen) AutoConfig.getConfigScreen(PromenadeConfig.class, parent).get();
-	}
+    @Override
+    public ConfigScreenFactory<?> getModConfigScreenFactory() {
+        return parent -> (Screen) AutoConfig.getConfigScreen(PromenadeConfig.class, parent).get();
+    }
 }

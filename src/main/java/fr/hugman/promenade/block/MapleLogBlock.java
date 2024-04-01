@@ -8,16 +8,16 @@ import net.minecraft.state.property.BooleanProperty;
 
 //TODO add Codec
 public class MapleLogBlock extends PillarBlock {
-	public static final BooleanProperty NATURAL = PromenadeBlockProperties.NATURAL;
+    public static final BooleanProperty NATURAL = PromenadeBlockProperties.NATURAL;
 
-	public MapleLogBlock(Settings settings) {
-		super(settings);
-		this.setDefaultState(this.getDefaultState().with(NATURAL, false));
-	}
+    public MapleLogBlock(Settings settings) {
+        super(settings);
+        this.setDefaultState(this.getDefaultState().with(NATURAL, false));
+    }
 
-	@Override
-	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-		super.appendProperties(builder);
-		builder.add(NATURAL);
-	}
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        super.appendProperties(builder);
+        builder.add(NATURAL);
+    }
 }

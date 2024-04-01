@@ -289,7 +289,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
             this.earWiggleAnimState.start(this.age);
         } else {
             --this.earWiggleCooldown;
-            
+
         }
 
         switch (this.getState()) {
@@ -510,7 +510,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
         }
 
         public static State fromName(String name) {
-            return (State)CODEC.byId(name, STANDING);
+            return CODEC.byId(name, STANDING);
         }
 
         public String asString() {
@@ -542,7 +542,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
 
     public Identifier getEyesTexture() {
         var variant = this.getVariant().value();
-        if(this.hasLargeEyes()) {
+        if (this.hasLargeEyes()) {
             return this.hasClosedEyes() ? variant.largeClosedEyesTexture() : variant.largeOpenEyesTexture();
         } else {
             return this.hasClosedEyes() ? variant.regularClosedEyesTexture() : variant.regularOpenEyesTexture();

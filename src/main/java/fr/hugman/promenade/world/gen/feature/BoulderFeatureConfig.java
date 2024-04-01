@@ -10,10 +10,11 @@ import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
-public record BoulderFeatureConfig(BlockStateProvider stateProvider, RegistryEntryList<Block> replaceableBlocks, IntProvider radius) implements FeatureConfig {
-	public static final Codec<BoulderFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
-			BlockStateProvider.TYPE_CODEC.fieldOf("state").forGetter((config) -> config.stateProvider),
-			RegistryCodecs.entryList(RegistryKeys.BLOCK).fieldOf("replaceable").forGetter((config) -> config.replaceableBlocks),
-			IntProvider.createValidatingCodec(1, 64).fieldOf("count").forGetter((config) -> config.radius)
-	).apply(instance, BoulderFeatureConfig::new));
+public record BoulderFeatureConfig(BlockStateProvider stateProvider, RegistryEntryList<Block> replaceableBlocks,
+                                   IntProvider radius) implements FeatureConfig {
+    public static final Codec<BoulderFeatureConfig> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+            BlockStateProvider.TYPE_CODEC.fieldOf("state").forGetter((config) -> config.stateProvider),
+            RegistryCodecs.entryList(RegistryKeys.BLOCK).fieldOf("replaceable").forGetter((config) -> config.replaceableBlocks),
+            IntProvider.createValidatingCodec(1, 64).fieldOf("count").forGetter((config) -> config.radius)
+    ).apply(instance, BoulderFeatureConfig::new));
 }
