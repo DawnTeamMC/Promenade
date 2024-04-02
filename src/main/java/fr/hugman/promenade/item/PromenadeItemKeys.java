@@ -6,6 +6,11 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
 public class PromenadeItemKeys {
+    public static final RegistryKey<Item> SAKURA_SIGN = of("sakura_sign");
+    public static final RegistryKey<Item> SAKURA_HANGING_SIGN = of("sakura_hanging_sign");
+    public static final RegistryKey<Item> SAKURA_BOAT = of("sakura_boat");
+    public static final RegistryKey<Item> SAKURA_CHEST_BOAT = of("sakura_chest_boat");
+
     public static final RegistryKey<Item> MAPLE_SIGN = of("maple_sign");
     public static final RegistryKey<Item> MAPLE_HANGING_SIGN = of("maple_hanging_sign");
     public static final RegistryKey<Item> MAPLE_BOAT = of("maple_boat");

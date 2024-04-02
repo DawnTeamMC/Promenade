@@ -9,7 +9,14 @@ public class PromenadeBiomes {
         if (Promenade.CONFIG.biomes.carnelian_treeway_weight <= 0) {
             return;
         }
-        double weight = Promenade.CONFIG.biomes.carnelian_treeway_weight / 100.0D;
-        BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, PromenadeBiomeKeys.CARNELIAN_TREEWAY, weight);
+        BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, PromenadeBiomeKeys.CARNELIAN_TREEWAY, Promenade.CONFIG.biomes.carnelian_treeway_weight / 100.0D);
+
+
+        if (Promenade.CONFIG.biomes.sakura_groves_weight <= 0) {
+            return;
+        }
+        double sakuraWeight = Promenade.CONFIG.biomes.sakura_groves_weight / 100.0D;
+        BiomePlacement.replaceOverworld(BiomeKeys.FOREST, PromenadeBiomeKeys.BLUSH_SAKURA_GROVE, sakuraWeight);
+        BiomePlacement.replaceOverworld(BiomeKeys.BIRCH_FOREST, PromenadeBiomeKeys.COTTON_SAKURA_GROVE, sakuraWeight);
     }
 }

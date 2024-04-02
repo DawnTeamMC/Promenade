@@ -9,6 +9,11 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 
 public class PromenadeBoatTypes {
+    public static final TerraformBoatType SAKURA = register(PromenadeBoatTypeKeys.SAKURA, new TerraformBoatType.Builder()
+            .item(PromenadeItems.SAKURA_BOAT)
+            .chestItem(PromenadeItems.SAKURA_CHEST_BOAT)
+            .planks(PromenadeBlocks.SAKURA_PLANKS.asItem())
+            .build());
     public static final TerraformBoatType MAPLE = register(PromenadeBoatTypeKeys.MAPLE, new TerraformBoatType.Builder()
             .item(PromenadeItems.MAPLE_BOAT)
             .chestItem(PromenadeItems.MAPLE_CHEST_BOAT)

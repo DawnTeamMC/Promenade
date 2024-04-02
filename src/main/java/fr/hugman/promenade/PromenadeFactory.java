@@ -1,5 +1,9 @@
 package fr.hugman.promenade;
 
+import com.terraformersmc.terraform.sign.block.TerraformHangingSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.promenade.block.CarpetedGrassBlock;
 import fr.hugman.promenade.block.DecoratedLeavesBlock;
@@ -14,6 +18,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.Identifier;
 
 public final class PromenadeFactory {
     public static Block leafPile() {
@@ -83,5 +88,21 @@ public final class PromenadeFactory {
 
     public static DecoratedLeavesBlock decoratedLeaves(MapColor mapColor, ParticleEffect particle) {
         return decoratedLeaves(mapColor, BlockSoundGroup.GRASS, 10, particle);
+    }
+
+    //TODO: move to Dawn API
+    public static Block sign(boolean hanging, boolean wall, Identifier texturePath, Block basePlanks, BlockSoundGroup soundGroup) {
+        return sign(hanging, wall, texturePath, DawnFactory.signSettings(basePlanks, soundGroup));
+    }
+
+    //TODO: move to Dawn API
+    public static Block sign(boolean hanging, boolean wall, Identifier texturePath, AbstractBlock.Settings settings) {
+        if(hanging) {
+            var hangingSignTexture = Identifier.of(texturePath.getNamespace(), "entity/signs/hanging/" + texturePath.getPath());
+            var hangingSignGuiTexture = Identifier.of(texturePath.getNamespace(), "textures/gui/hanging_signs/" + texturePath.getPath());
+            return wall ? new TerraformWallHangingSignBlock(hangingSignTexture, hangingSignGuiTexture, settings) : new TerraformHangingSignBlock(hangingSignTexture, hangingSignGuiTexture, settings);
+        }
+        var signTexture = Identifier.of(texturePath.getNamespace(), "entity/signs/" + texturePath.getPath());
+        return wall ? new TerraformWallSignBlock(signTexture, settings) : new TerraformSignBlock(signTexture, settings);
     }
 }

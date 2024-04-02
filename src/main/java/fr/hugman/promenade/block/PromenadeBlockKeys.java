@@ -24,6 +24,39 @@ public class PromenadeBlockKeys {
     public static final RegistryKey<Block> POLISHED_BLUNITE_SLAB = of("polished_blunite_slab");
     public static final RegistryKey<Block> POLISHED_BLUNITE_STAIRS = of("polished_blunite_stairs");
 
+
+    /* ========== */
+    /*   SAKURA   */
+    /* ========== */
+    public static final RegistryKey<Block> STRIPPED_SAKURA_LOG = of("stripped_sakura_log");
+    public static final RegistryKey<Block> SAKURA_LOG = of("sakura_log");
+    public static final RegistryKey<Block> STRIPPED_SAKURA_WOOD = of("stripped_sakura_wood");
+    public static final RegistryKey<Block> SAKURA_WOOD = of("sakura_wood");
+    public static final RegistryKey<Block> SAKURA_PLANKS = of("sakura_planks");
+    public static final RegistryKey<Block> SAKURA_STAIRS = of("sakura_stairs");
+    public static final RegistryKey<Block> SAKURA_SLAB = of("sakura_slab");
+    public static final RegistryKey<Block> SAKURA_FENCE = of("sakura_fence");
+    public static final RegistryKey<Block> SAKURA_FENCE_GATE = of("sakura_fence_gate");
+    public static final RegistryKey<Block> SAKURA_DOOR = of("sakura_door");
+    public static final RegistryKey<Block> SAKURA_TRAPDOOR = of("sakura_trapdoor");
+    public static final RegistryKey<Block> SAKURA_BUTTON = of("sakura_button");
+    public static final RegistryKey<Block> SAKURA_PRESSURE_PLATE = of("sakura_pressure_plate");
+    public static final RegistryKey<Block> SAKURA_SIGN = of("sakura_sign");
+    public static final RegistryKey<Block> SAKURA_WALL_SIGN = of("sakura_wall_sign");
+    public static final RegistryKey<Block> SAKURA_HANGING_SIGN = of("sakura_hanging_sign");
+    public static final RegistryKey<Block> SAKURA_WALL_HANGING_SIGN = of("sakura_wall_hanging_sign");
+
+    public static final RegistryKey<Block> BLUSH_SAKURA_SAPLING = of("blush_sakura_sapling");
+    public static final RegistryKey<Block> POTTED_BLUSH_SAKURA_SAPLING = of("potted_blush_sakura_sapling");
+    public static final RegistryKey<Block> BLUSH_SAKURA_BLOSSOMS = of("blush_sakura_blossoms");
+    public static final RegistryKey<Block> BLUSH_SAKURA_BLOSSOM_PILE = of("blush_sakura_blossom_pile");
+
+    public static final RegistryKey<Block> COTTON_SAKURA_SAPLING = of("cotton_sakura_sapling");
+    public static final RegistryKey<Block> POTTED_COTTON_SAKURA_SAPLING = of("potted_cotton_sakura_sapling");
+    public static final RegistryKey<Block> COTTON_SAKURA_BLOSSOMS = of("cotton_sakura_blossoms");
+    public static final RegistryKey<Block> COTTON_SAKURA_BLOSSOM_PILE = of("cotton_sakura_blossom_pile");
+
+
     /* ========= */
     /*   MAPLE   */
     /* ========= */
@@ -40,6 +73,10 @@ public class PromenadeBlockKeys {
     public static final RegistryKey<Block> MAPLE_TRAPDOOR = of("maple_trapdoor");
     public static final RegistryKey<Block> MAPLE_BUTTON = of("maple_button");
     public static final RegistryKey<Block> MAPLE_PRESSURE_PLATE = of("maple_pressure_plate");
+    public static final RegistryKey<Block> MAPLE_SIGN = of("maple_sign");
+    public static final RegistryKey<Block> MAPLE_WALL_SIGN = of("maple_wall_sign");
+    public static final RegistryKey<Block> MAPLE_HANGING_SIGN = of("maple_hanging_sign");
+    public static final RegistryKey<Block> MAPLE_WALL_HANGING_SIGN = of("maple_wall_hanging_sign");
 
     public static final RegistryKey<Block> SAP_MAPLE_SAPLING = of("sap_maple_sapling");
     public static final RegistryKey<Block> POTTED_SAP_MAPLE_SAPLING = of("potted_sap_maple_sapling");
@@ -63,11 +100,6 @@ public class PromenadeBlockKeys {
     public static final RegistryKey<Block> MIKADO_MAPLE_LEAVES = of("mikado_maple_leaves");
     public static final RegistryKey<Block> MIKADO_MAPLE_LEAF_PILE = of("mikado_maple_leaf_pile");
     public static final RegistryKey<Block> MIKADO_CARPETED_GRASS_BLOCK = of("mikado_carpeted_grass_block");
-
-    public static final RegistryKey<Block> MAPLE_SIGN = of("maple_sign");
-    public static final RegistryKey<Block> MAPLE_WALL_SIGN = of("maple_wall_sign");
-    public static final RegistryKey<Block> MAPLE_HANGING_SIGN = of("maple_hanging_sign");
-    public static final RegistryKey<Block> MAPLE_WALL_HANGING_SIGN = of("maple_wall_hanging_sign");
 
     private static RegistryKey<Block> of(String path) {
         return RegistryKey.of(RegistryKeys.BLOCK, Promenade.id(path));

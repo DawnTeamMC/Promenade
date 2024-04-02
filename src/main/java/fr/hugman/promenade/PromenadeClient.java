@@ -36,14 +36,14 @@ public class PromenadeClient implements ClientModInitializer {
         PromenadeClient.registerItemColors();
         PromenadeClient.registerEntityRenderers();
 
-        ParticleFactoryRegistry.getInstance().register(SakuraContent.BLUSH_SAKURA_BLOSSOM, FallingLeafParticle.BlossomFactory::new);
-        ParticleFactoryRegistry.getInstance().register(SakuraContent.COTTON_SAKURA_BLOSSOM, FallingLeafParticle.BlossomFactory::new);
+        ParticleFactoryRegistry.getInstance().register(PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM, FallingLeafParticle.BlossomFactory::new);
+        ParticleFactoryRegistry.getInstance().register(PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM, FallingLeafParticle.BlossomFactory::new);
 
         ParticleFactoryRegistry.getInstance().register(PromenadeParticleTypes.MIKADO_MAPLE_LEAF, FallingLeafParticle.MapleLeafFactory::new);
         ParticleFactoryRegistry.getInstance().register(PromenadeParticleTypes.FULVOUS_MAPLE_LEAF, FallingLeafParticle.MapleLeafFactory::new);
         ParticleFactoryRegistry.getInstance().register(PromenadeParticleTypes.VERMILION_MAPLE_LEAF, FallingLeafParticle.MapleLeafFactory::new);
 
-        ClientRegistrar.add(SakuraContent.SAKURA_BOAT_TYPE);
+        ClientRegistrar.add(PromenadeBoatTypes.SAKURA);
         ClientRegistrar.add(PromenadeBoatTypes.MAPLE);
         ClientRegistrar.add(TropicalContent.PALM_BOAT_TYPE);
     }
@@ -74,18 +74,18 @@ public class PromenadeClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(VanillaPilesContent.WITHER_ROSE_PILE, RenderLayer.getCutoutMipped());
 
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SakuraContent.SAKURA_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(SakuraContent.SAKURA_TRAPDOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SAKURA_DOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SAKURA_TRAPDOOR, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SakuraContent.BLUSH_SAKURA_BLOSSOMS, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(SakuraContent.BLUSH_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(SakuraContent.POTTED_BLUSH_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(SakuraContent.BLUSH_SAKURA_BLOSSOM_PILE, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.BLUSH_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_BLUSH_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, RenderLayer.getCutoutMipped());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(SakuraContent.COTTON_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(SakuraContent.POTTED_COTTON_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(SakuraContent.COTTON_SAKURA_BLOSSOMS, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(SakuraContent.COTTON_SAKURA_BLOSSOM_PILE, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.COTTON_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_COTTON_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, RenderLayer.getCutoutMipped());
 
 
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.MAPLE_DOOR, RenderLayer.getCutout());

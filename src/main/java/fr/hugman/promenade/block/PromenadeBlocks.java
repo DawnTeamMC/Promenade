@@ -5,8 +5,7 @@ import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.particle.PromenadeParticleTypes;
-import fr.hugman.promenade.registry.content.SakuraContent;
-import fr.hugman.promenade.sign.PromenadeSigns;
+import fr.hugman.promenade.registry.content.VanillaPilesContent;
 import fr.hugman.promenade.village.TradeOfferUtils;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.*;
@@ -35,6 +34,46 @@ public class PromenadeBlocks {
     public static final Block POLISHED_BLUNITE_SLAB = register(PromenadeBlockKeys.POLISHED_BLUNITE_SLAB, DawnFactory.slab(POLISHED_BLUNITE));
     public static final Block POLISHED_BLUNITE_STAIRS = register(PromenadeBlockKeys.POLISHED_BLUNITE_STAIRS, DawnFactory.stairs(POLISHED_BLUNITE));
 
+    /* ========== */
+    /*   SAKURA   */
+    /* ========== */
+    private static final BlockSoundGroup SAKURA_WOOD_SOUNDS = BlockSoundGroup.CHERRY_WOOD;
+    private static final MapColor SAKURA_BARK_COLOR = MapColor.TERRACOTTA_BROWN;
+    private static final MapColor SAKURA_WOOD_COLOR = MapColor.TERRACOTTA_BROWN;
+
+    private static final MapColor BLUSH_BLOSSOMS_COLOR = MapColor.PINK;
+    private static final MapColor COTTON_BLOSSOMS_COLOR = MapColor.OFF_WHITE;
+
+
+    public static final Block STRIPPED_SAKURA_LOG = register(PromenadeBlockKeys.STRIPPED_SAKURA_LOG, new PillarBlock(DawnFactory.logSettings(SAKURA_WOOD_COLOR, SAKURA_WOOD_SOUNDS, true)));
+    public static final Block SAKURA_LOG = register(PromenadeBlockKeys.SAKURA_LOG, new PillarBlock(DawnFactory.logSettings(SAKURA_WOOD_COLOR, SAKURA_BARK_COLOR, SAKURA_WOOD_SOUNDS, true).stripsInto(STRIPPED_SAKURA_LOG)));
+    public static final Block STRIPPED_SAKURA_WOOD = register(PromenadeBlockKeys.STRIPPED_SAKURA_WOOD, new PillarBlock(DawnFactory.logSettings(SAKURA_WOOD_COLOR, SAKURA_WOOD_SOUNDS, true)));
+    public static final Block SAKURA_WOOD = register(PromenadeBlockKeys.SAKURA_WOOD, new PillarBlock(DawnFactory.logSettings(SAKURA_BARK_COLOR, SAKURA_WOOD_SOUNDS, true).stripsInto(STRIPPED_SAKURA_WOOD)));
+
+    public static final Block SAKURA_PLANKS = register(PromenadeBlockKeys.SAKURA_PLANKS, DawnFactory.planks(SAKURA_WOOD_COLOR, SAKURA_WOOD_SOUNDS, true));
+    public static final Block SAKURA_STAIRS = register(PromenadeBlockKeys.SAKURA_STAIRS, DawnFactory.stairs(SAKURA_PLANKS));
+    public static final Block SAKURA_SLAB = register(PromenadeBlockKeys.SAKURA_SLAB, DawnFactory.slab(SAKURA_PLANKS));
+    public static final Block SAKURA_FENCE = register(PromenadeBlockKeys.SAKURA_FENCE, DawnFactory.fence(SAKURA_PLANKS));
+    public static final Block SAKURA_FENCE_GATE = register(PromenadeBlockKeys.SAKURA_FENCE_GATE, DawnFactory.fenceGate(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA));
+    public static final Block SAKURA_DOOR = register(PromenadeBlockKeys.SAKURA_DOOR, DawnFactory.door(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
+    public static final Block SAKURA_TRAPDOOR = register(PromenadeBlockKeys.SAKURA_TRAPDOOR, DawnFactory.trapdoor(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
+    public static final Block SAKURA_BUTTON = register(PromenadeBlockKeys.SAKURA_BUTTON, DawnFactory.woodenButton(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
+    public static final Block SAKURA_PRESSURE_PLATE = register(PromenadeBlockKeys.SAKURA_PRESSURE_PLATE, DawnFactory.pressurePlate(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
+    public static final Block SAKURA_SIGN = register(PromenadeBlockKeys.SAKURA_SIGN, PromenadeFactory.sign(false, false, Promenade.id("sakura"), SAKURA_PLANKS, SAKURA_WOOD_SOUNDS));
+    public static final Block SAKURA_WALL_SIGN = register(PromenadeBlockKeys.SAKURA_WALL_SIGN, PromenadeFactory.sign(false, true, Promenade.id("sakura"), SAKURA_PLANKS, SAKURA_WOOD_SOUNDS));
+    public static final Block SAKURA_HANGING_SIGN = register(PromenadeBlockKeys.SAKURA_HANGING_SIGN, PromenadeFactory.sign(true, false, Promenade.id("sakura"), SAKURA_PLANKS, BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN));
+    public static final Block SAKURA_WALL_HANGING_SIGN = register(PromenadeBlockKeys.SAKURA_WALL_HANGING_SIGN, PromenadeFactory.sign(true, true, Promenade.id("sakura"), SAKURA_PLANKS, BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN));
+
+    public static final Block BLUSH_SAKURA_SAPLING = register(PromenadeBlockKeys.BLUSH_SAKURA_SAPLING, DawnFactory.sapling(BLUSH_BLOSSOMS_COLOR, PromenadeSaplingGenerators.BLUSH_SAKURA_SAPLING_GENERATOR));
+    public static final Block POTTED_BLUSH_SAKURA_SAPLING = register(PromenadeBlockKeys.POTTED_BLUSH_SAKURA_SAPLING, DawnFactory.potted(BLUSH_SAKURA_SAPLING));
+    public static final Block BLUSH_SAKURA_BLOSSOMS = register(PromenadeBlockKeys.BLUSH_SAKURA_BLOSSOMS, PromenadeFactory.decoratedLeaves(BLUSH_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM));
+    public static final Block BLUSH_SAKURA_BLOSSOM_PILE = register(PromenadeBlockKeys.BLUSH_SAKURA_BLOSSOM_PILE, PromenadeFactory.leafPile(BLUSH_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES));
+
+    public static final Block COTTON_SAKURA_SAPLING = register(PromenadeBlockKeys.COTTON_SAKURA_SAPLING, DawnFactory.sapling(COTTON_BLOSSOMS_COLOR, PromenadeSaplingGenerators.COTTON_SAKURA_SAPLING_GENERATOR));
+    public static final Block POTTED_COTTON_SAKURA_SAPLING = register(PromenadeBlockKeys.POTTED_COTTON_SAKURA_SAPLING, DawnFactory.potted(COTTON_SAKURA_SAPLING));
+    public static final Block COTTON_SAKURA_BLOSSOMS = register(PromenadeBlockKeys.COTTON_SAKURA_BLOSSOMS, PromenadeFactory.decoratedLeaves(COTTON_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM));
+    public static final Block COTTON_SAKURA_BLOSSOM_PILE = register(PromenadeBlockKeys.COTTON_SAKURA_BLOSSOM_PILE, PromenadeFactory.leafPile(COTTON_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES));
+
     /* ========= */
     /*   MAPLE   */
     /* ========= */
@@ -61,11 +100,10 @@ public class PromenadeBlocks {
     public static final Block MAPLE_TRAPDOOR = register(PromenadeBlockKeys.MAPLE_TRAPDOOR, DawnFactory.trapdoor(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
     public static final Block MAPLE_BUTTON = register(PromenadeBlockKeys.MAPLE_BUTTON, DawnFactory.woodenButton(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
     public static final Block MAPLE_PRESSURE_PLATE = register(PromenadeBlockKeys.MAPLE_PRESSURE_PLATE, DawnFactory.pressurePlate(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
-
-    public static final Block MAPLE_SIGN = register(PromenadeBlockKeys.MAPLE_SIGN, PromenadeSigns.MAPLE.sign());
-    public static final Block MAPLE_WALL_SIGN = register(PromenadeBlockKeys.MAPLE_WALL_SIGN, PromenadeSigns.MAPLE.wallSign());
-    public static final Block MAPLE_HANGING_SIGN = register(PromenadeBlockKeys.MAPLE_HANGING_SIGN, PromenadeSigns.MAPLE.hangingSign());
-    public static final Block MAPLE_WALL_HANGING_SIGN = register(PromenadeBlockKeys.MAPLE_WALL_HANGING_SIGN, PromenadeSigns.MAPLE.wallHangingSign());
+    public static final Block MAPLE_SIGN = register(PromenadeBlockKeys.MAPLE_SIGN, PromenadeFactory.sign(false, false, Promenade.id("maple"), MAPLE_PLANKS, MAPLE_WOOD_SOUNDS));
+    public static final Block MAPLE_WALL_SIGN = register(PromenadeBlockKeys.MAPLE_WALL_SIGN, PromenadeFactory.sign(false, true, Promenade.id("maple"), MAPLE_PLANKS, MAPLE_WOOD_SOUNDS));
+    public static final Block MAPLE_HANGING_SIGN = register(PromenadeBlockKeys.MAPLE_HANGING_SIGN, PromenadeFactory.sign(true, false, Promenade.id("maple"), MAPLE_PLANKS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block MAPLE_WALL_HANGING_SIGN = register(PromenadeBlockKeys.MAPLE_WALL_HANGING_SIGN, PromenadeFactory.sign(true, true, Promenade.id("maple"), MAPLE_PLANKS, BlockSoundGroup.HANGING_SIGN));
 
     public static final Block SAP_MAPLE_SAPLING = register(PromenadeBlockKeys.SAP_MAPLE_SAPLING, DawnFactory.sapling(MAPLE_SAP_LEAVES_COLOR, PromenadeSaplingGenerators.SAP_MAPLE_SAPLING_GENERATOR));
     public static final Block POTTED_SAP_MAPLE_SAPLING = register(PromenadeBlockKeys.POTTED_SAP_MAPLE_SAPLING, DawnFactory.potted(SAP_MAPLE_SAPLING));
@@ -90,11 +128,6 @@ public class PromenadeBlocks {
     public static final Block MIKADO_MAPLE_LEAF_PILE = register(PromenadeBlockKeys.MIKADO_MAPLE_LEAF_PILE, PromenadeFactory.leafPile(MAPLE_MIKADO_LEAVES_COLOR));
     public static final Block MIKADO_CARPETED_GRASS_BLOCK = register(PromenadeBlockKeys.MIKADO_CARPETED_GRASS_BLOCK, PromenadeFactory.carpetedGrassBlock(MAPLE_MIKADO_LEAVES_COLOR));
 
-    @Deprecated
-    public static <B extends Block> B register(String path, B block) {
-        return Registry.register(Registries.BLOCK, Promenade.id(path), block);
-    }
-
     public static <B extends Block> B register(RegistryKey<Block> key, B block) {
         return Registry.register(Registries.BLOCK, key, block);
     }
@@ -108,9 +141,31 @@ public class PromenadeBlocks {
                 POLISHED_ASPHALT, POLISHED_ASPHALT_SLAB, POLISHED_ASPHALT_STAIRS
         ));
 
+        // SAKURA
+        ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> e.addAfter(Blocks.BIRCH_BUTTON,
+                SAKURA_LOG,
+                SAKURA_WOOD,
+                STRIPPED_SAKURA_LOG,
+                STRIPPED_SAKURA_WOOD,
+                SAKURA_PLANKS,
+                SAKURA_STAIRS,
+                SAKURA_SLAB,
+                SAKURA_FENCE,
+                SAKURA_FENCE_GATE,
+                SAKURA_DOOR,
+                SAKURA_TRAPDOOR,
+                SAKURA_PRESSURE_PLATE,
+                SAKURA_BUTTON));
+        ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
+            e.addAfter(Blocks.BIRCH_LOG, SAKURA_LOG);
+            e.addAfter(Blocks.BIRCH_LEAVES, BLUSH_SAKURA_BLOSSOMS, COTTON_SAKURA_BLOSSOMS);
+            e.addAfter(Blocks.BIRCH_SAPLING, BLUSH_SAKURA_SAPLING, COTTON_SAKURA_SAPLING);
+            e.addAfter(VanillaPilesContent.BIRCH_LEAF_PILE, BLUSH_SAKURA_BLOSSOM_PILE, COTTON_SAKURA_BLOSSOM_PILE);
+        });
+
         // MAPLE
         ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e ->
-                e.addAfter(SakuraContent.SAKURA_BUTTON,
+                e.addAfter(SAKURA_BUTTON,
                         MAPLE_LOG,
                         MAPLE_WOOD,
                         STRIPPED_MAPLE_LOG,
@@ -125,11 +180,11 @@ public class PromenadeBlocks {
                         MAPLE_PRESSURE_PLATE,
                         MAPLE_BUTTON));
         ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
-            e.addAfter(SakuraContent.SAKURA_LOG, MAPLE_LOG);
+            e.addAfter(SAKURA_LOG, MAPLE_LOG);
             e.addAfter(Blocks.GRASS_BLOCK, VERMILION_CARPETED_GRASS_BLOCK, FULVOUS_CARPETED_GRASS_BLOCK, MIKADO_CARPETED_GRASS_BLOCK);
-            e.addAfter(SakuraContent.COTTON_SAKURA_BLOSSOMS, SAP_MAPLE_LEAVES, VERMILION_MAPLE_LEAVES, FULVOUS_MAPLE_LEAVES, MIKADO_MAPLE_LEAVES);
-            e.addAfter(SakuraContent.COTTON_SAKURA_SAPLING, SAP_MAPLE_SAPLING, VERMILION_MAPLE_SAPLING, FULVOUS_MAPLE_SAPLING, MIKADO_MAPLE_SAPLING);
-            e.addAfter(SakuraContent.COTTON_SAKURA_BLOSSOM_PILE, SAP_MAPLE_LEAF_PILE, VERMILION_MAPLE_LEAF_PILE, FULVOUS_MAPLE_LEAF_PILE, MIKADO_MAPLE_LEAF_PILE);
+            e.addAfter(COTTON_SAKURA_BLOSSOMS, SAP_MAPLE_LEAVES, VERMILION_MAPLE_LEAVES, FULVOUS_MAPLE_LEAVES, MIKADO_MAPLE_LEAVES);
+            e.addAfter(COTTON_SAKURA_SAPLING, SAP_MAPLE_SAPLING, VERMILION_MAPLE_SAPLING, FULVOUS_MAPLE_SAPLING, MIKADO_MAPLE_SAPLING);
+            e.addAfter(COTTON_SAKURA_BLOSSOM_PILE, SAP_MAPLE_LEAF_PILE, VERMILION_MAPLE_LEAF_PILE, FULVOUS_MAPLE_LEAF_PILE, MIKADO_MAPLE_LEAF_PILE);
         });
     }
 
@@ -139,6 +194,10 @@ public class PromenadeBlocks {
             factories.add(TradeOfferUtils.sapling(FULVOUS_MAPLE_SAPLING));
             factories.add(TradeOfferUtils.sapling(MIKADO_MAPLE_SAPLING));
             factories.add(TradeOfferUtils.sapling(SAP_MAPLE_SAPLING));
+        });
+        TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
+            factories.add(TradeOfferUtils.sapling(BLUSH_SAKURA_SAPLING));
+            factories.add(TradeOfferUtils.sapling(COTTON_SAKURA_SAPLING));
         });
     }
 }

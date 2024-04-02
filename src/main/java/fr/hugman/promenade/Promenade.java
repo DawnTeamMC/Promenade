@@ -10,6 +10,7 @@ import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.registry.PromenadeRegistries;
 import fr.hugman.promenade.registry.content.*;
+import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
@@ -35,6 +36,7 @@ public class Promenade implements ModInitializer {
 
         Reflection.initialize(PromenadeSensorTypes.class);
         Reflection.initialize(PromenadeBoatTypes.class);
+        Reflection.initialize(PromenadeSoundEvents.class);
 
         PromenadeBiomes.appendWorldGen();
 
@@ -48,7 +50,6 @@ public class Promenade implements ModInitializer {
         FoodContent.register(REGISTRAR);
         IgneousContent.register(REGISTRAR);
 
-        SakuraContent.register(REGISTRAR);
         TropicalContent.register(REGISTRAR);
         GlaglaglaContent.register(REGISTRAR);
         AmaranthContent.register(REGISTRAR);
