@@ -2,7 +2,6 @@ package fr.hugman.promenade.world.gen.tree.foliage;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import fr.hugman.promenade.registry.content.CommonContent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.random.Random;
@@ -22,7 +21,7 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected FoliagePlacerType<?> getType() {
-        return CommonContent.PALM_FOLIAGE_PLACER;
+        return PromenadeFoliagePlacerTypes.PALM;
     }
 
     @Override

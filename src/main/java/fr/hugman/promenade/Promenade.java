@@ -12,6 +12,10 @@ import fr.hugman.promenade.registry.PromenadeRegistries;
 import fr.hugman.promenade.registry.content.*;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
+import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
+import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifierTypes;
+import fr.hugman.promenade.world.gen.tree.foliage.PromenadeFoliagePlacerTypes;
+import fr.hugman.promenade.world.gen.tree.trunk.PromenadeTrunkPlacerTypes;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
@@ -34,6 +38,10 @@ public class Promenade implements ModInitializer {
 
         PromenadeItems.appendItemGroups();
 
+        Reflection.initialize(PromenadeFeatures.class);
+        Reflection.initialize(PromenadePlacementModifierTypes.class);
+        Reflection.initialize(PromenadeFoliagePlacerTypes.class);
+        Reflection.initialize(PromenadeTrunkPlacerTypes.class);
         Reflection.initialize(PromenadeSensorTypes.class);
         Reflection.initialize(PromenadeBoatTypes.class);
         Reflection.initialize(PromenadeSoundEvents.class);
@@ -45,7 +53,6 @@ public class Promenade implements ModInitializer {
         AnimalContent.register(REGISTRAR);
         MonsterContent.register(REGISTRAR);
 
-        CommonContent.register(REGISTRAR);
         VanillaPilesContent.register(REGISTRAR);
         FoodContent.register(REGISTRAR);
         IgneousContent.register(REGISTRAR);
