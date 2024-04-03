@@ -2,21 +2,74 @@ package fr.hugman.promenade.world.biome;
 
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import fr.hugman.promenade.Promenade;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.EntityTypeTags;
+import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.world.LightType;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 
 public class PromenadeBiomes {
     public static void appendWorldGen() {
-        if (Promenade.CONFIG.biomes.carnelian_treeway_weight <= 0) {
-            return;
-        }
-        BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, PromenadeBiomeKeys.CARNELIAN_TREEWAY, Promenade.CONFIG.biomes.carnelian_treeway_weight / 100.0D);
-
-
+        // Sakura Groves
         if (Promenade.CONFIG.biomes.sakura_groves_weight <= 0) {
             return;
         }
         double sakuraWeight = Promenade.CONFIG.biomes.sakura_groves_weight / 100.0D;
         BiomePlacement.replaceOverworld(BiomeKeys.FOREST, PromenadeBiomeKeys.BLUSH_SAKURA_GROVE, sakuraWeight);
         BiomePlacement.replaceOverworld(BiomeKeys.BIRCH_FOREST, PromenadeBiomeKeys.COTTON_SAKURA_GROVE, sakuraWeight);
+
+        // Carnelian Treeway
+        if (Promenade.CONFIG.biomes.carnelian_treeway_weight <= 0) {
+            return;
+        }
+        BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, PromenadeBiomeKeys.CARNELIAN_TREEWAY, Promenade.CONFIG.biomes.carnelian_treeway_weight / 100.0D);
+
+        // Glacarian Taiga
+        if (Promenade.CONFIG.biomes.glacarian_taiga_weight <= 0) {
+            return;
+        }
+        double glacarianTaigaWeight = Promenade.CONFIG.biomes.glacarian_taiga_weight / 100.0D;
+        BiomePlacement.replaceOverworld(BiomeKeys.TAIGA, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
+        BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_TAIGA, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
+        BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_SLOPES, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
+        BiomePlacement.replaceOverworld(BiomeKeys.JAGGED_PEAKS, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
+        BiomePlacement.replaceOverworld(BiomeKeys.GROVE, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
+    }
+
+    /**
+     * Check if the entity can freeze from the biome and weather.
+     * @param entity The entity to check.
+     * @return true if the entity can freeze, false otherwise.
+     */
+    public static boolean canFreezeFromBiomeAndWeather(LivingEntity entity) {
+        RegistryEntry<Biome> biome = entity.getWorld().getBiome(entity.getBlockPos());
+        if (entity.getType().isIn(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)) {
+            // is immune
+            return false;
+        }
+        if (!biome.isIn(PromenadeBiomeTags.CAN_FREEZE_DURING_SNOWFALL) || entity.isSpectator()) {
+            // is not the correct biome
+            // is spectator
+            return false;
+        }
+        if (!entity.getWorld().isRaining()) {
+            // is not snowing
+            return false;
+        }
+        boolean exposedToSky = entity.getWorld().getLightLevel(LightType.SKY, entity.getBlockPos()) >= 5;
+        boolean lightSourceNear = entity.getWorld().getLightLevel(LightType.BLOCK, entity.getBlockPos()) >= 5;
+        if (lightSourceNear || !exposedToSky) {
+            // is near a light source
+            // is not exposed much to sky
+            return false;
+        }
+        // wear any leather piece
+        return !entity.getEquippedStack(EquipmentSlot.HEAD).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
+                !entity.getEquippedStack(EquipmentSlot.CHEST).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
+                !entity.getEquippedStack(EquipmentSlot.LEGS).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
+                !entity.getEquippedStack(EquipmentSlot.FEET).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES);
     }
 }

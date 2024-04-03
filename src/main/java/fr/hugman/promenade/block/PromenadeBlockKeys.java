@@ -25,6 +25,40 @@ public class PromenadeBlockKeys {
     public static final RegistryKey<Block> POLISHED_BLUNITE_STAIRS = of("polished_blunite_stairs");
 
 
+    /* ====================== */
+    /*   VANILLA LEAF PILES   */
+    /* ====================== */
+    public static final RegistryKey<Block> OAK_LEAF_PILE = of("oak_leaf_pile");
+    public static final RegistryKey<Block> SPRUCE_LEAF_PILE = of("spruce_leaf_pile");
+    public static final RegistryKey<Block> BIRCH_LEAF_PILE = of("birch_leaf_pile");
+    public static final RegistryKey<Block> JUNGLE_LEAF_PILE = of("jungle_leaf_pile");
+    public static final RegistryKey<Block> ACACIA_LEAF_PILE = of("acacia_leaf_pile");
+    public static final RegistryKey<Block> DARK_OAK_LEAF_PILE = of("dark_oak_leaf_pile");
+    public static final RegistryKey<Block> MANGROVE_LEAF_PILE = of("mangrove_leaf_pile");
+    public static final RegistryKey<Block> AZALEA_LEAF_PILE = of("azalea_leaf_pile");
+    public static final RegistryKey<Block> FLOWERING_AZALEA_LEAF_PILE = of("flowering_azalea_leaf_pile");
+
+    public static final RegistryKey<Block> DANDELION_PILE = of("dandelion_pile");
+    public static final RegistryKey<Block> POPPY_PILE = of("poppy_pile");
+    public static final RegistryKey<Block> BLUE_ORCHID_PILE = of("blue_orchid_pile");
+    public static final RegistryKey<Block> ALLIUM_PILE = of("allium_pile");
+    public static final RegistryKey<Block> AZURE_BLUET_PILE = of("azure_bluet_pile");
+    public static final RegistryKey<Block> RED_TULIP_PILE = of("red_tulip_pile");
+    public static final RegistryKey<Block> ORANGE_TULIP_PILE = of("orange_tulip_pile");
+    public static final RegistryKey<Block> WHITE_TULIP_PILE = of("white_tulip_pile");
+    public static final RegistryKey<Block> PINK_TULIP_PILE = of("pink_tulip_pile");
+    public static final RegistryKey<Block> OXEYE_DAISY_PILE = of("oxeye_daisy_pile");
+    public static final RegistryKey<Block> CORNFLOWER_PILE = of("cornflower_pile");
+    public static final RegistryKey<Block> LILY_OF_THE_VALLEY_PILE = of("lily_of_the_valley_pile");
+    public static final RegistryKey<Block> WITHER_ROSE_PILE = of("wither_rose_pile");
+
+
+    /* ======================== */
+    /*   VANILLA SNOWY LEAVES   */
+    /* ======================== */
+    public static final RegistryKey<Block> SNOWY_SPRUCE_LEAVES = of("snowy_spruce_leaves");
+
+
     /* ========== */
     /*   SAKURA   */
     /* ========== */

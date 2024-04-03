@@ -55,10 +55,8 @@ public class Promenade implements ModInitializer {
         AnimalContent.register(REGISTRAR);
         MonsterContent.register(REGISTRAR);
 
-        VanillaPilesContent.register(REGISTRAR);
         FoodContent.register(REGISTRAR);
 
-        GlaglaglaContent.register(REGISTRAR);
         AmaranthContent.register(REGISTRAR);
     }
 

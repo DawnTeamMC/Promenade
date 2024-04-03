@@ -5,11 +5,7 @@ import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
 import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import fr.hugman.dawn.DawnFactory;
-import fr.hugman.promenade.block.CarpetedGrassBlock;
-import fr.hugman.promenade.block.DecoratedLeavesBlock;
-import fr.hugman.promenade.block.PileBlock;
-import fr.hugman.promenade.block.SnowyLeavesBlock;
-import fr.hugman.promenade.registry.content.GlaglaglaContent;
+import fr.hugman.promenade.block.*;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.MapColor;
@@ -55,7 +51,7 @@ public final class PromenadeFactory {
     }
 
     public static SnowyLeavesBlock snowyLeaves() {
-        return snowyLeaves(GlaglaglaContent.SNOWY_LEAVES_SOUNDS);
+        return snowyLeaves(PromenadeBlocks.SNOWY_LEAVES_SOUNDS);
     }
 
     public static SnowyLeavesBlock snowyLeaves(BlockSoundGroup soundGroup) {

@@ -11,4 +11,5 @@ public class PromenadeBiomeTags {
     public static final TagKey<Biome> MALLARD_DUCK_SPAWN = DawnFactory.biomeTag(Promenade.id("spawns/duck/mallard"));
     public static final TagKey<Biome> SUNKEN_SKELETON_SPAWN = DawnFactory.biomeTag(Promenade.id("spawns/sunken_skeleton"));
     public static final TagKey<Biome> HAS_PALMS = DawnFactory.biomeTag(Promenade.id("has_palms"));
+    public static final TagKey<Biome> CAN_FREEZE_DURING_SNOWFALL = DawnFactory.biomeTag(Promenade.id("can_freeze_during_snowfall"));
 }
