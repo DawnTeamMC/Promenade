@@ -19,6 +19,11 @@ public class PromenadeBoatTypes {
             .chestItem(PromenadeItems.MAPLE_CHEST_BOAT)
             .planks(PromenadeBlocks.MAPLE_PLANKS.asItem())
             .build());
+    public static final TerraformBoatType PALM = register(PromenadeBoatTypeKeys.PALM, new TerraformBoatType.Builder()
+            .item(PromenadeItems.PALM_BOAT)
+            .chestItem(PromenadeItems.PALM_CHEST_BOAT)
+            .planks(PromenadeBlocks.PALM_PLANKS.asItem())
+            .build());
 
     private static <O extends TerraformBoatType> O register(RegistryKey<TerraformBoatType> key, O boatType) {
         return Registry.register(TerraformBoatTypeRegistry.INSTANCE, key, boatType);

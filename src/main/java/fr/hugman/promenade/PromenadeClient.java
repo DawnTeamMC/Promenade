@@ -45,7 +45,7 @@ public class PromenadeClient implements ClientModInitializer {
 
         ClientRegistrar.add(PromenadeBoatTypes.SAKURA);
         ClientRegistrar.add(PromenadeBoatTypes.MAPLE);
-        ClientRegistrar.add(TropicalContent.PALM_BOAT_TYPE);
+        ClientRegistrar.add(PromenadeBoatTypes.PALM);
     }
 
     public static void registerRenderLayers() {
@@ -115,14 +115,14 @@ public class PromenadeClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SAP_MAPLE_LEAF_PILE, RenderLayer.getCutoutMipped());
 
 
-        BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_TRAPDOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_DOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_TRAPDOOR, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.POTTED_PALM_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_LEAVES, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_HANGING_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(TropicalContent.PALM_LEAF_PILE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_PALM_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_HANGING_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_LEAF_PILE, RenderLayer.getCutout());
 
 
         BlockRenderLayerMap.INSTANCE.putBlock(AmaranthContent.DARK_AMARANTH_DOOR, RenderLayer.getCutout());
@@ -139,7 +139,7 @@ public class PromenadeClient implements ClientModInitializer {
     private static final int PALM_COLOR = 8237614;
 
     private static void registerBlockColors() {
-        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> PALM_COLOR, TropicalContent.PALM_LEAVES, TropicalContent.PALM_HANGING_LEAVES, TropicalContent.PALM_LEAF_PILE);
+        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> PALM_COLOR, PromenadeBlocks.PALM_LEAVES, PromenadeBlocks.PALM_HANGING_LEAVES, PromenadeBlocks.PALM_LEAF_PILE);
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> pos != null && world != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.getDefaultColor(), VanillaPilesContent.OAK_LEAF_PILE, VanillaPilesContent.JUNGLE_LEAF_PILE, VanillaPilesContent.ACACIA_LEAF_PILE, VanillaPilesContent.DARK_OAK_LEAF_PILE, VanillaPilesContent.MANGROVE_LEAF_PILE, PromenadeBlocks.SAP_MAPLE_LEAVES, PromenadeBlocks.SAP_MAPLE_LEAF_PILE);
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> FoliageColors.getSpruceColor(), VanillaPilesContent.SPRUCE_LEAF_PILE, GlaglaglaContent.SNOWY_SPRUCE_LEAVES);
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> FoliageColors.getBirchColor(), VanillaPilesContent.BIRCH_LEAF_PILE);
@@ -152,7 +152,7 @@ public class PromenadeClient implements ClientModInitializer {
     }
 
     private static void registerItemColors() {
-        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> PALM_COLOR, TropicalContent.PALM_LEAVES, TropicalContent.PALM_HANGING_LEAVES, TropicalContent.PALM_LEAF_PILE);
+        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> PALM_COLOR, PromenadeBlocks.PALM_LEAVES, PromenadeBlocks.PALM_HANGING_LEAVES, PromenadeBlocks.PALM_LEAF_PILE);
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> {
             Block block = ((BlockItem) stack.getItem()).getBlock();
             BlockState blockState = block.getDefaultState();

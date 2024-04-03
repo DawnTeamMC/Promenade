@@ -8,6 +8,7 @@ import net.minecraft.registry.RegistryKey;
 public class PromenadeBoatTypeKeys {
     public static final RegistryKey<TerraformBoatType> SAKURA = of("sakura");
     public static final RegistryKey<TerraformBoatType> MAPLE = of("maple");
+    public static final RegistryKey<TerraformBoatType> PALM = of("palm");
 
     private static RegistryKey<TerraformBoatType> of(String path) {
         return TerraformBoatTypeRegistry.createKey(Promenade.id(path));

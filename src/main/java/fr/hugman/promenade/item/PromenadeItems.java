@@ -28,6 +28,11 @@ public class PromenadeItems {
             .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.1F).build())
             .recipeRemainder(Items.GLASS_BOTTLE)));
 
+    public static final Item PALM_SIGN = register(PromenadeItemKeys.PALM_SIGN, new SignItem(new Item.Settings().maxCount(16), PromenadeBlocks.PALM_SIGN, PromenadeBlocks.PALM_WALL_SIGN));
+    public static final Item PALM_HANGING_SIGN = register(PromenadeItemKeys.PALM_HANGING_SIGN, new HangingSignItem(PromenadeBlocks.PALM_HANGING_SIGN, PromenadeBlocks.PALM_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
+    public static final Item PALM_BOAT = registerBoat(PromenadeItemKeys.PALM_BOAT, PromenadeBoatTypeKeys.PALM, false);
+    public static final Item PALM_CHEST_BOAT = registerBoat(PromenadeItemKeys.PALM_CHEST_BOAT, PromenadeBoatTypeKeys.PALM, true);
+
     private static <O extends Item> O register(RegistryKey<Item> key, O item) {
         return Registry.register(Registries.ITEM, key, item);
     }
@@ -49,5 +54,8 @@ public class PromenadeItems {
         ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(MAPLE_HANGING_SIGN, MAPLE_SIGN, MAPLE_HANGING_SIGN));
         ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(SAKURA_CHEST_BOAT, MAPLE_BOAT, MAPLE_CHEST_BOAT));
         ItemGroupHelper.append(ItemGroups.FOOD_AND_DRINK, e -> e.addAfter(Items.HONEY_BOTTLE, MAPLE_SYRUP_BOTTLE));
+
+        ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.ACACIA_SIGN, PALM_SIGN, PALM_HANGING_SIGN));
+        ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Items.ACACIA_CHEST_BOAT, PALM_BOAT, PALM_CHEST_BOAT));
     }
 }

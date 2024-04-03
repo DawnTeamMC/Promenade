@@ -13,6 +13,7 @@ import fr.hugman.promenade.registry.content.*;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
+import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatureKeys;
 import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifierTypes;
 import fr.hugman.promenade.world.gen.tree.foliage.PromenadeFoliagePlacerTypes;
 import fr.hugman.promenade.world.gen.tree.trunk.PromenadeTrunkPlacerTypes;
@@ -47,6 +48,7 @@ public class Promenade implements ModInitializer {
         Reflection.initialize(PromenadeSoundEvents.class);
 
         PromenadeBiomes.appendWorldGen();
+        PromenadePlacedFeatureKeys.appendWorldGen();
 
         PromenadeTrackedData.init();
 
@@ -55,9 +57,7 @@ public class Promenade implements ModInitializer {
 
         VanillaPilesContent.register(REGISTRAR);
         FoodContent.register(REGISTRAR);
-        IgneousContent.register(REGISTRAR);
 
-        TropicalContent.register(REGISTRAR);
         GlaglaglaContent.register(REGISTRAR);
         AmaranthContent.register(REGISTRAR);
     }

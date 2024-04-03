@@ -5,7 +5,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
-public class PromenadeConfiguredFeatures {
+public class PromenadeConfiguredFeatureKeys {
     public static final RegistryKey<ConfiguredFeature<?, ?>> PALM = of("tree/palm");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> BLUSH_SAKURA = of("tree/sakura/blush/regular");

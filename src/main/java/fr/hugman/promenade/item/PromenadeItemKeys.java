@@ -17,6 +17,11 @@ public class PromenadeItemKeys {
     public static final RegistryKey<Item> MAPLE_CHEST_BOAT = of("maple_chest_boat");
     public static final RegistryKey<Item> MAPLE_SYRUP_BOTTLE = of("maple_syrup_bottle");
 
+    public static final RegistryKey<Item> PALM_SIGN = of("palm_sign");
+    public static final RegistryKey<Item> PALM_HANGING_SIGN = of("palm_hanging_sign");
+    public static final RegistryKey<Item> PALM_BOAT = of("palm_boat");
+    public static final RegistryKey<Item> PALM_CHEST_BOAT = of("palm_chest_boat");
+
     private static RegistryKey<Item> of(String path) {
         return RegistryKey.of(RegistryKeys.ITEM, Promenade.id(path));
     }

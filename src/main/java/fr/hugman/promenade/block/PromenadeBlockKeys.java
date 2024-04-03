@@ -101,6 +101,36 @@ public class PromenadeBlockKeys {
     public static final RegistryKey<Block> MIKADO_MAPLE_LEAF_PILE = of("mikado_maple_leaf_pile");
     public static final RegistryKey<Block> MIKADO_CARPETED_GRASS_BLOCK = of("mikado_carpeted_grass_block");
 
+    /* ========= */
+    /*   PALM    */
+    /* ========= */
+    public static final RegistryKey<Block> STRIPPED_PALM_LOG = of("stripped_palm_log");
+    public static final RegistryKey<Block> PALM_LOG = of("palm_log");
+    public static final RegistryKey<Block> STRIPPED_PALM_WOOD = of("stripped_palm_wood");
+    public static final RegistryKey<Block> PALM_WOOD = of("palm_wood");
+    public static final RegistryKey<Block> PALM_PLANKS = of("palm_planks");
+    public static final RegistryKey<Block> PALM_STAIRS = of("palm_stairs");
+    public static final RegistryKey<Block> PALM_SLAB = of("palm_slab");
+    public static final RegistryKey<Block> PALM_FENCE = of("palm_fence");
+    public static final RegistryKey<Block> PALM_FENCE_GATE = of("palm_fence_gate");
+    public static final RegistryKey<Block> PALM_DOOR = of("palm_door");
+    public static final RegistryKey<Block> PALM_TRAPDOOR = of("palm_trapdoor");
+    public static final RegistryKey<Block> PALM_BUTTON = of("palm_button");
+    public static final RegistryKey<Block> PALM_PRESSURE_PLATE = of("palm_pressure_plate");
+    public static final RegistryKey<Block> PALM_SIGN = of("palm_sign");
+    public static final RegistryKey<Block> PALM_WALL_SIGN = of("palm_wall_sign");
+    public static final RegistryKey<Block> PALM_HANGING_SIGN = of("palm_hanging_sign");
+    public static final RegistryKey<Block> PALM_WALL_HANGING_SIGN = of("palm_wall_hanging_sign");
+
+    public static final RegistryKey<Block> PALM_SAPLING = of("palm_sapling");
+    public static final RegistryKey<Block> POTTED_PALM_SAPLING = of("potted_palm_sapling");
+    public static final RegistryKey<Block> PALM_LEAVES = of("palm_leaves");
+    public static final RegistryKey<Block> PALM_HANGING_LEAVES = of("palm_hanging_leaves");
+    public static final RegistryKey<Block> PALM_LEAF_PILE = of("palm_leaf_pile");
+
+
+    public static final RegistryKey<Block> MOAI = of("moai");
+
     private static RegistryKey<Block> of(String path) {
         return RegistryKey.of(RegistryKeys.BLOCK, Promenade.id(path));
     }

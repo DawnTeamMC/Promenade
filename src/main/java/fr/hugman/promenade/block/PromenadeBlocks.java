@@ -9,10 +9,15 @@ import fr.hugman.promenade.registry.content.VanillaPilesContent;
 import fr.hugman.promenade.village.TradeOfferUtils;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.BlockSoundGroup;
 
 public class PromenadeBlocks {
@@ -33,6 +38,7 @@ public class PromenadeBlocks {
     public static final Block POLISHED_BLUNITE = register(PromenadeBlockKeys.POLISHED_BLUNITE, new Block(AbstractBlock.Settings.copy(BLUNITE)));
     public static final Block POLISHED_BLUNITE_SLAB = register(PromenadeBlockKeys.POLISHED_BLUNITE_SLAB, DawnFactory.slab(POLISHED_BLUNITE));
     public static final Block POLISHED_BLUNITE_STAIRS = register(PromenadeBlockKeys.POLISHED_BLUNITE_STAIRS, DawnFactory.stairs(POLISHED_BLUNITE));
+
 
     /* ========== */
     /*   SAKURA   */
@@ -74,6 +80,7 @@ public class PromenadeBlocks {
     public static final Block COTTON_SAKURA_BLOSSOMS = register(PromenadeBlockKeys.COTTON_SAKURA_BLOSSOMS, PromenadeFactory.decoratedLeaves(COTTON_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM));
     public static final Block COTTON_SAKURA_BLOSSOM_PILE = register(PromenadeBlockKeys.COTTON_SAKURA_BLOSSOM_PILE, PromenadeFactory.leafPile(COTTON_BLOSSOMS_COLOR, BlockSoundGroup.CHERRY_LEAVES));
 
+
     /* ========= */
     /*   MAPLE   */
     /* ========= */
@@ -85,6 +92,7 @@ public class PromenadeBlocks {
     public static final MapColor MAPLE_VERMILION_LEAVES_COLOR = MapColor.DULL_RED;
     public static final MapColor MAPLE_FULVOUS_LEAVES_COLOR = MapColor.ORANGE;
     public static final MapColor MAPLE_MIKADO_LEAVES_COLOR = MapColor.GOLD;
+
 
     public static final Block STRIPPED_MAPLE_LOG = register(PromenadeBlockKeys.STRIPPED_MAPLE_LOG, new StrippedMapleLogBlock(DawnFactory.logSettings(MAPLE_WOOD_COLOR, MAPLE_WOOD_SOUNDS, true)));
     public static final Block MAPLE_LOG = register(PromenadeBlockKeys.MAPLE_LOG, new MapleLogBlock(DawnFactory.logSettings(MAPLE_WOOD_COLOR, MAPLE_BARK_COLOR, MAPLE_WOOD_SOUNDS, true).stripsInto(STRIPPED_MAPLE_LOG)));
@@ -128,11 +136,69 @@ public class PromenadeBlocks {
     public static final Block MIKADO_MAPLE_LEAF_PILE = register(PromenadeBlockKeys.MIKADO_MAPLE_LEAF_PILE, PromenadeFactory.leafPile(MAPLE_MIKADO_LEAVES_COLOR));
     public static final Block MIKADO_CARPETED_GRASS_BLOCK = register(PromenadeBlockKeys.MIKADO_CARPETED_GRASS_BLOCK, PromenadeFactory.carpetedGrassBlock(MAPLE_MIKADO_LEAVES_COLOR));
 
+
+    /* ======== */
+    /*   PALM   */
+    /* ======== */
+    private static final BlockSoundGroup PALM_WOOD_SOUNDS = BlockSoundGroup.WOOD;
+    private static final MapColor PALM_BARK_COLOR = MapColor.SPRUCE_BROWN;
+    private static final MapColor PALM_WOOD_COLOR = MapColor.ORANGE;
+    private static final MapColor PALM_LEAVES_COLOR = MapColor.DARK_GREEN;
+
+
+    public static final Block STRIPPED_PALM_LOG = register(PromenadeBlockKeys.STRIPPED_PALM_LOG, new PillarBlock(DawnFactory.logSettings(PALM_WOOD_COLOR, PALM_WOOD_SOUNDS, true)));
+    public static final Block PALM_LOG = register(PromenadeBlockKeys.PALM_LOG, new PillarBlock(DawnFactory.logSettings(PALM_WOOD_COLOR, PALM_BARK_COLOR, PALM_WOOD_SOUNDS, true).stripsInto(STRIPPED_PALM_LOG)));
+    public static final Block STRIPPED_PALM_WOOD = register(PromenadeBlockKeys.STRIPPED_PALM_WOOD, new PillarBlock(DawnFactory.logSettings(PALM_WOOD_COLOR, PALM_WOOD_SOUNDS, true)));
+    public static final Block PALM_WOOD = register(PromenadeBlockKeys.PALM_WOOD, new PillarBlock(DawnFactory.logSettings(PALM_BARK_COLOR, PALM_WOOD_SOUNDS, true).stripsInto(STRIPPED_PALM_WOOD)));
+
+    public static final Block PALM_PLANKS = register(PromenadeBlockKeys.PALM_PLANKS, DawnFactory.planks(PALM_WOOD_COLOR, PALM_WOOD_SOUNDS, true));
+    public static final Block PALM_STAIRS = register(PromenadeBlockKeys.PALM_STAIRS, DawnFactory.stairs(PALM_PLANKS));
+    public static final Block PALM_SLAB = register(PromenadeBlockKeys.PALM_SLAB, DawnFactory.slab(PALM_PLANKS));
+    public static final Block PALM_FENCE = register(PromenadeBlockKeys.PALM_FENCE, DawnFactory.fence(PALM_PLANKS));
+    public static final Block PALM_FENCE_GATE = register(PromenadeBlockKeys.PALM_FENCE_GATE, DawnFactory.fenceGate(PALM_PLANKS, PromenadeWoodTypes.PALM));
+    public static final Block PALM_DOOR = register(PromenadeBlockKeys.PALM_DOOR, DawnFactory.door(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
+    public static final Block PALM_TRAPDOOR = register(PromenadeBlockKeys.PALM_TRAPDOOR, DawnFactory.trapdoor(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
+    public static final Block PALM_BUTTON = register(PromenadeBlockKeys.PALM_BUTTON, DawnFactory.woodenButton(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
+    public static final Block PALM_PRESSURE_PLATE = register(PromenadeBlockKeys.PALM_PRESSURE_PLATE, DawnFactory.pressurePlate(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
+    public static final Block PALM_SIGN = register(PromenadeBlockKeys.PALM_SIGN, PromenadeFactory.sign(false, false, Promenade.id("palm"), PALM_PLANKS, PALM_WOOD_SOUNDS));
+    public static final Block PALM_WALL_SIGN = register(PromenadeBlockKeys.PALM_WALL_SIGN, PromenadeFactory.sign(false, true, Promenade.id("palm"), PALM_PLANKS, PALM_WOOD_SOUNDS));
+    public static final Block PALM_HANGING_SIGN = register(PromenadeBlockKeys.PALM_HANGING_SIGN, PromenadeFactory.sign(true, false, Promenade.id("palm"), PALM_PLANKS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block PALM_WALL_HANGING_SIGN = register(PromenadeBlockKeys.PALM_WALL_HANGING_SIGN, PromenadeFactory.sign(true, true, Promenade.id("palm"), PALM_PLANKS, BlockSoundGroup.HANGING_SIGN));
+
+    public static final Block PALM_SAPLING = register(PromenadeBlockKeys.PALM_SAPLING, DawnFactory.sapling(PALM_LEAVES_COLOR, PromenadeSaplingGenerators.PALM_SAPLING_GENERATOR, state -> state.isIn(BlockTags.SAND)));
+    public static final Block POTTED_PALM_SAPLING = register(PromenadeBlockKeys.POTTED_PALM_SAPLING, DawnFactory.potted(PALM_SAPLING));
+    //TODO: put the next two blocks in PromenadeFactory
+    public static final Block PALM_LEAVES = register(PromenadeBlockKeys.PALM_LEAVES, new ExtendedLeavesBlock(AbstractBlock.Settings.create()
+            .item(new Item.Settings().compostingChance(0.3f))
+            .mapColor(PALM_LEAVES_COLOR)
+            .strength(0.2f)
+            .ticksRandomly()
+            .sounds(BlockSoundGroup.GRASS)
+            .nonOpaque()
+            .allowsSpawning((state, world, pos, type) -> type == EntityType.OCELOT || type == EntityType.PARROT)
+            .suffocates((state, world, pos) -> false)
+            .blockVision((state, world, pos) -> false)
+            .burnable(30, 60)
+            .pistonBehavior(PistonBehavior.DESTROY)
+            .solidBlock((state, world, pos) -> false)));
+    public static final Block PALM_HANGING_LEAVES = register(PromenadeBlockKeys.PALM_HANGING_LEAVES, new HangingLeavesBlock(AbstractBlock.Settings.create()
+            .item(new Item.Settings().compostingChance(0.3F))
+            .mapColor(PALM_LEAVES_COLOR)
+            .sounds(BlockSoundGroup.GRASS)
+            .replaceable().noCollision().breakInstantly()
+            .burnable(30, 60)
+            .pistonBehavior(PistonBehavior.DESTROY)
+    ));
+    public static final Block PALM_LEAF_PILE = register(PromenadeBlockKeys.PALM_LEAF_PILE, PromenadeFactory.leafPile());
+
+    public static final Block MOAI = register(PromenadeBlockKeys.MOAI, new MoaiBlock(AbstractBlock.Settings.copy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).item(new Item.Settings().equipmentSlot(stack -> EquipmentSlot.HEAD))));
+
     public static <B extends Block> B register(RegistryKey<Block> key, B block) {
         return Registry.register(Registries.BLOCK, key, block);
     }
 
     public static void appendItemGroups() {
+        //TODO: optimize item groups
         ItemGroupHelper.append(ItemGroups.NATURAL, e -> e.addAfter(Blocks.ANDESITE, BLUNITE, ASPHALT));
         ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> e.addAfter(Blocks.POLISHED_ANDESITE_SLAB,
                 BLUNITE, BLUNITE_SLAB, BLUNITE_STAIRS, BLUNITE_WALL,
@@ -186,6 +252,32 @@ public class PromenadeBlocks {
             e.addAfter(COTTON_SAKURA_SAPLING, SAP_MAPLE_SAPLING, VERMILION_MAPLE_SAPLING, FULVOUS_MAPLE_SAPLING, MIKADO_MAPLE_SAPLING);
             e.addAfter(COTTON_SAKURA_BLOSSOM_PILE, SAP_MAPLE_LEAF_PILE, VERMILION_MAPLE_LEAF_PILE, FULVOUS_MAPLE_LEAF_PILE, MIKADO_MAPLE_LEAF_PILE);
         });
+
+        // PALM
+        ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> {
+            e.addAfter(Blocks.ACACIA_BUTTON,
+                    PALM_LOG,
+                    PALM_WOOD,
+                    STRIPPED_PALM_LOG,
+                    STRIPPED_PALM_WOOD,
+                    PALM_PLANKS,
+                    PALM_STAIRS,
+                    PALM_SLAB,
+                    PALM_FENCE,
+                    PALM_FENCE_GATE,
+                    PALM_DOOR,
+                    PALM_TRAPDOOR,
+                    PALM_PRESSURE_PLATE,
+                    PALM_BUTTON);
+        });
+        ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
+            e.addAfter(Blocks.ACACIA_LOG, PALM_LOG);
+            e.addAfter(Blocks.ACACIA_LEAVES, PALM_LEAVES, PALM_HANGING_LEAVES);
+            e.addAfter(Blocks.ACACIA_SAPLING, PALM_SAPLING);
+            e.addAfter(VanillaPilesContent.ACACIA_LEAF_PILE, PALM_LEAF_PILE);
+        });
+
+        ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> e.addAfter(Blocks.CUT_RED_SANDSTONE_SLAB, MOAI));
     }
 
     public static void appendVillagerTrades() {
@@ -199,5 +291,6 @@ public class PromenadeBlocks {
             factories.add(TradeOfferUtils.sapling(BLUSH_SAKURA_SAPLING));
             factories.add(TradeOfferUtils.sapling(COTTON_SAKURA_SAPLING));
         });
+        TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add(TradeOfferUtils.sapling(PALM_SAPLING)));
     }
 }
