@@ -69,14 +69,14 @@ public class PromenadeItems {
     }
 
     public static void appendItemGroups() {
-        ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.BIRCH_SIGN, SAKURA_SIGN, SAKURA_HANGING_SIGN));
+        ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.BIRCH_HANGING_SIGN, SAKURA_SIGN, SAKURA_HANGING_SIGN));
         ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Items.BIRCH_CHEST_BOAT, SAKURA_BOAT, SAKURA_CHEST_BOAT));
 
         ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(SAKURA_HANGING_SIGN, MAPLE_SIGN, MAPLE_HANGING_SIGN));
         ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(SAKURA_CHEST_BOAT, MAPLE_BOAT, MAPLE_CHEST_BOAT));
         ItemGroupHelper.append(ItemGroups.FOOD_AND_DRINK, e -> e.addAfter(Items.HONEY_BOTTLE, MAPLE_SYRUP_BOTTLE));
 
-        ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.ACACIA_SIGN, PALM_SIGN, PALM_HANGING_SIGN));
+        ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.ACACIA_HANGING_SIGN, PALM_SIGN, PALM_HANGING_SIGN));
         ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Items.ACACIA_CHEST_BOAT, PALM_BOAT, PALM_CHEST_BOAT));
 
         ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.WARPED_HANGING_SIGN, DARK_AMARANTH_SIGN, DARK_AMARANTH_HANGING_SIGN));
