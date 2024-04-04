@@ -42,9 +42,9 @@ import java.util.stream.Collectors;
 public class DuckEntity extends AnimalEntity {
     private static final TrackedData<Integer> DUCK_TYPE = DataTracker.registerData(DuckEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final Ingredient TEMPTATION_ITEMS = Ingredient.ofItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
-    //TODO: fix eye height
-    private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityType.CHICKEN.getDimensions().scaled(0.5F).withEyeHeight(0.2975F);
+    private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityDimensions.changing(0.4F, 0.8F).scaled(0.5F).withEyeHeight(0.78125F);
     public static final String TYPE_KEY = "type";
+
     public float wingRotation;
     public float destPos;
     public float oFlapSpeed;

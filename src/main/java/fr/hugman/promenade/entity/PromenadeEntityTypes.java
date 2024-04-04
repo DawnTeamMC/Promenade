@@ -19,40 +19,34 @@ public class PromenadeEntityTypes {
     public static final EntityType<CapybaraEntity> CAPYBARA = of("capybara", FabricEntityTypeBuilder.createMob()
             .entityFactory(CapybaraEntity::new)
             .spawnGroup(SpawnGroup.CREATURE)
-            //TODO: fix eye height
-            .dimensions(EntityDimensions.fixed(0.7f, 0.875f))
+            .dimensions(EntityDimensions.changing(0.7f, 0.875f).withEyeHeight(0.875f))
             .defaultAttributes(CapybaraEntity::createCapybaraAttributes)
-            .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn)
-            .build());
+            .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn));
     public static final EntityType<DuckEntity> DUCK = of("duck", FabricEntityTypeBuilder.createMob()
             .entityFactory(DuckEntity::new)
             .spawnGroup(SpawnGroup.CREATURE)
-            //TODO: fix eye height
-            .dimensions(EntityDimensions.fixed(0.4F, 0.8F))
+            .dimensions(EntityDimensions.changing(0.4F, 0.8F).withEyeHeight(1.09375f))
             .trackRangeChunks(10)
             .trackedUpdateRate(3)
             .defaultAttributes(DuckEntity::createDuckAttributes)
-            .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn)
-            .build());
+            .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn));
     public static final EntityType<LushCreeperEntity> LUSH_CREEPER = of("lush_creeper", FabricEntityTypeBuilder.createMob()
             .entityFactory(LushCreeperEntity::new)
             .spawnGroup(SpawnGroup.MONSTER)
-            .dimensions(EntityDimensions.fixed(0.6f, 1.7f))
+            .dimensions(EntityDimensions.changing(0.6f, 1.7f))
             .trackRangeChunks(8)
             .defaultAttributes(LushCreeperEntity::createCreeperAttributes)
-            .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LushCreeperEntity::canSpawn)
-            .build());
+            .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LushCreeperEntity::canSpawn));
     public static final EntityType<SunkenSkeletonEntity> SUNKEN_SKELETON = of("sunken_skeleton", FabricEntityTypeBuilder.createMob()
             .entityFactory(SunkenSkeletonEntity::new)
             .spawnGroup(SpawnGroup.MONSTER)
-            .dimensions(EntityDimensions.fixed(0.6F, 1.99F))
+            .dimensions(EntityDimensions.changing(0.6F, 1.99F).withEyeHeight(1.74F))
             .trackRangeChunks(8)
             .defaultAttributes(SunkenSkeletonEntity::createSunkenSkeletonAttributes)
-            .spawnRestriction(SpawnLocationTypes.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SunkenSkeletonEntity::canSpawn)
-            .build());
+            .spawnRestriction(SpawnLocationTypes.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SunkenSkeletonEntity::canSpawn));
 
-    private static <T extends Entity> EntityType<T> of(String path, EntityType<T> type) {
-        return Registry.register(Registries.ENTITY_TYPE, Promenade.id(path), type);
+    private static <T extends Entity> EntityType<T> of(String path, FabricEntityTypeBuilder<T> builder) {
+        return Registry.register(Registries.ENTITY_TYPE, Promenade.id(path), builder.build());
     }
 
     public static void appendWorldGen() {

@@ -49,9 +49,7 @@ import java.util.function.IntFunction;
 
 public class CapybaraEntity extends AnimalEntity implements VariantHolder<RegistryEntry<CapybaraVariant>> {
     private static final FloatProvider FART_CHANCE_PROVIDER = TrapezoidFloatProvider.create(0.1F, 0.55F, 0.2F);
-    //TODO: fix eye height
-    private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityType.CHICKEN.getDimensions().scaled(0.5F).withEyeHeight(0.2975F);
-
+    private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityDimensions.changing(0.7f, 0.875f).scaled(0.5F).withEyeHeight(0.5F);
 
     public CapybaraEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
