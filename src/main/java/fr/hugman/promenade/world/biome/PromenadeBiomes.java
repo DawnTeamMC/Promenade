@@ -1,7 +1,9 @@
 package fr.hugman.promenade.world.biome;
 
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
+import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.block.PromenadeBlocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -10,6 +12,8 @@ import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.world.LightType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.gen.surfacebuilder.MaterialRules;
+import net.minecraft.world.gen.surfacebuilder.VanillaSurfaceRules;
 
 public class PromenadeBiomes {
     public static void appendWorldGen() {
@@ -37,6 +41,24 @@ public class PromenadeBiomes {
         BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_SLOPES, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
         BiomePlacement.replaceOverworld(BiomeKeys.JAGGED_PEAKS, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
         BiomePlacement.replaceOverworld(BiomeKeys.GROVE, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
+
+
+        if (Promenade.CONFIG.biomes.dark_amaranth_forests_weight <= 0) {
+            return;
+        }
+        double darkAmaranthForestWeight = Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 100.0D;
+        BiomePlacement.replaceEnd(BiomeKeys.END_HIGHLANDS, PromenadeBiomeKeys.TALL_DARK_AMARANTH_FOREST, darkAmaranthForestWeight);
+        BiomePlacement.replaceEnd(BiomeKeys.END_MIDLANDS, PromenadeBiomeKeys.DARK_AMARANTH_FOREST, darkAmaranthForestWeight);
+
+        MaterialRules.MaterialCondition isDarkAmaranthForest = MaterialRules.biome(PromenadeBiomeKeys.DARK_AMARANTH_FOREST, PromenadeBiomeKeys.TALL_DARK_AMARANTH_FOREST);
+        SurfaceGeneration.addEndSurfaceRules(Promenade.id("end_surface"), MaterialRules.sequence(
+                MaterialRules.condition(isDarkAmaranthForest,
+                        MaterialRules.condition(
+                                MaterialRules.STONE_DEPTH_FLOOR,
+                                VanillaSurfaceRules.block(PromenadeBlocks.BLACK_DYLIUM)
+                        )
+                ))
+        );
     }
 
     /**

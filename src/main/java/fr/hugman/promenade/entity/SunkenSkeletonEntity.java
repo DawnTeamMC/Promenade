@@ -1,6 +1,6 @@
 package fr.hugman.promenade.entity;
 
-import fr.hugman.promenade.registry.content.MonsterContent;
+import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.NoPenaltyTargeting;
 import net.minecraft.entity.ai.control.MoveControl;
@@ -92,26 +92,26 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? MonsterContent.SUNKEN_SKELETON_AMBIENT_SOUND : SoundEvents.ENTITY_SKELETON_AMBIENT;
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SKELETON_AMBIENT : SoundEvents.ENTITY_SKELETON_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return this.isSubmergedIn(FluidTags.WATER) ? MonsterContent.SUNKEN_SKELETON_HURT_SOUND : SoundEvents.ENTITY_SKELETON_HURT;
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SKELETON_HURT : SoundEvents.ENTITY_SKELETON_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? MonsterContent.SUNKEN_SKELETON_DEATH_SOUND : SoundEvents.ENTITY_SKELETON_DEATH;
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SKELETON_DEATH : SoundEvents.ENTITY_SKELETON_DEATH;
     }
 
     @Override
     protected SoundEvent getStepSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? MonsterContent.SUNKEN_SKELETON_STEP_SOUND : SoundEvents.ENTITY_SKELETON_STEP;
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SKELETON_STEP : SoundEvents.ENTITY_SKELETON_STEP;
     }
 
     protected SoundEvent getShootSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? MonsterContent.SUNKEN_SKELETON_SHOOT_SOUND : (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem) ? SoundEvents.ITEM_CROSSBOW_SHOOT : SoundEvents.ENTITY_SKELETON_SHOOT);
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SKELETON_SHOOT : (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem) ? SoundEvents.ITEM_CROSSBOW_SHOOT : SoundEvents.ENTITY_SKELETON_SHOOT);
     }
 
     @Override

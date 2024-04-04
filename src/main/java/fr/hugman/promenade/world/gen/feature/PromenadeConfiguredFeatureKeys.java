@@ -1,5 +1,6 @@
 package fr.hugman.promenade.world.gen.feature;
 
+import fr.hugman.dawn.DawnFactory;
 import fr.hugman.promenade.Promenade;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -38,7 +39,9 @@ public class PromenadeConfiguredFeatureKeys {
     public static final RegistryKey<ConfiguredFeature<?, ?>> MIKADO_MAPLE_BEES = of("tree/maple/mikado/bees");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_MIKADO_MAPLE_BEES = of("tree/maple/mikado/fancy_bees");
 
-    public static RegistryKey<ConfiguredFeature<?, ?>> of(String path) {
+    public static final RegistryKey<ConfiguredFeature<?, ?>> PLANTED_AMARANTH_FUNGUS = of("amaranth_fungus/planted");
+
+    private static RegistryKey<ConfiguredFeature<?, ?>> of(String path) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Promenade.id(path));
     }
 }

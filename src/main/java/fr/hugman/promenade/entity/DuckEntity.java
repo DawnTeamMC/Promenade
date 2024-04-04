@@ -1,7 +1,7 @@
 package fr.hugman.promenade.entity;
 
 import fr.hugman.promenade.item.PromenadeItemTags;
-import fr.hugman.promenade.registry.content.AnimalContent;
+import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.world.biome.PromenadeBiomeTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -154,28 +154,28 @@ public class DuckEntity extends AnimalEntity {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return AnimalContent.DUCK_AMBIENT_SOUND;
+        return PromenadeSoundEvents.DUCK_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return AnimalContent.DUCK_HURT_SOUND;
+        return PromenadeSoundEvents.DUCK_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return AnimalContent.DUCK_DEATH_SOUND;
+        return PromenadeSoundEvents.DUCK_DEATH;
     }
 
     @Override
     protected void playStepSound(BlockPos pos, BlockState state) {
-        this.playSound(AnimalContent.DUCK_STEP_SOUND, 0.15F, 1.0F);
+        this.playSound(PromenadeSoundEvents.DUCK_STEP, 0.15F, 1.0F);
     }
 
     @Nullable
     @Override
     public DuckEntity createChild(ServerWorld serverWorld, PassiveEntity mate) {
-        DuckEntity child = AnimalContent.DUCK.create(this.getWorld());
+        DuckEntity child = PromenadeEntityTypes.DUCK.create(this.getWorld());
         if (child != null) {
             child.setVariant(this.random.nextFloat() < 0.5f ? ((DuckEntity) (mate)).getVariant() : this.getVariant());
         }

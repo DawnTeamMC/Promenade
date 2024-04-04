@@ -5,15 +5,16 @@ import fr.hugman.dawn.Registrar;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.boat.PromenadeBoatTypes;
 import fr.hugman.promenade.config.PromenadeConfig;
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.registry.PromenadeRegistries;
-import fr.hugman.promenade.registry.content.*;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatureKeys;
+import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifierTypes;
 import fr.hugman.promenade.world.gen.tree.foliage.PromenadeFoliagePlacerTypes;
 import fr.hugman.promenade.world.gen.tree.trunk.PromenadeTrunkPlacerTypes;
@@ -35,9 +36,9 @@ public class Promenade implements ModInitializer {
         PromenadeRegistries.register();
 
         PromenadeBlocks.appendItemGroups();
-        PromenadeBlocks.appendVillagerTrades();
-
         PromenadeItems.appendItemGroups();
+
+        PromenadeBlocks.appendVillagerTrades();
 
         Reflection.initialize(PromenadeFeatures.class);
         Reflection.initialize(PromenadePlacementModifierTypes.class);
@@ -46,18 +47,11 @@ public class Promenade implements ModInitializer {
         Reflection.initialize(PromenadeSensorTypes.class);
         Reflection.initialize(PromenadeBoatTypes.class);
         Reflection.initialize(PromenadeSoundEvents.class);
+        Reflection.initialize(PromenadeTrackedData.class);
 
         PromenadeBiomes.appendWorldGen();
-        PromenadePlacedFeatureKeys.appendWorldGen();
-
-        PromenadeTrackedData.init();
-
-        AnimalContent.register(REGISTRAR);
-        MonsterContent.register(REGISTRAR);
-
-        FoodContent.register(REGISTRAR);
-
-        AmaranthContent.register(REGISTRAR);
+        PromenadePlacedFeatures.appendWorldGen();
+        PromenadeEntityTypes.appendWorldGen();
     }
 
     public static Identifier id(String path) {

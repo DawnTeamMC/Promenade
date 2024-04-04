@@ -1,14 +1,17 @@
 package fr.hugman.promenade.block;
 
 import fr.hugman.dawn.DawnFactory;
+import fr.hugman.dawn.block.DawnRootsBlock;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.particle.PromenadeParticleTypes;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.village.TradeOfferUtils;
+import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatureKeys;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.*;
+import net.minecraft.block.enums.Instrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -240,7 +243,71 @@ public class PromenadeBlocks {
     ));
     public static final Block PALM_LEAF_PILE = of(PromenadeBlockKeys.PALM_LEAF_PILE, PromenadeFactory.leafPile());
 
+
+    /* ============ */
+    /*   AMARANTH   */
+    /* ============ */
+    private static final BlockSoundGroup AMARANTH_WOOD_SOUNDS = BlockSoundGroup.NETHER_WOOD;
+    private static final MapColor AMARANTH_BARK_COLOR = MapColor.DARK_DULL_PINK;
+    private static final MapColor AMARANTH_WOOD_COLOR = MapColor.GRAY;
+
+    public static final Block BLACK_DYLIUM = of(PromenadeBlockKeys.BLACK_DYLIUM, new DyliumBlock(
+            AbstractBlock.Settings.create()
+                    .item()
+                    .mapColor(MapColor.BLACK)
+                    .instrument(Instrument.BASEDRUM)
+                    .requiresTool()
+                    .strength(3.0F, 9.0F)
+                    .sounds(BlockSoundGroup.NYLIUM)
+                    .ticksRandomly()));
+    public static final Block DARK_AMARANTH_WART_BLOCK = of(PromenadeBlockKeys.DARK_AMARANTH_WART_BLOCK, new Block(
+            AbstractBlock.Settings.create()
+                    .item()
+                    .mapColor(MapColor.PURPLE)
+                    .strength(1.0F)
+                    .sounds(BlockSoundGroup.WART_BLOCK)));
+    public static final Block DARK_AMARANTH_ROOTS = of(PromenadeBlockKeys.DARK_AMARANTH_ROOTS, new DawnRootsBlock(state -> state.isIn(PromenadeBlockTags.DARK_AMARANTH_ROOTS_PLACEABLE_ON),
+            AbstractBlock.Settings.create()
+                    .item(new Item.Settings().compostingChance(0.65F))
+                    .mapColor(MapColor.PURPLE)
+                    .replaceable()
+                    .breakInstantly()
+                    .noCollision()
+                    .sounds(BlockSoundGroup.ROOTS)));
+
+    public static final Block STRIPPED_DARK_AMARANTH_STEM = of(PromenadeBlockKeys.STRIPPED_DARK_AMARANTH_STEM, new PillarBlock(DawnFactory.logSettings(AMARANTH_WOOD_COLOR, BlockSoundGroup.NETHER_STEM, false)));
+    public static final Block DARK_AMARANTH_STEM = of(PromenadeBlockKeys.DARK_AMARANTH_STEM, new PillarBlock(DawnFactory.logSettings(AMARANTH_WOOD_COLOR, AMARANTH_BARK_COLOR, BlockSoundGroup.NETHER_STEM, false).stripsInto(STRIPPED_DARK_AMARANTH_STEM)));
+    public static final Block STRIPPED_DARK_AMARANTH_HYPHAE = of(PromenadeBlockKeys.STRIPPED_DARK_AMARANTH_HYPHAE, new PillarBlock(DawnFactory.logSettings(AMARANTH_WOOD_COLOR, BlockSoundGroup.NETHER_STEM, false)));
+    public static final Block DARK_AMARANTH_HYPHAE = of(PromenadeBlockKeys.DARK_AMARANTH_HYPHAE, new PillarBlock(DawnFactory.logSettings(AMARANTH_BARK_COLOR, BlockSoundGroup.NETHER_STEM, false).stripsInto(STRIPPED_DARK_AMARANTH_HYPHAE)));
+
+    public static final Block DARK_AMARANTH_PLANKS = of(PromenadeBlockKeys.DARK_AMARANTH_PLANKS, DawnFactory.planks(AMARANTH_WOOD_COLOR, AMARANTH_WOOD_SOUNDS, false));
+    public static final Block DARK_AMARANTH_STAIRS = of(PromenadeBlockKeys.DARK_AMARANTH_STAIRS, DawnFactory.stairs(DARK_AMARANTH_PLANKS));
+    public static final Block DARK_AMARANTH_SLAB = of(PromenadeBlockKeys.DARK_AMARANTH_SLAB, DawnFactory.slab(DARK_AMARANTH_PLANKS));
+    public static final Block DARK_AMARANTH_FENCE = of(PromenadeBlockKeys.DARK_AMARANTH_FENCE, DawnFactory.fence(DARK_AMARANTH_PLANKS));
+    public static final Block DARK_AMARANTH_FENCE_GATE = of(PromenadeBlockKeys.DARK_AMARANTH_FENCE_GATE, DawnFactory.fenceGate(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.AMARANTH));
+    public static final Block DARK_AMARANTH_DOOR = of(PromenadeBlockKeys.DARK_AMARANTH_DOOR, DawnFactory.door(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.AMARANTH));
+    public static final Block DARK_AMARANTH_TRAPDOOR = of(PromenadeBlockKeys.DARK_AMARANTH_TRAPDOOR, DawnFactory.trapdoor(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.AMARANTH));
+    public static final Block DARK_AMARANTH_BUTTON = of(PromenadeBlockKeys.DARK_AMARANTH_BUTTON, DawnFactory.woodenButton(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.AMARANTH));
+    public static final Block DARK_AMARANTH_PRESSURE_PLATE = of(PromenadeBlockKeys.DARK_AMARANTH_PRESSURE_PLATE, DawnFactory.pressurePlate(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.AMARANTH));
+    public static final Block DARK_AMARANTH_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_SIGN, PromenadeFactory.sign(false, false, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, AMARANTH_WOOD_SOUNDS));
+    public static final Block DARK_AMARANTH_WALL_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_WALL_SIGN, PromenadeFactory.sign(false, true, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, AMARANTH_WOOD_SOUNDS));
+    public static final Block DARK_AMARANTH_HANGING_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_HANGING_SIGN, PromenadeFactory.sign(true, false, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block DARK_AMARANTH_WALL_HANGING_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_WALL_HANGING_SIGN, PromenadeFactory.sign(true, true, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, BlockSoundGroup.HANGING_SIGN));
+
+    public static final Block DARK_AMARANTH_FUNGUS = of(PromenadeBlockKeys.DARK_AMARANTH_FUNGUS, DawnFactory.fungus(MapColor.PURPLE, PromenadeConfiguredFeatureKeys.PLANTED_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON));
+    public static final Block POTTED_DARK_AMARANTH_FUNGUS = of(PromenadeBlockKeys.POTTED_DARK_AMARANTH_FUNGUS, DawnFactory.potted(DARK_AMARANTH_FUNGUS));
+
+
     public static final Block MOAI = of(PromenadeBlockKeys.MOAI, new MoaiBlock(AbstractBlock.Settings.copy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).item(new Item.Settings().equipmentSlot(stack -> EquipmentSlot.HEAD))));
+
+    public static final Block BLUEBERRY_BUSH = of(PromenadeBlockKeys.BLUEBERRY_BUSH, new BlueberryBushBlock(
+            AbstractBlock.Settings.create()
+                    .mapColor(MapColor.DARK_GREEN)
+                    .ticksRandomly()
+                    .noCollision()
+                    .sounds(BlockSoundGroup.SWEET_BERRY_BUSH)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+                    .burnable(60, 100)));
 
     public static <B extends Block> B of(RegistryKey<Block> key, B block) {
         return Registry.register(Registries.BLOCK, key, block);
@@ -359,6 +426,30 @@ public class PromenadeBlocks {
             e.addAfter(Blocks.ACACIA_LEAVES, PALM_LEAVES, PALM_HANGING_LEAVES);
             e.addAfter(Blocks.ACACIA_SAPLING, PALM_SAPLING);
             e.addAfter(ACACIA_LEAF_PILE, PALM_LEAF_PILE);
+        });
+
+        // AMARANTH
+        ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> e.addAfter(Blocks.WARPED_BUTTON,
+                DARK_AMARANTH_STEM,
+                DARK_AMARANTH_HYPHAE,
+                STRIPPED_DARK_AMARANTH_STEM,
+                STRIPPED_DARK_AMARANTH_HYPHAE,
+                DARK_AMARANTH_PLANKS,
+                DARK_AMARANTH_STAIRS,
+                DARK_AMARANTH_SLAB,
+                DARK_AMARANTH_FENCE,
+                DARK_AMARANTH_FENCE_GATE,
+                DARK_AMARANTH_DOOR,
+                DARK_AMARANTH_TRAPDOOR,
+                DARK_AMARANTH_PRESSURE_PLATE,
+                DARK_AMARANTH_BUTTON));
+
+        ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
+            e.addAfter(Blocks.WARPED_NYLIUM, BLACK_DYLIUM);
+            e.addAfter(Blocks.WARPED_STEM, DARK_AMARANTH_STEM);
+            e.addAfter(Blocks.WARPED_WART_BLOCK, DARK_AMARANTH_WART_BLOCK);
+            e.addAfter(Blocks.WARPED_FUNGUS, DARK_AMARANTH_FUNGUS);
+            e.addAfter(Blocks.WARPED_ROOTS, DARK_AMARANTH_ROOTS);
         });
 
         ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> e.addAfter(Blocks.CUT_RED_SANDSTONE_SLAB, MOAI));

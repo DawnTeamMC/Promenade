@@ -10,7 +10,6 @@ public class PromenadeBlockKeys {
     public static final RegistryKey<Block> ASPHALT_SLAB = of("asphalt_slab");
     public static final RegistryKey<Block> ASPHALT_STAIRS = of("asphalt_stairs");
     public static final RegistryKey<Block> ASPHALT_WALL = of("asphalt_wall");
-
     public static final RegistryKey<Block> POLISHED_ASPHALT = of("polished_asphalt");
     public static final RegistryKey<Block> POLISHED_ASPHALT_SLAB = of("polished_asphalt_slab");
     public static final RegistryKey<Block> POLISHED_ASPHALT_STAIRS = of("polished_asphalt_stairs");
@@ -19,7 +18,6 @@ public class PromenadeBlockKeys {
     public static final RegistryKey<Block> BLUNITE_SLAB = of("blunite_slab");
     public static final RegistryKey<Block> BLUNITE_STAIRS = of("blunite_stairs");
     public static final RegistryKey<Block> BLUNITE_WALL = of("blunite_wall");
-
     public static final RegistryKey<Block> POLISHED_BLUNITE = of("polished_blunite");
     public static final RegistryKey<Block> POLISHED_BLUNITE_SLAB = of("polished_blunite_slab");
     public static final RegistryKey<Block> POLISHED_BLUNITE_STAIRS = of("polished_blunite_stairs");
@@ -163,7 +161,38 @@ public class PromenadeBlockKeys {
     public static final RegistryKey<Block> PALM_LEAF_PILE = of("palm_leaf_pile");
 
 
+    /* ============= */
+    /*   AMARANTH    */
+    /* ============= */
+    public static final RegistryKey<Block> BLACK_DYLIUM = of("black_dylium");
+    public static final RegistryKey<Block> DARK_AMARANTH_WART_BLOCK = of("dark_amaranth_wart_block");
+    public static final RegistryKey<Block> DARK_AMARANTH_ROOTS = of("dark_amaranth_roots");
+
+    public static final RegistryKey<Block> STRIPPED_DARK_AMARANTH_STEM = of("stripped_dark_amaranth_stem");
+    public static final RegistryKey<Block> DARK_AMARANTH_STEM = of("dark_amaranth_stem");
+    public static final RegistryKey<Block> STRIPPED_DARK_AMARANTH_HYPHAE = of("stripped_dark_amaranth_hyphae");
+    public static final RegistryKey<Block> DARK_AMARANTH_HYPHAE = of("dark_amaranth_hyphae");
+    public static final RegistryKey<Block> DARK_AMARANTH_PLANKS = of("dark_amaranth_planks");
+    public static final RegistryKey<Block> DARK_AMARANTH_STAIRS = of("dark_amaranth_stairs");
+    public static final RegistryKey<Block> DARK_AMARANTH_SLAB = of("dark_amaranth_slab");
+    public static final RegistryKey<Block> DARK_AMARANTH_FENCE = of("dark_amaranth_fence");
+    public static final RegistryKey<Block> DARK_AMARANTH_FENCE_GATE = of("dark_amaranth_fence_gate");
+    public static final RegistryKey<Block> DARK_AMARANTH_DOOR = of("dark_amaranth_door");
+    public static final RegistryKey<Block> DARK_AMARANTH_TRAPDOOR = of("dark_amaranth_trapdoor");
+    public static final RegistryKey<Block> DARK_AMARANTH_BUTTON = of("dark_amaranth_button");
+    public static final RegistryKey<Block> DARK_AMARANTH_PRESSURE_PLATE = of("dark_amaranth_pressure_plate");
+    public static final RegistryKey<Block> DARK_AMARANTH_SIGN = of("dark_amaranth_sign");
+    public static final RegistryKey<Block> DARK_AMARANTH_WALL_SIGN = of("dark_amaranth_wall_sign");
+    public static final RegistryKey<Block> DARK_AMARANTH_HANGING_SIGN = of("dark_amaranth_hanging_sign");
+    public static final RegistryKey<Block> DARK_AMARANTH_WALL_HANGING_SIGN = of("dark_amaranth_wall_hanging_sign");
+
+    public static final RegistryKey<Block> DARK_AMARANTH_FUNGUS = of("dark_amaranth_fungus");
+    public static final RegistryKey<Block> POTTED_DARK_AMARANTH_FUNGUS = of("potted_dark_amaranth_fungus");
+
+
     public static final RegistryKey<Block> MOAI = of("moai");
+
+    public static final RegistryKey<Block> BLUEBERRY_BUSH = of("blueberry_bush");
 
     private static RegistryKey<Block> of(String path) {
         return RegistryKey.of(RegistryKeys.BLOCK, Promenade.id(path));

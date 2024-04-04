@@ -4,7 +4,7 @@ import com.mojang.serialization.Dynamic;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.item.PromenadeItemTags;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import fr.hugman.promenade.registry.content.AnimalContent;
+import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import io.netty.buffer.ByteBuf;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -261,7 +261,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     }
 
     public void fart() {
-        this.playSound(AnimalContent.CAPYBARA_FART_SOUND, getSoundVolume(), getSoundPitch());
+        this.playSound(PromenadeSoundEvents.CAPYBARA_FART, getSoundVolume(), getSoundPitch());
         this.setState(State.FARTING);
         this.setLastStateTick(this.getWorld().getTime());
     }
@@ -365,8 +365,8 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     @Override
     protected SoundEvent getAmbientSound() {
         if (this.isAsleep()) return null; //TODO: Sleeping sound
-        if (this.isBaby()) return AnimalContent.CAPYBARA_AMBIENT_BABY_SOUND;
-        return AnimalContent.CAPYBARA_AMBIENT_SOUND;
+        if (this.isBaby()) return PromenadeSoundEvents.CAPYBARA_AMBIENT_BABY;
+        return PromenadeSoundEvents.CAPYBARA_AMBIENT;
     }
 
     @Override
@@ -395,7 +395,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        var capy = AnimalContent.CAPYBARA.create(this.getWorld());
+        var capy = PromenadeEntityTypes.CAPYBARA.create(this.getWorld());
         if (capy != null && entity instanceof CapybaraEntity capyParent) {
             if (this.random.nextBoolean()) {
                 capy.setVariant(this.getVariant());

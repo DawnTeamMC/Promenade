@@ -8,9 +8,9 @@ import fr.hugman.promenade.client.render.entity.DuckRenderer;
 import fr.hugman.promenade.client.render.entity.LushCreeperRenderer;
 import fr.hugman.promenade.client.render.entity.SunkenSkeletonRenderer;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.particle.FallingLeafParticle;
 import fr.hugman.promenade.particle.PromenadeParticleTypes;
-import fr.hugman.promenade.registry.content.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -125,14 +125,14 @@ public class PromenadeClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_LEAF_PILE, RenderLayer.getCutout());
 
 
-        BlockRenderLayerMap.INSTANCE.putBlock(AmaranthContent.DARK_AMARANTH_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(AmaranthContent.DARK_AMARANTH_TRAPDOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DARK_AMARANTH_DOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DARK_AMARANTH_TRAPDOOR, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(AmaranthContent.DARK_AMARANTH_ROOTS, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(AmaranthContent.DARK_AMARANTH_FUNGUS, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(AmaranthContent.POTTED_DARK_AMARANTH_FUNGUS, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DARK_AMARANTH_ROOTS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DARK_AMARANTH_FUNGUS, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_DARK_AMARANTH_FUNGUS, RenderLayer.getCutoutMipped());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(FoodContent.BLUEBERRY_BUSH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.BLUEBERRY_BUSH, RenderLayer.getCutout());
     }
 
     private static final int SAP_MAPLE_COLOR = 10931465; // 'foliage_color' in 'carnelian_treeway.json'
@@ -163,9 +163,9 @@ public class PromenadeClient implements ClientModInitializer {
     }
 
     public static void registerEntityRenderers() {
-        EntityRendererRegistry.register(AnimalContent.CAPYBARA, CapybaraRenderer::new);
-        EntityRendererRegistry.register(AnimalContent.DUCK, DuckRenderer::new);
-        EntityRendererRegistry.register(MonsterContent.LUSH_CREEPER, LushCreeperRenderer::new);
-        EntityRendererRegistry.register(MonsterContent.SUNKEN_SKELETON, SunkenSkeletonRenderer::new);
+        EntityRendererRegistry.register(PromenadeEntityTypes.CAPYBARA, CapybaraRenderer::new);
+        EntityRendererRegistry.register(PromenadeEntityTypes.DUCK, DuckRenderer::new);
+        EntityRendererRegistry.register(PromenadeEntityTypes.LUSH_CREEPER, LushCreeperRenderer::new);
+        EntityRendererRegistry.register(PromenadeEntityTypes.SUNKEN_SKELETON, SunkenSkeletonRenderer::new);
     }
 }

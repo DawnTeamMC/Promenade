@@ -3,7 +3,6 @@ package fr.hugman.promenade.block;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.block.BoneMealSpreadable;
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.registry.content.AmaranthContent;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.NyliumBlock;
@@ -53,7 +52,7 @@ public class DyliumBlock extends NyliumBlock implements BoneMealSpreadable {
         BlockState blockState = world.getBlockState(pos);
         BlockPos blockPos = pos.up();
         ChunkGenerator chunkGenerator = world.getChunkManager().getChunkGenerator();
-        if (blockState.isOf(AmaranthContent.BLACK_DYLIUM)) {
+        if (blockState.isOf(PromenadeBlocks.BLACK_DYLIUM)) {
             ConfiguredFeature<?, ?> configuredFeature = world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).get(BONEMEAL_VEGETATION);
             if (configuredFeature != null) configuredFeature.generate(world, chunkGenerator, random, blockPos);
         }
