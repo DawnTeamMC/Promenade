@@ -27,7 +27,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Promenade implements ModInitializer {
-    public static final Registrar REGISTRAR = new Registrar("promenade");
+    public static final String MOD_ID = "promenade";
     public static final Logger LOGGER = LogManager.getLogger();
     public static final PromenadeConfig CONFIG = AutoConfig.register(PromenadeConfig.class, PartitioningSerializer.wrap(GsonConfigSerializer::new)).getConfig();
 
@@ -55,6 +55,6 @@ public class Promenade implements ModInitializer {
     }
 
     public static Identifier id(String path) {
-        return REGISTRAR.id(path);
+        return Identifier.of(MOD_ID, path);
     }
 }
