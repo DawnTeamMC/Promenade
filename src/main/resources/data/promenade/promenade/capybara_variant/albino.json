@@ -1,8 +1,6 @@
 {
   "spawn_weight": 1,
-  "base_texture": "promenade:textures/entity/capybara/albino.png",
-  "large_open_eyes_texture": "promenade:textures/entity/capybara/albino/eyes/large/open.png",
-  "large_closed_eyes_texture": "promenade:textures/entity/capybara/albino/eyes/large/closed.png",
-  "regular_open_eyes_texture": "promenade:textures/entity/capybara/albino/eyes/regular/open.png",
-  "regular_closed_eyes_texture": "promenade:textures/entity/capybara/albino/eyes/regular/closed.png"
+  "small_eyes_texture": "promenade:textures/entity/capybara/albino/small_eyes.png",
+  "large_eyes_texture": "promenade:textures/entity/capybara/albino/large_eyes.png",
+  "closed_eyes_texture": "promenade:textures/entity/capybara/albino/closed_eyes.png"
 }

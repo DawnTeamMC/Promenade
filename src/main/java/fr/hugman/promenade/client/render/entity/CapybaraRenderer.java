@@ -13,7 +13,6 @@ import net.minecraft.util.Identifier;
 public class CapybaraRenderer<E extends CapybaraEntity> extends MobEntityRenderer<E, CapybaraModel<E>> {
     public CapybaraRenderer(EntityRendererFactory.Context context) {
         super(context, new CapybaraModel<>(context.getPart(PromenadeEntityModelLayers.CAPYBARA)), 0.5f);
-        this.addFeature(new CapybaraEyesRenderer<>(this));
     }
 
     @Override

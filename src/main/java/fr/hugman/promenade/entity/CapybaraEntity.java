@@ -535,15 +535,10 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     /*==============*/
 
     public Identifier getBaseTexture() {
-        return this.getVariant().value().baseTexture();
-    }
-
-    public Identifier getEyesTexture() {
         var variant = this.getVariant().value();
-        if (this.hasLargeEyes()) {
-            return this.hasClosedEyes() ? variant.largeClosedEyesTexture() : variant.largeOpenEyesTexture();
-        } else {
-            return this.hasClosedEyes() ? variant.regularClosedEyesTexture() : variant.regularOpenEyesTexture();
+        if(this.hasClosedEyes()) {
+            return variant.closedEyesTexture();
         }
+        return this.hasLargeEyes() ? variant.largeEyesTexture() : variant.smallEyesTexture();
     }
 }
