@@ -19,7 +19,6 @@ import net.minecraft.world.WorldAccess;
  * A leaves block with extended range, permitting leaves to be as far as 13 blocks away from the tree rather than the
  * limit of 6 blocks imposed by vanilla leaves.
  */
-//TODO add Codec
 public class ExtendedLeavesBlock extends LeavesBlock {
     public static final int MAX_DISTANCE = 14;
     public static final MapCodec<ExtendedLeavesBlock> CODEC = createCodec(ExtendedLeavesBlock::new);

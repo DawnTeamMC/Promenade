@@ -7,7 +7,6 @@ import net.minecraft.block.PillarBlock;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 
-//TODO add Codec
 public class MapleLogBlock extends PillarBlock {
     public static final BooleanProperty NATURAL = PromenadeBlockProperties.NATURAL;
     public static final MapCodec<MapleLogBlock> CODEC = createCodec(MapleLogBlock::new);

@@ -114,7 +114,6 @@ public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements Cros
         return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SKELETON_SHOOT : (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem) ? SoundEvents.ITEM_CROSSBOW_SHOOT : SoundEvents.ENTITY_SKELETON_SHOOT);
     }
 
-    //TODO: test changes made in 1.20.5
     @Override
     public void shootAt(LivingEntity target, float pullProgress) {
         if (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem)) {

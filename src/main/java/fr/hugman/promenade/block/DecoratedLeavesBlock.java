@@ -13,7 +13,6 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
-//TODO add Codec
 public class DecoratedLeavesBlock extends LeavesBlock {
     public static final MapCodec<DecoratedLeavesBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
                     Codec.INT.fieldOf("bound").forGetter(block -> block.bound),
