@@ -1,16 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "leaf_pile",
-	"pattern": [
-		"##"
-	],
-	"key": {
-		"#": {
-			"item": "minecraft:mangrove_leaves"
-		}
-	},
-	"result": {
-		"item": "promenade:mangrove_leaf_pile",
-		"count": 2
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "leaf_pile",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:mangrove_leaves"
+    }
+  },
+  "result": {
+    "id": "promenade:mangrove_leaf_pile",
+    "count": 2
+  }
 }

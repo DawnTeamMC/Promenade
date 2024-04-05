@@ -1,9 +1,9 @@
 {
-	"replace": false,
-	"values": [
-		"promenade:sakura_fence",
-		"promenade:maple_fence",
-		"promenade:palm_fence",
-		"promenade:dark_amaranth_fence"
-	]
+  "replace": false,
+  "values": [
+    "promenade:sakura_fence",
+    "promenade:maple_fence",
+    "promenade:palm_fence",
+    "promenade:dark_amaranth_fence"
+  ]
 }

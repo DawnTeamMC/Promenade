@@ -1,9 +1,9 @@
 {
-	"replace": false,
-	"values": [
-		"promenade:blunite_slab",
-		"promenade:polished_blunite_slab",
-		"promenade:asphalt_slab",
-		"promenade:polished_asphalt_slab"
-	]
+  "replace": false,
+  "values": [
+    "promenade:blunite_slab",
+    "promenade:polished_blunite_slab",
+    "promenade:asphalt_slab",
+    "promenade:polished_asphalt_slab"
+  ]
 }

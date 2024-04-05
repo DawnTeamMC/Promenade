@@ -1,6 +1,6 @@
 {
-	"parent": "block/template_fence_gate",
-	"textures": {
-		"texture": "promenade:block/dark_amaranth/planks"
-	}
+  "parent": "block/template_fence_gate",
+  "textures": {
+    "texture": "promenade:block/dark_amaranth/planks"
+  }
 }

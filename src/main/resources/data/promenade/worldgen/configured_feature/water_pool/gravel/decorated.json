@@ -9,10 +9,8 @@
     "vegetation_chance": 0.15,
     "xz_radius": {
       "type": "minecraft:uniform",
-      "value": {
-        "min_inclusive": 4,
-        "max_inclusive": 7
-      }
+      "min_inclusive": 4,
+      "max_inclusive": 7
     },
     "replaceable": "#minecraft:lush_ground_replaceable",
     "ground_state": {

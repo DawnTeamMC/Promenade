@@ -1,16 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "leaf_pile",
-	"pattern": [
-		"##"
-	],
-	"key": {
-		"#": {
-			"item": "minecraft:jungle_leaves"
-		}
-	},
-	"result": {
-		"item": "promenade:jungle_leaf_pile",
-		"count": 2
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "leaf_pile",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:jungle_leaves"
+    }
+  },
+  "result": {
+    "id": "promenade:jungle_leaf_pile",
+    "count": 2
+  }
 }

@@ -1,19 +1,19 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		" O ",
-		"O#O",
-		" O "
-	],
-	"key": {
-		"O": {
-			"item": "minecraft:snowball"
-		},
-		"#": {
-			"item": "minecraft:spruce_leaves"
-		}
-	},
-	"result": {
-		"item": "promenade:snowy_spruce_leaves"
-	}
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " O ",
+    "O#O",
+    " O "
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:snowball"
+    },
+    "#": {
+      "item": "minecraft:spruce_leaves"
+    }
+  },
+  "result": {
+    "id": "promenade:snowy_spruce_leaves"
+  }
 }

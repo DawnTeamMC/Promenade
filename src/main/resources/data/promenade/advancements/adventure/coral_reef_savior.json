@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:crossbow"
+      "id": "minecraft:crossbow"
     },
     "title": {
       "translate": "advancements.promenade.adventure.coral_reef_savior.title"
@@ -22,7 +22,7 @@
             "condition": "minecraft:location_check",
             "predicate": {
               "fluid": {
-                "tag": "minecraft:water"
+                "fluids": "#minecraft:water"
               }
             }
           }
@@ -37,7 +37,7 @@
                 "nbt": "{Type:bubble}",
                 "location": {
                   "fluid": {
-                    "tag": "minecraft:water"
+                    "fluids": "#minecraft:water"
                   }
                 }
               }
@@ -52,7 +52,7 @@
                 "nbt": "{Type:fire}",
                 "location": {
                   "fluid": {
-                    "tag": "minecraft:water"
+                    "fluids": "#minecraft:water"
                   }
                 }
               }
@@ -67,7 +67,7 @@
                 "nbt": "{Type:horn}",
                 "location": {
                   "fluid": {
-                    "tag": "minecraft:water"
+                    "fluids": "#minecraft:water"
                   }
                 }
               }

@@ -1,32 +1,32 @@
 {
-	"parent": "minecraft:recipes/root",
-	"rewards": {
-		"recipes": [
-			"promenade:crafting/blunite/polished_stairs"
-		]
-	},
-	"criteria": {
-		"has_polished_blunite": {
-			"trigger": "minecraft:inventory_changed",
-			"conditions": {
-				"items": [
-					{
-						"items": ["promenade:polished_blunite"]
-					}
-				]
-			}
-		},
-		"has_the_recipe": {
-			"trigger": "minecraft:recipe_unlocked",
-			"conditions": {
-				"recipe": "promenade:crafting/blunite/polished_stairs"
-			}
-		}
-	},
-	"requirements": [
-		[
-			"has_polished_blunite",
-			"has_the_recipe"
-		]
-	]
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "promenade:crafting/blunite/polished_stairs"
+    ]
+  },
+  "criteria": {
+    "has_polished_blunite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "promenade:polished_blunite"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "promenade:crafting/blunite/polished_stairs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_polished_blunite",
+      "has_the_recipe"
+    ]
+  ]
 }

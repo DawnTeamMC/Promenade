@@ -1,6 +1,6 @@
 {
-	"parent": "block/cross",
-	"textures": {
-		"cross": "promenade:block/sakura/sapling/cotton"
-	}
+  "parent": "block/cross",
+  "textures": {
+    "cross": "promenade:block/sakura/sapling/cotton"
+  }
 }

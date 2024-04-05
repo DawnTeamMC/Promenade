@@ -1,16 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "leaf_pile",
-	"pattern": [
-		"##"
-	],
-	"key": {
-		"#": {
-			"item": "promenade:fulvous_maple_leaves"
-		}
-	},
-	"result": {
-		"item": "promenade:fulvous_maple_leaf_pile",
-		"count": 2
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "leaf_pile",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "promenade:fulvous_maple_leaves"
+    }
+  },
+  "result": {
+    "id": "promenade:fulvous_maple_leaf_pile",
+    "count": 2
+  }
 }

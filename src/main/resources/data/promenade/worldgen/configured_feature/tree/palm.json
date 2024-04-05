@@ -26,17 +26,13 @@
     "trunk_placer": {
       "straight_max": {
         "type": "minecraft:biased_to_bottom",
-        "value": {
-          "min_inclusive": 3,
-          "max_inclusive": 10
-        }
+        "min_inclusive": 3,
+        "max_inclusive": 10
       },
       "straight_difference": {
         "type": "minecraft:uniform",
-        "value": {
-          "min_inclusive": -1,
-          "max_inclusive": 0
-        }
+        "min_inclusive": -1,
+        "max_inclusive": 0
       },
       "decline_chance": 0.45,
       "max_foliage_radius_bonus": 2,

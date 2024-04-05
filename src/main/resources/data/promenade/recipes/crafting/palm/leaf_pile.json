@@ -1,16 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "leaf_pile",
-	"pattern": [
-		"##"
-	],
-	"key": {
-		"#": {
-			"item": "promenade:palm_leaves"
-		}
-	},
-	"result": {
-		"item": "promenade:palm_leaf_pile",
-		"count": 2
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "leaf_pile",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "promenade:palm_leaves"
+    }
+  },
+  "result": {
+    "id": "promenade:palm_leaf_pile",
+    "count": 2
+  }
 }

@@ -1,15 +1,15 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "flower_pile",
-	"pattern": [
-		"###"
-	],
-	"key": {
-		"#": {
-			"item": "minecraft:dandelion"
-		}
-	},
-	"result": {
-		"item": "promenade:dandelion_pile"
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "flower_pile",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:dandelion"
+    }
+  },
+  "result": {
+    "id": "promenade:dandelion_pile"
+  }
 }

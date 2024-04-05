@@ -1,16 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "leaf_pile",
-	"pattern": [
-		"##"
-	],
-	"key": {
-		"#": {
-			"item": "promenade:vermilion_maple_leaves"
-		}
-	},
-	"result": {
-		"item": "promenade:vermilion_maple_leaf_pile",
-		"count": 2
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "leaf_pile",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "promenade:vermilion_maple_leaves"
+    }
+  },
+  "result": {
+    "id": "promenade:vermilion_maple_leaf_pile",
+    "count": 2
+  }
 }

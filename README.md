@@ -65,7 +65,6 @@ Listen to **Brise couleur pastel** on [Bandcamp](https://ludocrypt.bandcamp.com/
 ### Compatible mods
 Promenade is compatible with the following mods:
 
-- Columns: [GitHub](https://github.com/haykam821/Columns) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/columns)
 - Farming for Blockheads: [GitHub](https://github.com/ModdingForBlockheads/FarmingForBlockheads) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/farming-for-blockheads-fabric)
 
 ## 🌟 Special Thanks

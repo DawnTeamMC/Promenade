@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "minecraft:crossbow"
+      "id": "minecraft:crossbow"
     },
     "title": {
       "translate": "advancements.promenade.adventure.coral_bleacher_sniping.title"
@@ -20,7 +20,7 @@
             "condition": "minecraft:location_check",
             "predicate": {
               "fluid": {
-                "tag": "minecraft:water"
+                "fluids": "#minecraft:water"
               }
             }
           }
@@ -34,7 +34,7 @@
                 "type": "promenade:sunken_skeleton",
                 "location": {
                   "fluid": {
-                    "tag": "minecraft:water"
+                    "fluids": "#minecraft:water"
                   }
                 }
               }

@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "promenade:maple_syrup_bottle"
+      "id": "promenade:maple_syrup_bottle"
     },
     "title": {
       "translate": "advancements.promenade.husbandry.harvest_maple_syrup.title"

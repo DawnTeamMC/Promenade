@@ -1,16 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "wooden_slab",
-	"pattern": [
-		"###"
-	],
-	"key": {
-		"#": {
-			"item": "promenade:sakura_planks"
-		}
-	},
-	"result": {
-		"item": "promenade:sakura_slab",
-		"count": 6
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_slab",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "promenade:sakura_planks"
+    }
+  },
+  "result": {
+    "id": "promenade:sakura_slab",
+    "count": 6
+  }
 }

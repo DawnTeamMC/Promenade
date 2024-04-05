@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/palm/leaf_pile"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/palm/leaf_pile"
+    }
+  }
 }

@@ -1,6 +1,6 @@
 {
-	"parent": "promenade:block/pile",
-	"textures": {
-		"pile": "promenade:block/maple/leaves/vermilion/mixed"
-	}
+  "parent": "promenade:block/pile",
+  "textures": {
+    "pile": "promenade:block/maple/leaves/vermilion/mixed"
+  }
 }

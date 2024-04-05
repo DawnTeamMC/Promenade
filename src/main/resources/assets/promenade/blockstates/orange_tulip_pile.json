@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/vanilla_piles/orange_tulip"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/vanilla_piles/orange_tulip"
+    }
+  }
 }

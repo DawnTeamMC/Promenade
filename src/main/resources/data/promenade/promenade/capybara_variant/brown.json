@@ -1,0 +1,6 @@
+{
+  "spawn_weight": 49,
+  "small_eyes_texture": "promenade:textures/entity/capybara/brown/small_eyes.png",
+  "large_eyes_texture": "promenade:textures/entity/capybara/brown/large_eyes.png",
+  "closed_eyes_texture": "promenade:textures/entity/capybara/brown/closed_eyes.png"
+}
