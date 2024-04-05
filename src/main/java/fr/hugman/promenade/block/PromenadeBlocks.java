@@ -5,6 +5,7 @@ import fr.hugman.dawn.block.DawnRootsBlock;
 import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
+import fr.hugman.promenade.item.PromenadeItemKeys;
 import fr.hugman.promenade.particle.PromenadeParticleTypes;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.village.TradeOfferUtils;
@@ -300,14 +301,7 @@ public class PromenadeBlocks {
 
     public static final Block MOAI = of(PromenadeBlockKeys.MOAI, new MoaiBlock(AbstractBlock.Settings.copy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).item(new Item.Settings().equipmentSlot(stack -> EquipmentSlot.HEAD))));
 
-    public static final Block BLUEBERRY_BUSH = of(PromenadeBlockKeys.BLUEBERRY_BUSH, new BlueberryBushBlock(
-            AbstractBlock.Settings.create()
-                    .mapColor(MapColor.DARK_GREEN)
-                    .ticksRandomly()
-                    .noCollision()
-                    .sounds(BlockSoundGroup.SWEET_BERRY_BUSH)
-                    .pistonBehavior(PistonBehavior.DESTROY)
-                    .burnable(60, 100)));
+    public static final Block BLUEBERRY_BUSH = of(PromenadeBlockKeys.BLUEBERRY_BUSH, BerryBushBlock.of(PromenadeItemKeys.BLUEBERRIES, false));
 
     public static <B extends Block> B of(RegistryKey<Block> key, B block) {
         return Registry.register(Registries.BLOCK, key, block);
