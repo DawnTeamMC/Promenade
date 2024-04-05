@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/cross",
-	"textures": {
-		"cross": "promenade:block/dark_amaranth/roots"
-	}
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "promenade:block/dark_amaranth/roots"
+  }
 }

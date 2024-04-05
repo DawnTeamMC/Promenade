@@ -1,6 +1,6 @@
 {
-	"replace": false,
-	"values": [
-		"#promenade:carpeted_grass_blocks"
-	]
+  "replace": false,
+  "values": [
+    "#promenade:carpeted_grass_blocks"
+  ]
 }

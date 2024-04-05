@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/vanilla_piles/dandelion"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/vanilla_piles/dandelion"
+    }
+  }
 }

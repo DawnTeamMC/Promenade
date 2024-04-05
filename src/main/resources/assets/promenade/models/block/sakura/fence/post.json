@@ -1,6 +1,6 @@
 {
-	"parent": "block/fence_post",
-	"textures": {
-		"texture": "promenade:block/sakura/planks"
-	}
+  "parent": "block/fence_post",
+  "textures": {
+    "texture": "promenade:block/sakura/planks"
+  }
 }

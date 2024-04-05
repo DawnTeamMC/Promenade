@@ -1,6 +1,6 @@
 {
-	"parent": "block/cross",
-	"textures": {
-		"cross": "promenade:block/palm/sapling"
-	}
+  "parent": "block/cross",
+  "textures": {
+    "cross": "promenade:block/palm/sapling"
+  }
 }

@@ -2,18 +2,9 @@ package fr.hugman.promenade.world.gen.feature;
 
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.world.biome.PromenadeBiomeTags;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.OreConfiguredFeatures;
 import net.minecraft.world.gen.feature.PlacedFeature;
-import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
-
-import java.util.function.Predicate;
 
 public class PromenadePlacedFeatureKeys {
     public static final RegistryKey<PlacedFeature> ORE_BLUNITE_UPPER = of("ore/blunite/upper");

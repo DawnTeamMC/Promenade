@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/sakura/planks"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/sakura/planks"
+    }
+  }
 }

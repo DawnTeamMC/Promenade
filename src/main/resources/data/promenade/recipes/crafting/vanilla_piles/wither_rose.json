@@ -1,15 +1,15 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "flower_pile",
-	"pattern": [
-		"###"
-	],
-	"key": {
-		"#": {
-			"item": "minecraft:wither_rose"
-		}
-	},
-	"result": {
-		"id": "promenade:wither_rose_pile"
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "flower_pile",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:wither_rose"
+    }
+  },
+  "result": {
+    "id": "promenade:wither_rose_pile"
+  }
 }

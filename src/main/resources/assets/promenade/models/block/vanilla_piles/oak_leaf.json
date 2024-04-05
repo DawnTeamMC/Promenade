@@ -1,6 +1,6 @@
 {
-	"parent": "promenade:block/pile",
-	"textures": {
-		"pile": "minecraft:block/oak_leaves"
-	}
+  "parent": "promenade:block/pile",
+  "textures": {
+    "pile": "minecraft:block/oak_leaves"
+  }
 }

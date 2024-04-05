@@ -1,16 +1,16 @@
 {
-	"variants": {
-		"axis=y": {
-			"model": "promenade:block/palm/log"
-		},
-		"axis=z": {
-			"model": "promenade:block/palm/log",
-			"x": 90
-		},
-		"axis=x": {
-			"model": "promenade:block/palm/log",
-			"x": 90,
-			"y": 90
-		}
-	}
+  "variants": {
+    "axis=y": {
+      "model": "promenade:block/palm/log"
+    },
+    "axis=z": {
+      "model": "promenade:block/palm/log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "promenade:block/palm/log",
+      "x": 90,
+      "y": 90
+    }
+  }
 }

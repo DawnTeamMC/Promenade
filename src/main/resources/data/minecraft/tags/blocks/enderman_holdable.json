@@ -1,7 +1,7 @@
 {
-	"replace": false,
-	"values": [
-		"promenade:dark_amaranth_fungus",
-		"promenade:dark_amaranth_roots"
-	]
+  "replace": false,
+  "values": [
+    "promenade:dark_amaranth_fungus",
+    "promenade:dark_amaranth_roots"
+  ]
 }

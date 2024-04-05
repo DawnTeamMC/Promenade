@@ -63,6 +63,7 @@ public class PromenadeBiomes {
 
     /**
      * Check if the entity can freeze from the biome and weather.
+     *
      * @param entity The entity to check.
      * @return true if the entity can freeze, false otherwise.
      */

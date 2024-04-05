@@ -1,9 +1,9 @@
 {
-	"type": "minecraft:stonecutting",
-	"ingredient": {
-		"item": "promenade:asphalt"
-	},
-	"result": {
-		"id": "promenade:polished_asphalt"
-	}
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "promenade:asphalt"
+  },
+  "result": {
+    "id": "promenade:polished_asphalt"
+  }
 }

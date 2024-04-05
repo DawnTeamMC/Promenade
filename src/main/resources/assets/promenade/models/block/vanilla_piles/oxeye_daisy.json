@@ -1,6 +1,6 @@
 {
-	"parent": "promenade:block/pile",
-	"textures": {
-		"pile": "promenade:block/vanilla_piles/oxeye_daisy"
-	}
+  "parent": "promenade:block/pile",
+  "textures": {
+    "pile": "promenade:block/vanilla_piles/oxeye_daisy"
+  }
 }

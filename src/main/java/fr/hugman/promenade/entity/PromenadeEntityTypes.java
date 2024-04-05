@@ -55,7 +55,7 @@ public class PromenadeEntityTypes {
             BiomeModifications.addSpawn(hasFarmAnimals, SpawnGroup.CREATURE, PromenadeEntityTypes.DUCK, Promenade.CONFIG.animals.ducks_weight, 4, 4);
         }
         if (Promenade.CONFIG.animals.capybaras_weight != 0) {
-            BiomeModifications.addSpawn(BiomeSelectors.tag(PromenadeBiomeTags.CAPYBARA_SPAWN), SpawnGroup.CREATURE,PromenadeEntityTypes.CAPYBARA, Promenade.CONFIG.animals.capybaras_weight, 3, 5);
+            BiomeModifications.addSpawn(BiomeSelectors.tag(PromenadeBiomeTags.CAPYBARA_SPAWN), SpawnGroup.CREATURE, PromenadeEntityTypes.CAPYBARA, Promenade.CONFIG.animals.capybaras_weight, 3, 5);
         }
         if (Promenade.CONFIG.monsters.lush_creepers_weight != 0) {
             BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityType.CREEPER).and(BiomeSelectors.excludeByKey(BiomeKeys.LUSH_CAVES)), SpawnGroup.MONSTER, LUSH_CREEPER, Promenade.CONFIG.monsters.lush_creepers_weight, 2, 3);

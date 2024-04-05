@@ -93,7 +93,7 @@ public final class PromenadeFactory {
 
     //TODO: move to Dawn API
     public static Block sign(boolean hanging, boolean wall, Identifier texturePath, AbstractBlock.Settings settings) {
-        if(hanging) {
+        if (hanging) {
             var hangingSignTexture = Identifier.of(texturePath.getNamespace(), "entity/signs/hanging/" + texturePath.getPath());
             var hangingSignGuiTexture = Identifier.of(texturePath.getNamespace(), "textures/gui/hanging_signs/" + texturePath.getPath());
             return wall ? new TerraformWallHangingSignBlock(hangingSignTexture, hangingSignGuiTexture, settings) : new TerraformHangingSignBlock(hangingSignTexture, hangingSignGuiTexture, settings);

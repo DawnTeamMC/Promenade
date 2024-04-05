@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/sakura/sapling/blush"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/sakura/sapling/blush"
+    }
+  }
 }

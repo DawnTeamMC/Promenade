@@ -1,15 +1,15 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "flower_pile",
-	"pattern": [
-		"###"
-	],
-	"key": {
-		"#": {
-			"item": "minecraft:lily_of_the_valley"
-		}
-	},
-	"result": {
-		"id": "promenade:lily_of_the_valley_pile"
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "flower_pile",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:lily_of_the_valley"
+    }
+  },
+  "result": {
+    "id": "promenade:lily_of_the_valley_pile"
+  }
 }

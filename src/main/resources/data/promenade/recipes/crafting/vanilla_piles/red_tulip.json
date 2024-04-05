@@ -1,15 +1,15 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "flower_pile",
-	"pattern": [
-		"###"
-	],
-	"key": {
-		"#": {
-			"item": "minecraft:red_tulip"
-		}
-	},
-	"result": {
-		"id": "promenade:red_tulip_pile"
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "flower_pile",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:red_tulip"
+    }
+  },
+  "result": {
+    "id": "promenade:red_tulip_pile"
+  }
 }
