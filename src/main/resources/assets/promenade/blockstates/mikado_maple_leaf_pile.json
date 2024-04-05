@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/maple/leaf_pile/mikado"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/maple/leaf_pile/mikado"
+    }
+  }
 }

@@ -19,9 +19,9 @@ public class FallingLeafParticle extends SpriteBillboardParticle {
         super(world, x, y, z);
         float f;
         this.setSprite(spriteProvider.getSprite(this.random.nextInt(12), 12));
-        this.field_43369 = (float)Math.toRadians(this.random.nextBoolean() ? -30.0 : 30.0);
+        this.field_43369 = (float) Math.toRadians(this.random.nextBoolean() ? -30.0 : 30.0);
         this.field_43370 = this.random.nextFloat();
-        this.field_43371 = (float)Math.toRadians(this.random.nextBoolean() ? -5.0 : 5.0);
+        this.field_43371 = (float) Math.toRadians(this.random.nextBoolean() ? -5.0 : 5.0);
         this.maxAge = MAX_AGE;
         this.gravityStrength = 7.5E-4f;
         this.scale = f = this.random.nextBoolean() ? 0.05f : 0.075f;

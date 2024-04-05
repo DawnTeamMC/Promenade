@@ -1,8 +1,6 @@
 {
   "spawn_weight": 49,
-  "base_texture": "promenade:textures/entity/capybara/brown.png",
-  "large_open_eyes_texture": "promenade:textures/entity/capybara/brown/eyes/large/open.png",
-  "large_closed_eyes_texture": "promenade:textures/entity/capybara/brown/eyes/large/closed.png",
-  "regular_open_eyes_texture": "promenade:textures/entity/capybara/brown/eyes/regular/open.png",
-  "regular_closed_eyes_texture": "promenade:textures/entity/capybara/brown/eyes/regular/closed.png"
+  "small_eyes_texture": "promenade:textures/entity/capybara/brown/small_eyes.png",
+  "large_eyes_texture": "promenade:textures/entity/capybara/brown/large_eyes.png",
+  "closed_eyes_texture": "promenade:textures/entity/capybara/brown/closed_eyes.png"
 }

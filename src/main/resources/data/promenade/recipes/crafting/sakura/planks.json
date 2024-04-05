@@ -1,13 +1,13 @@
 {
-	"type": "minecraft:crafting_shapeless",
-	"group": "planks",
-	"ingredients": [
-		{
-			"tag": "promenade:sakura_logs"
-		}
-	],
-	"result": {
-		"id": "promenade:sakura_planks",
-		"count": 4
-	}
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "promenade:sakura_logs"
+    }
+  ],
+  "result": {
+    "id": "promenade:sakura_planks",
+    "count": 4
+  }
 }

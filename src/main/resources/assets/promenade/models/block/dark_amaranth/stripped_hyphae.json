@@ -1,7 +1,7 @@
 {
-	"parent": "block/cube_column",
-	"textures": {
-		"end": "promenade:block/dark_amaranth/stripped_stem/side",
-		"side": "promenade:block/dark_amaranth/stripped_stem/side"
-	}
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "promenade:block/dark_amaranth/stripped_stem/side",
+    "side": "promenade:block/dark_amaranth/stripped_stem/side"
+  }
 }

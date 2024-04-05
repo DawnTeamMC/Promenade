@@ -37,7 +37,6 @@ public class CapybaraVariants {
             }
         }
 
-        // Fallback to the first entry if something goes wrong
         // TODO: if no entries are present, throw an exception
         return entries.get(0);
     }

@@ -1,5 +1,6 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -20,12 +21,19 @@ import org.jetbrains.annotations.Nullable;
 public class HangingLeavesBlock extends Block implements Waterloggable {
     private static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
     protected static final VoxelShape SHAPE = Block.createCuboidShape(2.0, 10.0, 2.0, 14.0, 16.0, 14.0);
+    public static final MapCodec<HangingLeavesBlock> CODEC = createCodec(HangingLeavesBlock::new);
 
     public HangingLeavesBlock(AbstractBlock.Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(WATERLOGGED, false));
     }
 
+    @Override
+    public MapCodec<HangingLeavesBlock> getCodec() {
+        return CODEC;
+    }
+
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(WATERLOGGED);
     }

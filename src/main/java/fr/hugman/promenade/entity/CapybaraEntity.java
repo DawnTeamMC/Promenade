@@ -2,10 +2,9 @@ package fr.hugman.promenade.entity;
 
 import com.mojang.serialization.Dynamic;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
-import fr.hugman.promenade.registry.PromenadeRegistries;
+import fr.hugman.promenade.item.PromenadeItemTags;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import fr.hugman.promenade.registry.content.AnimalContent;
-import fr.hugman.promenade.registry.tag.PromenadeItemTags;
+import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import io.netty.buffer.ByteBuf;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -21,14 +20,13 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -46,15 +44,12 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.IntFunction;
 
 public class CapybaraEntity extends AnimalEntity implements VariantHolder<RegistryEntry<CapybaraVariant>> {
     private static final FloatProvider FART_CHANCE_PROVIDER = TrapezoidFloatProvider.create(0.1F, 0.55F, 0.2F);
-    //TODO: fix eye height
-    private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityType.CHICKEN.getDimensions().scaled(0.5F).withEyeHeight(0.2975F);
-
+    private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityDimensions.changing(0.7f, 0.875f).scaled(0.5F).withEyeHeight(0.5F);
 
     public CapybaraEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -119,7 +114,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return stack.isIn(PromenadeItemTags.BREEDING_CAPYBARA);
+        return stack.isIn(PromenadeItemTags.CAPYBARA_FOOD);
     }
 
     @Override
@@ -264,7 +259,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     }
 
     public void fart() {
-        this.playSound(AnimalContent.CAPYBARA_FART_SOUND, getSoundVolume(), getSoundPitch());
+        this.playSound(PromenadeSoundEvents.CAPYBARA_FART, getSoundVolume(), getSoundPitch());
         this.setState(State.FARTING);
         this.setLastStateTick(this.getWorld().getTime());
     }
@@ -292,7 +287,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
             this.earWiggleAnimState.start(this.age);
         } else {
             --this.earWiggleCooldown;
-            
+
         }
 
         switch (this.getState()) {
@@ -368,8 +363,8 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     @Override
     protected SoundEvent getAmbientSound() {
         if (this.isAsleep()) return null; //TODO: Sleeping sound
-        if (this.isBaby()) return AnimalContent.CAPYBARA_AMBIENT_BABY_SOUND;
-        return AnimalContent.CAPYBARA_AMBIENT_SOUND;
+        if (this.isBaby()) return PromenadeSoundEvents.CAPYBARA_AMBIENT_BABY;
+        return PromenadeSoundEvents.CAPYBARA_AMBIENT;
     }
 
     @Override
@@ -398,7 +393,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        var capy = AnimalContent.CAPYBARA.create(this.getWorld());
+        var capy = PromenadeEntityTypes.CAPYBARA.create(this.getWorld());
         if (capy != null && entity instanceof CapybaraEntity capyParent) {
             if (this.random.nextBoolean()) {
                 capy.setVariant(this.getVariant());
@@ -513,7 +508,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
         }
 
         public static State fromName(String name) {
-            return (State)CODEC.byId(name, STANDING);
+            return CODEC.byId(name, STANDING);
         }
 
         public String asString() {
@@ -540,15 +535,10 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     /*==============*/
 
     public Identifier getBaseTexture() {
-        return this.getVariant().value().baseTexture();
-    }
-
-    public Identifier getEyesTexture() {
         var variant = this.getVariant().value();
-        if(this.hasLargeEyes()) {
-            return this.hasClosedEyes() ? variant.largeClosedEyesTexture() : variant.largeOpenEyesTexture();
-        } else {
-            return this.hasClosedEyes() ? variant.regularClosedEyesTexture() : variant.regularOpenEyesTexture();
+        if (this.hasClosedEyes()) {
+            return variant.closedEyesTexture();
         }
+        return this.hasLargeEyes() ? variant.largeEyesTexture() : variant.smallEyesTexture();
     }
 }

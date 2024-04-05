@@ -1,6 +1,6 @@
 {
-	"parent": "block/pressure_plate_up",
-	"textures": {
-		"texture": "promenade:block/dark_amaranth/planks"
-	}
+  "parent": "block/pressure_plate_up",
+  "textures": {
+    "texture": "promenade:block/dark_amaranth/planks"
+  }
 }

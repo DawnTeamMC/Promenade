@@ -1,31 +1,31 @@
 {
-	"modId": "promenade",
-	"group": {
-		"name": "Promenade Saplings",
-		"enabledByDefault": true,
-		"defaultPayment": {
-			"item": "minecraft:emerald"
-		},
-		"defaultCategory": "farmingforblockheads:saplings"
-	},
-	"customEntries": [
-		{
-			"output": "promenade:blush_sakura_sapling"
-		},
-		{
-			"output": "promenade:cotton_sakura_sapling"
-		},
-		{
-			"output": "promenade:vermilion_maple_sapling"
-		},
-		{
-			"output": "promenade:fulvous_maple_sapling"
-		},
-		{
-			"output": "promenade:mikado_maple_sapling"
-		},
-		{
-			"output": "promenade:palm_sapling"
-		}
-	]
+  "modId": "promenade",
+  "group": {
+    "name": "Promenade Saplings",
+    "enabledByDefault": true,
+    "defaultPayment": {
+      "item": "minecraft:emerald"
+    },
+    "defaultCategory": "farmingforblockheads:saplings"
+  },
+  "customEntries": [
+    {
+      "output": "promenade:blush_sakura_sapling"
+    },
+    {
+      "output": "promenade:cotton_sakura_sapling"
+    },
+    {
+      "output": "promenade:vermilion_maple_sapling"
+    },
+    {
+      "output": "promenade:fulvous_maple_sapling"
+    },
+    {
+      "output": "promenade:mikado_maple_sapling"
+    },
+    {
+      "output": "promenade:palm_sapling"
+    }
+  ]
 }

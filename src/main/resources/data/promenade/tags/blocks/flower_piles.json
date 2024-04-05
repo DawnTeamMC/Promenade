@@ -1,18 +1,18 @@
 {
-	"replace": false,
-	"values": [
-		"promenade:dandelion_pile",
-		"promenade:poppy_pile",
-		"promenade:blue_orchid_pile",
-		"promenade:allium_pile",
-		"promenade:azure_bluet_pile",
-		"promenade:red_tulip_pile",
-		"promenade:orange_tulip_pile",
-		"promenade:white_tulip_pile",
-		"promenade:pink_tulip_pile",
-		"promenade:oxeye_daisy_pile",
-		"promenade:cornflower_pile",
-		"promenade:lily_of_the_valley_pile",
-		"promenade:wither_rose_pile"
-	]
+  "replace": false,
+  "values": [
+    "promenade:dandelion_pile",
+    "promenade:poppy_pile",
+    "promenade:blue_orchid_pile",
+    "promenade:allium_pile",
+    "promenade:azure_bluet_pile",
+    "promenade:red_tulip_pile",
+    "promenade:orange_tulip_pile",
+    "promenade:white_tulip_pile",
+    "promenade:pink_tulip_pile",
+    "promenade:oxeye_daisy_pile",
+    "promenade:cornflower_pile",
+    "promenade:lily_of_the_valley_pile",
+    "promenade:wither_rose_pile"
+  ]
 }

@@ -1,8 +1,8 @@
 {
-	"replace": false,
-	"values": [
-		"minecraft:plains",
-		"minecraft:river",
-		"minecraft:swamp"
-	]
+  "replace": false,
+  "values": [
+    "minecraft:plains",
+    "minecraft:river",
+    "minecraft:swamp"
+  ]
 }

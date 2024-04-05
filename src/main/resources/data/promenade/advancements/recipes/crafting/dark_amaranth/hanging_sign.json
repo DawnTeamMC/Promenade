@@ -1,34 +1,34 @@
 {
-	"parent": "minecraft:recipes/root",
-	"criteria": {
-		"has_stripped_log": {
-			"trigger": "minecraft:inventory_changed",
-			"conditions": {
-				"items": [
-					{
-						"items": [
-							"promenade:stripped_dark_amaranth_stem"
-						]
-					}
-				]
-			}
-		},
-		"has_the_recipe": {
-			"trigger": "minecraft:recipe_unlocked",
-			"conditions": {
-				"recipe": "promenade:crafting/dark_amaranth/hanging_sign"
-			}
-		}
-	},
-	"requirements": [
-		[
-			"has_stripped_log",
-			"has_the_recipe"
-		]
-	],
-	"rewards": {
-		"recipes": [
-			"promenade:crafting/dark_amaranth/hanging_sign"
-		]
-	}
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_stripped_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "promenade:stripped_dark_amaranth_stem"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "promenade:crafting/dark_amaranth/hanging_sign"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stripped_log",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "promenade:crafting/dark_amaranth/hanging_sign"
+    ]
+  }
 }

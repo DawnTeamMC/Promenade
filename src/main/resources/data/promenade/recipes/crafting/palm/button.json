@@ -1,12 +1,12 @@
 {
-	"type": "minecraft:crafting_shapeless",
-	"group": "wooden_button",
-	"ingredients": [
-		{
-			"item": "promenade:palm_planks"
-		}
-	],
-	"result": {
-		"id": "promenade:palm_button"
-	}
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "promenade:palm_planks"
+    }
+  ],
+  "result": {
+    "id": "promenade:palm_button"
+  }
 }

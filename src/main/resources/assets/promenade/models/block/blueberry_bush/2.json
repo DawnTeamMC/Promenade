@@ -1,6 +1,6 @@
 {
-	"parent": "block/cross",
-	"textures": {
-		"cross": "promenade:block/blueberry_bush/2"
-	}
+  "parent": "block/cross",
+  "textures": {
+    "cross": "promenade:block/blueberry_bush/2"
+  }
 }

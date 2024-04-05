@@ -23,7 +23,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_planks"
@@ -34,7 +34,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_planks"
@@ -57,7 +57,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_log"
@@ -68,7 +68,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_log"
@@ -91,7 +91,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:stripped_sakura_log"
@@ -102,7 +102,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:stripped_sakura_log"
@@ -125,7 +125,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_wood"
@@ -136,7 +136,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_wood"
@@ -159,7 +159,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:stripped_sakura_wood"
@@ -170,7 +170,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:stripped_sakura_wood"
@@ -193,7 +193,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_stairs"
@@ -204,7 +204,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_stairs"
@@ -227,7 +227,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_slab"
@@ -238,7 +238,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_slab"
@@ -261,7 +261,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_trapdoor"
@@ -272,7 +272,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_trapdoor"
@@ -295,7 +295,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_pressure_plate"
@@ -306,7 +306,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_pressure_plate"
@@ -329,7 +329,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_button"
@@ -340,7 +340,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_button"
@@ -363,7 +363,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_fence"
@@ -374,7 +374,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_fence"
@@ -397,7 +397,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_fence_gate"
@@ -408,7 +408,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_fence_gate"
@@ -431,7 +431,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_door"
@@ -442,7 +442,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_door"
@@ -465,7 +465,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_sign",
@@ -477,7 +477,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_sign",
@@ -501,7 +501,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:cotton_sakura_grove",
+                  "biomes": "promenade:cotton_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_hanging_sign",
@@ -513,7 +513,7 @@
               {
                 "condition": "minecraft:location_check",
                 "predicate": {
-                  "biome": "promenade:blush_sakura_grove",
+                  "biomes": "promenade:blush_sakura_grove",
                   "block": {
                     "blocks": [
                       "promenade:sakura_hanging_sign",

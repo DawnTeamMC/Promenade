@@ -1,9 +1,9 @@
 {
-	"replace": false,
-	"values": [
-		"promenade:sakura_wall_sign",
-		"promenade:maple_wall_sign",
-		"promenade:palm_wall_sign",
-		"promenade:dark_amaranth_wall_sign"
-	]
+  "replace": false,
+  "values": [
+    "promenade:sakura_wall_sign",
+    "promenade:maple_wall_sign",
+    "promenade:palm_wall_sign",
+    "promenade:dark_amaranth_wall_sign"
+  ]
 }

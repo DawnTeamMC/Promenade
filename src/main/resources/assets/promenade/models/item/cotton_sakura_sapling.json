@@ -1,6 +1,6 @@
 {
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "promenade:block/sakura/sapling/cotton"
-	}
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "promenade:block/sakura/sapling/cotton"
+  }
 }
