@@ -1,11 +1,11 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.block.BoneMealSpreadable;
 import fr.hugman.promenade.Promenade;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.NyliumBlock;
+import net.minecraft.block.*;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
@@ -20,8 +20,14 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 //TODO: make generic
-public class DyliumBlock extends NyliumBlock implements BoneMealSpreadable {
+public class DyliumBlock extends Block implements BoneMealSpreadable, Fertilizable {
     public static final RegistryKey<ConfiguredFeature<?, ?>> BONEMEAL_VEGETATION = DawnFactory.configuredFeature(Promenade.id("dark_amaranth_forest_vegetation/bonemeal"));
+
+    public static final MapCodec<DyliumBlock> CODEC = createCodec(DyliumBlock::new);
+
+    public MapCodec<DyliumBlock> getCodec() {
+        return CODEC;
+    }
 
     public DyliumBlock(Settings settings) {
         super(settings);
@@ -42,9 +48,14 @@ public class DyliumBlock extends NyliumBlock implements BoneMealSpreadable {
     }
 
     @Override
+    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+        return world.getBlockState(pos.up()).isAir();
+    }
+
+    @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
         ConfiguredFeature<?, ?> configuredFeature = world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).get(BONEMEAL_VEGETATION);
-        return configuredFeature != null && super.canGrow(world, random, pos, state);
+        return configuredFeature != null;
     }
 
     @Override
@@ -53,9 +64,13 @@ public class DyliumBlock extends NyliumBlock implements BoneMealSpreadable {
         BlockPos blockPos = pos.up();
         ChunkGenerator chunkGenerator = world.getChunkManager().getChunkGenerator();
         if (blockState.isOf(PromenadeBlocks.BLACK_DYLIUM)) {
-            ConfiguredFeature<?, ?> configuredFeature = world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).get(BONEMEAL_VEGETATION);
-            if (configuredFeature != null) configuredFeature.generate(world, chunkGenerator, random, blockPos);
+            this.generate(world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE), BONEMEAL_VEGETATION, world, chunkGenerator, random, blockPos);
         }
+    }
+
+
+    private void generate(Registry<ConfiguredFeature<?, ?>> registry, RegistryKey<ConfiguredFeature<?, ?>> key, ServerWorld world, ChunkGenerator chunkGenerator, Random random, BlockPos pos) {
+        registry.getEntry(key).ifPresent(entry -> entry.value().generate(world, chunkGenerator, random, pos));
     }
 
     @Override
