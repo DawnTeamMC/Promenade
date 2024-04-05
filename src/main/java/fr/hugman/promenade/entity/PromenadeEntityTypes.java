@@ -37,13 +37,13 @@ public class PromenadeEntityTypes {
             .trackRangeChunks(8)
             .defaultAttributes(LushCreeperEntity::createCreeperAttributes)
             .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LushCreeperEntity::canSpawn));
-    public static final EntityType<SunkenSkeletonEntity> SUNKEN_SKELETON = of("sunken_skeleton", FabricEntityTypeBuilder.createMob()
-            .entityFactory(SunkenSkeletonEntity::new)
+    public static final EntityType<SunkenEntity> SUNKEN = of("sunken", FabricEntityTypeBuilder.createMob()
+            .entityFactory(SunkenEntity::new)
             .spawnGroup(SpawnGroup.MONSTER)
             .dimensions(EntityDimensions.changing(0.6F, 1.99F).withEyeHeight(1.74F))
             .trackRangeChunks(8)
-            .defaultAttributes(SunkenSkeletonEntity::createSunkenSkeletonAttributes)
-            .spawnRestriction(SpawnLocationTypes.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SunkenSkeletonEntity::canSpawn));
+            .defaultAttributes(SunkenEntity::createSunkenSkeletonAttributes)
+            .spawnRestriction(SpawnLocationTypes.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SunkenEntity::canSpawn));
 
     private static <T extends Entity> EntityType<T> of(String path, FabricEntityTypeBuilder<T> builder) {
         return Registry.register(Registries.ENTITY_TYPE, Promenade.id(path), builder.build());
@@ -61,8 +61,8 @@ public class PromenadeEntityTypes {
             BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityType.CREEPER).and(BiomeSelectors.excludeByKey(BiomeKeys.LUSH_CAVES)), SpawnGroup.MONSTER, LUSH_CREEPER, Promenade.CONFIG.monsters.lush_creepers_weight, 2, 3);
             BiomeModifications.addSpawn(BiomeSelectors.includeByKey(BiomeKeys.LUSH_CAVES), SpawnGroup.MONSTER, LUSH_CREEPER, Promenade.CONFIG.monsters.lush_creepers_weight * 4, 2, 4);
         }
-        if (Promenade.CONFIG.monsters.sunken_skeletons_weight != 0) {
-            BiomeModifications.addSpawn(biomeSelectionContext -> biomeSelectionContext.hasTag(PromenadeBiomeTags.SUNKEN_SKELETON_SPAWN), SpawnGroup.MONSTER, SUNKEN_SKELETON, Promenade.CONFIG.monsters.sunken_skeletons_weight, 1, 3);
+        if (Promenade.CONFIG.monsters.sunkens_weight != 0) {
+            BiomeModifications.addSpawn(biomeSelectionContext -> biomeSelectionContext.hasTag(PromenadeBiomeTags.SUNKEN_SPAWN), SpawnGroup.MONSTER, SUNKEN, Promenade.CONFIG.monsters.sunkens_weight, 1, 3);
         }
     }
 }

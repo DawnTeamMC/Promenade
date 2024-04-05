@@ -19,9 +19,9 @@ public class PromenadeEntityModelLayers {
     public static final EntityModelLayer LUSH_CREEPER = createModelLayer("lush_creeper");
     public static final EntityModelLayer LUSH_CREEPER_OUTER = createModelLayer("lush_creeper", "outer");
 
-    public static final EntityModelLayer SUNKEN_SKELETON = createModelLayer("sunken_skeleton");
-    public static final EntityModelLayer SUNKEN_SKELETON_INNER_ARMOR = createModelLayerInnerArmor("sunken_skeleton");
-    public static final EntityModelLayer SUNKEN_SKELETON_OUTER_ARMOR = createModelLayerOuterArmor("sunken_skeleton");
+    public static final EntityModelLayer SUNKEN = createModelLayer("sunken");
+    public static final EntityModelLayer SUNKEN_INNER_ARMOR = createModelLayerInnerArmor("sunken");
+    public static final EntityModelLayer SUNKEN_OUTER_ARMOR = createModelLayerOuterArmor("sunken");
 
     private static final Dilation ARMOR_DILATION = new Dilation(1.0F);
     private static final Dilation HAT_DILATION = new Dilation(0.5F);
@@ -33,9 +33,9 @@ public class PromenadeEntityModelLayers {
         EntityModelLayerRegistry.registerModelLayer(DUCK, DuckModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(LUSH_CREEPER, () -> CreeperEntityModel.getTexturedModelData(Dilation.NONE));
         EntityModelLayerRegistry.registerModelLayer(LUSH_CREEPER_OUTER, () -> CreeperEntityModel.getTexturedModelData(new Dilation(0.25f)));
-        EntityModelLayerRegistry.registerModelLayer(SUNKEN_SKELETON, SunkenSkeletonModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(SUNKEN_SKELETON_INNER_ARMOR, () -> INNER_ARMOR_MODEL_DATA);
-        EntityModelLayerRegistry.registerModelLayer(SUNKEN_SKELETON_OUTER_ARMOR, () -> OUTER_ARMOR_MODEL_DATA);
+        EntityModelLayerRegistry.registerModelLayer(SUNKEN, SunkenSkeletonModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(SUNKEN_INNER_ARMOR, () -> INNER_ARMOR_MODEL_DATA);
+        EntityModelLayerRegistry.registerModelLayer(SUNKEN_OUTER_ARMOR, () -> OUTER_ARMOR_MODEL_DATA);
     }
 
     private static EntityModelLayer createModelLayer(String name) {
