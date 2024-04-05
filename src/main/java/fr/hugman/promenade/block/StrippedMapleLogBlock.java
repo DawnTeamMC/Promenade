@@ -1,5 +1,6 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.item.PromenadeItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -19,9 +20,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
-//TODO add Codec
 //TODO make generic
 public class StrippedMapleLogBlock extends PillarBlock {
+    public static final MapCodec<StrippedMapleLogBlock> CODEC = createCodec(StrippedMapleLogBlock::new);
     public static final BooleanProperty DRIP = PromenadeBlockProperties.DRIP;
 
     //TODO : add dispenser behavior
@@ -29,6 +30,11 @@ public class StrippedMapleLogBlock extends PillarBlock {
     public StrippedMapleLogBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.getDefaultState().with(DRIP, false));
+    }
+
+    @Override
+    public MapCodec<StrippedMapleLogBlock> getCodec() {
+        return CODEC;
     }
 
     @Override

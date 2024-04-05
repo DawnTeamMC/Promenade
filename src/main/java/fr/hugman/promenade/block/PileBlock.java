@@ -18,7 +18,7 @@ public class PileBlock extends PlantBlock {
     }
 
     @Override
-    protected MapCodec<? extends PlantBlock> getCodec() {
+    protected MapCodec<? extends PileBlock> getCodec() {
         return CODEC;
     }
 

@@ -1,9 +1,11 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.PlantBlock;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -17,8 +19,15 @@ import net.minecraft.world.World;
 
 //TODO add Codec
 public class WitherRosePileBlock extends PileBlock {
+    public static final MapCodec<WitherRosePileBlock> CODEC = createCodec(WitherRosePileBlock::new);
+
     public WitherRosePileBlock(Settings builder) {
         super(builder);
+    }
+
+    @Override
+    protected MapCodec<WitherRosePileBlock> getCodec() {
+        return CODEC;
     }
 
     @Override

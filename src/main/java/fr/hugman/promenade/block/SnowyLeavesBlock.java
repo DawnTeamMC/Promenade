@@ -1,5 +1,6 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
@@ -13,11 +14,17 @@ import net.minecraft.world.WorldAccess;
 
 //TODO add Codec
 public class SnowyLeavesBlock extends LeavesBlock {
+    public static final MapCodec<SnowyLeavesBlock> CODEC = createCodec(SnowyLeavesBlock::new);
     public static final BooleanProperty BOTTOM = Properties.BOTTOM;
 
     public SnowyLeavesBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(BOTTOM, false));
+    }
+
+    @Override
+    public MapCodec<SnowyLeavesBlock> getCodec() {
+        return CODEC;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -18,9 +19,9 @@ import net.minecraft.world.WorldAccess;
  * A leaves block with extended range, permitting leaves to be as far as 13 blocks away from the tree rather than the
  * limit of 6 blocks imposed by vanilla leaves.
  */
-//TODO add Codec
 public class ExtendedLeavesBlock extends LeavesBlock {
     public static final int MAX_DISTANCE = 14;
+    public static final MapCodec<ExtendedLeavesBlock> CODEC = createCodec(ExtendedLeavesBlock::new);
 
     public ExtendedLeavesBlock(AbstractBlock.Settings settings) {
         super(settings);
@@ -29,6 +30,11 @@ public class ExtendedLeavesBlock extends LeavesBlock {
                 .with(DISTANCE, MAX_DISTANCE)
                 .with(PERSISTENT, false)
                 .with(WATERLOGGED, false));
+    }
+
+    @Override
+    public MapCodec<ExtendedLeavesBlock> getCodec() {
+        return CODEC;
     }
 
     @Override

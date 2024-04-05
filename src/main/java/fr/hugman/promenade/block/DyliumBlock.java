@@ -4,7 +4,10 @@ import com.mojang.serialization.MapCodec;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.block.BoneMealSpreadable;
 import fr.hugman.promenade.Promenade;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.Fertilizable;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -25,6 +28,7 @@ public class DyliumBlock extends Block implements BoneMealSpreadable, Fertilizab
 
     public static final MapCodec<DyliumBlock> CODEC = createCodec(DyliumBlock::new);
 
+    @Override
     public MapCodec<DyliumBlock> getCodec() {
         return CODEC;
     }
