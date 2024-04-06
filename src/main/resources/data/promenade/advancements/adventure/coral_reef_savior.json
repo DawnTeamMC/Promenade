@@ -14,7 +14,7 @@
   },
   "parent": "promenade:adventure/coral_bleacher_sniping",
   "criteria": {
-    "kill_sunken_skeletons": {
+    "kill_sunkens": {
       "trigger": "minecraft:killed_by_crossbow",
       "conditions": {
         "player": [
@@ -33,7 +33,7 @@
               "condition": "minecraft:entity_properties",
               "entity": "this",
               "predicate": {
-                "type": "promenade:sunken_skeleton",
+                "type": "promenade:sunken",
                 "nbt": "{Type:bubble}",
                 "location": {
                   "fluid": {
@@ -48,7 +48,7 @@
               "condition": "minecraft:entity_properties",
               "entity": "this",
               "predicate": {
-                "type": "promenade:sunken_skeleton",
+                "type": "promenade:sunken",
                 "nbt": "{Type:fire}",
                 "location": {
                   "fluid": {
@@ -63,7 +63,7 @@
               "condition": "minecraft:entity_properties",
               "entity": "this",
               "predicate": {
-                "type": "promenade:sunken_skeleton",
+                "type": "promenade:sunken",
                 "nbt": "{Type:horn}",
                 "location": {
                   "fluid": {
@@ -79,7 +79,7 @@
   },
   "requirements": [
     [
-      "kill_sunken_skeletons"
+      "kill_sunkens"
     ]
   ],
   "rewards": {
