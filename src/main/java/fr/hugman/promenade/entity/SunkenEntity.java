@@ -1,5 +1,7 @@
 package fr.hugman.promenade.entity;
 
+import fr.hugman.promenade.entity.data.PromenadeTrackedData;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.NoPenaltyTargeting;
@@ -25,10 +27,14 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.*;
+import net.minecraft.loot.LootTable;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
@@ -37,17 +43,17 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
-public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser {
-    //TODO: make a registry for types
-    private static final TrackedData<Integer> SUNKEN_TYPE = DataTracker.registerData(SunkenEntity.class, TrackedDataHandlerRegistry.INTEGER);
+public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser, VariantHolder<RegistryEntry<SunkenVariant>> {
+    private static final TrackedData<RegistryEntry<SunkenVariant>> VARIANT = DataTracker.registerData(SunkenEntity.class, PromenadeTrackedData.SUNKEN_VARIANT);
     private static final TrackedData<Boolean> CHARGING = DataTracker.registerData(SunkenEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> SWIMMING = DataTracker.registerData(SunkenEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+
+    public static final String VARIANT_KEY = "variant";
+
     private final static EntityDimensions SWIMMING_DIMENSIONS = EntityDimensions.fixed(0.6F, 0.6F);
+
     protected final SwimNavigation waterNavigation;
     protected final MobNavigation landNavigation;
     private final CrossbowAttackGoal<SunkenEntity> crossbowAttackGoal = new CrossbowAttackGoal<>(this, 1.0D, 20.0F);
@@ -148,14 +154,14 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     @Nullable
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-        this.setVariant(Type.fromId(world.getRandom().nextInt(Type.values().length)));
+        world.getRegistryManager().get(PromenadeRegistryKeys.SUNKEN_VARIANT).getRandom(random).ifPresent(this::setVariant);
         return super.initialize(world, difficulty, spawnReason, entityData);
     }
 
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
-        builder.add(SUNKEN_TYPE, 0);
+        builder.add(VARIANT, this.getRegistryManager().get(PromenadeRegistryKeys.SUNKEN_VARIANT).entryOf(SunkenVariants.BUBBLE));
         builder.add(CHARGING, false);
         builder.add(SWIMMING, false);
     }
@@ -244,23 +250,29 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound compound) {
-        super.writeCustomDataToNbt(compound);
-        compound.putString("Type", this.getVariant().getName());
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putString(VARIANT_KEY, (this.getVariant().getKey().orElse(SunkenVariants.BUBBLE)).getValue().toString());
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound compound) {
-        super.readCustomDataFromNbt(compound);
-        this.setVariant(SunkenEntity.Type.byName(compound.getString("Type")));
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+
+        Optional.ofNullable(Identifier.tryParse(nbt.getString(VARIANT_KEY)))
+                .map(variantId -> RegistryKey.of(PromenadeRegistryKeys.SUNKEN_VARIANT, variantId))
+                .flatMap(variantKey -> this.getRegistryManager().get(PromenadeRegistryKeys.SUNKEN_VARIANT).getEntry(variantKey))
+                .ifPresent(this::setVariant);
     }
 
-    public SunkenEntity.Type getVariant() {
-        return SunkenEntity.Type.fromId(this.dataTracker.get(SUNKEN_TYPE));
+    @Override
+    public RegistryEntry<SunkenVariant> getVariant() {
+        return this.dataTracker.get(VARIANT);
     }
 
-    private void setVariant(SunkenEntity.Type type) {
-        this.dataTracker.set(SUNKEN_TYPE, type.getIndex());
+    @Override
+    public void setVariant(RegistryEntry<SunkenVariant> variant) {
+        this.dataTracker.set(VARIANT, variant);
     }
 
     public boolean isCharging() {
@@ -336,47 +348,21 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         this.targetingUnderwater = targetingUnderwater;
     }
 
+    public Identifier getTexture() {
+        return this.getVariant().value().texture();
+    }
+
+    @Override
+    protected RegistryKey<LootTable> getLootTableId() {
+        return this.getVariant().value().lootTable();
+    }
+
     public enum State {
         CROSSBOW_HOLD,
         CROSSBOW_CHARGE,
         BOW_HOLD,
         SWIMMING,
         NEUTRAL
-    }
-
-    public enum Type {
-        BUBBLE(0, "bubble"),
-        FIRE(1, "fire"),
-        HORN(2, "horn");
-
-        private static final SunkenEntity.Type[] typeList = Arrays.stream(values()).sorted(Comparator.comparing(SunkenEntity.Type::getIndex)).toArray(SunkenEntity.Type[]::new);
-        private static final Map<String, SunkenEntity.Type> TYPES_BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(SunkenEntity.Type::getName, (type) -> type));
-        private final int index;
-        private final String name;
-
-        Type(int indexIn, String nameIn) {
-            this.index = indexIn;
-            this.name = nameIn;
-        }
-
-        public static SunkenEntity.Type byName(String name) {
-            return TYPES_BY_NAME.getOrDefault(name, BUBBLE);
-        }
-
-        public static SunkenEntity.Type fromId(int index) {
-            if (index < 0 || index > typeList.length) {
-                index = 0;
-            }
-            return typeList[index];
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public int getIndex() {
-            return this.index;
-        }
     }
 
     static class SunkenMoveControl extends MoveControl {

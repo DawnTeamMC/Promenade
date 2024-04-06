@@ -446,6 +446,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
         builder.add(LAST_STATE_TICK, -WAKE_UP_LENGTH);
     }
 
+    @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
         nbt.putString(VARIANT_KEY, (this.getVariant().getKey().orElse(CapybaraVariants.BROWN)).getValue().toString());
@@ -455,6 +456,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
         nbt.putBoolean(SLEEPING_KEY, this.isAsleep());
     }
 
+    @Override
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
 

@@ -1,6 +1,5 @@
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.SunkenModel;
 import fr.hugman.promenade.entity.SunkenEntity;
@@ -64,6 +63,6 @@ public class SunkenRenderer extends BipedEntityRenderer<SunkenEntity, SunkenMode
 
     @Override
     public Identifier getTexture(SunkenEntity entity) {
-        return Promenade.id("textures/entity/sunken/" + entity.getVariant().getName() + ".png");
+        return entity.getTexture();
     }
 }
