@@ -6,7 +6,7 @@ import fr.hugman.promenade.boat.PromenadeBoatTypes;
 import fr.hugman.promenade.client.render.entity.CapybaraRenderer;
 import fr.hugman.promenade.client.render.entity.DuckRenderer;
 import fr.hugman.promenade.client.render.entity.LushCreeperRenderer;
-import fr.hugman.promenade.client.render.entity.SunkenSkeletonRenderer;
+import fr.hugman.promenade.client.render.entity.SunkenRenderer;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.particle.FallingLeafParticle;
@@ -166,6 +166,6 @@ public class PromenadeClient implements ClientModInitializer {
         EntityRendererRegistry.register(PromenadeEntityTypes.CAPYBARA, CapybaraRenderer::new);
         EntityRendererRegistry.register(PromenadeEntityTypes.DUCK, DuckRenderer::new);
         EntityRendererRegistry.register(PromenadeEntityTypes.LUSH_CREEPER, LushCreeperRenderer::new);
-        EntityRendererRegistry.register(PromenadeEntityTypes.SUNKEN_SKELETON, SunkenSkeletonRenderer::new);
+        EntityRendererRegistry.register(PromenadeEntityTypes.SUNKEN, SunkenRenderer::new);
     }
 }

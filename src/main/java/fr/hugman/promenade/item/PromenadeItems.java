@@ -52,7 +52,7 @@ public class PromenadeItems {
     public static final Item CAPYBARA_SPAWN_EGG = of(PromenadeItemKeys.CAPYBARA_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.CAPYBARA, 0xa0704e, 0x433930)); //TODO: review colors
     public static final Item DUCK_SPAWN_EGG = of(PromenadeItemKeys.DUCK_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.DUCK, 10592673, 15904341));
     public static final Item LUSH_CREEPER_SPAWN_EGG = of(PromenadeItemKeys.LUSH_CREEPER_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.LUSH_CREEPER, 4347181, 4262661));
-    public static final Item SUNKEN_SKELETON_SPAWN_EGG = of(PromenadeItemKeys.SUNKEN_SKELETON_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.SUNKEN_SKELETON, 12233882, 6191682));
+    public static final Item SUNKEN_SPAWN_EGG = of(PromenadeItemKeys.SUNKEN_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.SUNKEN, 12233882, 6191682));
 
     private static <O extends Item> O of(RegistryKey<Item> key, O item) {
         return Registry.register(Registries.ITEM, key, item);
@@ -92,6 +92,6 @@ public class PromenadeItems {
         ItemGroupHelper.appendSpawnEgg(CAPYBARA_SPAWN_EGG);
         ItemGroupHelper.appendSpawnEgg(DUCK_SPAWN_EGG);
         ItemGroupHelper.appendSpawnEgg(LUSH_CREEPER_SPAWN_EGG);
-        ItemGroupHelper.appendSpawnEgg(SUNKEN_SKELETON_SPAWN_EGG);
+        ItemGroupHelper.appendSpawnEgg(SUNKEN_SPAWN_EGG);
     }
 }

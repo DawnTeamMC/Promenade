@@ -37,7 +37,7 @@ public class PromenadeItemKeys {
     public static final RegistryKey<Item> CAPYBARA_SPAWN_EGG = of("capybara_spawn_egg");
     public static final RegistryKey<Item> DUCK_SPAWN_EGG = of("duck_spawn_egg");
     public static final RegistryKey<Item> LUSH_CREEPER_SPAWN_EGG = of("lush_creeper_spawn_egg");
-    public static final RegistryKey<Item> SUNKEN_SKELETON_SPAWN_EGG = of("sunken_skeleton_spawn_egg");
+    public static final RegistryKey<Item> SUNKEN_SPAWN_EGG = of("sunken_spawn_egg");
 
     private static RegistryKey<Item> of(String path) {
         return RegistryKey.of(RegistryKeys.ITEM, Promenade.id(path));

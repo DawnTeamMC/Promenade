@@ -28,7 +28,7 @@ Due to a missing Fabric API module, versions from v2.5.0 to v4.0.0 require [Terr
 
 ### Monsters
 
-* **Sunken Skeleton** in oceans
+* **Sunken** in oceans
 * **Lush Creepers** in caves
 
 

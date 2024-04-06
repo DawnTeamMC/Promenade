@@ -17,6 +17,6 @@ public class CapybaraRenderer<E extends CapybaraEntity> extends MobEntityRendere
 
     @Override
     public Identifier getTexture(CapybaraEntity entity) {
-        return entity.getBaseTexture();
+        return entity.getTexture();
     }
 }

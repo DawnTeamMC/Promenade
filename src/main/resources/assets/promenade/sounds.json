@@ -111,46 +111,46 @@
       "promenade:entity/capybara/fart/6"
     ]
   },
-  "entity.sunken_skeleton.ambient": {
-    "subtitle": "subtitles.promenade.entity.sunken_skeleton.ambient",
+  "entity.sunken.ambient": {
+    "subtitle": "subtitles.promenade.entity.sunken.ambient",
     "sounds": [
-      "promenade:entity/sunken_skeleton/ambient/1",
-      "promenade:entity/sunken_skeleton/ambient/2",
-      "promenade:entity/sunken_skeleton/ambient/3"
+      "promenade:entity/sunken/ambient/1",
+      "promenade:entity/sunken/ambient/2",
+      "promenade:entity/sunken/ambient/3"
     ]
   },
-  "entity.sunken_skeleton.hurt": {
-    "subtitle": "subtitles.promenade.entity.sunken_skeleton.hurt",
+  "entity.sunken.hurt": {
+    "subtitle": "subtitles.promenade.entity.sunken.hurt",
     "sounds": [
-      "promenade:entity/sunken_skeleton/hurt/1",
-      "promenade:entity/sunken_skeleton/hurt/2",
-      "promenade:entity/sunken_skeleton/hurt/3",
-      "promenade:entity/sunken_skeleton/hurt/4"
+      "promenade:entity/sunken/hurt/1",
+      "promenade:entity/sunken/hurt/2",
+      "promenade:entity/sunken/hurt/3",
+      "promenade:entity/sunken/hurt/4"
     ]
   },
-  "entity.sunken_skeleton.death": {
-    "subtitle": "subtitles.promenade.entity.sunken_skeleton.death",
+  "entity.sunken.death": {
+    "subtitle": "subtitles.promenade.entity.sunken.death",
     "sounds": [
-      "promenade:entity/sunken_skeleton/death/1",
-      "promenade:entity/sunken_skeleton/death/2",
-      "promenade:entity/sunken_skeleton/death/3"
+      "promenade:entity/sunken/death/1",
+      "promenade:entity/sunken/death/2",
+      "promenade:entity/sunken/death/3"
     ]
   },
-  "entity.sunken_skeleton.step": {
+  "entity.sunken.step": {
     "subtitle": "subtitles.block.generic.footsteps",
     "sounds": [
-      "promenade:entity/sunken_skeleton/step/1",
-      "promenade:entity/sunken_skeleton/step/2",
-      "promenade:entity/sunken_skeleton/step/3",
-      "promenade:entity/sunken_skeleton/step/4"
+      "promenade:entity/sunken/step/1",
+      "promenade:entity/sunken/step/2",
+      "promenade:entity/sunken/step/3",
+      "promenade:entity/sunken/step/4"
     ]
   },
-  "entity.sunken_skeleton.shoot": {
-    "subtitle": "subtitles.promenade.entity.sunken_skeleton.shoot",
+  "entity.sunken.shoot": {
+    "subtitle": "subtitles.promenade.entity.sunken.shoot",
     "sounds": [
-      "promenade:entity/sunken_skeleton/shoot/1",
-      "promenade:entity/sunken_skeleton/shoot/2",
-      "promenade:entity/sunken_skeleton/shoot/3"
+      "promenade:entity/sunken/shoot/1",
+      "promenade:entity/sunken/shoot/2",
+      "promenade:entity/sunken/shoot/3"
     ]
   },
   "music.overworld.sakura_groves": {
