@@ -30,12 +30,13 @@ public final class CapybaraVariant {
             int spawnWeight
     ) {
         this.smallEyesTexture = smallEyesTexture;
-        this.smallEyesTexturePath = getTexturePath(smallEyesTexture);
         this.largeEyesTexture = largeEyesTexture;
-        this.largeEyesTexturePath = getTexturePath(largeEyesTexture);
         this.closedEyesTexture = closedEyesTexture;
-        this.closedEyesTexturePath = getTexturePath(closedEyesTexture);
         this.spawnWeight = spawnWeight;
+
+        this.smallEyesTexturePath = getTexturePath(smallEyesTexture);
+        this.largeEyesTexturePath = getTexturePath(largeEyesTexture);
+        this.closedEyesTexturePath = getTexturePath(closedEyesTexture);
     }
 
     public Identifier smallEyesTexture() {
