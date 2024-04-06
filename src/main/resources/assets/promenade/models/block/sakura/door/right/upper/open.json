@@ -1,7 +1,7 @@
 {
-	"parent": "minecraft:block/door_top_right_open",
-	"textures": {
-		"bottom": "promenade:block/sakura/door/bottom",
-		"top": "promenade:block/sakura/door/top"
-	}
+  "parent": "minecraft:block/door_top_right_open",
+  "textures": {
+    "bottom": "promenade:block/sakura/door/bottom",
+    "top": "promenade:block/sakura/door/top"
+  }
 }

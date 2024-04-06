@@ -166,6 +166,6 @@ public class PromenadeClient implements ClientModInitializer {
         EntityRendererRegistry.register(PromenadeEntityTypes.CAPYBARA, CapybaraRenderer::new);
         EntityRendererRegistry.register(PromenadeEntityTypes.DUCK, DuckRenderer::new);
         EntityRendererRegistry.register(PromenadeEntityTypes.LUSH_CREEPER, LushCreeperRenderer::new);
-        EntityRendererRegistry.register(PromenadeEntityTypes.SUNKEN, SunkenSkeletonRenderer::new);
+        EntityRendererRegistry.register(PromenadeEntityTypes.SUNKEN_SKELETON, SunkenSkeletonRenderer::new);
     }
 }

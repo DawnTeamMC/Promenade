@@ -1,32 +1,32 @@
 {
-	"parent": "minecraft:recipes/root",
-	"rewards": {
-		"recipes": [
-			"promenade:crafting/dark_amaranth/hyphae"
-		]
-	},
-	"criteria": {
-		"has_stem": {
-			"trigger": "minecraft:inventory_changed",
-			"conditions": {
-				"items": [
-					{
-						"items": "promenade:dark_amaranth_stem"
-					}
-				]
-			}
-		},
-		"has_the_recipe": {
-			"trigger": "minecraft:recipe_unlocked",
-			"conditions": {
-				"recipe": "promenade:crafting/dark_amaranth/hyphae"
-			}
-		}
-	},
-	"requirements": [
-		[
-			"has_stem",
-			"has_the_recipe"
-		]
-	]
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "promenade:crafting/dark_amaranth/hyphae"
+    ]
+  },
+  "criteria": {
+    "has_stem": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "promenade:dark_amaranth_stem"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "promenade:crafting/dark_amaranth/hyphae"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stem",
+      "has_the_recipe"
+    ]
+  ]
 }

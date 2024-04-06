@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/vanilla_piles/flowering_azalea_leaf"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/vanilla_piles/flowering_azalea_leaf"
+    }
+  }
 }

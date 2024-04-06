@@ -92,7 +92,6 @@ public class PromenadeBlocks {
     public static final SnowyLeavesBlock SNOWY_SPRUCE_LEAVES = of(PromenadeBlockKeys.SNOWY_SPRUCE_LEAVES, PromenadeFactory.snowyLeaves());
 
 
-
     /* ========== */
     /*   SAKURA   */
     /* ========== */

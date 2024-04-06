@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/fence_post",
-	"textures": {
-		"texture": "promenade:block/maple/planks"
-	}
+  "parent": "minecraft:block/fence_post",
+  "textures": {
+    "texture": "promenade:block/maple/planks"
+  }
 }

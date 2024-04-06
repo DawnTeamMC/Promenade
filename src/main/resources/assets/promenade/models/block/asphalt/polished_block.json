@@ -1,6 +1,6 @@
 {
-	"parent": "block/cube_all",
-	"textures": {
-		"all": "promenade:block/asphalt/polished_block"
-	}
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "promenade:block/asphalt/polished_block"
+  }
 }

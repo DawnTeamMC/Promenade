@@ -1,9 +1,9 @@
 {
-	"type": "minecraft:stonecutting",
-	"ingredient": {
-		"item": "promenade:blunite"
-	},
-	"result": {
-		"id": "promenade:polished_blunite"
-	}
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "promenade:blunite"
+  },
+  "result": {
+    "id": "promenade:polished_blunite"
+  }
 }

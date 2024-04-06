@@ -1,16 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "leaf_pile",
-	"pattern": [
-		"##"
-	],
-	"key": {
-		"#": {
-			"item": "minecraft:spruce_leaves"
-		}
-	},
-	"result": {
-		"id": "promenade:spruce_leaf_pile",
-		"count": 2
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "leaf_pile",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:spruce_leaves"
+    }
+  },
+  "result": {
+    "id": "promenade:spruce_leaf_pile",
+    "count": 2
+  }
 }

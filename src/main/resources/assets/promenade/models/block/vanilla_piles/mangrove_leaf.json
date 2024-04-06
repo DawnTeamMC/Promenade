@@ -1,6 +1,6 @@
 {
-	"parent": "promenade:block/pile",
-	"textures": {
-		"pile": "minecraft:block/mangrove_leaves"
-	}
+  "parent": "promenade:block/pile",
+  "textures": {
+    "pile": "minecraft:block/mangrove_leaves"
+  }
 }

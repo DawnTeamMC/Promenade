@@ -1,6 +1,6 @@
 {
-	"parent": "minecraft:block/cross",
-	"textures": {
-		"cross": "promenade:block/maple/sapling/mikado"
-	}
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "promenade:block/maple/sapling/mikado"
+  }
 }

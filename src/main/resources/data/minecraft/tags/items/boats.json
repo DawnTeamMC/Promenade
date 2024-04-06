@@ -1,8 +1,8 @@
 {
-	"replace": false,
-	"values": [
-		"promenade:sakura_boat",
-		"promenade:maple_boat",
-		"promenade:palm_boat"
-	]
+  "replace": false,
+  "values": [
+    "promenade:sakura_boat",
+    "promenade:maple_boat",
+    "promenade:palm_boat"
+  ]
 }

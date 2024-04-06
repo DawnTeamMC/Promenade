@@ -19,6 +19,6 @@ public record CapybaraVariant(
             Identifier.CODEC.fieldOf("small_eyes_texture").forGetter(CapybaraVariant::smallEyesTexture),
             Identifier.CODEC.fieldOf("large_eyes_texture").forGetter(CapybaraVariant::largeEyesTexture),
             Identifier.CODEC.fieldOf("closed_eyes_texture").forGetter(CapybaraVariant::closedEyesTexture)
-            ).apply(instance, CapybaraVariant::new));
+    ).apply(instance, CapybaraVariant::new));
     public static final Codec<RegistryEntry<CapybaraVariant>> ENTRY_CODEC = RegistryElementCodec.of(PromenadeRegistryKeys.CAPYBARA_VARIANT, CODEC);
 }

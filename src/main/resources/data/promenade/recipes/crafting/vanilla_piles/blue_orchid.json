@@ -1,15 +1,15 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "flower_pile",
-	"pattern": [
-		"###"
-	],
-	"key": {
-		"#": {
-			"item": "minecraft:blue_orchid"
-		}
-	},
-	"result": {
-		"id": "promenade:blue_orchid_pile"
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "flower_pile",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:blue_orchid"
+    }
+  },
+  "result": {
+    "id": "promenade:blue_orchid_pile"
+  }
 }

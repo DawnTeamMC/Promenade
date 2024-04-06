@@ -1,6 +1,6 @@
 {
-	"parent": "block/flower_pot_cross",
-	"textures": {
-		"plant": "promenade:block/dark_amaranth/fungus"
-	}
+  "parent": "block/flower_pot_cross",
+  "textures": {
+    "plant": "promenade:block/dark_amaranth/fungus"
+  }
 }

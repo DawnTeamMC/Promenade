@@ -1,6 +1,6 @@
 {
-	"parent": "promenade:block/pile",
-	"textures": {
-		"pile": "promenade:block/vanilla_piles/lily_of_the_valley"
-	}
+  "parent": "promenade:block/pile",
+  "textures": {
+    "pile": "promenade:block/vanilla_piles/lily_of_the_valley"
+  }
 }

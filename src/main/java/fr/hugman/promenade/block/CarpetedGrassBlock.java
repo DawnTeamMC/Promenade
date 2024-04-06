@@ -43,11 +43,13 @@ public class CarpetedGrassBlock extends SpreadableBlock implements Fertilizable 
         BlockPos blockPos = pos.up();
         BlockState blockState = Blocks.SHORT_GRASS.getDefaultState();
         Optional<RegistryEntry.Reference<PlacedFeature>> optional = world.getRegistryManager().get(RegistryKeys.PLACED_FEATURE).getEntry(VegetationPlacedFeatures.GRASS_BONEMEAL);
-        block0: for (int i = 0; i < 128; ++i) {
+        block0:
+        for (int i = 0; i < 128; ++i) {
             RegistryEntry<PlacedFeature> registryEntry;
             BlockPos blockPos2 = blockPos;
             for (int j = 0; j < i / 16; ++j) {
-                if (!world.getBlockState((blockPos2 = blockPos2.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1)).down()).isOf(this) || world.getBlockState(blockPos2).isFullCube(world, blockPos2)) continue block0;
+                if (!world.getBlockState((blockPos2 = blockPos2.add(random.nextInt(3) - 1, (random.nextInt(3) - 1) * random.nextInt(3) / 2, random.nextInt(3) - 1)).down()).isOf(this) || world.getBlockState(blockPos2).isFullCube(world, blockPos2))
+                    continue block0;
             }
             BlockState blockState2 = world.getBlockState(blockPos2);
             if (blockState2.isOf(blockState.getBlock()) && random.nextInt(10) == 0) {
@@ -57,9 +59,9 @@ public class CarpetedGrassBlock extends SpreadableBlock implements Fertilizable 
             if (random.nextInt(8) == 0) {
                 List<ConfiguredFeature<?, ?>> list = world.getBiome(blockPos2).value().getGenerationSettings().getFlowerFeatures();
                 if (list.isEmpty()) continue;
-                registryEntry = ((RandomPatchFeatureConfig)list.get(0).config()).feature();
+                registryEntry = ((RandomPatchFeatureConfig) list.get(0).config()).feature();
             } else {
-                if (!optional.isPresent()) continue;
+                if (optional.isEmpty()) continue;
                 registryEntry = optional.get();
             }
             registryEntry.value().generateUnregistered(world, world.getChunkManager().getChunkGenerator(), random, blockPos2);
@@ -81,7 +83,8 @@ public class CarpetedGrassBlock extends SpreadableBlock implements Fertilizable 
             BlockState spreadState = Blocks.GRASS_BLOCK.getDefaultState();
             for (int i = 0; i < 4; ++i) {
                 BlockPos blockPos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                if (!world.getBlockState(blockPos).isOf(Blocks.DIRT) || !SpreadableBlock.canSpread(spreadState, world, blockPos)) continue;
+                if (!world.getBlockState(blockPos).isOf(Blocks.DIRT) || !SpreadableBlock.canSpread(spreadState, world, blockPos))
+                    continue;
                 world.setBlockState(blockPos, spreadState.with(SNOWY, world.getBlockState(blockPos.up()).isOf(Blocks.SNOW)));
             }
         }

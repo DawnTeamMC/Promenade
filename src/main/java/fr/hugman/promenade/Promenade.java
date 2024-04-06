@@ -1,7 +1,6 @@
 package fr.hugman.promenade;
 
 import com.google.common.reflect.Reflection;
-import fr.hugman.dawn.Registrar;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.boat.PromenadeBoatTypes;
 import fr.hugman.promenade.config.PromenadeConfig;
@@ -13,7 +12,6 @@ import fr.hugman.promenade.registry.PromenadeRegistries;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
-import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatureKeys;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifierTypes;
 import fr.hugman.promenade.world.gen.tree.foliage.PromenadeFoliagePlacerTypes;

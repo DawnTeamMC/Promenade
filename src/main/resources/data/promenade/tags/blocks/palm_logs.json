@@ -1,9 +1,9 @@
 {
-	"replace": false,
-	"values": [
-		"promenade:palm_log",
-		"promenade:stripped_palm_log",
-		"promenade:palm_wood",
-		"promenade:stripped_palm_wood"
-	]
+  "replace": false,
+  "values": [
+    "promenade:palm_log",
+    "promenade:stripped_palm_log",
+    "promenade:palm_wood",
+    "promenade:stripped_palm_wood"
+  ]
 }

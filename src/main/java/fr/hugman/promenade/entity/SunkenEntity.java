@@ -42,30 +42,30 @@ import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser {
+public class SunkenSkeletonEntity extends AbstractSkeletonEntity implements CrossbowUser {
     //TODO: make a registry for types
-    private static final TrackedData<Integer> SUNKEN_TYPE = DataTracker.registerData(SunkenEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private static final TrackedData<Boolean> CHARGING = DataTracker.registerData(SunkenEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-    private static final TrackedData<Boolean> SWIMMING = DataTracker.registerData(SunkenEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Integer> SUNKEN_SKELETON_TYPE = DataTracker.registerData(SunkenSkeletonEntity.class, TrackedDataHandlerRegistry.INTEGER);
+    private static final TrackedData<Boolean> CHARGING = DataTracker.registerData(SunkenSkeletonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Boolean> SWIMMING = DataTracker.registerData(SunkenSkeletonEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private final static EntityDimensions SWIMMING_DIMENSIONS = EntityDimensions.fixed(0.6F, 0.6F);
     protected final SwimNavigation waterNavigation;
     protected final MobNavigation landNavigation;
-    private final CrossbowAttackGoal<SunkenEntity> crossbowAttackGoal = new CrossbowAttackGoal<>(this, 1.0D, 20.0F);
+    private final CrossbowAttackGoal<SunkenSkeletonEntity> crossbowAttackGoal = new CrossbowAttackGoal<>(this, 1.0D, 20.0F);
     private final BowAttackGoal<AbstractSkeletonEntity> bowAttackGoal = new BowAttackGoal<>(this, 1.0D, 20, 15.0F);
     private final MeleeAttackGoal meleeAttackGoal = new MeleeAttackGoal(this, 1.2D, false) {
         public void stop() {
             super.stop();
-            SunkenEntity.this.setAttacking(false);
+            SunkenSkeletonEntity.this.setAttacking(false);
         }
 
         public void start() {
             super.start();
-            SunkenEntity.this.setAttacking(true);
+            SunkenSkeletonEntity.this.setAttacking(true);
         }
     };
     boolean targetingUnderwater;
 
-    public SunkenEntity(EntityType<? extends SunkenEntity> entityType, World world) {
+    public SunkenSkeletonEntity(EntityType<? extends SunkenSkeletonEntity> entityType, World world) {
         super(entityType, world);
         this.updateAttackType();
         this.moveControl = new SunkenMoveControl(this);
@@ -74,7 +74,7 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         this.landNavigation = new MobNavigation(this, world);
     }
 
-    public static boolean canSpawn(EntityType<SunkenEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+    public static boolean canSpawn(EntityType<SunkenSkeletonEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
         boolean bl = world.getDifficulty() != Difficulty.PEACEFUL
                 && isSpawnDark(world, pos, random)
                 && (spawnReason == SpawnReason.SPAWNER || world.getFluidState(pos).isIn(FluidTags.WATER));
@@ -92,26 +92,26 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_AMBIENT : SoundEvents.ENTITY_SKELETON_AMBIENT;
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SKELETON_AMBIENT : SoundEvents.ENTITY_SKELETON_AMBIENT;
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_HURT : SoundEvents.ENTITY_SKELETON_HURT;
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SKELETON_HURT : SoundEvents.ENTITY_SKELETON_HURT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_DEATH : SoundEvents.ENTITY_SKELETON_DEATH;
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SKELETON_DEATH : SoundEvents.ENTITY_SKELETON_DEATH;
     }
 
     @Override
     protected SoundEvent getStepSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_STEP : SoundEvents.ENTITY_SKELETON_STEP;
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SKELETON_STEP : SoundEvents.ENTITY_SKELETON_STEP;
     }
 
     protected SoundEvent getShootSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SHOOT : (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem) ? SoundEvents.ITEM_CROSSBOW_SHOOT : SoundEvents.ENTITY_SKELETON_SHOOT);
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SKELETON_SHOOT : (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem) ? SoundEvents.ITEM_CROSSBOW_SHOOT : SoundEvents.ENTITY_SKELETON_SHOOT);
     }
 
     @Override
@@ -155,7 +155,7 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
-        builder.add(SUNKEN_TYPE, 0);
+        builder.add(SUNKEN_SKELETON_TYPE, 0);
         builder.add(CHARGING, false);
         builder.add(SWIMMING, false);
     }
@@ -174,8 +174,8 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         this.goalSelector.add(3, new EscapeSunlightGoal(this, 1.0D));
         this.goalSelector.add(6, new SwimAroundGoal(this, 1.0D, 40));
         this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0D));
-        this.goalSelector.add(7, new SunkenEntity.TargetAboveWaterGoal(this, 1.0D, this.getWorld().getSeaLevel()));
-        this.goalSelector.add(7, new SunkenEntity.LeaveWaterGoal(this, 1.0D));
+        this.goalSelector.add(7, new SunkenSkeletonEntity.TargetAboveWaterGoal(this, 1.0D, this.getWorld().getSeaLevel()));
+        this.goalSelector.add(7, new SunkenSkeletonEntity.LeaveWaterGoal(this, 1.0D));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(8, new LookAroundGoal(this));
 
@@ -252,15 +252,15 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     @Override
     public void readCustomDataFromNbt(NbtCompound compound) {
         super.readCustomDataFromNbt(compound);
-        this.setVariant(SunkenEntity.Type.byName(compound.getString("Type")));
+        this.setVariant(SunkenSkeletonEntity.Type.byName(compound.getString("Type")));
     }
 
-    public SunkenEntity.Type getVariant() {
-        return SunkenEntity.Type.fromId(this.dataTracker.get(SUNKEN_TYPE));
+    public SunkenSkeletonEntity.Type getVariant() {
+        return SunkenSkeletonEntity.Type.fromId(this.dataTracker.get(SUNKEN_SKELETON_TYPE));
     }
 
-    private void setVariant(SunkenEntity.Type type) {
-        this.dataTracker.set(SUNKEN_TYPE, type.getIndex());
+    private void setVariant(SunkenSkeletonEntity.Type type) {
+        this.dataTracker.set(SUNKEN_SKELETON_TYPE, type.getIndex());
     }
 
     public boolean isCharging() {
@@ -349,8 +349,8 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         FIRE(1, "fire"),
         HORN(2, "horn");
 
-        private static final SunkenEntity.Type[] typeList = Arrays.stream(values()).sorted(Comparator.comparing(SunkenEntity.Type::getIndex)).toArray(SunkenEntity.Type[]::new);
-        private static final Map<String, SunkenEntity.Type> TYPES_BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(SunkenEntity.Type::getName, (type) -> type));
+        private static final SunkenSkeletonEntity.Type[] typeList = Arrays.stream(values()).sorted(Comparator.comparing(SunkenSkeletonEntity.Type::getIndex)).toArray(SunkenSkeletonEntity.Type[]::new);
+        private static final Map<String, SunkenSkeletonEntity.Type> TYPES_BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(SunkenSkeletonEntity.Type::getName, (type) -> type));
         private final int index;
         private final String name;
 
@@ -359,11 +359,11 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
             this.name = nameIn;
         }
 
-        public static SunkenEntity.Type byName(String name) {
+        public static SunkenSkeletonEntity.Type byName(String name) {
             return TYPES_BY_NAME.getOrDefault(name, BUBBLE);
         }
 
-        public static SunkenEntity.Type fromId(int index) {
+        public static SunkenSkeletonEntity.Type fromId(int index) {
             if (index < 0 || index > typeList.length) {
                 index = 0;
             }
@@ -380,9 +380,9 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     }
 
     static class SunkenMoveControl extends MoveControl {
-        private final SunkenEntity sunkenSkeleton;
+        private final SunkenSkeletonEntity sunkenSkeleton;
 
-        public SunkenMoveControl(SunkenEntity sunkenSkeleton) {
+        public SunkenMoveControl(SunkenSkeletonEntity sunkenSkeleton) {
             super(sunkenSkeleton);
             this.sunkenSkeleton = sunkenSkeleton;
         }
@@ -422,9 +422,9 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     }
 
     static class LeaveWaterGoal extends MoveToTargetPosGoal {
-        private final SunkenEntity sunkenSkeleton;
+        private final SunkenSkeletonEntity sunkenSkeleton;
 
-        public LeaveWaterGoal(SunkenEntity sunkenSkeleton, double speed) {
+        public LeaveWaterGoal(SunkenSkeletonEntity sunkenSkeleton, double speed) {
             super(sunkenSkeleton, speed, 8, 2);
             this.sunkenSkeleton = sunkenSkeleton;
         }
@@ -455,12 +455,12 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
 
 
     private static class TargetAboveWaterGoal extends Goal {
-        private final SunkenEntity sunkenSkeleton;
+        private final SunkenSkeletonEntity sunkenSkeleton;
         private final double speed;
         private final int minY;
         private boolean foundTarget;
 
-        public TargetAboveWaterGoal(SunkenEntity sunkenSkeleton, double speed, int minY) {
+        public TargetAboveWaterGoal(SunkenSkeletonEntity sunkenSkeleton, double speed, int minY) {
             this.sunkenSkeleton = sunkenSkeleton;
             this.speed = speed;
             this.minY = minY;

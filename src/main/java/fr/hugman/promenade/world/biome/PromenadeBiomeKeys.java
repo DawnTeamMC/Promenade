@@ -1,6 +1,5 @@
 package fr.hugman.promenade.world.biome;
 
-import fr.hugman.dawn.DawnFactory;
 import fr.hugman.promenade.Promenade;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;

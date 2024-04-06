@@ -1,9 +1,9 @@
 {
-	"replace": false,
-	"values": [
-		"promenade:sakura_hanging_sign",
-		"promenade:maple_hanging_sign",
-		"promenade:palm_hanging_sign",
-		"promenade:dark_amaranth_hanging_sign"
-	]
+  "replace": false,
+  "values": [
+    "promenade:sakura_hanging_sign",
+    "promenade:maple_hanging_sign",
+    "promenade:palm_hanging_sign",
+    "promenade:dark_amaranth_hanging_sign"
+  ]
 }

@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/palm/planks"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/palm/planks"
+    }
+  }
 }

@@ -24,11 +24,11 @@ public class PromenadeSoundEvents {
     public static final SoundEvent DUCK_DEATH = of("entity.duck.death");
     public static final SoundEvent DUCK_STEP = of("entity.duck.step");
 
-    public static final SoundEvent SUNKEN_AMBIENT = of("entity.sunken.ambient");
-    public static final SoundEvent SUNKEN_HURT = of("entity.sunken.hurt");
-    public static final SoundEvent SUNKEN_DEATH = of("entity.sunken.death");
-    public static final SoundEvent SUNKEN_STEP = of("entity.sunken.step");
-    public static final SoundEvent SUNKEN_SHOOT = of("entity.sunken.shoot");
+    public static final SoundEvent SUNKEN_SKELETON_AMBIENT = of("entity.sunken_skeleton.ambient");
+    public static final SoundEvent SUNKEN_SKELETON_HURT = of("entity.sunken_skeleton.hurt");
+    public static final SoundEvent SUNKEN_SKELETON_DEATH = of("entity.sunken_skeleton.death");
+    public static final SoundEvent SUNKEN_SKELETON_STEP = of("entity.sunken_skeleton.step");
+    public static final SoundEvent SUNKEN_SKELETON_SHOOT = of("entity.sunken_skeleton.shoot");
 
     private static RegistryEntry.Reference<SoundEvent> ofRef(String path) {
         var id = Promenade.id(path);

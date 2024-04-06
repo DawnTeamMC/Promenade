@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/dark_amaranth/planks"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/dark_amaranth/planks"
+    }
+  }
 }

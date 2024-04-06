@@ -65,6 +65,6 @@ public class PromenadeConfig extends PartitioningSerializer.GlobalData {
         public int lush_creepers_weight = 15;
         @ConfigEntry.Gui.RequiresRestart
         @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int sunkens_weight = 20;
+        public int sunken_skeletons_weight = 20;
     }
 }

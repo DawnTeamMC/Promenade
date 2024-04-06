@@ -3,7 +3,7 @@ package fr.hugman.promenade.client.render.entity;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.SunkenSkeletonModel;
-import fr.hugman.promenade.entity.SunkenEntity;
+import fr.hugman.promenade.entity.SunkenSkeletonEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.BipedEntityRenderer;
@@ -17,9 +17,9 @@ import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3d;
 
 @Environment(EnvType.CLIENT)
-public class SunkenSkeletonRenderer extends BipedEntityRenderer<SunkenEntity, SunkenSkeletonModel> {
+public class SunkenSkeletonRenderer extends BipedEntityRenderer<SunkenSkeletonEntity, SunkenSkeletonModel> {
     public SunkenSkeletonRenderer(EntityRendererFactory.Context context) {
-        this(context, PromenadeEntityModelLayers.SUNKEN, PromenadeEntityModelLayers.SUNKEN_INNER_ARMOR, PromenadeEntityModelLayers.SUNKEN_OUTER_ARMOR);
+        this(context, PromenadeEntityModelLayers.SUNKEN_SKELETON, PromenadeEntityModelLayers.SUNKEN_SKELETON_INNER_ARMOR, PromenadeEntityModelLayers.SUNKEN_SKELETON_OUTER_ARMOR);
     }
 
     public SunkenSkeletonRenderer(EntityRendererFactory.Context ctx, EntityModelLayer layer, EntityModelLayer legArmorLayer, EntityModelLayer bodyArmorLayer) {
@@ -28,20 +28,20 @@ public class SunkenSkeletonRenderer extends BipedEntityRenderer<SunkenEntity, Su
     }
 
     @Override
-    protected void setupTransforms(SunkenEntity sunkenEntity, MatrixStack matrixStack, float animationProgress, float bodyYaw, float tickDelta, float scale) {
-        float i = sunkenEntity.getLeaningPitch(tickDelta);
+    protected void setupTransforms(SunkenSkeletonEntity sunkenSkeletonEntity, MatrixStack matrixStack, float animationProgress, float bodyYaw, float tickDelta, float scale) {
+        float i = sunkenSkeletonEntity.getLeaningPitch(tickDelta);
         float n;
         float k;
-        if (sunkenEntity.isFallFlying()) {
-            super.setupTransforms(sunkenEntity, matrixStack, animationProgress, bodyYaw, tickDelta, scale);
-            n = (float) sunkenEntity.getFallFlyingTicks() + tickDelta;
+        if (sunkenSkeletonEntity.isFallFlying()) {
+            super.setupTransforms(sunkenSkeletonEntity, matrixStack, animationProgress, bodyYaw, tickDelta, scale);
+            n = (float) sunkenSkeletonEntity.getFallFlyingTicks() + tickDelta;
             k = MathHelper.clamp(n * n / 100.0F, 0.0F, 1.0F);
-            if (!sunkenEntity.isUsingRiptide()) {
-                matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(k * (-90.0F - sunkenEntity.getPitch())));
+            if (!sunkenSkeletonEntity.isUsingRiptide()) {
+                matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(k * (-90.0F - sunkenSkeletonEntity.getPitch())));
             }
 
-            Vec3d vec3d = sunkenEntity.getRotationVec(tickDelta);
-            Vec3d vec3d2 = sunkenEntity.getVelocity();
+            Vec3d vec3d = sunkenSkeletonEntity.getRotationVec(tickDelta);
+            Vec3d vec3d2 = sunkenSkeletonEntity.getVelocity();
             double d = vec3d2.horizontalLengthSquared();
             double e = vec3d.horizontalLengthSquared();
             if (d > 0.0D && e > 0.0D) {
@@ -50,20 +50,20 @@ public class SunkenSkeletonRenderer extends BipedEntityRenderer<SunkenEntity, Su
                 matrixStack.multiply(RotationAxis.POSITIVE_Y.rotation((float) (Math.signum(m) * Math.acos(l))));
             }
         } else if (i > 0.0F) {
-            super.setupTransforms(sunkenEntity, matrixStack, animationProgress, bodyYaw, tickDelta, scale);
-            n = sunkenEntity.isTouchingWater() ? -90.0F - sunkenEntity.getPitch() : -90.0F;
+            super.setupTransforms(sunkenSkeletonEntity, matrixStack, animationProgress, bodyYaw, tickDelta, scale);
+            n = sunkenSkeletonEntity.isTouchingWater() ? -90.0F - sunkenSkeletonEntity.getPitch() : -90.0F;
             k = MathHelper.lerp(i, 0.0F, n);
             matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(k));
-            if (sunkenEntity.isInSwimmingPose()) {
+            if (sunkenSkeletonEntity.isInSwimmingPose()) {
                 matrixStack.translate(0.0D, -1.0D, 0.30000001192092896D);
             }
         } else {
-            super.setupTransforms(sunkenEntity, matrixStack, animationProgress, bodyYaw, tickDelta, scale);
+            super.setupTransforms(sunkenSkeletonEntity, matrixStack, animationProgress, bodyYaw, tickDelta, scale);
         }
     }
 
     @Override
-    public Identifier getTexture(SunkenEntity entity) {
-        return Promenade.id("textures/entity/sunken/" + entity.getVariant().getName() + ".png");
+    public Identifier getTexture(SunkenSkeletonEntity entity) {
+        return Promenade.id("textures/entity/sunken_skeleton/" + entity.getVariant().getName() + ".png");
     }
 }

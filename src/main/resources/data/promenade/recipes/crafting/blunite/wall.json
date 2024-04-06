@@ -1,16 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"###",
-		"###"
-	],
-	"key": {
-		"#": {
-			"item": "promenade:blunite"
-		}
-	},
-	"result": {
-		"id": "promenade:blunite_wall",
-		"count": 6
-	}
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "promenade:blunite"
+    }
+  },
+  "result": {
+    "id": "promenade:blunite_wall",
+    "count": 6
+  }
 }

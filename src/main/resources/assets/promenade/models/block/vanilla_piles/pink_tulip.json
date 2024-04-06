@@ -1,6 +1,6 @@
 {
-	"parent": "promenade:block/pile",
-	"textures": {
-		"pile": "promenade:block/vanilla_piles/pink_tulip"
-	}
+  "parent": "promenade:block/pile",
+  "textures": {
+    "pile": "promenade:block/vanilla_piles/pink_tulip"
+  }
 }

@@ -1,6 +1,6 @@
 package fr.hugman.promenade.client.render.entity.model;
 
-import fr.hugman.promenade.entity.SunkenEntity;
+import fr.hugman.promenade.entity.SunkenSkeletonEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
@@ -11,7 +11,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.util.Arm;
 
 @Environment(EnvType.CLIENT)
-public class SunkenSkeletonModel extends SkeletonEntityModel<SunkenEntity> {
+public class SunkenSkeletonModel extends SkeletonEntityModel<SunkenSkeletonEntity> {
     public SunkenSkeletonModel(ModelPart root) {
         super(root);
     }
@@ -28,7 +28,7 @@ public class SunkenSkeletonModel extends SkeletonEntityModel<SunkenEntity> {
     }
 
     @Override
-    public void animateModel(SunkenEntity mobEntity, float f, float g, float h) {
+    public void animateModel(SunkenSkeletonEntity mobEntity, float f, float g, float h) {
         super.animateModel(mobEntity, f, g, h);
 
         this.hat.visible = mobEntity.getEquippedStack(EquipmentSlot.HEAD).isEmpty();
