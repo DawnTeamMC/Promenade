@@ -1,0 +1,6 @@
+{
+  "wild_texture": "promenade:entity/wolf/shiba_inu/wild",
+  "angry_texture": "promenade:entity/wolf/shiba_inu/angry",
+  "tame_texture": "promenade:entity/wolf/shiba_inu/tame",
+  "biomes": "#promenade:sakura_groves"
+}
