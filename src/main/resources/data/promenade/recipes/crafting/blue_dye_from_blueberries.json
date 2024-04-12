@@ -1,12 +1,12 @@
 {
-	"type": "minecraft:crafting_shapeless",
-	"group": "blue_dye",
-	"ingredients": [
-		{
-			"item": "promenade:blueberries"
-		}
-	],
-	"result": {
-		"item": "minecraft:blue_dye"
-	}
+  "type": "minecraft:crafting_shapeless",
+  "group": "blue_dye",
+  "ingredients": [
+    {
+      "item": "promenade:blueberries"
+    }
+  ],
+  "result": {
+    "id": "minecraft:blue_dye"
+  }
 }

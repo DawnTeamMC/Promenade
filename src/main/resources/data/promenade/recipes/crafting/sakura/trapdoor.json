@@ -1,17 +1,17 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "wooden_trapdoor",
-	"pattern": [
-		"###",
-		"###"
-	],
-	"key": {
-		"#": {
-			"item": "promenade:sakura_planks"
-		}
-	},
-	"result": {
-		"item": "promenade:sakura_trapdoor",
-		"count": 2
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "promenade:sakura_planks"
+    }
+  },
+  "result": {
+    "id": "promenade:sakura_trapdoor",
+    "count": 2
+  }
 }

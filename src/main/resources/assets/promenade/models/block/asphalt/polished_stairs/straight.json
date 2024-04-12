@@ -1,8 +1,8 @@
 {
-	"parent": "block/stairs",
-	"textures": {
-		"bottom": "promenade:block/asphalt/polished_block",
-		"top": "promenade:block/asphalt/polished_block",
-		"side": "promenade:block/asphalt/polished_block"
-	}
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "promenade:block/asphalt/polished_block",
+    "top": "promenade:block/asphalt/polished_block",
+    "side": "promenade:block/asphalt/polished_block"
+  }
 }

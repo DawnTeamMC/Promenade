@@ -1,7 +1,7 @@
 {
-	"replace": false,
-	"values": [
-		"promenade:blunite",
-		"promenade:asphalt"
-	]
+  "replace": false,
+  "values": [
+    "promenade:blunite",
+    "promenade:asphalt"
+  ]
 }

@@ -1,49 +1,49 @@
 {
-	"variants": {
-		"distance=1,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/regular"
-		},
-		"distance=2,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/regular"
-		},
-		"distance=3,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/regular"
-		},
-		"distance=4,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/mixed"
-		},
-		"distance=5,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/mixed"
-		},
-		"distance=6,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/mixed"
-		},
-		"distance=7,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/mixed"
-		},
-		"distance=8,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/mixed"
-		},
-		"distance=9,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/mixed"
-		},
-		"distance=10,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/mixed"
-		},
-		"distance=11,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/mixed"
-		},
-		"distance=12,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/mixed"
-		},
-		"distance=13,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/mixed"
-		},
-		"distance=14,persistent=false": {
-			"model": "promenade:block/maple/leaves/mikado/mixed"
-		},
-		"persistent=true": {
-			"model": "promenade:block/maple/leaves/mikado/regular"
-		}
-	}
+  "variants": {
+    "distance=1,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/regular"
+    },
+    "distance=2,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/regular"
+    },
+    "distance=3,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/regular"
+    },
+    "distance=4,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/mixed"
+    },
+    "distance=5,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/mixed"
+    },
+    "distance=6,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/mixed"
+    },
+    "distance=7,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/mixed"
+    },
+    "distance=8,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/mixed"
+    },
+    "distance=9,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/mixed"
+    },
+    "distance=10,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/mixed"
+    },
+    "distance=11,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/mixed"
+    },
+    "distance=12,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/mixed"
+    },
+    "distance=13,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/mixed"
+    },
+    "distance=14,persistent=false": {
+      "model": "promenade:block/maple/leaves/mikado/mixed"
+    },
+    "persistent=true": {
+      "model": "promenade:block/maple/leaves/mikado/regular"
+    }
+  }
 }

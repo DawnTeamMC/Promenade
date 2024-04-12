@@ -1,39 +1,43 @@
 package fr.hugman.promenade.entity;
 
-import fr.hugman.dawn.Registrar;
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.PromenadeRegistrar;
-import fr.hugman.promenade.registry.PromenadeRegistries;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class CapybaraVariants {
-	public static final CapybaraVariant BROWN = new CapybaraVariant(49);
-	public static final CapybaraVariant ALBINO = new CapybaraVariant(1);
+    public static final RegistryKey<CapybaraVariant> BROWN = of("brown");
 
-	public static void register(Registrar r) {
-		PromenadeRegistrar.add(r.id("brown"), BROWN);
-		PromenadeRegistrar.add(r.id("albino"), ALBINO);
-	}
+    private static RegistryKey<CapybaraVariant> of(String path) {
+        return of(Promenade.id(path));
+    }
 
-	public static CapybaraVariant getRandom(Random random) {
-		// get the total weight of all variants
-		int totalWeight = 0;
-		for(CapybaraVariant variant : PromenadeRegistries.CAPYBARA_VARIANT) {
-			totalWeight += variant.spawnWeight();
-		}
-		// choose a random variant
-		int randomWeight = random.nextInt(totalWeight);
-		for(CapybaraVariant variant : PromenadeRegistries.CAPYBARA_VARIANT) {
-			randomWeight -= variant.spawnWeight();
-			if(randomWeight <= 0) {
-				return variant;
-			}
-		}
-		// should never happen
-		return PromenadeRegistries.CAPYBARA_VARIANT.get(0);
-	}
+    public static RegistryKey<CapybaraVariant> of(Identifier id) {
+        return RegistryKey.of(PromenadeRegistryKeys.CAPYBARA_VARIANT, id);
+    }
 
-	public static CapybaraVariant getDefault() {
-		return BROWN;
-	}
+    public static RegistryEntry<CapybaraVariant> getRandom(DynamicRegistryManager dynamicRegistryManager, Random random) {
+        Registry<CapybaraVariant> registry = dynamicRegistryManager.get(PromenadeRegistryKeys.CAPYBARA_VARIANT);
+        List<RegistryEntry<CapybaraVariant>> entries = registry.streamEntries().collect(Collectors.toList());
+
+        int totalWeight = entries.stream().mapToInt(entry -> entry.value().spawnWeight()).sum();
+        int randomWeight = random.nextInt(totalWeight);
+
+        for (RegistryEntry<CapybaraVariant> entry : entries) {
+            randomWeight -= entry.value().spawnWeight();
+            if (randomWeight <= 0) {
+                return entry;
+            }
+        }
+
+        // TODO: if no entries are present, throw an exception
+        return entries.get(0);
+    }
 }

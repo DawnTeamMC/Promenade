@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/sakura/blossoms/cotton"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/sakura/blossoms/cotton"
+    }
+  }
 }

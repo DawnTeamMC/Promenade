@@ -1,16 +1,16 @@
 {
-	"variants": {
-		"axis=y": {
-			"model": "promenade:block/palm/stripped_log"
-		},
-		"axis=z": {
-			"model": "promenade:block/palm/stripped_log",
-			"x": 90
-		},
-		"axis=x": {
-			"model": "promenade:block/palm/stripped_log",
-			"x": 90,
-			"y": 90
-		}
-	}
+  "variants": {
+    "axis=y": {
+      "model": "promenade:block/palm/stripped_log"
+    },
+    "axis=z": {
+      "model": "promenade:block/palm/stripped_log",
+      "x": 90
+    },
+    "axis=x": {
+      "model": "promenade:block/palm/stripped_log",
+      "x": 90,
+      "y": 90
+    }
+  }
 }

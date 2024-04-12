@@ -7,6 +7,10 @@
   "authors": [
     "Hugman"
   ],
+  "contributors": [
+    "LudoCrypt",
+    "Lylian"
+  ],
   "contact": {
     "homepage": "https://dawnteammc.github.io/promenade",
     "sources": "https://github.com/DawnTeamMC/Promenade",
@@ -29,14 +33,11 @@
   ],
   "accessWidener": "promenade.accesswidener",
   "depends": {
-    "minecraft": "1.20.x",
-    "dawn": ">=5.0.0",
     "fabric-api": ">=0.83.1",
     "cloth-config": "*",
     "biolith": "*"
   },
   "suggests": {
-    "columns": "*",
     "farmingforblockheads": "*",
     "appleskin": "*"
   },

@@ -1,6 +1,6 @@
 {
-	"parent": "block/template_fence_gate_wall",
-	"textures": {
-		"texture": "promenade:block/palm/planks"
-	}
+  "parent": "block/template_fence_gate_wall",
+  "textures": {
+    "texture": "promenade:block/palm/planks"
+  }
 }

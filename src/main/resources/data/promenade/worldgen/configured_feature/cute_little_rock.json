@@ -22,10 +22,8 @@
     ],
     "count": {
       "type": "minecraft:uniform",
-      "value": {
-        "min_inclusive": 3,
-        "max_inclusive": 4
-      }
+      "min_inclusive": 3,
+      "max_inclusive": 4
     }
   },
   "type": "promenade:boulder"

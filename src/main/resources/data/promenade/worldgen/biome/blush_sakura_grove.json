@@ -14,12 +14,6 @@
       "block_search_extent": 8,
       "offset": 2
     },
-    "particle": {
-      "options": {
-        "type": "promenade:blush_sakura_blossom"
-      },
-      "probability": 0.001
-    },
     "music": {
       "sound": "promenade:music.overworld.sakura_groves",
       "min_delay": 12000,

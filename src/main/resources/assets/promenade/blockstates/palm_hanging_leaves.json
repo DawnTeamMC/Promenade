@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/palm/hanging_leaves"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/palm/hanging_leaves"
+    }
+  }
 }

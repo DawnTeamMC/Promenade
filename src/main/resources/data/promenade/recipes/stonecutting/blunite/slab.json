@@ -1,8 +1,10 @@
 {
-	"type": "minecraft:stonecutting",
-	"ingredient": {
-		"item": "promenade:blunite"
-	},
-	"result": "promenade:blunite_slab",
-	"count": 2
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "promenade:blunite"
+  },
+  "result": {
+    "id": "promenade:blunite_slab",
+    "count": 2
+  }
 }

@@ -1,6 +1,6 @@
 {
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "promenade:item/maple/chest_boat"
-	}
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "promenade:item/maple/chest_boat"
+  }
 }

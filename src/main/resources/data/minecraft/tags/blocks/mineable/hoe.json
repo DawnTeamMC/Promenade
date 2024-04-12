@@ -1,9 +1,9 @@
 {
-	"replace": false,
-	"values": [
-		"#promenade:leaves",
-		"#promenade:leaf_piles",
-		"#promenade:flower_piles",
-		"promenade:dark_amaranth_wart_block"
-	]
+  "replace": false,
+  "values": [
+    "#promenade:leaves",
+    "#promenade:leaf_piles",
+    "#promenade:flower_piles",
+    "promenade:dark_amaranth_wart_block"
+  ]
 }

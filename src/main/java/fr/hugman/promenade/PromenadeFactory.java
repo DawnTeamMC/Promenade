@@ -1,80 +1,113 @@
 package fr.hugman.promenade;
 
+import com.terraformersmc.terraform.sign.block.TerraformHangingSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallHangingSignBlock;
+import com.terraformersmc.terraform.sign.block.TerraformWallSignBlock;
 import fr.hugman.dawn.DawnFactory;
-import fr.hugman.dawn.block.DawnBlockSettings;
-import fr.hugman.dawn.item.DawnItemSettings;
-import fr.hugman.promenade.block.CarpetedGrassBlock;
-import fr.hugman.promenade.block.PileBlock;
-import fr.hugman.promenade.block.SnowyLeavesBlock;
-import fr.hugman.promenade.block.StarryLeavesBlock;
-import fr.hugman.promenade.registry.content.GlaglaglaContent;
+import fr.hugman.promenade.block.*;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.Item;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.Identifier;
 
 public final class PromenadeFactory {
-	public static Block leafPile() {
-		return leafPile(MapColor.DARK_GREEN, BlockSoundGroup.GRASS);
-	}
+    public static Block leafPile() {
+        return leafPile(MapColor.DARK_GREEN, BlockSoundGroup.GRASS);
+    }
 
-	public static Block leafPile(MapColor mapColor) {
-		return leafPile(mapColor, BlockSoundGroup.GRASS);
-	}
+    public static Block leafPile(MapColor mapColor) {
+        return leafPile(mapColor, BlockSoundGroup.GRASS);
+    }
 
-	public static Block leafPile(BlockSoundGroup soundGroup) {
-		return leafPile(MapColor.DARK_GREEN, soundGroup);
-	}
+    public static Block leafPile(BlockSoundGroup soundGroup) {
+        return leafPile(MapColor.DARK_GREEN, soundGroup);
+    }
 
-	public static Block leafPile(MapColor mapColor, BlockSoundGroup soundGroup) {
-		return new PileBlock(DawnBlockSettings.create()
-				.item(new DawnItemSettings().compostingChance(0.3f))
-				.mapColor(mapColor)
-				.burnable(30, 60)
-				.strength(0.1f)
-				.ticksRandomly()
-				.sounds(soundGroup)
-				.noCollision()
-				.nonOpaque());
-	}
+    public static Block leafPile(MapColor mapColor, BlockSoundGroup soundGroup) {
+        return new PileBlock(AbstractBlock.Settings.create()
+                .item(new Item.Settings().compostingChance(0.3f))
+                .mapColor(mapColor)
+                .burnable(30, 60)
+                .strength(0.1f)
+                .ticksRandomly()
+                .sounds(soundGroup)
+                .noCollision()
+                .nonOpaque());
+    }
 
-	public static Block carpetedGrassBlock(MapColor color) {
-		return new CarpetedGrassBlock(DawnBlockSettings.create()
-				.item(new DawnItemSettings().compostingChance(0.3f))
-				.mapColor(color)
-				.ticksRandomly()
-				.strength(0.6F)
-				.sounds(BlockSoundGroup.GRASS));
-	}
+    public static Block carpetedGrassBlock(MapColor color) {
+        return new CarpetedGrassBlock(AbstractBlock.Settings.create()
+                .item(new Item.Settings().compostingChance(0.3f))
+                .mapColor(color)
+                .ticksRandomly()
+                .strength(0.6F)
+                .sounds(BlockSoundGroup.GRASS));
+    }
 
-	public static SnowyLeavesBlock snowyLeaves() {
-		return snowyLeaves(GlaglaglaContent.SNOWY_LEAVES_SOUNDS);
-	}
+    public static SnowyLeavesBlock snowyLeaves() {
+        return snowyLeaves(PromenadeBlocks.SNOWY_LEAVES_SOUNDS);
+    }
 
-	public static SnowyLeavesBlock snowyLeaves(BlockSoundGroup soundGroup) {
-		return new SnowyLeavesBlock(DawnBlockSettings.create()
-				.item(new DawnItemSettings().compostingChance(0.3f))
-				.mapColor(MapColor.WHITE)
-				.strength(0.2f)
-				.ticksRandomly()
-				.sounds(soundGroup)
-				.nonOpaque()
-				.allowsSpawning((state, world, pos, type) -> type == EntityType.OCELOT || type == EntityType.PARROT)
-				.suffocates((state, world, pos) -> false)
-				.blockVision((state, world, pos) -> false)
-				.burnable(30, 60)
-				.pistonBehavior(PistonBehavior.DESTROY)
-				.solidBlock((state, world, pos) -> false));
-	}
+    public static SnowyLeavesBlock snowyLeaves(BlockSoundGroup soundGroup) {
+        return new SnowyLeavesBlock(AbstractBlock.Settings.create()
+                .item(new Item.Settings().compostingChance(0.3f))
+                .mapColor(MapColor.WHITE)
+                .strength(0.2f)
+                .ticksRandomly()
+                .sounds(soundGroup)
+                .nonOpaque()
+                .allowsSpawning((state, world, pos, type) -> type == EntityType.OCELOT || type == EntityType.PARROT)
+                .suffocates((state, world, pos) -> false)
+                .blockVision((state, world, pos) -> false)
+                .burnable(30, 60)
+                .pistonBehavior(PistonBehavior.DESTROY)
+                .solidBlock((state, world, pos) -> false));
+    }
 
-	public static StarryLeavesBlock starryLeaves(MapColor mapColor) {
-		return starryLeaves(mapColor, BlockSoundGroup.GRASS);
-	}
+    public static DecoratedLeavesBlock decoratedLeaves(MapColor mapColor, BlockSoundGroup soundGroup, int bound, ParticleEffect particle) {
+        return new DecoratedLeavesBlock(DawnFactory.leavesSettings(mapColor, soundGroup), bound, particle);
+    }
 
-	public static StarryLeavesBlock starryLeaves(MapColor mapColor, BlockSoundGroup soundGroup) {
-		return new StarryLeavesBlock(DawnFactory.leavesSettings(mapColor, soundGroup)
-				.luminance(state -> state.get(StarryLeavesBlock.HAS_STARS) ? 8 : 0));
-	}
+    public static DecoratedLeavesBlock decoratedLeaves(MapColor mapColor, BlockSoundGroup soundGroup, ParticleEffect particle) {
+        return decoratedLeaves(mapColor, soundGroup, 10, particle);
+    }
+
+    public static DecoratedLeavesBlock decoratedLeaves(MapColor mapColor, int bound, ParticleEffect particle) {
+        return decoratedLeaves(mapColor, BlockSoundGroup.GRASS, bound, particle);
+    }
+
+    public static DecoratedLeavesBlock decoratedLeaves(MapColor mapColor, ParticleEffect particle) {
+        return decoratedLeaves(mapColor, BlockSoundGroup.GRASS, 10, particle);
+    }
+
+    //TODO: move to Dawn API
+    public static Block sign(boolean hanging, boolean wall, Identifier texturePath, Block basePlanks, BlockSoundGroup soundGroup) {
+        return sign(hanging, wall, texturePath, DawnFactory.signSettings(basePlanks, soundGroup));
+    }
+
+    //TODO: move to Dawn API
+    public static Block sign(boolean hanging, boolean wall, Identifier texturePath, AbstractBlock.Settings settings) {
+        if (hanging) {
+            var hangingSignTexture = Identifier.of(texturePath.getNamespace(), "entity/signs/hanging/" + texturePath.getPath());
+            var hangingSignGuiTexture = Identifier.of(texturePath.getNamespace(), "textures/gui/hanging_signs/" + texturePath.getPath());
+            return wall ? new TerraformWallHangingSignBlock(hangingSignTexture, hangingSignGuiTexture, settings) : new TerraformHangingSignBlock(hangingSignTexture, hangingSignGuiTexture, settings);
+        }
+        var signTexture = Identifier.of(texturePath.getNamespace(), "entity/signs/" + texturePath.getPath());
+        return wall ? new TerraformWallSignBlock(signTexture, settings) : new TerraformSignBlock(signTexture, settings);
+    }
+
+    public static StarryLeavesBlock starryLeaves(MapColor mapColor) {
+        return starryLeaves(mapColor, BlockSoundGroup.GRASS);
+    }
+
+    public static StarryLeavesBlock starryLeaves(MapColor mapColor, BlockSoundGroup soundGroup) {
+        return new StarryLeavesBlock(DawnFactory.leavesSettings(mapColor, soundGroup)
+                .luminance(state -> state.get(StarryLeavesBlock.HAS_STARS) ? 8 : 0));
+    }
 }

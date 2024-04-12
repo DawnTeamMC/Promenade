@@ -4,7 +4,7 @@
 [![Twitter followers](https://img.shields.io/twitter/follow/DawnTeamMC?label=&color=424549&labelColor=1DA1F2&style=for-the-badge&logo=Twitter&logoColor=DDE4EF)](https://twitter.com/DawnTeamMC)
 
 Promenade is a mod for the latest version of Minecraft that adds a ton of features to the game related to exploration,
-diversity and will improve the beauty of you world.
+diversity and will improve the beauty of your world.
 
 **You can visit the [official wiki for Promenade for more information](https://hugman.gitbook.io/promenade/).**
 
@@ -28,7 +28,7 @@ Due to a missing Fabric API module, versions from v2.5.0 to v4.0.0 require [Terr
 
 ### Monsters
 
-* **Sunken Skeleton** in oceans
+* **Sunken** in oceans
 * **Lush Creepers** in caves
 
 
@@ -60,8 +60,12 @@ Listen to **Brise couleur pastel** on [Bandcamp](https://ludocrypt.bandcamp.com/
 ### Compatible mods
 Promenade is compatible with the following mods:
 
-- Columns: [GitHub](https://github.com/haykam821/Columns) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/columns)
 - Farming for Blockheads: [GitHub](https://github.com/ModdingForBlockheads/FarmingForBlockheads) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/farming-for-blockheads-fabric)
+
+## 🌟 Special Thanks
+
+- **Monika Carpenter** ([LudoCrypt](https://ludocrypt.crd.co/)) - Musician
+- **Lylian** ([@LYLIVN](https://twitter.com/LYLIVN)) - Sound Artist
 
 ## ❤️ Support
 [![Patreon supporters](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3DHugman%26type%3Dpatrons&style=flat-square)](https://patreon.com/Hugman)

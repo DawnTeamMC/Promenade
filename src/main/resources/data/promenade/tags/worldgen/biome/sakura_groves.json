@@ -1,7 +1,7 @@
 {
-	"replace": false,
-	"values": [
-		"promenade:blush_sakura_grove",
-		"promenade:cotton_sakura_grove"
-	]
+  "replace": false,
+  "values": [
+    "promenade:blush_sakura_grove",
+    "promenade:cotton_sakura_grove"
+  ]
 }

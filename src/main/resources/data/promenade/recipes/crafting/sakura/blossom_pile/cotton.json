@@ -1,16 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"group": "leaf_pile",
-	"pattern": [
-		"##"
-	],
-	"key": {
-		"#": {
-			"item": "promenade:cotton_sakura_blossoms"
-		}
-	},
-	"result": {
-		"item": "promenade:cotton_sakura_blossom_pile",
-		"count": 2
-	}
+  "type": "minecraft:crafting_shaped",
+  "group": "leaf_pile",
+  "pattern": [
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "promenade:cotton_sakura_blossoms"
+    }
+  },
+  "result": {
+    "id": "promenade:cotton_sakura_blossom_pile",
+    "count": 2
+  }
 }

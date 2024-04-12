@@ -1,7 +1,7 @@
 {
-	"variants": {
-		"": {
-			"model": "promenade:block/vanilla_piles/dark_oak_leaf"
-		}
-	}
+  "variants": {
+    "": {
+      "model": "promenade:block/vanilla_piles/dark_oak_leaf"
+    }
+  }
 }
