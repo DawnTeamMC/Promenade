@@ -1,12 +1,13 @@
 package fr.hugman.promenade.client.render.entity.model;
 
+import fr.hugman.animation_api.AnimationAPI;
+import fr.hugman.promenade.client.render.entity.animation.AnimationKeys;
 import fr.hugman.promenade.client.render.entity.animation.CapybaraAnimations;
 import fr.hugman.promenade.entity.CapybaraEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.animation.FrogAnimations;
 import net.minecraft.client.render.entity.model.EntityModelPartNames;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
@@ -59,7 +60,7 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
             this.setHeadAngles(headYaw, headPitch);
         }
         this.animateMovement(CapybaraAnimations.WALKING, limbAngle, limbDistance, 5.0f, 3.5f);
-        this.updateAnimation(capybara.earWiggleAnimState, CapybaraAnimations.EAR_WIGGLE, animationProgress, capybara.getEarWiggleSpeed());
+        this.updateAnimation(capybara.earWiggleAnimState, AnimationAPI.INSTANCE.get(AnimationKeys.CAPYBARA_EAR_WIGGLE), animationProgress, capybara.getEarWiggleSpeed());
         this.updateAnimation(capybara.fallToSleepAnimState, CapybaraAnimations.FALL_TO_SLEEP, animationProgress, 1.0F);
         this.updateAnimation(capybara.sleepingAnimState, CapybaraAnimations.SLEEP, animationProgress, 1.0F);
         this.updateAnimation(capybara.wakeUpAnimState, CapybaraAnimations.WAKE_UP, animationProgress, 1.0F);
