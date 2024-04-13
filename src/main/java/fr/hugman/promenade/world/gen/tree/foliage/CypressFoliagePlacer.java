@@ -1,14 +1,10 @@
-package fr.hugman.promenade.gen.tree.foliage;
+package fr.hugman.promenade.world.gen.tree.foliage;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import fr.hugman.promenade.registry.content.CommonContent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
-import net.minecraft.util.math.intprovider.IntProviderType;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
@@ -16,7 +12,7 @@ import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
 
 public class CypressFoliagePlacer extends FoliagePlacer {
-    public static final Codec<CypressFoliagePlacer> CODEC = RecordCodecBuilder.create(instance ->
+    public static final MapCodec<CypressFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance ->
             CypressFoliagePlacer.fillFoliagePlacerFields(instance).and(
                     IntProvider.createValidatingCodec(-16, 16).optionalFieldOf("bonus_height", ConstantIntProvider.create(0)).forGetter(placer -> placer.bonusHeight)
             ).apply(instance, CypressFoliagePlacer::new));
@@ -30,7 +26,7 @@ public class CypressFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected FoliagePlacerType<?> getType() {
-        return CommonContent.CYPRESS_FOLIAGE_PLACER;
+        return PromenadeFoliagePlacerTypes.CYPRESS;
     }
 
     @Override
@@ -48,7 +44,7 @@ public class CypressFoliagePlacer extends FoliagePlacer {
                 int y1 = Math.max(0, d - 1);
                 int y2 = Math.min(foliageHeight, foliageHeight - d * 3);
 
-                if(y2 <= y1) continue;
+                if (y2 <= y1) continue;
 
                 this.generateColumn(world, placer, config, random, pos, dz, dx, y1, y2);
             }

@@ -37,6 +37,11 @@ public class PromenadeItems {
     public static final Item PALM_BOAT = ofBoat(PromenadeItemKeys.PALM_BOAT, PromenadeBoatTypeKeys.PALM, false);
     public static final Item PALM_CHEST_BOAT = ofBoat(PromenadeItemKeys.PALM_CHEST_BOAT, PromenadeBoatTypeKeys.PALM, true);
 
+    public static final Item DUSK_CYPRESS_SIGN = of(PromenadeItemKeys.DUSK_CYPRESS_SIGN, new SignItem(new Item.Settings().maxCount(16), PromenadeBlocks.DUSK_CYPRESS_SIGN, PromenadeBlocks.DUSK_CYPRESS_WALL_SIGN));
+    public static final Item DUSK_CYPRESS_HANGING_SIGN = of(PromenadeItemKeys.DUSK_CYPRESS_HANGING_SIGN, new HangingSignItem(PromenadeBlocks.DUSK_CYPRESS_HANGING_SIGN, PromenadeBlocks.DUSK_CYPRESS_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
+    public static final Item DUSK_CYPRESS_BOAT = ofBoat(PromenadeItemKeys.DUSK_CYPRESS_BOAT, PromenadeBoatTypeKeys.DUSK_CYPRESS, false);
+    public static final Item DUSK_CYPRESS_CHEST_BOAT = ofBoat(PromenadeItemKeys.DUSK_CYPRESS_CHEST_BOAT, PromenadeBoatTypeKeys.DUSK_CYPRESS, true);
+
     public static final Item DARK_AMARANTH_SIGN = of(PromenadeItemKeys.DARK_AMARANTH_SIGN, new SignItem(new Item.Settings().maxCount(16), PromenadeBlocks.DARK_AMARANTH_SIGN, PromenadeBlocks.DARK_AMARANTH_WALL_SIGN));
     public static final Item DARK_AMARANTH_HANGING_SIGN = of(PromenadeItemKeys.DARK_AMARANTH_HANGING_SIGN, new HangingSignItem(PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN, PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
@@ -78,6 +83,9 @@ public class PromenadeItems {
 
         ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.ACACIA_HANGING_SIGN, PALM_SIGN, PALM_HANGING_SIGN));
         ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Items.ACACIA_CHEST_BOAT, PALM_BOAT, PALM_CHEST_BOAT));
+
+        ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.SPRUCE_HANGING_SIGN, DUSK_CYPRESS_SIGN, DUSK_CYPRESS_HANGING_SIGN));
+        ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Items.SPRUCE_CHEST_BOAT, DUSK_CYPRESS_BOAT, DUSK_CYPRESS_CHEST_BOAT));
 
         ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.WARPED_HANGING_SIGN, DARK_AMARANTH_SIGN, DARK_AMARANTH_HANGING_SIGN));
 

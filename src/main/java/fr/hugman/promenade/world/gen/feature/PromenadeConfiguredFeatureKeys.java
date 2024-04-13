@@ -6,8 +6,6 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 public class PromenadeConfiguredFeatureKeys {
-    public static final RegistryKey<ConfiguredFeature<?, ?>> PALM = of("tree/palm");
-
     public static final RegistryKey<ConfiguredFeature<?, ?>> BLUSH_SAKURA = of("tree/sakura/blush/regular");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_BLUSH_SAKURA = of("tree/sakura/blush/fancy");
     public static final RegistryKey<ConfiguredFeature<?, ?>> BLUSH_SAKURA_BEES = of("tree/sakura/blush/bees");
@@ -37,6 +35,10 @@ public class PromenadeConfiguredFeatureKeys {
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_MIKADO_MAPLE = of("tree/maple/mikado/fancy");
     public static final RegistryKey<ConfiguredFeature<?, ?>> MIKADO_MAPLE_BEES = of("tree/maple/mikado/bees");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_MIKADO_MAPLE_BEES = of("tree/maple/mikado/fancy_bees");
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> PALM = of("tree/palm");
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DUSK_CYPRESS = of("tree/dusk_cypress");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PLANTED_AMARANTH_FUNGUS = of("amaranth_fungus/planted");
 

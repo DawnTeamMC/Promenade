@@ -24,6 +24,11 @@ public class PromenadeBoatTypes {
             .chestItem(PromenadeItems.PALM_CHEST_BOAT)
             .planks(PromenadeBlocks.PALM_PLANKS.asItem())
             .build());
+    public static final TerraformBoatType DUSK_CYPRESS = register(PromenadeBoatTypeKeys.DUSK_CYPRESS, new TerraformBoatType.Builder()
+            .item(PromenadeItems.DUSK_CYPRESS_BOAT)
+            .chestItem(PromenadeItems.DUSK_CYPRESS_CHEST_BOAT)
+            .planks(PromenadeBlocks.DUSK_CYPRESS_PLANKS.asItem())
+            .build());
 
     private static <O extends TerraformBoatType> O register(RegistryKey<TerraformBoatType> key, O boatType) {
         return Registry.register(TerraformBoatTypeRegistry.INSTANCE, key, boatType);

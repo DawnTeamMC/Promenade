@@ -1,10 +1,9 @@
 package fr.hugman.promenade.block;
 
-import fr.hugman.promenade.state.property.PromenadeBlockProperties;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.LeavesBlock;
-import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.client.util.ParticleUtil;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -16,7 +15,6 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -32,6 +30,7 @@ import net.minecraft.world.event.GameEvent;
  * @author Hugman
  */
 public class StarryLeavesBlock extends LeavesBlock {
+    public static final MapCodec<StarryLeavesBlock> CODEC = createCodec(StarryLeavesBlock::new);
     public static final BooleanProperty HAS_STARS = PromenadeBlockProperties.HAS_STARS;
 
     public StarryLeavesBlock(Settings settings) {
@@ -53,18 +52,20 @@ public class StarryLeavesBlock extends LeavesBlock {
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         super.randomTick(state, world, pos, random);
-        if(world.isNight()) {
-            if(random.nextInt(100) == 0) {
+        if (world.isNight()) {
+            if (random.nextInt(100) == 0) {
                 var newState = state.with(HAS_STARS, true);
                 world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
-                world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));;
+                world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
+                ;
                 // TODO: play sound
             }
         } else {
-            if(state.get(HAS_STARS)) {
+            if (state.get(HAS_STARS)) {
                 var newState = state.with(HAS_STARS, false);
                 world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
-                world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));;
+                world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
+                ;
                 // TODO: play sound
             }
         }
@@ -88,8 +89,8 @@ public class StarryLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(state.get(HAS_STARS)) {
+    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+        if (state.get(HAS_STARS)) {
             //TODO: change item
             //TODO: don't drop in the middle of the block
             dropStack(world, pos, new ItemStack(Items.FIREWORK_STAR, 3));
@@ -100,6 +101,6 @@ public class StarryLeavesBlock extends LeavesBlock {
             world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, newState));
             return ActionResult.success(world.isClient);
         }
-        return super.onUse(state, world, pos, player, hand, hit);
+        return super.onUse(state, world, pos, player, hit);
     }
 }

@@ -6,7 +6,6 @@ import net.minecraft.block.SaplingGenerator;
 import java.util.Optional;
 
 public class PromenadeSaplingGenerators {
-    public static final SaplingGenerator PALM_SAPLING_GENERATOR = new SaplingGenerator("palm", Optional.empty(), Optional.of(PromenadeConfiguredFeatureKeys.PALM), Optional.empty());
 
     public static final SaplingGenerator BLUSH_SAKURA_SAPLING_GENERATOR = new SaplingGenerator("sakura/blush", 0.1F, Optional.empty(), Optional.empty(),
             Optional.of(PromenadeConfiguredFeatureKeys.BLUSH_SAKURA), Optional.of(PromenadeConfiguredFeatureKeys.FANCY_BLUSH_SAKURA),
@@ -33,4 +32,8 @@ public class PromenadeSaplingGenerators {
             Optional.of(PromenadeConfiguredFeatureKeys.MIKADO_MAPLE), Optional.of(PromenadeConfiguredFeatureKeys.FANCY_MIKADO_MAPLE),
             Optional.of(PromenadeConfiguredFeatureKeys.MIKADO_MAPLE_BEES), Optional.of(PromenadeConfiguredFeatureKeys.FANCY_MIKADO_MAPLE_BEES)
     );
+
+    public static final SaplingGenerator PALM_SAPLING_GENERATOR = new SaplingGenerator("palm", Optional.empty(), Optional.of(PromenadeConfiguredFeatureKeys.PALM), Optional.empty());
+
+    public static final SaplingGenerator DUSK_CYPRESS_SAPLING_GENERATOR = new SaplingGenerator("dusk", Optional.empty(), Optional.of(PromenadeConfiguredFeatureKeys.DUSK_CYPRESS), Optional.empty());
 }

@@ -14,6 +14,8 @@ public class PromenadeBiomeKeys {
     public static final RegistryKey<Biome> DARK_AMARANTH_FOREST = of("dark_amaranth_forest");
     public static final RegistryKey<Biome> TALL_DARK_AMARANTH_FOREST = of("tall_dark_amaranth_forest");
 
+    public static final RegistryKey<Biome> DUSK_CYPRESS_FOREST = of("dusk_cypress_forest");
+
     private static RegistryKey<Biome> of(String path) {
         return RegistryKey.of(RegistryKeys.BIOME, Promenade.id(path));
     }
