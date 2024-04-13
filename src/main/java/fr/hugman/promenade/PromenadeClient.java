@@ -47,7 +47,7 @@ public class PromenadeClient implements ClientModInitializer {
         ClientRegistrar.add(PromenadeBoatTypes.SAKURA);
         ClientRegistrar.add(PromenadeBoatTypes.MAPLE);
         ClientRegistrar.add(PromenadeBoatTypes.PALM);
-        ClientRegistrar.add(PromenadeBoatTypes.DUSK_CYPRESS);
+        ClientRegistrar.add(PromenadeBoatTypes.AURORAL_CYPRESS);
     }
 
     public static void registerRenderLayers() {
@@ -127,13 +127,13 @@ public class PromenadeClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_LEAF_PILE, RenderLayer.getCutout());
 
 
-        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DUSK_CYPRESS_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DUSK_CYPRESS_TRAPDOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.AURORAL_CYPRESS_DOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.AURORAL_CYPRESS_TRAPDOOR, RenderLayer.getCutout());
 
-        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DUSK_CYPRESS_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_DUSK_CYPRESS_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DUSK_CYPRESS_LEAVES, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DUSK_CYPRESS_LEAF_PILE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.AURORAL_CYPRESS_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_AURORAL_CYPRESS_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.AURORAL_CYPRESS_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.AURORAL_CYPRESS_LEAF_PILE, RenderLayer.getCutout());
 
 
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DARK_AMARANTH_DOOR, RenderLayer.getCutout());
@@ -160,7 +160,7 @@ public class PromenadeClient implements ClientModInitializer {
             }
             return BiomeColors.getGrassColor(world, pos);
         }, PromenadeBlocks.VERMILION_CARPETED_GRASS_BLOCK, PromenadeBlocks.FULVOUS_CARPETED_GRASS_BLOCK, PromenadeBlocks.MIKADO_CARPETED_GRASS_BLOCK);
-        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> GradientColors.getDuskFoliageColor(world, pos), PromenadeBlocks.DUSK_CYPRESS_LEAVES, PromenadeBlocks.DUSK_CYPRESS_LEAF_PILE);
+        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> GradientColors.getAuroralFoliageColor(world, pos), PromenadeBlocks.AURORAL_CYPRESS_LEAVES, PromenadeBlocks.AURORAL_CYPRESS_LEAF_PILE);
     }
 
     private static void registerItemColors() {
@@ -172,7 +172,7 @@ public class PromenadeClient implements ClientModInitializer {
         }, PromenadeBlocks.OAK_LEAF_PILE, PromenadeBlocks.SPRUCE_LEAF_PILE, PromenadeBlocks.BIRCH_LEAF_PILE, PromenadeBlocks.JUNGLE_LEAF_PILE, PromenadeBlocks.ACACIA_LEAF_PILE, PromenadeBlocks.DARK_OAK_LEAF_PILE, PromenadeBlocks.VERMILION_CARPETED_GRASS_BLOCK, PromenadeBlocks.FULVOUS_CARPETED_GRASS_BLOCK, PromenadeBlocks.MIKADO_CARPETED_GRASS_BLOCK, PromenadeBlocks.SNOWY_SPRUCE_LEAVES);
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> FoliageColors.getMangroveColor(), PromenadeBlocks.MANGROVE_LEAF_PILE);
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> SAP_MAPLE_COLOR, PromenadeBlocks.SAP_MAPLE_LEAVES, PromenadeBlocks.SAP_MAPLE_LEAF_PILE);
-        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> GradientColors.getDuskFoliageColor(null, null), PromenadeBlocks.DUSK_CYPRESS_LEAVES, PromenadeBlocks.DUSK_CYPRESS_LEAF_PILE);
+        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> GradientColors.getAuroralFoliageColor(null, null), PromenadeBlocks.AURORAL_CYPRESS_LEAVES, PromenadeBlocks.AURORAL_CYPRESS_LEAF_PILE);
     }
 
     public static void registerEntityRenderers() {

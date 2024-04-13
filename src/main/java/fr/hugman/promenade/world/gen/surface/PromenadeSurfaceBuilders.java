@@ -25,15 +25,15 @@ public class PromenadeSurfaceBuilders {
         MaterialRules.MaterialCondition belowWater = MaterialRules.waterWithStoneDepth(-6, -1);
         MaterialRules.MaterialCondition noiseCondition4 = MaterialRules.noiseThreshold(NoiseParametersKeys.SURFACE, -0.1, 0.1);
 
-        MaterialRules.MaterialRule duskCypressRule = MaterialRules.condition(MaterialRules.surface(), MaterialRules.condition(belowWater,
+        MaterialRules.MaterialRule auroralCypressRule = MaterialRules.condition(MaterialRules.surface(), MaterialRules.condition(belowWater,
                 MaterialRules.condition(STONE_DEPTH_FLOOR_WITH_SURFACE_DEPTH,
-                        MaterialRules.condition(MaterialRules.biome(PromenadeBiomeKeys.DUSK_CYPRESS_FOREST),
+                        MaterialRules.condition(MaterialRules.biome(PromenadeBiomeKeys.AURORAL_CYPRESS_FOREST),
                                 MaterialRules.sequence(
                                         MaterialRules.condition(noiseCondition4, CALCITE)))))
         );
 
         SurfaceGeneration.addOverworldSurfaceRules(Promenade.id("overworld_surfaces"),
-                MaterialRules.sequence(duskCypressRule));
+                MaterialRules.sequence(auroralCypressRule));
     }
 
     public static void addEndRules() {

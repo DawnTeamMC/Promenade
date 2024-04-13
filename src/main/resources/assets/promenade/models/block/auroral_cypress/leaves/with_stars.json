@@ -1,0 +1,7 @@
+{
+	"parent": "promenade:block/overlayed_leaves",
+	"textures": {
+		"all": "promenade:block/auroral_cypress/leaves/base",
+		"overlay": "promenade:block/auroral_cypress/leaves/stars"
+	}
+}

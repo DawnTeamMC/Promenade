@@ -35,5 +35,5 @@ public class PromenadeSaplingGenerators {
 
     public static final SaplingGenerator PALM_SAPLING_GENERATOR = new SaplingGenerator("palm", Optional.empty(), Optional.of(PromenadeConfiguredFeatureKeys.PALM), Optional.empty());
 
-    public static final SaplingGenerator DUSK_CYPRESS_SAPLING_GENERATOR = new SaplingGenerator("dusk", Optional.empty(), Optional.of(PromenadeConfiguredFeatureKeys.DUSK_CYPRESS), Optional.empty());
+    public static final SaplingGenerator AURORAL_CYPRESS_SAPLING_GENERATOR = new SaplingGenerator("auroral", Optional.empty(), Optional.of(PromenadeConfiguredFeatureKeys.AURORAL_CYPRESS), Optional.empty());
 }

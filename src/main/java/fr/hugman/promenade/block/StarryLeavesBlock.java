@@ -57,7 +57,6 @@ public class StarryLeavesBlock extends LeavesBlock {
                 var newState = state.with(HAS_STARS, true);
                 world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
                 world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
-                ;
                 // TODO: play sound
             }
         } else {
@@ -65,7 +64,6 @@ public class StarryLeavesBlock extends LeavesBlock {
                 var newState = state.with(HAS_STARS, false);
                 world.setBlockState(pos, newState, Block.NOTIFY_LISTENERS);
                 world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(newState));
-                ;
                 // TODO: play sound
             }
         }

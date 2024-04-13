@@ -244,39 +244,39 @@ public class PromenadeBlocks {
     public static final Block PALM_LEAF_PILE = of(PromenadeBlockKeys.PALM_LEAF_PILE, PromenadeFactory.leafPile());
 
 
-    /* ======== */
-    /*   DUSK   */
-    /* ======== */
-    private static final BlockSoundGroup DUSK_WOOD_SOUNDS = BlockSoundGroup.WOOD;
-    private static final MapColor DUSK_BARK_COLOR = MapColor.DEEPSLATE_GRAY;
-    private static final MapColor DUSK_WOOD_COLOR = MapColor.TERRACOTTA_WHITE;
-    private static final MapColor DUSK_LEAVES_COLOR = MapColor.BLUE;
+    /* =========== */
+    /*   AURORAL   */
+    /* =========== */
+    private static final BlockSoundGroup AURORAL_CYPRESS_WOOD_SOUNDS = BlockSoundGroup.WOOD;
+    private static final MapColor AURORAL_CYPRESS_BARK_COLOR = MapColor.DEEPSLATE_GRAY;
+    private static final MapColor AURORAL_CYPRESS_WOOD_COLOR = MapColor.TERRACOTTA_WHITE;
+    private static final MapColor AURORAL_CYPRESS_LEAVES_COLOR = MapColor.BLUE;
 
 
-    public static final Block STRIPPED_DUSK_CYPRESS_LOG = of(PromenadeBlockKeys.STRIPPED_DUSK_CYPRESS_LOG, new StrippedMapleLogBlock(DawnFactory.logSettings(DUSK_WOOD_COLOR, DUSK_WOOD_SOUNDS, true)));
-    public static final Block DUSK_CYPRESS_LOG = of(PromenadeBlockKeys.DUSK_CYPRESS_LOG, new MapleLogBlock(DawnFactory.logSettings(DUSK_WOOD_COLOR, DUSK_BARK_COLOR, DUSK_WOOD_SOUNDS, true).stripsInto(STRIPPED_DUSK_CYPRESS_LOG)));
-    public static final Block STRIPPED_DUSK_CYPRESS_WOOD = of(PromenadeBlockKeys.STRIPPED_DUSK_CYPRESS_WOOD, new PillarBlock(DawnFactory.logSettings(DUSK_WOOD_COLOR, DUSK_WOOD_SOUNDS, true)));
-    public static final Block DUSK_CYPRESS_WOOD = of(PromenadeBlockKeys.DUSK_CYPRESS_WOOD, new PillarBlock(DawnFactory.logSettings(DUSK_BARK_COLOR, DUSK_WOOD_SOUNDS, true).stripsInto(STRIPPED_DUSK_CYPRESS_WOOD)));
+    public static final Block STRIPPED_AURORAL_CYPRESS_LOG = of(PromenadeBlockKeys.STRIPPED_AURORAL_CYPRESS_LOG, new StrippedMapleLogBlock(DawnFactory.logSettings(AURORAL_CYPRESS_WOOD_COLOR, AURORAL_CYPRESS_WOOD_SOUNDS, true)));
+    public static final Block AURORAL_CYPRESS_LOG = of(PromenadeBlockKeys.AURORAL_CYPRESS_LOG, new MapleLogBlock(DawnFactory.logSettings(AURORAL_CYPRESS_WOOD_COLOR, AURORAL_CYPRESS_BARK_COLOR, AURORAL_CYPRESS_WOOD_SOUNDS, true).stripsInto(STRIPPED_AURORAL_CYPRESS_LOG)));
+    public static final Block STRIPPED_AURORAL_CYPRESS_WOOD = of(PromenadeBlockKeys.STRIPPED_AURORAL_CYPRESS_WOOD, new PillarBlock(DawnFactory.logSettings(AURORAL_CYPRESS_WOOD_COLOR, AURORAL_CYPRESS_WOOD_SOUNDS, true)));
+    public static final Block AURORAL_CYPRESS_WOOD = of(PromenadeBlockKeys.AURORAL_CYPRESS_WOOD, new PillarBlock(DawnFactory.logSettings(AURORAL_CYPRESS_BARK_COLOR, AURORAL_CYPRESS_WOOD_SOUNDS, true).stripsInto(STRIPPED_AURORAL_CYPRESS_WOOD)));
 
-    public static final Block DUSK_CYPRESS_PLANKS = of(PromenadeBlockKeys.DUSK_CYPRESS_PLANKS, DawnFactory.planks(DUSK_BARK_COLOR, DUSK_WOOD_SOUNDS, true));
-    public static final Block DUSK_CYPRESS_STAIRS = of(PromenadeBlockKeys.DUSK_CYPRESS_STAIRS, DawnFactory.stairs(DUSK_CYPRESS_PLANKS));
-    public static final Block DUSK_CYPRESS_SLAB = of(PromenadeBlockKeys.DUSK_CYPRESS_SLAB, DawnFactory.slab(DUSK_CYPRESS_PLANKS));
-    public static final Block DUSK_CYPRESS_FENCE = of(PromenadeBlockKeys.DUSK_CYPRESS_FENCE, DawnFactory.fence(DUSK_CYPRESS_PLANKS));
-    public static final Block DUSK_CYPRESS_FENCE_GATE = of(PromenadeBlockKeys.DUSK_CYPRESS_FENCE_GATE, DawnFactory.fenceGate(DUSK_CYPRESS_PLANKS, PromenadeWoodTypes.DUSK_CYPRESS));
-    public static final Block DUSK_CYPRESS_DOOR = of(PromenadeBlockKeys.DUSK_CYPRESS_DOOR, DawnFactory.door(DUSK_CYPRESS_PLANKS, PromenadeBlockSetTypes.DUSK_CYPRESS));
-    public static final Block DUSK_CYPRESS_TRAPDOOR = of(PromenadeBlockKeys.DUSK_CYPRESS_TRAPDOOR, DawnFactory.trapdoor(DUSK_CYPRESS_PLANKS, PromenadeBlockSetTypes.DUSK_CYPRESS));
-    public static final Block DUSK_CYPRESS_BUTTON = of(PromenadeBlockKeys.DUSK_CYPRESS_BUTTON, DawnFactory.woodenButton(DUSK_CYPRESS_PLANKS, PromenadeBlockSetTypes.DUSK_CYPRESS));
-    public static final Block DUSK_CYPRESS_PRESSURE_PLATE = of(PromenadeBlockKeys.DUSK_CYPRESS_PRESSURE_PLATE, DawnFactory.pressurePlate(DUSK_CYPRESS_PLANKS, PromenadeBlockSetTypes.DUSK_CYPRESS));
-    public static final Block DUSK_CYPRESS_SIGN = of(PromenadeBlockKeys.DUSK_CYPRESS_SIGN, PromenadeFactory.sign(false, false, Promenade.id("dusk_cypress"), DUSK_CYPRESS_PLANKS, DUSK_WOOD_SOUNDS));
-    public static final Block DUSK_CYPRESS_WALL_SIGN = of(PromenadeBlockKeys.DUSK_CYPRESS_WALL_SIGN, PromenadeFactory.sign(false, true, Promenade.id("dusk_cypress"), DUSK_CYPRESS_PLANKS, DUSK_WOOD_SOUNDS));
-    public static final Block DUSK_CYPRESS_HANGING_SIGN = of(PromenadeBlockKeys.DUSK_CYPRESS_HANGING_SIGN, PromenadeFactory.sign(true, false, Promenade.id("dusk_cypress"), DUSK_CYPRESS_PLANKS, BlockSoundGroup.HANGING_SIGN));
-    public static final Block DUSK_CYPRESS_WALL_HANGING_SIGN = of(PromenadeBlockKeys.DUSK_CYPRESS_WALL_HANGING_SIGN, PromenadeFactory.sign(true, true, Promenade.id("dusk_cypress"), DUSK_CYPRESS_PLANKS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block AURORAL_CYPRESS_PLANKS = of(PromenadeBlockKeys.AURORAL_CYPRESS_PLANKS, DawnFactory.planks(AURORAL_CYPRESS_BARK_COLOR, AURORAL_CYPRESS_WOOD_SOUNDS, true));
+    public static final Block AURORAL_CYPRESS_STAIRS = of(PromenadeBlockKeys.AURORAL_CYPRESS_STAIRS, DawnFactory.stairs(AURORAL_CYPRESS_PLANKS));
+    public static final Block AURORAL_CYPRESS_SLAB = of(PromenadeBlockKeys.AURORAL_CYPRESS_SLAB, DawnFactory.slab(AURORAL_CYPRESS_PLANKS));
+    public static final Block AURORAL_CYPRESS_FENCE = of(PromenadeBlockKeys.AURORAL_CYPRESS_FENCE, DawnFactory.fence(AURORAL_CYPRESS_PLANKS));
+    public static final Block AURORAL_CYPRESS_FENCE_GATE = of(PromenadeBlockKeys.AURORAL_CYPRESS_FENCE_GATE, DawnFactory.fenceGate(AURORAL_CYPRESS_PLANKS, PromenadeWoodTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_DOOR = of(PromenadeBlockKeys.AURORAL_CYPRESS_DOOR, DawnFactory.door(AURORAL_CYPRESS_PLANKS, PromenadeBlockSetTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_TRAPDOOR = of(PromenadeBlockKeys.AURORAL_CYPRESS_TRAPDOOR, DawnFactory.trapdoor(AURORAL_CYPRESS_PLANKS, PromenadeBlockSetTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_BUTTON = of(PromenadeBlockKeys.AURORAL_CYPRESS_BUTTON, DawnFactory.woodenButton(AURORAL_CYPRESS_PLANKS, PromenadeBlockSetTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_PRESSURE_PLATE = of(PromenadeBlockKeys.AURORAL_CYPRESS_PRESSURE_PLATE, DawnFactory.pressurePlate(AURORAL_CYPRESS_PLANKS, PromenadeBlockSetTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_SIGN = of(PromenadeBlockKeys.AURORAL_CYPRESS_SIGN, PromenadeFactory.sign(false, false, Promenade.id("auroral_cypress"), AURORAL_CYPRESS_PLANKS, AURORAL_CYPRESS_WOOD_SOUNDS));
+    public static final Block AURORAL_CYPRESS_WALL_SIGN = of(PromenadeBlockKeys.AURORAL_CYPRESS_WALL_SIGN, PromenadeFactory.sign(false, true, Promenade.id("auroral_cypress"), AURORAL_CYPRESS_PLANKS, AURORAL_CYPRESS_WOOD_SOUNDS));
+    public static final Block AURORAL_CYPRESS_HANGING_SIGN = of(PromenadeBlockKeys.AURORAL_CYPRESS_HANGING_SIGN, PromenadeFactory.sign(true, false, Promenade.id("auroral_cypress"), AURORAL_CYPRESS_PLANKS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block AURORAL_CYPRESS_WALL_HANGING_SIGN = of(PromenadeBlockKeys.AURORAL_CYPRESS_WALL_HANGING_SIGN, PromenadeFactory.sign(true, true, Promenade.id("auroral_cypress"), AURORAL_CYPRESS_PLANKS, BlockSoundGroup.HANGING_SIGN));
 
 
-    public static final Block DUSK_CYPRESS_SAPLING = of(PromenadeBlockKeys.DUSK_CYPRESS_SAPLING, DawnFactory.sapling(DUSK_LEAVES_COLOR, PromenadeSaplingGenerators.DUSK_CYPRESS_SAPLING_GENERATOR));
-    public static final Block POTTED_DUSK_CYPRESS_SAPLING = of(PromenadeBlockKeys.POTTED_DUSK_CYPRESS_SAPLING, DawnFactory.potted(DUSK_CYPRESS_SAPLING));
-    public static final Block DUSK_CYPRESS_LEAVES = of(PromenadeBlockKeys.DUSK_CYPRESS_LEAVES, PromenadeFactory.starryLeaves(DUSK_LEAVES_COLOR));
-    public static final Block DUSK_CYPRESS_LEAF_PILE = of(PromenadeBlockKeys.DUSK_CYPRESS_LEAF_PILE, PromenadeFactory.leafPile());
+    public static final Block AURORAL_CYPRESS_SAPLING = of(PromenadeBlockKeys.AURORAL_CYPRESS_SAPLING, DawnFactory.sapling(AURORAL_CYPRESS_LEAVES_COLOR, PromenadeSaplingGenerators.AURORAL_CYPRESS_SAPLING_GENERATOR));
+    public static final Block POTTED_AURORAL_CYPRESS_SAPLING = of(PromenadeBlockKeys.POTTED_AURORAL_CYPRESS_SAPLING, DawnFactory.potted(AURORAL_CYPRESS_SAPLING));
+    public static final Block AURORAL_CYPRESS_LEAVES = of(PromenadeBlockKeys.AURORAL_CYPRESS_LEAVES, PromenadeFactory.starryLeaves(AURORAL_CYPRESS_LEAVES_COLOR));
+    public static final Block AURORAL_CYPRESS_LEAF_PILE = of(PromenadeBlockKeys.AURORAL_CYPRESS_LEAF_PILE, PromenadeFactory.leafPile());
 
 
     /* ============ */
@@ -456,28 +456,28 @@ public class PromenadeBlocks {
             e.addAfter(ACACIA_LEAF_PILE, PALM_LEAF_PILE);
         });
 
-        // DUSK CYPRESS
+        // AURORAL CYPRESS
         ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> {
             e.addAfter(Blocks.SPRUCE_BUTTON,
-                    DUSK_CYPRESS_LOG,
-                    DUSK_CYPRESS_WOOD,
-                    STRIPPED_DUSK_CYPRESS_LOG,
-                    STRIPPED_DUSK_CYPRESS_WOOD,
-                    DUSK_CYPRESS_PLANKS,
-                    DUSK_CYPRESS_STAIRS,
-                    DUSK_CYPRESS_SLAB,
-                    DUSK_CYPRESS_FENCE,
-                    DUSK_CYPRESS_FENCE_GATE,
-                    DUSK_CYPRESS_DOOR,
-                    DUSK_CYPRESS_TRAPDOOR,
-                    DUSK_CYPRESS_PRESSURE_PLATE,
-                    DUSK_CYPRESS_BUTTON);
+                    AURORAL_CYPRESS_LOG,
+                    AURORAL_CYPRESS_WOOD,
+                    STRIPPED_AURORAL_CYPRESS_LOG,
+                    STRIPPED_AURORAL_CYPRESS_WOOD,
+                    AURORAL_CYPRESS_PLANKS,
+                    AURORAL_CYPRESS_STAIRS,
+                    AURORAL_CYPRESS_SLAB,
+                    AURORAL_CYPRESS_FENCE,
+                    AURORAL_CYPRESS_FENCE_GATE,
+                    AURORAL_CYPRESS_DOOR,
+                    AURORAL_CYPRESS_TRAPDOOR,
+                    AURORAL_CYPRESS_PRESSURE_PLATE,
+                    AURORAL_CYPRESS_BUTTON);
         });
         ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
-            e.addAfter(Blocks.SPRUCE_LOG, DUSK_CYPRESS_LOG);
-            e.addAfter(Blocks.SPRUCE_LEAVES, DUSK_CYPRESS_LEAVES);
-            e.addAfter(Blocks.SPRUCE_SAPLING, DUSK_CYPRESS_SAPLING);
-            e.addAfter(SPRUCE_LEAF_PILE, DUSK_CYPRESS_LEAF_PILE);
+            e.addAfter(Blocks.SPRUCE_LOG, AURORAL_CYPRESS_LOG);
+            e.addAfter(Blocks.SPRUCE_LEAVES, AURORAL_CYPRESS_LEAVES);
+            e.addAfter(Blocks.SPRUCE_SAPLING, AURORAL_CYPRESS_SAPLING);
+            e.addAfter(SPRUCE_LEAF_PILE, AURORAL_CYPRESS_LEAF_PILE);
         });
 
         // AMARANTH

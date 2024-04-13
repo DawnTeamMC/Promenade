@@ -160,31 +160,31 @@ public class PromenadeBlockKeys {
     public static final RegistryKey<Block> PALM_HANGING_LEAVES = of("palm_hanging_leaves");
     public static final RegistryKey<Block> PALM_LEAF_PILE = of("palm_leaf_pile");
 
-    /* ================ */
-    /*   DUSK CYPRESS   */
-    /* ================ */
-    public static final RegistryKey<Block> STRIPPED_DUSK_CYPRESS_LOG = of("stripped_dusk_cypress_log");
-    public static final RegistryKey<Block> DUSK_CYPRESS_LOG = of("dusk_cypress_log");
-    public static final RegistryKey<Block> STRIPPED_DUSK_CYPRESS_WOOD = of("stripped_dusk_cypress_wood");
-    public static final RegistryKey<Block> DUSK_CYPRESS_WOOD = of("dusk_cypress_wood");
-    public static final RegistryKey<Block> DUSK_CYPRESS_PLANKS = of("dusk_cypress_planks");
-    public static final RegistryKey<Block> DUSK_CYPRESS_STAIRS = of("dusk_cypress_stairs");
-    public static final RegistryKey<Block> DUSK_CYPRESS_SLAB = of("dusk_cypress_slab");
-    public static final RegistryKey<Block> DUSK_CYPRESS_FENCE = of("dusk_cypress_fence");
-    public static final RegistryKey<Block> DUSK_CYPRESS_FENCE_GATE = of("dusk_cypress_fence_gate");
-    public static final RegistryKey<Block> DUSK_CYPRESS_DOOR = of("dusk_cypress_door");
-    public static final RegistryKey<Block> DUSK_CYPRESS_TRAPDOOR = of("dusk_cypress_trapdoor");
-    public static final RegistryKey<Block> DUSK_CYPRESS_BUTTON = of("dusk_cypress_button");
-    public static final RegistryKey<Block> DUSK_CYPRESS_PRESSURE_PLATE = of("dusk_cypress_pressure_plate");
-    public static final RegistryKey<Block> DUSK_CYPRESS_SIGN = of("dusk_cypress_sign");
-    public static final RegistryKey<Block> DUSK_CYPRESS_WALL_SIGN = of("dusk_cypress_wall_sign");
-    public static final RegistryKey<Block> DUSK_CYPRESS_HANGING_SIGN = of("dusk_cypress_hanging_sign");
-    public static final RegistryKey<Block> DUSK_CYPRESS_WALL_HANGING_SIGN = of("dusk_cypress_wall_hanging_sign");
+    /* =================== */
+    /*   AURORAL CYPRESS   */
+    /* =================== */
+    public static final RegistryKey<Block> STRIPPED_AURORAL_CYPRESS_LOG = of("stripped_auroral_cypress_log");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_LOG = of("auroral_cypress_log");
+    public static final RegistryKey<Block> STRIPPED_AURORAL_CYPRESS_WOOD = of("stripped_auroral_cypress_wood");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_WOOD = of("auroral_cypress_wood");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_PLANKS = of("auroral_cypress_planks");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_STAIRS = of("auroral_cypress_stairs");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_SLAB = of("auroral_cypress_slab");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_FENCE = of("auroral_cypress_fence");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_FENCE_GATE = of("auroral_cypress_fence_gate");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_DOOR = of("auroral_cypress_door");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_TRAPDOOR = of("auroral_cypress_trapdoor");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_BUTTON = of("auroral_cypress_button");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_PRESSURE_PLATE = of("auroral_cypress_pressure_plate");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_SIGN = of("auroral_cypress_sign");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_WALL_SIGN = of("auroral_cypress_wall_sign");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_HANGING_SIGN = of("auroral_cypress_hanging_sign");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_WALL_HANGING_SIGN = of("auroral_cypress_wall_hanging_sign");
 
-    public static final RegistryKey<Block> DUSK_CYPRESS_SAPLING = of("dusk_cypress_sapling");
-    public static final RegistryKey<Block> POTTED_DUSK_CYPRESS_SAPLING = of("potted_dusk_cypress_sapling");
-    public static final RegistryKey<Block> DUSK_CYPRESS_LEAVES = of("dusk_cypress_leaves");
-    public static final RegistryKey<Block> DUSK_CYPRESS_LEAF_PILE = of("dusk_cypress_leaf_pile");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_SAPLING = of("auroral_cypress_sapling");
+    public static final RegistryKey<Block> POTTED_AURORAL_CYPRESS_SAPLING = of("potted_auroral_cypress_sapling");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_LEAVES = of("auroral_cypress_leaves");
+    public static final RegistryKey<Block> AURORAL_CYPRESS_LEAF_PILE = of("auroral_cypress_leaf_pile");
 
 
     /* ============ */

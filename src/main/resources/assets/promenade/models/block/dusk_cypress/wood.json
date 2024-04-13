@@ -1,7 +1,0 @@
-{
-	"parent": "block/cube_column",
-	"textures": {
-		"end": "promenade:block/dusk_cypress/log/side",
-		"side": "promenade:block/dusk_cypress/log/side"
-	}
-}

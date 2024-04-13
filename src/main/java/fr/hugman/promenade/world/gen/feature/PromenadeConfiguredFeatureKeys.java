@@ -38,7 +38,7 @@ public class PromenadeConfiguredFeatureKeys {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PALM = of("tree/palm");
 
-    public static final RegistryKey<ConfiguredFeature<?, ?>> DUSK_CYPRESS = of("tree/dusk_cypress");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> AURORAL_CYPRESS = of("tree/auroral_cypress");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PLANTED_AMARANTH_FUNGUS = of("amaranth_fungus/planted");
 

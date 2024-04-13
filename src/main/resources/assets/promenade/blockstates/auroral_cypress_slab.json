@@ -1,0 +1,13 @@
+{
+	"variants": {
+		"type=bottom": {
+			"model": "promenade:block/auroral_cypress/slab/bottom"
+		},
+		"type=top": {
+			"model": "promenade:block/auroral_cypress/slab/top"
+		},
+		"type=double": {
+			"model": "promenade:block/auroral_cypress/planks"
+		}
+	}
+}

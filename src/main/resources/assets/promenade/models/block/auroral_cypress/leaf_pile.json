@@ -1,0 +1,6 @@
+{
+	"parent": "promenade:block/pile",
+	"textures": {
+		"pile": "promenade:block/auroral_cypress/leaves"
+	}
+}

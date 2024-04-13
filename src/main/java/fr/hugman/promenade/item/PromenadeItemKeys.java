@@ -22,10 +22,10 @@ public class PromenadeItemKeys {
     public static final RegistryKey<Item> PALM_BOAT = of("palm_boat");
     public static final RegistryKey<Item> PALM_CHEST_BOAT = of("palm_chest_boat");
 
-    public static final RegistryKey<Item> DUSK_CYPRESS_SIGN = of("dusk_cypress_sign");
-    public static final RegistryKey<Item> DUSK_CYPRESS_HANGING_SIGN = of("dusk_cypress_hanging_sign");
-    public static final RegistryKey<Item> DUSK_CYPRESS_BOAT = of("dusk_cypress_boat");
-    public static final RegistryKey<Item> DUSK_CYPRESS_CHEST_BOAT = of("dusk_cypress_chest_boat");
+    public static final RegistryKey<Item> AURORAL_CYPRESS_SIGN = of("auroral_cypress_sign");
+    public static final RegistryKey<Item> AURORAL_CYPRESS_HANGING_SIGN = of("auroral_cypress_hanging_sign");
+    public static final RegistryKey<Item> AURORAL_CYPRESS_BOAT = of("auroral_cypress_boat");
+    public static final RegistryKey<Item> AURORAL_CYPRESS_CHEST_BOAT = of("auroral_cypress_chest_boat");
 
     public static final RegistryKey<Item> DARK_AMARANTH_SIGN = of("dark_amaranth_sign");
     public static final RegistryKey<Item> DARK_AMARANTH_HANGING_SIGN = of("dark_amaranth_hanging_sign");

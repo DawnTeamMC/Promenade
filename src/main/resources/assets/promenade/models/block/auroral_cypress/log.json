@@ -1,0 +1,7 @@
+{
+	"parent": "block/cube_column",
+	"textures": {
+		"end": "promenade:block/auroral_cypress/log/top",
+		"side": "promenade:block/auroral_cypress/log/side"
+	}
+}

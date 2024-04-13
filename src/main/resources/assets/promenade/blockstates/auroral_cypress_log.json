@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=y": {
+			"model": "promenade:block/auroral_cypress/log"
+		},
+		"axis=z": {
+			"model": "promenade:block/auroral_cypress/log",
+			"x": 90
+		},
+		"axis=x": {
+			"model": "promenade:block/auroral_cypress/log",
+			"x": 90,
+			"y": 90
+		}
+	}
+}

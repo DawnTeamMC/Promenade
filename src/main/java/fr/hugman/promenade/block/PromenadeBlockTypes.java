@@ -16,6 +16,7 @@ public class PromenadeBlockTypes {
     public static final MapCodec<MapleLogBlock> MAPLE_LOG = of("maple_log", MapleLogBlock.CODEC);
     public static final MapCodec<PileBlock> PILE = of("pile", PileBlock.CODEC);
     public static final MapCodec<SnowyLeavesBlock> SNOWY_LEAVES = of("snowy_leaves", SnowyLeavesBlock.CODEC);
+    public static final MapCodec<StarryLeavesBlock> STARRY_LEAVES = of("starry_leaves", StarryLeavesBlock.CODEC);
     public static final MapCodec<StrippedMapleLogBlock> STRIPPED_MAPLE_LOG = of("stripped_maple_log", StrippedMapleLogBlock.CODEC);
     public static final MapCodec<WitherRosePileBlock> WITHER_ROSE_PILE = of("wither_rose_pile", WitherRosePileBlock.CODEC);
 

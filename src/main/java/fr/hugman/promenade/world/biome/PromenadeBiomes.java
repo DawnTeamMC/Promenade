@@ -42,12 +42,12 @@ public class PromenadeBiomes {
         BiomePlacement.replaceOverworld(BiomeKeys.JAGGED_PEAKS, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
         BiomePlacement.replaceOverworld(BiomeKeys.GROVE, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
 
-        // Dusk Cypress
-        if (Promenade.CONFIG.biomes.dusk_cypress_weight <= 0) {
+        // Auroral Cypress
+        if (Promenade.CONFIG.biomes.auroral_cypress_weight <= 0) {
             return;
         }
-        double weight = Promenade.CONFIG.biomes.dusk_cypress_weight / 100.0D;
-        BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, PromenadeBiomeKeys.DUSK_CYPRESS_FOREST, weight);
+        double weight = Promenade.CONFIG.biomes.auroral_cypress_weight / 100.0D;
+        BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, PromenadeBiomeKeys.AURORAL_CYPRESS_FOREST, weight);
 
         // Dark Amaranth
         if (Promenade.CONFIG.biomes.dark_amaranth_forests_weight <= 0) {

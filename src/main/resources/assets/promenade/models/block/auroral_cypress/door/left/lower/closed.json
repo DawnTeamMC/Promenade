@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/door_bottom_left",
+	"textures": {
+		"bottom": "promenade:block/auroral_cypress/door/bottom",
+		"top": "promenade:block/auroral_cypress/door/top"
+	}
+}
