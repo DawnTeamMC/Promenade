@@ -46,26 +46,17 @@ public class PromenadeBiomes {
         if (Promenade.CONFIG.biomes.auroral_cypress_weight <= 0) {
             return;
         }
-        double weight = Promenade.CONFIG.biomes.auroral_cypress_weight / 100.0D;
-        BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, PromenadeBiomeKeys.AURORAL_CYPRESS_FOREST, weight);
+        double auroralCypressWeight = Promenade.CONFIG.biomes.auroral_cypress_weight / 100.0D;
+        BiomePlacement.replaceEnd(BiomeKeys.END_HIGHLANDS, PromenadeBiomeKeys.AURORAL_CYPRESS_FOREST, auroralCypressWeight);
+        BiomePlacement.replaceEnd(BiomeKeys.END_MIDLANDS, PromenadeBiomeKeys.AURORAL_CYPRESS_FOREST, auroralCypressWeight);
 
         // Dark Amaranth
         if (Promenade.CONFIG.biomes.dark_amaranth_forests_weight <= 0) {
             return;
         }
         double darkAmaranthForestWeight = Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 100.0D;
-        BiomePlacement.replaceEnd(BiomeKeys.END_HIGHLANDS, PromenadeBiomeKeys.TALL_DARK_AMARANTH_FOREST, darkAmaranthForestWeight);
-        BiomePlacement.replaceEnd(BiomeKeys.END_MIDLANDS, PromenadeBiomeKeys.DARK_AMARANTH_FOREST, darkAmaranthForestWeight);
-
-        MaterialRules.MaterialCondition isDarkAmaranthForest = MaterialRules.biome(PromenadeBiomeKeys.DARK_AMARANTH_FOREST, PromenadeBiomeKeys.TALL_DARK_AMARANTH_FOREST);
-        SurfaceGeneration.addEndSurfaceRules(Promenade.id("end_surface"), MaterialRules.sequence(
-                MaterialRules.condition(isDarkAmaranthForest,
-                        MaterialRules.condition(
-                                MaterialRules.STONE_DEPTH_FLOOR,
-                                VanillaSurfaceRules.block(PromenadeBlocks.BLACK_DYLIUM)
-                        )
-                ))
-        );
+        //BiomePlacement.replaceEnd(BiomeKeys.END_HIGHLANDS, PromenadeBiomeKeys.TALL_DARK_AMARANTH_FOREST, darkAmaranthForestWeight);
+        //BiomePlacement.replaceEnd(BiomeKeys.END_MIDLANDS, PromenadeBiomeKeys.DARK_AMARANTH_FOREST, darkAmaranthForestWeight);
     }
 
     /**

@@ -17,6 +17,8 @@ public class PromenadeBlockTags {
     public static final TagKey<Block> LEAF_PILES = of("leaf_piles");
     public static final TagKey<Block> FLOWER_PILES = of("flower_piles");
 
+    public static final TagKey<Block> AURORAL_CYPRESS_SAPLING_PLACEABLE_ON = of("placeable_on/auroral_cypress_sapling");
+
     public static final TagKey<Block> CAN_SPREAD_BLACK_DYLIUM = of("can_spread_black_dylium");
     public static final TagKey<Block> DARK_AMARANTH_FUNGUS_PLACEABLE_ON = of("placeable_on/dark_amaranth_fungus");
     public static final TagKey<Block> DARK_AMARANTH_FUNGUS_GROWABLE_ON = of("growable_on/dark_amaranth_fungus");

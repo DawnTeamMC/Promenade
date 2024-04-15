@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "promenade:black_dylium",
+    "minecraft:end_stone",
+    "#minecraft:dirt"
+  ]
+}

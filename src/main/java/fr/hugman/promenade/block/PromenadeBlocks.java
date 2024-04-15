@@ -272,8 +272,7 @@ public class PromenadeBlocks {
     public static final Block AURORAL_CYPRESS_HANGING_SIGN = of(PromenadeBlockKeys.AURORAL_CYPRESS_HANGING_SIGN, PromenadeFactory.sign(true, false, Promenade.id("auroral_cypress"), AURORAL_CYPRESS_PLANKS, BlockSoundGroup.HANGING_SIGN));
     public static final Block AURORAL_CYPRESS_WALL_HANGING_SIGN = of(PromenadeBlockKeys.AURORAL_CYPRESS_WALL_HANGING_SIGN, PromenadeFactory.sign(true, true, Promenade.id("auroral_cypress"), AURORAL_CYPRESS_PLANKS, BlockSoundGroup.HANGING_SIGN));
 
-
-    public static final Block AURORAL_CYPRESS_SAPLING = of(PromenadeBlockKeys.AURORAL_CYPRESS_SAPLING, DawnFactory.sapling(AURORAL_CYPRESS_LEAVES_COLOR, PromenadeSaplingGenerators.AURORAL_CYPRESS_SAPLING_GENERATOR));
+    public static final Block AURORAL_CYPRESS_SAPLING = of(PromenadeBlockKeys.AURORAL_CYPRESS_SAPLING, DawnFactory.sapling(AURORAL_CYPRESS_LEAVES_COLOR, PromenadeSaplingGenerators.AURORAL_CYPRESS_SAPLING_GENERATOR, state -> state.isIn(PromenadeBlockTags.AURORAL_CYPRESS_SAPLING_PLACEABLE_ON)));
     public static final Block POTTED_AURORAL_CYPRESS_SAPLING = of(PromenadeBlockKeys.POTTED_AURORAL_CYPRESS_SAPLING, DawnFactory.potted(AURORAL_CYPRESS_SAPLING));
     public static final Block AURORAL_CYPRESS_LEAVES = of(PromenadeBlockKeys.AURORAL_CYPRESS_LEAVES, PromenadeFactory.starryLeaves(AURORAL_CYPRESS_LEAVES_COLOR));
     public static final Block AURORAL_CYPRESS_LEAF_PILE = of(PromenadeBlockKeys.AURORAL_CYPRESS_LEAF_PILE, PromenadeFactory.leafPile());

@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 
 /**
- * Leaves block that can obtain stars on it at night.
+ * Leaves block that can grow stars at night.
  *
  * @author Hugman
  */
