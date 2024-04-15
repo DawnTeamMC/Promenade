@@ -203,5 +203,9 @@
   "text.autoconfig.promenade.option.animals.capybaras_weight": "Spawning weight of Capybaras",
   "text.autoconfig.promenade.option.animals.ducks_weight": "Spawning weight of Ducks",
   "text.autoconfig.promenade.option.monsters.lush_creepers_weight": "Spawning weight of Lush Creepers",
-  "text.autoconfig.promenade.option.monsters.sunkens_weight": "Spawning weight of Sunkens"
+  "text.autoconfig.promenade.option.monsters.sunkens_weight": "Spawning weight of Sunkens",
+  "painting.promenade.radical.title": "Radical",
+  "painting.promenade.radical.author": "Hugman",
+  "painting.promenade.nurture.title": "Nurture",
+  "painting.promenade.nurture.author": "Hugman"
 }
