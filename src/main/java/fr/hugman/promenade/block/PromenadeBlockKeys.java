@@ -216,6 +216,8 @@ public class PromenadeBlockKeys {
     public static final RegistryKey<Block> POTTED_DARK_AMARANTH_FUNGUS = of("potted_dark_amaranth_fungus");
 
 
+    public static final RegistryKey<Block> STAR_BITS = of("star_bits");
+
     public static final RegistryKey<Block> MOAI = of("moai");
 
     public static final RegistryKey<Block> BLUEBERRY_BUSH = of("blueberry_bush");

@@ -1,0 +1,16 @@
+{
+	"textures": {
+		"particle": "promenade:block/star_bits",
+		"star_bits": "promenade:block/star_bits"
+	},
+	"elements": [
+		{
+			"from": [0, 0.1, 0],
+			"to": [16, 0.1, 16],
+			"faces": {
+				"up": {"uv": [16, 0, 0, 16], "texture": "#star_bits"},
+				"down": {"uv": [16, 0, 0, 16], "texture": "#star_bits"}
+			}
+		}
+	]
+}

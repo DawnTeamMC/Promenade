@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "promenade:block/star_bits",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "promenade:block/star_bits",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "promenade:block/star_bits",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "promenade:block/star_bits",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "promenade:block/star_bits"
+    },
+    "facing=west": {
+      "model": "promenade:block/star_bits",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -101,13 +101,4 @@ public final class PromenadeFactory {
         var signTexture = Identifier.of(texturePath.getNamespace(), "entity/signs/" + texturePath.getPath());
         return wall ? new TerraformWallSignBlock(signTexture, settings) : new TerraformSignBlock(signTexture, settings);
     }
-
-    public static StarryLeavesBlock starryLeaves(MapColor mapColor) {
-        return starryLeaves(mapColor, BlockSoundGroup.GRASS);
-    }
-
-    public static StarryLeavesBlock starryLeaves(MapColor mapColor, BlockSoundGroup soundGroup) {
-        return new StarryLeavesBlock(DawnFactory.leavesSettings(mapColor, soundGroup)
-                .luminance(state -> state.get(StarryLeavesBlock.HAS_STARS) ? 8 : 0));
-    }
 }

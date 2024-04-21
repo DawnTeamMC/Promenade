@@ -1,10 +1,7 @@
 {
 	"variants": {
-		"has_stars=false": {
-			"model": "promenade:block/auroral_cypress/leaves/normal"
-		},
-		"has_stars=true": {
-			"model": "promenade:block/auroral_cypress/leaves/with_stars"
+		"": {
+			"model": "promenade:block/auroral_cypress/leaves"
 		}
 	}
 }
