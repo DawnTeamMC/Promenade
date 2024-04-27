@@ -6,6 +6,7 @@ import fr.hugman.dawn.item.ItemGroupHelper;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.PromenadeFactory;
 import fr.hugman.promenade.item.PromenadeItemKeys;
+import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.particle.PromenadeParticleTypes;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.village.TradeOfferUtils;
@@ -336,7 +337,7 @@ public class PromenadeBlocks {
 
     public static final Block BLUEBERRY_BUSH = of(PromenadeBlockKeys.BLUEBERRY_BUSH, BerryBushBlock.of(PromenadeItemKeys.BLUEBERRIES, false));
 
-    public static final Block STAR_BITS = of(PromenadeBlockKeys.STAR_BITS, StarBitsBlock.of());
+    public static final Block STAR_BITS = of(PromenadeBlockKeys.STAR_BITS, StarBitsBlock.of(MapColor.TERRACOTTA_WHITE));
 
     public static <B extends Block> B of(RegistryKey<Block> key, B block) {
         return Registry.register(Registries.BLOCK, key, block);
@@ -459,7 +460,7 @@ public class PromenadeBlocks {
 
         // AURORAL CYPRESS
         ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> {
-            e.addAfter(Blocks.SPRUCE_BUTTON,
+            e.addAfter(Blocks.CHERRY_BUTTON,
                     AURORAL_CYPRESS_LOG,
                     AURORAL_CYPRESS_WOOD,
                     STRIPPED_AURORAL_CYPRESS_LOG,
@@ -475,10 +476,10 @@ public class PromenadeBlocks {
                     AURORAL_CYPRESS_BUTTON);
         });
         ItemGroupHelper.append(ItemGroups.NATURAL, e -> {
-            e.addAfter(Blocks.SPRUCE_LOG, AURORAL_CYPRESS_LOG);
-            e.addAfter(Blocks.SPRUCE_LEAVES, AURORAL_CYPRESS_LEAVES);
-            e.addAfter(Blocks.SPRUCE_SAPLING, AURORAL_CYPRESS_SAPLING);
-            e.addAfter(SPRUCE_LEAF_PILE, AURORAL_CYPRESS_LEAF_PILE);
+            e.addAfter(Blocks.CHERRY_LOG, AURORAL_CYPRESS_LOG);
+            e.addAfter(Blocks.AZALEA_LEAVES, AURORAL_CYPRESS_LEAVES);
+            e.addAfter(Blocks.FLOWERING_AZALEA, AURORAL_CYPRESS_SAPLING);
+            e.addAfter(FLOWERING_AZALEA_LEAF_PILE, AURORAL_CYPRESS_LEAF_PILE);
         });
 
         // AMARANTH
@@ -504,6 +505,10 @@ public class PromenadeBlocks {
             e.addAfter(Blocks.WARPED_FUNGUS, DARK_AMARANTH_FUNGUS);
             e.addAfter(Blocks.WARPED_ROOTS, DARK_AMARANTH_ROOTS);
         });
+
+        // STARS
+        ItemGroupHelper.append(ItemGroups.NATURAL, e -> e.addAfter(Blocks.HONEY_BLOCK, STAR_BITS));
+        ItemGroupHelper.append(ItemGroups.INGREDIENTS, e -> e.addAfter(PromenadeItems.STAR_DUST, STAR_BITS));
 
         ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> e.addAfter(Blocks.CUT_RED_SANDSTONE_SLAB, MOAI));
     }

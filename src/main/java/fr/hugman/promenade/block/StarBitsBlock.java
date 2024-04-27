@@ -5,6 +5,7 @@ import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
@@ -43,19 +44,18 @@ public class StarBitsBlock extends Block implements Waterloggable {
         this.northShape = northShape;
     }
 
-    public static StarBitsBlock of() {
+    public static StarBitsBlock of(MapColor mapColor) {
         return new StarBitsBlock(
                 AbstractBlock.Settings.create()
-                        .mapColor(MapColor.TERRACOTTA_WHITE)
-                        .replaceable()
+                        .item()
+                        .mapColor(mapColor)
                         .noCollision()
-                        .strength(0.2f)
+                        .breakInstantly()
                         .sounds(BlockSoundGroup.LARGE_AMETHYST_BUD)
                         .luminance(state -> 9)
-                        .burnable()
                         .pistonBehavior(PistonBehavior.DESTROY),
-                Block.createCuboidShape(0.0, 15.0, 0.0, 16.0, 16.0, 16.0),
                 Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 1.0, 16.0),
+                Block.createCuboidShape(0.0, 15.0, 0.0, 16.0, 16.0, 16.0),
                 Block.createCuboidShape(0.0, 0.0, 0.0, 1.0, 16.0, 16.0),
                 Block.createCuboidShape(15.0, 0.0, 0.0, 16.0, 16.0, 16.0),
                 Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 1.0),
@@ -85,7 +85,8 @@ public class StarBitsBlock extends Block implements Waterloggable {
     protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         Direction direction = state.get(FACING);
         BlockPos blockPos = pos.offset(direction.getOpposite());
-        return world.getBlockState(blockPos).isSideSolidFullSquare(world, blockPos, direction);
+        BlockState placeOn = world.getBlockState(blockPos);
+        return placeOn.isIn(BlockTags.LEAVES) || SideShapeType.FULL.matches(placeOn, world, pos, direction);
     }
 
     @Override

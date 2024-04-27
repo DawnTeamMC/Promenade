@@ -54,6 +54,8 @@ public class PromenadeItems {
     public static final Item DUCK = of(PromenadeItemKeys.DUCK, new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F).build())));
     public static final Item COOKED_DUCK = of(PromenadeItemKeys.COOKED_DUCK, new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build())));
 
+    public static final Item STAR_DUST = of(PromenadeItemKeys.STAR_DUST);
+
     public static final Item CAPYBARA_SPAWN_EGG = of(PromenadeItemKeys.CAPYBARA_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.CAPYBARA, 0xa0704e, 0x433930)); //TODO: review colors
     public static final Item DUCK_SPAWN_EGG = of(PromenadeItemKeys.DUCK_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.DUCK, 10592673, 15904341));
     public static final Item LUSH_CREEPER_SPAWN_EGG = of(PromenadeItemKeys.LUSH_CREEPER_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.LUSH_CREEPER, 4347181, 4262661));
@@ -61,6 +63,14 @@ public class PromenadeItems {
 
     private static <O extends Item> O of(RegistryKey<Item> key, O item) {
         return Registry.register(Registries.ITEM, key, item);
+    }
+
+    private static Item of(RegistryKey<Item> key, Item.Settings settings) {
+        return of(key, new Item(settings));
+    }
+
+    private static Item of(RegistryKey<Item> key) {
+        return of(key, new Item(new Item.Settings()));
     }
 
     private static Item ofBoat(RegistryKey<Item> key, RegistryKey<TerraformBoatType> boatKey, boolean chest) {
@@ -84,8 +94,8 @@ public class PromenadeItems {
         ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.ACACIA_HANGING_SIGN, PALM_SIGN, PALM_HANGING_SIGN));
         ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Items.ACACIA_CHEST_BOAT, PALM_BOAT, PALM_CHEST_BOAT));
 
-        ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.SPRUCE_HANGING_SIGN, AURORAL_CYPRESS_SIGN, AURORAL_CYPRESS_HANGING_SIGN));
-        ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Items.SPRUCE_CHEST_BOAT, AURORAL_CYPRESS_BOAT, AURORAL_CYPRESS_CHEST_BOAT));
+        ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.CHERRY_HANGING_SIGN, AURORAL_CYPRESS_SIGN, AURORAL_CYPRESS_HANGING_SIGN));
+        ItemGroupHelper.append(ItemGroups.TOOLS, e -> e.addAfter(Items.CHERRY_CHEST_BOAT, AURORAL_CYPRESS_BOAT, AURORAL_CYPRESS_CHEST_BOAT));
 
         ItemGroupHelper.append(ItemGroups.FUNCTIONAL, e -> e.addAfter(Blocks.WARPED_HANGING_SIGN, DARK_AMARANTH_SIGN, DARK_AMARANTH_HANGING_SIGN));
 
@@ -96,6 +106,8 @@ public class PromenadeItems {
         });
 
         ItemGroupHelper.append(ItemGroups.FOOD_AND_DRINK, e -> e.addAfter(Items.COOKED_CHICKEN, DUCK, COOKED_DUCK));
+
+        ItemGroupHelper.append(ItemGroups.INGREDIENTS, e -> e.addAfter(Items.DISC_FRAGMENT_5, STAR_DUST));
 
         ItemGroupHelper.appendSpawnEgg(CAPYBARA_SPAWN_EGG);
         ItemGroupHelper.appendSpawnEgg(DUCK_SPAWN_EGG);
