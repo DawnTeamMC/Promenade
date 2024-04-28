@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "promenade:crafting/star_bits"
+    ]
+  },
+  "criteria": {
+    "has_star_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "promenade:star_dust"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "promenade:crafting/star_bits"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_star_dust",
+      "has_the_recipe"
+    ]
+  ]
+}
