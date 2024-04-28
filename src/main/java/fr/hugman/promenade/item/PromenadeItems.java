@@ -5,6 +5,7 @@ import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import com.terraformersmc.terraform.boat.impl.item.TerraformBoatItem;
 import fr.hugman.dawn.DawnFactory;
 import fr.hugman.dawn.item.ItemGroupHelper;
+import fr.hugman.promenade.banner.PromenadeBannerPatternTags;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.boat.PromenadeBoatTypeKeys;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
@@ -16,6 +17,7 @@ import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.tag.BannerPatternTags;
 
 public class PromenadeItems {
     public static final Item SAKURA_SIGN = of(PromenadeItemKeys.SAKURA_SIGN, new SignItem(new Item.Settings().maxCount(16), PromenadeBlocks.SAKURA_SIGN, PromenadeBlocks.SAKURA_WALL_SIGN));
@@ -48,6 +50,8 @@ public class PromenadeItems {
 
     public static final Item DUCK = of(PromenadeItemKeys.DUCK, new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F).build())));
     public static final Item COOKED_DUCK = of(PromenadeItemKeys.COOKED_DUCK, new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build())));
+
+    public static final Item BOVINE_BANNER_PATTERN = of(PromenadeItemKeys.BOVINE_BANNER_PATTERN, new BannerPatternItem(PromenadeBannerPatternTags.BOVINE_PATTERN_ITEM, new Item.Settings().maxCount(1)));
 
     public static final Item CAPYBARA_SPAWN_EGG = of(PromenadeItemKeys.CAPYBARA_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.CAPYBARA, 0xa0704e, 0x433930)); //TODO: review colors
     public static final Item DUCK_SPAWN_EGG = of(PromenadeItemKeys.DUCK_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.DUCK, 10592673, 15904341));
@@ -88,6 +92,8 @@ public class PromenadeItems {
         });
 
         ItemGroupHelper.append(ItemGroups.FOOD_AND_DRINK, e -> e.addAfter(Items.COOKED_CHICKEN, DUCK, COOKED_DUCK));
+
+        ItemGroupHelper.append(ItemGroups.INGREDIENTS, e -> e.addAfter(Items.FLOWER_BANNER_PATTERN, BOVINE_BANNER_PATTERN));
 
         ItemGroupHelper.appendSpawnEgg(CAPYBARA_SPAWN_EGG);
         ItemGroupHelper.appendSpawnEgg(DUCK_SPAWN_EGG);

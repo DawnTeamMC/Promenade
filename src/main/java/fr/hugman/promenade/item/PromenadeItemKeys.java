@@ -34,6 +34,8 @@ public class PromenadeItemKeys {
     public static final RegistryKey<Item> DUCK = of("duck");
     public static final RegistryKey<Item> COOKED_DUCK = of("cooked_duck");
 
+    public static final RegistryKey<Item> BOVINE_BANNER_PATTERN = of("bovine_banner_pattern");
+
     public static final RegistryKey<Item> CAPYBARA_SPAWN_EGG = of("capybara_spawn_egg");
     public static final RegistryKey<Item> DUCK_SPAWN_EGG = of("duck_spawn_egg");
     public static final RegistryKey<Item> LUSH_CREEPER_SPAWN_EGG = of("lush_creeper_spawn_egg");
