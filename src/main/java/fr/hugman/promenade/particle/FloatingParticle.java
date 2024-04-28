@@ -4,7 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.util.math.MathHelper;
 
 import java.util.Optional;
@@ -53,9 +53,9 @@ public class FloatingParticle extends SpriteBillboardParticle {
     }
 
     @Environment(value = EnvType.CLIENT)
-    public record BlossomFactory(SpriteProvider spriteProvider) implements ParticleFactory<DefaultParticleType> {
+    public record BlossomFactory(SpriteProvider spriteProvider) implements ParticleFactory<SimpleParticleType> {
         @Override
-        public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+        public Particle createParticle(SimpleParticleType simpleParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
             FloatingParticle particle = new FloatingParticle(clientWorld, this.spriteProvider, x, y, z, 0.0f, -0.8f, 0.0f) {
                 @Override
                 public Optional<ParticleGroup> getGroup() {
@@ -70,9 +70,9 @@ public class FloatingParticle extends SpriteBillboardParticle {
 
 
     @Environment(value = EnvType.CLIENT)
-    public record MapleLeafFactory(SpriteProvider spriteProvider) implements ParticleFactory<DefaultParticleType> {
+    public record MapleLeafFactory(SpriteProvider spriteProvider) implements ParticleFactory<SimpleParticleType> {
         @Override
-        public Particle createParticle(DefaultParticleType type, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+        public Particle createParticle(SimpleParticleType simpleParticleType, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
             FloatingParticle particle = new FloatingParticle(world, this.spriteProvider, x, y, z, 0.0f, -0.8f, 0.0f) {
                 @Override
                 public Optional<ParticleGroup> getGroup() {
