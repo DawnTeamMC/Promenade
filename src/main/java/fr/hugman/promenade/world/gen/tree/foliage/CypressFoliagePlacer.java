@@ -3,6 +3,7 @@ package fr.hugman.promenade.world.gen.tree.foliage;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.random.Random;
@@ -40,9 +41,11 @@ public class CypressFoliagePlacer extends FoliagePlacer {
 
                 int d = Math.abs(dx) + Math.abs(dz);
 
+                int k = MathHelper.ceil(Math.abs(Math.abs(dx) - Math.abs(dz)) / 2.0D);
+
                 // the further we are from the trunk, the lower the height
                 int y1 = Math.max(0, d - 1);
-                int y2 = Math.min(foliageHeight, foliageHeight - d * 3);
+                int y2 = Math.min(foliageHeight, foliageHeight - d * 3 - k);
 
                 if (y2 <= y1) continue;
 
