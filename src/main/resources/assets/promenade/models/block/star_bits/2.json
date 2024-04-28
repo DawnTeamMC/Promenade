@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"particle": "promenade:block/star_bits",
-		"star_bits": "promenade:block/star_bits"
+		"particle": "promenade:block/star_bits/2",
+		"star_bits": "promenade:block/star_bits/2"
 	},
 	"elements": [
 		{
