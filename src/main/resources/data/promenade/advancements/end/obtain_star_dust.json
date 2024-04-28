@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "id": "promenade:star_dust"
+    },
+    "title": {
+      "translate": "advancements.promenade.end.obtain_star_dust.title"
+    },
+    "description": {
+      "translate": "advancements.promenade.end.obtain_star_dust.description"
+    }
+  },
+  "parent": "minecraft:end/enter_end_gateway",
+  "criteria": {
+    "obtain_star_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": "promenade:star_dust"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "obtain_star_dust"
+    ]
+  ]
+}

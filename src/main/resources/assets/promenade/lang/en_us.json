@@ -213,6 +213,8 @@
   "advancements.promenade.adventure.kill_sunken_outside_water.description": "Kill a sunken that's outside of water using a crossbow while being submerged yourself",
   "advancements.promenade.husbandry.harvest_maple_syrup.title": "Don't Worry, Be Sappy!",
   "advancements.promenade.husbandry.harvest_maple_syrup.description": "Strip a natural Maple tree using an Axe to collect Maple Syrup with a Bottle",
+  "advancements.promenade.end.obtain_star_dust.title": "Rock Dust Light Star",
+  "advancements.promenade.end.obtain_star_dust.description": "Obtain Star Dust from an Auroral Cypress tree",
   "text.autoconfig.promenade.title": "Promenade Configuration",
   "text.autoconfig.promenade.category.biomes": "Biomes",
   "text.autoconfig.promenade.category.world_features": "World Features",
