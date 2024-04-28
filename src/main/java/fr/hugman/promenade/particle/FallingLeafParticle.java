@@ -4,7 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.particle.DefaultParticleType;
+import net.minecraft.particle.SimpleParticleType;
 
 @Environment(value = EnvType.CLIENT)
 public class FallingLeafParticle extends SpriteBillboardParticle {
@@ -69,9 +69,9 @@ public class FallingLeafParticle extends SpriteBillboardParticle {
     }
 
     @Environment(value = EnvType.CLIENT)
-    public record BlossomFactory(SpriteProvider spriteProvider) implements ParticleFactory<DefaultParticleType> {
+    public record BlossomFactory(SpriteProvider spriteProvider) implements ParticleFactory<SimpleParticleType> {
         @Override
-        public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+        public Particle createParticle(SimpleParticleType simpleParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
             FallingLeafParticle particle = new FallingLeafParticle(clientWorld, x, y, z, this.spriteProvider);
             //particle.bobbingAmplitude = MathHelper.nextBetween(clientWorld.random, 0.9f, 1.2f);
             //particle.maxAge = MathHelper.nextBetween(clientWorld.random, 500, 1000);
@@ -80,9 +80,9 @@ public class FallingLeafParticle extends SpriteBillboardParticle {
     }
 
     @Environment(value = EnvType.CLIENT)
-    public record MapleLeafFactory(SpriteProvider spriteProvider) implements ParticleFactory<DefaultParticleType> {
+    public record MapleLeafFactory(SpriteProvider spriteProvider) implements ParticleFactory<SimpleParticleType> {
         @Override
-        public Particle createParticle(DefaultParticleType defaultParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
+        public Particle createParticle(SimpleParticleType simpleParticleType, ClientWorld clientWorld, double x, double y, double z, double velocityX, double velocityY, double velocityZ) {
             FallingLeafParticle particle = new FallingLeafParticle(clientWorld, x, y, z, this.spriteProvider);
             //particle.bobbingAmplitude = MathHelper.nextBetween(world.random, 0.6f, 0.8f);
             //particle.maxAge = MathHelper.nextBetween(world.random, 500, 1000);

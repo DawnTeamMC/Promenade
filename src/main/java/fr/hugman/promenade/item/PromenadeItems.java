@@ -29,7 +29,7 @@ public class PromenadeItems {
     public static final Item MAPLE_CHEST_BOAT = ofBoat(PromenadeItemKeys.MAPLE_CHEST_BOAT, PromenadeBoatTypeKeys.MAPLE, true);
     public static final Item MAPLE_SYRUP_BOTTLE = of(PromenadeItemKeys.MAPLE_SYRUP_BOTTLE, new HoneyBottleItem(new Item.Settings()
             .maxCount(16)
-            .food(new FoodComponent.Builder().hunger(6).saturationModifier(0.1F).build())
+            .food(new FoodComponent.Builder().nutrition(6).saturationModifier(0.1F).build())
             .recipeRemainder(Items.GLASS_BOTTLE)));
 
     public static final Item PALM_SIGN = of(PromenadeItemKeys.PALM_SIGN, new SignItem(new Item.Settings().maxCount(16), PromenadeBlocks.PALM_SIGN, PromenadeBlocks.PALM_WALL_SIGN));
@@ -40,14 +40,14 @@ public class PromenadeItems {
     public static final Item DARK_AMARANTH_SIGN = of(PromenadeItemKeys.DARK_AMARANTH_SIGN, new SignItem(new Item.Settings().maxCount(16), PromenadeBlocks.DARK_AMARANTH_SIGN, PromenadeBlocks.DARK_AMARANTH_WALL_SIGN));
     public static final Item DARK_AMARANTH_HANGING_SIGN = of(PromenadeItemKeys.DARK_AMARANTH_HANGING_SIGN, new HangingSignItem(PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN, PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN, new Item.Settings().maxCount(16)));
 
-    public static final Item BLUEBERRIES = of(PromenadeItemKeys.BLUEBERRIES, new AliasedBlockItem(PromenadeBlocks.BLUEBERRY_BUSH, new Item.Settings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.1F).build()).compostingChance(0.30F)));
+    public static final Item BLUEBERRIES = of(PromenadeItemKeys.BLUEBERRIES, new AliasedBlockItem(PromenadeBlocks.BLUEBERRY_BUSH, new Item.Settings().food(new FoodComponent.Builder().nutrition(2).saturationModifier(0.1F).build()).compostingChance(0.30F)));
 
-    public static final Item BANANA = of(PromenadeItemKeys.BANANA, new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).build()).compostingChance(0.65F)));
-    public static final Item APRICOT = of(PromenadeItemKeys.APRICOT, new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).build()).compostingChance(0.65F)));
-    public static final Item MANGO = of(PromenadeItemKeys.MANGO, new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(4).saturationModifier(0.3F).build()).compostingChance(0.65F)));
+    public static final Item BANANA = of(PromenadeItemKeys.BANANA, new Item(new Item.Settings().food(new FoodComponent.Builder().nutrition(4).saturationModifier(0.3F).build()).compostingChance(0.65F)));
+    public static final Item APRICOT = of(PromenadeItemKeys.APRICOT, new Item(new Item.Settings().food(new FoodComponent.Builder().nutrition(4).saturationModifier(0.3F).build()).compostingChance(0.65F)));
+    public static final Item MANGO = of(PromenadeItemKeys.MANGO, new Item(new Item.Settings().food(new FoodComponent.Builder().nutrition(4).saturationModifier(0.3F).build()).compostingChance(0.65F)));
 
-    public static final Item DUCK = of(PromenadeItemKeys.DUCK, new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(2).saturationModifier(0.3F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F).build())));
-    public static final Item COOKED_DUCK = of(PromenadeItemKeys.COOKED_DUCK, new Item(new Item.Settings().food(new FoodComponent.Builder().hunger(6).saturationModifier(0.6F).build())));
+    public static final Item DUCK = of(PromenadeItemKeys.DUCK, new Item(new Item.Settings().food(new FoodComponent.Builder().nutrition(2).saturationModifier(0.3F).statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F).build())));
+    public static final Item COOKED_DUCK = of(PromenadeItemKeys.COOKED_DUCK, new Item(new Item.Settings().food(new FoodComponent.Builder().nutrition(6).saturationModifier(0.6F).build())));
 
     public static final Item CAPYBARA_SPAWN_EGG = of(PromenadeItemKeys.CAPYBARA_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.CAPYBARA, 0xa0704e, 0x433930)); //TODO: review colors
     public static final Item DUCK_SPAWN_EGG = of(PromenadeItemKeys.DUCK_SPAWN_EGG, DawnFactory.spawnEgg(PromenadeEntityTypes.DUCK, 10592673, 15904341));

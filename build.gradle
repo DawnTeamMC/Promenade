@@ -2,7 +2,7 @@ plugins {
     id 'fabric-loom' version '1.6-SNAPSHOT'
 }
 
-apply from: 'https://dawnteammc.github.io/resources/gradle_scripts/fabric-mod/java-17.gradle'
+apply from: 'https://dawnteammc.github.io/resources/gradle_scripts/fabric-mod/java-21.gradle'
 
 repositories {
     maven { url 'https://jitpack.io' }                // Required for Dawn API
