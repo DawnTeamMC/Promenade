@@ -26,10 +26,8 @@ public class ExtendedLeavesBlock extends LeavesBlock {
     public ExtendedLeavesBlock(AbstractBlock.Settings settings) {
         super(settings);
 
-        this.setDefaultState(this.stateManager.getDefaultState()
-                .with(DISTANCE, MAX_DISTANCE)
-                .with(PERSISTENT, false)
-                .with(WATERLOGGED, false));
+        this.setDefaultState(this.getDefaultState()
+                .with(DISTANCE, MAX_DISTANCE));
     }
 
     @Override

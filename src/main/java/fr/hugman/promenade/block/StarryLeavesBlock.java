@@ -1,7 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.datafixers.kinds.Applicative;
-import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.dawn.DawnFactory;
@@ -53,7 +51,7 @@ public class StarryLeavesBlock extends LeavesBlock {
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         super.randomTick(state, world, pos, random);
-        if (world.isNight()) {
+        if (world.getDimension().hasFixedTime() || world.isNight()) {
             if (random.nextInt(100) == 0) {
                 var block = world.getRegistryManager().get(RegistryKeys.BLOCK).getOrEmpty(this.starBits);
                 if (block.isEmpty()) {
