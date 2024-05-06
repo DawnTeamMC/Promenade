@@ -1,8 +1,10 @@
 package fr.hugman.promenade.entity;
 
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.item.PromenadeItemTags;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
-import fr.hugman.promenade.world.biome.PromenadeBiomeTags;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
@@ -21,10 +23,11 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -34,13 +37,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 
 import javax.annotation.Nullable;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
-public class DuckEntity extends AnimalEntity {
-    private static final TrackedData<Integer> DUCK_TYPE = DataTracker.registerData(DuckEntity.class, TrackedDataHandlerRegistry.INTEGER);
+public class DuckEntity extends AnimalEntity implements VariantHolder<RegistryEntry<DuckVariant>> {
+    private static final TrackedData<RegistryEntry<DuckVariant>> VARIANT = DataTracker.registerData(DuckEntity.class, PromenadeTrackedData.DUCK_VARIANT);
     private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityDimensions.changing(0.4F, 0.8F).scaled(0.5F).withEyeHeight(0.78125F);
-    public static final String TYPE_KEY = "type";
+
+    private static final Identifier DUCKLING_TEXTURE = Promenade.id("textures/entity/duck/duckling.png");
+
+    public static final String VARIANT_KEY = "variant";
 
     public float wingRotation;
     public float destPos;
@@ -60,20 +65,21 @@ public class DuckEntity extends AnimalEntity {
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
-        builder.add(DUCK_TYPE, 0);
+        builder.add(VARIANT, this.getRegistryManager().get(PromenadeRegistryKeys.DUCK_VARIANT).entryOf(DuckVariants.PEKIN));
     }
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @org.jetbrains.annotations.Nullable EntityData entityData) {
-        RegistryEntry<Biome> biomeEntry = world.getBiome(this.getBlockPos());
-
-        DuckEntity.Type type = DuckEntity.Type.fromBiome(biomeEntry);
-        if (entityData instanceof DuckEntity.DuckData) {
-            type = ((DuckEntity.DuckData) entityData).type;
+        RegistryEntry<Biome> registryEntry = world.getBiome(this.getBlockPos());
+        RegistryEntry<DuckVariant> variant;
+        if (entityData instanceof DuckData duckData) {
+            variant = duckData.variant;
         } else {
-            entityData = new DuckEntity.DuckData(type);
+            variant = DuckVariants.fromBiome(this.getRegistryManager(), registryEntry);
+            entityData = new DuckData(variant);
         }
-        this.setVariant(type);
+
+        this.setVariant(variant);
         return super.initialize(world, difficulty, spawnReason, entityData);
     }
 
@@ -95,15 +101,18 @@ public class DuckEntity extends AnimalEntity {
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound compound) {
-        super.writeCustomDataToNbt(compound);
-        compound.putString(TYPE_KEY, this.getVariant().getName());
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putString(VARIANT_KEY, (this.getVariant().getKey().orElse(DuckVariants.PEKIN)).getValue().toString());
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound compound) {
-        super.readCustomDataFromNbt(compound);
-        this.setVariant(DuckEntity.Type.byName(compound.getString(TYPE_KEY)));
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        Optional.ofNullable(Identifier.tryParse(nbt.getString(VARIANT_KEY)))
+                .map(variantId -> RegistryKey.of(PromenadeRegistryKeys.DUCK_VARIANT, variantId))
+                .flatMap(variantKey -> this.getRegistryManager().get(PromenadeRegistryKeys.DUCK_VARIANT).getEntry(variantKey))
+                .ifPresent(this::setVariant);
     }
 
     @Override
@@ -192,71 +201,25 @@ public class DuckEntity extends AnimalEntity {
         }
     }
 
-    public DuckEntity.Type getVariant() {
-        return DuckEntity.Type.fromId(this.dataTracker.get(DUCK_TYPE));
+    public RegistryEntry<DuckVariant> getVariant() {
+        return this.dataTracker.get(VARIANT);
     }
 
-    private void setVariant(DuckEntity.Type type) {
-        this.dataTracker.set(DUCK_TYPE, type.getIndex());
+    public void setVariant(RegistryEntry<DuckVariant> registryEntry) {
+        this.dataTracker.set(VARIANT, registryEntry);
     }
 
-    public enum Type {
-        PEKIN(0, "pekin", PromenadeBiomeTags.PEKIN_DUCK_SPAWN),
-        MALLARD(1, "mallard", PromenadeBiomeTags.MALLARD_DUCK_SPAWN);
-
-        private static final DuckEntity.Type[] typeList = Arrays.stream(values()).sorted(Comparator.comparingInt(DuckEntity.Type::getIndex)).toArray(Type[]::new);
-        private static final Map<String, DuckEntity.Type> TYPES_BY_NAME = Arrays.stream(values()).collect(Collectors.toMap(DuckEntity.Type::getName, (type) -> type));
-        private final int index;
-        private final String name;
-        private final TagKey<Biome> spawnBiomes;
-
-        Type(int indexIn, String nameIn, TagKey<Biome> spawnBiomes) {
-            this.index = indexIn;
-            this.name = nameIn;
-            this.spawnBiomes = spawnBiomes;
-        }
-
-        public static DuckEntity.Type byName(String name) {
-            return TYPES_BY_NAME.getOrDefault(name, PEKIN);
-        }
-
-        public static DuckEntity.Type fromId(int index) {
-            if (index < 0 || index > typeList.length) {
-                index = 0;
-            }
-            return typeList[index];
-        }
-
-        public static DuckEntity.Type fromBiome(RegistryEntry<Biome> biome) {
-            List<Type> shuffledList = Arrays.asList(typeList.clone());
-            Collections.shuffle(shuffledList);
-            for (DuckEntity.Type type : shuffledList) {
-                if (biome.isIn(type.getSpawnBiomes())) {
-                    return type;
-                }
-            }
-            return PEKIN;
-        }
-
-        public String getName() {
-            return this.name;
-        }
-
-        public TagKey<Biome> getSpawnBiomes() {
-            return this.spawnBiomes;
-        }
-
-        public int getIndex() {
-            return this.index;
-        }
+    public Identifier getTexture() {
+        if (this.isBaby()) return this.getVariant().value().babyTexture();
+        return this.getVariant().value().texture();
     }
 
     public static class DuckData extends PassiveEntity.PassiveData {
-        public final DuckEntity.Type type;
+        public final RegistryEntry<DuckVariant> variant;
 
-        public DuckData(DuckEntity.Type typeIn) {
+        public DuckData(RegistryEntry<DuckVariant> variant) {
             super(false);
-            this.type = typeIn;
+            this.variant = variant;
         }
     }
 }

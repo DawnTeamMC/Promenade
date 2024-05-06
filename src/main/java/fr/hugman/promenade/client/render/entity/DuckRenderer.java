@@ -1,6 +1,5 @@
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.client.render.entity.model.DuckModel;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.entity.DuckEntity;
@@ -13,16 +12,13 @@ import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
 public class DuckRenderer extends MobEntityRenderer<DuckEntity, DuckModel<DuckEntity>> {
-    private static final Identifier DUCKLING_TEXTURE = Promenade.id("textures/entity/duck/duckling.png");
-
     public DuckRenderer(EntityRendererFactory.Context context) {
         super(context, new DuckModel<>(context.getPart(PromenadeEntityModelLayers.DUCK)), 0.3F);
     }
 
     @Override
     public Identifier getTexture(DuckEntity entity) {
-        if (entity.isBaby()) return DUCKLING_TEXTURE;
-        return Promenade.id("textures/entity/duck/" + entity.getVariant().getName() + ".png");
+        return entity.getTexture();
     }
 
     protected float getAnimationProgress(DuckEntity entity, float tickDelta) {
