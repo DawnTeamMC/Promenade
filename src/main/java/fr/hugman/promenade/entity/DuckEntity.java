@@ -43,8 +43,6 @@ public class DuckEntity extends AnimalEntity implements VariantHolder<RegistryEn
     private static final TrackedData<RegistryEntry<DuckVariant>> VARIANT = DataTracker.registerData(DuckEntity.class, PromenadeTrackedData.DUCK_VARIANT);
     private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityDimensions.changing(0.4F, 0.8F).scaled(0.5F).withEyeHeight(0.78125F);
 
-    private static final Identifier DUCKLING_TEXTURE = Promenade.id("textures/entity/duck/duckling.png");
-
     public static final String VARIANT_KEY = "variant";
 
     public float wingRotation;
