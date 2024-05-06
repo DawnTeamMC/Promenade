@@ -6,7 +6,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
 public class PromenadePaintingVariantKeys {
-    public static final RegistryKey<PaintingVariant> RADICAL = of("radical");
+    public static final RegistryKey<PaintingVariant> OPTIMISM = of("optimism");
     public static final RegistryKey<PaintingVariant> NURTURE = of("nurture");
 
 
