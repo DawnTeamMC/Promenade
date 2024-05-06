@@ -7,6 +7,7 @@ import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
+import fr.hugman.promenade.entity.decoration.painting.PromenadePaintingVariants;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.registry.PromenadeRegistries;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
@@ -50,6 +51,8 @@ public class Promenade implements ModInitializer {
         PromenadeBiomes.appendWorldGen();
         PromenadePlacedFeatures.appendWorldGen();
         PromenadeEntityTypes.appendWorldGen();
+
+        PromenadePaintingVariants.register();
     }
 
     public static Identifier id(String path) {
