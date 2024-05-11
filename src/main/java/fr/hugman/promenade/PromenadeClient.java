@@ -146,6 +146,7 @@ public class PromenadeClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.BLUEBERRY_BUSH, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.STAR_BITS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.STAR_FRAGMENT, RenderLayer.getCutout());
     }
 
     private static final int SAP_MAPLE_COLOR = 10931465; // 'foliage_color' in 'carnelian_treeway.json'

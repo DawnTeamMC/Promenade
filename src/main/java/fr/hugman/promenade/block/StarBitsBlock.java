@@ -51,7 +51,7 @@ public class StarBitsBlock extends Block implements Waterloggable {
                         .mapColor(mapColor)
                         .noCollision()
                         .breakInstantly()
-                        .sounds(BlockSoundGroup.LARGE_AMETHYST_BUD)
+                        .sounds(BlockSoundGroup.SMALL_AMETHYST_BUD)
                         .luminance(state -> 9)
                         .pistonBehavior(PistonBehavior.DESTROY),
                 Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 1.0, 16.0),

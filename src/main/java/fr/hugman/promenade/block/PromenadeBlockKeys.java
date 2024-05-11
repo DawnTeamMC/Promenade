@@ -217,6 +217,7 @@ public class PromenadeBlockKeys {
 
 
     public static final RegistryKey<Block> STAR_BITS = of("star_bits");
+    public static final RegistryKey<Block> STAR_FRAGMENT = of("star_fragment");
 
     public static final RegistryKey<Block> MOAI = of("moai");
 

@@ -338,9 +338,14 @@ public class PromenadeBlocks {
     public static final Block BLUEBERRY_BUSH = of(PromenadeBlockKeys.BLUEBERRY_BUSH, BerryBushBlock.of(PromenadeItemKeys.BLUEBERRIES, false));
 
     public static final Block STAR_BITS = of(PromenadeBlockKeys.STAR_BITS, StarBitsBlock.of(MapColor.TERRACOTTA_WHITE));
+    public static final Block STAR_FRAGMENT = of(PromenadeBlockKeys.STAR_FRAGMENT, StarFragmentBlock.of(MapColor.TERRACOTTA_WHITE));
 
     public static <B extends Block> B of(RegistryKey<Block> key, B block) {
         return Registry.register(Registries.BLOCK, key, block);
+    }
+
+    public static Block of(RegistryKey<Block> key, AbstractBlock.Settings settings) {
+        return Registry.register(Registries.BLOCK, key, new Block(settings));
     }
 
     public static void appendItemGroups() {
@@ -507,7 +512,7 @@ public class PromenadeBlocks {
         });
 
         // STARS
-        ItemGroupHelper.append(ItemGroups.NATURAL, e -> e.addAfter(Blocks.HONEY_BLOCK, STAR_BITS));
+        ItemGroupHelper.append(ItemGroups.NATURAL, e -> e.addAfter(Blocks.HONEY_BLOCK, STAR_BITS, STAR_FRAGMENT));
         ItemGroupHelper.append(ItemGroups.INGREDIENTS, e -> e.addAfter(PromenadeItems.STAR_DUST, STAR_BITS));
 
         ItemGroupHelper.append(ItemGroups.BUILDING_BLOCKS, e -> e.addAfter(Blocks.CUT_RED_SANDSTONE_SLAB, MOAI));
