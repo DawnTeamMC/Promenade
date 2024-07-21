@@ -12,7 +12,7 @@ import fr.hugman.promenade.village.TradeOfferUtils;
 import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatureKeys;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 import net.minecraft.block.*;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -117,10 +117,10 @@ public class PromenadeBlocks {
     public static final Block SAKURA_TRAPDOOR = of(PromenadeBlockKeys.SAKURA_TRAPDOOR, DawnFactory.trapdoor(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
     public static final Block SAKURA_BUTTON = of(PromenadeBlockKeys.SAKURA_BUTTON, DawnFactory.woodenButton(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
     public static final Block SAKURA_PRESSURE_PLATE = of(PromenadeBlockKeys.SAKURA_PRESSURE_PLATE, DawnFactory.pressurePlate(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
-    public static final Block SAKURA_SIGN = of(PromenadeBlockKeys.SAKURA_SIGN, PromenadeFactory.sign(false, false, Promenade.id("sakura"), SAKURA_PLANKS, SAKURA_WOOD_SOUNDS));
-    public static final Block SAKURA_WALL_SIGN = of(PromenadeBlockKeys.SAKURA_WALL_SIGN, PromenadeFactory.sign(false, true, Promenade.id("sakura"), SAKURA_PLANKS, SAKURA_WOOD_SOUNDS));
-    public static final Block SAKURA_HANGING_SIGN = of(PromenadeBlockKeys.SAKURA_HANGING_SIGN, PromenadeFactory.sign(true, false, Promenade.id("sakura"), SAKURA_PLANKS, BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN));
-    public static final Block SAKURA_WALL_HANGING_SIGN = of(PromenadeBlockKeys.SAKURA_WALL_HANGING_SIGN, PromenadeFactory.sign(true, true, Promenade.id("sakura"), SAKURA_PLANKS, BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN));
+    public static final Block SAKURA_SIGN = of(PromenadeBlockKeys.SAKURA_SIGN, DawnFactory.sign(false, false, Promenade.id("sakura"), SAKURA_PLANKS, SAKURA_WOOD_SOUNDS));
+    public static final Block SAKURA_WALL_SIGN = of(PromenadeBlockKeys.SAKURA_WALL_SIGN, DawnFactory.sign(false, true, Promenade.id("sakura"), SAKURA_PLANKS, SAKURA_WOOD_SOUNDS));
+    public static final Block SAKURA_HANGING_SIGN = of(PromenadeBlockKeys.SAKURA_HANGING_SIGN, DawnFactory.sign(true, false, Promenade.id("sakura"), SAKURA_PLANKS, BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN));
+    public static final Block SAKURA_WALL_HANGING_SIGN = of(PromenadeBlockKeys.SAKURA_WALL_HANGING_SIGN, DawnFactory.sign(true, true, Promenade.id("sakura"), SAKURA_PLANKS, BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN));
 
     public static final Block BLUSH_SAKURA_SAPLING = of(PromenadeBlockKeys.BLUSH_SAKURA_SAPLING, DawnFactory.sapling(BLUSH_BLOSSOMS_COLOR, PromenadeSaplingGenerators.BLUSH_SAKURA_SAPLING_GENERATOR));
     public static final Block POTTED_BLUSH_SAKURA_SAPLING = of(PromenadeBlockKeys.POTTED_BLUSH_SAKURA_SAPLING, DawnFactory.potted(BLUSH_SAKURA_SAPLING));
@@ -160,10 +160,10 @@ public class PromenadeBlocks {
     public static final Block MAPLE_TRAPDOOR = of(PromenadeBlockKeys.MAPLE_TRAPDOOR, DawnFactory.trapdoor(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
     public static final Block MAPLE_BUTTON = of(PromenadeBlockKeys.MAPLE_BUTTON, DawnFactory.woodenButton(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
     public static final Block MAPLE_PRESSURE_PLATE = of(PromenadeBlockKeys.MAPLE_PRESSURE_PLATE, DawnFactory.pressurePlate(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
-    public static final Block MAPLE_SIGN = of(PromenadeBlockKeys.MAPLE_SIGN, PromenadeFactory.sign(false, false, Promenade.id("maple"), MAPLE_PLANKS, MAPLE_WOOD_SOUNDS));
-    public static final Block MAPLE_WALL_SIGN = of(PromenadeBlockKeys.MAPLE_WALL_SIGN, PromenadeFactory.sign(false, true, Promenade.id("maple"), MAPLE_PLANKS, MAPLE_WOOD_SOUNDS));
-    public static final Block MAPLE_HANGING_SIGN = of(PromenadeBlockKeys.MAPLE_HANGING_SIGN, PromenadeFactory.sign(true, false, Promenade.id("maple"), MAPLE_PLANKS, BlockSoundGroup.HANGING_SIGN));
-    public static final Block MAPLE_WALL_HANGING_SIGN = of(PromenadeBlockKeys.MAPLE_WALL_HANGING_SIGN, PromenadeFactory.sign(true, true, Promenade.id("maple"), MAPLE_PLANKS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block MAPLE_SIGN = of(PromenadeBlockKeys.MAPLE_SIGN, DawnFactory.sign(false, false, Promenade.id("maple"), MAPLE_PLANKS, MAPLE_WOOD_SOUNDS));
+    public static final Block MAPLE_WALL_SIGN = of(PromenadeBlockKeys.MAPLE_WALL_SIGN, DawnFactory.sign(false, true, Promenade.id("maple"), MAPLE_PLANKS, MAPLE_WOOD_SOUNDS));
+    public static final Block MAPLE_HANGING_SIGN = of(PromenadeBlockKeys.MAPLE_HANGING_SIGN, DawnFactory.sign(true, false, Promenade.id("maple"), MAPLE_PLANKS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block MAPLE_WALL_HANGING_SIGN = of(PromenadeBlockKeys.MAPLE_WALL_HANGING_SIGN, DawnFactory.sign(true, true, Promenade.id("maple"), MAPLE_PLANKS, BlockSoundGroup.HANGING_SIGN));
 
     public static final Block SAP_MAPLE_SAPLING = of(PromenadeBlockKeys.SAP_MAPLE_SAPLING, DawnFactory.sapling(MAPLE_SAP_LEAVES_COLOR, PromenadeSaplingGenerators.SAP_MAPLE_SAPLING_GENERATOR));
     public static final Block POTTED_SAP_MAPLE_SAPLING = of(PromenadeBlockKeys.POTTED_SAP_MAPLE_SAPLING, DawnFactory.potted(SAP_MAPLE_SAPLING));
@@ -212,10 +212,10 @@ public class PromenadeBlocks {
     public static final Block PALM_TRAPDOOR = of(PromenadeBlockKeys.PALM_TRAPDOOR, DawnFactory.trapdoor(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
     public static final Block PALM_BUTTON = of(PromenadeBlockKeys.PALM_BUTTON, DawnFactory.woodenButton(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
     public static final Block PALM_PRESSURE_PLATE = of(PromenadeBlockKeys.PALM_PRESSURE_PLATE, DawnFactory.pressurePlate(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
-    public static final Block PALM_SIGN = of(PromenadeBlockKeys.PALM_SIGN, PromenadeFactory.sign(false, false, Promenade.id("palm"), PALM_PLANKS, PALM_WOOD_SOUNDS));
-    public static final Block PALM_WALL_SIGN = of(PromenadeBlockKeys.PALM_WALL_SIGN, PromenadeFactory.sign(false, true, Promenade.id("palm"), PALM_PLANKS, PALM_WOOD_SOUNDS));
-    public static final Block PALM_HANGING_SIGN = of(PromenadeBlockKeys.PALM_HANGING_SIGN, PromenadeFactory.sign(true, false, Promenade.id("palm"), PALM_PLANKS, BlockSoundGroup.HANGING_SIGN));
-    public static final Block PALM_WALL_HANGING_SIGN = of(PromenadeBlockKeys.PALM_WALL_HANGING_SIGN, PromenadeFactory.sign(true, true, Promenade.id("palm"), PALM_PLANKS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block PALM_SIGN = of(PromenadeBlockKeys.PALM_SIGN, DawnFactory.sign(false, false, Promenade.id("palm"), PALM_PLANKS, PALM_WOOD_SOUNDS));
+    public static final Block PALM_WALL_SIGN = of(PromenadeBlockKeys.PALM_WALL_SIGN, DawnFactory.sign(false, true, Promenade.id("palm"), PALM_PLANKS, PALM_WOOD_SOUNDS));
+    public static final Block PALM_HANGING_SIGN = of(PromenadeBlockKeys.PALM_HANGING_SIGN, DawnFactory.sign(true, false, Promenade.id("palm"), PALM_PLANKS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block PALM_WALL_HANGING_SIGN = of(PromenadeBlockKeys.PALM_WALL_HANGING_SIGN, DawnFactory.sign(true, true, Promenade.id("palm"), PALM_PLANKS, BlockSoundGroup.HANGING_SIGN));
 
     public static final Block PALM_SAPLING = of(PromenadeBlockKeys.PALM_SAPLING, DawnFactory.sapling(PALM_LEAVES_COLOR, PromenadeSaplingGenerators.PALM_SAPLING_GENERATOR, state -> state.isIn(BlockTags.SAND)));
     public static final Block POTTED_PALM_SAPLING = of(PromenadeBlockKeys.POTTED_PALM_SAPLING, DawnFactory.potted(PALM_SAPLING));
@@ -255,7 +255,7 @@ public class PromenadeBlocks {
             AbstractBlock.Settings.create()
                     .item()
                     .mapColor(MapColor.BLACK)
-                    .instrument(Instrument.BASEDRUM)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresTool()
                     .strength(3.0F, 9.0F)
                     .sounds(BlockSoundGroup.NYLIUM)
@@ -289,16 +289,16 @@ public class PromenadeBlocks {
     public static final Block DARK_AMARANTH_TRAPDOOR = of(PromenadeBlockKeys.DARK_AMARANTH_TRAPDOOR, DawnFactory.trapdoor(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.AMARANTH));
     public static final Block DARK_AMARANTH_BUTTON = of(PromenadeBlockKeys.DARK_AMARANTH_BUTTON, DawnFactory.woodenButton(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.AMARANTH));
     public static final Block DARK_AMARANTH_PRESSURE_PLATE = of(PromenadeBlockKeys.DARK_AMARANTH_PRESSURE_PLATE, DawnFactory.pressurePlate(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.AMARANTH));
-    public static final Block DARK_AMARANTH_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_SIGN, PromenadeFactory.sign(false, false, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, AMARANTH_WOOD_SOUNDS));
-    public static final Block DARK_AMARANTH_WALL_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_WALL_SIGN, PromenadeFactory.sign(false, true, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, AMARANTH_WOOD_SOUNDS));
-    public static final Block DARK_AMARANTH_HANGING_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_HANGING_SIGN, PromenadeFactory.sign(true, false, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, BlockSoundGroup.HANGING_SIGN));
-    public static final Block DARK_AMARANTH_WALL_HANGING_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_WALL_HANGING_SIGN, PromenadeFactory.sign(true, true, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block DARK_AMARANTH_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_SIGN, DawnFactory.sign(false, false, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, AMARANTH_WOOD_SOUNDS));
+    public static final Block DARK_AMARANTH_WALL_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_WALL_SIGN, DawnFactory.sign(false, true, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, AMARANTH_WOOD_SOUNDS));
+    public static final Block DARK_AMARANTH_HANGING_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_HANGING_SIGN, DawnFactory.sign(true, false, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block DARK_AMARANTH_WALL_HANGING_SIGN = of(PromenadeBlockKeys.DARK_AMARANTH_WALL_HANGING_SIGN, DawnFactory.sign(true, true, Promenade.id("dark_amaranth"), DARK_AMARANTH_PLANKS, BlockSoundGroup.HANGING_SIGN));
 
     public static final Block DARK_AMARANTH_FUNGUS = of(PromenadeBlockKeys.DARK_AMARANTH_FUNGUS, DawnFactory.fungus(MapColor.PURPLE, PromenadeConfiguredFeatureKeys.PLANTED_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON));
     public static final Block POTTED_DARK_AMARANTH_FUNGUS = of(PromenadeBlockKeys.POTTED_DARK_AMARANTH_FUNGUS, DawnFactory.potted(DARK_AMARANTH_FUNGUS));
 
 
-    public static final Block MOAI = of(PromenadeBlockKeys.MOAI, new MoaiBlock(AbstractBlock.Settings.copy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).item(new Item.Settings().equipmentSlot(stack -> EquipmentSlot.HEAD))));
+    public static final Block MOAI = of(PromenadeBlockKeys.MOAI, new MoaiBlock(AbstractBlock.Settings.copy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY).item(new Item.Settings().equipmentSlot((entity, stack) -> EquipmentSlot.HEAD))));
 
     public static final Block BLUEBERRY_BUSH = of(PromenadeBlockKeys.BLUEBERRY_BUSH, BerryBushBlock.of(PromenadeItemKeys.BLUEBERRIES, false));
 

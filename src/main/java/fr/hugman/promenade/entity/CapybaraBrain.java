@@ -63,7 +63,7 @@ public class CapybaraBrain {
                 new StayAboveWaterTask(0.8f),
                 new WalkTask(1.0f),
                 new LookAroundTask(45, 90),
-                new WanderAroundTask(),
+                new MoveToTargetTask(),
                 new TemptationCooldownTask(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS),
                 new TemptationCooldownTask(MemoryModuleType.GAZE_COOLDOWN_TICKS)));
     }

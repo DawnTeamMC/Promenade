@@ -86,15 +86,15 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
+    public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
         if (this.child) {
             matrices.push();
             matrices.scale(BABY_SCALE, BABY_SCALE, BABY_SCALE);
             matrices.translate(0.0F, BABY_Y_OFFSET, 0.0F);
-            this.getPart().render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            this.getPart().render(matrices, vertices, light, overlay, color);
             matrices.pop();
         } else {
-            this.getPart().render(matrices, vertices, light, overlay, red, green, blue, alpha);
+            this.getPart().render(matrices, vertices, light, overlay, color);
         }
     }
 }

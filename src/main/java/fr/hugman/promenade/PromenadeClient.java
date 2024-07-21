@@ -21,10 +21,10 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.color.world.BiomeColors;
-import net.minecraft.client.color.world.FoliageColors;
-import net.minecraft.client.color.world.GrassColors;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.item.BlockItem;
+import net.minecraft.world.biome.FoliageColors;
+import net.minecraft.world.biome.GrassColors;
 
 @Environment(EnvType.CLIENT)
 public class PromenadeClient implements ClientModInitializer {

@@ -24,8 +24,8 @@ public class LushCreeperOverlayRenderer<T extends CreeperEntity> extends Feature
     }
 
     @Override
-    public void render(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, T creeperEntity, float f, float g, float h, float j, float k, float l) {
-        LushCreeperOverlayRenderer.render(this.getContextModel(), this.model, TEXTURE, matrixStack, vertexConsumerProvider, i, creeperEntity, f, g, j, k, l, h, 1.0f, 1.0f, 1.0f);
+    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, T entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
+        LushCreeperOverlayRenderer.render(this.getContextModel(), this.model, TEXTURE, matrices, vertexConsumers, light, entity, limbAngle, limbDistance, tickDelta, headYaw, headPitch, animationProgress, -1);
     }
 }
 

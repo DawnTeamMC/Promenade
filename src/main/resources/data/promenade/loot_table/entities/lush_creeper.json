@@ -18,7 +18,8 @@
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "function": "minecraft:enchanted_count_increase",
+              "enchantment": "minecraft:looting",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -48,7 +49,8 @@
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "function": "minecraft:enchanted_count_increase",
+              "enchantment": "minecraft:looting",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -69,7 +71,8 @@
               "add": false
             },
             {
-              "function": "minecraft:looting_enchant",
+              "function": "minecraft:enchanted_count_increase",
+              "enchantment": "minecraft:looting",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 0,
@@ -92,7 +95,7 @@
       "conditions": [
         {
           "condition": "minecraft:entity_properties",
-          "entity": "killer",
+          "entity": "attacker",
           "predicate": {
             "type": "#minecraft:skeletons"
           }

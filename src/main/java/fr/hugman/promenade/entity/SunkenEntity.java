@@ -125,8 +125,8 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         if (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem)) {
             this.shoot(this, 1.6F);
         } else {
-            ItemStack itemStack = this.getProjectileType(this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, Items.BOW)));
-            PersistentProjectileEntity persistentProjectileEntity = this.createArrowProjectile(itemStack, pullProgress);
+            ItemStack itemStack = this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, Items.BOW));
+            PersistentProjectileEntity persistentProjectileEntity = this.createArrowProjectile(this.getProjectileType(itemStack), pullProgress, itemStack);
             double d = target.getX() - this.getX();
             double e = target.getBodyY(0.3333333333333333D) - persistentProjectileEntity.getY();
             double f = target.getZ() - this.getZ();
@@ -142,8 +142,9 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         CrossbowUser.super.shoot(entity, speed);
     }
 
-    protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
-        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
+    @Override
+    protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier, @Nullable ItemStack shotFrom) {
+        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier, shotFrom);
         if (persistentProjectileEntity instanceof ArrowEntity) {
             ((ArrowEntity) persistentProjectileEntity).addEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 600));
         }
