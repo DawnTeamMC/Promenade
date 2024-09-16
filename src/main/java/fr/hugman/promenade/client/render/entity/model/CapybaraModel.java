@@ -1,5 +1,7 @@
 package fr.hugman.promenade.client.render.entity.model;
 
+import fr.hugman.animation_api.AnimationAPI;
+import fr.hugman.promenade.client.render.entity.animation.AnimationKeys;
 import fr.hugman.promenade.client.render.entity.animation.CapybaraAnimations;
 import fr.hugman.promenade.entity.CapybaraEntity;
 import net.fabricmc.api.EnvType;
@@ -57,7 +59,12 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
         if (capybara.canAngleHead()) {
             this.setHeadAngles(headYaw, headPitch);
         }
-        this.updateAnimations(capybara, animationProgress);
+        this.animateMovement(CapybaraAnimations.WALKING, limbAngle, limbDistance, 5.0f, 3.5f);
+        this.updateAnimation(capybara.earWiggleAnimState, AnimationAPI.INSTANCE.get(AnimationKeys.CAPYBARA_EAR_WIGGLE), animationProgress, capybara.getEarWiggleSpeed());
+        this.updateAnimation(capybara.fallToSleepAnimState, CapybaraAnimations.FALL_TO_SLEEP, animationProgress, 1.0F);
+        this.updateAnimation(capybara.sleepingAnimState, CapybaraAnimations.SLEEP, animationProgress, 1.0F);
+        this.updateAnimation(capybara.wakeUpAnimState, CapybaraAnimations.WAKE_UP, animationProgress, 1.0F);
+        this.updateAnimation(capybara.fartAnimState, CapybaraAnimations.FART, animationProgress, 1.0F);
     }
 
     public void setHeadAngles(float headYaw, float headPitch) {
@@ -71,18 +78,6 @@ public class CapybaraModel<E extends CapybaraEntity> extends SinglePartEntityMod
     @Override
     public ModelPart getPart() {
         return this.root;
-    }
-
-    private void updateAnimations(CapybaraEntity capybara, float progress) {
-        float v = (float) capybara.getVelocity().horizontalLengthSquared();
-        float speed = MathHelper.clamp(v * 400.0F, 0.3F, 2.0F);
-
-        this.updateAnimation(capybara.walkingAnimationState, CapybaraAnimations.WALKING, progress, speed * 2);
-        this.updateAnimation(capybara.earWiggleAnimState, CapybaraAnimations.EAR_WIGGLE, progress, capybara.getEarWiggleSpeed());
-        this.updateAnimation(capybara.fallToSleepAnimState, CapybaraAnimations.FALL_TO_SLEEP, progress, 1.0F);
-        this.updateAnimation(capybara.sleepingAnimState, CapybaraAnimations.SLEEP, progress, 1.0F);
-        this.updateAnimation(capybara.wakeUpAnimState, CapybaraAnimations.WAKE_UP, progress, 1.0F);
-        this.updateAnimation(capybara.fartAnimState, CapybaraAnimations.FART, progress, 1.0F);
     }
 
     @Override

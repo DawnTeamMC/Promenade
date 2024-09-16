@@ -1,6 +1,7 @@
 package fr.hugman.promenade;
 
 import com.google.common.reflect.Reflection;
+import fr.hugman.animation_api.AnimationAPI;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.boat.PromenadeBoatTypes;
 import fr.hugman.promenade.config.PromenadeConfig;
@@ -50,6 +51,8 @@ public class Promenade implements ModInitializer {
         PromenadeBiomes.appendWorldGen();
         PromenadePlacedFeatures.appendWorldGen();
         PromenadeEntityTypes.appendWorldGen();
+
+        AnimationAPI.init();
     }
 
     public static Identifier id(String path) {

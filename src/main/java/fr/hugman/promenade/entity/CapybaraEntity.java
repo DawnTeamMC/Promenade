@@ -272,7 +272,6 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
 
     private static final int EAR_WIGGLE_LENGHT = (int) (0.2f * SharedConstants.TICKS_PER_SECOND);
     private static final IntProvider EAR_WIGGLE_COOLDOWN_PROVIDER = BiasedToBottomIntProvider.create(EAR_WIGGLE_LENGHT, 64); // Minimum MUST be the length of the anim
-    public final AnimationState walkingAnimationState = new AnimationState();
     public final AnimationState earWiggleAnimState = new AnimationState();
     public final AnimationState fallToSleepAnimState = new AnimationState();
     public final AnimationState sleepingAnimState = new AnimationState();
@@ -292,35 +291,30 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
 
         switch (this.getState()) {
             case STANDING -> {
-                this.walkingAnimationState.setRunning((this.isOnGround() || this.hasControllingPassenger()) && this.getVelocity().horizontalLengthSquared() > 1.0E-6, this.age);
                 this.fallToSleepAnimState.stop();
                 this.sleepingAnimState.stop();
                 this.wakeUpAnimState.stop();
                 this.fartAnimState.stop();
             }
             case FALL_TO_SLEEP -> {
-                this.walkingAnimationState.stop();
                 this.fallToSleepAnimState.startIfNotRunning(this.age);
                 this.sleepingAnimState.stop();
                 this.wakeUpAnimState.stop();
                 this.fartAnimState.stop();
             }
             case SLEEPING -> {
-                this.walkingAnimationState.stop();
                 this.fallToSleepAnimState.stop();
                 this.sleepingAnimState.startIfNotRunning(this.age);
                 this.wakeUpAnimState.stop();
                 this.fartAnimState.stop();
             }
             case WAKE_UP -> {
-                this.walkingAnimationState.stop();
                 this.fallToSleepAnimState.stop();
                 this.sleepingAnimState.stop();
                 this.wakeUpAnimState.startIfNotRunning(this.age);
                 this.fartAnimState.stop();
             }
             case FARTING -> {
-                this.walkingAnimationState.stop();
                 this.fallToSleepAnimState.stop();
                 this.sleepingAnimState.stop();
                 this.wakeUpAnimState.stop();
