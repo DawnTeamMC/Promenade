@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
-    // inject before the second call to `this.setFrozenTicks()` in the method `public void tickMovement()`
     @Inject(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setFrozenTicks(I)V", ordinal = 1), cancellable = true)
     private void tickMovement(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;

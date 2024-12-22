@@ -13,9 +13,6 @@ Promenade is a mod for the latest version of Minecraft that adds a ton of featur
 
 **You can visit the [official wiki for Promenade for more information](https://dawnteammc.github.io/promenade).**
 
-## 👾 Features
-Due to a missing Fabric API module, versions from v2.5.0 to v4.0.0 require [TerraBlender](https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric) to be installed for overworld biomes to appear in your world.
-
 ### Biomes
 
 * **Sakura Groves** (japanese cherry blossoms)

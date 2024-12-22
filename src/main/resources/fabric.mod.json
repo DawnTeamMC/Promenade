@@ -23,9 +23,6 @@
     ],
     "client": [
       "fr.hugman.promenade.PromenadeClient"
-    ],
-    "modmenu": [
-      "fr.hugman.promenade.compat.PromenadeMMIntegration"
     ]
   },
   "mixins": [
@@ -34,7 +31,6 @@
   "accessWidener": "promenade.accesswidener",
   "depends": {
     "fabric-api": ">=0.83.1",
-    "cloth-config": "*",
     "biolith": "*"
   },
   "suggests": {
@@ -66,7 +62,6 @@
       ],
       "dependencies": [
         "farmingforblockheads(optional){curseforge:farming-for-blockheads-fabric}{modrinth:farming-for-blockheads}",
-        "cloth-config(embedded)",
         "biolith(embedded)"
       ]
     }

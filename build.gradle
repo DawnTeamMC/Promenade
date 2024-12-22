@@ -1,6 +1,13 @@
 plugins {
-    id 'fabric-loom' version '1.7-SNAPSHOT'
+    id 'fabric-loom' version '1.9+'
+    id 'maven-publish'
 }
+
+sourceCompatibility = JavaVersion.VERSION_21
+targetCompatibility = JavaVersion.VERSION_21
+
+archivesBaseName = project.mod_id
+group = "com.github.hugman"
 
 apply from: 'https://dawnteammc.github.io/resources/gradle_scripts/fabric-mod/java-21.gradle'
 
@@ -16,21 +23,44 @@ repositories {
 }
 
 dependencies {
-    modApi ("com.github.DawnTeamMC:DawnAPI:${dawn_version}"){
+    modApi ("com.terraformersmc:biolith-fabric:${biolith_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-
-    includeMod "com.terraformersmc:biolith-fabric:${biolith_version}"
-
-    /*
-    modImplementation ("curse.maven:columns-385230:${columns_version}"){
+    include ("com.terraformersmc:biolith-fabric:${biolith_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-     */
 
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
 
 loom {
     accessWidenerPath = file("src/main/resources/promenade.accesswidener")
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 21
+}
+
+java {
+    withSourcesJar()
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+}
+
+// for JitPack
+configurations.configureEach {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }

@@ -4,6 +4,7 @@ import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.config.PromenadeNewConfig;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -17,38 +18,36 @@ import net.minecraft.world.gen.surfacebuilder.VanillaSurfaceRules;
 
 public class PromenadeBiomes {
     public static void appendWorldGen() {
+        var biomeConfig = PromenadeNewConfig.get().biomes();
+
         // Sakura Groves
-        if (Promenade.CONFIG.biomes.sakura_groves_weight <= 0) {
-            return;
+        if (biomeConfig.sakuraGrovesWeight() > 0) {
+            double sakuraWeight = biomeConfig.sakuraGrovesWeight() / 100.0D;
+            BiomePlacement.replaceOverworld(BiomeKeys.FOREST, PromenadeBiomeKeys.BLUSH_SAKURA_GROVE, sakuraWeight);
+            BiomePlacement.replaceOverworld(BiomeKeys.BIRCH_FOREST, PromenadeBiomeKeys.COTTON_SAKURA_GROVE, sakuraWeight);
         }
-        double sakuraWeight = Promenade.CONFIG.biomes.sakura_groves_weight / 100.0D;
-        BiomePlacement.replaceOverworld(BiomeKeys.FOREST, PromenadeBiomeKeys.BLUSH_SAKURA_GROVE, sakuraWeight);
-        BiomePlacement.replaceOverworld(BiomeKeys.BIRCH_FOREST, PromenadeBiomeKeys.COTTON_SAKURA_GROVE, sakuraWeight);
 
         // Carnelian Treeway
-        if (Promenade.CONFIG.biomes.carnelian_treeway_weight <= 0) {
-            return;
+        if (biomeConfig.carnelianTreewayWeight() > 0) {
+            BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, PromenadeBiomeKeys.CARNELIAN_TREEWAY, biomeConfig.carnelianTreewayWeight() / 100.0D);
         }
-        BiomePlacement.replaceOverworld(BiomeKeys.PLAINS, PromenadeBiomeKeys.CARNELIAN_TREEWAY, Promenade.CONFIG.biomes.carnelian_treeway_weight / 100.0D);
 
         // Glacarian Taiga
-        if (Promenade.CONFIG.biomes.glacarian_taiga_weight <= 0) {
-            return;
+        if (biomeConfig.glacarianTaigaWeight() > 0) {
+            double glacarianTaigaWeight = biomeConfig.glacarianTaigaWeight() / 100.0D;
+            BiomePlacement.replaceOverworld(BiomeKeys.TAIGA, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
+            BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_TAIGA, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
+            BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_SLOPES, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
+            BiomePlacement.replaceOverworld(BiomeKeys.JAGGED_PEAKS, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
+            BiomePlacement.replaceOverworld(BiomeKeys.GROVE, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
         }
-        double glacarianTaigaWeight = Promenade.CONFIG.biomes.glacarian_taiga_weight / 100.0D;
-        BiomePlacement.replaceOverworld(BiomeKeys.TAIGA, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
-        BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_TAIGA, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
-        BiomePlacement.replaceOverworld(BiomeKeys.SNOWY_SLOPES, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
-        BiomePlacement.replaceOverworld(BiomeKeys.JAGGED_PEAKS, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
-        BiomePlacement.replaceOverworld(BiomeKeys.GROVE, PromenadeBiomeKeys.GLACARIAN_TAIGA, glacarianTaigaWeight);
 
 
-        if (Promenade.CONFIG.biomes.dark_amaranth_forests_weight <= 0) {
-            return;
+        if (biomeConfig.darkAmaranthForestsWeight() > 0) {
+            double darkAmaranthForestWeight = biomeConfig.darkAmaranthForestsWeight() / 100.0D;
+            BiomePlacement.replaceEnd(BiomeKeys.END_HIGHLANDS, PromenadeBiomeKeys.TALL_DARK_AMARANTH_FOREST, darkAmaranthForestWeight);
+            BiomePlacement.replaceEnd(BiomeKeys.END_MIDLANDS, PromenadeBiomeKeys.DARK_AMARANTH_FOREST, darkAmaranthForestWeight);
         }
-        double darkAmaranthForestWeight = Promenade.CONFIG.biomes.dark_amaranth_forests_weight / 100.0D;
-        BiomePlacement.replaceEnd(BiomeKeys.END_HIGHLANDS, PromenadeBiomeKeys.TALL_DARK_AMARANTH_FOREST, darkAmaranthForestWeight);
-        BiomePlacement.replaceEnd(BiomeKeys.END_MIDLANDS, PromenadeBiomeKeys.DARK_AMARANTH_FOREST, darkAmaranthForestWeight);
 
         MaterialRules.MaterialCondition isDarkAmaranthForest = MaterialRules.biome(PromenadeBiomeKeys.DARK_AMARANTH_FOREST, PromenadeBiomeKeys.TALL_DARK_AMARANTH_FOREST);
         SurfaceGeneration.addEndSurfaceRules(Promenade.id("end_surface"), MaterialRules.sequence(
