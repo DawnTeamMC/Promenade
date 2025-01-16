@@ -1,8 +1,12 @@
 package fr.hugman.promenade.entity;
 
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.Dynamic;
+import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
-import fr.hugman.promenade.item.PromenadeItemTags;
+import fr.hugman.promenade.entity.variant.CapybaraVariant;
+import fr.hugman.promenade.entity.variant.CapybaraVariants;
+import fr.hugman.promenade.tag.PromenadeItemTags;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import io.netty.buffer.ByteBuf;
@@ -24,9 +28,9 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -39,17 +43,42 @@ import net.minecraft.util.math.floatprovider.FloatProvider;
 import net.minecraft.util.math.floatprovider.TrapezoidFloatProvider;
 import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
+import net.minecraft.util.profiler.Profiler;
+import net.minecraft.util.profiler.Profilers;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Optional;
 import java.util.function.IntFunction;
 
 public class CapybaraEntity extends AnimalEntity implements VariantHolder<RegistryEntry<CapybaraVariant>> {
     private static final FloatProvider FART_CHANCE_PROVIDER = TrapezoidFloatProvider.create(0.1F, 0.55F, 0.2F);
     private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityDimensions.changing(0.7f, 0.875f).scaled(0.5F).withEyeHeight(0.5F);
+
+    public static final TrackedData<Long> LAST_STATE_TICK = DataTracker.registerData(CapybaraEntity.class, TrackedDataHandlerRegistry.LONG);
+    protected static final TrackedData<State> STATE = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_STATE);
+
+    public static final String VARIANT_KEY = "variant";
+    public static final String FART_CHANCE_KEY = "fart_chance";
+    public static final String LAST_STATE_TICK_KEY = "last_state_tick";
+    public static final String FARTING_KEY = "is_farting";
+    public static final String SLEEPING_KEY = "is_sleeping";
+
+    public static final MapCodec<RegistryEntry<CapybaraVariant>> VARIANT_MAP_CODEC = CapybaraVariant.ENTRY_CODEC.fieldOf(VARIANT_KEY);
+    public static final Codec<RegistryEntry<CapybaraVariant>> VARIANT_ENTRY_CODEC = VARIANT_MAP_CODEC.codec();
+
+    private static final TrackedData<RegistryEntry<CapybaraVariant>> VARIANT = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_VARIANT);
+    private static final TrackedData<Float> FART_CHANCE = DataTracker.registerData(CapybaraEntity.class, TrackedDataHandlerRegistry.FLOAT);
+
+    private static final int EAR_WIGGLE_LENGHT = (int) (0.2f * SharedConstants.TICKS_PER_SECOND);
+    private static final IntProvider EAR_WIGGLE_COOLDOWN_PROVIDER = BiasedToBottomIntProvider.create(EAR_WIGGLE_LENGHT, 64); // Minimum MUST be the length of the anim
+    public final AnimationState earWiggleAnimState = new AnimationState();
+    public final AnimationState fallToSleepAnimState = new AnimationState();
+    public final AnimationState sleepingAnimState = new AnimationState();
+    public final AnimationState wakeUpAnimState = new AnimationState();
+    public final AnimationState fartAnimState = new AnimationState();
+    public int earWiggleCooldown = 0;
 
     public CapybaraEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -66,15 +95,16 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     }
 
     @Override
-    protected void mobTick() {
-        this.getWorld().getProfiler().push("capybaraBrain");
+    protected void mobTick(ServerWorld world) {
+        Profiler profiler = Profilers.get();
+        profiler.push("capybaraBrain");
         Brain<CapybaraEntity> brain = (Brain<CapybaraEntity>) this.getBrain();
         brain.tick((ServerWorld) this.getWorld(), this);
-        this.getWorld().getProfiler().pop();
-        this.getWorld().getProfiler().push("capybaraActivityUpdate");
+        profiler.pop();
+        profiler.push("capybaraActivityUpdate");
         CapybaraBrain.updateActivities(this);
-        this.getWorld().getProfiler().pop();
-        super.mobTick();
+        profiler.pop();
+        super.mobTick(world);
     }
 
     @Override
@@ -107,9 +137,9 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     }
 
     public static DefaultAttributeContainer.Builder createCapybaraAttributes() {
-        return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 10.0)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2);
+        return createAnimalAttributes()
+                .add(EntityAttributes.MAX_HEALTH, 10.0)
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.2);
     }
 
     @Override
@@ -172,13 +202,40 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     public static final long WAKE_UP_LENGTH = (long) (SharedConstants.TICKS_PER_SECOND * 5.791677f);
     public static final long FART_LENGTH = (long) (SharedConstants.TICKS_PER_SECOND * 3.8343335f);
 
+    public CapybaraEntity startState(CapybaraEntity.State state) {
+        switch (state) {
+            case IDLING -> {
+                this.setState(State.IDLING);
+                this.setLastStateTick(this.getWorld().getTime() - WAKE_UP_LENGTH);
+            }
+            case FARTING -> {
+                this.playSound(PromenadeSoundEvents.CAPYBARA_FART, getSoundVolume(), getSoundPitch());
+                this.setState(State.FARTING);
+                this.setLastStateTick(this.getWorld().getTime());
+            }
+            case FALL_TO_SLEEP -> {
+                this.setState(State.FALL_TO_SLEEP);
+                this.setLastStateTick(this.getWorld().getTime());
+            }
+            case SLEEPING -> {
+                this.setState(State.SLEEPING);
+                this.setLastStateTick(this.getWorld().getTime());
+            }
+            case WAKE_UP -> {
+                this.setState(State.WAKE_UP);
+                this.setLastStateTick(this.getWorld().getTime());
+            }
+        }
+        return this;
+    }
+
     private void updateState() {
         if (this.isFarting() && this.getLastStateTickDelta() > FART_LENGTH) {
             this.standUp();
         }
         if (this.isFallingToSleep() && this.getLastStateTickDelta() > FALL_TO_SLEEP_LENGTH) {
             if (this.canSleep()) {
-                this.sleep();
+                this.startState(State.SLEEPING);
             } else {
                 if (this.canStopSleeping()) {
                     this.stopSleeping();
@@ -200,11 +257,6 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
 
     public boolean canFallToSleep() {
         return this.isStanding() && !this.isPanicking() && !this.isFarting();
-    }
-
-    public void fallToSleep() {
-        this.setState(State.FALL_TO_SLEEP);
-        this.setLastStateTick(this.getWorld().getTime());
     }
 
     // SLEEP
@@ -240,11 +292,11 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     // STAND
 
     public boolean isStanding() {
-        return this.getState() == State.STANDING;
+        return this.getState() == State.IDLING;
     }
 
     public void standUp() {
-        this.setState(State.STANDING);
+        this.setState(State.IDLING);
         this.setLastStateTick(this.getWorld().getTime() - WAKE_UP_LENGTH);
     }
 
@@ -254,31 +306,11 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
         return this.getState() == State.FARTING;
     }
 
-    public boolean canFart() {
-        return !this.isFarting() && !this.isPanicking() && !this.isAsleep() && this.random.nextFloat() < this.getFartChance();
-    }
-
-    public void fart() {
-        this.playSound(PromenadeSoundEvents.CAPYBARA_FART, getSoundVolume(), getSoundPitch());
-        this.setState(State.FARTING);
-        this.setLastStateTick(this.getWorld().getTime());
-    }
-
 
 
     /*================*/
     /*   ANIMATIONS   */
     /*================*/
-
-    private static final int EAR_WIGGLE_LENGHT = (int) (0.2f * SharedConstants.TICKS_PER_SECOND);
-    private static final IntProvider EAR_WIGGLE_COOLDOWN_PROVIDER = BiasedToBottomIntProvider.create(EAR_WIGGLE_LENGHT, 64); // Minimum MUST be the length of the anim
-    public final AnimationState walkingAnimationState = new AnimationState();
-    public final AnimationState earWiggleAnimState = new AnimationState();
-    public final AnimationState fallToSleepAnimState = new AnimationState();
-    public final AnimationState sleepingAnimState = new AnimationState();
-    public final AnimationState wakeUpAnimState = new AnimationState();
-    public final AnimationState fartAnimState = new AnimationState();
-    private int earWiggleCooldown = 0;
 
     @Environment(EnvType.CLIENT)
     private void updateAnimations() {
@@ -289,44 +321,31 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
             --this.earWiggleCooldown;
 
         }
+    }
 
-        switch (this.getState()) {
-            case STANDING -> {
-                this.walkingAnimationState.setRunning((this.isOnGround() || this.hasControllingPassenger()) && this.getVelocity().horizontalLengthSquared() > 1.0E-6, this.age);
-                this.fallToSleepAnimState.stop();
-                this.sleepingAnimState.stop();
-                this.wakeUpAnimState.stop();
-                this.fartAnimState.stop();
-            }
-            case FALL_TO_SLEEP -> {
-                this.walkingAnimationState.stop();
-                this.fallToSleepAnimState.startIfNotRunning(this.age);
-                this.sleepingAnimState.stop();
-                this.wakeUpAnimState.stop();
-                this.fartAnimState.stop();
-            }
-            case SLEEPING -> {
-                this.walkingAnimationState.stop();
-                this.fallToSleepAnimState.stop();
-                this.sleepingAnimState.startIfNotRunning(this.age);
-                this.wakeUpAnimState.stop();
-                this.fartAnimState.stop();
-            }
-            case WAKE_UP -> {
-                this.walkingAnimationState.stop();
-                this.fallToSleepAnimState.stop();
-                this.sleepingAnimState.stop();
-                this.wakeUpAnimState.startIfNotRunning(this.age);
-                this.fartAnimState.stop();
-            }
-            case FARTING -> {
-                this.walkingAnimationState.stop();
-                this.fallToSleepAnimState.stop();
-                this.sleepingAnimState.stop();
-                this.wakeUpAnimState.stop();
-                this.fartAnimState.startIfNotRunning(this.age);
-            }
+    private void stopAnimations() {
+        this.fallToSleepAnimState.stop();
+        this.sleepingAnimState.stop();
+        this.wakeUpAnimState.stop();
+        this.fartAnimState.stop();
+    }
+
+    @Override
+    public void onTrackedDataSet(TrackedData<?> data) {
+        if (STATE.equals(data)) {
+            var state = this.getState();
+            this.stopAnimations();
+            AnimationState animstate = (switch (state) {
+                case FALL_TO_SLEEP -> this.fallToSleepAnimState;
+                case SLEEPING -> this.sleepingAnimState;
+                case WAKE_UP -> this.wakeUpAnimState;
+                case FARTING -> this.fartAnimState;
+                case null, default -> null;
+            });
+            if(animstate != null) animstate.startIfNotRunning(this.age);
         }
+
+        super.onTrackedDataSet(data);
     }
 
     @Environment(EnvType.CLIENT)
@@ -387,21 +406,18 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     /*   VARIANTS   */
     /*==============*/
 
-    private static final TrackedData<RegistryEntry<CapybaraVariant>> VARIANT = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_VARIANT);
-    private static final TrackedData<Float> FART_CHANCE = DataTracker.registerData(CapybaraEntity.class, TrackedDataHandlerRegistry.FLOAT);
-
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        var capy = PromenadeEntityTypes.CAPYBARA.create(this.getWorld());
-        if (capy != null && entity instanceof CapybaraEntity capyParent) {
+        var babyCapy = PromenadeEntityTypes.CAPYBARA.create(this.getWorld(), SpawnReason.BREEDING);
+        if (babyCapy != null && entity instanceof CapybaraEntity capyMama) {
             if (this.random.nextBoolean()) {
-                capy.setVariant(this.getVariant());
+                babyCapy.setVariant(this.getVariant());
             } else {
-                capy.setVariant(capyParent.getVariant());
+                babyCapy.setVariant(capyMama.getVariant());
             }
         }
-        return capy;
+        return babyCapy;
     }
 
     @Override
@@ -428,28 +444,20 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     /*   DATA   */
     /*==========*/
 
-    public static final TrackedData<Long> LAST_STATE_TICK = DataTracker.registerData(CapybaraEntity.class, TrackedDataHandlerRegistry.LONG);
-    protected static final TrackedData<State> STATE = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_STATE);
-
-    public static final String VARIANT_KEY = "variant";
-    public static final String FART_CHANCE_KEY = "fart_chance";
-    public static final String LAST_STATE_TICK_KEY = "last_state_tick";
-    public static final String FARTING_KEY = "is_farting";
-    public static final String SLEEPING_KEY = "is_sleeping";
-
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
-        builder.add(VARIANT, this.getRegistryManager().get(PromenadeRegistryKeys.CAPYBARA_VARIANT).entryOf(CapybaraVariants.BROWN));
+        builder.add(VARIANT, this.getRegistryManager().getOrThrow(PromenadeRegistryKeys.CAPYBARA_VARIANT).getOrThrow(CapybaraVariants.DEFAULT));
         builder.add(FART_CHANCE, 0.0f);
-        builder.add(STATE, State.STANDING);
+        builder.add(STATE, State.IDLING);
         builder.add(LAST_STATE_TICK, -WAKE_UP_LENGTH);
     }
 
     @Override
     public void writeCustomDataToNbt(NbtCompound nbt) {
         super.writeCustomDataToNbt(nbt);
-        nbt.putString(VARIANT_KEY, (this.getVariant().getKey().orElse(CapybaraVariants.BROWN)).getValue().toString());
+
+        VARIANT_ENTRY_CODEC.encodeStart(this.getRegistryManager().getOps(NbtOps.INSTANCE), this.getVariant()).ifSuccess(nbtElement -> nbt.copyFrom((NbtCompound) nbtElement));
         nbt.putFloat(FART_CHANCE_KEY, this.getFartChance());
         nbt.putLong(LAST_STATE_TICK_KEY, this.dataTracker.get(LAST_STATE_TICK));
         nbt.putBoolean(FARTING_KEY, this.isFarting());
@@ -460,10 +468,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
 
-        Optional.ofNullable(Identifier.tryParse(nbt.getString(VARIANT_KEY)))
-                .map(variantId -> RegistryKey.of(PromenadeRegistryKeys.CAPYBARA_VARIANT, variantId))
-                .flatMap(variantKey -> this.getRegistryManager().get(PromenadeRegistryKeys.CAPYBARA_VARIANT).getEntry(variantKey))
-                .ifPresent(this::setVariant);
+        VARIANT_ENTRY_CODEC.parse(this.getRegistryManager().getOps(NbtOps.INSTANCE), nbt).ifSuccess(this::setVariant);
 
         if (nbt.getBoolean(FARTING_KEY)) {
             this.setState(State.FARTING);
@@ -491,7 +496,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     }
 
     public enum State implements StringIdentifiable {
-        STANDING("standing", 0),
+        IDLING("idling", 0),
         FARTING("farting", 1),
         SLEEPING("sleeping", 2),
         FALL_TO_SLEEP("fall_to_sleep", 3),
@@ -500,7 +505,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
         private final String name;
         private final int index;
 
-        private static final StringIdentifiable.EnumCodec<State> CODEC = StringIdentifiable.createCodec(State::values);
+        private static final EnumCodec<State> CODEC = StringIdentifiable.createCodec(State::values);
         private static final IntFunction<State> INDEX_TO_VALUE = ValueLists.createIdToValueFunction(State::getIndex, values(), ValueLists.OutOfBoundsHandling.ZERO);
         public static final PacketCodec<ByteBuf, State> PACKET_CODEC = PacketCodecs.indexed(INDEX_TO_VALUE, State::getIndex);
 
@@ -510,7 +515,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
         }
 
         public static State fromName(String name) {
-            return CODEC.byId(name, STANDING);
+            return CODEC.byId(name, IDLING);
         }
 
         public String asString() {
@@ -522,7 +527,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
         }
     }
 
-    public static class Data extends PassiveEntity.PassiveData {
+    public static class Data extends PassiveData {
         public final RegistryEntry<CapybaraVariant> variant;
 
         public Data(RegistryEntry<CapybaraVariant> variant) {

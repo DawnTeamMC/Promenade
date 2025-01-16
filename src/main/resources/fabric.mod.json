@@ -22,7 +22,10 @@
       "fr.hugman.promenade.Promenade"
     ],
     "client": [
-      "fr.hugman.promenade.PromenadeClient"
+      "fr.hugman.promenade.client.PromenadeClient"
+    ],
+    "fabric-datagen": [
+      "fr.hugman.promenade.data.PromenadeDataGenerator"
     ]
   },
   "mixins": [

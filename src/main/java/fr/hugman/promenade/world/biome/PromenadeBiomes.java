@@ -4,7 +4,7 @@ import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.config.PromenadeNewConfig;
+import fr.hugman.promenade.config.PromenadeConfig;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -18,7 +18,7 @@ import net.minecraft.world.gen.surfacebuilder.VanillaSurfaceRules;
 
 public class PromenadeBiomes {
     public static void appendWorldGen() {
-        var biomeConfig = PromenadeNewConfig.get().biomes();
+        var biomeConfig = PromenadeConfig.get().biomes();
 
         // Sakura Groves
         if (biomeConfig.sakuraGrovesWeight() > 0) {

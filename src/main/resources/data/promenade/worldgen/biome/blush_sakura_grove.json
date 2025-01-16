@@ -14,12 +14,17 @@
       "block_search_extent": 8,
       "offset": 2
     },
-    "music": {
-      "sound": "promenade:music.overworld.sakura_groves",
-      "min_delay": 12000,
-      "max_delay": 24000,
-      "replace_current_music": false
-    }
+    "music": [
+      {
+        "data": {
+          "max_delay": 24000,
+          "min_delay": 12000,
+          "replace_current_music": false,
+          "sound": "promenade:music.overworld.sakura_groves"
+        },
+        "weight": 1
+      }
+    ]
   },
   "spawners": {
     "monster": [
@@ -138,13 +143,11 @@
     "misc": []
   },
   "spawn_costs": {},
-  "carvers": {
-    "air": [
+  "carvers": [
       "minecraft:cave",
       "minecraft:cave_extra_underground",
       "minecraft:canyon"
-    ]
-  },
+    ],
   "features": [
     [],
     [

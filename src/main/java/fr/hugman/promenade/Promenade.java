@@ -2,13 +2,16 @@ package fr.hugman.promenade;
 
 import com.google.common.reflect.Reflection;
 import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.boat.PromenadeBoatTypes;
+import fr.hugman.promenade.block.entity.PromenadeBlockEntities;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
+import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.item.PromenadeItems;
+import fr.hugman.promenade.itemgroup.PromenadeItemGroupAdditions;
 import fr.hugman.promenade.registry.PromenadeRegistries;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
+import fr.hugman.promenade.trade.PromenadeTrades;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
@@ -28,23 +31,29 @@ public class Promenade implements ModInitializer {
     public void onInitialize() {
         PromenadeRegistries.register();
 
-        PromenadeBlocks.appendItemGroups();
-        PromenadeItems.appendItemGroups();
+        Reflection.initialize(PromenadeBlocks.class);
+        Reflection.initialize(PromenadeItems.class);
+        Reflection.initialize(PromenadeEntityTypes.class);
 
-        PromenadeBlocks.appendVillagerTrades();
+        PromenadeBlockEntities.addBlocksToVanillaBlockEntityTypes();
+
+        PromenadeItemGroupAdditions.appendItemGroups();
+        PromenadeTrades.appendVillagerTrades();
 
         Reflection.initialize(PromenadeFeatures.class);
         Reflection.initialize(PromenadePlacementModifierTypes.class);
         Reflection.initialize(PromenadeFoliagePlacerTypes.class);
         Reflection.initialize(PromenadeTrunkPlacerTypes.class);
         Reflection.initialize(PromenadeSensorTypes.class);
-        Reflection.initialize(PromenadeBoatTypes.class);
+        Reflection.initialize(PromenadeMemoryModuleTypes.class);
         Reflection.initialize(PromenadeSoundEvents.class);
         Reflection.initialize(PromenadeTrackedData.class);
 
         PromenadeBiomes.appendWorldGen();
         PromenadePlacedFeatures.appendWorldGen();
         PromenadeEntityTypes.appendWorldGen();
+
+        //TODO: add signs blocks to vanilla block entity types
     }
 
     public static Identifier id(String path) {

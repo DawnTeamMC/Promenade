@@ -40,6 +40,9 @@ public class PromenadeConfiguredFeatureKeys {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PLANTED_AMARANTH_FUNGUS = of("amaranth_fungus/planted");
 
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION = of("dark_amaranth_forest_vegetation/bonemeal");
+
+
     private static RegistryKey<ConfiguredFeature<?, ?>> of(String path) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Promenade.id(path));
     }

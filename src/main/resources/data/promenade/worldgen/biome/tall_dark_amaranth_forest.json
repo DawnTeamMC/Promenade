@@ -50,12 +50,11 @@
     "misc": []
   },
   "spawn_costs": {},
-  "carvers": {},
+  "carvers": [],
   "features": [
     [],
     [],
     [
-      "promenade:obsidian_spikes"
     ],
     [],
     [

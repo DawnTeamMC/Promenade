@@ -10,6 +10,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
@@ -45,13 +46,16 @@ public class WitherRosePileBlock extends PileBlock {
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entityIn) {
-        if (!world.isClient && world.getDifficulty() != Difficulty.PEACEFUL) {
-            if (entityIn instanceof LivingEntity livingentity) {
-                if (!livingentity.isInvulnerableTo(world.getDamageSources().wither())) {
-                    livingentity.addStatusEffect(new StatusEffectInstance(StatusEffects.WITHER, 40));
-                }
-            }
+    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        if (world instanceof ServerWorld serverWorld
+                && world.getDifficulty() != Difficulty.PEACEFUL
+                && entity instanceof LivingEntity livingEntity
+                && !livingEntity.isInvulnerableTo(serverWorld, world.getDamageSources().wither())) {
+            livingEntity.addStatusEffect(this.getContactEffect());
         }
+    }
+
+    public StatusEffectInstance getContactEffect() {
+        return new StatusEffectInstance(StatusEffects.WITHER, 40);
     }
 }

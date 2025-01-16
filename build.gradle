@@ -9,8 +9,6 @@ targetCompatibility = JavaVersion.VERSION_21
 archivesBaseName = project.mod_id
 group = "com.github.hugman"
 
-apply from: 'https://dawnteammc.github.io/resources/gradle_scripts/fabric-mod/java-21.gradle'
-
 repositories {
     maven { url 'https://jitpack.io' }                // Required for Dawn API
     maven { url 'https://maven.terraformersmc.com/' } // Required for Mod Menu and Terraform APIs
@@ -23,10 +21,13 @@ repositories {
 }
 
 dependencies {
-    modApi ("com.terraformersmc:biolith-fabric:${biolith_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
-    }
-    include ("com.terraformersmc:biolith-fabric:${biolith_version}") {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    modApi include ("com.terraformersmc:biolith-fabric:${biolith_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
@@ -35,6 +36,23 @@ dependencies {
 
 loom {
     accessWidenerPath = file("src/main/resources/promenade.accesswidener")
+
+    splitEnvironmentSourceSets()
+
+    mods {
+        "promenade" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+fabricApi {
+    configureDataGeneration() {
+        modId = "promenade-datagen"
+        createSourceSet = true
+        client = true
+    }
 }
 
 processResources {

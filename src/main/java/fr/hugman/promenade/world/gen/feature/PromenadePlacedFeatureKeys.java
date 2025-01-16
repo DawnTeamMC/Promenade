@@ -1,6 +1,5 @@
 package fr.hugman.promenade.world.gen.feature;
 
-import fr.hugman.dawn.DawnFactory;
 import fr.hugman.promenade.Promenade;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -14,8 +13,8 @@ public class PromenadePlacedFeatureKeys {
 
     public static final RegistryKey<PlacedFeature> PALMS = of("trees/palms");
 
-    public static final RegistryKey<PlacedFeature> PATCH_BLUEBERRY_BUSH_COMMON = DawnFactory.placedFeature(Promenade.id("patch/blueberry_bush/common"));
-    public static final RegistryKey<PlacedFeature> PATCH_BLUEBERRY_BUSH_RARE = DawnFactory.placedFeature(Promenade.id("patch/blueberry_bush/rare"));
+    public static final RegistryKey<PlacedFeature> PATCH_BLUEBERRY_BUSH_COMMON = of("patch/blueberry_bush/common");
+    public static final RegistryKey<PlacedFeature> PATCH_BLUEBERRY_BUSH_RARE = of("patch/blueberry_bush/rare");
 
     private static RegistryKey<PlacedFeature> of(String path) {
         return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Promenade.id(path));

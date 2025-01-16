@@ -57,20 +57,6 @@ public class BerryBushBlock extends PlantBlock implements Fertilizable {
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
 
-    public static AbstractBlock.Settings createSettings() {
-        return AbstractBlock.Settings.create()
-                .mapColor(MapColor.DARK_GREEN)
-                .ticksRandomly()
-                .noCollision()
-                .sounds(BlockSoundGroup.SWEET_BERRY_BUSH)
-                .pistonBehavior(PistonBehavior.DESTROY)
-                .burnable(60, 100);
-    }
-
-    public static BerryBushBlock of(RegistryKey<Item> berry, boolean isSpiny) {
-        return new BerryBushBlock(berry, isSpiny, createSettings());
-    }
-
     @Override
     public MapCodec<BerryBushBlock> getCodec() {
         return CODEC;

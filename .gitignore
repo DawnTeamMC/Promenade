@@ -2,9 +2,12 @@
 
 .gradle/
 build/
-logs/
 out/
 classes/
+
+# eclipse
+
+*.launch
 
 # idea
 
@@ -21,7 +24,18 @@ bin/
 .classpath
 .project
 
+# macos
+
+*.DS_Store
+
 # fabric
 
 run/
-*.launch
+src/main/generated/
+
+# java
+
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr

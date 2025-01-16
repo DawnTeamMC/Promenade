@@ -1,9 +1,7 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import fr.hugman.dawn.DawnFactory;
-import fr.hugman.dawn.block.BoneMealSpreadable;
-import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatureKeys;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -15,7 +13,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.chunk.light.ChunkLightProvider;
@@ -23,8 +20,9 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 //TODO: make generic
-public class DyliumBlock extends Block implements BoneMealSpreadable, Fertilizable {
-    public static final RegistryKey<ConfiguredFeature<?, ?>> BONEMEAL_VEGETATION = DawnFactory.configuredFeature(Promenade.id("dark_amaranth_forest_vegetation/bonemeal"));
+//TODO: implement grower Fertilizable on endstone
+public class DyliumBlock extends Block implements Fertilizable {
+    public static final RegistryKey<ConfiguredFeature<?, ?>> BONEMEAL_VEGETATION = PromenadeConfiguredFeatureKeys.DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION;
 
     public static final MapCodec<DyliumBlock> CODEC = createCodec(DyliumBlock::new);
 
@@ -40,8 +38,8 @@ public class DyliumBlock extends Block implements BoneMealSpreadable, Fertilizab
     private static boolean stayAlive(BlockState state, WorldView world, BlockPos pos) {
         BlockPos blockPos = pos.up();
         BlockState blockState = world.getBlockState(blockPos);
-        int i = ChunkLightProvider.getRealisticOpacity(world, state, pos, blockState, blockPos, Direction.UP, blockState.getOpacity(world, blockPos));
-        return i < world.getMaxLightLevel();
+        int i = ChunkLightProvider.getRealisticOpacity(state, blockState, Direction.UP, blockState.getOpacity());
+        return i < 15;
     }
 
     @Override
@@ -58,7 +56,7 @@ public class DyliumBlock extends Block implements BoneMealSpreadable, Fertilizab
 
     @Override
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
-        ConfiguredFeature<?, ?> configuredFeature = world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE).get(BONEMEAL_VEGETATION);
+        ConfiguredFeature<?, ?> configuredFeature = world.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE).get(BONEMEAL_VEGETATION);
         return configuredFeature != null;
     }
 
@@ -68,17 +66,24 @@ public class DyliumBlock extends Block implements BoneMealSpreadable, Fertilizab
         BlockPos blockPos = pos.up();
         ChunkGenerator chunkGenerator = world.getChunkManager().getChunkGenerator();
         if (blockState.isOf(PromenadeBlocks.BLACK_DYLIUM)) {
-            this.generate(world.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE), BONEMEAL_VEGETATION, world, chunkGenerator, random, blockPos);
+            this.generate(world.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE), BONEMEAL_VEGETATION, world, chunkGenerator, random, blockPos);
         }
     }
 
 
-    private void generate(Registry<ConfiguredFeature<?, ?>> registry, RegistryKey<ConfiguredFeature<?, ?>> key, ServerWorld world, ChunkGenerator chunkGenerator, Random random, BlockPos pos) {
-        registry.getEntry(key).ifPresent(entry -> entry.value().generate(world, chunkGenerator, random, pos));
+    private void generate(
+            Registry<ConfiguredFeature<?, ?>> registry,
+            RegistryKey<ConfiguredFeature<?, ?>> key,
+            ServerWorld world,
+            ChunkGenerator chunkGenerator,
+            Random random,
+            BlockPos pos
+    ) {
+        registry.getOptional(key).ifPresent(entry -> ((ConfiguredFeature) entry.value()).generate(world, chunkGenerator, random, pos));
     }
 
     @Override
-    public boolean canSpreadAt(BlockView world, BlockPos pos) {
-        return world.getBlockState(pos).isIn(PromenadeBlockTags.CAN_SPREAD_BLACK_DYLIUM) && world.getBlockState(pos.up()).isAir();
+    public Fertilizable.FertilizableType getFertilizableType() {
+        return Fertilizable.FertilizableType.NEIGHBOR_SPREADER;
     }
 }

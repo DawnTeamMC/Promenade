@@ -12,12 +12,6 @@
       "tick_delay": 6000,
       "block_search_extent": 8,
       "offset": 2
-    },
-    "music": {
-      "sound": "minecraft:music.overworld.grove",
-      "min_delay": 12000,
-      "max_delay": 24000,
-      "replace_current_music": false
     }
   },
   "spawners": {
@@ -113,13 +107,11 @@
     "water_creature": []
   },
   "spawn_costs": {},
-  "carvers": {
-    "air": [
+  "carvers": [
       "minecraft:cave",
       "minecraft:cave_extra_underground",
       "minecraft:canyon"
-    ]
-  },
+  ],
   "features": [
     [],
     [
