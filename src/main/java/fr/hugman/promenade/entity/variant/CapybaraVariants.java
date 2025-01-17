@@ -14,15 +14,12 @@ import java.util.stream.Collectors;
 
 public class CapybaraVariants {
     public static final RegistryKey<CapybaraVariant> BROWN = of("brown");
+    public static final RegistryKey<CapybaraVariant> ALBINO = of("albino");
+
     public static final RegistryKey<CapybaraVariant> DEFAULT = BROWN;
 
-
-    private static RegistryKey<CapybaraVariant> of(String path) {
-        return of(Promenade.id(path));
-    }
-
-    public static RegistryKey<CapybaraVariant> of(Identifier id) {
-        return RegistryKey.of(PromenadeRegistryKeys.CAPYBARA_VARIANT, id);
+    public static RegistryKey<CapybaraVariant> of(String path) {
+        return RegistryKey.of(PromenadeRegistryKeys.CAPYBARA_VARIANT, Promenade.id(path));
     }
 
     public static RegistryEntry<CapybaraVariant> getRandom(DynamicRegistryManager dynamicRegistryManager, Random random) {

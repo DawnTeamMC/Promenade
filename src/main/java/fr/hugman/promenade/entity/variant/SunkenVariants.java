@@ -11,6 +11,9 @@ import net.minecraft.util.math.random.Random;
 
 public class SunkenVariants {
     public static final RegistryKey<SunkenVariant> BUBBLE = of("bubble");
+    public static final RegistryKey<SunkenVariant> FIRE = of("fire");
+    public static final RegistryKey<SunkenVariant> HORN = of("horn");
+
     public static final RegistryKey<SunkenVariant> DEFAULT = BUBBLE;
 
     private static RegistryKey<SunkenVariant> of(String path) {

@@ -18,7 +18,7 @@ import net.minecraft.world.biome.Biome;
 import java.util.Objects;
 
 public final class DuckVariant {
-    private static final Identifier DEFAULT_DUCKLING_TEXTURE = Promenade.id("entity/duck/duckling");
+    public static final Identifier DEFAULT_DUCKLING_TEXTURE = Promenade.id("entity/duck/duckling");
 
     public static final Codec<DuckVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Identifier.CODEC.fieldOf("texture").forGetter(duck -> duck.texture),

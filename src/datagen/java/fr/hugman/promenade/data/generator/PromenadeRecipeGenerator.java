@@ -4,8 +4,12 @@ import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.data.PromenadeBlockFamilies;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.tag.PromenadeItemTags;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.data.DataProvider;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
@@ -16,6 +20,8 @@ import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.resource.featuretoggle.FeatureSet;
+
+import java.util.concurrent.CompletableFuture;
 
 public class PromenadeRecipeGenerator extends RecipeGenerator {
     public PromenadeRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter) {
@@ -149,5 +155,19 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
             String cooker, RecipeSerializer<T> serializer, AbstractCookingRecipe.RecipeFactory<T> recipeFactory, int cookingTime
     ) {
         this.offerFoodCookingRecipe(cooker, serializer, recipeFactory, cookingTime, PromenadeItems.DUCK, PromenadeItems.COOKED_DUCK, 0.35F);
+    }
+
+    public static FabricRecipeProvider create(FabricDataOutput fabricDataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+        return new FabricRecipeProvider(fabricDataOutput, completableFuture) {
+            @Override
+            protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup wrapperLookup, RecipeExporter recipeExporter) {
+                return new PromenadeRecipeGenerator(wrapperLookup, recipeExporter);
+            }
+
+            @Override
+            public String getName() {
+                return "Promenade Recipes";
+            }
+        };
     }
 }

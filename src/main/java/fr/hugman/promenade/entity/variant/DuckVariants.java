@@ -11,6 +11,7 @@ import net.minecraft.world.biome.Biome;
 
 public class DuckVariants {
     public static final RegistryKey<DuckVariant> PEKIN = of("pekin");
+    public static final RegistryKey<DuckVariant> MALLARD = of("mallard");
 
     public static final RegistryKey<DuckVariant> DEFAULT = PEKIN;
 

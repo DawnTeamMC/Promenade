@@ -3,42 +3,50 @@ package fr.hugman.promenade.data;
 import com.google.common.reflect.Reflection;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.data.generator.*;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.data.recipe.RecipeExporter;
-import net.minecraft.data.recipe.RecipeGenerator;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.RegistryBuilder;
+import net.minecraft.registry.RegistryKeys;
 import org.jetbrains.annotations.Nullable;
 
 public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
-	@Override
-	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
-		Reflection.initialize(PromenadeBlockFamilies.class);
+    @Override
+    public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
+        Reflection.initialize(PromenadeBlockFamilies.class);
 
-		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+        FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
-		pack.addProvider(PromenadeModelProvider::new);
-		pack.addProvider((fabricDataOutput, completableFuture) -> new FabricRecipeProvider(fabricDataOutput, completableFuture) {
-			@Override
-			protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup wrapperLookup, RecipeExporter recipeExporter) {
-				return new PromenadeRecipeGenerator(wrapperLookup, recipeExporter);
-			}
+        // Resource Pack
+        pack.addProvider(PromenadeModelProvider::new);
+        pack.addProvider(PromenadeRecipeGenerator::create);
 
-			@Override
-			public String getName() {
-				return "Promenade Recipes";
-			}
-		});
+        // Data Pack
 
-		var blockTagProvider = pack.addProvider(PromenadeBlockTagProvider::new);
-		pack.addProvider((output, lookup) -> new PromenadeItemTagProvider(output, lookup, blockTagProvider));
-		pack.addProvider(PromenadeBiomeTagProvider::new);
-	}
+        pack.addProvider(PromenadeWolfVariantProvider::new);
+        pack.addProvider(PromenadeCapybaraVariantProvider::new);
+        pack.addProvider(PromenadeDuckVariantProvider::new);
+        pack.addProvider(PromenadeSunkenVariantProvider::new);
+        pack.addProvider(PromenadePaintingVariantProvider::new);
 
-	@Override
-	@Nullable
-	public String getEffectiveModId() {
-		return Promenade.MOD_ID;
-	}
+        // - Tags
+        var blockTagProvider = pack.addProvider(PromenadeBlockTagProvider::new);
+        pack.addProvider((output, lookup) -> new PromenadeItemTagProvider(output, lookup, blockTagProvider));
+        //pack.addProvider(PromenadeBiomeTagProvider::new);
+    }
+
+    @Override
+    public void buildRegistry(RegistryBuilder registryBuilder) {
+        registryBuilder.addRegistry(RegistryKeys.WOLF_VARIANT, PromenadeWolfVariantProvider::register);
+        registryBuilder.addRegistry(PromenadeRegistryKeys.CAPYBARA_VARIANT, PromenadeCapybaraVariantProvider::register);
+        registryBuilder.addRegistry(PromenadeRegistryKeys.DUCK_VARIANT, PromenadeDuckVariantProvider::register);
+        registryBuilder.addRegistry(PromenadeRegistryKeys.SUNKEN_VARIANT, PromenadeSunkenVariantProvider::register);
+        registryBuilder.addRegistry(RegistryKeys.PAINTING_VARIANT, PromenadePaintingVariantProvider::register);
+    }
+
+    @Override
+    @Nullable
+    public String getEffectiveModId() {
+        return Promenade.MOD_ID;
+    }
 }
