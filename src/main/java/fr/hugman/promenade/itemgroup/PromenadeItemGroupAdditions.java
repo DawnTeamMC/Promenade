@@ -30,11 +30,13 @@ public class PromenadeItemGroupAdditions {
                     PromenadeBlocks.BIRCH_LEAF_PILE,
                     PromenadeBlocks.JUNGLE_LEAF_PILE,
                     PromenadeBlocks.ACACIA_LEAF_PILE,
+                    PromenadeBlocks.CHERRY_LEAF_PILE,
                     PromenadeBlocks.DARK_OAK_LEAF_PILE,
                     PromenadeBlocks.PALE_OAK_LEAF_PILE,
                     PromenadeBlocks.MANGROVE_LEAF_PILE,
                     PromenadeBlocks.AZALEA_LEAF_PILE,
-                    PromenadeBlocks.FLOWERING_AZALEA_LEAF_PILE);
+                    PromenadeBlocks.FLOWERING_AZALEA_LEAF_PILE
+            );
 
             e.addAfter(Blocks.LILY_OF_THE_VALLEY,
                     PromenadeBlocks.DANDELION_PILE,

@@ -11,8 +11,8 @@ public class PromenadeItemTags {
     public static final TagKey<Item> PALM_LOGS = of("palm_logs");
     public static final TagKey<Item> DARK_AMARANTH_STEMS = of("dark_amaranth_stems");
 
-    public static final TagKey<Item> CAPYBARA_FOOD = of("entity_food/capybara");
-    public static final TagKey<Item> DUCK_FOOD = of("entity_food/duck");
+    public static final TagKey<Item> CAPYBARA_FOOD = of("capybara_food");
+    public static final TagKey<Item> DUCK_FOOD = of("duck_food");
 
     private static TagKey<Item> of(String path) {
         return TagKey.of(RegistryKeys.ITEM, Promenade.id(path));

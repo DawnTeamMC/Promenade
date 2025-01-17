@@ -7,7 +7,6 @@ import fr.hugman.promenade.component.PromenadeFoodComponents;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.item.helper.ItemFactory;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -38,7 +37,7 @@ public class PromenadeItems {
     public static final Item DARK_AMARANTH_SIGN = register(PromenadeBlocks.DARK_AMARANTH_SIGN, ItemFactory.sign(PromenadeBlocks.DARK_AMARANTH_WALL_SIGN), ItemSettings.max16());
     public static final Item DARK_AMARANTH_HANGING_SIGN = register(PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN), ItemSettings.max16());
 
-    public static final Item BLUEBERRIES = register(PromenadeItemKeys.BLUEBERRIES, ItemFactory.uniqueNameBlock(Blocks.SWEET_BERRY_BUSH), new Item.Settings().food(PromenadeFoodComponents.BLUEBERRIES));
+    public static final Item BLUEBERRIES = register(PromenadeItemKeys.BLUEBERRIES, ItemFactory.uniqueNameBlock(PromenadeBlocks.BLUEBERRY_BUSH), new Item.Settings().food(PromenadeFoodComponents.BLUEBERRIES));
 
     public static final Item BANANA = register("banana", new Item.Settings().food(PromenadeFoodComponents.BANANA));
     public static final Item APRICOT = register("apricot", new Item.Settings().food(PromenadeFoodComponents.APRICOT));

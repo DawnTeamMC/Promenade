@@ -1,8 +1,7 @@
 package fr.hugman.promenade.world.gen.feature;
 
-import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.config.PromenadeConfig;
-import fr.hugman.promenade.world.biome.PromenadeBiomeTags;
+import fr.hugman.promenade.tag.PromenadeBiomeTags;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;

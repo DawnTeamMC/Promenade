@@ -3,8 +3,6 @@ package fr.hugman.promenade.data;
 import com.google.common.collect.Maps;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.data.family.BlockFamilies;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.registry.Registries;
 

@@ -4,16 +4,18 @@ import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.entity.helper.EntityTypeFactory;
 import fr.hugman.promenade.item.PromenadeItems;
-import fr.hugman.promenade.world.biome.PromenadeBiomeTags;
+import fr.hugman.promenade.tag.PromenadeBiomeTags;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnGroup;
+import net.minecraft.entity.SpawnLocationTypes;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.entity.vehicle.ChestBoatEntity;
-import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
@@ -69,13 +71,16 @@ public class PromenadeEntityTypes {
     public static void appendWorldGen() {
         var duckWeight = PromenadeConfig.get().animals().ducksWeight();
         if (duckWeight != 0) {
-            Predicate<BiomeSelectionContext> hasFarmAnimals = BiomeSelectors.spawnsOneOf(EntityType.COW).and(BiomeSelectors.spawnsOneOf(EntityType.SHEEP)).and(BiomeSelectors.spawnsOneOf(EntityType.CHICKEN)).and(BiomeSelectors.spawnsOneOf(EntityType.PIG));
+            Predicate<BiomeSelectionContext> hasFarmAnimals = BiomeSelectors.spawnsOneOf(EntityType.COW)
+                    .and(BiomeSelectors.spawnsOneOf(EntityType.SHEEP))
+                    .and(BiomeSelectors.spawnsOneOf(EntityType.CHICKEN))
+                    .and(BiomeSelectors.spawnsOneOf(EntityType.PIG));
             BiomeModifications.addSpawn(hasFarmAnimals, SpawnGroup.CREATURE, PromenadeEntityTypes.DUCK, duckWeight, 4, 4);
         }
 
         var capybaraWeight = PromenadeConfig.get().animals().capybarasWeight();
         if (capybaraWeight != 0) {
-            BiomeModifications.addSpawn(BiomeSelectors.tag(PromenadeBiomeTags.CAPYBARA_SPAWN), SpawnGroup.CREATURE, PromenadeEntityTypes.CAPYBARA, capybaraWeight, 3, 5);
+            BiomeModifications.addSpawn(BiomeSelectors.tag(PromenadeBiomeTags.SPAWNS_CAPYBARAS), SpawnGroup.CREATURE, PromenadeEntityTypes.CAPYBARA, capybaraWeight, 3, 5);
         }
 
         var lushCreeperWeight = PromenadeConfig.get().monsters().lushCreepersWeight();
@@ -86,7 +91,7 @@ public class PromenadeEntityTypes {
 
         var sunkensWeight = PromenadeConfig.get().monsters().sunkensWeight();
         if (sunkensWeight != 0) {
-            BiomeModifications.addSpawn(biomeSelectionContext -> biomeSelectionContext.hasTag(PromenadeBiomeTags.SUNKEN_SPAWN), SpawnGroup.MONSTER, SUNKEN, sunkensWeight, 1, 3);
+            BiomeModifications.addSpawn(biomeSelectionContext -> biomeSelectionContext.hasTag(PromenadeBiomeTags.SPAWNS_SUNKEN), SpawnGroup.MONSTER, SUNKEN, sunkensWeight, 1, 3);
         }
     }
 }

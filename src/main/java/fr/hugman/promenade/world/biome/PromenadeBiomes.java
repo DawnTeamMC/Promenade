@@ -5,6 +5,7 @@ import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.config.PromenadeConfig;
+import fr.hugman.promenade.tag.PromenadeBiomeTags;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.registry.entry.RegistryEntry;

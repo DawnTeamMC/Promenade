@@ -1,9 +1,8 @@
-package fr.hugman.promenade.data;
+package fr.hugman.promenade.data.model;
 
 import fr.hugman.promenade.Promenade;
 import net.minecraft.client.data.Model;
 import net.minecraft.client.data.TextureKey;
-import net.minecraft.util.Identifier;
 
 import java.util.Optional;
 

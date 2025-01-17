@@ -1,0 +1,62 @@
+package fr.hugman.promenade.data.generator;
+
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.BiomeTags;
+import net.minecraft.world.biome.Biome;
+
+import java.util.concurrent.CompletableFuture;
+
+import static fr.hugman.promenade.tag.PromenadeBiomeTags.*;
+import static fr.hugman.promenade.world.biome.PromenadeBiomeKeys.*;
+import static net.minecraft.world.biome.BiomeKeys.*;
+
+public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
+    public PromenadeBiomeTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+        super(output, RegistryKeys.BIOME, completableFuture);
+    }
+
+    @Override
+    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+        // Promenade tags
+
+        getOrCreateTagBuilder(SAKURA_GROVES).add(BLUSH_SAKURA_GROVE, COTTON_SAKURA_GROVE);
+        getOrCreateTagBuilder(DARK_AMARANTH_FORESTS).add(DARK_AMARANTH_FOREST, TALL_DARK_AMARANTH_FOREST);
+
+        getOrCreateTagBuilder(HAS_PALMS)
+                .add(DESERT)
+                .addOptionalTag(ConventionalBiomeTags.IS_DESERT);
+        getOrCreateTagBuilder(HAS_DARK_FOREST_WITCH_HUT)
+                .add(DARK_FOREST, PALE_GARDEN)
+                .addOptionalTag(ConventionalBiomeTags.IS_DARK_FOREST);
+
+        getOrCreateTagBuilder(CAN_FREEZE_DURING_SNOWFALL).add(GLACARIAN_TAIGA);
+
+        getOrCreateTagBuilder(SPAWNS_CAPYBARAS)
+                .addTag(BiomeTags.IS_RIVER)
+                .add(MANGROVE_SWAMP, SWAMP)
+                .addOptionalTag(ConventionalBiomeTags.IS_RIVER)
+                .addOptionalTag(ConventionalBiomeTags.IS_SWAMP);
+        getOrCreateTagBuilder(SPAWNS_SUNKEN).add(WARM_OCEAN, LUKEWARM_OCEAN, DEEP_LUKEWARM_OCEAN);
+        getOrCreateTagBuilder(SPAWNS_MALLARD_DUCKS)
+                .addTag(BiomeTags.IS_OCEAN)
+                .addTag(BiomeTags.IS_RIVER)
+                .addOptionalTag(ConventionalBiomeTags.IS_OCEAN)
+                .addOptionalTag(ConventionalBiomeTags.IS_RIVER);
+        getOrCreateTagBuilder(SPAWNS_PEKIN_DUCKS)
+                .add(PLAINS)
+                .addTag(BiomeTags.IS_FOREST)
+                .addOptionalTag(ConventionalBiomeTags.IS_OCEAN);
+
+        // Vanilla tags
+
+        getOrCreateTagBuilder(BiomeTags.IS_FOREST).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY);
+        getOrCreateTagBuilder(BiomeTags.IS_OVERWORLD).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
+        getOrCreateTagBuilder(BiomeTags.IS_TAIGA).add(GLACARIAN_TAIGA);
+        getOrCreateTagBuilder(BiomeTags.STRONGHOLD_BIASED_TO).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
+
+    }
+}

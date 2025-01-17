@@ -2,6 +2,7 @@ package fr.hugman.promenade.data;
 
 import com.google.common.reflect.Reflection;
 import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.data.generator.*;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -26,9 +27,13 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
 
 			@Override
 			public String getName() {
-				return "PromenadeRecipeGenerator";
+				return "Promenade Recipes";
 			}
 		});
+
+		var blockTagProvider = pack.addProvider(PromenadeBlockTagProvider::new);
+		pack.addProvider((output, lookup) -> new PromenadeItemTagProvider(output, lookup, blockTagProvider));
+		pack.addProvider(PromenadeBiomeTagProvider::new);
 	}
 
 	@Override

@@ -12,6 +12,7 @@ import fr.hugman.promenade.itemgroup.PromenadeItemGroupAdditions;
 import fr.hugman.promenade.registry.PromenadeRegistries;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.trade.PromenadeTrades;
+import fr.hugman.promenade.world.biome.PromenadeBiomeKeys;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;

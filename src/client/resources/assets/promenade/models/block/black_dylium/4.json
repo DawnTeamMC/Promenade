@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "top": "promenade:block/black_dylium/top",
-    "bottom": "minecraft:block/end_stone",
-    "side": "promenade:block/black_dylium/side/4"
-  }
-}

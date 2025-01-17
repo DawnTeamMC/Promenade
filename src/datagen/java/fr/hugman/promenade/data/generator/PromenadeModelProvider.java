@@ -1,13 +1,17 @@
-package fr.hugman.promenade.data;
+package fr.hugman.promenade.data.generator;
 
+import fr.hugman.promenade.block.MoaiType;
 import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.block.property.PromenadeBlockProperties;
+import fr.hugman.promenade.data.PromenadeBlockFamilies;
+import fr.hugman.promenade.data.model.PromenadeTexturedModels;
 import fr.hugman.promenade.item.PromenadeItems;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.data.*;
-import net.minecraft.data.family.BlockFamilies;
+import net.minecraft.client.render.item.tint.TintSource;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
@@ -24,7 +28,6 @@ public class PromenadeModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator gen) {
         PromenadeBlockFamilies.getFamilies().filter(BlockFamily::shouldGenerateModels).forEach(family -> gen.registerCubeAllModelTexturePool(family.getBaseBlock()).family(family));
 
-        //TODO: re-use vanilla leaves textures for this...
         gen.registerTintedBlockAndItem(PromenadeBlocks.OAK_LEAF_PILE, PromenadeTexturedModels.pile(Blocks.OAK_LEAVES), -12012264);
         gen.registerTintedBlockAndItem(PromenadeBlocks.SPRUCE_LEAF_PILE, PromenadeTexturedModels.pile(Blocks.SPRUCE_LEAVES), -10380959);
         gen.registerTintedBlockAndItem(PromenadeBlocks.BIRCH_LEAF_PILE, PromenadeTexturedModels.pile(Blocks.BIRCH_LEAVES), -8345771);
@@ -86,12 +89,54 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.PALM_SAPLING, PromenadeBlocks.POTTED_PALM_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
         gen.registerTintedBlockAndItem(PromenadeBlocks.PALM_LEAVES, TexturedModel.LEAVES, PALM_COLOR);
         gen.registerTintedBlockAndItem(PromenadeBlocks.PALM_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.PALM_LEAVES), PALM_COLOR);
+        gen.registerTintableCrossBlockState(PromenadeBlocks.PALM_HANGING_LEAVES, BlockStateModelGenerator.CrossType.TINTED);
+        this.registerTintedItem(gen, PromenadeBlocks.PALM_HANGING_LEAVES, PALM_COLOR);
 
         gen.registerSimpleCubeAll(PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);
+        gen.registerRoots(PromenadeBlocks.DARK_AMARANTH_ROOTS, PromenadeBlocks.POTTED_DARK_AMARANTH_ROOTS);
         gen.registerLog(PromenadeBlocks.DARK_AMARANTH_STEM).uvLockedLog(PromenadeBlocks.DARK_AMARANTH_STEM).wood(PromenadeBlocks.DARK_AMARANTH_HYPHAE);
         gen.registerLog(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM).uvLockedLog(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM).wood(PromenadeBlocks.STRIPPED_DARK_AMARANTH_HYPHAE);
         gen.registerHangingSign(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM, PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN, PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN);
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.DARK_AMARANTH_FUNGUS, PromenadeBlocks.POTTED_DARK_AMARANTH_FUNGUS, BlockStateModelGenerator.CrossType.NOT_TINTED);
+
+        this.registerMoai(gen);
+
+        this.registerBlueberryBush(gen);
+    }
+
+    public final void registerTintedItem(BlockStateModelGenerator gen, Block block, int constant) {
+        registerTintedItem(gen, block, ItemModels.constantTintSource(constant));
+    }
+
+    public final void registerTintedItem(BlockStateModelGenerator gen, Block block, TintSource tint) {
+        Identifier identifier = gen.uploadBlockItemModel(block.asItem(), block);
+        gen.registerTintedItemModel(block, identifier, tint);
+    }
+
+    public final void registerBlueberryBush(BlockStateModelGenerator gen) {
+        gen.registerItemModel(PromenadeItems.BLUEBERRIES);
+        gen.blockStateCollector.accept(VariantsBlockStateSupplier.create(PromenadeBlocks.BLUEBERRY_BUSH)
+                .coordinate(
+                        BlockStateVariantMap.create(Properties.AGE_3).register(
+                                stage -> BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(PromenadeBlocks.BLUEBERRY_BUSH, "_stage" + stage, Models.CROSS, TextureMap::cross))
+                        )
+                )
+        );
+    }
+
+    private void registerMoai(BlockStateModelGenerator gen) {
+        // maybe check if we can't generate the models too?
+        gen.blockStateCollector
+                .accept(
+                        VariantsBlockStateSupplier.create(PromenadeBlocks.MOAI)
+                                .coordinate(
+                                        BlockStateVariantMap.create(PromenadeBlockProperties.MOAI_TYPE)
+                                                .register(MoaiType.SINGLE, BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockModelId(PromenadeBlocks.MOAI)))
+                                                .register(MoaiType.TOP, BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(PromenadeBlocks.MOAI, "_top")))
+                                                .register(MoaiType.BOTTOM, BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(PromenadeBlocks.MOAI, "_bottom")))
+                                )
+                                .coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates())
+                );
     }
 
     @Override
@@ -103,12 +148,13 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.register(PromenadeItems.MAPLE_SYRUP_BOTTLE, Models.GENERATED);
         gen.register(PromenadeItems.PALM_BOAT, Models.GENERATED);
         gen.register(PromenadeItems.PALM_CHEST_BOAT, Models.GENERATED);
-        gen.register(PromenadeItems.BLUEBERRIES, Models.GENERATED);
+
         gen.register(PromenadeItems.BANANA, Models.GENERATED);
         gen.register(PromenadeItems.APRICOT, Models.GENERATED);
         gen.register(PromenadeItems.MANGO, Models.GENERATED);
         gen.register(PromenadeItems.DUCK, Models.GENERATED);
         gen.register(PromenadeItems.COOKED_DUCK, Models.GENERATED);
+
         //TODO: review colors
         gen.registerSpawnEgg(PromenadeItems.CAPYBARA_SPAWN_EGG, 0xa0704e, 0x433930);
         gen.registerSpawnEgg(PromenadeItems.DUCK_SPAWN_EGG, 10592673, 15904341);

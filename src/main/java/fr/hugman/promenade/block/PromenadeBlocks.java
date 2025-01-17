@@ -212,6 +212,7 @@ public class PromenadeBlocks {
                     .breakInstantly()
                     .noCollision()
                     .sounds(BlockSoundGroup.ROOTS)).compostingChance(0.65F));
+    public static final Block POTTED_DARK_AMARANTH_ROOTS = register("potted_dark_amaranth_roots", BlockFactory.pot(DARK_AMARANTH_ROOTS));
 
     public static final Block STRIPPED_DARK_AMARANTH_STEM = register("stripped_dark_amaranth_stem", BlockFactory.log(PromenadeMapColors.AMARANTH_WOOD, PromenadeBlockSounds.AMARANTH_WOOD, false));
     public static final Block DARK_AMARANTH_STEM = register("dark_amaranth_stem", BlockFactory.log(PromenadeMapColors.AMARANTH_BARK, PromenadeBlockSounds.AMARANTH_WOOD, false).stripsInto(STRIPPED_DARK_AMARANTH_STEM));

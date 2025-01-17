@@ -1,9 +1,11 @@
-package fr.hugman.promenade.data;
+package fr.hugman.promenade.data.generator;
 
 import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.data.PromenadeBlockFamilies;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.tag.PromenadeItemTags;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
@@ -16,7 +18,7 @@ import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.resource.featuretoggle.FeatureSet;
 
 public class PromenadeRecipeGenerator extends RecipeGenerator {
-    protected PromenadeRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter) {
+    public PromenadeRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter) {
         super(registries, exporter);
     }
 

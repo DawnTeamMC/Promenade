@@ -1,10 +1,7 @@
-package fr.hugman.promenade.data;
+package fr.hugman.promenade.data.model;
 
-import fr.hugman.promenade.Promenade;
 import net.minecraft.block.Block;
 import net.minecraft.client.data.*;
-
-import java.util.Optional;
 
 public class PromenadeTexturedModels {
     public static final TexturedModel.Factory PILE = TexturedModel.makeFactory(TextureMap::all, PromenadeModels.PILE);

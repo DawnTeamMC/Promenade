@@ -87,6 +87,7 @@ public final class PromenadeBlockRenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DARK_AMARANTH_TRAPDOOR, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DARK_AMARANTH_ROOTS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_DARK_AMARANTH_ROOTS, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DARK_AMARANTH_FUNGUS, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_DARK_AMARANTH_FUNGUS, RenderLayer.getCutoutMipped());
 
