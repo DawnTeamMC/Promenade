@@ -24,7 +24,7 @@ public class PromenadeCapybaraVariantProvider extends FabricDynamicRegistryProvi
 
     @Override
     public String getName() {
-        return "Promenade Capybara Variants";
+        return "Capybara Variants";
     }
 
     public static void register(Registerable<CapybaraVariant> registerable) {

@@ -28,7 +28,7 @@ public class PromenadeSunkenVariantProvider extends FabricDynamicRegistryProvide
 
     @Override
     public String getName() {
-        return "Promenade Sunken Variants";
+        return "Sunken Variants";
     }
 
     public static void register(Registerable<SunkenVariant> registerable) {

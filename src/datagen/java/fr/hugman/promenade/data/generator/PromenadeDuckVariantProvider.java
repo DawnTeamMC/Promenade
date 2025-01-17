@@ -28,7 +28,7 @@ public class PromenadeDuckVariantProvider extends FabricDynamicRegistryProvider 
 
     @Override
     public String getName() {
-        return "Promenade Duck Variants";
+        return "Duck Variants";
     }
 
     public static void register(Registerable<DuckVariant> registerable) {

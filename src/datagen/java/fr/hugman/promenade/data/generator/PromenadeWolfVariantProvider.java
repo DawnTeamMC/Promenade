@@ -27,7 +27,7 @@ public class PromenadeWolfVariantProvider extends FabricDynamicRegistryProvider 
 
     @Override
     public String getName() {
-        return "Promenade Wolf Variants";
+        return "Wolf Variants";
     }
 
     public static void register(Registerable<WolfVariant> registerable) {

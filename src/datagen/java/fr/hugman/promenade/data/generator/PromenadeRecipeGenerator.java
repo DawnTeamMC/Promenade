@@ -166,7 +166,7 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
 
             @Override
             public String getName() {
-                return "Promenade Recipes";
+                return "Recipes";
             }
         };
     }

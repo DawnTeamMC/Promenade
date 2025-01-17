@@ -23,11 +23,16 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
 
         // Data Pack
 
+        // - Variants
         pack.addProvider(PromenadeWolfVariantProvider::new);
         pack.addProvider(PromenadeCapybaraVariantProvider::new);
         pack.addProvider(PromenadeDuckVariantProvider::new);
         pack.addProvider(PromenadeSunkenVariantProvider::new);
         pack.addProvider(PromenadePaintingVariantProvider::new);
+
+        // - Loot tables
+        pack.addProvider(PromenadeBlockLootTableProvider::new);
+        pack.addProvider(PromenadeEntityLootTableProvider::new);
 
         // - Tags
         var blockTagProvider = pack.addProvider(PromenadeBlockTagProvider::new);

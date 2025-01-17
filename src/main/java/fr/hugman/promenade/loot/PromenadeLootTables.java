@@ -1,7 +1,6 @@
 package fr.hugman.promenade.loot;
 
 import fr.hugman.promenade.Promenade;
-import net.minecraft.item.Item;
 import net.minecraft.loot.LootTable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;

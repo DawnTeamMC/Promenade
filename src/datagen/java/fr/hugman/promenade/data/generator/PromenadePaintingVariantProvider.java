@@ -28,7 +28,7 @@ public class PromenadePaintingVariantProvider extends FabricDynamicRegistryProvi
 
     @Override
     public String getName() {
-        return "Promenade Painting Variants";
+        return "Painting Variants";
     }
 
     public static void register(Registerable<PaintingVariant> registerable) {
