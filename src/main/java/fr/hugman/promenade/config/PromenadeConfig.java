@@ -8,6 +8,8 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.JsonOps;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.world.biome.PromenadeBiomes;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -17,6 +19,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 
 public record PromenadeConfig(
         BiomesConfig biomes,
@@ -41,7 +44,7 @@ public record PromenadeConfig(
 
     private PromenadeConfig() {
         this(
-                new BiomesConfig(20, 20, 10, 20),
+                new BiomesConfig(20, 20, 10, Optional.of(PromenadeBiomes.DEFAULT_DARK_AMARANTH_FOREST_HYPERCUBE)),
                 new WorldFeaturesConfig(true, true, true),
                 new AnimalsConfig(10, 10),
                 new MonstersConfig(15, 10)
@@ -52,7 +55,7 @@ public record PromenadeConfig(
             int carnelianTreewayWeight,
             int sakuraGrovesWeight,
             int glacarianTaigaWeight,
-            int darkAmaranthForestsWeight
+            Optional<MultiNoiseUtil.NoiseHypercube> darkAmaranthForestsNoise
     ) {
 
         private static final Codec<BiomesConfig> CODEC = RecordCodecBuilder.create(instance ->
@@ -60,7 +63,7 @@ public record PromenadeConfig(
                         Codec.INT.optionalFieldOf("carnelian_treeway_weight", 20).forGetter(BiomesConfig::carnelianTreewayWeight),
                         Codec.INT.optionalFieldOf("sakura_groves_weight", 20).forGetter(BiomesConfig::sakuraGrovesWeight),
                         Codec.INT.optionalFieldOf("glacarian_taiga_weight", 10).forGetter(BiomesConfig::glacarianTaigaWeight),
-                        Codec.INT.optionalFieldOf("dark_amaranth_forests_weight", 20).forGetter(BiomesConfig::darkAmaranthForestsWeight)
+                        MultiNoiseUtil.NoiseHypercube.CODEC.optionalFieldOf("dark_amaranth_forests_noise").forGetter(BiomesConfig::darkAmaranthForestsNoise)
                 ).apply(instance, BiomesConfig::new)
         );
     }

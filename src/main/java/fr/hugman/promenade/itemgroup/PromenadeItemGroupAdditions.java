@@ -146,7 +146,7 @@ public class PromenadeItemGroupAdditions {
                 PromenadeBlocks.DARK_AMARANTH_BUTTON));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(e -> {
-            e.addAfter(Blocks.WARPED_NYLIUM, PromenadeBlocks.BLACK_DYLIUM);
+            e.addAfter(Blocks.WARPED_NYLIUM, PromenadeBlocks.DARK_AMARANTH_NYLIUM);
             e.addAfter(Blocks.WARPED_STEM, PromenadeBlocks.DARK_AMARANTH_STEM);
             e.addAfter(Blocks.WARPED_WART_BLOCK, PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);
             e.addAfter(Blocks.WARPED_FUNGUS, PromenadeBlocks.DARK_AMARANTH_FUNGUS);

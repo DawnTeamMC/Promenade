@@ -22,7 +22,7 @@ public class SnowyLeavesBlock extends LeavesBlock {
 
     public SnowyLeavesBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(BOTTOM, false));
+        this.setDefaultState(this.getDefaultState().with(BOTTOM, false));
     }
 
     @Override

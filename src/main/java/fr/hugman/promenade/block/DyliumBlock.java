@@ -1,7 +1,7 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatureKeys;
+import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -22,7 +22,7 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 //TODO: make generic
 //TODO: implement grower Fertilizable on endstone
 public class DyliumBlock extends Block implements Fertilizable {
-    public static final RegistryKey<ConfiguredFeature<?, ?>> BONEMEAL_VEGETATION = PromenadeConfiguredFeatureKeys.DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION;
+    public static final RegistryKey<ConfiguredFeature<?, ?>> BONEMEAL_VEGETATION = PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION;
 
     public static final MapCodec<DyliumBlock> CODEC = createCodec(DyliumBlock::new);
 
@@ -65,7 +65,7 @@ public class DyliumBlock extends Block implements Fertilizable {
         BlockState blockState = world.getBlockState(pos);
         BlockPos blockPos = pos.up();
         ChunkGenerator chunkGenerator = world.getChunkManager().getChunkGenerator();
-        if (blockState.isOf(PromenadeBlocks.BLACK_DYLIUM)) {
+        if (blockState.isOf(PromenadeBlocks.DARK_AMARANTH_NYLIUM)) {
             this.generate(world.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE), BONEMEAL_VEGETATION, world, chunkGenerator, random, blockPos);
         }
     }

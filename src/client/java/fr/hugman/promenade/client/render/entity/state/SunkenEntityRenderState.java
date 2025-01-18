@@ -13,5 +13,4 @@ public class SunkenEntityRenderState extends SkeletonEntityRenderState {
 	private static final Identifier DEFAULT_TEXTURE = Promenade.id("textures/entity/sunken/bubble.png");
 
 	public Identifier texture = DEFAULT_TEXTURE;
-
 }

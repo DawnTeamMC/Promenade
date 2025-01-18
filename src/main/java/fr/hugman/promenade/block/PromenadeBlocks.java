@@ -10,7 +10,7 @@ import fr.hugman.promenade.sound.PromenadeBlockSounds;
 import fr.hugman.promenade.item.PromenadeItemKeys;
 import fr.hugman.promenade.particle.PromenadeParticleTypes;
 import fr.hugman.promenade.tag.PromenadeBlockTags;
-import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatureKeys;
+import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 import fr.hugman.promenade.world.PromenadeSaplingGenerators;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
@@ -192,12 +192,13 @@ public class PromenadeBlocks {
     /* ============ */
     /*   AMARANTH   */
     /* ============ */
-    public static final Block BLACK_DYLIUM = register("black_dylium", BlockFactory.of(DyliumBlock::new,
+    //TODO: mixin the bonemeal feature
+    public static final Block DARK_AMARANTH_NYLIUM = register("dark_amaranth_dylium", BlockFactory.of(NyliumBlock::new,
             AbstractBlock.Settings.create()
                     .mapColor(MapColor.BLACK)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .requiresTool()
-                    .strength(3.0F, 9.0F)
+                    .strength(0.4F)
                     .sounds(BlockSoundGroup.NYLIUM)
                     .ticksRandomly()));
     public static final Block DARK_AMARANTH_WART_BLOCK = register("dark_amaranth_wart_block",
@@ -233,7 +234,7 @@ public class PromenadeBlocks {
     public static final Block DARK_AMARANTH_HANGING_SIGN = register("dark_amaranth_hanging_sign", BlockFactory.hangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.AMARANTH, BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
     public static final Block DARK_AMARANTH_WALL_HANGING_SIGN = register("dark_amaranth_wall_hanging_sign", BlockFactory.wallHangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.AMARANTH, BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
 
-    public static final Block DARK_AMARANTH_FUNGUS = register("dark_amaranth_fungus", BlockFactory.fungus(MapColor.PURPLE, PromenadeConfiguredFeatureKeys.PLANTED_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON));
+    public static final Block DARK_AMARANTH_FUNGUS = register("dark_amaranth_fungus", BlockFactory.fungus(MapColor.PURPLE, PromenadeConfiguredFeatures.PLANTED_DARK_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON));
     public static final Block POTTED_DARK_AMARANTH_FUNGUS = register("potted_dark_amaranth_fungus", BlockFactory.pot(DARK_AMARANTH_FUNGUS));
 
 

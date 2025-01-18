@@ -28,6 +28,11 @@ public class NoiseIntervalCountPlacementModifier extends AbstractCountPlacementM
         this.outsideValue = outsideValue;
     }
 
+    public static NoiseIntervalCountPlacementModifier of(double noiseLevelMin, double noiseLevelMax, int insideValue, int outsideValue) {
+        return new NoiseIntervalCountPlacementModifier(noiseLevelMin, noiseLevelMax, insideValue, outsideValue);
+    }
+
+
     @Override
     protected int getCount(Random random, BlockPos pos) {
         double d = Biome.FOLIAGE_NOISE.sample((double) pos.getX() / 200.0, (double) pos.getZ() / 200.0, false);
@@ -35,6 +40,6 @@ public class NoiseIntervalCountPlacementModifier extends AbstractCountPlacementM
     }
 
     public PlacementModifierType<?> getType() {
-        return PlacementModifierType.NOISE_THRESHOLD_COUNT;
+        return PromenadePlacementModifierTypes.NOISE_INTERVAL_COUNT;
     }
 }

@@ -70,11 +70,11 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 PromenadeBlocks.WITHER_ROSE_PILE
         );
 
-        getOrCreateTagBuilder(PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON).add(PromenadeBlocks.BLACK_DYLIUM);
+        getOrCreateTagBuilder(PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON).add(PromenadeBlocks.DARK_AMARANTH_NYLIUM);
         getOrCreateTagBuilder(PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON)
                 .addTag(PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON)
                 .add(Blocks.END_STONE)
                 .add(Blocks.MYCELIUM);
-        getOrCreateTagBuilder(PromenadeBlockTags.DARK_AMARANTH_ROOTS_PLACEABLE_ON).add(PromenadeBlocks.BLACK_DYLIUM);
+        getOrCreateTagBuilder(PromenadeBlockTags.DARK_AMARANTH_ROOTS_PLACEABLE_ON).add(PromenadeBlocks.DARK_AMARANTH_NYLIUM);
     }
 }

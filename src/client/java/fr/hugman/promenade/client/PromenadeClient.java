@@ -1,6 +1,6 @@
 package fr.hugman.promenade.client;
 
-import fr.hugman.promenade.client.color.PromenadeColors;
+import fr.hugman.promenade.client.color.PromenadeBlockColors;
 import fr.hugman.promenade.client.particle.PromenadeParticleFactories;
 import fr.hugman.promenade.client.render.block.PromenadeBlockRenderLayers;
 import fr.hugman.promenade.client.render.entity.PromenadeEntityRenderers;
@@ -12,7 +12,7 @@ public class PromenadeClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		PromenadeEntityModelLayers.register();
 		PromenadeBlockRenderLayers.register();
-		PromenadeColors.register();
+		PromenadeBlockColors.register();
 		PromenadeEntityRenderers.register();
 		PromenadeParticleFactories.register();
 	}

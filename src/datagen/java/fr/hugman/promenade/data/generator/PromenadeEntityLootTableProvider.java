@@ -2,15 +2,19 @@ package fr.hugman.promenade.data.generator;
 
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.item.PromenadeItems;
+import fr.hugman.promenade.loot.PromenadeLootTables;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityType;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.AnyOfLootCondition;
 import net.minecraft.loot.condition.EntityPropertiesLootCondition;
+import net.minecraft.loot.condition.LocationCheckLootCondition;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.entry.ItemEntry;
@@ -19,10 +23,12 @@ import net.minecraft.loot.function.EnchantedCountIncreaseLootFunction;
 import net.minecraft.loot.function.FurnaceSmeltLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.predicate.FluidPredicate;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.entity.EntityEquipmentPredicate;
 import net.minecraft.predicate.entity.EntityFlagsPredicate;
 import net.minecraft.predicate.entity.EntityPredicate;
+import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.EnchantmentsPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
@@ -33,6 +39,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.EnchantmentTags;
 import net.minecraft.registry.tag.EntityTypeTags;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.registry.tag.ItemTags;
 
 import java.util.List;
@@ -50,7 +57,9 @@ public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvi
     @Override
     public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> output) {
         RegistryEntryLookup<EntityType<?>> entities = this.registries.getOrThrow(RegistryKeys.ENTITY_TYPE);
+        RegistryEntryLookup<Fluid> fluids = this.registries.getOrThrow(RegistryKeys.FLUID);
 
+        output.accept(PromenadeEntityTypes.CAPYBARA.getLootTableKey().orElseThrow(), LootTable.builder());
         output.accept(
                 PromenadeEntityTypes.DUCK.getLootTableKey().orElseThrow(),
                 LootTable.builder()
@@ -96,7 +105,9 @@ public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvi
                         )
         );
 
-        //TODO: Sunken loot
+        output.accept(PromenadeLootTables.BUBBLE_SUNKEN, sunken(fluids, Items.BUBBLE_CORAL, Items.DEAD_BUBBLE_CORAL));
+        output.accept(PromenadeLootTables.FIRE_SUNKEN, sunken(fluids, Items.FIRE_CORAL, Items.DEAD_FIRE_CORAL));
+        output.accept(PromenadeLootTables.HORN_SUNKEN, sunken(fluids, Items.HORN_CORAL, Items.DEAD_HORN_CORAL));
     }
 
     protected final AnyOfLootCondition.Builder createSmeltLootCondition() {
@@ -120,5 +131,30 @@ public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvi
                                 )
                 )
         );
+    }
+
+    protected final LootTable.Builder sunken(RegistryEntryLookup<Fluid> fluids, Item coral, Item deadCoral) {
+        return LootTable.builder()
+                .pool(LootPool.builder()
+                        .with(ItemEntry.builder(Items.ARROW)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
+                                .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                        )
+                )
+                .pool(LootPool.builder()
+                        .with(ItemEntry.builder(Items.BONE)
+                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
+                                .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                        )
+                )
+                .pool(LootPool.builder()
+                        .with(
+                                ItemEntry.builder(coral)
+                                        .conditionally(LocationCheckLootCondition.builder(LocationPredicate.Builder.create().fluid(FluidPredicate.Builder.create().tag(fluids.getOrThrow(FluidTags.WATER)))))
+                                        .alternatively(ItemEntry.builder(deadCoral))
+                        )
+                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
+                        .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                );
     }
 }

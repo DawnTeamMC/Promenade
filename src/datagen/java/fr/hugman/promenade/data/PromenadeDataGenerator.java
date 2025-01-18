@@ -30,6 +30,11 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(PromenadeSunkenVariantProvider::new);
         pack.addProvider(PromenadePaintingVariantProvider::new);
 
+        // - World generation
+        pack.addProvider(PromenadeConfiguredFeatureProvider::new);
+        pack.addProvider(PromenadePlacedFeatureProvider::new);
+        pack.addProvider(PromenadeBiomeProvider::new);
+
         // - Loot tables
         pack.addProvider(PromenadeBlockLootTableProvider::new);
         pack.addProvider(PromenadeEntityLootTableProvider::new);
@@ -37,7 +42,7 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         // - Tags
         var blockTagProvider = pack.addProvider(PromenadeBlockTagProvider::new);
         pack.addProvider((output, lookup) -> new PromenadeItemTagProvider(output, lookup, blockTagProvider));
-        //pack.addProvider(PromenadeBiomeTagProvider::new);
+        pack.addProvider(PromenadeBiomeTagProvider::new);
     }
 
     @Override
@@ -47,6 +52,10 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         registryBuilder.addRegistry(PromenadeRegistryKeys.DUCK_VARIANT, PromenadeDuckVariantProvider::register);
         registryBuilder.addRegistry(PromenadeRegistryKeys.SUNKEN_VARIANT, PromenadeSunkenVariantProvider::register);
         registryBuilder.addRegistry(RegistryKeys.PAINTING_VARIANT, PromenadePaintingVariantProvider::register);
+
+        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, PromenadeConfiguredFeatureProvider::register);
+        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, PromenadePlacedFeatureProvider::register);
+        registryBuilder.addRegistry(RegistryKeys.BIOME, PromenadeBiomeProvider::register);
     }
 
     @Override

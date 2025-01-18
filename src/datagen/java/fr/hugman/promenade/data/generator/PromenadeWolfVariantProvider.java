@@ -39,9 +39,9 @@ public class PromenadeWolfVariantProvider extends FabricDynamicRegistryProvider 
     private static void of(Registerable<WolfVariant> registry, RegistryKey<WolfVariant> key, RegistryEntryList<Biome> biomes) {
         var baseId = key.getValue().withPrefixedPath("entity/wolf/");
         registry.register(key, new WolfVariant(
-                baseId.withSuffixedPath("/small_eyes"),
-                baseId.withSuffixedPath("/large_eyes"),
-                baseId.withSuffixedPath("/closed_eyes"),
+                baseId.withSuffixedPath("/wild"),
+                baseId.withSuffixedPath("/tame"),
+                baseId.withSuffixedPath("/angry"),
                 biomes
         ));
     }

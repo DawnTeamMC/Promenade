@@ -1,10 +1,7 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
+import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
@@ -21,7 +18,7 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 
-public class ExtendedLeavesBlock extends Block {
+public class ExtendedLeavesBlock extends Block implements Waterloggable {
     public static final int MAX_DISTANCE = 14;
     public static final IntProperty DISTANCE = IntProperty.of("distance", 1, MAX_DISTANCE);
     public static final BooleanProperty PERSISTENT = Properties.PERSISTENT;
@@ -101,7 +98,7 @@ public class ExtendedLeavesBlock extends Block {
         if (block instanceof ExtendedLeavesBlock) {
             return state.get(DISTANCE);
         } else if (block instanceof LeavesBlock) {
-            int distance = state.get(DISTANCE);
+            int distance = state.get(LeavesBlock.DISTANCE);
             return distance < LeavesBlock.MAX_DISTANCE ? distance : MAX_DISTANCE;
         }
 

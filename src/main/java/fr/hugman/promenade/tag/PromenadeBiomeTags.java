@@ -8,7 +8,6 @@ import net.minecraft.world.biome.Biome;
 
 public class PromenadeBiomeTags {
     public static final TagKey<Biome> SAKURA_GROVES = of("sakura_groves");
-    public static final TagKey<Biome> DARK_AMARANTH_FORESTS = of("dark_amaranth_forests");
 
     public static final TagKey<Biome> HAS_PALMS = of("has_palms");
     public static final TagKey<Biome> HAS_DARK_FOREST_WITCH_HUT = of("has_structure/dark_forest_witch_hut");

@@ -46,4 +46,10 @@ public class SunkenEntityRenderer extends AbstractSkeletonEntityRenderer<SunkenE
     public Identifier getTexture(SunkenEntityRenderState state) {
         return state.texture;
     }
+
+    @Override
+    public void updateRenderState(SunkenEntity sunken, SunkenEntityRenderState state, float f) {
+        super.updateRenderState(sunken, state, f);
+        state.texture = sunken.getTexture();
+    }
 }
