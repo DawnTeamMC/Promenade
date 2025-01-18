@@ -55,8 +55,10 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         generation.feature(GenerationStep.Feature.LAKES, PromenadePlacedFeatures.WATER_POOLS_GRAVEL);
         generation.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, PromenadePlacedFeatures.CUTE_LITTLE_ROCKS);
 
-        DefaultBiomeFeatures.addDefaultDisks(generation);
+        DefaultBiomeFeatures.addForestFlowers(generation);
+
         DefaultBiomeFeatures.addDefaultOres(generation);
+        DefaultBiomeFeatures.addDefaultDisks(generation);
 
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.WATER_POOLS_GRAVEL_DECORATED);
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.SAKURA_GROVE_BAMBOO);
@@ -64,9 +66,9 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_WATERLILY);
 
         DefaultBiomeFeatures.addDefaultFlowers(generation);
-        DefaultBiomeFeatures.addForestFlowers(generation);
-        DefaultBiomeFeatures.addDefaultMushrooms(generation);
         DefaultBiomeFeatures.addForestGrass(generation);
+        DefaultBiomeFeatures.addDefaultGrass(generation);
+        DefaultBiomeFeatures.addDefaultMushrooms(generation);
         DefaultBiomeFeatures.addDefaultVegetation(generation);
 
         SpawnSettings.Builder spawns = new SpawnSettings.Builder();
