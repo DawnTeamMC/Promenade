@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public class PromenadeModels {
     public static final Model PILE = block("pile", TextureKey.ALL);
+    public static final Model BOTTOM_SNOWY_LEAVES = block("bottom_snowy_leaves", TextureKey.ALL, TextureKey.TOP, TextureKey.SIDE);
 
     private static Model make(TextureKey... requiredTextureKeys) {
         return new Model(Optional.empty(), Optional.empty(), requiredTextureKeys);

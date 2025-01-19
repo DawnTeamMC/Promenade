@@ -193,7 +193,7 @@ public class PromenadeBlocks {
     /*   AMARANTH   */
     /* ============ */
     //TODO: mixin the bonemeal feature
-    public static final Block DARK_AMARANTH_NYLIUM = register("dark_amaranth_dylium", BlockFactory.of(NyliumBlock::new,
+    public static final Block DARK_AMARANTH_NYLIUM = register("dark_amaranth_nylium", BlockFactory.of(NyliumBlock::new,
             AbstractBlock.Settings.create()
                     .mapColor(MapColor.BLACK)
                     .instrument(NoteBlockInstrument.BASEDRUM)

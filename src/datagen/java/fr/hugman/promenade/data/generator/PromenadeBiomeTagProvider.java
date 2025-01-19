@@ -21,8 +21,7 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        // Promenade tags
-
+        // Promenade
         getOrCreateTagBuilder(SAKURA_GROVES).add(BLUSH_SAKURA_GROVE, COTTON_SAKURA_GROVE);
 
         getOrCreateTagBuilder(HAS_PALMS)
@@ -50,8 +49,7 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
                 .forceAddTag(BiomeTags.IS_FOREST)
                 .addOptionalTag(ConventionalBiomeTags.IS_OCEAN);
 
-        // Vanilla tags
-
+        // Vanilla
         getOrCreateTagBuilder(BiomeTags.IS_FOREST).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY);
         getOrCreateTagBuilder(BiomeTags.IS_NETHER).add(DARK_AMARANTH_FOREST);
         getOrCreateTagBuilder(BiomeTags.IS_OVERWORLD).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);

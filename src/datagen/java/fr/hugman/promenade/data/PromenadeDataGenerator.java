@@ -43,6 +43,7 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         var blockTagProvider = pack.addProvider(PromenadeBlockTagProvider::new);
         pack.addProvider((output, lookup) -> new PromenadeItemTagProvider(output, lookup, blockTagProvider));
         pack.addProvider(PromenadeBiomeTagProvider::new);
+        pack.addProvider(PromenadePaintingVariantTagProvider::new);
     }
 
     @Override

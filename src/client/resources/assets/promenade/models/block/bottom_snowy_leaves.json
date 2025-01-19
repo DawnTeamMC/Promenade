@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/block",
   "textures": {
-    "particle": "#snowy"
+    "particle": "#top"
   },
   "elements": [
     {
@@ -9,36 +9,36 @@
       "to": [16, 16, 16],
       "faces": {
         "up": {
-          "texture": "#snowy",
+          "texture": "#top",
           "uv": [0, 0, 16, 16],
           "cullface": "up"
         },
         "down": {
-          "texture": "#normal",
+          "texture": "#all",
           "uv": [0, 0, 16, 16],
           "cullface": "down",
           "tintindex": 0
         },
         "north": {
-          "texture": "#normal",
+          "texture": "#all",
           "uv": [0, 0, 16, 16],
           "cullface": "north",
           "tintindex": 0
         },
         "south": {
-          "texture": "#normal",
+          "texture": "#all",
           "uv": [0, 0, 16, 16],
           "cullface": "south",
           "tintindex": 0
         },
         "west": {
-          "texture": "#normal",
+          "texture": "#all",
           "uv": [0, 0, 16, 16],
           "cullface": "west",
           "tintindex": 0
         },
         "east": {
-          "texture": "#normal",
+          "texture": "#all",
           "uv": [0, 0, 16, 16],
           "cullface": "east",
           "tintindex": 0
@@ -50,22 +50,22 @@
       "to": [16, 16, 16],
       "faces": {
         "north": {
-          "texture": "#side_overlay",
+          "texture": "#side",
           "uv": [0, 0, 16, 16],
           "cullface": "north"
         },
         "south": {
-          "texture": "#side_overlay",
+          "texture": "#side",
           "uv": [0, 0, 16, 16],
           "cullface": "south"
         },
         "west": {
-          "texture": "#side_overlay",
+          "texture": "#side",
           "uv": [0, 0, 16, 16],
           "cullface": "west"
         },
         "east": {
-          "texture": "#side_overlay",
+          "texture": "#side",
           "uv": [0, 0, 16, 16],
           "cullface": "east"
         }

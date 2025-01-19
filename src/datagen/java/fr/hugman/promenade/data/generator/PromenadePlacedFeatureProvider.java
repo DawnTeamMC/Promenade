@@ -8,9 +8,13 @@ import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.NoiseIntervalCountPlacementModifier;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.heightprovider.TrapezoidHeightProvider;
 import net.minecraft.world.gen.placementmodifier.*;
@@ -107,9 +111,9 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
                 configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_MIKADO_TREE),
                 treeModifiersWithNoiseInterval(PlacedFeatures.createCountExtraModifier(5, 0.1F, 1), -0.95f, -0.2f));
 
-        of(registerable, PromenadePlacedFeatures.GLACARIAN_TAIGA_TREES, configured.getOrThrow(PromenadeConfiguredFeatures.SNOWY_MEGA_SPRUCE), treeModifiers(PlacedFeatures.createCountExtraModifier(14, 0.1F, 4)));
+        of(registerable, PromenadePlacedFeatures.GLACARIAN_TAIGA_TREES, configured.getOrThrow(PromenadeConfiguredFeatures.SNOWY_MEGA_SPRUCE), treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(14, 0.1F, 4), Blocks.SPRUCE_SAPLING));
 
-        of(registerable, PromenadePlacedFeatures.PALMS, configured.getOrThrow(PromenadeConfiguredFeatures.PALM), treeModifiers(PlacedFeatures.createCountExtraModifier(0, 0.1F, 1)));
+        of(registerable, PromenadePlacedFeatures.PALMS, configured.getOrThrow(PromenadeConfiguredFeatures.PALM), treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.1F, 1), PromenadeBlocks.PALM_SAPLING));
 
         of(registerable, PromenadePlacedFeatures.DARK_AMARANTH_FUNGI, configured.getOrThrow(PromenadeConfiguredFeatures.DARK_AMARANTH_FUNGUS), netherCount(8));
 
@@ -181,6 +185,10 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
                 .add(PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP)
                 .add(BiomePlacementModifier.of())
                 .build();
+    }
+
+    public static List<PlacementModifier> treeModifiersWithWouldSurvive(PlacementModifier modifier, Block block) {
+        return treeModifiersBuilder(modifier).add(BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(block.getDefaultState(), BlockPos.ORIGIN))).build();
     }
 
     public static List<PlacementModifier> treeModifiers(PlacementModifier modifier) {

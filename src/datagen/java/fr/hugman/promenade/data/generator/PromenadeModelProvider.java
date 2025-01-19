@@ -1,9 +1,14 @@
 package fr.hugman.promenade.data.generator;
 
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.block.MoaiBlock;
 import fr.hugman.promenade.block.MoaiType;
 import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.block.SnowyLeavesBlock;
 import fr.hugman.promenade.block.property.PromenadeBlockProperties;
 import fr.hugman.promenade.data.PromenadeBlockFamilies;
+import fr.hugman.promenade.data.model.PromenadeModels;
+import fr.hugman.promenade.data.model.PromenadeTextureMaps;
 import fr.hugman.promenade.data.model.PromenadeTexturedModels;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.world.biome.PromenadeFoliageColors;
@@ -53,7 +58,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerSingleton(PromenadeBlocks.LILY_OF_THE_VALLEY_PILE, PromenadeTexturedModels.PILE);
         gen.registerSingleton(PromenadeBlocks.WITHER_ROSE_PILE, PromenadeTexturedModels.PILE);
 
-        //TODO: snowy leaves
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_SPRUCE_LEAVES, Blocks.SPRUCE_LEAVES);
 
         gen.registerLog(PromenadeBlocks.SAKURA_LOG).uvLockedLog(PromenadeBlocks.SAKURA_LOG).wood(PromenadeBlocks.SAKURA_WOOD);
         gen.registerLog(PromenadeBlocks.STRIPPED_SAKURA_LOG).uvLockedLog(PromenadeBlocks.STRIPPED_SAKURA_LOG).wood(PromenadeBlocks.STRIPPED_SAKURA_WOOD);
@@ -91,6 +96,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerTintableCrossBlockState(PromenadeBlocks.PALM_HANGING_LEAVES, BlockStateModelGenerator.CrossType.TINTED);
         this.registerTintedItem(gen, PromenadeBlocks.PALM_HANGING_LEAVES, PromenadeFoliageColors.PALM);
 
+        gen.registerNetherrackBottomCustomTop(PromenadeBlocks.DARK_AMARANTH_NYLIUM);
         gen.registerSimpleCubeAll(PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);
         gen.registerRoots(PromenadeBlocks.DARK_AMARANTH_ROOTS, PromenadeBlocks.POTTED_DARK_AMARANTH_ROOTS);
         gen.registerLog(PromenadeBlocks.DARK_AMARANTH_STEM).uvLockedLog(PromenadeBlocks.DARK_AMARANTH_STEM).wood(PromenadeBlocks.DARK_AMARANTH_HYPHAE);
@@ -129,13 +135,27 @@ public class PromenadeModelProvider extends FabricModelProvider {
                 .accept(
                         VariantsBlockStateSupplier.create(PromenadeBlocks.MOAI)
                                 .coordinate(
-                                        BlockStateVariantMap.create(PromenadeBlockProperties.MOAI_TYPE)
+                                        BlockStateVariantMap.create(MoaiBlock.TYPE)
                                                 .register(MoaiType.SINGLE, BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockModelId(PromenadeBlocks.MOAI)))
                                                 .register(MoaiType.TOP, BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(PromenadeBlocks.MOAI, "_top")))
                                                 .register(MoaiType.BOTTOM, BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(PromenadeBlocks.MOAI, "_bottom")))
                                 )
                                 .coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates())
                 );
+    }
+
+
+    private void registerSnowyLeaves(BlockStateModelGenerator gen, Block snowyLeaves, Block normalLeaves) {
+        gen.blockStateCollector
+                .accept(
+                        VariantsBlockStateSupplier.create(snowyLeaves)
+                                .coordinate(
+                                        BlockStateVariantMap.create(SnowyLeavesBlock.BOTTOM)
+                                                .register(true, BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(snowyLeaves, "_bottom", PromenadeModels.BOTTOM_SNOWY_LEAVES, block -> PromenadeTextureMaps.snowyLeaves(snowyLeaves, normalLeaves))))
+                                                .register(false, BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(snowyLeaves, "", Models.CUBE_ALL, TextureMap::all)))
+                                )
+                );
+
     }
 
     @Override

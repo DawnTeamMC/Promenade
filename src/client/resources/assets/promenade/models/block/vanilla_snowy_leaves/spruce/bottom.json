@@ -1,8 +1,0 @@
-{
-  "parent": "promenade:block/bottom_snowy_leaves",
-  "textures": {
-    "snowy": "promenade:block/vanilla_snowy_leaves/spruce/normal",
-    "side_overlay": "promenade:block/vanilla_snowy_leaves/spruce/bottom",
-    "normal": "minecraft:block/spruce_leaves"
-  }
-}
