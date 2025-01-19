@@ -11,6 +11,7 @@ import net.minecraft.world.biome.Biome;
 import java.util.concurrent.CompletableFuture;
 
 import static fr.hugman.promenade.tag.PromenadeBiomeTags.*;
+import static fr.hugman.promenade.world.biome.PromenadeBiomes.*;
 import static net.minecraft.world.biome.BiomeKeys.*;
 
 public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
@@ -22,9 +23,7 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         // Promenade tags
 
-        getOrCreateTagBuilder(SAKURA_GROVES)
-                //.add(BLUSH_SAKURA_GROVE, COTTON_SAKURA_GROVE) FIXME
-        ;
+        getOrCreateTagBuilder(SAKURA_GROVES).add(BLUSH_SAKURA_GROVE, COTTON_SAKURA_GROVE);
 
         getOrCreateTagBuilder(HAS_PALMS)
                 .add(DESERT)
@@ -33,9 +32,7 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
                 .add(DARK_FOREST, PALE_GARDEN)
                 .addOptionalTag(ConventionalBiomeTags.IS_DARK_FOREST);
 
-        getOrCreateTagBuilder(CAN_FREEZE_DURING_SNOWFALL)
-                //.add(GLACARIAN_TAIGA) FIXME
-        ;
+        getOrCreateTagBuilder(CAN_FREEZE_DURING_SNOWFALL).add(GLACARIAN_TAIGA);
 
         getOrCreateTagBuilder(SPAWNS_CAPYBARAS)
                 .forceAddTag(BiomeTags.IS_RIVER)
@@ -55,13 +52,10 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
 
         // Vanilla tags
 
-        /*
-        FIXME
         getOrCreateTagBuilder(BiomeTags.IS_FOREST).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY);
         getOrCreateTagBuilder(BiomeTags.IS_NETHER).add(DARK_AMARANTH_FOREST);
         getOrCreateTagBuilder(BiomeTags.IS_OVERWORLD).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
         getOrCreateTagBuilder(BiomeTags.IS_TAIGA).add(GLACARIAN_TAIGA);
         getOrCreateTagBuilder(BiomeTags.STRONGHOLD_BIASED_TO).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
-         */
     }
 }

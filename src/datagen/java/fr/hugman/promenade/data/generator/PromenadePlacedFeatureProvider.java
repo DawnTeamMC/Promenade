@@ -8,12 +8,9 @@ import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.NoiseIntervalCountPlacementModifier;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
-import net.minecraft.block.Block;
 import net.minecraft.registry.*;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.YOffset;
-import net.minecraft.world.gen.blockpredicate.BlockPredicate;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.heightprovider.TrapezoidHeightProvider;
 import net.minecraft.world.gen.placementmodifier.*;
@@ -108,7 +105,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
                 treeModifiersWithNoiseInterval(PlacedFeatures.createCountExtraModifier(5, 0.1F, 1), -0.4f, 0.4f));
         of(registerable, PromenadePlacedFeatures.CARNELIAN_TREEWAY_MIKADO_TREES,
                 configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_MIKADO_TREE),
-                treeModifiersWithNoiseInterval(PlacedFeatures.createCountExtraModifier(5, 0.1F, 1), -0.2f, -0.95f));
+                treeModifiersWithNoiseInterval(PlacedFeatures.createCountExtraModifier(5, 0.1F, 1), -0.95f, -0.2f));
 
         of(registerable, PromenadePlacedFeatures.GLACARIAN_TAIGA_TREES, configured.getOrThrow(PromenadeConfiguredFeatures.SNOWY_MEGA_SPRUCE), treeModifiers(PlacedFeatures.createCountExtraModifier(14, 0.1F, 4)));
 
@@ -125,8 +122,8 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
 
         of(registerable, PromenadePlacedFeatures.CUTE_LITTLE_ROCKS, configured.getOrThrow(PromenadeConfiguredFeatures.CUTE_LITTLE_ROCK), count(2, PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP));
 
-        of(registerable, PromenadePlacedFeatures.WATER_POOLS_GRAVEL, configured.getOrThrow(PromenadeConfiguredFeatures.WATER_POOL_GRAVEL), count(7));
-        of(registerable, PromenadePlacedFeatures.WATER_POOLS_GRAVEL_DECORATED, configured.getOrThrow(PromenadeConfiguredFeatures.WATER_POOL_GRAVEL), count(10, PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP));
+        of(registerable, PromenadePlacedFeatures.WATER_POOLS_GRAVEL, configured.getOrThrow(PromenadeConfiguredFeatures.WATER_POOL_GRAVEL), rare(7));
+        of(registerable, PromenadePlacedFeatures.WATER_POOLS_GRAVEL_DECORATED, configured.getOrThrow(PromenadeConfiguredFeatures.WATER_POOL_GRAVEL_DECORATED), rare(10, PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP));
 
         of(registerable, PromenadePlacedFeatures.FREEZE_TOP_LAYER, RegistryEntry.of(new ConfiguredFeature<>(PromenadeFeatures.FREEZE_TOP_LAYER, FeatureConfig.DEFAULT)), BiomePlacementModifier.of());
 
@@ -179,7 +176,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
         return ImmutableList.<PlacementModifier>builder()
                 .add(countModifier)
                 .add(SquarePlacementModifier.of())
-                .add(NoiseIntervalCountPlacementModifier.of(noiseMin, noiseMax, 0, 1))
+                .add(NoiseIntervalCountPlacementModifier.of(noiseMin, noiseMax, 1, 0))
                 .add(NOT_IN_SURFACE_WATER_MODIFIER)
                 .add(PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP)
                 .add(BiomePlacementModifier.of())
@@ -188,10 +185,6 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
 
     public static List<PlacementModifier> treeModifiers(PlacementModifier modifier) {
         return treeModifiersBuilder(modifier).build();
-    }
-
-    public static List<PlacementModifier> treeModifiersWithWouldSurvive(PlacementModifier modifier, Block block) {
-        return treeModifiersBuilder(modifier).add(BlockFilterPlacementModifier.of(BlockPredicate.wouldSurvive(block.getDefaultState(), BlockPos.ORIGIN))).build();
     }
 
     public static void of(
