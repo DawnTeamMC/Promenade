@@ -17,7 +17,6 @@ import net.minecraft.entity.ai.brain.sensor.SensorType;
 import net.minecraft.entity.ai.brain.task.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Unit;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
 import java.util.Map;
@@ -70,8 +69,7 @@ public class CapybaraBrain {
                 new StayAboveWaterTask<>(0.8f),
                 new net.minecraft.entity.ai.brain.task.FleeTask<>(1.0F) {
                     protected void run(ServerWorld serverWorld, CapybaraEntity capybaraEntity, long l) {
-                        capybaraEntity.startState(CapybaraEntity.State.IDLING);
-                        // TODO: stop farting, sleeping...
+                        capybaraEntity.forceDefaultState();
                         super.run(serverWorld, capybaraEntity, l);
                     }
                 },
@@ -91,8 +89,8 @@ public class CapybaraBrain {
                 Pair.of(5, new RandomTask<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryModuleState.VALUE_ABSENT), ImmutableList.of(
                         Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), StrollTask.create(1.0f)), 1),
                         Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), GoToLookTargetTask.create(1.0f, 3)), 1),
-                        Pair.of(new SleepTask(20), 1),
-                        Pair.of(new FartTask(40, 80), 1),
+                        Pair.of(new SleepOrWakeUpTask(), 1),
+                        Pair.of(new FartTask(), 1),
                         Pair.of(new WaitTask(30, 60), 1)
                 )))));
     }
@@ -105,45 +103,45 @@ public class CapybaraBrain {
         return (stack) -> stack.isIn(PromenadeItemTags.CAPYBARA_FOOD);
     }
 
-    public static class SleepTask extends MultiTickTask<CapybaraEntity> {
-        private final int lastPoseTickDelta;
-
-        public SleepTask(int lastPoseSecondsDelta) {
-            super(ImmutableMap.of());
-            this.lastPoseTickDelta = lastPoseSecondsDelta * 20;
+    public static class SleepOrWakeUpTask extends MultiTickTask<CapybaraEntity> {
+        public SleepOrWakeUpTask() {
+            super(ImmutableMap.of(
+                    MemoryModuleType.IS_PANICKING, MemoryModuleState.VALUE_ABSENT,
+                    MemoryModuleType.IS_TEMPTED, MemoryModuleState.VALUE_ABSENT,
+                    MemoryModuleType.IS_IN_WATER, MemoryModuleState.VALUE_ABSENT,
+                    // TODO: add capybara falling sleeping check
+                    // TODO: add capybara waking up check
+                    // TODO: add capybara farting check
+                    MemoryModuleType.BREED_TARGET, MemoryModuleState.VALUE_ABSENT));
         }
 
         @Override
         protected boolean shouldRun(ServerWorld world, CapybaraEntity capybara) {
-            return !capybara.isTouchingWater() && capybara.getLastStateTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasControllingPassenger();
+            return !capybara.isTouchingWater() && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasControllingPassenger();
         }
 
         @Override
         protected void run(ServerWorld world, CapybaraEntity capybara, long l) {
-            if (capybara.canStopSleeping()) {
-                capybara.startState(CapybaraEntity.State.WAKE_UP);
-            } else if (capybara.canFallToSleep()) {
-                capybara.startState(CapybaraEntity.State.FALL_TO_SLEEP);
+            if (capybara.canFallToSleep()) {
+                capybara.startFallingToSleep();
+            } else if (capybara.canWakeUp()) {
+                capybara.startWakingUp();
             }
         }
     }
 
     static class FartTask extends MultiTickTask<CapybaraEntity> {
-        FartTask(int minRunTime, int maxRunTime) {
-            super(
-                    Map.of(
-                            MemoryModuleType.IS_PANICKING, MemoryModuleState.VALUE_ABSENT,
-                            MemoryModuleType.IS_TEMPTED, MemoryModuleState.VALUE_ABSENT,
-                            MemoryModuleType.IS_IN_WATER, MemoryModuleState.VALUE_ABSENT,
-                            // TODO: add capybara falling sleeping check
-                            // TODO: add capybara sleeping check
-                            // TODO: add capybara waking up check
-                            PromenadeMemoryModuleTypes.FART_COOLDOWN, MemoryModuleState.VALUE_ABSENT,
-                            MemoryModuleType.BREED_TARGET, MemoryModuleState.VALUE_ABSENT
-                    ),
-                    minRunTime,
-                    maxRunTime
-            );
+        FartTask() {
+            super(Map.of(
+                    MemoryModuleType.IS_PANICKING, MemoryModuleState.VALUE_ABSENT,
+                    MemoryModuleType.IS_TEMPTED, MemoryModuleState.VALUE_ABSENT,
+                    MemoryModuleType.IS_IN_WATER, MemoryModuleState.VALUE_ABSENT,
+                    // TODO: add capybara falling sleeping check
+                    // TODO: add capybara sleeping check
+                    // TODO: add capybara waking up check
+                    PromenadeMemoryModuleTypes.FART_COOLDOWN, MemoryModuleState.VALUE_ABSENT,
+                    MemoryModuleType.BREED_TARGET, MemoryModuleState.VALUE_ABSENT
+            ));
         }
 
         protected boolean shouldRun(ServerWorld serverWorld, CapybaraEntity capybara) {
@@ -155,12 +153,7 @@ public class CapybaraBrain {
         }
 
         protected void run(ServerWorld serverWorld, CapybaraEntity capybara, long l) {
-            capybara.startState(CapybaraEntity.State.FARTING);
-        }
-
-        protected void finishRunning(ServerWorld serverWorld, CapybaraEntity capybara, long l) {
-            capybara.startState(CapybaraEntity.State.IDLING);
-            capybara.getBrain().remember(PromenadeMemoryModuleTypes.FART_COOLDOWN, Unit.INSTANCE, 9600L);
+            capybara.fart();
         }
     }
 }
