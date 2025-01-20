@@ -151,6 +151,10 @@ public class PromenadeItemGroupAdditions {
             e.addAfter(Blocks.WARPED_WART_BLOCK, PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);
             e.addAfter(Blocks.WARPED_FUNGUS, PromenadeBlocks.DARK_AMARANTH_FUNGUS);
             e.addAfter(Blocks.WARPED_ROOTS, PromenadeBlocks.DARK_AMARANTH_ROOTS);
+            e.addAfter(Blocks.SHROOMLIGHT, PromenadeBlocks.SOUL_SHROOMLIGHT);
+        });
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> {
+            e.addAfter(Blocks.SHROOMLIGHT, PromenadeBlocks.SOUL_SHROOMLIGHT);
         });
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(e -> e.addAfter(Blocks.CUT_RED_SANDSTONE_SLAB, PromenadeBlocks.MOAI));
