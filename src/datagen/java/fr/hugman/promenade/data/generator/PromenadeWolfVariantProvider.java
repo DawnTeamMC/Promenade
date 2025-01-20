@@ -31,7 +31,7 @@ public class PromenadeWolfVariantProvider extends FabricDynamicRegistryProvider 
     }
 
     public static void register(Registerable<WolfVariant> registerable) {
-        var biomes = registerable.getRegistryLookup(RegistryKeys.BIOME);
+        final var biomes = registerable.getRegistryLookup(RegistryKeys.BIOME);
 
         of(registerable, PromenadeWolfVariants.SHIBA_INU, biomes.getOrThrow(PromenadeBiomeTags.SAKURA_GROVES));
     }

@@ -40,7 +40,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
     }
 
     public static void register(Registerable<PlacedFeature> registerable) {
-        RegistryEntryLookup<ConfiguredFeature<?, ?>> configured = registerable.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
+        final var configured = registerable.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
         // Ores
         var asphalt = configured.getOrThrow(PromenadeConfiguredFeatures.ASPHALT_ORE);

@@ -21,7 +21,7 @@ public class PromenadePaintingVariantProvider extends FabricDynamicRegistryProvi
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        var wrapper = registries.getOrThrow(RegistryKeys.PAINTING_VARIANT);
+        final var wrapper = registries.getOrThrow(RegistryKeys.PAINTING_VARIANT);
         entries.add(wrapper, PromenadePaintingVariants.OPTIMISM);
         entries.add(wrapper, PromenadePaintingVariants.NURTURE);
     }

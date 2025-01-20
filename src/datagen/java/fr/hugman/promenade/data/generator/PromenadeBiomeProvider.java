@@ -36,8 +36,8 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
     }
 
     public static void register(Registerable<Biome> registerable) {
-        RegistryEntryLookup<PlacedFeature> features = registerable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
-        RegistryEntryLookup<ConfiguredCarver<?>> carvers = registerable.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER);
+        final var features = registerable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
+        final var carvers = registerable.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER);
 
         registerable.register(PromenadeBiomes.BLUSH_SAKURA_GROVE, createSakuraGroves(features, carvers, PromenadePlacedFeatures.BLUSH_SAKURA_GROVE_TREES));
         registerable.register(PromenadeBiomes.COTTON_SAKURA_GROVE, createSakuraGroves(features, carvers, PromenadePlacedFeatures.COTTON_SAKURA_GROVE_TREES));

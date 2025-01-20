@@ -19,7 +19,6 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
 
         // Resource Pack
         pack.addProvider(PromenadeModelProvider::new);
-        pack.addProvider(PromenadeRecipeGenerator::create);
 
         // Data Pack
 
@@ -43,7 +42,14 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         var blockTagProvider = pack.addProvider(PromenadeBlockTagProvider::new);
         pack.addProvider((output, lookup) -> new PromenadeItemTagProvider(output, lookup, blockTagProvider));
         pack.addProvider(PromenadeBiomeTagProvider::new);
+        pack.addProvider(PromenadeEntityTypeTagProvider::new);
         pack.addProvider(PromenadePaintingVariantTagProvider::new);
+
+        // - Recipes
+        pack.addProvider(PromenadeRecipeGenerator::create);
+
+        // - Advancements
+        pack.addProvider(PromenadeAdvancementProvider::new);
     }
 
     @Override

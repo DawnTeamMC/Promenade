@@ -36,7 +36,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
 
     @Override
     public void generate() {
-        RegistryWrapper.Impl<Enchantment> enchantments = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
+        final var enchantments = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
 
         addDrop(PromenadeBlocks.ASPHALT);
         addDrop(PromenadeBlocks.ASPHALT_SLAB, this::slabDrops);

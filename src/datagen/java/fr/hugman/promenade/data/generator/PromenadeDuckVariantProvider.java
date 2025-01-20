@@ -32,7 +32,7 @@ public class PromenadeDuckVariantProvider extends FabricDynamicRegistryProvider 
     }
 
     public static void register(Registerable<DuckVariant> registerable) {
-        var biomes = registerable.getRegistryLookup(RegistryKeys.BIOME);
+        final var biomes = registerable.getRegistryLookup(RegistryKeys.BIOME);
 
         of(registerable, DuckVariants.PEKIN, biomes.getOrThrow(PromenadeBiomeTags.SPAWNS_PEKIN_DUCKS));
         of(registerable, DuckVariants.MALLARD, biomes.getOrThrow(PromenadeBiomeTags.SPAWNS_MALLARD_DUCKS));

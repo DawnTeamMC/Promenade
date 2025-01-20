@@ -25,17 +25,6 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
         getOrCreateTagBuilder(PALM_LOGS).add(PALM_LOG, STRIPPED_PALM_LOG, PALM_WOOD, STRIPPED_PALM_WOOD);
         getOrCreateTagBuilder(DARK_AMARANTH_STEMS).add(DARK_AMARANTH_STEM, STRIPPED_DARK_AMARANTH_STEM, DARK_AMARANTH_HYPHAE, STRIPPED_DARK_AMARANTH_HYPHAE);
 
-        getOrCreateTagBuilder(LEAVES).add(
-                VERMILION_MAPLE_LEAVES,
-                FULVOUS_MAPLE_LEAVES,
-                MIKADO_MAPLE_LEAVES,
-                SAP_MAPLE_LEAVES,
-                BLUSH_SAKURA_BLOSSOMS,
-                COTTON_SAKURA_BLOSSOMS,
-                PALM_LEAVES,
-                SNOWY_SPRUCE_LEAVES
-        );
-
         getOrCreateTagBuilder(LEAF_PILES).add(
                 OAK_LEAF_PILE,
                 SPRUCE_LEAF_PILE,
@@ -48,7 +37,6 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 MANGROVE_LEAF_PILE,
                 AZALEA_LEAF_PILE,
                 FLOWERING_AZALEA_LEAF_PILE,
-
                 VERMILION_MAPLE_LEAF_PILE,
                 FULVOUS_MAPLE_LEAF_PILE,
                 MIKADO_MAPLE_LEAF_PILE,
@@ -92,6 +80,7 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
         getOrCreateTagBuilder(BlockTags.BASE_STONE_OVERWORLD).add(ASPHALT, BLUNITE);
         getOrCreateTagBuilder(BlockTags.STONE_ORE_REPLACEABLES).add(ASPHALT, BLUNITE);
 
+
         getOrCreateTagBuilder(BlockTags.SLABS).add(ASPHALT_SLAB, BLUNITE_SLAB, POLISHED_ASPHALT_SLAB, POLISHED_BLUNITE_SLAB);
         getOrCreateTagBuilder(BlockTags.STAIRS).add(ASPHALT_STAIRS, BLUNITE_STAIRS, POLISHED_ASPHALT_STAIRS, POLISHED_BLUNITE_STAIRS);
         getOrCreateTagBuilder(BlockTags.WALLS).add(ASPHALT_WALL, BLUNITE_WALL);
@@ -113,12 +102,22 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
         getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS).add(SAKURA_HANGING_SIGN, MAPLE_HANGING_SIGN, PALM_HANGING_SIGN, DARK_AMARANTH_HANGING_SIGN);
         getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS).add(SAKURA_WALL_HANGING_SIGN, MAPLE_WALL_HANGING_SIGN, PALM_WALL_HANGING_SIGN, DARK_AMARANTH_WALL_HANGING_SIGN);
 
-        getOrCreateTagBuilder(BlockTags.LEAVES).addTag(LEAVES);
+        getOrCreateTagBuilder(BlockTags.LEAVES).add(
+                VERMILION_MAPLE_LEAVES,
+                FULVOUS_MAPLE_LEAVES,
+                MIKADO_MAPLE_LEAVES,
+                SAP_MAPLE_LEAVES,
+                BLUSH_SAKURA_BLOSSOMS,
+                COTTON_SAKURA_BLOSSOMS,
+                PALM_LEAVES,
+                SNOWY_SPRUCE_LEAVES
+        );
         getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
                 BLUSH_SAKURA_SAPLING, COTTON_SAKURA_SAPLING,
                 SAP_MAPLE_SAPLING, VERMILION_MAPLE_SAPLING, FULVOUS_MAPLE_SAPLING, MIKADO_MAPLE_SAPLING,
                 PALM_SAPLING);
 
+        getOrCreateTagBuilder(BlockTags.BEE_ATTRACTIVE).add(AZALEA_LEAF_PILE, FLOWERING_AZALEA_LEAF_PILE);
         getOrCreateTagBuilder(BlockTags.FLOWERS).add(AZALEA_LEAF_PILE, FLOWERING_AZALEA_LEAF_PILE);
         getOrCreateTagBuilder(BlockTags.FLOWER_POTS).add(
                 POTTED_BLUSH_SAKURA_SAPLING, POTTED_COTTON_SAKURA_SAPLING,
@@ -133,6 +132,7 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
 
         getOrCreateTagBuilder(BlockTags.NYLIUM).add(DARK_AMARANTH_NYLIUM);
         getOrCreateTagBuilder(BlockTags.WART_BLOCKS).add(DARK_AMARANTH_WART_BLOCK);
+        getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(DARK_AMARANTH_NYLIUM, SOUL_SHROOMLIGHT);
 
         getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE).add(DARK_AMARANTH_FUNGUS, DARK_AMARANTH_NYLIUM, DARK_AMARANTH_ROOTS);
 
@@ -157,7 +157,16 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
         );
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(DARK_AMARANTH_FUNGUS);
         getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
-                .addTag(LEAVES)
+                .add(
+                        VERMILION_MAPLE_LEAVES,
+                        FULVOUS_MAPLE_LEAVES,
+                        MIKADO_MAPLE_LEAVES,
+                        SAP_MAPLE_LEAVES,
+                        BLUSH_SAKURA_BLOSSOMS,
+                        COTTON_SAKURA_BLOSSOMS,
+                        PALM_LEAVES,
+                        SNOWY_SPRUCE_LEAVES
+                )
                 .addTag(FLOWER_PILES)
                 .addTag(LEAF_PILES)
                 .add(DARK_AMARANTH_WART_BLOCK, SOUL_SHROOMLIGHT);

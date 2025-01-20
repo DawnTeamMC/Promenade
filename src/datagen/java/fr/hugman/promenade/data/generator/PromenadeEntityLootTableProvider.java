@@ -56,8 +56,8 @@ public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvi
 
     @Override
     public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> output) {
-        RegistryEntryLookup<EntityType<?>> entities = this.registries.getOrThrow(RegistryKeys.ENTITY_TYPE);
-        RegistryEntryLookup<Fluid> fluids = this.registries.getOrThrow(RegistryKeys.FLUID);
+        final var entities = this.registries.getOrThrow(RegistryKeys.ENTITY_TYPE);
+        final var fluids = this.registries.getOrThrow(RegistryKeys.FLUID);
 
         output.accept(PromenadeEntityTypes.CAPYBARA.getLootTableKey().orElseThrow(), LootTable.builder());
         output.accept(

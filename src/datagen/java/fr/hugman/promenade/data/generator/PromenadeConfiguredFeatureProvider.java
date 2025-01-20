@@ -45,8 +45,8 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
     }
 
     public static void register(Registerable<ConfiguredFeature<?, ?>> registerable) {
-        RegistryEntryLookup<ConfiguredFeature<?, ?>> configured = registerable.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
-        RegistryEntryLookup<PlacedFeature> placed = registerable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
+        final var configured = registerable.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
+        final var placed = registerable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
 
         // Ores
         var isBaseStoneOverworld = new TagMatchRuleTest(BlockTags.BASE_STONE_OVERWORLD);
