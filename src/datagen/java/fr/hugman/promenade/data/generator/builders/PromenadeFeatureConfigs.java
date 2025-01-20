@@ -1,6 +1,7 @@
 package fr.hugman.promenade.data.generator.builders;
 
 import com.google.common.collect.ImmutableList;
+import fr.hugman.promenade.block.MapleLogBlock;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.world.gen.tree.foliage.PalmFoliagePlacer;
 import fr.hugman.promenade.world.gen.tree.trunk.LeapingTrunkPlacer;
@@ -117,7 +118,7 @@ public class PromenadeFeatureConfigs {
 
     public static TreeFeatureConfig.Builder maple(Block leaves, boolean fancy) {
         return new TreeFeatureConfig.Builder(
-                BlockStateProvider.of(PromenadeBlocks.MAPLE_LOG),
+                BlockStateProvider.of(PromenadeBlocks.MAPLE_LOG.getDefaultState().with(MapleLogBlock.NATURAL, true)),
                 fancy ? new StraightTrunkPlacer(8, 5, 2) :
                         new StraightTrunkPlacer(5, 4, 0),
                 BlockStateProvider.of(leaves),

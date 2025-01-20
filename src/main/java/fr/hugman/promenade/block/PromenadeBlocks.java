@@ -117,8 +117,8 @@ public class PromenadeBlocks {
     /* ========= */
     /*   MAPLE   */
     /* ========= */
-    public static final Block STRIPPED_MAPLE_LOG = register("stripped_maple_log", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true));
-    public static final Block MAPLE_LOG = register("maple_log", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true).stripsInto(STRIPPED_MAPLE_LOG));
+    public static final Block STRIPPED_MAPLE_LOG = register("stripped_maple_log", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true).factory(StrippedMapleLogBlock::new));
+    public static final Block MAPLE_LOG = register("maple_log", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true).factory(MapleLogBlock::new).stripsInto(STRIPPED_MAPLE_LOG));
     public static final Block STRIPPED_MAPLE_WOOD = register("stripped_maple_wood", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true));
     public static final Block MAPLE_WOOD = register("maple_wood", BlockFactory.log(PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true).stripsInto(STRIPPED_MAPLE_WOOD));
 

@@ -54,17 +54,17 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.POLISHED_BLUNITE_SLAB, this::slabDrops);
         addDrop(PromenadeBlocks.POLISHED_BLUNITE_STAIRS);
 
-        addDrop(PromenadeBlocks.OAK_LEAF_PILE, this::dropsWithShears);
-        addDrop(PromenadeBlocks.SPRUCE_LEAF_PILE, this::dropsWithShears);
-        addDrop(PromenadeBlocks.BIRCH_LEAF_PILE, this::dropsWithShears);
-        addDrop(PromenadeBlocks.JUNGLE_LEAF_PILE, this::dropsWithShears);
-        addDrop(PromenadeBlocks.ACACIA_LEAF_PILE, this::dropsWithShears);
-        addDrop(PromenadeBlocks.CHERRY_LEAF_PILE, this::dropsWithShears);
-        addDrop(PromenadeBlocks.DARK_OAK_LEAF_PILE, this::dropsWithShears);
-        addDrop(PromenadeBlocks.PALE_OAK_LEAF_PILE, this::dropsWithShears);
-        addDrop(PromenadeBlocks.MANGROVE_LEAF_PILE, this::dropsWithShears);
-        addDrop(PromenadeBlocks.AZALEA_LEAF_PILE, this::dropsWithShears);
-        addDrop(PromenadeBlocks.FLOWERING_AZALEA_LEAF_PILE, this::dropsWithShears);
+        addDrop(PromenadeBlocks.OAK_LEAF_PILE, this::dropsWithSilkTouchOrShears);
+        addDrop(PromenadeBlocks.SPRUCE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
+        addDrop(PromenadeBlocks.BIRCH_LEAF_PILE, this::dropsWithSilkTouchOrShears);
+        addDrop(PromenadeBlocks.JUNGLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
+        addDrop(PromenadeBlocks.ACACIA_LEAF_PILE, this::dropsWithSilkTouchOrShears);
+        addDrop(PromenadeBlocks.CHERRY_LEAF_PILE, this::dropsWithSilkTouchOrShears);
+        addDrop(PromenadeBlocks.DARK_OAK_LEAF_PILE, this::dropsWithSilkTouchOrShears);
+        addDrop(PromenadeBlocks.PALE_OAK_LEAF_PILE, this::dropsWithSilkTouchOrShears);
+        addDrop(PromenadeBlocks.MANGROVE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
+        addDrop(PromenadeBlocks.AZALEA_LEAF_PILE, this::dropsWithSilkTouchOrShears);
+        addDrop(PromenadeBlocks.FLOWERING_AZALEA_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.DANDELION_PILE, flowerPile(Items.DANDELION));
         addDrop(PromenadeBlocks.POPPY_PILE, flowerPile(Items.POPPY));
@@ -101,12 +101,12 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.BLUSH_SAKURA_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_BLUSH_SAKURA_SAPLING);
         addDrop(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, block -> this.leavesDrops(block, PromenadeBlocks.BLUSH_SAKURA_SAPLING, SAPLING_DROP_CHANCE));
-        addDrop(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, this::dropsWithShears);
+        addDrop(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.COTTON_SAKURA_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_COTTON_SAKURA_SAPLING);
         addDrop(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, block -> this.leavesDrops(block, PromenadeBlocks.COTTON_SAKURA_SAPLING, SAPLING_DROP_CHANCE));
-        addDrop(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, this::dropsWithShears);
+        addDrop(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.STRIPPED_MAPLE_LOG);
         addDrop(PromenadeBlocks.MAPLE_LOG);
@@ -127,24 +127,24 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.SAP_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_SAP_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.SAP_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.SAP_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
-        addDrop(PromenadeBlocks.SAP_MAPLE_LEAF_PILE, this::dropsWithShears);
+        addDrop(PromenadeBlocks.SAP_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.VERMILION_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_VERMILION_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.VERMILION_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.VERMILION_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
-        addDrop(PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, this::dropsWithShears);
+        addDrop(PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
         addDrop(PromenadeBlocks.VERMILION_CARPETED_GRASS_BLOCK);
 
         addDrop(PromenadeBlocks.FULVOUS_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_FULVOUS_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.FULVOUS_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
-        addDrop(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, this::dropsWithShears);
+        addDrop(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
         addDrop(PromenadeBlocks.FULVOUS_CARPETED_GRASS_BLOCK);
 
         addDrop(PromenadeBlocks.MIKADO_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_MIKADO_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.MIKADO_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.MIKADO_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
-        addDrop(PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE, this::dropsWithShears);
+        addDrop(PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
         addDrop(PromenadeBlocks.MIKADO_CARPETED_GRASS_BLOCK);
 
         addDrop(PromenadeBlocks.STRIPPED_PALM_LOG);
@@ -166,8 +166,8 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.PALM_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_PALM_SAPLING);
         addDrop(PromenadeBlocks.PALM_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.PALM_SAPLING, SAPLING_DROP_CHANCE));
-        //TODO: Palm Hanging Leaves
-        addDrop(PromenadeBlocks.PALM_LEAF_PILE, this::dropsWithShears);
+        addDrop(PromenadeBlocks.PALM_HANGING_LEAVES, this::dropsWithSilkTouchOrShears);
+        addDrop(PromenadeBlocks.PALM_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.DARK_AMARANTH_NYLIUM, block -> this.drops(block, Blocks.END_STONE));
         addDrop(PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);
