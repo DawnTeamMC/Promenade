@@ -193,6 +193,8 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.DARK_AMARANTH_FUNGUS);
         addPottedPlantDrops(PromenadeBlocks.POTTED_DARK_AMARANTH_FUNGUS);
 
+        addDrop(PromenadeBlocks.SOUL_SHROOMLIGHT);
+
         addDrop(PromenadeBlocks.MOAI);
 
         //TODO: generify this fat block of code

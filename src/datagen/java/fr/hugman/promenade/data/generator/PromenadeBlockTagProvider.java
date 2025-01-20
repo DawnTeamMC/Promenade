@@ -156,7 +156,11 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 DARK_AMARANTH_NYLIUM
         );
         getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(DARK_AMARANTH_FUNGUS);
-        getOrCreateTagBuilder(BlockTags.HOE_MINEABLE).addTag(LEAVES).addTag(FLOWER_PILES).addTag(LEAF_PILES).add(DARK_AMARANTH_WART_BLOCK);
+        getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
+                .addTag(LEAVES)
+                .addTag(FLOWER_PILES)
+                .addTag(LEAF_PILES)
+                .add(DARK_AMARANTH_WART_BLOCK, SOUL_SHROOMLIGHT);
 
         // Conventional
         getOrCreateTagBuilder(ConventionalBlockTags.STONES).add(ASPHALT, BLUNITE);

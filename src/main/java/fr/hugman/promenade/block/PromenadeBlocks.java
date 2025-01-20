@@ -237,6 +237,7 @@ public class PromenadeBlocks {
     public static final Block DARK_AMARANTH_FUNGUS = register("dark_amaranth_fungus", BlockFactory.fungus(MapColor.PURPLE, PromenadeConfiguredFeatures.PLANTED_DARK_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON));
     public static final Block POTTED_DARK_AMARANTH_FUNGUS = register("potted_dark_amaranth_fungus", BlockFactory.pot(DARK_AMARANTH_FUNGUS));
 
+    public static final Block SOUL_SHROOMLIGHT = register("soul_shroomlight", BlockFactory.of(AbstractBlock.Settings.create().mapColor(MapColor.LIGHT_BLUE).strength(1.0F).sounds(BlockSoundGroup.SHROOMLIGHT).luminance(state -> 10)));
 
     public static final Block MOAI = register("moai", BlockFactory.of(MoaiBlock::new, AbstractBlock.Settings.copy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)).itemSettings(s -> s.equipmentSlot((entity, stack) -> EquipmentSlot.HEAD)));
 

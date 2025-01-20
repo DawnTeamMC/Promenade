@@ -104,6 +104,8 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerHangingSign(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM, PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN, PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN);
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.DARK_AMARANTH_FUNGUS, PromenadeBlocks.POTTED_DARK_AMARANTH_FUNGUS, BlockStateModelGenerator.CrossType.NOT_TINTED);
 
+        gen.registerSimpleCubeAll(PromenadeBlocks.SOUL_SHROOMLIGHT);
+
         this.registerMoai(gen);
 
         this.registerBlueberryBush(gen);

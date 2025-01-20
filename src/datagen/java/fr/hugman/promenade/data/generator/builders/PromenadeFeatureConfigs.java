@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.OptionalInt;
 
 public class PromenadeFeatureConfigs {
+    //TODO: should be a tag
     public static final BlockPredicate FUNGUS_REPLACEABLE = BlockPredicate.matchingBlocks(
             Blocks.OAK_SAPLING,
             Blocks.SPRUCE_SAPLING,
@@ -141,7 +142,7 @@ public class PromenadeFeatureConfigs {
                 PromenadeBlocks.DARK_AMARANTH_NYLIUM.getDefaultState(),
                 PromenadeBlocks.DARK_AMARANTH_STEM.getDefaultState(),
                 PromenadeBlocks.DARK_AMARANTH_WART_BLOCK.getDefaultState(),
-                Blocks.COBWEB.getDefaultState(),
+                PromenadeBlocks.SOUL_SHROOMLIGHT.getDefaultState(),
                 PromenadeFeatureConfigs.FUNGUS_REPLACEABLE,
                 planted
         );
