@@ -3,21 +3,14 @@ plugins {
     id 'maven-publish'
 }
 
-sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_21
-
-archivesBaseName = project.mod_id
 group = "com.github.hugman"
 
+base {
+    archivesName = project.mod_id
+}
+
 repositories {
-    maven { url 'https://jitpack.io' }                // Required for Dawn API
-    maven { url 'https://maven.terraformersmc.com/' } // Required for Mod Menu and Terraform APIs
-    maven { url 'https://maven.shedaniel.me/' }       // Required for Cloth Config
-
-    maven { url 'https://maven.minecraftforge.net/' } // Required for TerraBlender
-
-    maven { url 'https://www.cursemaven.com' }        // Required for Columns
-
+    maven { url 'https://maven.terraformersmc.com/' } // Required for Biolith
 }
 
 dependencies {
