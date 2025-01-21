@@ -182,15 +182,13 @@ public class PromenadeModelProvider extends FabricModelProvider {
 
 
     private void registerSnowyLeaves(BlockStateModelGenerator gen, Block snowyLeaves, Block normalLeaves) {
-        gen.blockStateCollector
-                .accept(
-                        VariantsBlockStateSupplier.create(snowyLeaves)
-                                .coordinate(
-                                        BlockStateVariantMap.create(SnowyLeavesBlock.BOTTOM)
-                                                .register(true, BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(snowyLeaves, "_bottom", PromenadeModels.BOTTOM_SNOWY_LEAVES, block -> PromenadeTextureMaps.snowyLeaves(snowyLeaves, normalLeaves))))
-                                                .register(false, BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(snowyLeaves, "", Models.CUBE_ALL, TextureMap::all)))
-                                )
-                );
+        gen.blockStateCollector.accept(
+                VariantsBlockStateSupplier.create(snowyLeaves).coordinate(
+                        BlockStateVariantMap.create(SnowyLeavesBlock.BOTTOM)
+                                .register(true, BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(snowyLeaves, "_bottom", PromenadeModels.BOTTOM_SNOWY_LEAVES, block -> PromenadeTextureMaps.snowyLeaves(snowyLeaves, normalLeaves))))
+                                .register(false, BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(snowyLeaves, "", Models.CUBE_ALL, TextureMap::all)))
+                )
+        );
 
     }
 

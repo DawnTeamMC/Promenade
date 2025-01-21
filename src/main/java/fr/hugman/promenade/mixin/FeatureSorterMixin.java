@@ -17,9 +17,6 @@ import java.util.function.Function;
 @Mixin(PlacedFeatureIndexer.class)
 public abstract class FeatureSorterMixin
 {
-    /**
-     * Replace this with a method that has a much better error tracing and is probably more efficient
-     */
     @Inject(method = "collectIndexedFeatures", at = @At("HEAD"), cancellable = true)
     private static <T> void buildFeaturesPerStepWithAdvancedCycleDetection(
             List<T> biomes,

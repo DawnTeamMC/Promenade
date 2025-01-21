@@ -19,49 +19,31 @@ import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 import it.unimi.dsi.fastutil.ints.IntSet;
 import it.unimi.dsi.fastutil.objects.*;
 
+/**
+ * Utility class for debugging feature cycles. Imported from cyanide.
+ * TODO: remove this class before release
+ */
 public final class FeatureCycleDetector
 {
-    /**
-     * A modified version of {@link PlacedFeatureIndexer#collectIndexedFeatures} with several improvements, in order to properly report errors.
-     * Added comments, removed vanilla's slow as heck "try this again by removing biomes until it doesn't break" detector and replace
-     * with one that is able to track the detected cycle during the DFS.
-     * <p>
-     * Note that vanilla, for some insane reason, decided to code this to a generic {@code T} parameter, instead of {@code RegistryEntry<Biome>}.
-     * This makes it annoyingly difficult to fit into vanilla code, so we just assume that nobody would use this cursed bit of code,
-     * unless they are using it to sort biomes.
-     *
-     * @throws IllegalStateException if a feature was detected.
-     */
     public static <T> List<PlacedFeatureIndexer.IndexedFeatures> buildFeaturesPerStep(
             List<RegistryEntry<Biome>> allBiomes,
             Function<RegistryEntry<Biome>, List<RegistryEntryList<PlacedFeature>>> biomeFeatures
     )
     {
-        // Maps to establish identity among features and biomes
-        // We assign features and biomes ID numbers based on ==, and then create wrapper objects which respect equals() identity
         final Reference2IntMap<PlacedFeature> featureToIntIdMap = new Reference2IntOpenHashMap<>();
         final Reference2IntMap<Biome> biomeToIntIdMap = new Reference2IntOpenHashMap<>();
         final MutableInt nextFeatureId = new MutableInt(0);
         final MutableInt nextBiomeId = new MutableInt(0);
 
-        // Sort by step, then by index
         final Comparator<FeatureData> compareByStepThenByIndex = Comparator.comparingInt(FeatureData::step).thenComparingInt(FeatureData::featureId);
         final Map<FeatureData, Set<FeatureData>> nodesToChildren = new TreeMap<>(compareByStepThenByIndex);
 
         int maxSteps = 0;
 
-        // Trace of where FeatureData's are found, in reference to biomes, indexes, and steps
         final Map<FeatureData, Map<BiomeData, IntSet>> nodesToTracebacks = new HashMap<>();
 
         for (var biomeRegistryEntry : allBiomes)
         {
-            // Loop through all biomes
-            // For each biome, we ultimately compute the maxSteps - the maximum number of generation steps of any biome
-            // We then take the features in the biome, and, treating (step, index) as an absolute ordering, add them to a flat list of FeatureData
-            // We compute integer IDs for each placed feature as we go through them.
-            // At the end, once we've computed this list, we then have that F1, F2, ... Fn, where Fj must come before Fi if j < i
-            // So, we represent that as a graph F1 -> F2 -> ... -> Fn
-
             final Biome biome = biomeRegistryEntry.value();
             final List<FeatureData> flatDataList = new ArrayList<>();
             final List<RegistryEntryList<PlacedFeature>> features = biomeFeatures.apply(biomeRegistryEntry);
@@ -77,7 +59,6 @@ public final class FeatureCycleDetector
                     final FeatureData featureIdentity = new FeatureData(idFor(feature, featureToIntIdMap, nextFeatureId), stepIndex, feature, featureRegistryEntry);
                     flatDataList.add(featureIdentity);
 
-                    // Track traceback biomes
                     final BiomeData biomeIdentity = new BiomeData(idFor(biome, biomeToIntIdMap, nextBiomeId), biome, biomeRegistryEntry);
 
                     nodesToTracebacks
@@ -103,11 +84,6 @@ public final class FeatureCycleDetector
         final List<FeatureData> sortedFeatureData = new ArrayList<>();
         List<FeatureData> featureCycle = new ArrayList<>();
 
-        // Loop through every known node in the graph (the graph may not be connected, since all we know is it's a series of strings)
-        // F1,1 -> F1,2 -> ... F1,n1
-        // ...
-        // Fm,1 -> Fm,2 -> ... Fm,nm
-        // Where some Fi,j may be the same (which would create connected components)
         for (FeatureData node : nodesToChildren.keySet())
         {
             if (!inProgress.isEmpty())
@@ -115,8 +91,6 @@ public final class FeatureCycleDetector
                 throw new IllegalStateException("You somehow broke the universe; DFS bork (iteration finished with non-empty in-progress vertex set");
             }
 
-            // In vanilla, the DFS returns true to indicate a cycle exists
-            // The rest of this if branch is then just code to try and narrow down the error in an extremely unhelpful way
             if (!nonCyclicalNodes.contains(node) && depthFirstSearch(nodesToChildren, nonCyclicalNodes, inProgress, sortedFeatureData::add, featureCycle::add, node))
             {
                 if (featureCycle.size() <= 1)
@@ -124,29 +98,24 @@ public final class FeatureCycleDetector
                     throw new IllegalStateException("There was a feature cycle that involved 0 or 1 feature??");
                 }
 
-                // Trim the cycle - the last feature should occur somewhere in the cycle. This is done before reversing, so last = index 0
                 final FeatureData loop = featureCycle.getFirst();
                 for (int i = 1; i < featureCycle.size(); i++)
                 {
                     if (featureCycle.get(i).equals(loop))
                     {
-                        // Reset the cycle by trimming off all excess after this index
                         featureCycle = featureCycle.subList(0, i + 1);
                         break;
                     }
                 }
 
-                // Reverse the cycle, since we add to it in reverse order
                 Collections.reverse(featureCycle);
 
-                // At this point, we have enough information to throw a custom exception, with the biomes and features involved
                 throw new IllegalStateException(buildErrorMessage(nodesToTracebacks, featureCycle));
             }
         }
 
         Collections.reverse(sortedFeatureData);
 
-        // This is the intended result: A list just of features to be applied at each given generation step
         final ImmutableList.Builder<PlacedFeatureIndexer.IndexedFeatures> featuresPerStepData = ImmutableList.builder();
 
         for (int stepIndex = 0; stepIndex < maxSteps; ++stepIndex)
@@ -184,46 +153,27 @@ public final class FeatureCycleDetector
 
     private static boolean depthFirstSearch(Map<FeatureData, Set<FeatureData>> edges, Set<FeatureData> nonCyclicalNodes, Set<FeatureData> pathSet, Consumer<FeatureData> onNonCyclicalNodeFound, Consumer<FeatureData> onCyclicalNodeFound, FeatureData start)
     {
-        // Called initially with:
-        // nonCyclicalNodes = { ... } does not contain start
-        // reachable = {}
-        // start = ?
-
-        // Returning true must (somehow) indicate the presence of a cycle
-        // nonCyclicalNodes = the nodes that we've already seen, and verified that they have no cycles
-        // reachable = an empty set (when this is first called), representing all edges that are reachable.
         if (nonCyclicalNodes.contains(start))
         {
-            // The DFS has already seen the current node, so return false
             return false;
         }
         else if (pathSet.contains(start))
         {
-            // If we have navigated back to an element that we haven't seen (and so verified that no cycles from that node exist)
-            // But, we know it's in the path set, then there's a cycle!
-            // We then push these through the consumer in reverse order, as any true return value will bubble up
             onCyclicalNodeFound.accept(start);
             return true;
         }
         else
         {
-            pathSet.add(start); // This node is now in the path set (we consider it as a node that may have a cycle, and want to mark if we can reach back to it)
+            pathSet.add(start);
             for (FeatureData next : edges.getOrDefault(start, ImmutableSet.of()))
             {
                 if (depthFirstSearch(edges, nonCyclicalNodes, pathSet, onNonCyclicalNodeFound, onCyclicalNodeFound, next))
                 {
-                    // A cycle was found, so we exit here.
-                    // We append the cycle node found in verse order.
                     onCyclicalNodeFound.accept(start);
                     return true;
                 }
             }
 
-            // At this point: we cannot find a way back into the path set, considering 'start' as a stepping stone node. (Since above, recursively, we've DFS'd all the way that we can go from this node.)
-            // As a result, we can
-            // 1. mark this as not in the path set
-            // 2. mark this node as already seen, and valid
-            // And then return false (which exits this recursive call of the DFS)
             pathSet.remove(start);
             nonCyclicalNodes.add(start);
             onNonCyclicalNodeFound.accept(start);
@@ -261,7 +211,6 @@ public final class FeatureCycleDetector
             int found = 0;
             for (BiomeData biome : Sets.intersection(prevTracebacks.keySet(), currentTracebacks.keySet()))
             {
-                // Check if the features have a relative ordering from prev -> current, in that biome
                 final int prevTb = prevTracebacks.get(biome).intStream().min().orElseThrow();
                 final int currTb = currentTracebacks.get(biome).intStream().max().orElseThrow();
                 if (prevTb < currTb)
@@ -296,11 +245,6 @@ public final class FeatureCycleDetector
         return error.toString();
     }
 
-    /**
-     * @param featureId An integer ID mapping for the feature, NOT the index of the feature within the step
-     * @param step The step index the feature was found in.
-     * @param feature The placed feature itself
-     */
     record FeatureData(int featureId, int step, PlacedFeature feature, RegistryEntry<PlacedFeature> source)
     {
         String name()
@@ -312,10 +256,6 @@ public final class FeatureCycleDetector
         }
     }
 
-    /**
-     * @param biomeId An integer ID mapping for the biome
-     * @param biome The biome itself
-     */
     record BiomeData(int biomeId, Biome biome, RegistryEntry<Biome> source)
     {
         String name()

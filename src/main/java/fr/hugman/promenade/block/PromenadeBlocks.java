@@ -239,6 +239,26 @@ public class PromenadeBlocks {
 
     public static final Block SOUL_SHROOMLIGHT = register("soul_shroomlight", BlockFactory.of(AbstractBlock.Settings.create().mapColor(MapColor.LIGHT_BLUE).strength(1.0F).sounds(BlockSoundGroup.SHROOMLIGHT).luminance(state -> 10)));
 
+    public static final Block COILED_VINES = register("coiled_vines", BlockFactory.of(
+            CoiledVinesBlock::new,
+            AbstractBlock.Settings.create()
+                    .mapColor(MapColor.PURPLE)
+                    .ticksRandomly()
+                    .noCollision()
+                    .breakInstantly()
+                    .sounds(BlockSoundGroup.WEEPING_VINES)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+    ));
+    public static final Block COILED_VINES_PLANT = register("coiled_vines_plant", BlockFactory.of(
+            CoiledVinesPlantBlock::new,
+            AbstractBlock.Settings.create()
+                    .mapColor(MapColor.PURPLE)
+                    .noCollision()
+                    .breakInstantly()
+                    .sounds(BlockSoundGroup.WEEPING_VINES)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+    ).noItem());
+
     public static final Block MOAI = register("moai", BlockFactory.of(MoaiBlock::new, AbstractBlock.Settings.copy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)).itemSettings(s -> s.equipmentSlot((entity, stack) -> EquipmentSlot.HEAD)));
 
     public static final Block BLUEBERRY_BUSH = register("blueberry_bush", BlockFactory.of(s -> new BerryBushBlock(PromenadeItemKeys.BLUEBERRIES, false, s), AbstractBlock.Settings.create()
