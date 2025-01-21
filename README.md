@@ -83,3 +83,9 @@ By supporting Hugman, you can get access to the following:
 **We do not want to lock any in-game feature of the Dawn Team mods behind a paywall, because we believe that any Minecraft mod should forever remain free to download and fully exploit/use.**  
 Supporting via Patreon is a more of way to help Hugman to continue to improve the mods and show the gratitude you might have towards Hugman's work.
 Some money you donate may be used to pay for new features, such as music or art, but not all of it.
+
+
+## 📜 License
+
+Except where otherwise stated (see [third-party license notices](thirdparty/NOTICE.txt)), the content of this repository is provided
+under the [Polyform Shield 1.0.0](LICENSE.md) license by [Hugman](https://github.com/Hugman76).
