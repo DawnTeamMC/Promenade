@@ -85,12 +85,12 @@ public class CapybaraBrain {
                 Pair.of(1, new BreedTask(PromenadeEntityTypes.CAPYBARA)),
                 Pair.of(2, new TemptTask(entity -> 1.5f)),
                 Pair.of(3, TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), WalkTowardsClosestAdultTask.create(WALK_TOWARD_ADULT_RANGE, 1.5f))),
-                Pair.of(4, new LookAroundTask(UniformIntProvider.create(150, 250), 30.0f, -50.0f, 10.0f)),
+                Pair.of(4, new LookAroundTask(UniformIntProvider.create(150, 250), 30.0f, 0.0f, 10.0f)),
                 Pair.of(5, new RandomTask<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryModuleState.VALUE_ABSENT), ImmutableList.of(
                         Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), StrollTask.create(1.0f)), 1),
                         Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), GoToLookTargetTask.create(1.0f, 3)), 1),
-                        Pair.of(new SleepOrWakeUpTask(), 1),
-                        Pair.of(new FartTask(), 1),
+                        Pair.of(new SleepOrWakeUpTask(20), 1),
+                        Pair.of(new FartTask(10), 1),
                         Pair.of(new WaitTask(30, 60), 1)
                 )))));
     }
@@ -104,20 +104,23 @@ public class CapybaraBrain {
     }
 
     public static class SleepOrWakeUpTask extends MultiTickTask<CapybaraEntity> {
-        public SleepOrWakeUpTask() {
+        private final int lastPoseTickDelta;
+
+        public SleepOrWakeUpTask(int lastPoseSecondsDelta) {
             super(ImmutableMap.of(
                     MemoryModuleType.IS_PANICKING, MemoryModuleState.VALUE_ABSENT,
                     MemoryModuleType.IS_TEMPTED, MemoryModuleState.VALUE_ABSENT,
                     MemoryModuleType.IS_IN_WATER, MemoryModuleState.VALUE_ABSENT,
-                    // TODO: add capybara falling sleeping check
-                    // TODO: add capybara waking up check
-                    // TODO: add capybara farting check
                     MemoryModuleType.BREED_TARGET, MemoryModuleState.VALUE_ABSENT));
+            this.lastPoseTickDelta = lastPoseSecondsDelta * 20;
         }
 
         @Override
         protected boolean shouldRun(ServerWorld world, CapybaraEntity capybara) {
-            return !capybara.isTouchingWater() && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasControllingPassenger();
+            return capybara.getLastStateTickDelta() >= this.lastPoseTickDelta &&
+                    !capybara.isLeashed() &&
+                    capybara.isOnGround() &&
+                    !capybara.hasControllingPassenger();
         }
 
         @Override
@@ -131,21 +134,24 @@ public class CapybaraBrain {
     }
 
     static class FartTask extends MultiTickTask<CapybaraEntity> {
-        FartTask() {
+        private final int lastPoseTickDelta;
+
+        FartTask(int lastPoseSecondsDelta) {
             super(Map.of(
                     MemoryModuleType.IS_PANICKING, MemoryModuleState.VALUE_ABSENT,
                     MemoryModuleType.IS_TEMPTED, MemoryModuleState.VALUE_ABSENT,
                     MemoryModuleType.IS_IN_WATER, MemoryModuleState.VALUE_ABSENT,
-                    // TODO: add capybara falling sleeping check
-                    // TODO: add capybara sleeping check
-                    // TODO: add capybara waking up check
                     PromenadeMemoryModuleTypes.FART_COOLDOWN, MemoryModuleState.VALUE_ABSENT,
                     MemoryModuleType.BREED_TARGET, MemoryModuleState.VALUE_ABSENT
             ));
+            this.lastPoseTickDelta = lastPoseSecondsDelta * 20;
         }
 
         protected boolean shouldRun(ServerWorld serverWorld, CapybaraEntity capybara) {
-            return !capybara.mightBeLeashed() && capybara.isOnGround() && !capybara.hasControllingPassenger();
+            return capybara.getLastStateTickDelta() >= this.lastPoseTickDelta &&
+                    !capybara.mightBeLeashed() &&
+                    capybara.isOnGround() &&
+                    !capybara.hasControllingPassenger();
         }
 
         protected boolean shouldKeepRunning(ServerWorld serverWorld, CapybaraEntity capybara, long l) {

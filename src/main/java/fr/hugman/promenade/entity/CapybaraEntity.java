@@ -284,9 +284,6 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     // FART
 
     public void fart() {
-        if(this.isFarting()) {
-            return;
-        }
         this.updateState(State.FARTING);
         this.getBrain().remember(PromenadeMemoryModuleTypes.FART_COOLDOWN, Unit.INSTANCE, createFartCooldown());
 
@@ -303,7 +300,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     }
 
     public long createFartCooldown() {
-        return 60 * 20L;
+        return 120 * 20L;
     }
 
     public void finishFarting() {
@@ -368,7 +365,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
 
     @Environment(EnvType.CLIENT)
     public boolean canAngleHead() {
-        return !this.isAsleep() && !this.isFallingToSleep() && !this.isWakingUp();
+        return !this.isFarting() && !this.isAsleep() && !this.isFallingToSleep() && !this.isWakingUp();
     }
 
     @Environment(EnvType.CLIENT)
