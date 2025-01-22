@@ -23,9 +23,6 @@
     ],
     "client": [
       "fr.hugman.promenade.client.PromenadeClient"
-    ],
-    "fabric-datagen": [
-      "fr.hugman.promenade.data.PromenadeDataGenerator"
     ]
   },
   "mixins": [
@@ -33,7 +30,8 @@
   ],
   "accessWidener": "promenade.accesswidener",
   "depends": {
-    "fabric-api": ">=0.83.1",
+    "minecraft": "^1.21.4",
+    "fabric": "*",
     "biolith": "*"
   },
   "suggests": {
