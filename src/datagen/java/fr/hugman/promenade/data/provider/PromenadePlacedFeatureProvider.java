@@ -1,4 +1,4 @@
-package fr.hugman.promenade.data.generator;
+package fr.hugman.promenade.data.provider;
 
 import com.google.common.collect.ImmutableList;
 import fr.hugman.promenade.block.PromenadeBlocks;

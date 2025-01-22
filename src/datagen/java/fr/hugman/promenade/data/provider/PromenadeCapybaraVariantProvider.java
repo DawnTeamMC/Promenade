@@ -1,4 +1,4 @@
-package fr.hugman.promenade.data.generator;
+package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.entity.variant.CapybaraVariant;
 import fr.hugman.promenade.entity.variant.CapybaraVariants;

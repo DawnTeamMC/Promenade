@@ -2,7 +2,7 @@ package fr.hugman.promenade.data;
 
 import com.google.common.reflect.Reflection;
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.data.generator.*;
+import fr.hugman.promenade.data.provider.*;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;

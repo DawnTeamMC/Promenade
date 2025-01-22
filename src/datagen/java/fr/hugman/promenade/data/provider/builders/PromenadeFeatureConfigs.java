@@ -1,4 +1,4 @@
-package fr.hugman.promenade.data.generator.builders;
+package fr.hugman.promenade.data.provider.builders;
 
 import com.google.common.collect.ImmutableList;
 import fr.hugman.promenade.block.MapleLogBlock;

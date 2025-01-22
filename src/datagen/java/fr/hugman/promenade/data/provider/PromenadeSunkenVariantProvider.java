@@ -1,16 +1,14 @@
-package fr.hugman.promenade.data.generator;
+package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.entity.variant.SunkenVariant;
 import fr.hugman.promenade.entity.variant.SunkenVariants;
 import fr.hugman.promenade.loot.PromenadeLootTables;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import fr.hugman.promenade.tag.PromenadeBiomeTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.loot.LootTable;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;

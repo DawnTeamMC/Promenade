@@ -1,15 +1,12 @@
-package fr.hugman.promenade.data.generator;
+package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.data.PromenadeBlockFamilies;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.tag.PromenadeItemTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.data.DataProvider;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;

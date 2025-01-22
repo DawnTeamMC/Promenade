@@ -5,13 +5,17 @@
 
 name: Check Build
 on:
-  pull_request:
-    types: [review_requested, ready_for_review]
   push:
-    branches: [main, dev]
+    branches: [ main, dev ]
+  pull_request:
+    branches:
+      - main
+      - dev
+    types: [ opened, synchronize, reopened, ready_for_review ]
 
 jobs:
   build:
+    if: github.event.pull_request.draft == false
     strategy:
       matrix:
         java: [ 21 ]
@@ -20,20 +24,23 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
 
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Validate Gradle wrapper
-      uses: gradle/wrapper-validation-action@v1
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
 
-    - name: Setup JDK ${{ matrix.java }}
-      uses: actions/setup-java@v1
-      with:
-        java-version: ${{ matrix.java }}
+      - name: Setup JDK ${{ matrix.java }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
 
-    - name: Make Gradle wrapper executable
-      if: ${{ runner.os != 'Windows' }}
-      run: chmod +x ./gradlew
+      - name: Make Gradle wrapper executable
+        if: ${{ runner.os != 'Windows' }}
+        run: chmod +x ./gradlew
 
-    - name: Build
-      run: ./gradlew build
+      - name: Generate data files
+        run: ./gradlew runDatagen
+
+      - name: Build
+        run: ./gradlew build

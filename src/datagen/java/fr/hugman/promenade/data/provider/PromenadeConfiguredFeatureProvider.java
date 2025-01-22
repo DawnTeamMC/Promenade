@@ -1,8 +1,8 @@
-package fr.hugman.promenade.data.generator;
+package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.block.BerryBushBlock;
 import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.data.generator.builders.PromenadeFeatureConfigs;
+import fr.hugman.promenade.data.provider.builders.PromenadeFeatureConfigs;
 import fr.hugman.promenade.world.gen.feature.BoulderFeatureConfig;
 import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;

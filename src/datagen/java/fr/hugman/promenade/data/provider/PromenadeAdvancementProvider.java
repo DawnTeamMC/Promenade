@@ -1,4 +1,4 @@
-package fr.hugman.promenade.data.generator;
+package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.PromenadeBlocks;

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "name": "Promenade Data Generation",
   "id": "promenade-datagen",
-  "version": "${version}",
+  "version": "1.0.0",
   "authors": [
     "Hugman"
   ],
