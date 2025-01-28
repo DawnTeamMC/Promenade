@@ -54,6 +54,14 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
         getOrCreateTagBuilder(BiomeTags.IS_NETHER).add(DARK_AMARANTH_FOREST);
         getOrCreateTagBuilder(BiomeTags.IS_OVERWORLD).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
         getOrCreateTagBuilder(BiomeTags.IS_TAIGA).add(GLACARIAN_TAIGA);
+
         getOrCreateTagBuilder(BiomeTags.STRONGHOLD_BIASED_TO).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
+        getOrCreateTagBuilder(BiomeTags.TRIAL_CHAMBERS_HAS_STRUCTURE).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
+        getOrCreateTagBuilder(BiomeTags.BASTION_REMNANT_HAS_STRUCTURE).add(DARK_AMARANTH_FOREST);
+
+        getOrCreateTagBuilder(BiomeTags.SPAWNS_COLD_VARIANT_FROGS).add(GLACARIAN_TAIGA);
+        getOrCreateTagBuilder(BiomeTags.SPAWNS_SNOW_FOXES).add(GLACARIAN_TAIGA);
+        getOrCreateTagBuilder(BiomeTags.SPAWNS_WHITE_RABBITS).add(GLACARIAN_TAIGA);
+        getOrCreateTagBuilder(BiomeTags.SNOW_GOLEM_MELTS).add(DARK_AMARANTH_FOREST);
     }
 }
