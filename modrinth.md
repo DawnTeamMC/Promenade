@@ -1,7 +1,9 @@
 [![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://hugman.gitbook.io/promenade/)
 
+[![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg?label=Latest%20version&style=for-the-badge)](https://github.com/DawnTeamMC/Promenade/releases/latest)
+
 [![Discord user count](https://img.shields.io/discord/504608980799062036?label=&color=424549&labelColor=7289da&style=for-the-badge&logo=Discord&logoColor=DDE4EF)](https://discord.gg/8ksTVJu)
-[![Twitter followers](https://img.shields.io/twitter/follow/DawnTeamMC?label=&color=424549&labelColor=1DA1F2&style=for-the-badge&logo=Twitter&logoColor=DDE4EF)](https://twitter.com/DawnTeamMC)
+[![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/DawnTeamMC?style=for-the-badge&labelColor=424549&color=424549&logo=x)](https://twitter.com/DawnTeamMC)
 
 Promenade is a mod for the latest version of Minecraft that adds a ton of features to the game related to exploration,
 diversity and will improve the beauty of your world.
@@ -49,10 +51,7 @@ Listen to **Brise couleur pastel** on [Bandcamp](https://ludocrypt.bandcamp.com/
 
 ## 📦 Download
 ### Required mods
-⚠ Promenade **needs** the following mods to be installed:
-
-- Fabric API: [GitHub](https://github.com/FabricMC/fabric) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) / [Modrinth](https://modrinth.com/mod/fabric-api)
-- Dawn API: [GitHub](https://github.com/DawnTeamMC/DawnAPI) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/dawn) / [Modrinth](https://modrinth.com/mod/dawn)
+⚠ Promenade **requires** Fabric API to be installed: [GitHub](https://github.com/FabricMC/fabric) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) / [Modrinth](https://modrinth.com/mod/fabric-api)
 
 ### Compatible mods
 Promenade is compatible with the following mods:
