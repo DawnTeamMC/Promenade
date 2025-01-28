@@ -6,12 +6,12 @@ import fr.hugman.promenade.block.helper.BlockFactory;
 import fr.hugman.promenade.block.map_color.PromenadeMapColors;
 import fr.hugman.promenade.block.type.PromenadeBlockSetTypes;
 import fr.hugman.promenade.block.type.PromenadeWoodTypes;
-import fr.hugman.promenade.sound.PromenadeBlockSounds;
 import fr.hugman.promenade.item.PromenadeItemKeys;
 import fr.hugman.promenade.particle.PromenadeParticleTypes;
+import fr.hugman.promenade.sound.PromenadeBlockSounds;
 import fr.hugman.promenade.tag.PromenadeBlockTags;
-import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 import fr.hugman.promenade.world.PromenadeSaplingGenerators;
+import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
@@ -83,13 +83,12 @@ public class PromenadeBlocks {
     /* ========== */
     /*   SAKURA   */
     /* ========== */
-    //TODO: fuel times
+    public static final Block SAKURA_LOG = register("sakura_log", BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true));
     public static final Block STRIPPED_SAKURA_LOG = register("stripped_sakura_log", BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true));
-    public static final Block SAKURA_LOG = register("sakura_log", BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true).stripsInto(STRIPPED_SAKURA_LOG));
+    public static final Block SAKURA_WOOD = register("sakura_wood", BlockFactory.log(PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true));
     public static final Block STRIPPED_SAKURA_WOOD = register("stripped_sakura_wood", BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true));
-    public static final Block SAKURA_WOOD = register("sakura_wood", BlockFactory.log(PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true).stripsInto(STRIPPED_SAKURA_WOOD));
 
-    public static final Block SAKURA_PLANKS = register("sakura_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true)).burnable(5, 20));
+    public static final Block SAKURA_PLANKS = register("sakura_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true)));
     public static final Block SAKURA_STAIRS = register("sakura_stairs", BlockFactory.stairs(SAKURA_PLANKS));
     public static final Block SAKURA_SLAB = register("sakura_slab", BlockFactory.slab(SAKURA_PLANKS));
     public static final Block SAKURA_FENCE = register("sakura_fence", BlockFactory.fence(SAKURA_PLANKS));
@@ -117,12 +116,12 @@ public class PromenadeBlocks {
     /* ========= */
     /*   MAPLE   */
     /* ========= */
+    public static final Block MAPLE_LOG = register("maple_log", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true).factory(MapleLogBlock::new));
     public static final Block STRIPPED_MAPLE_LOG = register("stripped_maple_log", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true).factory(StrippedMapleLogBlock::new));
-    public static final Block MAPLE_LOG = register("maple_log", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true).factory(MapleLogBlock::new).stripsInto(STRIPPED_MAPLE_LOG));
+    public static final Block MAPLE_WOOD = register("maple_wood", BlockFactory.log(PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true));
     public static final Block STRIPPED_MAPLE_WOOD = register("stripped_maple_wood", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true));
-    public static final Block MAPLE_WOOD = register("maple_wood", BlockFactory.log(PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true).stripsInto(STRIPPED_MAPLE_WOOD));
 
-    public static final Block MAPLE_PLANKS = register("maple_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true)).burnable(5, 20));
+    public static final Block MAPLE_PLANKS = register("maple_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true)));
     public static final Block MAPLE_STAIRS = register("maple_stairs", BlockFactory.stairs(MAPLE_PLANKS));
     public static final Block MAPLE_SLAB = register("maple_slab", BlockFactory.slab(MAPLE_PLANKS));
     public static final Block MAPLE_FENCE = register("maple_fence", BlockFactory.fence(MAPLE_PLANKS));
@@ -163,12 +162,12 @@ public class PromenadeBlocks {
     /* ======== */
     /*   PALM   */
     /* ======== */
+    public static final Block PALM_LOG = register("palm_log", BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true));
     public static final Block STRIPPED_PALM_LOG = register("stripped_palm_log", BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true));
-    public static final Block PALM_LOG = register("palm_log", BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true).stripsInto(STRIPPED_PALM_LOG));
+    public static final Block PALM_WOOD = register("palm_wood", BlockFactory.log(PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true));
     public static final Block STRIPPED_PALM_WOOD = register("stripped_palm_wood", BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true));
-    public static final Block PALM_WOOD = register("palm_wood", BlockFactory.log(PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true).stripsInto(STRIPPED_PALM_WOOD));
 
-    public static final Block PALM_PLANKS = register("palm_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true)).burnable(5, 20));
+    public static final Block PALM_PLANKS = register("palm_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true)));
     public static final Block PALM_STAIRS = register("palm_stairs", BlockFactory.stairs(PALM_PLANKS));
     public static final Block PALM_SLAB = register("palm_slab", BlockFactory.slab(PALM_PLANKS));
     public static final Block PALM_FENCE = register("palm_fence", BlockFactory.fence(PALM_PLANKS));
@@ -212,13 +211,13 @@ public class PromenadeBlocks {
                     .replaceable()
                     .breakInstantly()
                     .noCollision()
-                    .sounds(BlockSoundGroup.ROOTS)).compostingChance(0.65F));
+                    .sounds(BlockSoundGroup.ROOTS)));
     public static final Block POTTED_DARK_AMARANTH_ROOTS = register("potted_dark_amaranth_roots", BlockFactory.pot(DARK_AMARANTH_ROOTS));
 
+    public static final Block DARK_AMARANTH_STEM = register("dark_amaranth_stem", BlockFactory.log(PromenadeMapColors.AMARANTH_BARK, PromenadeBlockSounds.AMARANTH_WOOD, false));
     public static final Block STRIPPED_DARK_AMARANTH_STEM = register("stripped_dark_amaranth_stem", BlockFactory.log(PromenadeMapColors.AMARANTH_WOOD, PromenadeBlockSounds.AMARANTH_WOOD, false));
-    public static final Block DARK_AMARANTH_STEM = register("dark_amaranth_stem", BlockFactory.log(PromenadeMapColors.AMARANTH_BARK, PromenadeBlockSounds.AMARANTH_WOOD, false).stripsInto(STRIPPED_DARK_AMARANTH_STEM));
+    public static final Block DARK_AMARANTH_HYPHAE = register("dark_amaranth_hyphae", BlockFactory.log(PromenadeMapColors.AMARANTH_BARK, PromenadeBlockSounds.AMARANTH_WOOD, false));
     public static final Block STRIPPED_DARK_AMARANTH_HYPHAE = register("stripped_dark_amaranth_hyphae", BlockFactory.log(PromenadeMapColors.AMARANTH_WOOD, PromenadeBlockSounds.AMARANTH_WOOD, false));
-    public static final Block DARK_AMARANTH_HYPHAE = register("dark_amaranth_hyphae", BlockFactory.log(PromenadeMapColors.AMARANTH_BARK, PromenadeBlockSounds.AMARANTH_WOOD, false).stripsInto(STRIPPED_DARK_AMARANTH_HYPHAE));
 
     public static final Block DARK_AMARANTH_PLANKS = register("dark_amaranth_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.AMARANTH_WOOD, PromenadeBlockSounds.AMARANTH_WOOD, false)));
     public static final Block DARK_AMARANTH_STAIRS = register("dark_amaranth_stairs", BlockFactory.stairs(DARK_AMARANTH_PLANKS));

@@ -6,7 +6,6 @@ import fr.hugman.promenade.block.PileBlock;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
 import fr.hugman.promenade.sound.PromenadeBlockSounds;
 import net.minecraft.block.*;
-import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.particle.ParticleEffect;
@@ -131,7 +130,6 @@ public final class BlockFactory {
                 .sounds(sounds);
         if (flammable) settings.burnable();
         var builder = new BlockBuilder(PillarBlock::new, settings);
-        if (flammable) builder.burnable(5, 5);
         return builder;
     }
 
@@ -175,8 +173,7 @@ public final class BlockFactory {
                 .suffocates(Blocks::never)
                 .blockVision(Blocks::never)
                 .pistonBehavior(PistonBehavior.DESTROY)
-                .solidBlock(Blocks::never))
-                .burnable(30, 60);
+                .solidBlock(Blocks::never));
     }
 
     public static BlockBuilder hangingLeaves(MapColor mapColor) {
@@ -185,8 +182,7 @@ public final class BlockFactory {
                 .sounds(BlockSoundGroup.GRASS)
                 .replaceable().noCollision().breakInstantly()
                 .burnable()
-                .pistonBehavior(PistonBehavior.DESTROY))
-                .burnable(30, 60).compostingChance(0.3F);
+                .pistonBehavior(PistonBehavior.DESTROY));
     }
 
     public static BlockBuilder snowyLeaves() {
@@ -201,9 +197,7 @@ public final class BlockFactory {
                 .suffocates(Blocks::never)
                 .blockVision(Blocks::never)
                 .pistonBehavior(PistonBehavior.DESTROY)
-                .solidBlock(Blocks::never))
-                .burnable(30, 60)
-                .compostingChance(0.3f);
+                .solidBlock(Blocks::never));
     }
 
     //TODO: remove
@@ -213,7 +207,7 @@ public final class BlockFactory {
                 .mapColor(color)
                 .ticksRandomly()
                 .strength(0.6F)
-                .sounds(BlockSoundGroup.GRASS)).compostingChance(0.3f);
+                .sounds(BlockSoundGroup.GRASS));
     }
 
     public static BlockBuilder pot(Block block) {
@@ -240,9 +234,7 @@ public final class BlockFactory {
                 .ticksRandomly()
                 .sounds(sounds)
                 .noCollision()
-                .nonOpaque())
-                .burnable(30, 60)
-                .compostingChance(0.3f);
+                .nonOpaque());
     }
 
     public static BlockBuilder fungus(MapColor mapColor, RegistryKey<ConfiguredFeature<?, ?>> featureKey, TagKey<Block> canPlantOn, TagKey<Block> canGrowOn) {
@@ -251,6 +243,6 @@ public final class BlockFactory {
                 .sounds(BlockSoundGroup.FUNGUS)
                 .pistonBehavior(PistonBehavior.DESTROY)
                 .breakInstantly()
-                .noCollision()).compostingChance(0.65f);
+                .noCollision());
     }
 }

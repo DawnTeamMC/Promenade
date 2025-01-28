@@ -9,7 +9,10 @@ import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.itemgroup.PromenadeItemGroupAdditions;
+import fr.hugman.promenade.registry.PromenadeCompostingChances;
+import fr.hugman.promenade.registry.PromenadeFlammables;
 import fr.hugman.promenade.registry.PromenadeRegistries;
+import fr.hugman.promenade.registry.PromenadeStrippables;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.trade.PromenadeTrades;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
@@ -31,27 +34,33 @@ public class Promenade implements ModInitializer {
     public void onInitialize() {
         PromenadeRegistries.register();
 
-        Reflection.initialize(PromenadeBlocks.class);
-        Reflection.initialize(PromenadeItems.class);
-        Reflection.initialize(PromenadeEntityTypes.class);
+        Reflection.initialize(PromenadeSoundEvents.class);
 
+        Reflection.initialize(PromenadeBlocks.class);
+
+        PromenadeStrippables.register();
+        PromenadeFlammables.register();
         PromenadeBlockEntities.addBlocksToVanillaBlockEntityTypes();
 
+        Reflection.initialize(PromenadeItems.class);
+
         PromenadeItemGroupAdditions.appendItemGroups();
+        PromenadeCompostingChances.register();
         PromenadeTrades.appendVillagerTrades();
 
-        Reflection.initialize(PromenadeFeatures.class);
-        Reflection.initialize(PromenadePlacementModifierTypes.class);
-        Reflection.initialize(PromenadeFoliagePlacerTypes.class);
-        Reflection.initialize(PromenadeTrunkPlacerTypes.class);
         Reflection.initialize(PromenadeSensorTypes.class);
         Reflection.initialize(PromenadeMemoryModuleTypes.class);
-        Reflection.initialize(PromenadeSoundEvents.class);
         Reflection.initialize(PromenadeTrackedData.class);
+        Reflection.initialize(PromenadeEntityTypes.class);
 
+        Reflection.initialize(PromenadeTrunkPlacerTypes.class);
+        Reflection.initialize(PromenadeFoliagePlacerTypes.class);
+        Reflection.initialize(PromenadeFeatures.class);
+        Reflection.initialize(PromenadePlacementModifierTypes.class);
+
+        PromenadeEntityTypes.appendWorldGen();
         PromenadeBiomes.appendWorldGen();
         PromenadePlacedFeatures.appendWorldGen();
-        PromenadeEntityTypes.appendWorldGen();
     }
 
     public static Identifier id(String path) {
