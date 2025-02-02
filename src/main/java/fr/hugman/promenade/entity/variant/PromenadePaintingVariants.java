@@ -2,7 +2,6 @@ package fr.hugman.promenade.entity.variant;
 
 import fr.hugman.promenade.Promenade;
 import net.minecraft.entity.decoration.painting.PaintingVariant;
-import net.minecraft.entity.passive.WolfVariant;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 

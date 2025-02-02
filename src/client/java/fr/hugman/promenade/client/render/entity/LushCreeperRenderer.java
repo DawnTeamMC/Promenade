@@ -43,7 +43,7 @@ public class LushCreeperRenderer extends MobEntityRenderer<LushCreeperEntity, Cr
     @Override
     protected float getAnimationCounter(CreeperEntityRenderState state) {
         float f = state.fuseTime;
-        return (int)(f * 10.0F) % 2 == 0 ? 0.0F : MathHelper.clamp(f, 0.5F, 1.0F);
+        return (int) (f * 10.0F) % 2 == 0 ? 0.0F : MathHelper.clamp(f, 0.5F, 1.0F);
     }
 
     @Override

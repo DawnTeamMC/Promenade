@@ -56,7 +56,7 @@ public class CapybaraEntityModel extends EntityModel<CapybaraEntityRenderState> 
         super.setAngles(state);
 
         // Head
-        if(state.canAngleHead) {
+        if (state.canAngleHead) {
             this.head.pitch = state.pitch * (float) (Math.PI / 180.0);
             this.head.yaw = state.yawDegrees * (float) (Math.PI / 180.0);
         }

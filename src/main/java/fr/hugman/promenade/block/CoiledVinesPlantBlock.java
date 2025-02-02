@@ -1,7 +1,7 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
 import net.minecraft.util.shape.VoxelShape;
 
 public class CoiledVinesPlantBlock extends AbstractFacingPlantBlock {

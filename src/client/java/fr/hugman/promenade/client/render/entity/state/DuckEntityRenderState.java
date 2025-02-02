@@ -8,10 +8,10 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class DuckEntityRenderState extends LivingEntityRenderState {
-	private static final Identifier DEFAULT_TEXTURE = Promenade.id("textures/entity/duck/pekin.png");
+    private static final Identifier DEFAULT_TEXTURE = Promenade.id("textures/entity/duck/pekin.png");
 
-	public float flapProgress;
-	public float maxWingDeviation;
+    public float flapProgress;
+    public float maxWingDeviation;
 
-	public Identifier texture = DEFAULT_TEXTURE;
+    public Identifier texture = DEFAULT_TEXTURE;
 }

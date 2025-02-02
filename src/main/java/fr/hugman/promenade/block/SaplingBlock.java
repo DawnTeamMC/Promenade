@@ -9,16 +9,16 @@ import java.util.function.Predicate;
 
 //TODO: codec
 public class SaplingBlock extends net.minecraft.block.SaplingBlock {
-	private final Predicate<BlockState> predicate;
+    private final Predicate<BlockState> predicate;
 
-	public SaplingBlock(SaplingGenerator saplingGenerator, Predicate<BlockState> predicate, Settings settings) {
-		super(saplingGenerator, settings);
-		this.predicate = predicate;
-	}
+    public SaplingBlock(SaplingGenerator saplingGenerator, Predicate<BlockState> predicate, Settings settings) {
+        super(saplingGenerator, settings);
+        this.predicate = predicate;
+    }
 
-	@Override
-	protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-		if(predicate != null) return predicate.test(floor);
-		return super.canPlantOnTop(floor, world, pos);
-	}
+    @Override
+    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+        if (predicate != null) return predicate.test(floor);
+        return super.canPlantOnTop(floor, world, pos);
+    }
 }

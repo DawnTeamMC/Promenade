@@ -13,6 +13,7 @@ public class SunkenVariants {
     public static final RegistryKey<SunkenVariant> BUBBLE = of("bubble");
     public static final RegistryKey<SunkenVariant> FIRE = of("fire");
     public static final RegistryKey<SunkenVariant> HORN = of("horn");
+    //TODO: add other coral variants
 
     public static final RegistryKey<SunkenVariant> DEFAULT = BUBBLE;
 

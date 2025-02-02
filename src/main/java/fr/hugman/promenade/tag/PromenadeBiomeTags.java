@@ -1,7 +1,6 @@
 package fr.hugman.promenade.tag;
 
 import fr.hugman.promenade.Promenade;
-import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.biome.Biome;

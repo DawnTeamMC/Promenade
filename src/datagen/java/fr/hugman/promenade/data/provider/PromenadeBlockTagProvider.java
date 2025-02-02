@@ -174,7 +174,6 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 .add(DARK_AMARANTH_WART_BLOCK, SOUL_SHROOMLIGHT);
 
 
-
         // Conventional
         getOrCreateTagBuilder(ConventionalBlockTags.STONES).add(ASPHALT, BLUNITE);
     }

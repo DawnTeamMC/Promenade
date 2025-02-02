@@ -7,9 +7,9 @@ import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.entity.variant.CapybaraVariant;
 import fr.hugman.promenade.entity.variant.CapybaraVariants;
-import fr.hugman.promenade.tag.PromenadeItemTags;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
+import fr.hugman.promenade.tag.PromenadeItemTags;
 import io.netty.buffer.ByteBuf;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -342,7 +342,7 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
                 case FARTING -> this.fartAnimState;
                 case null, default -> null;
             });
-            if(animstate != null) animstate.startIfNotRunning(this.age);
+            if (animstate != null) animstate.startIfNotRunning(this.age);
         }
 
         super.onTrackedDataSet(data);
@@ -381,7 +381,8 @@ public class CapybaraEntity extends AnimalEntity implements VariantHolder<Regist
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        if (this.isFallingToSleep() || this.isAsleep() || this.isWakingUp() || this.isFarting()) return null; //TODO: Sleeping sound
+        if (this.isFallingToSleep() || this.isAsleep() || this.isWakingUp() || this.isFarting())
+            return null; //TODO: Sleeping sound
         if (this.isBaby()) return PromenadeSoundEvents.CAPYBARA_AMBIENT_BABY;
         return PromenadeSoundEvents.CAPYBARA_AMBIENT;
     }

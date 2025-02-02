@@ -353,12 +353,14 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         return this.getVariant().value().texture();
     }
 
-    /**
-     * FIXME
-     *
-     * @Override public Optional<RegistryKey<LootTable>> getLootTableKey() {
-     * return this.getVariant().value().lootTable();
-     * }
+
+    /* FIXME
+
+    @Override
+    public Optional<RegistryKey<LootTable>> getLootTableKey() {
+        return Optional.ofNullable(this.getVariant().value().lootTable());
+    }
+    -
      */
 
     public enum State {

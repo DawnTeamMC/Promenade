@@ -1,8 +1,6 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import java.util.Optional;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
@@ -19,6 +17,8 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
+
+import java.util.Optional;
 
 public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBlock implements Fertilizable {
     protected AbstractFacingPlantBlock(Settings settings, VoxelShape[] outlineShapes, boolean bl) {

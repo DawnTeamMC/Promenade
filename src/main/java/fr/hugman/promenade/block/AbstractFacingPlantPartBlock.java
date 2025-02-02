@@ -75,9 +75,9 @@ public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
         var facing = state.get(FACING);
         var blockPos = pos.offset(facing.getOpposite());
         var blockState = world.getBlockState(blockPos);
-        if(!this.canAttachTo(blockState)) return false;
-        if(blockState.isOf(this.getStem()) || blockState.isOf(this.getPlant())) {
-            if(blockState.contains(FACING) && blockState.get(FACING) == facing) {
+        if (!this.canAttachTo(blockState)) return false;
+        if (blockState.isOf(this.getStem()) || blockState.isOf(this.getPlant())) {
+            if (blockState.contains(FACING) && blockState.get(FACING) == facing) {
                 return true;
             }
         }

@@ -8,12 +8,12 @@ import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers
 import net.fabricmc.api.ClientModInitializer;
 
 public class PromenadeClient implements ClientModInitializer {
-	@Override
-	public void onInitializeClient() {
-		PromenadeEntityModelLayers.register();
-		PromenadeBlockRenderLayers.register();
-		PromenadeBlockColors.register();
-		PromenadeEntityRenderers.register();
-		PromenadeParticleFactories.register();
-	}
+    @Override
+    public void onInitializeClient() {
+        PromenadeEntityModelLayers.register();
+        PromenadeBlockRenderLayers.register();
+        PromenadeBlockColors.register();
+        PromenadeEntityRenderers.register();
+        PromenadeParticleFactories.register();
+    }
 }

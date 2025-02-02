@@ -12,8 +12,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
-import static fr.hugman.promenade.tag.PromenadeItemTags.*;
 import static fr.hugman.promenade.item.PromenadeItems.*;
+import static fr.hugman.promenade.tag.PromenadeItemTags.*;
 
 public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider {
     public PromenadeItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture, @Nullable BlockTagProvider blockTagProvider) {
