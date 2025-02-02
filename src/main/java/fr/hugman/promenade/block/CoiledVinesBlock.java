@@ -6,13 +6,21 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.VineLogic;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
 
 public class CoiledVinesBlock extends AbstractFacingPlantStemBlock {
     public static final MapCodec<CoiledVinesBlock> CODEC = createCodec(CoiledVinesBlock::new);
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(4.0, 9.0, 4.0, 12.0, 16.0, 12.0);
+    public static final VoxelShape[] SHAPES = new VoxelShape[]{
+            Block.createCuboidShape(2.0, 2.0, 2.0, 14.0, 16.0, 14.0), // DOWN
+            Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 14.0, 14.0), // UP
+            Block.createCuboidShape(2.0, 2.0, 2.0, 14.0, 14.0, 16.0), // NORTH
+            Block.createCuboidShape(2.0, 2.0, 0.0, 14.0, 14.0, 14.0), // SOUTH
+            Block.createCuboidShape(2.0, 2.0, 2.0, 16.0, 14.0, 14.0), // WEST
+            Block.createCuboidShape(0.0, 2.0, 2.0, 14.0, 14.0, 14.0) // EAST
+    };
 
     public CoiledVinesBlock(Settings settings) {
-        super(settings, SHAPE, false, 0.1);
+        super(settings, SHAPES, false, 0.1);
     }
 
     @Override
@@ -31,7 +39,7 @@ public class CoiledVinesBlock extends AbstractFacingPlantStemBlock {
     }
 
     @Override
-    protected boolean chooseStemState(BlockState state) {
+    protected boolean canGrowAt(BlockState state) {
         return VineLogic.isValidForWeepingStem(state);
     }
 }

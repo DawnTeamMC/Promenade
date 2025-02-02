@@ -3,7 +3,6 @@ package fr.hugman.promenade.block;
 import com.mojang.serialization.MapCodec;
 import java.util.Optional;
 
-import net.minecraft.block.AbstractPlantStemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Fertilizable;
@@ -22,15 +21,15 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 
 public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBlock implements Fertilizable {
-    protected AbstractFacingPlantBlock(Settings settings, VoxelShape voxelShape, boolean bl) {
-        super(settings, voxelShape, bl);
+    protected AbstractFacingPlantBlock(Settings settings, VoxelShape[] outlineShapes, boolean bl) {
+        super(settings, outlineShapes, bl);
     }
 
     @Override
     protected abstract MapCodec<? extends AbstractFacingPlantBlock> getCodec();
 
     protected BlockState copyState(BlockState from, BlockState to) {
-        return to;
+        return to.with(FACING, from.get(FACING));
     }
 
     @Override
@@ -70,7 +69,7 @@ public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBl
     public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         var facing = state.get(FACING);
         Optional<BlockPos> optional = this.getStemHeadPos(world, pos, state.getBlock(), facing);
-        return optional.isPresent() && this.getStem().chooseStemState(world.getBlockState(optional.get().offset(facing)));
+        return optional.isPresent() && this.getStem().canGrowAt(world.getBlockState(optional.get().offset(facing)));
     }
 
     @Override

@@ -106,6 +106,9 @@ public class PromenadeModelProvider extends FabricModelProvider {
 
         gen.registerSimpleCubeAll(PromenadeBlocks.SOUL_SHROOMLIGHT);
 
+        this.registerFacingPlantPart(gen, PromenadeBlocks.COILED_VINES, PromenadeBlocks.COILED_VINES_PLANT, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        gen.registerItemModel(PromenadeBlocks.COILED_VINES, "_plant");
+
         this.registerMoai(gen);
 
         this.registerBlueberryBush(gen);
@@ -180,7 +183,6 @@ public class PromenadeModelProvider extends FabricModelProvider {
                 );
     }
 
-
     private void registerSnowyLeaves(BlockStateModelGenerator gen, Block snowyLeaves, Block normalLeaves) {
         gen.blockStateCollector.accept(
                 VariantsBlockStateSupplier.create(snowyLeaves).coordinate(
@@ -190,6 +192,24 @@ public class PromenadeModelProvider extends FabricModelProvider {
                 )
         );
 
+    }
+
+    public final void registerFacingPlantPart(BlockStateModelGenerator gen, Block plant, Block plantStem, BlockStateModelGenerator.CrossType tintType) {
+        this.registerFacingTintableCrossBlockState(gen, plant, tintType);
+        this.registerFacingTintableCrossBlockState(gen, plantStem, tintType);
+    }
+
+    public final void registerFacingTintableCrossBlockState(BlockStateModelGenerator gen, Block block, BlockStateModelGenerator.CrossType tintType) {
+        TextureMap textureMap = tintType.getTextureMap(block);
+        this.registerFacingTintableCrossBlockState(gen, block, tintType, textureMap);
+    }
+
+    public final void registerFacingTintableCrossBlockState(BlockStateModelGenerator gen, Block block, BlockStateModelGenerator.CrossType tintType, TextureMap crossTexture) {
+        Identifier identifier = tintType.getCrossModel().upload(block, crossTexture, gen.modelCollector);
+        gen.blockStateCollector.accept(
+                BlockStateModelGenerator.createSingletonBlockState(block, identifier)
+                        .coordinate(gen.createUpDefaultFacingVariantMap())
+        );
     }
 
     @Override

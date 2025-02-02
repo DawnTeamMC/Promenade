@@ -17,7 +17,6 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class PromenadeItems {
-    //TODO: compostable and fuel
     public static final Item SAKURA_SIGN = register(PromenadeBlocks.SAKURA_SIGN, ItemFactory.sign(PromenadeBlocks.SAKURA_WALL_SIGN), ItemSettings.max16());
     public static final Item SAKURA_HANGING_SIGN = register(PromenadeBlocks.SAKURA_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.SAKURA_WALL_HANGING_SIGN), ItemSettings.max16());
     public static final Item SAKURA_BOAT = register("sakura_boat", ItemFactory.boat(PromenadeEntityTypes.SAKURA_BOAT), ItemSettings.max1());
@@ -46,6 +45,7 @@ public class PromenadeItems {
     public static final Item DUCK = register("duck", new Item.Settings().food(PromenadeFoodComponents.RAW_DUCK, PromenadeConsumableComponents.RAW_DUCK));
     public static final Item COOKED_DUCK = register("cooked_duck", new Item.Settings().food(PromenadeFoodComponents.COOKED_DUCK));
 
+    //TODO: dispenser behaviors
     public static final Item CAPYBARA_SPAWN_EGG = register("capybara_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.CAPYBARA));
     public static final Item DUCK_SPAWN_EGG = register("duck_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.DUCK));
     public static final Item LUSH_CREEPER_SPAWN_EGG = register("lush_creeper_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.LUSH_CREEPER));

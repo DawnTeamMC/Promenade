@@ -99,7 +99,6 @@ public class PromenadeItemGroupAdditions {
                         PromenadeBlocks.MAPLE_BUTTON));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(e -> {
             e.addAfter(PromenadeBlocks.SAKURA_LOG, PromenadeBlocks.MAPLE_LOG);
-            e.addAfter(Blocks.GRASS_BLOCK, PromenadeBlocks.VERMILION_CARPETED_GRASS_BLOCK, PromenadeBlocks.FULVOUS_CARPETED_GRASS_BLOCK, PromenadeBlocks.MIKADO_CARPETED_GRASS_BLOCK);
             e.addAfter(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, PromenadeBlocks.SAP_MAPLE_LEAVES, PromenadeBlocks.VERMILION_MAPLE_LEAVES, PromenadeBlocks.FULVOUS_MAPLE_LEAVES, PromenadeBlocks.MIKADO_MAPLE_LEAVES);
             e.addAfter(PromenadeBlocks.COTTON_SAKURA_SAPLING, PromenadeBlocks.SAP_MAPLE_SAPLING, PromenadeBlocks.VERMILION_MAPLE_SAPLING, PromenadeBlocks.FULVOUS_MAPLE_SAPLING, PromenadeBlocks.MIKADO_MAPLE_SAPLING);
             e.addAfter(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, PromenadeBlocks.SAP_MAPLE_LEAF_PILE, PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE);

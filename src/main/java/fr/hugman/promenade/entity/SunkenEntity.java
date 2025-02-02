@@ -354,7 +354,7 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     }
 
     /**
-     * TODO
+     * FIXME
      *
      * @Override public Optional<RegistryKey<LootTable>> getLootTableKey() {
      * return this.getVariant().value().lootTable();

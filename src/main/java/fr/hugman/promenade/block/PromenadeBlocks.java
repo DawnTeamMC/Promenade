@@ -144,19 +144,16 @@ public class PromenadeBlocks {
     public static final Block POTTED_VERMILION_MAPLE_SAPLING = register("potted_vermilion_maple_sapling", BlockFactory.pot(VERMILION_MAPLE_SAPLING));
     public static final Block VERMILION_MAPLE_LEAVES = register("vermilion_maple_leaves", BlockFactory.leaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES, BlockSoundGroup.GRASS, 10, PromenadeParticleTypes.VERMILION_MAPLE_LEAF));
     public static final Block VERMILION_MAPLE_LEAF_PILE = register("vermilion_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.VERMILION_MAPLE_LEAVES, BlockSoundGroup.GRASS));
-    public static final Block VERMILION_CARPETED_GRASS_BLOCK = register("vermilion_carpeted_grass_block", BlockFactory.carpetedGrassBlock(PromenadeMapColors.VERMILION_MAPLE_LEAVES)); //TODO: remove and replace with flowerbed
 
     public static final Block FULVOUS_MAPLE_SAPLING = register("fulvous_maple_sapling", BlockFactory.sapling(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, PromenadeSaplingGenerators.FULVOUS_MAPLE));
     public static final Block POTTED_FULVOUS_MAPLE_SAPLING = register("potted_fulvous_maple_sapling", BlockFactory.pot(FULVOUS_MAPLE_SAPLING));
     public static final Block FULVOUS_MAPLE_LEAVES = register("fulvous_maple_leaves", BlockFactory.leaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, BlockSoundGroup.GRASS, 10, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF));
     public static final Block FULVOUS_MAPLE_LEAF_PILE = register("fulvous_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, BlockSoundGroup.GRASS));
-    public static final Block FULVOUS_CARPETED_GRASS_BLOCK = register("fulvous_carpeted_grass_block", BlockFactory.carpetedGrassBlock(PromenadeMapColors.FULVOUS_MAPLE_LEAVES)); //TODO: remove and replace with flowerbed
 
     public static final Block MIKADO_MAPLE_SAPLING = register("mikado_maple_sapling", BlockFactory.sapling(PromenadeMapColors.MIKADO_MAPLE_LEAVES, PromenadeSaplingGenerators.MIKADO_MAPLE));
     public static final Block POTTED_MIKADO_MAPLE_SAPLING = register("potted_mikado_maple_sapling", BlockFactory.pot(MIKADO_MAPLE_SAPLING));
     public static final Block MIKADO_MAPLE_LEAVES = register("mikado_maple_leaves", BlockFactory.leaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES, BlockSoundGroup.GRASS, 10, PromenadeParticleTypes.MIKADO_MAPLE_LEAF));
     public static final Block MIKADO_MAPLE_LEAF_PILE = register("mikado_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.MIKADO_MAPLE_LEAVES, BlockSoundGroup.GRASS));
-    public static final Block MIKADO_CARPETED_GRASS_BLOCK = register("mikado_carpeted_grass_block", BlockFactory.carpetedGrassBlock(PromenadeMapColors.MIKADO_MAPLE_LEAVES)); //TODO: remove and replace with flowerbed
 
 
     /* ======== */
@@ -238,6 +235,7 @@ public class PromenadeBlocks {
 
     public static final Block SOUL_SHROOMLIGHT = register("soul_shroomlight", BlockFactory.of(AbstractBlock.Settings.create().mapColor(MapColor.LIGHT_BLUE).strength(1.0F).sounds(BlockSoundGroup.SHROOMLIGHT).luminance(state -> 10)));
 
+    //TODO: FallLocation implementation
     public static final Block COILED_VINES = register("coiled_vines", BlockFactory.of(
             CoiledVinesBlock::new,
             AbstractBlock.Settings.create()

@@ -214,6 +214,7 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
                 .carver(ConfiguredCarvers.NETHER_CAVE)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, MiscPlacedFeatures.SPRING_LAVA);
         DefaultBiomeFeatures.addDefaultMushrooms(lookupBackedBuilder);
+        //TODO: add coiled vines
         lookupBackedBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_OPEN)
                 .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_FIRE)
                 .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_SOUL_FIRE)

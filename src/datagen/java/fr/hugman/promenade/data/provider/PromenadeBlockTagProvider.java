@@ -132,13 +132,15 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
 
         getOrCreateTagBuilder(BlockTags.NYLIUM).add(DARK_AMARANTH_NYLIUM);
         getOrCreateTagBuilder(BlockTags.WART_BLOCKS).add(DARK_AMARANTH_WART_BLOCK);
-        getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(DARK_AMARANTH_NYLIUM, SOUL_SHROOMLIGHT);
+        getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(DARK_AMARANTH_NYLIUM, DARK_AMARANTH_WART_BLOCK, SOUL_SHROOMLIGHT);
 
         getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE).add(DARK_AMARANTH_FUNGUS, DARK_AMARANTH_NYLIUM, DARK_AMARANTH_ROOTS);
 
         getOrCreateTagBuilder(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(DARK_AMARANTH_ROOTS);
 
-        getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).addTag(FLOWER_PILES).addTag(LEAF_PILES).add(DARK_AMARANTH_ROOTS);
+        getOrCreateTagBuilder(BlockTags.CLIMBABLE).add(COILED_VINES, COILED_VINES_PLANT);
+
+        getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).addTag(FLOWER_PILES).addTag(LEAF_PILES).add(DARK_AMARANTH_ROOTS, COILED_VINES, COILED_VINES_PLANT);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
                 BLUNITE,
                 BLUNITE_STAIRS,
@@ -155,7 +157,7 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 MOAI,
                 DARK_AMARANTH_NYLIUM
         );
-        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(DARK_AMARANTH_FUNGUS);
+        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(DARK_AMARANTH_FUNGUS, COILED_VINES, COILED_VINES_PLANT);
         getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
                 .add(
                         VERMILION_MAPLE_LEAVES,
@@ -170,6 +172,8 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 .addTag(FLOWER_PILES)
                 .addTag(LEAF_PILES)
                 .add(DARK_AMARANTH_WART_BLOCK, SOUL_SHROOMLIGHT);
+
+
 
         // Conventional
         getOrCreateTagBuilder(ConventionalBlockTags.STONES).add(ASPHALT, BLUNITE);

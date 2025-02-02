@@ -9,7 +9,6 @@ import net.minecraft.registry.Registry;
 public class PromenadeBlockTypes {
     public static final MapCodec<BerryBushBlock> BERRY_BUSH = of("berry_bush", BerryBushBlock.CODEC);
     public static final MapCodec<MoaiBlock> MOAI = of("moai", MoaiBlock.CODEC);
-    public static final MapCodec<CarpetedGrassBlock> CARPETED_GRASS = of("carpeted_grass", CarpetedGrassBlock.CODEC);
     public static final MapCodec<HangingLeavesBlock> HANGING_LEAVES = of("hanging_leaves", HangingLeavesBlock.CODEC);
     public static final MapCodec<MapleLogBlock> MAPLE_LOG = of("maple_log", MapleLogBlock.CODEC);
     public static final MapCodec<PileBlock> PILE = of("pile", PileBlock.CODEC);

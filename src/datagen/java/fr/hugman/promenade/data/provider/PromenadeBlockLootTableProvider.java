@@ -133,19 +133,16 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addPottedPlantDrops(PromenadeBlocks.POTTED_VERMILION_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.VERMILION_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.VERMILION_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
         addDrop(PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
-        addDrop(PromenadeBlocks.VERMILION_CARPETED_GRASS_BLOCK);
 
         addDrop(PromenadeBlocks.FULVOUS_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_FULVOUS_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.FULVOUS_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
         addDrop(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
-        addDrop(PromenadeBlocks.FULVOUS_CARPETED_GRASS_BLOCK);
 
         addDrop(PromenadeBlocks.MIKADO_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_MIKADO_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.MIKADO_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.MIKADO_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
         addDrop(PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
-        addDrop(PromenadeBlocks.MIKADO_CARPETED_GRASS_BLOCK);
 
         addDrop(PromenadeBlocks.STRIPPED_PALM_LOG);
         addDrop(PromenadeBlocks.PALM_LOG);
@@ -194,6 +191,8 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addPottedPlantDrops(PromenadeBlocks.POTTED_DARK_AMARANTH_FUNGUS);
 
         addDrop(PromenadeBlocks.SOUL_SHROOMLIGHT);
+
+        addVinePlantDrop(PromenadeBlocks.COILED_VINES, PromenadeBlocks.COILED_VINES_PLANT);
 
         addDrop(PromenadeBlocks.MOAI);
 

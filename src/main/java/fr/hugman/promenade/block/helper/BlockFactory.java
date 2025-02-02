@@ -1,6 +1,5 @@
 package fr.hugman.promenade.block.helper;
 
-import fr.hugman.promenade.block.CarpetedGrassBlock;
 import fr.hugman.promenade.block.HangingLeavesBlock;
 import fr.hugman.promenade.block.PileBlock;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
@@ -198,16 +197,6 @@ public final class BlockFactory {
                 .blockVision(Blocks::never)
                 .pistonBehavior(PistonBehavior.DESTROY)
                 .solidBlock(Blocks::never));
-    }
-
-    //TODO: remove
-    @Deprecated
-    public static BlockBuilder carpetedGrassBlock(MapColor color) {
-        return new BlockBuilder(CarpetedGrassBlock::new, AbstractBlock.Settings.create()
-                .mapColor(color)
-                .ticksRandomly()
-                .strength(0.6F)
-                .sounds(BlockSoundGroup.GRASS));
     }
 
     public static BlockBuilder pot(Block block) {
