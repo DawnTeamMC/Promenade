@@ -30,6 +30,8 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(PromenadePaintingVariantProvider::new);
 
         // - World generation
+        pack.addProvider(PromenadeTemplatePoolProvider::new);
+
         pack.addProvider(PromenadeConfiguredFeatureProvider::new);
         pack.addProvider(PromenadePlacedFeatureProvider::new);
         pack.addProvider(PromenadeBiomeProvider::new);
@@ -59,6 +61,8 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         registryBuilder.addRegistry(PromenadeRegistryKeys.DUCK_VARIANT, PromenadeDuckVariantProvider::register);
         registryBuilder.addRegistry(PromenadeRegistryKeys.SUNKEN_VARIANT, PromenadeSunkenVariantProvider::register);
         registryBuilder.addRegistry(RegistryKeys.PAINTING_VARIANT, PromenadePaintingVariantProvider::register);
+
+        registryBuilder.addRegistry(RegistryKeys.TEMPLATE_POOL, PromenadeTemplatePoolProvider::register);
 
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, PromenadeConfiguredFeatureProvider::register);
         registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, PromenadePlacedFeatureProvider::register);

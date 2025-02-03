@@ -214,7 +214,6 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
                 .carver(ConfiguredCarvers.NETHER_CAVE)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, MiscPlacedFeatures.SPRING_LAVA);
         DefaultBiomeFeatures.addDefaultMushrooms(lookupBackedBuilder);
-        //TODO: add coiled vines
         lookupBackedBuilder.feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_OPEN)
                 .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_FIRE)
                 .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.PATCH_SOUL_FIRE)
@@ -222,8 +221,8 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
                 .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.DARK_AMARANTH_FUNGI)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.DARK_AMARANTH_FOREST_VEGETATION)
-                .feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.NETHER_SPROUTS)
-                .feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.TWISTING_VINES); //TODO: do we keep or remove or whatever
+                .feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.NETHER_SPROUTS);
+        //TODO: add coiled vines
         DefaultBiomeFeatures.addNetherMineables(lookupBackedBuilder);
         return new Biome.Builder()
                 .precipitation(false)
