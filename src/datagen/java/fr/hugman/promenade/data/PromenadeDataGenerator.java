@@ -31,6 +31,8 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
 
         // - World generation
         pack.addProvider(PromenadeTemplatePoolProvider::new);
+        pack.addProvider(PromenadeStructureProvider::new);
+        pack.addProvider(PromenadeStructureSetProvider::new);
 
         pack.addProvider(PromenadeConfiguredFeatureProvider::new);
         pack.addProvider(PromenadePlacedFeatureProvider::new);
@@ -39,6 +41,7 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         // - Loot tables
         pack.addProvider(PromenadeBlockLootTableProvider::new);
         pack.addProvider(PromenadeEntityLootTableProvider::new);
+        pack.addProvider(PromenadeChestLootTableProvider::new);
 
         // - Tags
         var blockTagProvider = pack.addProvider(PromenadeBlockTagProvider::new);
@@ -63,6 +66,8 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         registryBuilder.addRegistry(RegistryKeys.PAINTING_VARIANT, PromenadePaintingVariantProvider::register);
 
         registryBuilder.addRegistry(RegistryKeys.TEMPLATE_POOL, PromenadeTemplatePoolProvider::register);
+        registryBuilder.addRegistry(RegistryKeys.STRUCTURE, PromenadeStructureProvider::register);
+        registryBuilder.addRegistry(RegistryKeys.STRUCTURE_SET, PromenadeStructureSetProvider::register);
 
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, PromenadeConfiguredFeatureProvider::register);
         registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, PromenadePlacedFeatureProvider::register);

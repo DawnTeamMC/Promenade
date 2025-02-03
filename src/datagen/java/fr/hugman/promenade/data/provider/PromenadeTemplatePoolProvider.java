@@ -3,6 +3,7 @@ package fr.hugman.promenade.data.provider;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.world.gen.structure.PromenadeStructurePoolsKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.registry.Registerable;
@@ -34,14 +35,14 @@ public class PromenadeTemplatePoolProvider extends FabricDynamicRegistryProvider
         var pools = registerable.getRegistryLookup(RegistryKeys.TEMPLATE_POOL);
         var empty = pools.getOrThrow(StructurePools.EMPTY);
 
-        of(registerable, "witch_huts", new StructurePool(empty,
+        registerable.register(PromenadeStructurePoolsKeys.DARK_FOREST_WITCH_HUTS, new StructurePool(empty,
                 ImmutableList.of(
                         Pair.of(StructurePoolElement.ofSingle(Promenade.id("witch_hut").toString()), 1)
                 ),
                 StructurePool.Projection.RIGID
         ));
 
-        of(registerable, "witch_hut/interiors", new StructurePool(empty,
+        registerable.register(PromenadeStructurePoolsKeys.WITCH_HUT_INTERIORS, new StructurePool(empty,
                 ImmutableList.of(
                         Pair.of(StructurePoolElement.ofSingle(Promenade.id("witch_hut/interior/normal").toString()), 5),
                         Pair.of(StructurePoolElement.ofSingle(Promenade.id("witch_hut/interior/hatred").toString()), 1),
