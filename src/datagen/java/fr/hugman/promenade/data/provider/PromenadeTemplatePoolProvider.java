@@ -51,8 +51,4 @@ public class PromenadeTemplatePoolProvider extends FabricDynamicRegistryProvider
                 StructurePool.Projection.RIGID
         ));
     }
-
-    private static void of(Registerable<StructurePool> registry, String key, StructurePool pool) {
-        registry.register(RegistryKey.of(RegistryKeys.TEMPLATE_POOL, Promenade.id(key)), pool);
-    }
 }
