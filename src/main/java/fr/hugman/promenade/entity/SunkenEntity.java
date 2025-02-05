@@ -45,6 +45,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 
 public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser, VariantHolder<RegistryEntry<SunkenVariant>> {
     private static final TrackedData<RegistryEntry<SunkenVariant>> VARIANT = DataTracker.registerData(SunkenEntity.class, PromenadeTrackedData.SUNKEN_VARIANT);
@@ -159,6 +160,7 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
         this.setVariant(SunkenVariants.getRandom(this.getRegistryManager(), random));
+        this.lootTable = Optional.ofNullable(this.getVariant().value().lootTable());
         return super.initialize(world, difficulty, spawnReason, entityData);
     }
 
@@ -352,16 +354,6 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     public Identifier getTexture() {
         return this.getVariant().value().texture();
     }
-
-
-    /* FIXME
-
-    @Override
-    public Optional<RegistryKey<LootTable>> getLootTableKey() {
-        return Optional.ofNullable(this.getVariant().value().lootTable());
-    }
-    -
-     */
 
     public enum State {
         CROSSBOW_HOLD,

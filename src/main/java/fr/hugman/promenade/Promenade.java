@@ -63,6 +63,8 @@ public class Promenade implements ModInitializer {
         PromenadeEntityTypes.appendWorldGen();
         PromenadeBiomes.appendWorldGen();
         PromenadePlacedFeatures.appendWorldGen();
+
+        //TODO datafix (carpeted grass for example)
     }
 
     public static Identifier id(String path) {

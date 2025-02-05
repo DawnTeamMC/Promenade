@@ -115,6 +115,7 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.CARNELIAN_TREEWAY_FULVOUS_TREES);
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.CARNELIAN_TREEWAY_MIKADO_TREES);
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.CARNELIAN_TREEWAY_SAP_TREES);
+        //TODO add fallen leaves to replace old leaf piles and carpeted grass
 
         SpawnSettings.Builder spawns = new SpawnSettings.Builder();
 

@@ -1,12 +1,5 @@
 accessWidener	v1	named
 extendable method net/minecraft/entity/mob/AbstractSkeletonEntity            getStepSound ()Lnet/minecraft/sound/SoundEvent;
 extendable method net/minecraft/entity/mob/CreeperEntity                     explode      ()V
-accessible method net/minecraft/block/SpreadableBlock                        canSurvive   (Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z
-accessible method net/minecraft/block/SpreadableBlock                        canSpread    (Lnet/minecraft/block/BlockState;Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;)Z
 accessible method net/minecraft/world/gen/surfacebuilder/VanillaSurfaceRules block        (Lnet/minecraft/block/Block;)Lnet/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRule;
-
-accessible    method    net/minecraft/sound/SoundEvent    of    (Lnet/minecraft/util/Identifier;F)Lnet/minecraft/sound/SoundEvent;
-accessible    method    net/minecraft/sound/SoundEvent    of    (Lnet/minecraft/util/Identifier;)Lnet/minecraft/sound/SoundEvent;
-
-accessible    method    net/minecraft/registry/Registries    create    (Lnet/minecraft/registry/RegistryKey;Lnet/minecraft/registry/Registries$Initializer;)Lnet/minecraft/registry/Registry;
-accessible    class    net/minecraft/registry/Registries$Initializer
+accessible field net/minecraft/entity/mob/MobEntity lootTable Ljava/util/Optional;
