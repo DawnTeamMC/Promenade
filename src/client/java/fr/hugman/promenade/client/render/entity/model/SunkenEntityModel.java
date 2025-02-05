@@ -15,8 +15,9 @@ public class SunkenEntityModel extends SkeletonEntityModel<SunkenEntityRenderSta
     }
 
     public static TexturedModelData getTexturedModelData() {
-        //FIXME arms and legs are flipped
         ModelData modelData = BipedEntityModel.getModelData(Dilation.NONE, 0.0F);
+        ModelPartData root = modelData.getRoot();
+        SkeletonEntityModel.addLimbs(root);
         modelData.getRoot().getChild(EntityModelPartNames.HEAD)
                 .addChild(EntityModelPartNames.HAT, ModelPartBuilder.create().uv(32, 0).cuboid(-4.0F, -16.0F, -4.0F, 16.0F, 16.0F, 0.0F), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
         return TexturedModelData.of(modelData, 64, 32);
