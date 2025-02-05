@@ -9,6 +9,7 @@ import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.itemgroup.PromenadeItemGroupAdditions;
+import fr.hugman.promenade.itemgroup.PromenadeItemGroups;
 import fr.hugman.promenade.registry.PromenadeCompostingChances;
 import fr.hugman.promenade.registry.PromenadeFlammables;
 import fr.hugman.promenade.registry.PromenadeRegistries;
@@ -44,6 +45,7 @@ public class Promenade implements ModInitializer {
 
         Reflection.initialize(PromenadeItems.class);
 
+        Reflection.initialize(PromenadeItemGroups.class);
         PromenadeItemGroupAdditions.appendItemGroups();
         PromenadeCompostingChances.register();
         PromenadeTrades.appendVillagerTrades();

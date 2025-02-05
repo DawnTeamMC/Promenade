@@ -12,7 +12,6 @@ import java.util.function.Predicate;
 
 public class PromenadeItemGroupAdditions {
     public static void appendItemGroups() {
-        //TODO: optimize item groups
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(e -> e.addAfter(Blocks.ANDESITE, PromenadeBlocks.BLUNITE, PromenadeBlocks.ASPHALT));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(e -> e.addAfter(Blocks.POLISHED_ANDESITE_SLAB,
                 PromenadeBlocks.BLUNITE, PromenadeBlocks.BLUNITE_SLAB, PromenadeBlocks.BLUNITE_STAIRS, PromenadeBlocks.BLUNITE_WALL,
@@ -150,6 +149,7 @@ public class PromenadeItemGroupAdditions {
             e.addAfter(Blocks.WARPED_WART_BLOCK, PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);
             e.addAfter(Blocks.WARPED_FUNGUS, PromenadeBlocks.DARK_AMARANTH_FUNGUS);
             e.addAfter(Blocks.WARPED_ROOTS, PromenadeBlocks.DARK_AMARANTH_ROOTS);
+            e.addAfter(Blocks.TWISTING_VINES, PromenadeBlocks.COILED_VINES);
             e.addAfter(Blocks.SHROOMLIGHT, PromenadeBlocks.SOUL_SHROOMLIGHT);
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> {

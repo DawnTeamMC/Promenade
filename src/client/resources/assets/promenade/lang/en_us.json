@@ -209,5 +209,6 @@
   "text.autoconfig.promenade.option.monsters.sunkens_weight": "Spawning weight of Sunkens",
   "painting.promenade.optimism.title": "Optimism",
   "painting.promenade.nurture.title": "Nurture",
-  "name.hugman": "Hugman"
+  "name.hugman": "Hugman",
+  "item_group.promenade.promenade": "Promenade"
 }
