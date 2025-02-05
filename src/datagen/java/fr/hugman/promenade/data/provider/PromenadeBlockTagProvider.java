@@ -86,7 +86,7 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
         getOrCreateTagBuilder(BlockTags.WALLS).add(ASPHALT_WALL, BLUNITE_WALL);
 
         getOrCreateTagBuilder(BlockTags.LOGS).addTag(DARK_AMARANTH_STEMS);
-        getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).add(SAKURA_LOG, MAPLE_LOG, PALM_LOG);
+        getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).addTag(SAKURA_LOGS).addTag(MAPLE_LOGS).addTag(PALM_LOGS);
         getOrCreateTagBuilder(BlockTags.OVERWORLD_NATURAL_LOGS).add(SAKURA_LOG, MAPLE_LOG, PALM_LOG);
         getOrCreateTagBuilder(BlockTags.PLANKS).add(SAKURA_PLANKS, MAPLE_PLANKS, PALM_PLANKS, DARK_AMARANTH_PLANKS);
         getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS).add(SAKURA_BUTTON, MAPLE_BUTTON, PALM_BUTTON, DARK_AMARANTH_BUTTON);
@@ -176,5 +176,12 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
 
         // Conventional
         getOrCreateTagBuilder(ConventionalBlockTags.STONES).add(ASPHALT, BLUNITE);
+        getOrCreateTagBuilder(ConventionalBlockTags.FENCES).add(SAKURA_FENCE, MAPLE_FENCE, PALM_FENCE, DARK_AMARANTH_FENCE);
+        getOrCreateTagBuilder(ConventionalBlockTags.WOODEN_FENCES).add(SAKURA_FENCE, MAPLE_FENCE, PALM_FENCE, DARK_AMARANTH_FENCE);
+        getOrCreateTagBuilder(ConventionalBlockTags.FENCE_GATES).add(SAKURA_FENCE_GATE, MAPLE_FENCE_GATE, PALM_FENCE_GATE, DARK_AMARANTH_FENCE_GATE);
+        getOrCreateTagBuilder(ConventionalBlockTags.WOODEN_FENCE_GATES).add(SAKURA_FENCE_GATE, MAPLE_FENCE_GATE, PALM_FENCE_GATE, DARK_AMARANTH_FENCE_GATE);
+        getOrCreateTagBuilder(ConventionalBlockTags.STRIPPED_LOGS).add(STRIPPED_SAKURA_LOG, STRIPPED_MAPLE_LOG, STRIPPED_PALM_LOG, STRIPPED_DARK_AMARANTH_STEM);
+        getOrCreateTagBuilder(ConventionalBlockTags.STRIPPED_WOODS).add(STRIPPED_SAKURA_WOOD, STRIPPED_MAPLE_WOOD, STRIPPED_PALM_WOOD, STRIPPED_DARK_AMARANTH_HYPHAE);
+
     }
 }

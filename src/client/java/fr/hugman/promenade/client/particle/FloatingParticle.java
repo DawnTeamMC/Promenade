@@ -10,7 +10,7 @@ import net.minecraft.util.math.MathHelper;
 
 import java.util.Optional;
 
-@Environment(value = EnvType.CLIENT)
+@Environment(EnvType.CLIENT)
 public class FloatingParticle extends SpriteBillboardParticle {
     private static final int FADE_IN = 50;
     private static final int FADE_OUT = 100;

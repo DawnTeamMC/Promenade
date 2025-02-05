@@ -1,9 +1,12 @@
 package fr.hugman.promenade.client.render.block;
 
 import fr.hugman.promenade.block.PromenadeBlocks;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.minecraft.client.render.RenderLayer;
 
+@Environment(EnvType.CLIENT)
 public final class PromenadeBlockRenderLayers {
     public static void register() {
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.OAK_LEAF_PILE, RenderLayer.getCutoutMipped());

@@ -6,7 +6,7 @@ import net.minecraft.client.particle.*;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.SimpleParticleType;
 
-@Environment(value = EnvType.CLIENT)
+@Environment(EnvType.CLIENT)
 public class FallingLeafParticle extends SpriteBillboardParticle {
     private static final float velocityIncrement = 0.0025f;
     private static final int MAX_AGE = 300;

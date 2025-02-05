@@ -1,8 +1,11 @@
 package fr.hugman.promenade.client.particle;
 
 import fr.hugman.promenade.particle.PromenadeParticleTypes;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 
+@Environment(EnvType.CLIENT)
 public class PromenadeParticleFactories {
     public static void register() {
         var instance = ParticleFactoryRegistry.getInstance();

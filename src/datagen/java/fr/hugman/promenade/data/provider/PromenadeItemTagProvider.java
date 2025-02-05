@@ -4,6 +4,8 @@ import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.tag.PromenadeBlockTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -82,5 +84,16 @@ public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider 
                         DARK_AMARANTH_SIGN,
                         DARK_AMARANTH_HANGING_SIGN
                 );
+
+        // Conventional
+        getOrCreateTagBuilder(ConventionalItemTags.RAW_MEAT_FOODS).add(DUCK);
+        getOrCreateTagBuilder(ConventionalItemTags.COOKED_MEAT_FOODS).add(COOKED_DUCK);
+        copy(ConventionalBlockTags.STONES, ConventionalItemTags.STONES);
+        copy(ConventionalBlockTags.FENCES, ConventionalItemTags.FENCES);
+        copy(ConventionalBlockTags.WOODEN_FENCES, ConventionalItemTags.WOODEN_FENCES);
+        copy(ConventionalBlockTags.FENCE_GATES, ConventionalItemTags.FENCE_GATES);
+        copy(ConventionalBlockTags.WOODEN_FENCE_GATES, ConventionalItemTags.WOODEN_FENCE_GATES);
+        copy(ConventionalBlockTags.STRIPPED_WOODS, ConventionalItemTags.STRIPPED_WOODS);
+        copy(ConventionalBlockTags.STRIPPED_LOGS, ConventionalItemTags.STRIPPED_LOGS);
     }
 }
