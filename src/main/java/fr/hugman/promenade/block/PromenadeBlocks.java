@@ -12,7 +12,10 @@ import fr.hugman.promenade.sound.PromenadeBlockSounds;
 import fr.hugman.promenade.tag.PromenadeBlockTags;
 import fr.hugman.promenade.world.PromenadeSaplingGenerators;
 import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.MapColor;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EquipmentSlot;
@@ -188,7 +191,6 @@ public class PromenadeBlocks {
     /* ============ */
     /*   AMARANTH   */
     /* ============ */
-    //TODO: mixin the bonemeal feature
     public static final Block DARK_AMARANTH_NYLIUM = register("dark_amaranth_nylium", BlockFactory.of(NyliumBlock::new,
             AbstractBlock.Settings.create()
                     .mapColor(MapColor.BLACK)

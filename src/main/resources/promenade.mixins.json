@@ -6,7 +6,8 @@
     "AxeItemMixin",
     "FallLocationMixin",
     "FeatureSorterMixin",
-    "LivingEntityMixin"
+    "LivingEntityMixin",
+    "NetherrackBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

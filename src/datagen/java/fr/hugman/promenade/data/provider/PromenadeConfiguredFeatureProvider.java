@@ -188,7 +188,6 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
 
         var horizontalDirections = List.of(Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST);
         of(registerable, PromenadeConfiguredFeatures.COILED_VINES, PromenadeFeatures.COILED_VINES, new CoiledVinesFeatureConfig(8, 4, 8, horizontalDirections));
-        of(registerable, PromenadeConfiguredFeatures.COILED_VINES_BONEMEAL, PromenadeFeatures.COILED_VINES, new CoiledVinesFeatureConfig(3, 1, 2, horizontalDirections));
     }
 
     private static <FC extends FeatureConfig, F extends Feature<FC>> void of(Registerable<ConfiguredFeature<?, ?>> registry, RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
