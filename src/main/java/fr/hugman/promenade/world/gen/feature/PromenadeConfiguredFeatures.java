@@ -48,8 +48,8 @@ public class PromenadeConfiguredFeatures {
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> SNOWY_MEGA_SPRUCE = of("tree/snowy_mega_spruce");
 
-    public static final RegistryKey<ConfiguredFeature<?, ?>> DARK_AMARANTH_FUNGUS = of("amaranth_fungus");
-    public static final RegistryKey<ConfiguredFeature<?, ?>> PLANTED_DARK_AMARANTH_FUNGUS = of("amaranth_fungus_planted");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> DARK_AMARANTH_FUNGUS = of("tree/dark_amaranth_fungus");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> PLANTED_DARK_AMARANTH_FUNGUS = of("tree/dark_amaranth_fungus_planted");
 
     // Randomized trees
     public static final RegistryKey<ConfiguredFeature<?, ?>> BLUSH_SAKURA_GROVE_TREE = of("tree/blush_sakura_grove");

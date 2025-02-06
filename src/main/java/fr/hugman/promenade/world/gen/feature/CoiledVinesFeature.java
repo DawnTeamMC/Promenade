@@ -21,28 +21,35 @@ public class CoiledVinesFeature extends Feature<CoiledVinesFeatureConfig> {
     public boolean generate(FeatureContext<CoiledVinesFeatureConfig> context) {
         StructureWorldAccess structureWorldAccess = context.getWorld();
         BlockPos blockPos = context.getOrigin();
-        if (isNotSuitable(structureWorldAccess, blockPos)) {
+        if (isNotSuitable(structureWorldAccess, blockPos, Direction.UP)) {
             return false;
         } else {
             Random random = context.getRandom();
             CoiledVinesFeatureConfig config = context.getConfig();
-            int i = config.spreadWidth();
-            int j = config.spreadHeight();
-            int k = config.maxHeight();
+            int spreadWidth = config.spreadWidth();
+            int spreadHeight = config.spreadHeight();
+            int maxLength = config.maxLength();
             BlockPos.Mutable mutable = new BlockPos.Mutable();
 
-            for (int l = 0; l < i * i; l++) {
-                mutable.set(blockPos).move(MathHelper.nextInt(random, -i, i), MathHelper.nextInt(random, -j, j), MathHelper.nextInt(random, -i, i));
-                if (canGenerate(structureWorldAccess, mutable) && !isNotSuitable(structureWorldAccess, mutable)) {
-                    int m = MathHelper.nextInt(random, 1, k);
-                    if (random.nextInt(6) == 0) {
-                        m *= 2;
-                    }
+            for (int l = 0; l < spreadWidth * spreadWidth; l++) {
+                // Pick a random direction
+                var direction = config.directions().get(random.nextInt(config.directions().size()));
+                // Pick a random position
+                mutable.set(blockPos).move(
+                        MathHelper.nextInt(random, -spreadWidth, spreadWidth),
+                        MathHelper.nextInt(random, -spreadHeight, spreadHeight),
+                        MathHelper.nextInt(random, -spreadWidth, spreadWidth)
+                );
 
-                    if (random.nextInt(5) == 0) {
-                        m = 1;
+                if (findNonAirBlock(structureWorldAccess, mutable, direction) && !isNotSuitable(structureWorldAccess, mutable, direction)) {
+                    int lenght = MathHelper.nextInt(random, 1, maxLength);
+                    if (random.nextInt(6) == 0) {
+                        lenght *= 2;
                     }
-                    generateVineColumn(structureWorldAccess, random, mutable, m, 17, 25);
+                    if (random.nextInt(5) == 0) {
+                        lenght = 1;
+                    }
+                    generateVineColumn(structureWorldAccess, random, mutable, lenght, 17, 25, direction);
                 }
             }
 
@@ -50,28 +57,36 @@ public class CoiledVinesFeature extends Feature<CoiledVinesFeatureConfig> {
         }
     }
 
-    private static boolean canGenerate(WorldAccess world, BlockPos.Mutable pos) {
+    private static boolean findNonAirBlock(WorldAccess world, BlockPos.Mutable pos, Direction direction) {
+        int max = 16;
         do {
-            pos.move(0, -1, 0);
-            if (world.isOutOfHeightLimit(pos)) {
+            pos.move(direction.getOpposite());
+            if (world.isOutOfHeightLimit(pos) || max-- <= 0) {
                 return false;
             }
         } while (world.getBlockState(pos).isAir());
 
-        pos.move(0, 1, 0);
+        pos.move(direction);
         return true;
     }
 
-    public static void generateVineColumn(WorldAccess world, Random random, BlockPos.Mutable pos, int maxLength, int minAge, int maxAge) {
-        var direction = Direction.UP;
+    public static void generateVineColumn(
+            WorldAccess world,
+            Random random,
+            BlockPos.Mutable pos,
+            int maxLength,
+            int minAge,
+            int maxAge,
+            Direction direction
+    ) {
         for (int i = 1; i <= maxLength; i++) {
             if (world.isAir(pos)) {
-                if (i == maxLength || !world.isAir(pos.up())) {
+                if (i == maxLength || !world.isAir(pos.offset(direction))) {
                     world.setBlockState(
                             pos,
                             PromenadeBlocks.COILED_VINES.getDefaultState()
                                     .with(FacingBlock.FACING, direction)
-                                    .with(AbstractPlantStemBlock.AGE, Integer.valueOf(MathHelper.nextInt(random, minAge, maxAge))),
+                                    .with(AbstractPlantStemBlock.AGE, MathHelper.nextInt(random, minAge, maxAge)),
                             Block.NOTIFY_LISTENERS
                     );
                     break;
@@ -84,11 +99,11 @@ public class CoiledVinesFeature extends Feature<CoiledVinesFeatureConfig> {
         }
     }
 
-    private static boolean isNotSuitable(WorldAccess world, BlockPos pos) {
+    private static boolean isNotSuitable(WorldAccess world, BlockPos pos, Direction direction) {
         if (!world.isAir(pos)) {
             return true;
         } else {
-            BlockState blockState = world.getBlockState(pos.down());
+            BlockState blockState = world.getBlockState(pos.offset(direction.getOpposite()));
             return !blockState.isOf(Blocks.NETHERRACK) &&
                     !blockState.isOf(PromenadeBlocks.DARK_AMARANTH_NYLIUM) &&
                     !blockState.isOf(PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);

@@ -16,6 +16,7 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.collection.DataPool;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.VerticalSurfaceType;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
@@ -178,14 +179,16 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
                 DataPool.<BlockState>builder()
                         .add(PromenadeBlocks.DARK_AMARANTH_ROOTS.getDefaultState(), 87)
                         .add(PromenadeBlocks.DARK_AMARANTH_FUNGUS.getDefaultState(), 11)
-                        .add(PromenadeBlocks.DARK_AMARANTH_FUNGUS.getDefaultState(), 1)
+                        .add(Blocks.WARPED_FUNGUS.getDefaultState(), 1)
+                        .add(Blocks.WARPED_ROOTS.getDefaultState(), 1)
         );
 
         of(registerable, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_VEGETATION, Feature.NETHER_FOREST_VEGETATION, new NetherForestVegetationFeatureConfig(darkAmaranthVegetation, 8, 4));
         of(registerable, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION, Feature.NETHER_FOREST_VEGETATION, new NetherForestVegetationFeatureConfig(darkAmaranthVegetation, 3, 1));
 
-        of(registerable, PromenadeConfiguredFeatures.COILED_VINES, PromenadeFeatures.COILED_VINES, new CoiledVinesFeatureConfig(8, 4, 8));
-        of(registerable, PromenadeConfiguredFeatures.COILED_VINES_BONEMEAL, PromenadeFeatures.COILED_VINES, new CoiledVinesFeatureConfig(3, 1, 2));
+        var horizontalDirections = List.of(Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST);
+        of(registerable, PromenadeConfiguredFeatures.COILED_VINES, PromenadeFeatures.COILED_VINES, new CoiledVinesFeatureConfig(8, 4, 8, horizontalDirections));
+        of(registerable, PromenadeConfiguredFeatures.COILED_VINES_BONEMEAL, PromenadeFeatures.COILED_VINES, new CoiledVinesFeatureConfig(3, 1, 2, horizontalDirections));
     }
 
     private static <FC extends FeatureConfig, F extends Feature<FC>> void of(Registerable<ConfiguredFeature<?, ?>> registry, RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
