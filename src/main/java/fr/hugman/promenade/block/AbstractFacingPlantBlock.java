@@ -49,7 +49,7 @@ public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBl
         }
 
         AbstractFacingPlantStemBlock stem = this.getStem();
-        if (direction == facing && !neighborState.isOf(this) && !neighborState.isOf(stem)) {
+        if (direction == facing && !((neighborState.isOf(this) || neighborState.isOf(stem)) && neighborState.get(FACING) == facing)) {
             return this.copyState(state, stem.getRandomGrowthState(random));
         } else {
             if (this.tickWater) {

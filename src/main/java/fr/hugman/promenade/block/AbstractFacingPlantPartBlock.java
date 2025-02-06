@@ -52,7 +52,7 @@ public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
         //FIXME: the plant is being placed instead of the stem
         for (var direction : placementDirections) {
             var opposite = direction.getOpposite();
-            var otherState = ctx.getWorld().getBlockState(ctx.getBlockPos().offset(direction));
+            var otherState = ctx.getWorld().getBlockState(ctx.getBlockPos().offset(opposite));
             var newState = !otherState.isOf(this.getStem()) && !otherState.isOf(this.getPlant())
                     ? this.getRandomGrowthState(ctx.getWorld().random)
                     : this.getPlant().getDefaultState();

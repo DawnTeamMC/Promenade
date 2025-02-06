@@ -89,7 +89,7 @@ public abstract class AbstractFacingPlantStemBlock extends AbstractFacingPlantPa
             tickView.scheduleBlockTick(pos, this, 1);
         }
 
-        if (direction != facing || !neighborState.isOf(this) && !neighborState.isOf(this.getPlant())) {
+        if (direction != facing || !((neighborState.isOf(this) || neighborState.isOf(this.getPlant())) && neighborState.get(FACING) == facing)) {
             if (this.tickWater) {
                 tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
             }
