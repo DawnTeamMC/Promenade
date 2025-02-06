@@ -222,8 +222,8 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
                 .feature(GenerationStep.Feature.UNDERGROUND_DECORATION, NetherPlacedFeatures.SPRING_CLOSED)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.DARK_AMARANTH_FUNGI)
                 .feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.DARK_AMARANTH_FOREST_VEGETATION)
-                .feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.NETHER_SPROUTS);
-        //TODO: add coiled vines
+                .feature(GenerationStep.Feature.VEGETAL_DECORATION, NetherPlacedFeatures.NETHER_SPROUTS)
+                .feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.COILED_VINES);
         DefaultBiomeFeatures.addNetherMineables(lookupBackedBuilder);
         return new Biome.Builder()
                 .precipitation(false)

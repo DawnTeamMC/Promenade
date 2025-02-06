@@ -86,6 +86,8 @@ public class PromenadePlacedFeatures {
 
     public static final RegistryKey<PlacedFeature> DARK_AMARANTH_FOREST_VEGETATION = of("dark_amaranth_forest_vegetation");
 
+    public static final RegistryKey<PlacedFeature> COILED_VINES = of("coiled_vines");
+
 
     private static RegistryKey<PlacedFeature> of(String path) {
         return RegistryKey.of(RegistryKeys.PLACED_FEATURE, Promenade.id(path));

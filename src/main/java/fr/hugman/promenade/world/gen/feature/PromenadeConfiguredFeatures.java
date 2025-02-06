@@ -72,6 +72,8 @@ public class PromenadeConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> DARK_AMARANTH_FOREST_VEGETATION = of("dark_amaranth_forest_vegetation");
     public static final RegistryKey<ConfiguredFeature<?, ?>> DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION = of("dark_amaranth_forest_vegetation/bonemeal");
 
+    public static final RegistryKey<ConfiguredFeature<?, ?>> COILED_VINES = of("coiled_vines");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> COILED_VINES_BONEMEAL = of("coiled_vines_bonemeal");
 
     private static RegistryKey<ConfiguredFeature<?, ?>> of(String path) {
         return RegistryKey.of(RegistryKeys.CONFIGURED_FEATURE, Promenade.id(path));

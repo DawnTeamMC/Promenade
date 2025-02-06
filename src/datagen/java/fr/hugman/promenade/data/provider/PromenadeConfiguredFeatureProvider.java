@@ -3,10 +3,7 @@ package fr.hugman.promenade.data.provider;
 import fr.hugman.promenade.block.BerryBushBlock;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.data.provider.builders.PromenadeFeatureConfigs;
-import fr.hugman.promenade.world.gen.feature.BoulderFeatureConfig;
-import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
-import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
-import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
+import fr.hugman.promenade.world.gen.feature.*;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.block.BlockState;
@@ -187,7 +184,8 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
         of(registerable, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_VEGETATION, Feature.NETHER_FOREST_VEGETATION, new NetherForestVegetationFeatureConfig(darkAmaranthVegetation, 8, 4));
         of(registerable, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION, Feature.NETHER_FOREST_VEGETATION, new NetherForestVegetationFeatureConfig(darkAmaranthVegetation, 3, 1));
 
-
+        of(registerable, PromenadeConfiguredFeatures.COILED_VINES, PromenadeFeatures.COILED_VINES, new CoiledVinesFeatureConfig(8, 4, 8));
+        of(registerable, PromenadeConfiguredFeatures.COILED_VINES_BONEMEAL, PromenadeFeatures.COILED_VINES, new CoiledVinesFeatureConfig(3, 1, 2));
     }
 
     private static <FC extends FeatureConfig, F extends Feature<FC>> void of(Registerable<ConfiguredFeature<?, ?>> registry, RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {

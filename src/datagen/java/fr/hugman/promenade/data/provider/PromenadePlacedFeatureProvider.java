@@ -139,6 +139,8 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
 
         of(registerable, PromenadePlacedFeatures.DARK_AMARANTH_FOREST_VEGETATION, configured.getOrThrow(PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_VEGETATION), netherCount(6));
 
+        of(registerable, PromenadePlacedFeatures.COILED_VINES, configured.getOrThrow(PromenadeConfiguredFeatures.COILED_VINES), CountPlacementModifier.of(10), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE, BiomePlacementModifier.of());
+
     }
 
     public static List<PlacementModifier> rare(int chance) {
