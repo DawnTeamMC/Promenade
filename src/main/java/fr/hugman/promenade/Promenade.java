@@ -10,10 +10,7 @@ import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.itemgroup.PromenadeItemGroupAdditions;
 import fr.hugman.promenade.itemgroup.PromenadeItemGroups;
-import fr.hugman.promenade.registry.PromenadeCompostingChances;
-import fr.hugman.promenade.registry.PromenadeFlammables;
-import fr.hugman.promenade.registry.PromenadeRegistries;
-import fr.hugman.promenade.registry.PromenadeStrippables;
+import fr.hugman.promenade.registry.*;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.trade.PromenadeTrades;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
@@ -64,7 +61,7 @@ public class Promenade implements ModInitializer {
         PromenadeBiomes.appendWorldGen();
         PromenadePlacedFeatures.appendWorldGen();
 
-        //TODO datafix (carpeted grass for example)
+        PromenadeRegistryAliases.registerAliases();
     }
 
     public static Identifier id(String path) {
