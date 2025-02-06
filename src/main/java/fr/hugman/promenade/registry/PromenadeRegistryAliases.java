@@ -46,7 +46,7 @@ public class PromenadeRegistryAliases {
         blockAliases.put(Promenade.id("cherry_oak_pressure_plate"), Promenade.id("sakura_pressure_plate"));
         blockAliases.put(Promenade.id("cherry_oak_button"), Promenade.id("sakura_button"));
         blockAliases.put(Promenade.id("cherry_oak_sign"), Promenade.id("sakura_sign"));
-        blockAliases.put(Promenade.id("cherry_oak_wall_sign"), Promenade.id("sakura_wall_sign"));
+        Registries.BLOCK.addAlias(Promenade.id("cherry_oak_wall_sign"), Promenade.id("sakura_wall_sign"));
 
         blockAliases.put(Promenade.id("pink_cherry_oak_sapling"), Promenade.id("blush_sakura_sapling"));
         blockAliases.put(Promenade.id("potted_pink_cherry_oak_sapling"), Promenade.id("potted_blush_sakura_sapling"));
