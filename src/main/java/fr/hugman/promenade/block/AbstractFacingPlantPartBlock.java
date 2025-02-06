@@ -18,7 +18,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 import org.jetbrains.annotations.Nullable;
 
-//TODO: add shears functionality
 public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
     public static final EnumProperty<Direction> FACING = Properties.FACING;
 
@@ -49,7 +48,6 @@ public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         var placementDirections = ctx.getPlacementDirections();
         //TODO: make it prefer existing stems if not sneaking
-        //FIXME: the plant is being placed instead of the stem
         for (var direction : placementDirections) {
             var opposite = direction.getOpposite();
             var otherState = ctx.getWorld().getBlockState(ctx.getBlockPos().offset(opposite));
