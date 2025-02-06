@@ -45,7 +45,6 @@ public class PromenadeItems {
     public static final Item DUCK = register("duck", new Item.Settings().food(PromenadeFoodComponents.RAW_DUCK, PromenadeConsumableComponents.RAW_DUCK));
     public static final Item COOKED_DUCK = register("cooked_duck", new Item.Settings().food(PromenadeFoodComponents.COOKED_DUCK));
 
-    //TODO: dispenser behaviors
     public static final Item CAPYBARA_SPAWN_EGG = register("capybara_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.CAPYBARA));
     public static final Item DUCK_SPAWN_EGG = register("duck_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.DUCK));
     public static final Item LUSH_CREEPER_SPAWN_EGG = register("lush_creeper_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.LUSH_CREEPER));

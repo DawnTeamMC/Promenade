@@ -2,6 +2,7 @@ package fr.hugman.promenade;
 
 import com.google.common.reflect.Reflection;
 import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.block.dispenser.PromenadeDispenserBehaviors;
 import fr.hugman.promenade.block.entity.PromenadeBlockEntities;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
@@ -46,6 +47,7 @@ public class Promenade implements ModInitializer {
         PromenadeItemGroupAdditions.appendItemGroups();
         PromenadeCompostingChances.register();
         PromenadeTrades.appendVillagerTrades();
+        PromenadeDispenserBehaviors.register();
 
         Reflection.initialize(PromenadeSensorTypes.class);
         Reflection.initialize(PromenadeMemoryModuleTypes.class);
