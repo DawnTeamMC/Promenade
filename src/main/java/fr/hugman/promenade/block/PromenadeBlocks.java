@@ -235,7 +235,6 @@ public class PromenadeBlocks {
 
     public static final Block SOUL_SHROOMLIGHT = register("soul_shroomlight", BlockFactory.of(AbstractBlock.Settings.create().mapColor(MapColor.LIGHT_BLUE).strength(1.0F).sounds(BlockSoundGroup.SHROOMLIGHT).luminance(state -> 10)));
 
-    //TODO: FallLocation implementation
     public static final Block COILED_VINES = register("coiled_vines", BlockFactory.of(
             CoiledVinesBlock::new,
             AbstractBlock.Settings.create()
