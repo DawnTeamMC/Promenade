@@ -71,7 +71,7 @@ public class PromenadeBlocks {
     public static final Block OXEYE_DAISY_PILE = register("oxeye_daisy_pile", BlockFactory.pile(MapColor.GOLD));
     public static final Block CORNFLOWER_PILE = register("cornflower_pile", BlockFactory.pile(MapColor.LAPIS_BLUE));
     public static final Block LILY_OF_THE_VALLEY_PILE = register("lily_of_the_valley_pile", BlockFactory.pile(MapColor.WHITE));
-    public static final Block WITHER_ROSE_PILE = register("wither_rose_pile", BlockFactory.pile(MapColor.BLACK));
+    public static final Block WITHER_ROSE_PILE = register("wither_rose_pile", BlockFactory.pile(MapColor.BLACK).factory(WitherRosePileBlock::new));
 
 
     /* ======================== */
