@@ -73,8 +73,8 @@ public class PromenadeRegistryAliases {
         // v5.0.0
         var grassId = Identifier.ofVanilla("grass_block");
         blockAliases.put(Promenade.id("vermilion_carpeted_grass_block"), grassId);
-        blockAliases.put(Promenade.id("fulvous_carpeted_grass"), grassId);
-        blockAliases.put(Promenade.id("mikado_carpeted_grass"), grassId);
+        blockAliases.put(Promenade.id("fulvous_carpeted_grass_block"), grassId);
+        blockAliases.put(Promenade.id("mikado_carpeted_grass_block"), grassId);
 
         blockAliases.put(Promenade.id("black_dylium"), Promenade.id("dark_amaranth_nylium"));
 
