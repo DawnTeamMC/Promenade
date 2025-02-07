@@ -1,7 +1,9 @@
 package fr.hugman.promenade.block.dispenser;
 
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.item.PromenadeItems;
 import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.dispenser.BoatDispenserBehavior;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -31,6 +33,14 @@ public class PromenadeDispenserBehaviors {
                 return stack;
             }
         };
+
+        DispenserBlock.registerBehavior(PromenadeItems.SAKURA_BOAT, new BoatDispenserBehavior(PromenadeEntityTypes.SAKURA_BOAT));
+        DispenserBlock.registerBehavior(PromenadeItems.SAKURA_CHEST_BOAT, new BoatDispenserBehavior(PromenadeEntityTypes.SAKURA_CHEST_BOAT));
+        DispenserBlock.registerBehavior(PromenadeItems.MAPLE_BOAT, new BoatDispenserBehavior(PromenadeEntityTypes.MAPLE_BOAT));
+        DispenserBlock.registerBehavior(PromenadeItems.MAPLE_CHEST_BOAT, new BoatDispenserBehavior(PromenadeEntityTypes.MAPLE_CHEST_BOAT));
+        DispenserBlock.registerBehavior(PromenadeItems.PALM_BOAT, new BoatDispenserBehavior(PromenadeEntityTypes.PALM_BOAT));
+        DispenserBlock.registerBehavior(PromenadeItems.PALM_CHEST_BOAT, new BoatDispenserBehavior(PromenadeEntityTypes.PALM_CHEST_BOAT));
+
 
         DispenserBlock.registerBehavior(PromenadeItems.CAPYBARA_SPAWN_EGG, spawnEggBehavior);
         DispenserBlock.registerBehavior(PromenadeItems.DUCK_SPAWN_EGG, spawnEggBehavior);
