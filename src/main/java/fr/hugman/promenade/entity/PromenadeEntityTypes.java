@@ -26,14 +26,14 @@ import net.minecraft.world.biome.BiomeKeys;
 import java.util.function.Predicate;
 
 public class PromenadeEntityTypes {
-    public static final EntityType<BoatEntity> SAKURA_BOAT = register("sakura_boat", EntityTypeFactory.boat(PromenadeItems.SAKURA_BOAT));
-    public static final EntityType<ChestBoatEntity> SAKURA_CHEST_BOAT = register("sakura_chest_boat", EntityTypeFactory.chestBoat(PromenadeItems.SAKURA_CHEST_BOAT));
+    public static final EntityType<BoatEntity> SAKURA_BOAT = register("sakura_boat", EntityTypeFactory.boat(() -> PromenadeItems.SAKURA_BOAT));
+    public static final EntityType<ChestBoatEntity> SAKURA_CHEST_BOAT = register("sakura_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.SAKURA_CHEST_BOAT));
 
-    public static final EntityType<BoatEntity> MAPLE_BOAT = register("maple_boat", EntityTypeFactory.boat(PromenadeItems.MAPLE_BOAT));
-    public static final EntityType<ChestBoatEntity> MAPLE_CHEST_BOAT = register("maple_chest_boat", EntityTypeFactory.chestBoat(PromenadeItems.MAPLE_CHEST_BOAT));
+    public static final EntityType<BoatEntity> MAPLE_BOAT = register("maple_boat", EntityTypeFactory.boat(() -> PromenadeItems.MAPLE_BOAT));
+    public static final EntityType<ChestBoatEntity> MAPLE_CHEST_BOAT = register("maple_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.MAPLE_CHEST_BOAT));
 
-    public static final EntityType<BoatEntity> PALM_BOAT = register("palm_boat", EntityTypeFactory.boat(PromenadeItems.PALM_BOAT));
-    public static final EntityType<ChestBoatEntity> PALM_CHEST_BOAT = register("palm_chest_boat", EntityTypeFactory.chestBoat(PromenadeItems.PALM_CHEST_BOAT));
+    public static final EntityType<BoatEntity> PALM_BOAT = register("palm_boat", EntityTypeFactory.boat(() -> PromenadeItems.PALM_BOAT));
+    public static final EntityType<ChestBoatEntity> PALM_CHEST_BOAT = register("palm_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.PALM_CHEST_BOAT));
 
     public static final EntityType<CapybaraEntity> CAPYBARA = register("capybara", FabricEntityType.Builder.createMob(CapybaraEntity::new, SpawnGroup.CREATURE, mob -> mob
                     .defaultAttributes(CapybaraEntity::createCapybaraAttributes)
