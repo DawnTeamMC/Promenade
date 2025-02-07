@@ -10,12 +10,13 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
 
 public class SunkenVariants {
+    public static final RegistryKey<SunkenVariant> TUBE = of("tube");
+    public static final RegistryKey<SunkenVariant> BRAIN = of("brain");
     public static final RegistryKey<SunkenVariant> BUBBLE = of("bubble");
     public static final RegistryKey<SunkenVariant> FIRE = of("fire");
     public static final RegistryKey<SunkenVariant> HORN = of("horn");
-    //TODO: add other coral variants
 
-    public static final RegistryKey<SunkenVariant> DEFAULT = BUBBLE;
+    public static final RegistryKey<SunkenVariant> DEFAULT = TUBE;
 
     private static RegistryKey<SunkenVariant> of(String path) {
         return of(Promenade.id(path));

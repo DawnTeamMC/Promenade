@@ -30,6 +30,8 @@ public class PromenadeSunkenVariantProvider extends FabricDynamicRegistryProvide
     }
 
     public static void register(Registerable<SunkenVariant> registerable) {
+        of(registerable, SunkenVariants.TUBE, PromenadeLootTables.TUBE_SUNKEN);
+        of(registerable, SunkenVariants.BRAIN, PromenadeLootTables.BRAIN_SUNKEN);
         of(registerable, SunkenVariants.BUBBLE, PromenadeLootTables.BUBBLE_SUNKEN);
         of(registerable, SunkenVariants.FIRE, PromenadeLootTables.FIRE_SUNKEN);
         of(registerable, SunkenVariants.HORN, PromenadeLootTables.HORN_SUNKEN);

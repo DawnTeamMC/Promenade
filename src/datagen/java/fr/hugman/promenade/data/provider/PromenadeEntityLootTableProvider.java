@@ -104,6 +104,8 @@ public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvi
                         )
         );
 
+        output.accept(PromenadeLootTables.TUBE_SUNKEN, sunken(fluids, Items.TUBE_CORAL, Items.DEAD_TUBE_CORAL));
+        output.accept(PromenadeLootTables.BRAIN_SUNKEN, sunken(fluids, Items.BRAIN_CORAL, Items.DEAD_BRAIN_CORAL));
         output.accept(PromenadeLootTables.BUBBLE_SUNKEN, sunken(fluids, Items.BUBBLE_CORAL, Items.DEAD_BUBBLE_CORAL));
         output.accept(PromenadeLootTables.FIRE_SUNKEN, sunken(fluids, Items.FIRE_CORAL, Items.DEAD_FIRE_CORAL));
         output.accept(PromenadeLootTables.HORN_SUNKEN, sunken(fluids, Items.HORN_CORAL, Items.DEAD_HORN_CORAL));

@@ -17,7 +17,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
-//TODO add Codec
 public class WitherRosePileBlock extends PileBlock {
     public static final MapCodec<WitherRosePileBlock> CODEC = createCodec(WitherRosePileBlock::new);
 
