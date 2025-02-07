@@ -32,7 +32,9 @@ public class PromenadeCompostingChances {
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.LILY_OF_THE_VALLEY_PILE, 0.65F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.WITHER_ROSE_PILE, 0.65F);
 
+        CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SNOWY_OAK_LEAVES, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SNOWY_SPRUCE_LEAVES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SNOWY_JUNGLE_LEAVES, 0.3F);
 
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.BLUSH_SAKURA_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, 0.3F);

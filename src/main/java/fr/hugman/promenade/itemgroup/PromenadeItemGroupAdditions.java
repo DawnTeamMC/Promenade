@@ -55,7 +55,9 @@ public class PromenadeItemGroupAdditions {
 
         // VANILLA SNOWY LEAVES
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(e -> {
+            e.addAfter(Blocks.OAK_LEAVES, PromenadeBlocks.SNOWY_OAK_LEAVES);
             e.addAfter(Blocks.SPRUCE_LEAVES, PromenadeBlocks.SNOWY_SPRUCE_LEAVES);
+            e.addAfter(Blocks.JUNGLE_LEAVES, PromenadeBlocks.SNOWY_JUNGLE_LEAVES);
         });
 
         // SAKURA

@@ -110,7 +110,9 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 BLUSH_SAKURA_BLOSSOMS,
                 COTTON_SAKURA_BLOSSOMS,
                 PALM_LEAVES,
-                SNOWY_SPRUCE_LEAVES
+                SNOWY_OAK_LEAVES,
+                SNOWY_SPRUCE_LEAVES,
+                SNOWY_JUNGLE_LEAVES
         );
         getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
                 BLUSH_SAKURA_SAPLING, COTTON_SAKURA_SAPLING,
@@ -167,7 +169,9 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                         BLUSH_SAKURA_BLOSSOMS,
                         COTTON_SAKURA_BLOSSOMS,
                         PALM_LEAVES,
-                        SNOWY_SPRUCE_LEAVES
+                        SNOWY_OAK_LEAVES,
+                        SNOWY_SPRUCE_LEAVES,
+                        SNOWY_JUNGLE_LEAVES
                 )
                 .addTag(FLOWER_PILES)
                 .addTag(LEAF_PILES)

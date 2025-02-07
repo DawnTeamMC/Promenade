@@ -73,7 +73,9 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
         this.offerFlowerPileRecipe(PromenadeBlocks.LILY_OF_THE_VALLEY_PILE, Blocks.LILY_OF_THE_VALLEY);
         this.offerFlowerPileRecipe(PromenadeBlocks.WITHER_ROSE_PILE, Blocks.WITHER_ROSE);
 
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_OAK_LEAVES, Blocks.OAK_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_SPRUCE_LEAVES, Blocks.SPRUCE_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_JUNGLE_LEAVES, Blocks.JUNGLE_LEAVES);
 
         this.offerPlanksRecipe(PromenadeBlocks.SAKURA_PLANKS, PromenadeItemTags.SAKURA_LOGS, 4);
         this.offerBarkBlockRecipe(PromenadeBlocks.SAKURA_WOOD, PromenadeBlocks.SAKURA_LOG);

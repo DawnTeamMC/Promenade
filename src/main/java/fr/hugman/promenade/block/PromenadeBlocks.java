@@ -80,7 +80,9 @@ public class PromenadeBlocks {
     /* ======================== */
     /*   VANILLA SNOWY LEAVES   */
     /* ======================== */
+    public static final Block SNOWY_OAK_LEAVES = register("snowy_oak_leaves", BlockFactory.snowyLeaves());
     public static final Block SNOWY_SPRUCE_LEAVES = register("snowy_spruce_leaves", BlockFactory.snowyLeaves());
+    public static final Block SNOWY_JUNGLE_LEAVES = register("snowy_jungle_leaves", BlockFactory.snowyLeaves());
 
 
     /* ========== */

@@ -80,7 +80,9 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.LILY_OF_THE_VALLEY_PILE, flowerPile(Items.LILY_OF_THE_VALLEY));
         addDrop(PromenadeBlocks.WITHER_ROSE_PILE, flowerPile(Items.WITHER_ROSE));
 
+        addDrop(PromenadeBlocks.SNOWY_OAK_LEAVES, block -> this.snowyFruitLeavesDrop(block, Blocks.OAK_SAPLING, Items.APPLE, SAPLING_DROP_CHANCE));
         addDrop(PromenadeBlocks.SNOWY_SPRUCE_LEAVES, block -> this.snowyLeavesDrops(block, Blocks.SPRUCE_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.SNOWY_JUNGLE_LEAVES, block -> this.snowyLeavesDrops(block, Blocks.JUNGLE_SAPLING, JUNGLE_SAPLING_DROP_CHANCE));
 
         addDrop(PromenadeBlocks.STRIPPED_SAKURA_LOG);
         addDrop(PromenadeBlocks.SAKURA_LOG);
@@ -249,6 +251,25 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
                                 this.addSurvivesExplosionCondition(leaves, ItemEntry.builder(fruit))
                                         .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
                         )
+                );
+    }
+
+    public LootTable.Builder snowyFruitLeavesDrop(Block leaves, Block sapling, Item fruit, float... saplingChance) {
+        RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
+        return this.leavesDrops(leaves, sapling, saplingChance)
+                .pool(
+                        LootPool.builder()
+                                .conditionally(this.createWithoutShearsOrSilkTouchCondition())
+                                .with(
+                                        this.addSurvivesExplosionCondition(leaves,
+                                                ItemEntry.builder(Items.SNOWBALL)
+                                                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 4.0F)))
+                                        )
+                                )
+                                .with(
+                                        this.addSurvivesExplosionCondition(leaves, ItemEntry.builder(fruit))
+                                                .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
+                                )
                 );
     }
 

@@ -14,7 +14,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 
-//TODO add Codec
 public class SnowyLeavesBlock extends LeavesBlock {
     public static final MapCodec<SnowyLeavesBlock> CODEC = createCodec(SnowyLeavesBlock::new);
     public static final BooleanProperty BOTTOM = Properties.BOTTOM;
