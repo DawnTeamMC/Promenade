@@ -4,8 +4,9 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
+import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
-import fr.hugman.promenade.item.PromenadeItemTags;
+import fr.hugman.promenade.tag.PromenadeItemTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.brain.Activity;
 import net.minecraft.entity.ai.brain.Brain;
@@ -18,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
+import java.util.Map;
 import java.util.function.Predicate;
 
 public class CapybaraBrain {
@@ -27,7 +29,9 @@ public class CapybaraBrain {
             SensorType.NEAREST_LIVING_ENTITIES,
             SensorType.HURT_BY,
             PromenadeSensorTypes.CAPYBARA_TEMPTATIONS,
-            SensorType.NEAREST_ADULT);
+            SensorType.NEAREST_ADULT,
+            SensorType.IS_IN_WATER
+    );
 
     private static final ImmutableList<MemoryModuleType<?>> MEMORY_MODULES = ImmutableList.of(
             MemoryModuleType.IS_PANICKING,
@@ -43,7 +47,9 @@ public class CapybaraBrain {
             MemoryModuleType.GAZE_COOLDOWN_TICKS,
             MemoryModuleType.IS_TEMPTED,
             MemoryModuleType.BREED_TARGET,
-            MemoryModuleType.NEAREST_VISIBLE_ADULT);
+            MemoryModuleType.NEAREST_VISIBLE_ADULT,
+            PromenadeMemoryModuleTypes.FART_COOLDOWN
+    );
 
     public static Brain.Profile<CapybaraEntity> createProfile() {
         return Brain.createProfile(MEMORY_MODULES, SENSORS);
@@ -60,12 +66,17 @@ public class CapybaraBrain {
 
     private static void addCoreActivities(Brain<CapybaraEntity> brain) {
         brain.setTaskList(Activity.CORE, 0, ImmutableList.of(
-                new StayAboveWaterTask(0.8f),
-                new WalkTask(1.0f),
-                new LookAroundTask(45, 90),
+                new StayAboveWaterTask<>(0.8f),
+                new net.minecraft.entity.ai.brain.task.FleeTask<>(1.0F) {
+                    protected void run(ServerWorld serverWorld, CapybaraEntity capybaraEntity, long l) {
+                        capybaraEntity.forceDefaultState();
+                        super.run(serverWorld, capybaraEntity, l);
+                    }
+                },
+                new UpdateLookControlTask(45, 90),
                 new MoveToTargetTask(),
-                new TemptationCooldownTask(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS),
-                new TemptationCooldownTask(MemoryModuleType.GAZE_COOLDOWN_TICKS)));
+                new TickCooldownTask(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS),
+                new TickCooldownTask(MemoryModuleType.GAZE_COOLDOWN_TICKS)));
     }
 
     private static void addIdleActivities(Brain<CapybaraEntity> brain) {
@@ -73,12 +84,12 @@ public class CapybaraBrain {
                 Pair.of(0, LookAtMobWithIntervalTask.follow(EntityType.PLAYER, 6.0f, UniformIntProvider.create(30, 60))),
                 Pair.of(1, new BreedTask(PromenadeEntityTypes.CAPYBARA)),
                 Pair.of(2, new TemptTask(entity -> 1.5f)),
-                Pair.of(3, TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), WalkTowardClosestAdultTask.create(WALK_TOWARD_ADULT_RANGE, 1.5f))),
-                Pair.of(4, new RandomLookAroundTask(UniformIntProvider.create(150, 250), 30.0f, -50.0f, 10.0f)),
+                Pair.of(3, TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), WalkTowardsClosestAdultTask.create(WALK_TOWARD_ADULT_RANGE, 1.5f))),
+                Pair.of(4, new LookAroundTask(UniformIntProvider.create(150, 250), 30.0f, 0.0f, 10.0f)),
                 Pair.of(5, new RandomTask<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryModuleState.VALUE_ABSENT), ImmutableList.of(
                         Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), StrollTask.create(1.0f)), 1),
-                        Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), GoTowardsLookTargetTask.create(1.0f, 3)), 1),
-                        Pair.of(new SleepTask(20), 1),
+                        Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), GoToLookTargetTask.create(1.0f, 3)), 1),
+                        Pair.of(new SleepOrWakeUpTask(20), 1),
                         Pair.of(new FartTask(10), 1),
                         Pair.of(new WaitTask(30, 60), 1)
                 )))));
@@ -92,56 +103,62 @@ public class CapybaraBrain {
         return (stack) -> stack.isIn(PromenadeItemTags.CAPYBARA_FOOD);
     }
 
-    public static class WalkTask extends FleeTask<CapybaraEntity> {
-        public WalkTask(float speed) {
-            super(speed);
-        }
-
-        @Override
-        protected void run(ServerWorld world, CapybaraEntity capybara, long l) {
-            capybara.standUp();
-            super.run(world, capybara, l);
-        }
-    }
-
-    public static class SleepTask extends MultiTickTask<CapybaraEntity> {
+    public static class SleepOrWakeUpTask extends MultiTickTask<CapybaraEntity> {
         private final int lastPoseTickDelta;
 
-        public SleepTask(int lastPoseSecondsDelta) {
-            super(ImmutableMap.of());
+        public SleepOrWakeUpTask(int lastPoseSecondsDelta) {
+            super(ImmutableMap.of(
+                    MemoryModuleType.IS_PANICKING, MemoryModuleState.VALUE_ABSENT,
+                    MemoryModuleType.IS_TEMPTED, MemoryModuleState.VALUE_ABSENT,
+                    MemoryModuleType.IS_IN_WATER, MemoryModuleState.VALUE_ABSENT,
+                    MemoryModuleType.BREED_TARGET, MemoryModuleState.VALUE_ABSENT));
             this.lastPoseTickDelta = lastPoseSecondsDelta * 20;
         }
 
         @Override
         protected boolean shouldRun(ServerWorld world, CapybaraEntity capybara) {
-            return !capybara.isTouchingWater() && capybara.getLastStateTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasControllingPassenger();
+            return capybara.getLastStateTickDelta() >= this.lastPoseTickDelta &&
+                    !capybara.isLeashed() &&
+                    capybara.isOnGround() &&
+                    !capybara.hasControllingPassenger();
         }
 
         @Override
         protected void run(ServerWorld world, CapybaraEntity capybara, long l) {
-            if (capybara.canStopSleeping()) {
-                capybara.stopSleeping();
-            } else if (capybara.canFallToSleep()) {
-                capybara.fallToSleep();
+            if (capybara.canFallToSleep()) {
+                capybara.startFallingToSleep();
+            } else if (capybara.canWakeUp()) {
+                capybara.startWakingUp();
             }
         }
     }
 
-    public static class FartTask extends MultiTickTask<CapybaraEntity> {
+    static class FartTask extends MultiTickTask<CapybaraEntity> {
         private final int lastPoseTickDelta;
 
-        public FartTask(int lastPoseSecondsDelta) {
-            super(ImmutableMap.of());
+        FartTask(int lastPoseSecondsDelta) {
+            super(Map.of(
+                    MemoryModuleType.IS_PANICKING, MemoryModuleState.VALUE_ABSENT,
+                    MemoryModuleType.IS_TEMPTED, MemoryModuleState.VALUE_ABSENT,
+                    MemoryModuleType.IS_IN_WATER, MemoryModuleState.VALUE_ABSENT,
+                    PromenadeMemoryModuleTypes.FART_COOLDOWN, MemoryModuleState.VALUE_ABSENT,
+                    MemoryModuleType.BREED_TARGET, MemoryModuleState.VALUE_ABSENT
+            ));
             this.lastPoseTickDelta = lastPoseSecondsDelta * 20;
         }
 
-        @Override
-        protected boolean shouldRun(ServerWorld world, CapybaraEntity capybara) {
-            return capybara.canFart() && !capybara.isTouchingWater() && capybara.getLastStateTickDelta() >= (long) this.lastPoseTickDelta && !capybara.isLeashed() && capybara.isOnGround() && !capybara.hasControllingPassenger();
+        protected boolean shouldRun(ServerWorld serverWorld, CapybaraEntity capybara) {
+            return capybara.getLastStateTickDelta() >= this.lastPoseTickDelta &&
+                    !capybara.mightBeLeashed() &&
+                    capybara.isOnGround() &&
+                    !capybara.hasControllingPassenger();
         }
 
-        @Override
-        protected void run(ServerWorld world, CapybaraEntity capybara, long l) {
+        protected boolean shouldKeepRunning(ServerWorld serverWorld, CapybaraEntity capybara, long l) {
+            return true;
+        }
+
+        protected void run(ServerWorld serverWorld, CapybaraEntity capybara, long l) {
             capybara.fart();
         }
     }

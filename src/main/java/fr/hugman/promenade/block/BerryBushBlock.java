@@ -5,7 +5,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.*;
-import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -16,7 +15,6 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -24,7 +22,6 @@ import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -58,28 +55,14 @@ public class BerryBushBlock extends PlantBlock implements Fertilizable {
         this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
 
-    public static AbstractBlock.Settings createSettings() {
-        return AbstractBlock.Settings.create()
-                .mapColor(MapColor.DARK_GREEN)
-                .ticksRandomly()
-                .noCollision()
-                .sounds(BlockSoundGroup.SWEET_BERRY_BUSH)
-                .pistonBehavior(PistonBehavior.DESTROY)
-                .burnable(60, 100);
-    }
-
-    public static BerryBushBlock of(RegistryKey<Item> berry, boolean isSpiny) {
-        return new BerryBushBlock(berry, isSpiny, createSettings());
-    }
-
     @Override
     public MapCodec<BerryBushBlock> getCodec() {
         return CODEC;
     }
 
     @Override
-    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
-        return new ItemStack(DataFixUtils.orElse(world.getRegistryManager().get(RegistryKeys.ITEM).getOrEmpty(this.berry), this));
+    protected ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
+        return new ItemStack(DataFixUtils.orElse(world.getRegistryManager().getOrThrow(RegistryKeys.ITEM).getOptionalValue(this.berry), this));
     }
 
     @Override
@@ -115,22 +98,22 @@ public class BerryBushBlock extends PlantBlock implements Fertilizable {
         }
         entity.slowMovement(state, new Vec3d(0.8f, 0.75, 0.8f));
         if (this.isSpiny) {
-            if (!(world.isClient || state.get(AGE) <= 0 || entity.lastRenderX == entity.getX() && entity.lastRenderZ == entity.getZ())) {
-                double d = Math.abs(entity.getX() - entity.lastRenderX);
-                double e = Math.abs(entity.getZ() - entity.lastRenderZ);
-                if (d >= MIN_MOVEMENT_FOR_DAMAGE || e >= MIN_MOVEMENT_FOR_DAMAGE) {
-                    entity.damage(world.getDamageSources().sweetBerryBush(), 1.0f);
+            if (world instanceof ServerWorld serverWorld && (Integer) state.get(AGE) != 0) {
+                Vec3d vec3d = entity.isControlledByPlayer() ? entity.getMovement() : entity.getLastRenderPos().subtract(entity.getPos());
+                if (vec3d.horizontalLengthSquared() > 0.0) {
+                    double d = Math.abs(vec3d.getX());
+                    double e = Math.abs(vec3d.getZ());
+                    if (d >= MIN_MOVEMENT_FOR_DAMAGE || e >= MIN_MOVEMENT_FOR_DAMAGE) {
+                        entity.damage(serverWorld, world.getDamageSources().sweetBerryBush(), 1.0F);
+                    }
                 }
             }
         }
     }
 
     @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (state.get(AGE) != MAX_AGE && stack.isOf(Items.BONE_MEAL)) {
-            return ItemActionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
-        }
-        return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+    protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        return state.get(AGE) != 3 && stack.isOf(Items.BONE_MEAL) ? ActionResult.PASS : super.onUseWithItem(stack, state, world, pos, player, hand, hit);
     }
 
     @Override
@@ -138,12 +121,12 @@ public class BerryBushBlock extends PlantBlock implements Fertilizable {
         int age = state.get(AGE);
         if (age > 1) {
             int j = 1 + world.random.nextInt(2);
-            dropStack(world, pos, new ItemStack(DataFixUtils.orElse(world.getRegistryManager().get(RegistryKeys.ITEM).getOrEmpty(this.berry), this), j + (age == MAX_AGE ? 1 : 0)));
+            dropStack(world, pos, new ItemStack(DataFixUtils.orElse(world.getRegistryManager().getOrThrow(RegistryKeys.ITEM).getOptionalValue(this.berry), this), j + (age == MAX_AGE ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0f, 0.8f + world.random.nextFloat() * 0.4f);
             BlockState blockState = state.with(AGE, 1);
             world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
             world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, blockState));
-            return ActionResult.success(world.isClient);
+            return ActionResult.SUCCESS;
         }
         return super.onUse(state, world, pos, player, hit);
     }

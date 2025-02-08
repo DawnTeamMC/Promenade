@@ -1,0 +1,19 @@
+Third-Party License Notice
+=======================================
+
+This project contains source code based upon, or includes source code from, the following third-party
+projects.
+
+The complete text for each software license can be found in the directory "thirdparty/licenses".
+
+* Fabric API libraries
+  * Copyright (c) 2016 FabricMC
+  * License: Apache 2.0 (SPDX: Apache-2.0)
+  * Original Source:
+    * https://github.com/FabricMC/fabric
+
+* Biolith library
+  * Copyright (c) 2022 TerraformersMC, gniftygnome
+  * License: LGPL 3.0 (SPDX: LGPL-3.0-only)
+  * Original Source:
+    * https://github.com/TerraformersMC/Biolith

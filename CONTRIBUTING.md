@@ -26,7 +26,7 @@ Please make sure before opening a pull request that:
 ### Contributor License Agreement
 By submitting code, assets, or documentation to the repository you are hereby agreeing that:
 
-- You grant Hugman the right to use your contributions under the [LGPL v3.0](https://www.gnu.org/licenses/lgpl-3.0.en.html) license.
+- You grant Hugman the right to use your contributions under the [PolyForm Shield License 1.0.0](https://polyformproject.org/licenses/shield/1.0.0) license.
 - Your contributions are of your own work and are free of legal restrictions (such as patents or copyrights).
 
 If you have any questions about these terms, please get in contact with us.  

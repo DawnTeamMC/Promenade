@@ -1,6 +1,7 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
+import fr.hugman.promenade.block.property.PromenadeBlockProperties;
 import fr.hugman.promenade.item.PromenadeItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -13,8 +14,8 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ItemActionResult;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -44,7 +45,7 @@ public class StrippedMapleLogBlock extends PillarBlock {
     }
 
     @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         // if the player is holding a bottle, they can collect the syrup
         if (state.get(DRIP)) {
             if (stack.getItem() == Items.GLASS_BOTTLE) {
@@ -58,7 +59,7 @@ public class StrippedMapleLogBlock extends PillarBlock {
                 world.emitGameEvent(player, GameEvent.FLUID_PICKUP, pos);
                 player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
                 world.setBlockState(pos, state.with(DRIP, false));
-                return ItemActionResult.success(world.isClient);
+                return ActionResult.SUCCESS;
             }
         }
         return super.onUseWithItem(stack, state, world, pos, player, hand, hit);

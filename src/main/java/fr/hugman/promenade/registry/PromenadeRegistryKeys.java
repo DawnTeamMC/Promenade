@@ -1,9 +1,9 @@
 package fr.hugman.promenade.registry;
 
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.entity.CapybaraVariant;
-import fr.hugman.promenade.entity.DuckVariant;
-import fr.hugman.promenade.entity.SunkenVariant;
+import fr.hugman.promenade.entity.variant.CapybaraVariant;
+import fr.hugman.promenade.entity.variant.DuckVariant;
+import fr.hugman.promenade.entity.variant.SunkenVariant;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 
