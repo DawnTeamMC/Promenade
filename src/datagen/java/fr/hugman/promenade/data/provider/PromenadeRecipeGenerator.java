@@ -117,6 +117,12 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
         this.generateCookingRecipes("campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING, CampfireCookingRecipe::new, 600);
 
         this.offerShapelessRecipe(Items.MAGENTA_DYE, PromenadeItems.BLUEBERRIES, "magenta_dye", 1);
+
+        this.createShapeless(RecipeCategory.MISC, PromenadeItems.BOVINE_BANNER_PATTERN)
+                .input(Items.PAPER)
+                .input(Items.LEATHER)
+                .criterion("has_leather", this.conditionsFromItem(Items.LEATHER))
+                .offerTo(this.exporter);
     }
 
     public void offerSnowyLeavesRecipe(ItemConvertible output, ItemConvertible input) {

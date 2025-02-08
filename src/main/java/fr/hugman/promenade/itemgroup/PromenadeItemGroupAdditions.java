@@ -180,6 +180,8 @@ public class PromenadeItemGroupAdditions {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(e -> e.addAfter(Items.COOKED_CHICKEN, PromenadeItems.DUCK, PromenadeItems.COOKED_DUCK));
 
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(e -> e.addAfter(Items.FLOWER_BANNER_PATTERN, PromenadeItems.BOVINE_BANNER_PATTERN));
+
         appendSpawnEgg(PromenadeItems.CAPYBARA_SPAWN_EGG);
         appendSpawnEgg(PromenadeItems.DUCK_SPAWN_EGG);
         appendSpawnEgg(PromenadeItems.LUSH_CREEPER_SPAWN_EGG);
