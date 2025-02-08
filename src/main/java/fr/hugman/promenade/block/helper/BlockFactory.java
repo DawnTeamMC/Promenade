@@ -74,6 +74,7 @@ public final class BlockFactory {
 
     public static BlockBuilder pressurePlate(Block baseBlock, BlockSetType setType) {
         return copy(baseBlock).factory(s -> new PressurePlateBlock(setType, s)).settings(AbstractBlock.Settings.copyShallow(baseBlock)
+                .solid()
                 .strength(0.5f)
                 .pistonBehavior(PistonBehavior.DESTROY)
                 .requiresTool()
