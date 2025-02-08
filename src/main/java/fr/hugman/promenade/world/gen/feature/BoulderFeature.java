@@ -21,7 +21,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
         BlockPos pos = context.getOrigin();
         for (; pos.getY() > world.getBottomY() + radius; pos = pos.down()) {
             if (!world.isAir(pos)) {
-                if (world.getBlockState(pos).isIn(config.replaceableBlocks())) {
+                if (config.replaceableBlocks().test(world, pos)) {
                     break;
                 }
             }

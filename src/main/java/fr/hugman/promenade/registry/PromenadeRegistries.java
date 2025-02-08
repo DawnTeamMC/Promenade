@@ -1,11 +1,13 @@
 package fr.hugman.promenade.registry;
 
-import fr.hugman.promenade.entity.CapybaraVariant;
-import fr.hugman.promenade.entity.SunkenVariant;
+import fr.hugman.promenade.entity.variant.CapybaraVariant;
+import fr.hugman.promenade.entity.variant.DuckVariant;
+import fr.hugman.promenade.entity.variant.SunkenVariant;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 
 public class PromenadeRegistries {
     public static void register() {
+        DynamicRegistries.registerSynced(PromenadeRegistryKeys.DUCK_VARIANT, DuckVariant.CODEC);
         DynamicRegistries.registerSynced(PromenadeRegistryKeys.CAPYBARA_VARIANT, CapybaraVariant.CODEC);
         DynamicRegistries.registerSynced(PromenadeRegistryKeys.SUNKEN_VARIANT, SunkenVariant.CODEC);
     }

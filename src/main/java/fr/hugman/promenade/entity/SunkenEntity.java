@@ -1,6 +1,10 @@
 package fr.hugman.promenade.entity;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
+import fr.hugman.promenade.entity.variant.SunkenVariant;
+import fr.hugman.promenade.entity.variant.SunkenVariants;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import net.minecraft.entity.*;
@@ -27,16 +31,14 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.item.*;
-import net.minecraft.loot.LootTable;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.RegistryKey;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
@@ -51,6 +53,8 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     private static final TrackedData<Boolean> SWIMMING = DataTracker.registerData(SunkenEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
 
     public static final String VARIANT_KEY = "variant";
+    public static final MapCodec<RegistryEntry<SunkenVariant>> VARIANT_MAP_CODEC = SunkenVariant.ENTRY_CODEC.fieldOf(VARIANT_KEY);
+    public static final Codec<RegistryEntry<SunkenVariant>> VARIANT_ENTRY_CODEC = VARIANT_MAP_CODEC.codec();
 
     private final static EntityDimensions SWIMMING_DIMENSIONS = EntityDimensions.fixed(0.6F, 0.6F);
 
@@ -125,8 +129,8 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         if (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem)) {
             this.shoot(this, 1.6F);
         } else {
-            ItemStack itemStack = this.getProjectileType(this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, Items.BOW)));
-            PersistentProjectileEntity persistentProjectileEntity = this.createArrowProjectile(itemStack, pullProgress);
+            ItemStack itemStack = this.getStackInHand(ProjectileUtil.getHandPossiblyHolding(this, Items.BOW));
+            PersistentProjectileEntity persistentProjectileEntity = this.createArrowProjectile(this.getProjectileType(itemStack), pullProgress, itemStack);
             double d = target.getX() - this.getX();
             double e = target.getBodyY(0.3333333333333333D) - persistentProjectileEntity.getY();
             double f = target.getZ() - this.getZ();
@@ -142,8 +146,9 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         CrossbowUser.super.shoot(entity, speed);
     }
 
-    protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier) {
-        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier);
+    @Override
+    protected PersistentProjectileEntity createArrowProjectile(ItemStack arrow, float damageModifier, @Nullable ItemStack shotFrom) {
+        PersistentProjectileEntity persistentProjectileEntity = super.createArrowProjectile(arrow, damageModifier, shotFrom);
         if (persistentProjectileEntity instanceof ArrowEntity) {
             ((ArrowEntity) persistentProjectileEntity).addEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 600));
         }
@@ -154,14 +159,15 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     @Nullable
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-        world.getRegistryManager().get(PromenadeRegistryKeys.SUNKEN_VARIANT).getRandom(random).ifPresent(this::setVariant);
+        this.setVariant(SunkenVariants.getRandom(this.getRegistryManager(), random));
+        this.lootTable = Optional.ofNullable(this.getVariant().value().lootTable());
         return super.initialize(world, difficulty, spawnReason, entityData);
     }
 
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
-        builder.add(VARIANT, this.getRegistryManager().get(PromenadeRegistryKeys.SUNKEN_VARIANT).entryOf(SunkenVariants.BUBBLE));
+        builder.add(VARIANT, this.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SUNKEN_VARIANT).getOrThrow(SunkenVariants.DEFAULT));
         builder.add(CHARGING, false);
         builder.add(SWIMMING, false);
     }
@@ -259,10 +265,7 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
 
-        Optional.ofNullable(Identifier.tryParse(nbt.getString(VARIANT_KEY)))
-                .map(variantId -> RegistryKey.of(PromenadeRegistryKeys.SUNKEN_VARIANT, variantId))
-                .flatMap(variantKey -> this.getRegistryManager().get(PromenadeRegistryKeys.SUNKEN_VARIANT).getEntry(variantKey))
-                .ifPresent(this::setVariant);
+        VARIANT_ENTRY_CODEC.parse(this.getRegistryManager().getOps(NbtOps.INSTANCE), nbt).ifSuccess(this::setVariant);
     }
 
     @Override
@@ -330,9 +333,9 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     }
 
     @Override
-    protected Box calculateBoundingBox() {
-        if (this.isBreaststrokeSwimming()) return SWIMMING_DIMENSIONS.getBoxAt(this.getPos());
-        else return super.calculateBoundingBox();
+    public EntityDimensions getBaseDimensions(EntityPose pose) {
+        if (this.isBreaststrokeSwimming()) return SWIMMING_DIMENSIONS;
+        else return super.getBaseDimensions(pose);
     }
 
     boolean isTargetingUnderwater() {
@@ -350,11 +353,6 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
 
     public Identifier getTexture() {
         return this.getVariant().value().texture();
-    }
-
-    @Override
-    protected RegistryKey<LootTable> getLootTableId() {
-        return this.getVariant().value().lootTable();
     }
 
     public enum State {
@@ -394,7 +392,7 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
                 float h = (float) (MathHelper.atan2(f, d) * 57.2957763671875D) - 90.0F;
                 this.sunken.setYaw(this.wrapDegrees(this.sunken.getYaw(), h, 90.0F));
                 this.sunken.bodyYaw = this.sunken.getYaw();
-                float i = (float) (this.speed * this.sunken.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED));
+                float i = (float) (this.speed * this.sunken.getAttributeValue(EntityAttributes.MOVEMENT_SPEED));
                 float j = MathHelper.lerp(0.125F, this.sunken.getMovementSpeed(), i);
                 this.sunken.setMovementSpeed(j);
                 this.sunken.setVelocity(this.sunken.getVelocity().add((double) j * d * 0.005D, (double) j * e * 0.1D, (double) j * f * 0.005D));

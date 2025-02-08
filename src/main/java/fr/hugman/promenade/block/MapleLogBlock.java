@@ -1,6 +1,7 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
+import fr.hugman.promenade.block.property.PromenadeBlockProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PillarBlock;

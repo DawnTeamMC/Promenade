@@ -16,14 +16,6 @@ body:
     validations:
       required: true
   - type: input
-    id: dawn-version
-    attributes:
-      label: Dawn API version
-      description: What version of the Dawn API are you using?
-      placeholder: ex. 3.3.0
-    validations:
-      required: true
-  - type: input
     id: fabric-version
     attributes:
       label: Fabric API version
