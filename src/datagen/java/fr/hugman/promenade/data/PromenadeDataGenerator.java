@@ -43,11 +43,15 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(PromenadeEntityLootTableProvider::new);
         pack.addProvider(PromenadeChestLootTableProvider::new);
 
+        // - Banner Patterns
+        pack.addProvider(PromenadeBannerPatternProvider::new);
+
         // - Tags
         var blockTagProvider = pack.addProvider(PromenadeBlockTagProvider::new);
         pack.addProvider((output, lookup) -> new PromenadeItemTagProvider(output, lookup, blockTagProvider));
         pack.addProvider(PromenadeBiomeTagProvider::new);
         pack.addProvider(PromenadeEntityTypeTagProvider::new);
+        pack.addProvider(PromenadeBannerPatternTagProvider::new);
         pack.addProvider(PromenadePaintingVariantTagProvider::new);
 
         // - Recipes
@@ -72,6 +76,8 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, PromenadeConfiguredFeatureProvider::register);
         registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, PromenadePlacedFeatureProvider::register);
         registryBuilder.addRegistry(RegistryKeys.BIOME, PromenadeBiomeProvider::register);
+
+        registryBuilder.addRegistry(RegistryKeys.BANNER_PATTERN, PromenadeBannerPatternProvider::register);
     }
 
     @Override

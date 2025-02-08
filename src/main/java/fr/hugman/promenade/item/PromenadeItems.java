@@ -1,12 +1,14 @@
 package fr.hugman.promenade.item;
 
 import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.banner.PromenadeBannerPatternTags;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.component.PromenadeConsumableComponents;
 import fr.hugman.promenade.component.PromenadeFoodComponents;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.item.helper.ItemFactory;
 import net.minecraft.block.Block;
+import net.minecraft.item.BannerPatternItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;

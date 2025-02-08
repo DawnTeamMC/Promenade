@@ -230,6 +230,8 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.register(PromenadeItems.DUCK, Models.GENERATED);
         gen.register(PromenadeItems.COOKED_DUCK, Models.GENERATED);
 
+        gen.register(PromenadeItems.BOVINE_BANNER_PATTERN, Models.GENERATED);
+
         //TODO: review colors
         gen.registerSpawnEgg(PromenadeItems.CAPYBARA_SPAWN_EGG, 0xa0704e, 0x433930);
         gen.registerSpawnEgg(PromenadeItems.DUCK_SPAWN_EGG, 10592673, 15904341);
