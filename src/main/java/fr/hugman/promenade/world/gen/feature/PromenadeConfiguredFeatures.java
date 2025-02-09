@@ -28,21 +28,37 @@ public class PromenadeConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_SAP_MAPLE = of("tree/maple/sap/fancy");
     public static final RegistryKey<ConfiguredFeature<?, ?>> SAP_MAPLE_BEES = of("tree/maple/sap/bees");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_SAP_MAPLE_BEES = of("tree/maple/sap/fancy_bees");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SAP_MAPLE_LITTER = of("tree/maple/sap/regular_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_SAP_MAPLE_LITTER = of("tree/maple/sap/fancy_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> SAP_MAPLE_BEES_LITTER = of("tree/maple/sap/bees_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_SAP_MAPLE_BEES_LITTER = of("tree/maple/sap/fancy_bees_litter");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> VERMILION_MAPLE = of("tree/maple/vermilion/regular");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_VERMILION_MAPLE = of("tree/maple/vermilion/fancy");
     public static final RegistryKey<ConfiguredFeature<?, ?>> VERMILION_MAPLE_BEES = of("tree/maple/vermilion/bees");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_VERMILION_MAPLE_BEES = of("tree/maple/vermilion/fancy_bees");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> VERMILION_MAPLE_LITTER = of("tree/maple/vermilion/regular_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_VERMILION_MAPLE_LITTER = of("tree/maple/vermilion/fancy_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> VERMILION_MAPLE_BEES_LITTER = of("tree/maple/vermilion/bees_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_VERMILION_MAPLE_BEES_LITTER = of("tree/maple/vermilion/fancy_bees_litter");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> FULVOUS_MAPLE = of("tree/maple/fulvous/regular");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_FULVOUS_MAPLE = of("tree/maple/fulvous/fancy");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FULVOUS_MAPLE_BEES = of("tree/maple/fulvous/bees");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_FULVOUS_MAPLE_BEES = of("tree/maple/fulvous/fancy_bees");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FULVOUS_MAPLE_LITTER = of("tree/maple/fulvous/regular_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_FULVOUS_MAPLE_LITTER = of("tree/maple/fulvous/fancy_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FULVOUS_MAPLE_BEES_LITTER = of("tree/maple/fulvous/bees_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_FULVOUS_MAPLE_BEES_LITTER = of("tree/maple/fulvous/fancy_bees_litter");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> MIKADO_MAPLE = of("tree/maple/mikado/regular");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_MIKADO_MAPLE = of("tree/maple/mikado/fancy");
     public static final RegistryKey<ConfiguredFeature<?, ?>> MIKADO_MAPLE_BEES = of("tree/maple/mikado/bees");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_MIKADO_MAPLE_BEES = of("tree/maple/mikado/fancy_bees");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> MIKADO_MAPLE_LITTER = of("tree/maple/mikado/regular_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_MIKADO_MAPLE_LITTER = of("tree/maple/mikado/fancy_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> MIKADO_MAPLE_BEES_LITTER = of("tree/maple/mikado/bees_litter");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_MIKADO_MAPLE_BEES_LITTER = of("tree/maple/mikado/fancy_bees_litter");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PALM = of("tree/palm");
 

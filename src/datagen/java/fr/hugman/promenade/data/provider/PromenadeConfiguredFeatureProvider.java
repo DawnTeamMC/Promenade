@@ -75,21 +75,37 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
         of(registerable, PromenadeConfiguredFeatures.FANCY_SAP_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, true).build());
         of(registerable, PromenadeConfiguredFeatures.SAP_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_SAP_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
+        of(registerable, PromenadeConfiguredFeatures.SAP_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, false).build());
+        of(registerable, PromenadeConfiguredFeatures.FANCY_SAP_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, true).build());
+        of(registerable, PromenadeConfiguredFeatures.SAP_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
+        of(registerable, PromenadeConfiguredFeatures.FANCY_SAP_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
 
         of(registerable, PromenadeConfiguredFeatures.VERMILION_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, false).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_VERMILION_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, true).build());
         of(registerable, PromenadeConfiguredFeatures.VERMILION_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_VERMILION_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
+        of(registerable, PromenadeConfiguredFeatures.VERMILION_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, false).build());
+        of(registerable, PromenadeConfiguredFeatures.FANCY_VERMILION_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, true).build());
+        of(registerable, PromenadeConfiguredFeatures.VERMILION_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
+        of(registerable, PromenadeConfiguredFeatures.FANCY_VERMILION_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
 
         of(registerable, PromenadeConfiguredFeatures.FULVOUS_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, false).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_FULVOUS_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, true).build());
         of(registerable, PromenadeConfiguredFeatures.FULVOUS_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_FULVOUS_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
+        of(registerable, PromenadeConfiguredFeatures.FULVOUS_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, false).build());
+        of(registerable, PromenadeConfiguredFeatures.FANCY_FULVOUS_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, true).build());
+        of(registerable, PromenadeConfiguredFeatures.FULVOUS_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
+        of(registerable, PromenadeConfiguredFeatures.FANCY_FULVOUS_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
 
         of(registerable, PromenadeConfiguredFeatures.MIKADO_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, false).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_MIKADO_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, true).build());
         of(registerable, PromenadeConfiguredFeatures.MIKADO_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_MIKADO_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
+        of(registerable, PromenadeConfiguredFeatures.MIKADO_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, false).build());
+        of(registerable, PromenadeConfiguredFeatures.FANCY_MIKADO_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, true).build());
+        of(registerable, PromenadeConfiguredFeatures.MIKADO_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
+        of(registerable, PromenadeConfiguredFeatures.FANCY_MIKADO_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
 
         of(registerable, PromenadeConfiguredFeatures.PALM, Feature.TREE, PromenadeFeatureConfigs.palm().build());
 

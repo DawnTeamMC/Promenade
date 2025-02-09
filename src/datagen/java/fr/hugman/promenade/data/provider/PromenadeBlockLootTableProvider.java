@@ -129,21 +129,25 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.SAP_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_SAP_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.SAP_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.SAP_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.FALLEN_SAP_MAPLE_LEAVES, this::dropsWithSilkTouchOrShears);
         addDrop(PromenadeBlocks.SAP_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.VERMILION_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_VERMILION_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.VERMILION_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.VERMILION_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES, this::dropsWithSilkTouchOrShears);
         addDrop(PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.FULVOUS_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_FULVOUS_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.FULVOUS_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES, this::dropsWithSilkTouchOrShears);
         addDrop(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.MIKADO_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_MIKADO_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.MIKADO_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.MIKADO_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES, this::dropsWithSilkTouchOrShears);
         addDrop(PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.STRIPPED_PALM_LOG);
