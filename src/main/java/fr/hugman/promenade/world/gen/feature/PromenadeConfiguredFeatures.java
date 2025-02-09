@@ -61,7 +61,6 @@ public class PromenadeConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> CARNELIAN_TREEWAY_MIKADO_TREE = of("tree/carnelian_treeway/mikado");
 
     // Vegetation
-    public static final RegistryKey<ConfiguredFeature<?, ?>> WATER_POOL_GRAVEL = of("water_pool_gravel");
     public static final RegistryKey<ConfiguredFeature<?, ?>> WATER_POOL_GRAVEL_DECORATED = of("water_pool_gravel_decorated");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> CUTE_LITTLE_ROCK = of("cute_little_rock");

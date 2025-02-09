@@ -132,7 +132,6 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
 
         of(registerable, PromenadePlacedFeatures.CUTE_LITTLE_ROCKS, configured.getOrThrow(PromenadeConfiguredFeatures.CUTE_LITTLE_ROCK), count(2, PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP));
 
-        of(registerable, PromenadePlacedFeatures.WATER_POOLS_GRAVEL, configured.getOrThrow(PromenadeConfiguredFeatures.WATER_POOL_GRAVEL), rare(7));
         of(registerable, PromenadePlacedFeatures.WATER_POOLS_GRAVEL_DECORATED, configured.getOrThrow(PromenadeConfiguredFeatures.WATER_POOL_GRAVEL_DECORATED), rare(10, PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP));
 
         of(registerable, PromenadePlacedFeatures.FREEZE_TOP_LAYER, RegistryEntry.of(new ConfiguredFeature<>(PromenadeFeatures.FREEZE_TOP_LAYER, FeatureConfig.DEFAULT)), BiomePlacementModifier.of());

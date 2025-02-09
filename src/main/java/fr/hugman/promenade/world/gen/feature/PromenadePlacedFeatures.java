@@ -79,7 +79,6 @@ public class PromenadePlacedFeatures {
 
     public static final RegistryKey<PlacedFeature> CUTE_LITTLE_ROCKS = of("cute_little_rocks");
 
-    public static final RegistryKey<PlacedFeature> WATER_POOLS_GRAVEL = of("water_pools/gravel");
     public static final RegistryKey<PlacedFeature> WATER_POOLS_GRAVEL_DECORATED = of("water_pools/gravel_decorated");
 
     public static final RegistryKey<PlacedFeature> FREEZE_TOP_LAYER = of("freeze_top_layer");

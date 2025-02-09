@@ -53,7 +53,6 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
         addBasicFeatures(generation);
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.WATER_POOLS_GRAVEL_DECORATED);
-        generation.feature(GenerationStep.Feature.LAKES, PromenadePlacedFeatures.WATER_POOLS_GRAVEL);
         generation.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, PromenadePlacedFeatures.CUTE_LITTLE_ROCKS);
 
         DefaultBiomeFeatures.addForestFlowers(generation);
