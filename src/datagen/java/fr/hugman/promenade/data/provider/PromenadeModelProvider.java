@@ -60,7 +60,15 @@ public class PromenadeModelProvider extends FabricModelProvider {
 
         this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_OAK_LEAVES, Blocks.OAK_LEAVES);
         this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_SPRUCE_LEAVES, Blocks.SPRUCE_LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_BIRCH_LEAVES, Blocks.BIRCH_LEAVES);
         this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_JUNGLE_LEAVES, Blocks.JUNGLE_LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_ACACIA_LEAVES, Blocks.ACACIA_LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_CHERRY_LEAVES, Blocks.CHERRY_LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_DARK_OAK_LEAVES, Blocks.DARK_OAK_LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_PALE_OAK_LEAVES, Blocks.PALE_OAK_LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_MANGROVE_LEAVES, Blocks.MANGROVE_LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_AZALEA_LEAVES, Blocks.AZALEA_LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES, Blocks.FLOWERING_AZALEA_LEAVES);
 
         gen.registerLog(PromenadeBlocks.SAKURA_LOG).uvLockedLog(PromenadeBlocks.SAKURA_LOG).wood(PromenadeBlocks.SAKURA_WOOD);
         gen.registerLog(PromenadeBlocks.STRIPPED_SAKURA_LOG).uvLockedLog(PromenadeBlocks.STRIPPED_SAKURA_LOG).wood(PromenadeBlocks.STRIPPED_SAKURA_WOOD);

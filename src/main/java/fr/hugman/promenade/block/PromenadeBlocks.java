@@ -19,6 +19,7 @@ import net.minecraft.block.MapColor;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
@@ -55,7 +56,7 @@ public class PromenadeBlocks {
     public static final Block BIRCH_LEAF_PILE = register("birch_leaf_pile", BlockFactory.pile());
     public static final Block JUNGLE_LEAF_PILE = register("jungle_leaf_pile", BlockFactory.pile());
     public static final Block ACACIA_LEAF_PILE = register("acacia_leaf_pile", BlockFactory.pile());
-    public static final Block CHERRY_LEAF_PILE = register("cherry_leaf_pile", BlockFactory.pile());
+    public static final Block CHERRY_LEAF_PILE = register("cherry_leaf_pile", BlockFactory.pile(MapColor.PINK).settings(s -> s.sounds(BlockSoundGroup.CHERRY_LEAVES)));
     public static final Block DARK_OAK_LEAF_PILE = register("dark_oak_leaf_pile", BlockFactory.pile());
     public static final Block PALE_OAK_LEAF_PILE = register("pale_oak_leaf_pile", BlockFactory.pile());
     public static final Block MANGROVE_LEAF_PILE = register("mangrove_leaf_pile", BlockFactory.pile());
@@ -82,7 +83,18 @@ public class PromenadeBlocks {
     /* ======================== */
     public static final Block SNOWY_OAK_LEAVES = register("snowy_oak_leaves", BlockFactory.snowyLeaves());
     public static final Block SNOWY_SPRUCE_LEAVES = register("snowy_spruce_leaves", BlockFactory.snowyLeaves());
+    public static final Block SNOWY_BIRCH_LEAVES = register("snowy_birch_leaves", BlockFactory.snowyLeaves());
     public static final Block SNOWY_JUNGLE_LEAVES = register("snowy_jungle_leaves", BlockFactory.snowyLeaves());
+    public static final Block SNOWY_ACACIA_LEAVES = register("snowy_acacia_leaves", BlockFactory.snowyLeaves());
+    //TODO: custom sounds
+    public static final Block SNOWY_CHERRY_LEAVES = register("snowy_cherry_leaves", BlockFactory.snowyLeaves(10, ParticleTypes.CHERRY_LEAVES));
+    public static final Block SNOWY_DARK_OAK_LEAVES = register("snowy_dark_oak_leaves", BlockFactory.snowyLeaves());
+    public static final Block SNOWY_PALE_OAK_LEAVES = register("snowy_pale_oak_leaves", BlockFactory.snowyLeaves(50, ParticleTypes.PALE_OAK_LEAVES));
+    public static final Block SNOWY_MANGROVE_LEAVES = register("snowy_mangrove_leaves", BlockFactory.snowyLeaves());
+    //TODO: custom sounds
+    public static final Block SNOWY_AZALEA_LEAVES = register("snowy_azalea_leaves", BlockFactory.snowyLeaves());
+    //TODO: custom sounds
+    public static final Block SNOWY_FLOWERING_AZALEA_LEAVES = register("snowy_flowering_azalea_leaves", BlockFactory.snowyLeaves());
 
 
     /* ========== */

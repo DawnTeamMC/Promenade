@@ -35,7 +35,15 @@ public class PromenadeFlammables {
 
         fire.add(PromenadeBlocks.SNOWY_OAK_LEAVES, 30, 60);
         fire.add(PromenadeBlocks.SNOWY_SPRUCE_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_BIRCH_LEAVES, 30, 60);
         fire.add(PromenadeBlocks.SNOWY_JUNGLE_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_ACACIA_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_CHERRY_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_DARK_OAK_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_PALE_OAK_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_MANGROVE_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_AZALEA_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES, 30, 60);
 
         fire.add(PromenadeBlocks.SAKURA_LOG, 5, 5);
         fire.add(PromenadeBlocks.STRIPPED_SAKURA_LOG, 5, 5);
