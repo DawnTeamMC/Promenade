@@ -8,6 +8,7 @@ files:
     dest: "promenade.json"
   - source: "docs/**/*.*"
     ignore:
-      - "docs/.*"
+      - "docs/.assets/**/*"
+      - "docs/.translated/**/*"
     translation: ".translated/**/%locale_with_underscore%"
     dest: "promenade-docs/**/%original_file_name%"
