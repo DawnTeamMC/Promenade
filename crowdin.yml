@@ -10,4 +10,4 @@ files:
     ignore:
       - "docs/.*"
     translation: ".translated/**/%locale_with_underscore%"
-    dest: "promenade-docs/%file_path:docs%"
+    dest: "promenade-docs/**/%original_file_name%"
