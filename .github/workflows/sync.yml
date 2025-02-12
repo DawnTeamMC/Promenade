@@ -8,7 +8,8 @@ on:
     paths:
       - 'src/client/resources/assets/promenade/lang/en_us.json'
       - 'crowdin.yml'
-    branches: [main, dev]
+      - 'docs/**/*.*'
+    branches: [main, dev, ft/docs-creation]
 
 jobs:
   crowdin:
