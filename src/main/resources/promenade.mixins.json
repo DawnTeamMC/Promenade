@@ -5,6 +5,7 @@
   "mixins": [
     "AxeItemMixin",
     "FallLocationMixin",
+    "LeavesBlockMixin",
     "LivingEntityMixin",
     "NetherrackBlockMixin",
     "ShearsItemMixin"
