@@ -10,5 +10,5 @@ files:
     ignore:
       - "docs/.assets/**/*"
       - "docs/.translated/**/*"
-    translation: ".translated/**/%locale_with_underscore%"
+    translation: "docs/.translated/**/%locale_with_underscore%/%original_file_name%"
     dest: "promenade-docs/**/%original_file_name%"
