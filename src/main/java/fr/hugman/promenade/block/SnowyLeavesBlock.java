@@ -24,7 +24,7 @@ public class SnowyLeavesBlock extends LeavesBlock {
     }
 
     @Override
-    public MapCodec<SnowyLeavesBlock> getCodec() {
+    public MapCodec<? extends SnowyLeavesBlock> getCodec() {
         return CODEC;
     }
 

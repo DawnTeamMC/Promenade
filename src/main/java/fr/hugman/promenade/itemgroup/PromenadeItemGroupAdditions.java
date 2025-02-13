@@ -57,7 +57,15 @@ public class PromenadeItemGroupAdditions {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(e -> {
             e.addAfter(Blocks.OAK_LEAVES, PromenadeBlocks.SNOWY_OAK_LEAVES);
             e.addAfter(Blocks.SPRUCE_LEAVES, PromenadeBlocks.SNOWY_SPRUCE_LEAVES);
+            e.addAfter(Blocks.BIRCH_LEAVES, PromenadeBlocks.SNOWY_BIRCH_LEAVES);
             e.addAfter(Blocks.JUNGLE_LEAVES, PromenadeBlocks.SNOWY_JUNGLE_LEAVES);
+            e.addAfter(Blocks.ACACIA_LEAVES, PromenadeBlocks.SNOWY_ACACIA_LEAVES);
+            e.addAfter(Blocks.CHERRY_LEAVES, PromenadeBlocks.SNOWY_CHERRY_LEAVES);
+            e.addAfter(Blocks.DARK_OAK_LEAVES, PromenadeBlocks.SNOWY_DARK_OAK_LEAVES);
+            e.addAfter(Blocks.PALE_OAK_LEAVES, PromenadeBlocks.SNOWY_PALE_OAK_LEAVES);
+            e.addAfter(Blocks.MANGROVE_LEAVES, PromenadeBlocks.SNOWY_MANGROVE_LEAVES);
+            e.addAfter(Blocks.AZALEA_LEAVES, PromenadeBlocks.SNOWY_AZALEA_LEAVES);
+            e.addAfter(Blocks.FLOWERING_AZALEA_LEAVES, PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES);
         });
 
         // SAKURA

@@ -75,7 +75,15 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
 
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_OAK_LEAVES, Blocks.OAK_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_SPRUCE_LEAVES, Blocks.SPRUCE_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_BIRCH_LEAVES, Blocks.BIRCH_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_JUNGLE_LEAVES, Blocks.JUNGLE_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_ACACIA_LEAVES, Blocks.ACACIA_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_CHERRY_LEAVES, Blocks.CHERRY_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_DARK_OAK_LEAVES, Blocks.DARK_OAK_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_PALE_OAK_LEAVES, Blocks.PALE_OAK_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_MANGROVE_LEAVES, Blocks.MANGROVE_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_AZALEA_LEAVES, Blocks.AZALEA_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES, Blocks.FLOWERING_AZALEA_LEAVES);
 
         this.offerPlanksRecipe(PromenadeBlocks.SAKURA_PLANKS, PromenadeItemTags.SAKURA_LOGS, 4);
         this.offerBarkBlockRecipe(PromenadeBlocks.SAKURA_WOOD, PromenadeBlocks.SAKURA_LOG);

@@ -30,6 +30,8 @@ public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider 
         copy(PromenadeBlockTags.PALM_LOGS, PALM_LOGS);
         copy(PromenadeBlockTags.DARK_AMARANTH_STEMS, DARK_AMARANTH_STEMS);
 
+        copy(PromenadeBlockTags.SNOWY_LEAVES, SNOWY_LEAVES);
+
         getOrCreateTagBuilder(CAPYBARA_FOOD).add(Items.CARROT, Items.MELON_SLICE);
         getOrCreateTagBuilder(DUCK_FOOD).add(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, Items.TORCHFLOWER_SEEDS, Items.PITCHER_POD);
 
