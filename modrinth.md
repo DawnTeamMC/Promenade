@@ -1,4 +1,4 @@
-[![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://hugman.gitbook.io/promenade/)
+[![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://dawnteammc.github.io/promenade)
 
 [![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg?label=Latest%20version&style=for-the-badge)](https://github.com/DawnTeamMC/Promenade/releases/latest)
 
@@ -8,7 +8,7 @@
 Promenade is a mod for the latest version of Minecraft that adds a ton of features to the game related to exploration,
 diversity and will improve the beauty of your world.
 
-**You can visit the [official wiki for Promenade for more information](https://hugman.gitbook.io/promenade/).**
+**You can visit the [official wiki for Promenade for more information](https://dawnteammc.github.io/promenade).**
 
 ### Biomes
 

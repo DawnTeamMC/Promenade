@@ -1,4 +1,4 @@
-[![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://hugman.gitbook.io/promenade/)
+[![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://dawnteammc.github.io/promenade)
 
 # 🍁 Promenade
 [![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg?label=Latest%20version&style=for-the-badge)](https://github.com/DawnTeamMC/Promenade/releases/latest)

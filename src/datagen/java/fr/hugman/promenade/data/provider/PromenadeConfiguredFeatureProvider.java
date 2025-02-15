@@ -99,7 +99,6 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
         of(registerable, PromenadeConfiguredFeatures.PLANTED_DARK_AMARANTH_FUNGUS, Feature.HUGE_FUNGUS, PromenadeFeatureConfigs.hugeDarkAmaranthFungus(true));
 
         // Vegetation
-        of(registerable, PromenadeConfiguredFeatures.WATER_POOL_GRAVEL, Feature.LAKE, new LakeFeature.Config(BlockStateProvider.of(Blocks.WATER), BlockStateProvider.of(Blocks.GRAVEL)));
         of(registerable, PromenadeConfiguredFeatures.WATER_POOL_GRAVEL_DECORATED, Feature.WATERLOGGED_VEGETATION_PATCH,
                 new VegetationPatchFeatureConfig(
                         BlockTags.LUSH_GROUND_REPLACEABLE,
