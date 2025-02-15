@@ -10,5 +10,6 @@ files:
     ignore:
       - "docs/.assets/**/*"
       - "docs/.translated/**/*"
-    translation: "docs/.translated/**/%locale_with_underscore%/%original_file_name%"
+      - "docs/sinytra-wiki.json"
+    translation: "docs/.translated/%locale_with_underscore%/**/%original_file_name%"
     dest: "promenade-docs/**/%original_file_name%"
