@@ -1,0 +1,30 @@
+{
+  "soundtrack.mdx": {
+    "name": "Soundtrack",
+    "icon": "Music"
+  },
+  "biomes": {
+    "name": "Biomes",
+    "icon": "TreeDeciduous"
+  },
+  "animals": {
+    "name": "Animals",
+    "icon": "Bird"
+  },
+  "monsters": {
+    "name": "Monsters",
+    "icon": "Bone"
+  },
+  "structures": {
+    "name": "Structures",
+    "icon": "House"
+  },
+  "blocks": {
+    "name": "Blocks",
+    "icon": "Box"
+  },
+  "customization": {
+    "name": "Customization",
+    "icon": "Wrench"
+  }
+}
