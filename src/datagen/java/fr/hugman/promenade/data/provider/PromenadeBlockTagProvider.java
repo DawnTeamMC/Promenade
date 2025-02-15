@@ -148,12 +148,13 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
 
         getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE).add(DARK_AMARANTH_FUNGUS, DARK_AMARANTH_NYLIUM, DARK_AMARANTH_ROOTS);
 
+        getOrCreateTagBuilder(BlockTags.INSIDE_STEP_SOUND_BLOCKS).addTag(FALLEN_LEAVES);
         getOrCreateTagBuilder(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(DARK_AMARANTH_ROOTS);
 
         getOrCreateTagBuilder(BlockTags.CLIMBABLE).add(COILED_VINES, COILED_VINES_PLANT);
+        getOrCreateTagBuilder(BlockTags.REPLACEABLE).addTag(FALLEN_LEAVES);
 
         getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT)
-                .addTag(FALLEN_LEAVES)
                 .addTag(LEAF_PILES)
                 .addTag(FLOWER_PILES)
                 .add(DARK_AMARANTH_ROOTS, COILED_VINES, COILED_VINES_PLANT);
@@ -187,7 +188,6 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                         SNOWY_SPRUCE_LEAVES,
                         SNOWY_JUNGLE_LEAVES
                 )
-                .addTag(FALLEN_LEAVES)
                 .addTag(FLOWER_PILES)
                 .addTag(LEAF_PILES)
                 .add(DARK_AMARANTH_WART_BLOCK, SOUL_SHROOMLIGHT);

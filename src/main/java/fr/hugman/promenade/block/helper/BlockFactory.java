@@ -221,7 +221,25 @@ public final class BlockFactory {
                 .mapColor(color)
                 .burnable()
                 .strength(0.1f)
-                .ticksRandomly()
+                .sounds(sounds)
+                .noCollision()
+                .nonOpaque());
+    }
+
+    public static BlockBuilder fallenLeaves() {
+        return fallenLeaves(MapColor.DARK_GREEN);
+    }
+
+    public static BlockBuilder fallenLeaves(MapColor color) {
+        return fallenLeaves(color, BlockSoundGroup.GRASS);
+    }
+
+    public static BlockBuilder fallenLeaves(MapColor color, BlockSoundGroup sounds) {
+        return new BlockBuilder(PileBlock::new, AbstractBlock.Settings.create()
+                .mapColor(color)
+                .burnable()
+                .replaceable()
+                .breakInstantly()
                 .sounds(sounds)
                 .noCollision()
                 .nonOpaque());

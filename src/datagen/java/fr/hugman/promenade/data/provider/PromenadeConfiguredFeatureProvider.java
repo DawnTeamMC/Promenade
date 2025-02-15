@@ -75,37 +75,21 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
         of(registerable, PromenadeConfiguredFeatures.FANCY_SAP_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, true).build());
         of(registerable, PromenadeConfiguredFeatures.SAP_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_SAP_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
-        of(registerable, PromenadeConfiguredFeatures.SAP_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, false).build());
-        of(registerable, PromenadeConfiguredFeatures.FANCY_SAP_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, true).build());
-        of(registerable, PromenadeConfiguredFeatures.SAP_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
-        of(registerable, PromenadeConfiguredFeatures.FANCY_SAP_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.SAP_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
 
         of(registerable, PromenadeConfiguredFeatures.VERMILION_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, false).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_VERMILION_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, true).build());
         of(registerable, PromenadeConfiguredFeatures.VERMILION_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_VERMILION_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
-        of(registerable, PromenadeConfiguredFeatures.VERMILION_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, false).build());
-        of(registerable, PromenadeConfiguredFeatures.FANCY_VERMILION_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, true).build());
-        of(registerable, PromenadeConfiguredFeatures.VERMILION_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
-        of(registerable, PromenadeConfiguredFeatures.FANCY_VERMILION_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.VERMILION_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
 
         of(registerable, PromenadeConfiguredFeatures.FULVOUS_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, false).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_FULVOUS_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, true).build());
         of(registerable, PromenadeConfiguredFeatures.FULVOUS_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_FULVOUS_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
-        of(registerable, PromenadeConfiguredFeatures.FULVOUS_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, false).build());
-        of(registerable, PromenadeConfiguredFeatures.FANCY_FULVOUS_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, true).build());
-        of(registerable, PromenadeConfiguredFeatures.FULVOUS_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
-        of(registerable, PromenadeConfiguredFeatures.FANCY_FULVOUS_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
 
         of(registerable, PromenadeConfiguredFeatures.MIKADO_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, false).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_MIKADO_MAPLE, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, true).build());
         of(registerable, PromenadeConfiguredFeatures.MIKADO_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_MIKADO_MAPLE_BEES, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
-        of(registerable, PromenadeConfiguredFeatures.MIKADO_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, false).build());
-        of(registerable, PromenadeConfiguredFeatures.FANCY_MIKADO_MAPLE_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, true).build());
-        of(registerable, PromenadeConfiguredFeatures.MIKADO_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, false).decorators(List.of(beehive002)).build());
-        of(registerable, PromenadeConfiguredFeatures.FANCY_MIKADO_MAPLE_BEES_LITTER, Feature.TREE, PromenadeFeatureConfigs.maple(PromenadeBlocks.MIKADO_MAPLE_LEAVES, true).decorators(List.of(beehive002)).build());
 
         of(registerable, PromenadeConfiguredFeatures.PALM, Feature.TREE, PromenadeFeatureConfigs.palm().build());
 
@@ -113,45 +97,6 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
 
         of(registerable, PromenadeConfiguredFeatures.DARK_AMARANTH_FUNGUS, Feature.HUGE_FUNGUS, PromenadeFeatureConfigs.hugeDarkAmaranthFungus(false));
         of(registerable, PromenadeConfiguredFeatures.PLANTED_DARK_AMARANTH_FUNGUS, Feature.HUGE_FUNGUS, PromenadeFeatureConfigs.hugeDarkAmaranthFungus(true));
-
-        // Tree groups
-        of(registerable, PromenadeConfiguredFeatures.BLUSH_SAKURA_GROVE_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_BLUSH_SAKURA), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.COTTON_SAKURA), 0.2f)
-                ), placed.getOrThrow(PromenadePlacedFeatures.BLUSH_SAKURA))
-        );
-        of(registerable, PromenadeConfiguredFeatures.COTTON_SAKURA_GROVE_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_COTTON_SAKURA), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.BLUSH_SAKURA), 0.2f)
-                ), placed.getOrThrow(PromenadePlacedFeatures.COTTON_SAKURA))
-        );
-
-        of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_SAP_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_SAP_MAPLE_BEES), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_SAP_MAPLE), 0.2f)
-                ), placed.getOrThrow(PromenadePlacedFeatures.SAP_MAPLE))
-        );
-        of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_VERMILION_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_VERMILION_MAPLE_BEES), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_VERMILION_MAPLE), 0.2f)
-                ), placed.getOrThrow(PromenadePlacedFeatures.VERMILION_MAPLE))
-        );
-        of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FULVOUS_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_FULVOUS_MAPLE_BEES), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_FULVOUS_MAPLE), 0.2f)
-                ), placed.getOrThrow(PromenadePlacedFeatures.FULVOUS_MAPLE))
-        );
-        of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_MIKADO_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_MIKADO_MAPLE_BEES), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_MIKADO_MAPLE), 0.2f)
-                ), placed.getOrThrow(PromenadePlacedFeatures.MIKADO_MAPLE))
-        );
 
         // Vegetation
         of(registerable, PromenadeConfiguredFeatures.WATER_POOL_GRAVEL, Feature.LAKE, new LakeFeature.Config(BlockStateProvider.of(Blocks.WATER), BlockStateProvider.of(Blocks.GRAVEL)));
@@ -204,6 +149,76 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
 
         var horizontalDirections = List.of(Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST);
         of(registerable, PromenadeConfiguredFeatures.COILED_VINES, PromenadeFeatures.COILED_VINES, new CoiledVinesFeatureConfig(8, 4, 8, horizontalDirections));
+
+        of(registerable, PromenadeConfiguredFeatures.FALLEN_VERMILION_MAPLE_LEAVES, Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(
+                Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES.getDefaultState())),
+                List.of(Blocks.GRASS_BLOCK)
+        ));
+        of(registerable, PromenadeConfiguredFeatures.FALLEN_FULVOUS_MAPLE_LEAVES, Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(
+                Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES.getDefaultState())),
+                List.of(Blocks.GRASS_BLOCK)
+        ));
+        of(registerable, PromenadeConfiguredFeatures.FALLEN_MIKADO_MAPLE_LEAVES, Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(
+                Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES.getDefaultState())),
+                List.of(Blocks.GRASS_BLOCK)
+        ));
+
+        // Grouped features
+        of(registerable, PromenadeConfiguredFeatures.BLUSH_SAKURA_GROVE_TREE, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfig(List.of(
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_BLUSH_SAKURA), 0.1f),
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.COTTON_SAKURA), 0.2f)
+                ), placed.getOrThrow(PromenadePlacedFeatures.BLUSH_SAKURA))
+        );
+        of(registerable, PromenadeConfiguredFeatures.COTTON_SAKURA_GROVE_TREE, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfig(List.of(
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_COTTON_SAKURA), 0.1f),
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.BLUSH_SAKURA), 0.2f)
+                ), placed.getOrThrow(PromenadePlacedFeatures.COTTON_SAKURA))
+        );
+
+        of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_SAP_TREE, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfig(List.of(
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_SAP_MAPLE_BEES), 0.1f),
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_SAP_MAPLE), 0.2f)
+                ), placed.getOrThrow(PromenadePlacedFeatures.SAP_MAPLE))
+        );
+        of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_VERMILION_TREE, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfig(List.of(
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_VERMILION_MAPLE_BEES), 0.1f),
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_VERMILION_MAPLE), 0.2f)
+                ), placed.getOrThrow(PromenadePlacedFeatures.VERMILION_MAPLE))
+        );
+        of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FULVOUS_TREE, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfig(List.of(
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_FULVOUS_MAPLE_BEES), 0.1f),
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_FULVOUS_MAPLE), 0.2f)
+                ), placed.getOrThrow(PromenadePlacedFeatures.FULVOUS_MAPLE))
+        );
+        of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_MIKADO_TREE, Feature.RANDOM_SELECTOR,
+                new RandomFeatureConfig(List.of(
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_MIKADO_MAPLE_BEES), 0.1f),
+                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_MIKADO_MAPLE), 0.2f)
+                ), placed.getOrThrow(PromenadePlacedFeatures.MIKADO_MAPLE))
+        );
+        of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_TREE, PromenadeFeatures.NOISE_PICKED,
+                new NoisePickedFeatureConfig(List.of(
+                        new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_SAP_TREE)), -1.0f, 1.0f),
+                        new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_VERMILION_TREE)), 0.2f, 0.95f),
+                        new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FULVOUS_TREE)), -0.4f, 0.4f),
+                        new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_MIKADO_TREE)), -0.95f, -0.2f)
+                ))
+        );
+        of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FALLEN_LEAVES, PromenadeFeatures.NOISE_PICKED,
+                new NoisePickedFeatureConfig(List.of(
+                        new NoisePickedFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FALLEN_VERMILION_MAPLE_LEAVES), 0.2f, 0.95f),
+                        new NoisePickedFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FALLEN_FULVOUS_MAPLE_LEAVES), -0.4f, 0.4f),
+                        new NoisePickedFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FALLEN_MIKADO_MAPLE_LEAVES), -0.95f, -0.2f)
+                ))
+        );
     }
 
     private static <FC extends FeatureConfig, F extends Feature<FC>> void of(Registerable<ConfiguredFeature<?, ?>> registry, RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
