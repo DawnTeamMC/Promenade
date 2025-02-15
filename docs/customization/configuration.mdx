@@ -49,3 +49,10 @@ To increase or decrease the frequency of a weighted feature, change its weight. 
     For example, disabling a biome will not remove the related blocks (i.e. the wood set) from the game, but they will never appear naturally in the world.
     The blocks will still be visible to players using recipe viewing mods and such.
 </Callout>
+
+## Freezing snowfalls configuration
+The [glacarian taiga biome](../biomes/glacarian_taiga) features freezing snowfalls. Entities that are not protected from the cold will freeze to death during snowfalls.
+The `#promenade:can_freeze_during_snowfall` biome tag controls the list of biomes that can freeze entities to death during snowfall.
+This means that you can add or remove biomes from this list, including the glacarian taiga biome itself and modded biomes by appending the tag using a data-pack.
+
+The list of entities immune to freezing is controlled by the `#minecraft:freeze_immune_entity_types` entity type tag.

@@ -1,4 +1,8 @@
 {
+  "soundtrack.mdx": {
+    "name": "Soundtrack",
+    "icon": "Music"
+  },
   "biomes": {
     "name": "Biomes",
     "icon": "TreeDeciduous"
