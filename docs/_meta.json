@@ -8,8 +8,19 @@
     "icon": "Bird"
   },
   "monsters": {
-    "name": "Animals",
-    "icon": "Bird"
+    "name": "Monsters",
+    "icon": "Bone"
   },
-  "configuration.mdx": "Configuration"
+  "structures": {
+    "name": "Structures",
+    "icon": "House"
+  },
+  "blocks": {
+    "name": "Blocks",
+    "icon": "Box"
+  },
+  "customization": {
+    "name": "Customization",
+    "icon": "Wrench"
+  }
 }
