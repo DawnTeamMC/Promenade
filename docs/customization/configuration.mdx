@@ -1,0 +1,51 @@
+---
+title: Configuration
+type: other
+---
+
+The configuration file for Promenade can be found at `.minecraft/config/promenade.json`.
+This file is used to tweak values of mod features. This is not meant to add new features or drastically change the mod's behavior.
+
+## How to change the configuration
+
+Open the file using a text editor of your choice. Here's the default configuration values:
+
+```json
+{
+    "biomes": {
+        "carnelian_treeway_weight": 20,
+        "sakura_groves_weight": 20,
+        "glacarian_taiga_weight": 10,
+        "dark_amaranth_forests_noise": {
+            "erosion": 0.0,
+            "depth": 0.0,
+            "weirdness": 0.0,
+            "offset": 0.0,
+            "temperature": 0.15,
+            "humidity": -0.3,
+            "continentalness": 0.0
+        }
+    },
+    "world_features": {
+        "igneous_rock_patches": true,
+        "blueberry_bushes": true,
+        "palms": true
+    },
+    "animals": {
+        "capybaras_weight": 10,
+        "ducks_weight": 10
+    },
+    "monsters": {
+        "lush_creepers_weight": 10,
+        "sunkens_weight": 10
+    }
+}
+```
+
+To increase or decrease the frequency of a weighted feature, change its weight. Setting it to 0 or below will prevent the feature from ever appearing.
+
+<Callout variant="info">
+    If you are a server owner or a modpack creator, you might want to let know players of disabled features in the first place. This will prevent them from researching why they can't said features for too long.
+    For example, disabling a biome will not remove the related blocks (i.e. the wood set) from the game, but they will never appear naturally in the world.
+    The blocks will still be visible to players using recipe viewing mods and such.
+</Callout>

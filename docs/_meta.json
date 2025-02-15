@@ -2,5 +2,14 @@
   "biomes": {
     "name": "Biomes",
     "icon": "TreeDeciduous"
-  }
+  },
+  "animals": {
+    "name": "Animals",
+    "icon": "Bird"
+  },
+  "monsters": {
+    "name": "Animals",
+    "icon": "Bird"
+  },
+  "configuration.mdx": "Configuration"
 }
