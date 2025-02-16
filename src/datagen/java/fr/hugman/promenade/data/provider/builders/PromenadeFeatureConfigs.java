@@ -3,7 +3,9 @@ package fr.hugman.promenade.data.provider.builders;
 import com.google.common.collect.ImmutableList;
 import fr.hugman.promenade.block.MapleLogBlock;
 import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.world.gen.tree.foliage.MapleFoliagePlacer;
 import fr.hugman.promenade.world.gen.tree.foliage.PalmFoliagePlacer;
+import fr.hugman.promenade.world.gen.tree.trunk.BranchingStraightTrunkPlacer;
 import fr.hugman.promenade.world.gen.tree.trunk.LeapingTrunkPlacer;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -23,6 +25,7 @@ import net.minecraft.world.gen.treedecorator.AttachedToLeavesTreeDecorator;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 import net.minecraft.world.gen.trunk.GiantTrunkPlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
+import net.minecraft.world.gen.trunk.UpwardsBranchingTrunkPlacer;
 
 import java.util.List;
 import java.util.OptionalInt;
@@ -119,13 +122,14 @@ public class PromenadeFeatureConfigs {
     public static TreeFeatureConfig.Builder maple(Block leaves, boolean fancy) {
         return new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(PromenadeBlocks.MAPLE_LOG.getDefaultState().with(MapleLogBlock.NATURAL, true)),
-                fancy ? new StraightTrunkPlacer(8, 5, 2) :
-                        new StraightTrunkPlacer(5, 4, 0),
+                fancy ? new BranchingStraightTrunkPlacer(8, 5, 2) :
+                        new BranchingStraightTrunkPlacer(5, 4, 0),
                 BlockStateProvider.of(leaves),
-                new LargeOakFoliagePlacer(BiasedToBottomIntProvider.create(2, 3), ConstantIntProvider.create(1), 4),
+                new MapleFoliagePlacer(BiasedToBottomIntProvider.create(3, 4), ConstantIntProvider.create(5), BiasedToBottomIntProvider.create(6, 9)),
                 fancy ? new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)) :
                         new TwoLayersFeatureSize(1, 0, 1, OptionalInt.empty())
-        ).ignoreVines();
+        )
+                .ignoreVines();
     }
 
     public static TreeFeatureConfig.Builder snowyMegaSpruce(Block leaves) {
