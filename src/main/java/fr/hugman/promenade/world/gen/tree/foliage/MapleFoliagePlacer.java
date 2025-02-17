@@ -15,7 +15,7 @@ import net.minecraft.world.gen.foliage.FoliagePlacerType;
 public class MapleFoliagePlacer extends FoliagePlacer {
     public static final MapCodec<MapleFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance ->
             MapleFoliagePlacer.fillFoliagePlacerFields(instance).and(
-                    IntProvider.createValidatingCodec(0, 16).optionalFieldOf("height", ConstantIntProvider.create(0)).forGetter(placer -> placer.height)
+                    IntProvider.createValidatingCodec(0, 32).optionalFieldOf("height", ConstantIntProvider.create(0)).forGetter(placer -> placer.height)
             ).apply(instance, MapleFoliagePlacer::new));
 
     protected final IntProvider height;
@@ -32,7 +32,7 @@ public class MapleFoliagePlacer extends FoliagePlacer {
 
     @Override
     protected void generate(TestableWorld world, BlockPlacer placer, Random random, TreeFeatureConfig config, int trunkHeight, TreeNode treeNode, int foliageHeight, int radius, int offset) {
-        var pos = treeNode.getCenter().down(offset);
+        var pos = treeNode.getCenter().down(foliageHeight - offset);
 
         var curvature = radius;
 
@@ -41,8 +41,7 @@ public class MapleFoliagePlacer extends FoliagePlacer {
                 (foliageHeight + 1) / 2 * (1 + curvature)
         );
 
-        //TODO: support giant trunks
-        //TODO: more configurability?
+        //TODO: does this support giant trunks?
         for (int dx = -radius; dx <= radius; dx++) {
             for (int dz = -radius; dz <= radius; dz++) {
 
@@ -71,8 +70,9 @@ public class MapleFoliagePlacer extends FoliagePlacer {
 
     @Override
     public int getRandomHeight(Random random, int trunkHeight, TreeFeatureConfig config) {
-        return trunkHeight + this.height.get(random);
+        return this.height.get(random);
     }
+
 
     @Override
     protected boolean isInvalidForLeaves(Random random, int dx, int y, int dz, int radius, boolean giantTrunk) {

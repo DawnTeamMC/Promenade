@@ -119,10 +119,10 @@ public class PromenadeFeatureConfigs {
     public static TreeFeatureConfig.Builder maple(Block leaves, boolean fancy) {
         return new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(PromenadeBlocks.MAPLE_LOG.getDefaultState().with(MapleLogBlock.NATURAL, true)),
-                fancy ? new BranchingStraightTrunkPlacer(8, 5, 2) :
-                        new BranchingStraightTrunkPlacer(5, 4, 0),
+                fancy ? new BranchingStraightTrunkPlacer(17, 5, 3) :
+                        new BranchingStraightTrunkPlacer(13, 4, 2),
                 BlockStateProvider.of(leaves),
-                new MapleFoliagePlacer(BiasedToBottomIntProvider.create(3, 4), ConstantIntProvider.create(5), BiasedToBottomIntProvider.create(6, 9)),
+                new MapleFoliagePlacer(BiasedToBottomIntProvider.create(3, 4), UniformIntProvider.create(5, 6), BiasedToBottomIntProvider.create(17, 20)),
                 fancy ? new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)) :
                         new TwoLayersFeatureSize(1, 0, 1, OptionalInt.empty())
         )

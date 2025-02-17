@@ -47,6 +47,7 @@ public class BranchingStraightTrunkPlacer extends TrunkPlacer {
         Direction branchDirection = null;
         int branches = 0;
 
+        //TODO: configurability
         for (int i = 0; i < height; i++) {
             var pos = startPos.up(i);
             this.getAndSetState(world, replacer, random, pos, config);
