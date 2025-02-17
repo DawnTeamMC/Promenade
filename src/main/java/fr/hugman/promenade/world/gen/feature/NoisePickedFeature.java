@@ -16,9 +16,10 @@ public class NoisePickedFeature extends Feature<NoisePickedFeatureConfig> {
         var random = context.getRandom();
         var structureWorldAccess = context.getWorld();
         var chunkGenerator = context.getGenerator();
+        var config = context.getConfig();
 
-        double noiseValue = Biome.FOLIAGE_NOISE.sample((double) pos.getX() / 200.0, (double) pos.getZ() / 200.0, false);
-        var entries = context.getConfig().entries().stream()
+        double noiseValue = Biome.FOLIAGE_NOISE.sample((double) pos.getX() / config.noiseScale().x(), (double) pos.getZ() / config.noiseScale().z(), false);
+        var entries = config.entries().stream()
                 .filter(entry -> entry.min() < noiseValue && noiseValue < entry.max())
                 .toList();
         if (entries.isEmpty()) {

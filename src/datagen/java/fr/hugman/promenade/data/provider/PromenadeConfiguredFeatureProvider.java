@@ -3,6 +3,7 @@ package fr.hugman.promenade.data.provider;
 import fr.hugman.promenade.block.BerryBushBlock;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.data.provider.builders.PromenadeFeatureConfigs;
+import fr.hugman.promenade.util.NoiseScale;
 import fr.hugman.promenade.world.gen.feature.*;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
@@ -204,17 +205,17 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
                 ), placed.getOrThrow(PromenadePlacedFeatures.MIKADO_MAPLE))
         );
         of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_TREE, PromenadeFeatures.NOISE_PICKED,
-                new NoisePickedFeatureConfig(List.of(
+                new NoisePickedFeatureConfig(NoiseScale.of(200.0f), List.of(
                         new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_SAP_TREE)), -1.0f, 1.0f),
                         new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_VERMILION_TREE)), 0.2f, 0.95f),
-                        new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FULVOUS_TREE)), -0.4f, 0.4f),
+                        new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FULVOUS_TREE)), -0.5f, 0.5f),
                         new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_MIKADO_TREE)), -0.95f, -0.2f)
                 ))
         );
         of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FALLEN_LEAVES, PromenadeFeatures.NOISE_PICKED,
-                new NoisePickedFeatureConfig(List.of(
+                new NoisePickedFeatureConfig(NoiseScale.of(200.0f), List.of(
                         new NoisePickedFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FALLEN_VERMILION_MAPLE_LEAVES), 0.2f, 0.95f),
-                        new NoisePickedFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FALLEN_FULVOUS_MAPLE_LEAVES), -0.4f, 0.4f),
+                        new NoisePickedFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FALLEN_FULVOUS_MAPLE_LEAVES), -0.5f, 0.5f),
                         new NoisePickedFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FALLEN_MIKADO_MAPLE_LEAVES), -0.95f, -0.2f)
                 ))
         );
