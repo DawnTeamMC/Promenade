@@ -56,21 +56,6 @@ public class PromenadePlacedFeatures {
     public static final RegistryKey<PlacedFeature> MIKADO_MAPLE_BEES = of("tree/mikado_maple_bees");
     public static final RegistryKey<PlacedFeature> FANCY_MIKADO_MAPLE_BEES = of("tree/fancy_mikado_maple_bees");
 
-    // Tree groups
-    public static final RegistryKey<PlacedFeature> BLUSH_SAKURA_GROVE_TREES = of("trees/blush_sakura_grove");
-    public static final RegistryKey<PlacedFeature> COTTON_SAKURA_GROVE_TREES = of("trees/cotton_sakura_grove");
-
-    public static final RegistryKey<PlacedFeature> CARNELIAN_TREEWAY_SAP_TREES = of("trees/carnelian_treeway/sap");
-    public static final RegistryKey<PlacedFeature> CARNELIAN_TREEWAY_VERMILION_TREES = of("trees/carnelian_treeway/vermilion");
-    public static final RegistryKey<PlacedFeature> CARNELIAN_TREEWAY_FULVOUS_TREES = of("trees/carnelian_treeway/fulvous");
-    public static final RegistryKey<PlacedFeature> CARNELIAN_TREEWAY_MIKADO_TREES = of("trees/carnelian_treeway/mikado");
-
-    public static final RegistryKey<PlacedFeature> GLACARIAN_TAIGA_TREES = of("trees/glacarian_taiga");
-
-    public static final RegistryKey<PlacedFeature> PALMS = of("trees/palms");
-
-    public static final RegistryKey<PlacedFeature> DARK_AMARANTH_FUNGI = of("trees/dark_amaranth_fungi");
-
     // Vegetation
     public static final RegistryKey<PlacedFeature> BLUEBERRY_BUSH_COMMON_PATCH = of("patch/blueberry_bush/common");
     public static final RegistryKey<PlacedFeature> BLUEBERRY_BUSH_RARE_PATCH = of("patch/blueberry_bush/rare");
@@ -86,6 +71,23 @@ public class PromenadePlacedFeatures {
     public static final RegistryKey<PlacedFeature> DARK_AMARANTH_FOREST_VEGETATION = of("dark_amaranth_forest_vegetation");
 
     public static final RegistryKey<PlacedFeature> COILED_VINES = of("coiled_vines");
+
+    public static final RegistryKey<PlacedFeature> FALLEN_VERMILION_MAPLE_LEAVES = of("patch/fallen_vermilion_maple_leaves");
+    public static final RegistryKey<PlacedFeature> FALLEN_FULVOUS_MAPLE_LEAVES = of("patch/fallen_fulvous_maple_leaves");
+    public static final RegistryKey<PlacedFeature> FALLEN_MIKADO_MAPLE_LEAVES = of("patch/fallen_mikado_maple_leaves");
+
+    // Grouped features
+    public static final RegistryKey<PlacedFeature> BLUSH_SAKURA_GROVE_TREES = of("trees/blush_sakura_grove");
+    public static final RegistryKey<PlacedFeature> COTTON_SAKURA_GROVE_TREES = of("trees/cotton_sakura_grove");
+
+    public static final RegistryKey<PlacedFeature> CARNELIAN_TREEWAY_TREES = of("trees/carnelian_treeway");
+    public static final RegistryKey<PlacedFeature> CARNELIAN_TREEWAY_FALLEN_LEAVES = of("patch/carnelian_treeway_fallen_leaves");
+
+    public static final RegistryKey<PlacedFeature> GLACARIAN_TAIGA_TREES = of("trees/glacarian_taiga");
+
+    public static final RegistryKey<PlacedFeature> PALMS = of("trees/palms");
+
+    public static final RegistryKey<PlacedFeature> DARK_AMARANTH_FUNGI = of("trees/dark_amaranth_fungi");
 
 
     private static RegistryKey<PlacedFeature> of(String path) {

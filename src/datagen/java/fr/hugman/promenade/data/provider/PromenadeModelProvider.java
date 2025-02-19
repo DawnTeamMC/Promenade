@@ -84,6 +84,10 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerSingleton(PromenadeBlocks.VERMILION_MAPLE_LEAVES, TexturedModel.LEAVES);
         gen.registerSingleton(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, TexturedModel.LEAVES);
         gen.registerSingleton(PromenadeBlocks.MIKADO_MAPLE_LEAVES, TexturedModel.LEAVES);
+        this.registerFallenLeaves(gen, PromenadeBlocks.FALLEN_SAP_MAPLE_LEAVES, PromenadeFoliageColors.SAP_MAPLE);
+        this.registerFallenLeaves(gen, PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES);
+        this.registerFallenLeaves(gen, PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES);
+        this.registerFallenLeaves(gen, PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES);
         gen.registerTintedBlockAndItem(PromenadeBlocks.SAP_MAPLE_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.SAP_MAPLE_LEAVES), PromenadeFoliageColors.SAP_MAPLE);
         gen.registerSingleton(PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.VERMILION_MAPLE_LEAVES));
         gen.registerSingleton(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.FULVOUS_MAPLE_LEAVES));
@@ -193,7 +197,21 @@ public class PromenadeModelProvider extends FabricModelProvider {
                                 .register(false, BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(snowyLeaves, "", Models.CUBE_ALL, TextureMap::all)))
                 )
         );
+    }
 
+
+    private void registerFallenLeaves(BlockStateModelGenerator gen, Block fallenLeaves) {
+        registerFallenLeaves(gen, fallenLeaves, 0);
+    }
+
+    private void registerFallenLeaves(BlockStateModelGenerator gen, Block fallenLeaves, int tintSource) {
+        if (tintSource != 0) {
+            Identifier identifier = gen.uploadBlockItemModel(fallenLeaves.asItem(), fallenLeaves);
+            gen.registerTintedItemModel(fallenLeaves, identifier, ItemModels.constantTintSource(tintSource));
+        } else {
+            gen.registerItemModel(fallenLeaves);
+        }
+        gen.blockStateCollector.accept(BlockStateModelGenerator.createBlockStateWithRandomHorizontalRotations(fallenLeaves, PromenadeTexturedModels.FALLEN_LEAVES.upload(fallenLeaves, gen.modelCollector)));
     }
 
     public final void registerFacingPlantPart(BlockStateModelGenerator gen, Block plant, Block plantStem, BlockStateModelGenerator.CrossType tintType) {

@@ -25,6 +25,12 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
         getOrCreateTagBuilder(PALM_LOGS).add(PALM_LOG, STRIPPED_PALM_LOG, PALM_WOOD, STRIPPED_PALM_WOOD);
         getOrCreateTagBuilder(DARK_AMARANTH_STEMS).add(DARK_AMARANTH_STEM, STRIPPED_DARK_AMARANTH_STEM, DARK_AMARANTH_HYPHAE, STRIPPED_DARK_AMARANTH_HYPHAE);
 
+        getOrCreateTagBuilder(FALLEN_LEAVES).add(
+                FALLEN_SAP_MAPLE_LEAVES,
+                FALLEN_VERMILION_MAPLE_LEAVES,
+                FALLEN_FULVOUS_MAPLE_LEAVES,
+                FALLEN_MIKADO_MAPLE_LEAVES
+        );
         getOrCreateTagBuilder(LEAF_PILES).add(
                 OAK_LEAF_PILE,
                 SPRUCE_LEAF_PILE,
@@ -128,7 +134,11 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 POTTED_DARK_AMARANTH_FUNGUS, POTTED_DARK_AMARANTH_ROOTS
         );
 
-        getOrCreateTagBuilder(BlockTags.REPLACEABLE_BY_TREES).addTag(FLOWER_PILES).addTag(LEAF_PILES).add(DARK_AMARANTH_ROOTS);
+        getOrCreateTagBuilder(BlockTags.REPLACEABLE_BY_TREES)
+                .addTag(FALLEN_LEAVES)
+                .addTag(LEAF_PILES)
+                .addTag(FLOWER_PILES)
+                .add(DARK_AMARANTH_ROOTS);
         getOrCreateTagBuilder(BlockTags.BEE_GROWABLES).add(BLUEBERRY_BUSH);
         getOrCreateTagBuilder(BlockTags.MUSHROOM_GROW_BLOCK).add(DARK_AMARANTH_NYLIUM);
 
@@ -138,11 +148,16 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
 
         getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE).add(DARK_AMARANTH_FUNGUS, DARK_AMARANTH_NYLIUM, DARK_AMARANTH_ROOTS);
 
+        getOrCreateTagBuilder(BlockTags.INSIDE_STEP_SOUND_BLOCKS).addTag(FALLEN_LEAVES);
         getOrCreateTagBuilder(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(DARK_AMARANTH_ROOTS);
 
         getOrCreateTagBuilder(BlockTags.CLIMBABLE).add(COILED_VINES, COILED_VINES_PLANT);
+        getOrCreateTagBuilder(BlockTags.REPLACEABLE).addTag(FALLEN_LEAVES);
 
-        getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).addTag(FLOWER_PILES).addTag(LEAF_PILES).add(DARK_AMARANTH_ROOTS, COILED_VINES, COILED_VINES_PLANT);
+        getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT)
+                .addTag(LEAF_PILES)
+                .addTag(FLOWER_PILES)
+                .add(DARK_AMARANTH_ROOTS, COILED_VINES, COILED_VINES_PLANT);
         getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
                 BLUNITE,
                 BLUNITE_STAIRS,
