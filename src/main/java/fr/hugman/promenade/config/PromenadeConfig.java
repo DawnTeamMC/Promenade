@@ -1,73 +1,149 @@
 package fr.hugman.promenade.config;
 
-import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.JsonOps;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.world.biome.PromenadeBiomes;
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
+import org.apache.commons.io.IOUtils;
+import org.jetbrains.annotations.NotNull;
 
-@Config(name = "promenade")
-@Config.Gui.Background("minecraft:textures/block/lime_concrete.png")
-public class PromenadeConfig extends PartitioningSerializer.GlobalData {
-    @ConfigEntry.Category("biomes")
-    @ConfigEntry.Gui.TransitiveObject
-    public BiomesCategory biomes = new BiomesCategory();
-    @ConfigEntry.Category("world_features")
-    @ConfigEntry.Gui.TransitiveObject
-    public WorldFeaturesCategory world_features = new WorldFeaturesCategory();
-    @ConfigEntry.Category("animals")
-    @ConfigEntry.Gui.TransitiveObject
-    public AnimalsCategory animals = new AnimalsCategory();
-    @ConfigEntry.Category("monsters")
-    @ConfigEntry.Gui.TransitiveObject
-    public MonstersCategory monsters = new MonstersCategory();
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Optional;
 
-    @Config(name = "biomes")
-    public static class BiomesCategory implements ConfigData {
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int carnelian_treeway_weight = 20;
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int sakura_groves_weight = 20;
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int glacarian_taiga_weight = 10;
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int auroral_cypress_weight = 10;
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int dark_amaranth_forests_weight = 20;
+public record PromenadeConfig(
+        BiomesConfig biomes,
+        WorldFeaturesConfig worldFeatures,
+        AnimalsConfig animals,
+        MonstersConfig monsters
+) {
+    private static final Path PATH = Paths.get("config/promenade.json");
+
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+
+    private static final Codec<PromenadeConfig> CODEC = RecordCodecBuilder.create(instance ->
+            instance.group(
+                    BiomesConfig.CODEC.fieldOf("biomes").forGetter(PromenadeConfig::biomes),
+                    WorldFeaturesConfig.CODEC.fieldOf("world_features").forGetter(PromenadeConfig::worldFeatures),
+                    AnimalsConfig.CODEC.fieldOf("animals").forGetter(PromenadeConfig::animals),
+                    MonstersConfig.CODEC.fieldOf("monsters").forGetter(PromenadeConfig::monsters)
+            ).apply(instance, PromenadeConfig::new)
+    );
+
+    private static PromenadeConfig instance;
+
+    private PromenadeConfig() {
+        this(
+                new BiomesConfig(20, 20, 10, Optional.of(PromenadeBiomes.DEFAULT_DARK_AMARANTH_FOREST_HYPERCUBE)),
+                new WorldFeaturesConfig(true, true, true),
+                new AnimalsConfig(10, 10),
+                new MonstersConfig(15, 10)
+        );
     }
 
-    @Config(name = "world_features")
-    public static class WorldFeaturesCategory implements ConfigData {
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.Gui.Tooltip
-        public boolean igneous_rock_patches = true;
-        @ConfigEntry.Gui.RequiresRestart
-        public boolean blueberry_bushes = true;
-        @ConfigEntry.Gui.RequiresRestart
-        public boolean palms = true;
+    public record BiomesConfig(
+            int carnelianTreewayWeight,
+            int sakuraGrovesWeight,
+            int glacarianTaigaWeight,
+            Optional<MultiNoiseUtil.NoiseHypercube> darkAmaranthForestsNoise
+    ) {
+
+        private static final Codec<BiomesConfig> CODEC = RecordCodecBuilder.create(instance ->
+                instance.group(
+                        Codec.INT.optionalFieldOf("carnelian_treeway_weight", 20).forGetter(BiomesConfig::carnelianTreewayWeight),
+                        Codec.INT.optionalFieldOf("sakura_groves_weight", 20).forGetter(BiomesConfig::sakuraGrovesWeight),
+                        Codec.INT.optionalFieldOf("glacarian_taiga_weight", 10).forGetter(BiomesConfig::glacarianTaigaWeight),
+                        MultiNoiseUtil.NoiseHypercube.CODEC.optionalFieldOf("dark_amaranth_forests_noise").forGetter(BiomesConfig::darkAmaranthForestsNoise)
+                ).apply(instance, BiomesConfig::new)
+        );
     }
 
-    @Config(name = "animals")
-    public static class AnimalsCategory implements ConfigData {
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int capybaras_weight = 10;
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int ducks_weight = 10;
+    public record WorldFeaturesConfig(
+            boolean igneousRockPatches,
+            boolean blueberryBushes,
+            boolean palms
+    ) {
+        private static final Codec<WorldFeaturesConfig> CODEC = RecordCodecBuilder.create(instance ->
+                instance.group(
+                        Codec.BOOL.optionalFieldOf("igneous_rock_patches", true).forGetter(WorldFeaturesConfig::igneousRockPatches),
+                        Codec.BOOL.optionalFieldOf("blueberry_bushes", true).forGetter(WorldFeaturesConfig::blueberryBushes),
+                        Codec.BOOL.optionalFieldOf("palms", true).forGetter(WorldFeaturesConfig::palms)
+                ).apply(instance, WorldFeaturesConfig::new)
+        );
     }
 
-    @Config(name = "monsters")
-    public static class MonstersCategory implements ConfigData {
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int lush_creepers_weight = 15;
-        @ConfigEntry.Gui.RequiresRestart
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int sunkens_weight = 20;
+    public record AnimalsConfig(
+            int capybarasWeight,
+            int ducksWeight
+    ) {
+        private static final Codec<AnimalsConfig> CODEC = RecordCodecBuilder.create(instance ->
+                instance.group(
+                        Codec.INT.optionalFieldOf("capybaras_weight", 10).forGetter(AnimalsConfig::capybarasWeight),
+                        Codec.INT.optionalFieldOf("ducks_weight", 10).forGetter(AnimalsConfig::ducksWeight)
+                ).apply(instance, AnimalsConfig::new)
+        );
+    }
+
+    public record MonstersConfig(
+            int lushCreepersWeight,
+            int sunkensWeight
+    ) {
+        private static final Codec<MonstersConfig> CODEC = RecordCodecBuilder.create(instance ->
+                instance.group(
+                        Codec.INT.optionalFieldOf("lush_creepers_weight", 15).forGetter(MonstersConfig::lushCreepersWeight),
+                        Codec.INT.optionalFieldOf("sunkens_weight", 10).forGetter(MonstersConfig::sunkensWeight)
+                ).apply(instance, MonstersConfig::new)
+        );
+    }
+
+    @NotNull
+    public static PromenadeConfig get() {
+        if (instance == null) {
+            instance = initializeConfig();
+        }
+        return instance;
+    }
+
+    private static PromenadeConfig initializeConfig() {
+        if (Files.exists(PATH)) {
+            return loadConfig();
+        } else {
+            return createDefaultConfig();
+        }
+    }
+
+    private static PromenadeConfig loadConfig() {
+        try (var input = Files.newInputStream(PATH)) {
+            var json = JsonParser.parseReader(new InputStreamReader(input));
+            var result = CODEC.decode(JsonOps.INSTANCE, json).map(Pair::getFirst);
+            return result.result().orElseGet(PromenadeConfig::new);
+        } catch (IOException e) {
+            Promenade.LOGGER.warn("Failed to load Promenade config", e);
+            return new PromenadeConfig();
+        }
+    }
+
+    private static PromenadeConfig createDefaultConfig() {
+        var config = new PromenadeConfig();
+        try (var output = Files.newOutputStream(PATH)) {
+            var result = CODEC.encodeStart(JsonOps.INSTANCE, config).result();
+            if (result.isPresent()) {
+                var json = result.get();
+                IOUtils.write(GSON.toJson(json), output, StandardCharsets.UTF_8);
+            }
+        } catch (IOException e) {
+            Promenade.LOGGER.warn("Failed to create default Promenade config", e);
+        }
+        return config;
     }
 }

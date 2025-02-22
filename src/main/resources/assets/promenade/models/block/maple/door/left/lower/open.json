@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/door_bottom_left_open",
-  "textures": {
-    "bottom": "promenade:block/maple/door/bottom",
-    "top": "promenade:block/maple/door/top"
-  }
-}

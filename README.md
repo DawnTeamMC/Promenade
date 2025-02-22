@@ -1,20 +1,17 @@
-[![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://hugman.gitbook.io/promenade/)
+[![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://dawnteammc.github.io/promenade)
 
 # 🍁 Promenade
-[![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg)](https://github.com/DawnTeamMC/Promenade/releases/latest)
-[![CurseForge downloads](http://cf.way2muchnoise.eu/full_promenade_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/promenade)
-[![License (LGPL v3.0)](https://img.shields.io/badge/code%20license-LGPL%20v3.0-green.svg?style=flat-square)](https://www.gnu.org/licenses/lgpl-3.0.en.html)
-[![GitHub stars](https://img.shields.io/github/stars/DawnTeamMC/Promenade.svg?style=flat-square)]()
+[![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg?label=Latest%20version&style=for-the-badge)](https://github.com/DawnTeamMC/Promenade/releases/latest)
+[![CurseForge downloads](http://cf.way2muchnoise.eu/full_promenade_downloads.svg?badge_style=for_the_badge)](https://www.curseforge.com/minecraft/mc-mods/promenade)
 
-[![Discord user count](https://img.shields.io/discord/504608980799062036.svg?logoColor=FFFFFF&logo=discord&color=7289DA&style=flat-square)](https://discord.gg/8ksTVJu)
-[![Twitter followers](https://img.shields.io/twitter/follow/DawnTeamMC.svg?logo=twitter&label=twitter&style=flat-square)](https://twitter.com/DawnTeamMC)
+[![Discord user count](https://img.shields.io/discord/504608980799062036?label=&color=424549&labelColor=7289da&style=for-the-badge&logo=Discord&logoColor=DDE4EF)](https://discord.gg/8ksTVJu)
+[![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/DawnTeamMC?style=for-the-badge&labelColor=424549&color=424549&logo=x)](https://twitter.com/DawnTeamMC)
+
+[![License (Polyform Shield 1.0.0)](https://img.shields.io/badge/code%20license-Polyform%20Shield%201.0.0-green.svg?style=for-the-badge)](https://polyformproject.org/licenses/shield/1.0.0/)
 
 Promenade is a mod for the latest version of Minecraft that adds a ton of features to the game related to exploration, diversity and will improve the beauty of your world.
 
 **You can visit the [official wiki for Promenade for more information](https://dawnteammc.github.io/promenade).**
-
-## 👾 Features
-Due to a missing Fabric API module, versions from v2.5.0 to v4.0.0 require [TerraBlender](https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric) to be installed for overworld biomes to appear in your world.
 
 ### Biomes
 
@@ -56,11 +53,10 @@ Listen to **Brise couleur pastel** on [Bandcamp](https://ludocrypt.bandcamp.com/
 [![Brise couleur pastel](https://img.youtube.com/vi/NUTTAB_-uY0/0.jpg)](https://www.youtube.com/watch?v=NUTTAB_-uY0)
 
 ## 📦 Download
-### Required mods
-⚠ Promenade **needs** the following mods to be installed:
+We use [CurseForge](https://www.curseforge.com/minecraft/mc-mods/promenade) and [Modrinth](https://modrinth.com/mod/promenade) to publish **stable builds** of Promenade for Minecraft.
 
-- Fabric API: [GitHub](https://github.com/FabricMC/fabric) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) / [Modrinth](https://modrinth.com/mod/fabric-api)
-- Dawn API: [GitHub](https://github.com/DawnTeamMC/DawnAPI) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/dawn) / [Modrinth](https://modrinth.com/mod/dawn)
+### Required mods
+⚠ Promenade **requires** Fabric API to be installed: [GitHub](https://github.com/FabricMC/fabric) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) / [Modrinth](https://modrinth.com/mod/fabric-api)
 
 ### Compatible mods
 Promenade is compatible with the following mods:
@@ -87,3 +83,9 @@ By supporting Hugman, you can get access to the following:
 **We do not want to lock any in-game feature of the Dawn Team mods behind a paywall, because we believe that any Minecraft mod should forever remain free to download and fully exploit/use.**  
 Supporting via Patreon is a more of way to help Hugman to continue to improve the mods and show the gratitude you might have towards Hugman's work.
 Some money you donate may be used to pay for new features, such as music or art, but not all of it.
+
+
+## 📜 License
+
+Except where otherwise stated (see [third-party license notices](thirdparty/NOTICE.txt)), the content of this repository is provided
+under the [Polyform Shield 1.0.0](LICENSE.md) license by [Hugman](https://github.com/Hugman76).

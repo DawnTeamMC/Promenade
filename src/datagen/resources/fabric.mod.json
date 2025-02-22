@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "name": "Promenade Data Generation",
+  "id": "promenade-datagen",
+  "version": "1.0.0",
+  "authors": [
+    "Hugman"
+  ],
+  "environment": "client",
+  "entrypoints": {
+    "fabric-datagen": [
+      "fr.hugman.promenade.data.PromenadeDataGenerator"
+    ]
+  }
+}

@@ -26,11 +26,6 @@ public class LushCreeperEntity extends CreeperEntity {
         super(entityType, world);
     }
 
-    @Override
-    public boolean shouldRenderOverlay() {
-        return false;
-    }
-
     public static boolean canSpawn(EntityType<? extends HostileEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
         return pos.getY() < 0 && HostileEntity.canSpawnInDark(type, world, spawnReason, pos, random);
     }
@@ -39,8 +34,8 @@ public class LushCreeperEntity extends CreeperEntity {
     protected void explode() {
         if (this.getWorld() instanceof ServerWorld serverWorld) {
             boolean hasGeneratedMoss = false;
-            if (this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
-                Registry<ConfiguredFeature<?, ?>> registry = serverWorld.getRegistryManager().get(RegistryKeys.CONFIGURED_FEATURE);
+            if (serverWorld.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+                Registry<ConfiguredFeature<?, ?>> registry = serverWorld.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE);
                 for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
                     BlockPos pos = getBlockPos().down(i);
                     if (this.getWorld().getBlockState(pos).isSolidBlock(this.getWorld(), pos)) {
@@ -62,7 +57,7 @@ public class LushCreeperEntity extends CreeperEntity {
             }
             if (hasGeneratedMoss) {
                 this.dead = true;
-                float f = this.shouldRenderOverlay() ? 2.0F : 1.0F;
+                float f = this.isCharged() ? 2.0F : 1.0F;
                 this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), f, World.ExplosionSourceType.MOB);
                 this.discard();
                 this.spawnEffectsCloud();

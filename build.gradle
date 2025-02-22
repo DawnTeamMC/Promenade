@@ -1,36 +1,92 @@
 plugins {
-    id 'fabric-loom' version '1.6-SNAPSHOT'
+    id 'fabric-loom' version '1.9+'
+    id 'org.moddedmc.wiki.toolkit' version '0.2.7'
 }
 
-apply from: 'https://dawnteammc.github.io/resources/gradle_scripts/fabric-mod/java-21.gradle'
+group = "com.github.hugman"
+
+base {
+    archivesName = project.mod_id
+}
 
 repositories {
-    maven { url 'https://jitpack.io' }                // Required for Dawn API
-    maven { url 'https://maven.terraformersmc.com/' } // Required for Mod Menu and Terraform APIs
-    maven { url 'https://maven.shedaniel.me/' }       // Required for Cloth Config
-
-    maven { url 'https://maven.minecraftforge.net/' } // Required for TerraBlender
-
-    maven { url 'https://www.cursemaven.com' }        // Required for Columns
-
+    maven { url 'https://maven.terraformersmc.com/' } // Required for Biolith
 }
 
 dependencies {
-    modApi ("com.github.DawnTeamMC:DawnAPI:${dawn_version}"){
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    modApi include ("com.terraformersmc:biolith-fabric:${biolith_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-
-    includeMod "com.terraformersmc:biolith-fabric:${biolith_version}"
-
-    /*
-    modImplementation ("curse.maven:columns-385230:${columns_version}"){
-        exclude(group: "net.fabricmc.fabric-api")
-    }
-     */
 
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+
+    // Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-fabric
+    modRuntimeOnly "org.sinytra:item-asset-export-fabric:1.1.0+1.21.4"
 }
 
 loom {
     accessWidenerPath = file("src/main/resources/promenade.accesswidener")
+
+    splitEnvironmentSourceSets()
+
+    mods {
+        "promenade" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+}
+
+fabricApi {
+    configureDataGeneration() {
+        modId = "promenade-datagen"
+        createSourceSet = true
+        client = true
+    }
+}
+
+processResources {
+    inputs.property "version", project.version
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 21
+}
+
+java {
+    withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+}
+
+// for JitPack
+configurations.configureEach {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+wiki {
+    docs {
+        promenade {
+            root = file('docs')
+            exportedAssetNamespaces = ['promenade']
+        }
+    }
 }

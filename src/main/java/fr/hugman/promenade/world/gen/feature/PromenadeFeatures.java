@@ -10,6 +10,8 @@ import net.minecraft.world.gen.feature.HugeFungusFeatureConfig;
 
 public class PromenadeFeatures {
     public static final Feature<HugeFungusFeatureConfig> TALL_HUGE_FUNGUS = of("tall_huge_fungus", new TallHugeFungusFeature(HugeFungusFeatureConfig.CODEC));
+    public static final Feature<CoiledVinesFeatureConfig> COILED_VINES = of("coiled_vines", new CoiledVinesFeature(CoiledVinesFeatureConfig.CODEC));
+    public static final Feature<NoisePickedFeatureConfig> NOISE_PICKED = of("noised_picked", new NoisePickedFeature(NoisePickedFeatureConfig.CODEC));
     public static final Feature<BoulderFeatureConfig> BOULDER = of("boulder", new BoulderFeature(BoulderFeatureConfig.CODEC));
     public static final FreezeTopLayerFeature FREEZE_TOP_LAYER = of("freeze_top_layer", new FreezeTopLayerFeature(DefaultFeatureConfig.CODEC));
 
