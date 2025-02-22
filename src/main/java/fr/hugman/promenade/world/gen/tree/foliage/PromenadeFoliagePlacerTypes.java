@@ -9,7 +9,7 @@ import net.minecraft.world.gen.foliage.FoliagePlacerType;
 
 public class PromenadeFoliagePlacerTypes {
     public static final FoliagePlacerType<PalmFoliagePlacer> PALM = register("palm", PalmFoliagePlacer.CODEC);
-    public static final FoliagePlacerType<MapleFoliagePlacer> MAPLE = register("maple", MapleFoliagePlacer.CODEC);
+    public static final FoliagePlacerType<DropletFoliagePlacer> DROPLET = register("droplet", DropletFoliagePlacer.CODEC);
 
     private static <P extends FoliagePlacer> FoliagePlacerType<P> register(String path, MapCodec<P> codec) {
         return Registry.register(Registries.FOLIAGE_PLACER_TYPE, Promenade.id(path), new FoliagePlacerType<>(codec));

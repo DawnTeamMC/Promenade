@@ -5,12 +5,12 @@ import fr.hugman.promenade.block.MoaiType;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
 import fr.hugman.promenade.block.property.PromenadeBlockProperties;
+import fr.hugman.promenade.client.color.PromenadeFoliageColors;
 import fr.hugman.promenade.data.PromenadeBlockFamilies;
 import fr.hugman.promenade.data.model.PromenadeModels;
 import fr.hugman.promenade.data.model.PromenadeTextureMaps;
 import fr.hugman.promenade.data.model.PromenadeTexturedModels;
 import fr.hugman.promenade.item.PromenadeItems;
-import fr.hugman.promenade.world.biome.PromenadeFoliageColors;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
@@ -101,6 +101,13 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerTintedBlockAndItem(PromenadeBlocks.PALM_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.PALM_LEAVES), PromenadeFoliageColors.PALM);
         gen.registerTintableCrossBlockState(PromenadeBlocks.PALM_HANGING_LEAVES, BlockStateModelGenerator.CrossType.TINTED);
         this.registerTintedItem(gen, PromenadeBlocks.PALM_HANGING_LEAVES, PromenadeFoliageColors.PALM);
+
+        gen.registerLog(PromenadeBlocks.AURORAL_CYPRESS_LOG).log(PromenadeBlocks.AURORAL_CYPRESS_LOG).wood(PromenadeBlocks.AURORAL_CYPRESS_WOOD);
+        gen.registerLog(PromenadeBlocks.STRIPPED_AURORAL_CYPRESS_LOG).log(PromenadeBlocks.STRIPPED_AURORAL_CYPRESS_LOG).wood(PromenadeBlocks.STRIPPED_AURORAL_CYPRESS_WOOD);
+        gen.registerHangingSign(PromenadeBlocks.STRIPPED_AURORAL_CYPRESS_LOG, PromenadeBlocks.AURORAL_CYPRESS_HANGING_SIGN, PromenadeBlocks.AURORAL_CYPRESS_WALL_HANGING_SIGN);
+        gen.registerFlowerPotPlantAndItem(PromenadeBlocks.AURORAL_CYPRESS_SAPLING, PromenadeBlocks.POTTED_AURORAL_CYPRESS_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        gen.registerTintedBlockAndItem(PromenadeBlocks.AURORAL_CYPRESS_LEAVES, TexturedModel.LEAVES, PromenadeFoliageColors.AURORAL_CYPRESS);
+        gen.registerTintedBlockAndItem(PromenadeBlocks.AURORAL_CYPRESS_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.AURORAL_CYPRESS_LEAVES), PromenadeFoliageColors.AURORAL_CYPRESS);
 
         gen.registerNetherrackBottomCustomTop(PromenadeBlocks.DARK_AMARANTH_NYLIUM);
         gen.registerSimpleCubeAll(PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);
@@ -241,10 +248,15 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.register(PromenadeItems.MAPLE_SYRUP_BOTTLE, Models.GENERATED);
         gen.register(PromenadeItems.PALM_BOAT, Models.GENERATED);
         gen.register(PromenadeItems.PALM_CHEST_BOAT, Models.GENERATED);
+        gen.register(PromenadeItems.AURORAL_CYPRESS_BOAT, Models.GENERATED);
+        gen.register(PromenadeItems.AURORAL_CYPRESS_CHEST_BOAT, Models.GENERATED);
 
         gen.register(PromenadeItems.BANANA, Models.GENERATED);
         gen.register(PromenadeItems.APRICOT, Models.GENERATED);
         gen.register(PromenadeItems.MANGO, Models.GENERATED);
+
+        gen.register(PromenadeItems.STAR_DUST, Models.GENERATED);
+
         gen.register(PromenadeItems.DUCK, Models.GENERATED);
         gen.register(PromenadeItems.COOKED_DUCK, Models.GENERATED);
 

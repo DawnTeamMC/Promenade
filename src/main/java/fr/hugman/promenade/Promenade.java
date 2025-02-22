@@ -18,7 +18,6 @@ import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifierTypes;
-import fr.hugman.promenade.world.gen.surface.PromenadeSurfaceBuilders;
 import fr.hugman.promenade.world.gen.tree.foliage.PromenadeFoliagePlacerTypes;
 import fr.hugman.promenade.world.gen.tree.trunk.PromenadeTrunkPlacerTypes;
 import net.fabricmc.api.ModInitializer;
@@ -64,7 +63,6 @@ public class Promenade implements ModInitializer {
         PromenadeBiomes.appendWorldGen();
         PromenadePlacedFeatures.appendWorldGen();
         PromenadeEntityTypes.appendWorldGen();
-        PromenadeSurfaceBuilders.init();
 
         PromenadeRegistryAliases.registerAliases();
     }

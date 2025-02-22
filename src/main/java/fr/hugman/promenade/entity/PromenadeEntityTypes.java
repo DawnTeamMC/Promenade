@@ -35,6 +35,9 @@ public class PromenadeEntityTypes {
     public static final EntityType<BoatEntity> PALM_BOAT = register("palm_boat", EntityTypeFactory.boat(() -> PromenadeItems.PALM_BOAT));
     public static final EntityType<ChestBoatEntity> PALM_CHEST_BOAT = register("palm_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.PALM_CHEST_BOAT));
 
+    public static final EntityType<BoatEntity> AURORAL_CYPRESS_BOAT = register("auroral_cypress_boat", EntityTypeFactory.boat(() -> PromenadeItems.AURORAL_CYPRESS_BOAT));
+    public static final EntityType<ChestBoatEntity> AURORAL_CYPRESS_CHEST_BOAT = register("auroral_cypress_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.AURORAL_CYPRESS_CHEST_BOAT));
+
     public static final EntityType<CapybaraEntity> CAPYBARA = register("capybara", FabricEntityType.Builder.createMob(CapybaraEntity::new, SpawnGroup.CREATURE, mob -> mob
                     .defaultAttributes(CapybaraEntity::createCapybaraAttributes)
                     .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, AnimalEntity::isValidNaturalSpawn)

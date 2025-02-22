@@ -44,6 +44,7 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
         registerable.register(PromenadeBiomes.CARNELIAN_TREEWAY, createCarnelianTreeway(features, carvers));
         registerable.register(PromenadeBiomes.GLACARIAN_TAIGA, createGlacarianTaiga(features, carvers));
+        registerable.register(PromenadeBiomes.AURORAL_CYPRESS_FOREST, createAuroralCypressForest(features, carvers));
 
         registerable.register(PromenadeBiomes.DARK_AMARANTH_FOREST, createDarkAmaranthForest(features, carvers));
     }
@@ -194,6 +195,43 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
                 1724346,
                 197394,
                 null,
+                null,
+                spawns,
+                generation,
+                null
+        );
+    }
+
+    private static Biome createAuroralCypressForest(RegistryEntryLookup<PlacedFeature> features, RegistryEntryLookup<ConfiguredCarver<?>> carvers) {
+        GenerationSettings.LookupBackedBuilder generation = new GenerationSettings.LookupBackedBuilder(features, carvers);
+
+        addBasicFeatures(generation);
+
+        DefaultBiomeFeatures.addForestFlowers(generation);
+
+        DefaultBiomeFeatures.addDefaultOres(generation);
+        DefaultBiomeFeatures.addDefaultDisks(generation);
+
+        DefaultBiomeFeatures.addDefaultFlowers(generation);
+        DefaultBiomeFeatures.addForestGrass(generation);
+
+        DefaultBiomeFeatures.addDefaultMushrooms(generation);
+        DefaultBiomeFeatures.addDefaultVegetation(generation);
+
+        generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.AURORAL_CYPRESS_FOREST_TREES);
+
+        SpawnSettings.Builder spawns = new SpawnSettings.Builder();
+
+        DefaultBiomeFeatures.addFarmAnimals(spawns);
+        DefaultBiomeFeatures.addBatsAndMonsters(spawns);
+
+        return createBiome(
+                true,
+                1.2F,
+                0.9F,
+                155336,
+                541,
+                6484135,
                 null,
                 spawns,
                 generation,

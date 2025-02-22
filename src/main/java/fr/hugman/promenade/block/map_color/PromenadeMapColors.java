@@ -21,6 +21,10 @@ public class PromenadeMapColors {
     public static final MapColor PALM_WOOD = MapColor.ORANGE;
     public static final MapColor PALM_LEAVES = MapColor.DARK_GREEN;
 
+    public static final MapColor AURORAL_CYPRESS_BARK = MapColor.DEEPSLATE_GRAY;
+    public static final MapColor AURORAL_CYPRESS_WOOD = MapColor.TERRACOTTA_WHITE;
+    public static final MapColor AURORAL_CYPRESS_LEAVES = MapColor.BLUE;
+
     public static final MapColor AMARANTH_BARK = MapColor.DARK_DULL_PINK;
     public static final MapColor AMARANTH_WOOD = MapColor.GRAY;
 }

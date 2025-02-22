@@ -44,7 +44,7 @@ public record PromenadeConfig(
 
     private PromenadeConfig() {
         this(
-                new BiomesConfig(20, 20, 10, Optional.of(PromenadeBiomes.DEFAULT_DARK_AMARANTH_FOREST_HYPERCUBE)),
+                new BiomesConfig(20, 20, 10, 10, Optional.of(PromenadeBiomes.DEFAULT_DARK_AMARANTH_FOREST_HYPERCUBE)),
                 new WorldFeaturesConfig(true, true, true),
                 new AnimalsConfig(10, 10),
                 new MonstersConfig(15, 10)
@@ -55,6 +55,7 @@ public record PromenadeConfig(
             int carnelianTreewayWeight,
             int sakuraGrovesWeight,
             int glacarianTaigaWeight,
+            int auroralCypressForestWeight,
             Optional<MultiNoiseUtil.NoiseHypercube> darkAmaranthForestsNoise
     ) {
 
@@ -63,6 +64,7 @@ public record PromenadeConfig(
                         Codec.INT.optionalFieldOf("carnelian_treeway_weight", 20).forGetter(BiomesConfig::carnelianTreewayWeight),
                         Codec.INT.optionalFieldOf("sakura_groves_weight", 20).forGetter(BiomesConfig::sakuraGrovesWeight),
                         Codec.INT.optionalFieldOf("glacarian_taiga_weight", 10).forGetter(BiomesConfig::glacarianTaigaWeight),
+                        Codec.INT.optionalFieldOf("auroral_cypress_weight", 10).forGetter(BiomesConfig::auroralCypressForestWeight),
                         MultiNoiseUtil.NoiseHypercube.CODEC.optionalFieldOf("dark_amaranth_forests_noise").forGetter(BiomesConfig::darkAmaranthForestsNoise)
                 ).apply(instance, BiomesConfig::new)
         );

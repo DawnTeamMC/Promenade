@@ -129,6 +129,8 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
 
         of(registerable, PromenadePlacedFeatures.GLACARIAN_TAIGA_TREES, configured.getOrThrow(PromenadeConfiguredFeatures.SNOWY_MEGA_SPRUCE), treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(14, 0.1F, 4), Blocks.SPRUCE_SAPLING));
 
+        of(registerable, PromenadePlacedFeatures.AURORAL_CYPRESS_FOREST_TREES, configured.getOrThrow(PromenadeConfiguredFeatures.AURORAL_CYPRESS), treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(3, 0.05F, 1), PromenadeBlocks.AURORAL_CYPRESS_SAPLING));
+
         of(registerable, PromenadePlacedFeatures.PALMS, configured.getOrThrow(PromenadeConfiguredFeatures.PALM), treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.1F, 1), PromenadeBlocks.PALM_SAPLING));
 
         of(registerable, PromenadePlacedFeatures.DARK_AMARANTH_FUNGI, configured.getOrThrow(PromenadeConfiguredFeatures.DARK_AMARANTH_FUNGUS), netherCount(8));

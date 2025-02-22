@@ -2,13 +2,14 @@ package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import fr.hugman.dawn.DawnFactory;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
@@ -31,16 +32,9 @@ public class StarryLeavesBlock extends LeavesBlock {
         this.starBits = starBits;
     }
 
-    public static StarryLeavesBlock of(Settings settings) {
-        return new StarryLeavesBlock(PromenadeBlockKeys.STAR_BITS, settings);
-    }
-
-    public static StarryLeavesBlock of(MapColor mapColor, BlockSoundGroup soundGroup) {
-        return of(DawnFactory.leavesSettings(mapColor, soundGroup));
-    }
-
-    public static StarryLeavesBlock of(MapColor mapColor) {
-        return of(mapColor, BlockSoundGroup.GRASS);
+    //TODO: move this to another class
+    public StarryLeavesBlock(Settings settings) {
+        this(PromenadeBlockKeys.STAR_BITS, settings);
     }
 
     @Override
@@ -53,7 +47,7 @@ public class StarryLeavesBlock extends LeavesBlock {
         super.randomTick(state, world, pos, random);
         if (world.getDimension().hasFixedTime() || world.isNight()) {
             if (random.nextInt(100) == 0) {
-                var block = world.getRegistryManager().get(RegistryKeys.BLOCK).getOrEmpty(this.starBits);
+                var block = world.getRegistryManager().getOrThrow(RegistryKeys.BLOCK).getOptionalValue(this.starBits);
                 if (block.isEmpty()) {
                     return;
                 }

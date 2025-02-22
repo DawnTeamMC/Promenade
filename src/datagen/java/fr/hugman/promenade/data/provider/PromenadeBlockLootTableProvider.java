@@ -172,6 +172,27 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.PALM_HANGING_LEAVES, this::dropsWithSilkTouchOrShears);
         addDrop(PromenadeBlocks.PALM_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
+        addDrop(PromenadeBlocks.STRIPPED_AURORAL_CYPRESS_LOG);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_LOG);
+        addDrop(PromenadeBlocks.STRIPPED_AURORAL_CYPRESS_WOOD);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_WOOD);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_PLANKS);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_STAIRS);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_SLAB, this::slabDrops);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_FENCE);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_FENCE_GATE);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_DOOR, this::doorDrops);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_TRAPDOOR);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_BUTTON);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_PRESSURE_PLATE);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_SIGN);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_HANGING_SIGN);
+
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_SAPLING);
+        addPottedPlantDrops(PromenadeBlocks.POTTED_AURORAL_CYPRESS_SAPLING);
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.AURORAL_CYPRESS_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.AURORAL_CYPRESS_LEAF_PILE, this::dropsWithSilkTouchOrShears);
+
         addDrop(PromenadeBlocks.DARK_AMARANTH_NYLIUM, block -> this.drops(block, Blocks.END_STONE));
         addDrop(PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);
         addDrop(PromenadeBlocks.DARK_AMARANTH_ROOTS);

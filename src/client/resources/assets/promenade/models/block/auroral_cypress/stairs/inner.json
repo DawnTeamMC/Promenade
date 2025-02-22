@@ -1,8 +1,0 @@
-{
-	"parent": "block/inner_stairs",
-	"textures": {
-		"bottom": "promenade:block/auroral_cypress/planks",
-		"top": "promenade:block/auroral_cypress/planks",
-		"side": "promenade:block/auroral_cypress/planks"
-	}
-}

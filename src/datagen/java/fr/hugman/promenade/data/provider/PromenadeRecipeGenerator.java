@@ -109,12 +109,23 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
         this.offerBoatRecipe(PromenadeItems.PALM_BOAT, PromenadeBlocks.PALM_PLANKS);
         this.offerChestBoatRecipe(PromenadeItems.PALM_CHEST_BOAT, PromenadeItems.PALM_BOAT);
 
+        this.offerPlanksRecipe(PromenadeBlocks.AURORAL_CYPRESS_PLANKS, PromenadeItemTags.AURORAL_CYPRESS_LOGS, 4);
+        this.offerBarkBlockRecipe(PromenadeBlocks.AURORAL_CYPRESS_WOOD, PromenadeBlocks.AURORAL_CYPRESS_LOG);
+        this.offerBarkBlockRecipe(PromenadeBlocks.STRIPPED_AURORAL_CYPRESS_WOOD, PromenadeBlocks.STRIPPED_AURORAL_CYPRESS_LOG);
+        this.offerHangingSignRecipe(PromenadeItems.AURORAL_CYPRESS_HANGING_SIGN, PromenadeBlocks.STRIPPED_AURORAL_CYPRESS_LOG);
+        this.offerLeafPileRecipe(PromenadeBlocks.AURORAL_CYPRESS_LEAF_PILE, PromenadeBlocks.AURORAL_CYPRESS_LEAVES);
+        this.offerBoatRecipe(PromenadeItems.AURORAL_CYPRESS_BOAT, PromenadeBlocks.AURORAL_CYPRESS_PLANKS);
+        this.offerChestBoatRecipe(PromenadeItems.AURORAL_CYPRESS_CHEST_BOAT, PromenadeItems.AURORAL_CYPRESS_BOAT);
+
         this.offerPlanksRecipe(PromenadeBlocks.DARK_AMARANTH_PLANKS, PromenadeItemTags.DARK_AMARANTH_STEMS, 4);
         this.offerBarkBlockRecipe(PromenadeBlocks.DARK_AMARANTH_HYPHAE, PromenadeBlocks.DARK_AMARANTH_STEM);
         this.offerBarkBlockRecipe(PromenadeBlocks.STRIPPED_DARK_AMARANTH_HYPHAE, PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM);
         this.offerHangingSignRecipe(PromenadeItems.DARK_AMARANTH_HANGING_SIGN, PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM);
 
         this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.MOAI, Blocks.TUFF);
+
+        this.offer2x2CompactingRecipe(RecipeCategory.DECORATIONS, PromenadeBlocks.STAR_BITS, PromenadeItems.STAR_DUST);
+        this.offer2x2CompactingRecipe(RecipeCategory.DECORATIONS, PromenadeBlocks.STAR_FRAGMENT, PromenadeBlocks.STAR_BITS);
 
         this.generateCookingRecipes("smelting", RecipeSerializer.SMELTING, SmeltingRecipe::new, 200);
         this.generateCookingRecipes("smoking", RecipeSerializer.SMOKING, SmokingRecipe::new, 100);

@@ -12,22 +12,22 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
 
-public class MapleFoliagePlacer extends FoliagePlacer {
-    public static final MapCodec<MapleFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance ->
-            MapleFoliagePlacer.fillFoliagePlacerFields(instance).and(
+public class DropletFoliagePlacer extends FoliagePlacer {
+    public static final MapCodec<DropletFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance ->
+            DropletFoliagePlacer.fillFoliagePlacerFields(instance).and(
                     IntProvider.createValidatingCodec(0, 32).optionalFieldOf("height", ConstantIntProvider.create(0)).forGetter(placer -> placer.height)
-            ).apply(instance, MapleFoliagePlacer::new));
+            ).apply(instance, DropletFoliagePlacer::new));
 
     protected final IntProvider height;
 
-    public MapleFoliagePlacer(IntProvider radius, IntProvider offset, IntProvider height) {
+    public DropletFoliagePlacer(IntProvider radius, IntProvider offset, IntProvider height) {
         super(radius, offset);
         this.height = height;
     }
 
     @Override
     protected FoliagePlacerType<?> getType() {
-        return PromenadeFoliagePlacerTypes.MAPLE;
+        return PromenadeFoliagePlacerTypes.DROPLET;
     }
 
     @Override
