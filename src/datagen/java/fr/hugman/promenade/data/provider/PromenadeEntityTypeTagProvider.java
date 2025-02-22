@@ -21,6 +21,6 @@ public class PromenadeEntityTypeTagProvider extends FabricTagProvider.EntityType
         getOrCreateTagBuilder(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES).add(PromenadeEntityTypes.DUCK);
         getOrCreateTagBuilder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(PromenadeEntityTypes.DUCK);
 
-        getOrCreateTagBuilder(EntityTypeTags.BOAT).add(PromenadeEntityTypes.SAKURA_BOAT, PromenadeEntityTypes.MAPLE_BOAT, PromenadeEntityTypes.PALM_BOAT);
+        getOrCreateTagBuilder(EntityTypeTags.BOAT).add(PromenadeEntityTypes.SAKURA_BOAT, PromenadeEntityTypes.MAPLE_BOAT, PromenadeEntityTypes.PALM_BOAT, PromenadeEntityTypes.AURORAL_CYPRESS_BOAT);
     }
 }

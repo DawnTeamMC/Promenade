@@ -85,6 +85,8 @@ public class PromenadePlacedFeatures {
 
     public static final RegistryKey<PlacedFeature> GLACARIAN_TAIGA_TREES = of("trees/glacarian_taiga");
 
+    public static final RegistryKey<PlacedFeature> AURORAL_CYPRESS_FOREST_TREES = of("trees/auroral_cypress_forest");
+
     public static final RegistryKey<PlacedFeature> PALMS = of("trees/palms");
 
     public static final RegistryKey<PlacedFeature> DARK_AMARANTH_FUNGI = of("trees/dark_amaranth_fungi");

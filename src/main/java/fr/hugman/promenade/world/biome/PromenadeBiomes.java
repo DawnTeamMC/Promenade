@@ -28,6 +28,7 @@ public class PromenadeBiomes {
     public static final RegistryKey<Biome> COTTON_SAKURA_GROVE = of("cotton_sakura_grove");
     public static final RegistryKey<Biome> CARNELIAN_TREEWAY = of("carnelian_treeway");
     public static final RegistryKey<Biome> GLACARIAN_TAIGA = of("glacarian_taiga");
+    public static final RegistryKey<Biome> AURORAL_CYPRESS_FOREST = of("auroral_cypress_forest");
 
     public static final RegistryKey<Biome> DARK_AMARANTH_FOREST = of("dark_amaranth_forest");
 
@@ -62,6 +63,10 @@ public class PromenadeBiomes {
             BiomePlacement.replaceOverworld(BiomeKeys.GROVE, PromenadeBiomes.GLACARIAN_TAIGA, glacarianTaigaWeight);
         }
 
+        // Auroral Cypress
+        if (biomeConfig.auroralCypressForestWeight() >= 0) {
+            BiomePlacement.replaceOverworld(BiomeKeys.WINDSWEPT_FOREST, PromenadeBiomes.AURORAL_CYPRESS_FOREST, biomeConfig.auroralCypressForestWeight() / 100.0D);
+        }
 
         if (biomeConfig.darkAmaranthForestsNoise().isPresent()) {
             BiomePlacement.addNether(PromenadeBiomes.DARK_AMARANTH_FOREST, biomeConfig.darkAmaranthForestsNoise().get());

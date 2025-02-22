@@ -9,6 +9,7 @@ public class PromenadeBlockTags {
     public static final TagKey<Block> SAKURA_LOGS = of("sakura_logs");
     public static final TagKey<Block> MAPLE_LOGS = of("maple_logs");
     public static final TagKey<Block> PALM_LOGS = of("palm_logs");
+    public static final TagKey<Block> AURORAL_CYPRESS_LOGS = of("auroral_cypress_logs");
     public static final TagKey<Block> DARK_AMARANTH_STEMS = of("dark_amaranth_stems");
 
     public static final TagKey<Block> FALLEN_LEAVES = of("fallen_leaves");

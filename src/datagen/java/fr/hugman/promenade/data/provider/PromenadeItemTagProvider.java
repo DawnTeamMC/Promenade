@@ -28,6 +28,7 @@ public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider 
         copy(PromenadeBlockTags.SAKURA_LOGS, SAKURA_LOGS);
         copy(PromenadeBlockTags.MAPLE_LOGS, MAPLE_LOGS);
         copy(PromenadeBlockTags.PALM_LOGS, PALM_LOGS);
+        copy(PromenadeBlockTags.AURORAL_CYPRESS_LOGS, AURORAL_CYPRESS_LOGS);
         copy(PromenadeBlockTags.DARK_AMARANTH_STEMS, DARK_AMARANTH_STEMS);
 
         getOrCreateTagBuilder(CAPYBARA_FOOD).add(Items.CARROT, Items.MELON_SLICE);
@@ -61,8 +62,8 @@ public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider 
         copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
         copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
 
-        getOrCreateTagBuilder(ItemTags.BOATS).add(SAKURA_BOAT, MAPLE_BOAT, PALM_BOAT);
-        getOrCreateTagBuilder(ItemTags.CHEST_BOATS).add(SAKURA_CHEST_BOAT, MAPLE_CHEST_BOAT, PALM_CHEST_BOAT);
+        getOrCreateTagBuilder(ItemTags.BOATS).add(SAKURA_BOAT, MAPLE_BOAT, PALM_BOAT, AURORAL_CYPRESS_BOAT);
+        getOrCreateTagBuilder(ItemTags.CHEST_BOATS).add(SAKURA_CHEST_BOAT, MAPLE_CHEST_BOAT, PALM_CHEST_BOAT, AURORAL_CYPRESS_CHEST_BOAT);
         getOrCreateTagBuilder(ItemTags.MEAT).add(DUCK, COOKED_DUCK);
         getOrCreateTagBuilder(ItemTags.FOX_FOOD).add(BLUEBERRIES);
 

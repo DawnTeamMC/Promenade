@@ -86,6 +86,15 @@ public final class PromenadeBlockRenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_LEAF_PILE, RenderLayer.getCutout());
 
 
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.AURORAL_CYPRESS_DOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.AURORAL_CYPRESS_TRAPDOOR, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.AURORAL_CYPRESS_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_AURORAL_CYPRESS_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.AURORAL_CYPRESS_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.AURORAL_CYPRESS_LEAF_PILE, RenderLayer.getCutout());
+
+
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DARK_AMARANTH_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.DARK_AMARANTH_TRAPDOOR, RenderLayer.getCutout());
 
@@ -98,5 +107,8 @@ public final class PromenadeBlockRenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.COILED_VINES_PLANT, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.BLUEBERRY_BUSH, RenderLayer.getCutout());
+
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.STAR_BITS, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.STAR_FRAGMENT, RenderLayer.getCutout());
     }
 }

@@ -86,6 +86,20 @@ public class PromenadeBlockFamilies {
             .unlockCriterionName(WOODEN_UNLOCK_CRITERION_NAME)
             .build();
 
+    public static final BlockFamily AURORAL_CYPRESS = register(PromenadeBlocks.AURORAL_CYPRESS_PLANKS)
+            .button(PromenadeBlocks.AURORAL_CYPRESS_BUTTON)
+            .fence(PromenadeBlocks.AURORAL_CYPRESS_FENCE)
+            .fenceGate(PromenadeBlocks.AURORAL_CYPRESS_FENCE_GATE)
+            .pressurePlate(PromenadeBlocks.AURORAL_CYPRESS_PRESSURE_PLATE)
+            .sign(PromenadeBlocks.AURORAL_CYPRESS_SIGN, PromenadeBlocks.AURORAL_CYPRESS_WALL_SIGN)
+            .slab(PromenadeBlocks.AURORAL_CYPRESS_SLAB)
+            .stairs(PromenadeBlocks.AURORAL_CYPRESS_STAIRS)
+            .door(PromenadeBlocks.AURORAL_CYPRESS_DOOR)
+            .trapdoor(PromenadeBlocks.AURORAL_CYPRESS_TRAPDOOR)
+            .group(WOODEN_GROUP)
+            .unlockCriterionName(WOODEN_UNLOCK_CRITERION_NAME)
+            .build();
+
     public static final BlockFamily DARK_AMARANTH = register(PromenadeBlocks.DARK_AMARANTH_PLANKS)
             .button(PromenadeBlocks.DARK_AMARANTH_BUTTON)
             .fence(PromenadeBlocks.DARK_AMARANTH_FENCE)

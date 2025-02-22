@@ -194,6 +194,34 @@ public class PromenadeBlocks {
     public static final Block PALM_LEAF_PILE = register("palm_leaf_pile", BlockFactory.pile(PromenadeMapColors.PALM_LEAVES, BlockSoundGroup.GRASS));
 
 
+    /* =========== */
+    /*   AURORAL   */
+    /* =========== */
+    public static final Block AURORAL_CYPRESS_LOG = register("auroral_cypress_log", BlockFactory.log(PromenadeMapColors.AURORAL_CYPRESS_WOOD, PromenadeMapColors.AURORAL_CYPRESS_BARK, PromenadeBlockSounds.AURORAL_CYPRESS_WOOD, true));
+    public static final Block STRIPPED_AURORAL_CYPRESS_LOG = register("stripped_auroral_cypress_log", BlockFactory.log(PromenadeMapColors.AURORAL_CYPRESS_WOOD, PromenadeBlockSounds.AURORAL_CYPRESS_WOOD, true));
+    public static final Block AURORAL_CYPRESS_WOOD = register("auroral_cypress_wood", BlockFactory.log(PromenadeMapColors.AURORAL_CYPRESS_BARK, PromenadeBlockSounds.AURORAL_CYPRESS_WOOD, true));
+    public static final Block STRIPPED_AURORAL_CYPRESS_WOOD = register("stripped_auroral_cypress_wood", BlockFactory.log(PromenadeMapColors.AURORAL_CYPRESS_WOOD, PromenadeBlockSounds.AURORAL_CYPRESS_WOOD, true));
+
+    public static final Block AURORAL_CYPRESS_PLANKS = register("auroral_cypress_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.AURORAL_CYPRESS_WOOD, PromenadeBlockSounds.AURORAL_CYPRESS_WOOD, true)));
+    public static final Block AURORAL_CYPRESS_STAIRS = register("auroral_cypress_stairs", BlockFactory.stairs(AURORAL_CYPRESS_PLANKS));
+    public static final Block AURORAL_CYPRESS_SLAB = register("auroral_cypress_slab", BlockFactory.slab(AURORAL_CYPRESS_PLANKS));
+    public static final Block AURORAL_CYPRESS_FENCE = register("auroral_cypress_fence", BlockFactory.fence(AURORAL_CYPRESS_PLANKS));
+    public static final Block AURORAL_CYPRESS_FENCE_GATE = register("auroral_cypress_fence_gate", BlockFactory.fenceGate(AURORAL_CYPRESS_PLANKS, PromenadeWoodTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_DOOR = register("auroral_cypress_door", BlockFactory.door(AURORAL_CYPRESS_PLANKS, PromenadeBlockSetTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_TRAPDOOR = register("auroral_cypress_trapdoor", BlockFactory.trapdoor(AURORAL_CYPRESS_PLANKS, PromenadeBlockSetTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_BUTTON = register("auroral_cypress_button", BlockFactory.woodenButton(AURORAL_CYPRESS_PLANKS, PromenadeBlockSetTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_PRESSURE_PLATE = register("auroral_cypress_pressure_plate", BlockFactory.pressurePlate(AURORAL_CYPRESS_PLANKS, PromenadeBlockSetTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_SIGN = register("auroral_cypress_sign", BlockFactory.sign(AURORAL_CYPRESS_PLANKS, PromenadeWoodTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_WALL_SIGN = register("auroral_cypress_wall_sign", BlockFactory.wallSign(AURORAL_CYPRESS_PLANKS, PromenadeWoodTypes.AURORAL_CYPRESS));
+    public static final Block AURORAL_CYPRESS_HANGING_SIGN = register("auroral_cypress_hanging_sign", BlockFactory.hangingSign(AURORAL_CYPRESS_PLANKS, PromenadeWoodTypes.AURORAL_CYPRESS, BlockSoundGroup.HANGING_SIGN));
+    public static final Block AURORAL_CYPRESS_WALL_HANGING_SIGN = register("auroral_cypress_wall_hanging_sign", BlockFactory.wallHangingSign(AURORAL_CYPRESS_PLANKS, PromenadeWoodTypes.AURORAL_CYPRESS, BlockSoundGroup.HANGING_SIGN));
+
+    public static final Block AURORAL_CYPRESS_SAPLING = register("auroral_cypress_sapling", BlockFactory.sapling(PromenadeMapColors.AURORAL_CYPRESS_LEAVES, PromenadeSaplingGenerators.AURORAL_CYPRESS));
+    public static final Block POTTED_AURORAL_CYPRESS_SAPLING = register("potted_auroral_cypress_sapling", BlockFactory.pot(AURORAL_CYPRESS_SAPLING));
+    public static final Block AURORAL_CYPRESS_LEAVES = register("auroral_cypress_leaves", BlockFactory.leaves(PromenadeMapColors.AURORAL_CYPRESS_LEAVES).factory(StarryLeavesBlock::new));
+    public static final Block AURORAL_CYPRESS_LEAF_PILE = register("auroral_cypress_leaf_pile", BlockFactory.pile(PromenadeMapColors.AURORAL_CYPRESS_LEAVES, BlockSoundGroup.GRASS));
+
+
     /* ============ */
     /*   AMARANTH   */
     /* ============ */
@@ -271,6 +299,20 @@ public class PromenadeBlocks {
             .noCollision()
             .sounds(BlockSoundGroup.SWEET_BERRY_BUSH)
             .pistonBehavior(PistonBehavior.DESTROY)));
+
+    public static final Block STAR_BITS = register(PromenadeBlockKeys.STAR_BITS, BlockFactory.of(StarBitsBlock::new, AbstractBlock.Settings.create()
+            .mapColor(MapColor.TERRACOTTA_WHITE)
+            .noCollision()
+            .breakInstantly()
+            .sounds(BlockSoundGroup.SMALL_AMETHYST_BUD)
+            .luminance(state -> 9)
+            .pistonBehavior(PistonBehavior.DESTROY)));
+    public static final Block STAR_FRAGMENT = register("star_fragment", BlockFactory.of(StarFragmentBlock::new,
+            AbstractBlock.Settings.create()
+                    .mapColor(MapColor.TERRACOTTA_WHITE)
+                    .sounds(BlockSoundGroup.LARGE_AMETHYST_BUD)
+                    .luminance(state -> 15)
+                    .pistonBehavior(PistonBehavior.DESTROY)));
 
     private static RegistryKey<Block> keyOf(String id) {
         return RegistryKey.of(RegistryKeys.BLOCK, Promenade.id(id));

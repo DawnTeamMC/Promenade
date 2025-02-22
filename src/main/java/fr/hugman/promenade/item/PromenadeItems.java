@@ -35,6 +35,11 @@ public class PromenadeItems {
     public static final Item PALM_BOAT = register("palm_boat", ItemFactory.boat(PromenadeEntityTypes.PALM_BOAT), ItemSettings.max1());
     public static final Item PALM_CHEST_BOAT = register("palm_chest_boat", ItemFactory.boat(PromenadeEntityTypes.PALM_CHEST_BOAT), ItemSettings.max1());
 
+    public static final Item AURORAL_CYPRESS_SIGN = register(PromenadeBlocks.AURORAL_CYPRESS_SIGN, ItemFactory.sign(PromenadeBlocks.AURORAL_CYPRESS_WALL_SIGN), ItemSettings.max16());
+    public static final Item AURORAL_CYPRESS_HANGING_SIGN = register(PromenadeBlocks.AURORAL_CYPRESS_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.AURORAL_CYPRESS_WALL_HANGING_SIGN), ItemSettings.max16());
+    public static final Item AURORAL_CYPRESS_BOAT = register("auroral_cypress_boat", ItemFactory.boat(PromenadeEntityTypes.AURORAL_CYPRESS_BOAT), ItemSettings.max1());
+    public static final Item AURORAL_CYPRESS_CHEST_BOAT = register("auroral_cypress_chest_boat", ItemFactory.boat(PromenadeEntityTypes.AURORAL_CYPRESS_CHEST_BOAT), ItemSettings.max1());
+
     public static final Item DARK_AMARANTH_SIGN = register(PromenadeBlocks.DARK_AMARANTH_SIGN, ItemFactory.sign(PromenadeBlocks.DARK_AMARANTH_WALL_SIGN), ItemSettings.max16());
     public static final Item DARK_AMARANTH_HANGING_SIGN = register(PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN), ItemSettings.max16());
 
@@ -43,6 +48,8 @@ public class PromenadeItems {
     public static final Item BANANA = register("banana", new Item.Settings().food(PromenadeFoodComponents.BANANA));
     public static final Item APRICOT = register("apricot", new Item.Settings().food(PromenadeFoodComponents.APRICOT));
     public static final Item MANGO = register("mango", new Item.Settings().food(PromenadeFoodComponents.MANGO));
+
+    public static final Item STAR_DUST = register("star_dust");
 
     public static final Item DUCK = register("duck", new Item.Settings().food(PromenadeFoodComponents.RAW_DUCK, PromenadeConsumableComponents.RAW_DUCK));
     public static final Item COOKED_DUCK = register("cooked_duck", new Item.Settings().food(PromenadeFoodComponents.COOKED_DUCK));
@@ -77,6 +84,10 @@ public class PromenadeItems {
 
     public static <O extends Item> O register(String id, Function<Item.Settings, O> factory) {
         return register(keyOf(id), factory, new Item.Settings());
+    }
+
+    public static Item register(String id) {
+        return register(id, Item::new);
     }
 
     public static Item register(String id, Item.Settings settings) {

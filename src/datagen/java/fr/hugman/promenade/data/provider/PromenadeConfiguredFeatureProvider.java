@@ -96,6 +96,8 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
 
         of(registerable, PromenadeConfiguredFeatures.SNOWY_MEGA_SPRUCE, Feature.TREE, PromenadeFeatureConfigs.snowyMegaSpruce(PromenadeBlocks.SNOWY_SPRUCE_LEAVES).build());
 
+        of(registerable, PromenadeConfiguredFeatures.AURORAL_CYPRESS, Feature.TREE, PromenadeFeatureConfigs.auroralCypress().build());
+
         of(registerable, PromenadeConfiguredFeatures.DARK_AMARANTH_FUNGUS, Feature.HUGE_FUNGUS, PromenadeFeatureConfigs.hugeDarkAmaranthFungus(false));
         of(registerable, PromenadeConfiguredFeatures.PLANTED_DARK_AMARANTH_FUNGUS, Feature.HUGE_FUNGUS, PromenadeFeatureConfigs.hugeDarkAmaranthFungus(true));
 

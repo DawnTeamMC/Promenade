@@ -1,0 +1,88 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"textures": {
+		"particle": "promenade:block/star_fragment",
+		"block": "promenade:block/star_fragment"
+	},
+	"elements": [
+		{
+			"name": "rectangle_x",
+			"from": [0, 5, 5],
+			"to": [16, 11, 11],
+			"faces": {
+				"north": {"uv": [0, 5, 16, 11], "texture": "#block"},
+				"east": {"uv": [5, 5, 11, 11], "texture": "#block"},
+				"south": {"uv": [0, 5, 16, 11], "texture": "#block"},
+				"west": {"uv": [5, 5, 11, 11], "texture": "#block"},
+				"up": {"uv": [0, 5, 16, 11], "texture": "#block"},
+				"down": {"uv": [0, 5, 16, 11], "texture": "#block"}
+			}
+		},
+		{
+			"name": "rectangle_y",
+			"from": [5, 0, 5],
+			"to": [11, 16, 11],
+			"faces": {
+				"north": {"uv": [5, 0, 11, 16], "texture": "#block"},
+				"east": {"uv": [5, 0, 11, 16], "texture": "#block"},
+				"south": {"uv": [5, 0, 11, 16], "texture": "#block"},
+				"west": {"uv": [5, 0, 11, 16], "texture": "#block"},
+				"up": {"uv": [5, 5, 11, 11], "texture": "#block"},
+				"down": {"uv": [5, 5, 11, 11], "texture": "#block"}
+			}
+		},
+		{
+			"name": "rectangle_z",
+			"from": [5, 5, 0],
+			"to": [11, 11, 16],
+			"faces": {
+				"north": {"uv": [5, 5, 11, 11], "texture": "#block"},
+				"east": {"uv": [0, 5, 16, 11], "texture": "#block"},
+				"south": {"uv": [5, 5, 11, 11], "texture": "#block"},
+				"west": {"uv": [0, 5, 16, 11], "texture": "#block"},
+				"up": {"uv": [5, 0, 11, 16], "texture": "#block"},
+				"down": {"uv": [5, 0, 11, 16], "texture": "#block"}
+			}
+		},
+		{
+			"name": "plane_x",
+			"from": [8, 0, 0],
+			"to": [8, 16, 16],
+			"faces": {
+				"north": {"uv": [8, 0, 8, 16], "texture": "#block"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#block"},
+				"south": {"uv": [8, 0, 8, 16], "texture": "#missing"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#block"},
+				"up": {"uv": [8, 0, 8, 16], "texture": "#block"},
+				"down": {"uv": [8, 0, 8, 16], "texture": "#missing"}
+			}
+		},
+		{
+			"name": "plane_y",
+			"from": [0, 8, 0],
+			"to": [16, 8, 16],
+			"faces": {
+				"north": {"uv": [0, 8, 16, 8], "texture": "#block"},
+				"east": {"uv": [0, 8, 16, 8], "texture": "#block"},
+				"south": {"uv": [0, 8, 16, 8], "texture": "#missing"},
+				"west": {"uv": [0, 8, 16, 8], "texture": "#missing"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#block"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#block"}
+			}
+		},
+		{
+			"name": "plane_z",
+			"from": [0, 0, 8],
+			"to": [16, 16, 8],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#block"},
+				"east": {"uv": [8, 0, 8, 16], "texture": "#block"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#block"},
+				"west": {"uv": [8, 0, 8, 16], "texture": "#missing"},
+				"up": {"uv": [0, 8, 16, 8], "texture": "#block"},
+				"down": {"uv": [0, 8, 16, 8], "texture": "#missing"}
+			}
+		}
+	]
+}

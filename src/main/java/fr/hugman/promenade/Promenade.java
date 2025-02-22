@@ -62,6 +62,7 @@ public class Promenade implements ModInitializer {
         PromenadeEntityTypes.appendWorldGen();
         PromenadeBiomes.appendWorldGen();
         PromenadePlacedFeatures.appendWorldGen();
+        PromenadeEntityTypes.appendWorldGen();
 
         PromenadeRegistryAliases.registerAliases();
     }

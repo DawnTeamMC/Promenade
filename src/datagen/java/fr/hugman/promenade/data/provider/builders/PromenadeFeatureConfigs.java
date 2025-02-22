@@ -3,7 +3,7 @@ package fr.hugman.promenade.data.provider.builders;
 import com.google.common.collect.ImmutableList;
 import fr.hugman.promenade.block.MapleLogBlock;
 import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.world.gen.tree.foliage.MapleFoliagePlacer;
+import fr.hugman.promenade.world.gen.tree.foliage.DropletFoliagePlacer;
 import fr.hugman.promenade.world.gen.tree.foliage.PalmFoliagePlacer;
 import fr.hugman.promenade.world.gen.tree.trunk.BranchingStraightTrunkPlacer;
 import fr.hugman.promenade.world.gen.tree.trunk.LeapingTrunkPlacer;
@@ -122,9 +122,21 @@ public class PromenadeFeatureConfigs {
                 fancy ? new BranchingStraightTrunkPlacer(17, 5, 3) :
                         new BranchingStraightTrunkPlacer(13, 4, 2),
                 BlockStateProvider.of(leaves),
-                new MapleFoliagePlacer(BiasedToBottomIntProvider.create(3, 4), UniformIntProvider.create(5, 6), BiasedToBottomIntProvider.create(17, 20)),
+                new DropletFoliagePlacer(BiasedToBottomIntProvider.create(3, 4), UniformIntProvider.create(5, 6), BiasedToBottomIntProvider.create(17, 20)),
                 fancy ? new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)) :
                         new TwoLayersFeatureSize(1, 0, 1, OptionalInt.empty())
+        )
+                .ignoreVines();
+    }
+
+
+    public static TreeFeatureConfig.Builder auroralCypress() {
+        return new TreeFeatureConfig.Builder(
+                BlockStateProvider.of(PromenadeBlocks.AURORAL_CYPRESS_LOG),
+                new BranchingStraightTrunkPlacer(17, 5, 3),
+                BlockStateProvider.of(PromenadeBlocks.AURORAL_CYPRESS_LEAVES),
+                new DropletFoliagePlacer(BiasedToBottomIntProvider.create(3, 4), UniformIntProvider.create(5, 6), BiasedToBottomIntProvider.create(17, 20)),
+                new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
         )
                 .ignoreVines();
     }
