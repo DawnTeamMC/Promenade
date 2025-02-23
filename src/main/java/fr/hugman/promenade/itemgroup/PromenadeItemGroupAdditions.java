@@ -23,7 +23,7 @@ public class PromenadeItemGroupAdditions {
 
         // VANILLA PILES
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(e -> {
-            e.addAfter(Blocks.FLOWERING_AZALEA_LEAVES,
+            e.addAfter(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES,
                     PromenadeBlocks.OAK_LEAF_PILE,
                     PromenadeBlocks.SPRUCE_LEAF_PILE,
                     PromenadeBlocks.BIRCH_LEAF_PILE,
@@ -120,6 +120,12 @@ public class PromenadeItemGroupAdditions {
             );
             e.addAfter(PromenadeBlocks.COTTON_SAKURA_SAPLING, PromenadeBlocks.SAP_MAPLE_SAPLING, PromenadeBlocks.VERMILION_MAPLE_SAPLING, PromenadeBlocks.FULVOUS_MAPLE_SAPLING, PromenadeBlocks.MIKADO_MAPLE_SAPLING);
             e.addAfter(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, PromenadeBlocks.SAP_MAPLE_LEAF_PILE, PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE);
+            e.addAfter(Blocks.FLOWERING_AZALEA_LEAVES,
+                    PromenadeBlocks.FALLEN_SAP_MAPLE_LEAVES,
+                    PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES,
+                    PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES,
+                    PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES
+            );
         });
 
         // PALM

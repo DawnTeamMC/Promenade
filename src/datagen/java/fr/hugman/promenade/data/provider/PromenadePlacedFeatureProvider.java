@@ -94,34 +94,6 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
         of(registerable, PromenadePlacedFeatures.MIKADO_MAPLE_BEES, configured.getOrThrow(PromenadeConfiguredFeatures.MIKADO_MAPLE_BEES), PlacedFeatures.wouldSurvive(PromenadeBlocks.MIKADO_MAPLE_SAPLING));
         of(registerable, PromenadePlacedFeatures.FANCY_MIKADO_MAPLE_BEES, configured.getOrThrow(PromenadeConfiguredFeatures.FANCY_MIKADO_MAPLE_BEES), PlacedFeatures.wouldSurvive(PromenadeBlocks.MIKADO_MAPLE_SAPLING));
 
-        // Tree groups
-        of(registerable, PromenadePlacedFeatures.BLUSH_SAKURA_GROVE_TREES,
-                configured.getOrThrow(PromenadeConfiguredFeatures.BLUSH_SAKURA_GROVE_TREE),
-                treeModifiers(PlacedFeatures.createCountExtraModifier(2, 0.1F, 1)));
-        of(registerable, PromenadePlacedFeatures.COTTON_SAKURA_GROVE_TREES,
-                configured.getOrThrow(PromenadeConfiguredFeatures.COTTON_SAKURA_GROVE_TREE),
-                treeModifiers(PlacedFeatures.createCountExtraModifier(2, 0.1F, 1)));
-
-        of(registerable, PromenadePlacedFeatures.CARNELIAN_TREEWAY_SAP_TREES,
-                configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_SAP_TREE),
-                treeModifiers(PlacedFeatures.createCountExtraModifier(5, 0.1F, 1)));
-        // TODO: We could replace the placemnt below by selecting the tree depending on the noise value
-        //  instead of disabling the tree if it's not in the noise...
-        of(registerable, PromenadePlacedFeatures.CARNELIAN_TREEWAY_VERMILION_TREES,
-                configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_VERMILION_TREE),
-                treeModifiersWithNoiseInterval(PlacedFeatures.createCountExtraModifier(5, 0.1F, 1), 0.2f, 0.95f));
-        of(registerable, PromenadePlacedFeatures.CARNELIAN_TREEWAY_FULVOUS_TREES,
-                configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FULVOUS_TREE),
-                treeModifiersWithNoiseInterval(PlacedFeatures.createCountExtraModifier(5, 0.1F, 1), -0.4f, 0.4f));
-        of(registerable, PromenadePlacedFeatures.CARNELIAN_TREEWAY_MIKADO_TREES,
-                configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_MIKADO_TREE),
-                treeModifiersWithNoiseInterval(PlacedFeatures.createCountExtraModifier(5, 0.1F, 1), -0.95f, -0.2f));
-
-        of(registerable, PromenadePlacedFeatures.GLACARIAN_TAIGA_TREES, configured.getOrThrow(PromenadeConfiguredFeatures.SNOWY_MEGA_SPRUCE), treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(14, 0.1F, 4), Blocks.SPRUCE_SAPLING));
-
-        of(registerable, PromenadePlacedFeatures.PALMS, configured.getOrThrow(PromenadeConfiguredFeatures.PALM), treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.1F, 1), PromenadeBlocks.PALM_SAPLING));
-
-        of(registerable, PromenadePlacedFeatures.DARK_AMARANTH_FUNGI, configured.getOrThrow(PromenadeConfiguredFeatures.DARK_AMARANTH_FUNGUS), netherCount(8));
 
         // Vegetation
         var blueberryBush = configured.getOrThrow(PromenadeConfiguredFeatures.BLUEBERRY_BUSH_PATCH);
@@ -132,14 +104,34 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
 
         of(registerable, PromenadePlacedFeatures.CUTE_LITTLE_ROCKS, configured.getOrThrow(PromenadeConfiguredFeatures.CUTE_LITTLE_ROCK), count(2, PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP));
 
-        of(registerable, PromenadePlacedFeatures.WATER_POOLS_GRAVEL, configured.getOrThrow(PromenadeConfiguredFeatures.WATER_POOL_GRAVEL), rare(7));
         of(registerable, PromenadePlacedFeatures.WATER_POOLS_GRAVEL_DECORATED, configured.getOrThrow(PromenadeConfiguredFeatures.WATER_POOL_GRAVEL_DECORATED), rare(10, PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP));
 
         of(registerable, PromenadePlacedFeatures.FREEZE_TOP_LAYER, RegistryEntry.of(new ConfiguredFeature<>(PromenadeFeatures.FREEZE_TOP_LAYER, FeatureConfig.DEFAULT)), BiomePlacementModifier.of());
 
         of(registerable, PromenadePlacedFeatures.DARK_AMARANTH_FOREST_VEGETATION, configured.getOrThrow(PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_VEGETATION), netherCount(6));
 
+        of(registerable, PromenadePlacedFeatures.FALLEN_VERMILION_MAPLE_LEAVES, configured.getOrThrow(PromenadeConfiguredFeatures.FALLEN_VERMILION_MAPLE_LEAVES));
+        of(registerable, PromenadePlacedFeatures.FALLEN_FULVOUS_MAPLE_LEAVES, configured.getOrThrow(PromenadeConfiguredFeatures.FALLEN_FULVOUS_MAPLE_LEAVES));
+        of(registerable, PromenadePlacedFeatures.FALLEN_MIKADO_MAPLE_LEAVES, configured.getOrThrow(PromenadeConfiguredFeatures.FALLEN_MIKADO_MAPLE_LEAVES));
+
         of(registerable, PromenadePlacedFeatures.COILED_VINES, configured.getOrThrow(PromenadeConfiguredFeatures.COILED_VINES), CountPlacementModifier.of(10), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_TOP_RANGE, BiomePlacementModifier.of());
+
+        // Tree groups
+        of(registerable, PromenadePlacedFeatures.BLUSH_SAKURA_GROVE_TREES,
+                configured.getOrThrow(PromenadeConfiguredFeatures.BLUSH_SAKURA_GROVE_TREE),
+                treeModifiers(PlacedFeatures.createCountExtraModifier(2, 0.1F, 1)));
+        of(registerable, PromenadePlacedFeatures.COTTON_SAKURA_GROVE_TREES,
+                configured.getOrThrow(PromenadeConfiguredFeatures.COTTON_SAKURA_GROVE_TREE),
+                treeModifiers(PlacedFeatures.createCountExtraModifier(2, 0.1F, 1)));
+
+        of(registerable, PromenadePlacedFeatures.CARNELIAN_TREEWAY_TREES, configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_TREE), treeModifiers(PlacedFeatures.createCountExtraModifier(10, 0.1F, 1)));
+        of(registerable, PromenadePlacedFeatures.CARNELIAN_TREEWAY_FALLEN_LEAVES, configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FALLEN_LEAVES), count(25));
+
+        of(registerable, PromenadePlacedFeatures.GLACARIAN_TAIGA_TREES, configured.getOrThrow(PromenadeConfiguredFeatures.SNOWY_MEGA_SPRUCE), treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(14, 0.1F, 4), Blocks.SPRUCE_SAPLING));
+
+        of(registerable, PromenadePlacedFeatures.PALMS, configured.getOrThrow(PromenadeConfiguredFeatures.PALM), treeModifiersWithWouldSurvive(PlacedFeatures.createCountExtraModifier(0, 0.1F, 1), PromenadeBlocks.PALM_SAPLING));
+
+        of(registerable, PromenadePlacedFeatures.DARK_AMARANTH_FUNGI, configured.getOrThrow(PromenadeConfiguredFeatures.DARK_AMARANTH_FUNGUS), netherCount(8));
 
     }
 

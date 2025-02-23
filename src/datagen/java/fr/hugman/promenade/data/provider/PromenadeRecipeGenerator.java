@@ -104,6 +104,10 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_VERMILION_MAPLE_LEAVES, PromenadeBlocks.VERMILION_MAPLE_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_FULVOUS_MAPLE_LEAVES, PromenadeBlocks.FULVOUS_MAPLE_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_MIKADO_MAPLE_LEAVES, PromenadeBlocks.MIKADO_MAPLE_LEAVES);
+        this.offerFallenLeavesRecipe(PromenadeBlocks.FALLEN_SAP_MAPLE_LEAVES, PromenadeBlocks.SAP_MAPLE_LEAVES);
+        this.offerFallenLeavesRecipe(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES, PromenadeBlocks.SAP_MAPLE_LEAVES);
+        this.offerFallenLeavesRecipe(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES, PromenadeBlocks.FULVOUS_MAPLE_LEAVES);
+        this.offerFallenLeavesRecipe(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES, PromenadeBlocks.MIKADO_MAPLE_LEAVES);
         this.offerLeafPileRecipe(PromenadeBlocks.SAP_MAPLE_LEAF_PILE, PromenadeBlocks.SAP_MAPLE_LEAVES);
         this.offerLeafPileRecipe(PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE);
         this.offerLeafPileRecipe(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, PromenadeBlocks.FULVOUS_MAPLE_LEAVES);
@@ -152,11 +156,20 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
 
     }
 
-
-    public void offerLeafPileRecipe(ItemConvertible output, ItemConvertible input) {
+    public void offerFallenLeavesRecipe(ItemConvertible output, ItemConvertible input) {
         this.createShaped(RecipeCategory.DECORATIONS, output, 2)
                 .input('#', input)
                 .pattern("##")
+                .group("fallen_leaves")
+                .criterion(hasItem(input), this.conditionsFromItem(input))
+                .offerTo(this.exporter);
+    }
+
+
+    public void offerLeafPileRecipe(ItemConvertible output, ItemConvertible input) {
+        this.createShaped(RecipeCategory.DECORATIONS, output, 3)
+                .input('#', input)
+                .pattern("###")
                 .group("leaf_pile")
                 .criterion(hasItem(input), this.conditionsFromItem(input))
                 .offerTo(this.exporter);

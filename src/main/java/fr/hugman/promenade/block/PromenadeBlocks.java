@@ -155,24 +155,28 @@ public class PromenadeBlocks {
     public static final Block POTTED_SAP_MAPLE_SAPLING = register("potted_sap_maple_sapling", BlockFactory.pot(SAP_MAPLE_SAPLING));
     public static final Block SAP_MAPLE_LEAVES = register("sap_maple_leaves", BlockFactory.leaves(PromenadeMapColors.SAP_MAPLE_LEAVES));
     public static final Block SNOWY_SAP_MAPLE_LEAVES = register("snowy_sap_maple_leaves", BlockFactory.snowyLeaves());
+    public static final Block FALLEN_SAP_MAPLE_LEAVES = register("fallen_sap_maple_leaves", BlockFactory.fallenLeaves(PromenadeMapColors.SAP_MAPLE_LEAVES, BlockSoundGroup.GRASS));
     public static final Block SAP_MAPLE_LEAF_PILE = register("sap_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.SAP_MAPLE_LEAVES, BlockSoundGroup.GRASS));
 
     public static final Block VERMILION_MAPLE_SAPLING = register("vermilion_maple_sapling", BlockFactory.sapling(PromenadeMapColors.VERMILION_MAPLE_LEAVES, PromenadeSaplingGenerators.VERMILION_MAPLE));
     public static final Block POTTED_VERMILION_MAPLE_SAPLING = register("potted_vermilion_maple_sapling", BlockFactory.pot(VERMILION_MAPLE_SAPLING));
     public static final Block VERMILION_MAPLE_LEAVES = register("vermilion_maple_leaves", BlockFactory.leaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES, BlockSoundGroup.GRASS, 10, PromenadeParticleTypes.VERMILION_MAPLE_LEAF));
     public static final Block SNOWY_VERMILION_MAPLE_LEAVES = register("snowy_vermilion_maple_leaves", BlockFactory.snowyLeaves(10, PromenadeParticleTypes.VERMILION_MAPLE_LEAF));
+    public static final Block FALLEN_VERMILION_MAPLE_LEAVES = register("fallen_vermilion_maple_leaves", BlockFactory.fallenLeaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES, BlockSoundGroup.GRASS));
     public static final Block VERMILION_MAPLE_LEAF_PILE = register("vermilion_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.VERMILION_MAPLE_LEAVES, BlockSoundGroup.GRASS));
 
     public static final Block FULVOUS_MAPLE_SAPLING = register("fulvous_maple_sapling", BlockFactory.sapling(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, PromenadeSaplingGenerators.FULVOUS_MAPLE));
     public static final Block POTTED_FULVOUS_MAPLE_SAPLING = register("potted_fulvous_maple_sapling", BlockFactory.pot(FULVOUS_MAPLE_SAPLING));
     public static final Block FULVOUS_MAPLE_LEAVES = register("fulvous_maple_leaves", BlockFactory.leaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, BlockSoundGroup.GRASS, 10, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF));
     public static final Block SNOWY_FULVOUS_MAPLE_LEAVES = register("snowy_fulvous_maple_leaves", BlockFactory.snowyLeaves(10, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF));
+    public static final Block FALLEN_FULVOUS_MAPLE_LEAVES = register("fallen_fulvous_maple_leaves", BlockFactory.fallenLeaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, BlockSoundGroup.GRASS));
     public static final Block FULVOUS_MAPLE_LEAF_PILE = register("fulvous_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, BlockSoundGroup.GRASS));
 
     public static final Block MIKADO_MAPLE_SAPLING = register("mikado_maple_sapling", BlockFactory.sapling(PromenadeMapColors.MIKADO_MAPLE_LEAVES, PromenadeSaplingGenerators.MIKADO_MAPLE));
     public static final Block POTTED_MIKADO_MAPLE_SAPLING = register("potted_mikado_maple_sapling", BlockFactory.pot(MIKADO_MAPLE_SAPLING));
     public static final Block MIKADO_MAPLE_LEAVES = register("mikado_maple_leaves", BlockFactory.leaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES, BlockSoundGroup.GRASS, 10, PromenadeParticleTypes.MIKADO_MAPLE_LEAF));
     public static final Block SNOWY_MIKADO_MAPLE_LEAVES = register("snowy_mikado_maple_leaves", BlockFactory.snowyLeaves(10, PromenadeParticleTypes.MIKADO_MAPLE_LEAF));
+    public static final Block FALLEN_MIKADO_MAPLE_LEAVES = register("fallen_mikado_maple_leaves", BlockFactory.fallenLeaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES, BlockSoundGroup.GRASS));
     public static final Block MIKADO_MAPLE_LEAF_PILE = register("mikado_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.MIKADO_MAPLE_LEAVES, BlockSoundGroup.GRASS));
 
 
