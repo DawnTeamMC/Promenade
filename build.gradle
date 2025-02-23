@@ -57,6 +57,14 @@ processResources {
     filesMatching("fabric.mod.json") {
         expand "version": project.version
     }
+
+    from("$rootDir/docs") {
+        into "assets/oracle_index/books/promenade"
+        exclude '.assets/item/**'   // items are rendered ingame as actual item components, no need to include them here
+    }
+    doLast {
+        println "processResources executed: wiki folder copied into assets/oracle_index"
+    }
 }
 
 tasks.withType(JavaCompile).configureEach {
