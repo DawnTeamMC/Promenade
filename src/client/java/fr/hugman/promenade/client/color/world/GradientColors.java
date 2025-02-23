@@ -27,7 +27,7 @@ public class GradientColors {
         if(pos == null || world == null) {
             return AURORAL_MID;
         }
-        //TODO: is a cache needed here?
+        //TODO: cache needed here
         var v = (float) PERLIN_NOISE.sample(pos.getX() / AURORAL_SCALE, pos.getY() / AURORAL_SCALE, pos.getZ() / AURORAL_SCALE);
         float i = MathHelper.clamp((v + 1) / 2, 0.0f, 1.0f);
         return ColorUtil.lerp(i, AURORAL_TURQUOISE, AURORAL_BLUE, AURORAL_PURPLE, AURORAL_MAGENTA);

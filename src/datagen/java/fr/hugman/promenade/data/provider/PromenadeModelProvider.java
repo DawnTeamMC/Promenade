@@ -109,6 +109,9 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerTintedBlockAndItem(PromenadeBlocks.AURORAL_CYPRESS_LEAVES, TexturedModel.LEAVES, PromenadeFoliageColors.AURORAL_CYPRESS);
         gen.registerTintedBlockAndItem(PromenadeBlocks.AURORAL_CYPRESS_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.AURORAL_CYPRESS_LEAVES), PromenadeFoliageColors.AURORAL_CYPRESS);
 
+        this.registerStarBits(gen);
+        gen.registerSimpleState(PromenadeBlocks.STAR_FRAGMENT);
+
         gen.registerNetherrackBottomCustomTop(PromenadeBlocks.DARK_AMARANTH_NYLIUM);
         gen.registerSimpleCubeAll(PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);
         gen.registerRoots(PromenadeBlocks.DARK_AMARANTH_ROOTS, PromenadeBlocks.POTTED_DARK_AMARANTH_ROOTS);
@@ -218,7 +221,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
         } else {
             gen.registerItemModel(fallenLeaves);
         }
-        gen.blockStateCollector.accept(BlockStateModelGenerator.createBlockStateWithRandomHorizontalRotations(fallenLeaves, PromenadeTexturedModels.FALLEN_LEAVES.upload(fallenLeaves, gen.modelCollector)));
+        gen.blockStateCollector.accept(BlockStateModelGenerator.createBlockStateWithRandomHorizontalRotations(fallenLeaves, PromenadeTexturedModels.SURFACE_BLOCK.upload(fallenLeaves, gen.modelCollector)));
     }
 
     public final void registerFacingPlantPart(BlockStateModelGenerator gen, Block plant, Block plantStem, BlockStateModelGenerator.CrossType tintType) {
@@ -236,6 +239,29 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.blockStateCollector.accept(
                 BlockStateModelGenerator.createSingletonBlockState(block, identifier)
                         .coordinate(gen.createUpDefaultFacingVariantMap())
+        );
+    }
+
+    //TODO: generify
+    public final void registerStarBits(BlockStateModelGenerator gen) {
+        var block = PromenadeBlocks.STAR_BITS;
+
+        gen.registerItemModel(PromenadeBlocks.STAR_BITS, "_1");
+        Identifier id1 = PromenadeTexturedModels.surfaceBlock(block, "_1").upload(block, "_1", gen.modelCollector);
+        Identifier id2 = PromenadeTexturedModels.surfaceBlock(block, "_2").upload(block, "_2", gen.modelCollector);
+        Identifier id3 = PromenadeTexturedModels.surfaceBlock(block, "_3").upload(block, "_3", gen.modelCollector);
+        gen.blockStateCollector.accept(
+                createBlockStateWithThreeModels(block, id1, id2, id3)
+                        .coordinate(gen.createUpDefaultFacingVariantMap())
+        );
+    }
+
+    //TODO: generify for any amount
+    public static VariantsBlockStateSupplier createBlockStateWithThreeModels(Block block, Identifier id1, Identifier id2, Identifier id3) {
+        return VariantsBlockStateSupplier.create(block,
+                BlockStateVariant.create().put(VariantSettings.MODEL, id1),
+                BlockStateVariant.create().put(VariantSettings.MODEL, id2),
+                BlockStateVariant.create().put(VariantSettings.MODEL, id3)
         );
     }
 
