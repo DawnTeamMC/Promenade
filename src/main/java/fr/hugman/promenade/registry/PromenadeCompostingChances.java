@@ -46,26 +46,33 @@ public class PromenadeCompostingChances {
 
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.BLUSH_SAKURA_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SNOWY_BLUSH_SAKURA_BLOSSOMS, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.COTTON_SAKURA_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SNOWY_COTTON_SAKURA_BLOSSOMS, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, 0.3F);
 
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SAP_MAPLE_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SAP_MAPLE_LEAVES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SNOWY_SAP_MAPLE_LEAVES, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SAP_MAPLE_LEAF_PILE, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.VERMILION_MAPLE_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.VERMILION_MAPLE_LEAVES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SNOWY_VERMILION_MAPLE_LEAVES, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.FULVOUS_MAPLE_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SNOWY_FULVOUS_MAPLE_LEAVES, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.MIKADO_MAPLE_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.MIKADO_MAPLE_LEAVES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SNOWY_MIKADO_MAPLE_LEAVES, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE, 0.3F);
 
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.PALM_SAPLING, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.PALM_LEAVES, 0.3F);
+        CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.SNOWY_PALM_LEAVES, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.PALM_HANGING_LEAVES, 0.3F);
         CompostingChanceRegistry.INSTANCE.add(PromenadeBlocks.PALM_LEAF_PILE, 0.3F);
 

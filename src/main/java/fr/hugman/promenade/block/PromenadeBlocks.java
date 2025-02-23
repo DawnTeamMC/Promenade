@@ -119,11 +119,13 @@ public class PromenadeBlocks {
     public static final Block BLUSH_SAKURA_SAPLING = register("blush_sakura_sapling", BlockFactory.sapling(PromenadeMapColors.BLUSH_BLOSSOMS, PromenadeSaplingGenerators.BLUSH_SAKURA));
     public static final Block POTTED_BLUSH_SAKURA_SAPLING = register("potted_blush_sakura_sapling", BlockFactory.pot(BLUSH_SAKURA_SAPLING));
     public static final Block BLUSH_SAKURA_BLOSSOMS = register("blush_sakura_blossoms", BlockFactory.leaves(PromenadeMapColors.BLUSH_BLOSSOMS, BlockSoundGroup.CHERRY_LEAVES, 10, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM));
+    public static final Block SNOWY_BLUSH_SAKURA_BLOSSOMS = register("snowy_blush_sakura_blossoms", BlockFactory.snowyLeaves(10, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES));
     public static final Block BLUSH_SAKURA_BLOSSOM_PILE = register("blush_sakura_blossom_pile", BlockFactory.pile(PromenadeMapColors.BLUSH_BLOSSOMS, BlockSoundGroup.CHERRY_LEAVES));
 
     public static final Block COTTON_SAKURA_SAPLING = register("cotton_sakura_sapling", BlockFactory.sapling(PromenadeMapColors.COTTON_BLOSSOMS, PromenadeSaplingGenerators.COTTON_SAKURA));
     public static final Block POTTED_COTTON_SAKURA_SAPLING = register("potted_cotton_sakura_sapling", BlockFactory.pot(COTTON_SAKURA_SAPLING));
     public static final Block COTTON_SAKURA_BLOSSOMS = register("cotton_sakura_blossoms", BlockFactory.leaves(PromenadeMapColors.COTTON_BLOSSOMS, BlockSoundGroup.CHERRY_LEAVES, 10, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM));
+    public static final Block SNOWY_COTTON_SAKURA_BLOSSOMS = register("snowy_cotton_sakura_blossoms", BlockFactory.snowyLeaves(10, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES));
     public static final Block COTTON_SAKURA_BLOSSOM_PILE = register("cotton_sakura_blossom_pile", BlockFactory.pile(PromenadeMapColors.COTTON_BLOSSOMS, BlockSoundGroup.CHERRY_LEAVES));
 
 
@@ -152,21 +154,25 @@ public class PromenadeBlocks {
     public static final Block SAP_MAPLE_SAPLING = register("sap_maple_sapling", BlockFactory.sapling(PromenadeMapColors.SAP_MAPLE_LEAVES, PromenadeSaplingGenerators.SAP_MAPLE));
     public static final Block POTTED_SAP_MAPLE_SAPLING = register("potted_sap_maple_sapling", BlockFactory.pot(SAP_MAPLE_SAPLING));
     public static final Block SAP_MAPLE_LEAVES = register("sap_maple_leaves", BlockFactory.leaves(PromenadeMapColors.SAP_MAPLE_LEAVES));
+    public static final Block SNOWY_SAP_MAPLE_LEAVES = register("snowy_sap_maple_leaves", BlockFactory.snowyLeaves());
     public static final Block SAP_MAPLE_LEAF_PILE = register("sap_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.SAP_MAPLE_LEAVES, BlockSoundGroup.GRASS));
 
     public static final Block VERMILION_MAPLE_SAPLING = register("vermilion_maple_sapling", BlockFactory.sapling(PromenadeMapColors.VERMILION_MAPLE_LEAVES, PromenadeSaplingGenerators.VERMILION_MAPLE));
     public static final Block POTTED_VERMILION_MAPLE_SAPLING = register("potted_vermilion_maple_sapling", BlockFactory.pot(VERMILION_MAPLE_SAPLING));
     public static final Block VERMILION_MAPLE_LEAVES = register("vermilion_maple_leaves", BlockFactory.leaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES, BlockSoundGroup.GRASS, 10, PromenadeParticleTypes.VERMILION_MAPLE_LEAF));
+    public static final Block SNOWY_VERMILION_MAPLE_LEAVES = register("snowy_vermilion_maple_leaves", BlockFactory.snowyLeaves(10, PromenadeParticleTypes.VERMILION_MAPLE_LEAF));
     public static final Block VERMILION_MAPLE_LEAF_PILE = register("vermilion_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.VERMILION_MAPLE_LEAVES, BlockSoundGroup.GRASS));
 
     public static final Block FULVOUS_MAPLE_SAPLING = register("fulvous_maple_sapling", BlockFactory.sapling(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, PromenadeSaplingGenerators.FULVOUS_MAPLE));
     public static final Block POTTED_FULVOUS_MAPLE_SAPLING = register("potted_fulvous_maple_sapling", BlockFactory.pot(FULVOUS_MAPLE_SAPLING));
     public static final Block FULVOUS_MAPLE_LEAVES = register("fulvous_maple_leaves", BlockFactory.leaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, BlockSoundGroup.GRASS, 10, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF));
+    public static final Block SNOWY_FULVOUS_MAPLE_LEAVES = register("snowy_fulvous_maple_leaves", BlockFactory.snowyLeaves(10, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF));
     public static final Block FULVOUS_MAPLE_LEAF_PILE = register("fulvous_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, BlockSoundGroup.GRASS));
 
     public static final Block MIKADO_MAPLE_SAPLING = register("mikado_maple_sapling", BlockFactory.sapling(PromenadeMapColors.MIKADO_MAPLE_LEAVES, PromenadeSaplingGenerators.MIKADO_MAPLE));
     public static final Block POTTED_MIKADO_MAPLE_SAPLING = register("potted_mikado_maple_sapling", BlockFactory.pot(MIKADO_MAPLE_SAPLING));
     public static final Block MIKADO_MAPLE_LEAVES = register("mikado_maple_leaves", BlockFactory.leaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES, BlockSoundGroup.GRASS, 10, PromenadeParticleTypes.MIKADO_MAPLE_LEAF));
+    public static final Block SNOWY_MIKADO_MAPLE_LEAVES = register("snowy_mikado_maple_leaves", BlockFactory.snowyLeaves(10, PromenadeParticleTypes.MIKADO_MAPLE_LEAF));
     public static final Block MIKADO_MAPLE_LEAF_PILE = register("mikado_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.MIKADO_MAPLE_LEAVES, BlockSoundGroup.GRASS));
 
 
@@ -195,6 +201,7 @@ public class PromenadeBlocks {
     public static final Block PALM_SAPLING = register("palm_sapling", BlockFactory.sapling(PromenadeMapColors.PALM_LEAVES, PromenadeSaplingGenerators.PALM, state -> state.isIn(BlockTags.SAND)));
     public static final Block POTTED_PALM_SAPLING = register("potted_palm_sapling", BlockFactory.pot(PALM_SAPLING));
     public static final Block PALM_LEAVES = register("palm_leaves", BlockFactory.leaves(PromenadeMapColors.PALM_LEAVES).factory(ExtendedLeavesBlock::new));
+    public static final Block SNOWY_PALM_LEAVES = register("snowy_palm_leaves", BlockFactory.snowyLeaves());
     public static final Block PALM_HANGING_LEAVES = register("palm_hanging_leaves", BlockFactory.hangingLeaves(PromenadeMapColors.PALM_LEAVES));
     public static final Block PALM_LEAF_PILE = register("palm_leaf_pile", BlockFactory.pile(PromenadeMapColors.PALM_LEAVES, BlockSoundGroup.GRASS));
 

@@ -36,7 +36,14 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 SNOWY_PALE_OAK_LEAVES,
                 SNOWY_MANGROVE_LEAVES,
                 SNOWY_AZALEA_LEAVES,
-                SNOWY_FLOWERING_AZALEA_LEAVES
+                SNOWY_FLOWERING_AZALEA_LEAVES,
+                SNOWY_BLUSH_SAKURA_BLOSSOMS,
+                SNOWY_COTTON_SAKURA_BLOSSOMS,
+                SNOWY_SAP_MAPLE_LEAVES,
+                SNOWY_VERMILION_MAPLE_LEAVES,
+                SNOWY_FULVOUS_MAPLE_LEAVES,
+                SNOWY_MIKADO_MAPLE_LEAVES,
+                SNOWY_PALM_LEAVES
         );
 
         getOrCreateTagBuilder(LEAF_PILES).add(

@@ -112,11 +112,13 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.BLUSH_SAKURA_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_BLUSH_SAKURA_SAPLING);
         addDrop(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, block -> this.leavesDrops(block, PromenadeBlocks.BLUSH_SAKURA_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.SNOWY_BLUSH_SAKURA_BLOSSOMS, block -> this.snowyLeavesDrops(block, PromenadeBlocks.BLUSH_SAKURA_SAPLING, SAPLING_DROP_CHANCE));
         addDrop(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.COTTON_SAKURA_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_COTTON_SAKURA_SAPLING);
         addDrop(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, block -> this.leavesDrops(block, PromenadeBlocks.COTTON_SAKURA_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.SNOWY_COTTON_SAKURA_BLOSSOMS, block -> this.snowyLeavesDrops(block, PromenadeBlocks.COTTON_SAKURA_SAPLING, SAPLING_DROP_CHANCE));
         addDrop(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.STRIPPED_MAPLE_LOG);
@@ -138,21 +140,25 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.SAP_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_SAP_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.SAP_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.SAP_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.SNOWY_SAP_MAPLE_LEAVES, block -> this.snowyLeavesDrops(block, PromenadeBlocks.SAP_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
         addDrop(PromenadeBlocks.SAP_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.VERMILION_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_VERMILION_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.VERMILION_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.VERMILION_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.SNOWY_VERMILION_MAPLE_LEAVES, block -> this.snowyLeavesDrops(block, PromenadeBlocks.VERMILION_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
         addDrop(PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.FULVOUS_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_FULVOUS_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.FULVOUS_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.SNOWY_FULVOUS_MAPLE_LEAVES, block -> this.snowyLeavesDrops(block, PromenadeBlocks.FULVOUS_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
         addDrop(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.MIKADO_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_MIKADO_MAPLE_SAPLING);
         addDrop(PromenadeBlocks.MIKADO_MAPLE_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.MIKADO_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.SNOWY_MIKADO_MAPLE_LEAVES, block -> this.snowyLeavesDrops(block, PromenadeBlocks.MIKADO_MAPLE_SAPLING, SAPLING_DROP_CHANCE));
         addDrop(PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
         addDrop(PromenadeBlocks.STRIPPED_PALM_LOG);
@@ -174,6 +180,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.PALM_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_PALM_SAPLING);
         addDrop(PromenadeBlocks.PALM_LEAVES, block -> this.leavesDrops(block, PromenadeBlocks.PALM_SAPLING, SAPLING_DROP_CHANCE));
+        addDrop(PromenadeBlocks.SNOWY_PALM_LEAVES, block -> this.snowyLeavesDrops(block, PromenadeBlocks.PALM_SAPLING, SAPLING_DROP_CHANCE));
         addDrop(PromenadeBlocks.PALM_HANGING_LEAVES, this::dropsWithSilkTouchOrShears);
         addDrop(PromenadeBlocks.PALM_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
@@ -236,7 +243,6 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
 
         this.lootTables.forEach((id, lootTable) -> lootTable.randomSequenceId(id.getValue()));
     }
-
 
     public LootTable.Builder snowyLeavesDrops(Block leaves, Block sapling, float... saplingChance) {
         return this.leavesDrops(leaves, sapling, saplingChance)

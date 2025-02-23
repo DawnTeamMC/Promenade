@@ -18,6 +18,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.data.*;
 import net.minecraft.client.render.item.tint.TintSource;
 import net.minecraft.data.family.BlockFamily;
+import net.minecraft.registry.Registries;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
@@ -76,7 +77,9 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.BLUSH_SAKURA_SAPLING, PromenadeBlocks.POTTED_BLUSH_SAKURA_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.COTTON_SAKURA_SAPLING, PromenadeBlocks.POTTED_COTTON_SAKURA_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
         gen.registerSingleton(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, TexturedModel.LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_BLUSH_SAKURA_BLOSSOMS, PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, "snowy_sakura_blossoms");
         gen.registerSingleton(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, TexturedModel.LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_COTTON_SAKURA_BLOSSOMS, PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, "snowy_sakura_blossoms");
         gen.registerSingleton(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS));
         gen.registerSingleton(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS));
 
@@ -89,9 +92,13 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.FULVOUS_MAPLE_SAPLING, PromenadeBlocks.POTTED_FULVOUS_MAPLE_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.MIKADO_MAPLE_SAPLING, PromenadeBlocks.POTTED_MIKADO_MAPLE_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
         gen.registerTintedBlockAndItem(PromenadeBlocks.SAP_MAPLE_LEAVES, TexturedModel.LEAVES, PromenadeFoliageColors.SAP_MAPLE);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_SAP_MAPLE_LEAVES, PromenadeBlocks.SAP_MAPLE_LEAVES, "snowy_maple_leaves", PromenadeFoliageColors.SAP_MAPLE);
         gen.registerSingleton(PromenadeBlocks.VERMILION_MAPLE_LEAVES, TexturedModel.LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_VERMILION_MAPLE_LEAVES, PromenadeBlocks.VERMILION_MAPLE_LEAVES, "snowy_maple_leaves");
         gen.registerSingleton(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, TexturedModel.LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_FULVOUS_MAPLE_LEAVES, PromenadeBlocks.FULVOUS_MAPLE_LEAVES, "snowy_maple_leaves");
         gen.registerSingleton(PromenadeBlocks.MIKADO_MAPLE_LEAVES, TexturedModel.LEAVES);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_MIKADO_MAPLE_LEAVES, PromenadeBlocks.MIKADO_MAPLE_LEAVES, "snowy_maple_leaves");
         gen.registerTintedBlockAndItem(PromenadeBlocks.SAP_MAPLE_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.SAP_MAPLE_LEAVES), PromenadeFoliageColors.SAP_MAPLE);
         gen.registerSingleton(PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.VERMILION_MAPLE_LEAVES));
         gen.registerSingleton(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.FULVOUS_MAPLE_LEAVES));
@@ -102,6 +109,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerHangingSign(PromenadeBlocks.STRIPPED_PALM_LOG, PromenadeBlocks.PALM_HANGING_SIGN, PromenadeBlocks.PALM_WALL_HANGING_SIGN);
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.PALM_SAPLING, PromenadeBlocks.POTTED_PALM_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
         gen.registerTintedBlockAndItem(PromenadeBlocks.PALM_LEAVES, TexturedModel.LEAVES, PromenadeFoliageColors.PALM);
+        this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_PALM_LEAVES, PromenadeBlocks.PALM_LEAVES, PromenadeFoliageColors.PALM);
         gen.registerTintedBlockAndItem(PromenadeBlocks.PALM_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.PALM_LEAVES), PromenadeFoliageColors.PALM);
         gen.registerTintableCrossBlockState(PromenadeBlocks.PALM_HANGING_LEAVES, BlockStateModelGenerator.CrossType.TINTED);
         this.registerTintedItem(gen, PromenadeBlocks.PALM_HANGING_LEAVES, PromenadeFoliageColors.PALM);
@@ -197,7 +205,6 @@ public class PromenadeModelProvider extends FabricModelProvider {
         registerSnowyLeaves(gen, snowyLeaves, normalLeaves, 0);
     }
 
-
     private void registerSnowyLeaves(BlockStateModelGenerator gen, Block snowyLeaves, Block normalLeaves, int tint) {
         var bottomModel = gen.createSubModel(snowyLeaves, "_bottom", PromenadeModels.BOTTOM_SNOWY_LEAVES, block -> PromenadeTextureMaps.snowyLeaves(snowyLeaves, normalLeaves));
         if (tint != 0) {
@@ -210,6 +217,27 @@ public class PromenadeModelProvider extends FabricModelProvider {
                         BlockStateVariantMap.create(SnowyLeavesBlock.BOTTOM)
                                 .register(true, BlockStateVariant.create().put(VariantSettings.MODEL, bottomModel))
                                 .register(false, BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(snowyLeaves, "", Models.CUBE_ALL, TextureMap::all)))
+                )
+        );
+    }
+
+    private void registerSnowyLeaves(BlockStateModelGenerator gen, Block snowyLeaves, Block normalLeaves, String textureName) {
+        registerSnowyLeaves(gen, snowyLeaves, normalLeaves, textureName, 0);
+    }
+
+    private void registerSnowyLeaves(BlockStateModelGenerator gen, Block snowyLeaves, Block normalLeaves, String textureName, int tint) {
+        var textureId = Identifier.of(Registries.BLOCK.getId(snowyLeaves).getNamespace(), "block/" + textureName);
+        var bottomModel = gen.createSubModel(snowyLeaves, "_bottom", PromenadeModels.BOTTOM_SNOWY_LEAVES, block -> PromenadeTextureMaps.snowyLeaves(textureId, normalLeaves));
+        if (tint != 0) {
+            gen.registerTintedItemModel(snowyLeaves, bottomModel, ItemModels.constantTintSource(tint));
+        } else {
+            gen.registerItemModel(snowyLeaves.asItem(), bottomModel);
+        }
+        gen.blockStateCollector.accept(
+                VariantsBlockStateSupplier.create(snowyLeaves).coordinate(
+                        BlockStateVariantMap.create(SnowyLeavesBlock.BOTTOM)
+                                .register(true, BlockStateVariant.create().put(VariantSettings.MODEL, bottomModel))
+                                .register(false, BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(snowyLeaves, "", Models.CUBE_ALL, identifier -> TextureMap.all(textureId))))
                 )
         );
     }
