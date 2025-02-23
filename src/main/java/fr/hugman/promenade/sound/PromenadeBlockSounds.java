@@ -8,6 +8,28 @@ public final class PromenadeBlockSounds {
     public static final BlockSoundGroup PALM_WOOD = BlockSoundGroup.WOOD;
     public static final BlockSoundGroup AMARANTH_WOOD = BlockSoundGroup.NETHER_WOOD;
 
-    public static final BlockSoundGroup SNOWY_LEAVES = new BlockSoundGroup(1.0f, 1.0f, PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_BREAK, PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_STEP, PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_PLACE, PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_HIT, PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_FALL);
+    public static final BlockSoundGroup SNOWY_LEAVES = new BlockSoundGroup(1.0f, 1.0f,
+            PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_BREAK,
+            PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_STEP,
+            PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_PLACE,
+            PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_HIT,
+            PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_FALL
+    );
+
+    public static final BlockSoundGroup SNOWY_AZALEA_LEAVES = new BlockSoundGroup(1.0f, 1.0f,
+            PromenadeSoundEvents.BLOCK_SNOWY_AZALEA_LEAVES_BREAK,
+            PromenadeSoundEvents.BLOCK_SNOWY_AZALEA_LEAVES_STEP,
+            PromenadeSoundEvents.BLOCK_SNOWY_AZALEA_LEAVES_PLACE,
+            PromenadeSoundEvents.BLOCK_SNOWY_AZALEA_LEAVES_HIT,
+            PromenadeSoundEvents.BLOCK_SNOWY_AZALEA_LEAVES_FALL
+    );
+
+    public static final BlockSoundGroup SNOWY_CHERRY_LEAVES = new BlockSoundGroup(1.0f, 1.0f,
+            PromenadeSoundEvents.BLOCK_SNOWY_CHERRY_LEAVES_BREAK,
+            PromenadeSoundEvents.BLOCK_SNOWY_CHERRY_LEAVES_STEP,
+            PromenadeSoundEvents.BLOCK_SNOWY_CHERRY_LEAVES_PLACE,
+            PromenadeSoundEvents.BLOCK_SNOWY_CHERRY_LEAVES_HIT,
+            PromenadeSoundEvents.BLOCK_SNOWY_CHERRY_LEAVES_FALL
+    );
 
 }

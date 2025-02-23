@@ -17,6 +17,18 @@ public class PromenadeSoundEvents {
     public static final SoundEvent BLOCK_SNOWY_LEAVES_HIT = of("block.snowy_leaves.hit");
     public static final SoundEvent BLOCK_SNOWY_LEAVES_FALL = of("block.snowy_leaves.fall");
 
+    public static final SoundEvent BLOCK_SNOWY_AZALEA_LEAVES_BREAK = of("block.snowy_azalea_leaves.break");
+    public static final SoundEvent BLOCK_SNOWY_AZALEA_LEAVES_STEP = of("block.snowy_azalea_leaves.step");
+    public static final SoundEvent BLOCK_SNOWY_AZALEA_LEAVES_PLACE = of("block.snowy_azalea_leaves.place");
+    public static final SoundEvent BLOCK_SNOWY_AZALEA_LEAVES_HIT = of("block.snowy_azalea_leaves.hit");
+    public static final SoundEvent BLOCK_SNOWY_AZALEA_LEAVES_FALL = of("block.snowy_azalea_leaves.fall");
+
+    public static final SoundEvent BLOCK_SNOWY_CHERRY_LEAVES_BREAK = of("block.snowy_cherry_leaves.break");
+    public static final SoundEvent BLOCK_SNOWY_CHERRY_LEAVES_STEP = of("block.snowy_cherry_leaves.step");
+    public static final SoundEvent BLOCK_SNOWY_CHERRY_LEAVES_PLACE = of("block.snowy_cherry_leaves.place");
+    public static final SoundEvent BLOCK_SNOWY_CHERRY_LEAVES_HIT = of("block.snowy_cherry_leaves.hit");
+    public static final SoundEvent BLOCK_SNOWY_CHERRY_LEAVES_FALL = of("block.snowy_cherry_leaves.fall");
+
     public static final SoundEvent CAPYBARA_AMBIENT = of("entity.capybara.ambient");
     public static final SoundEvent CAPYBARA_AMBIENT_BABY = of("entity.capybara.ambient.baby");
     public static final SoundEvent CAPYBARA_FART = of("entity.capybara.fart");

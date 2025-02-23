@@ -201,9 +201,16 @@ public final class BlockFactory {
                 .solidBlock(Blocks::never));
     }
 
+    public static BlockBuilder snowyLeaves(BlockSoundGroup soundGroup) {
+        return snowyLeaves().settings(settings -> settings.sounds(soundGroup));
+    }
 
     public static BlockBuilder snowyLeaves(int chance, ParticleEffect particle) {
         return snowyLeaves().factory(s -> new ParticleSnowyLeavesBlock(chance, particle, s));
+    }
+
+    public static BlockBuilder snowyLeaves(int chance, ParticleEffect particle, BlockSoundGroup soundGroup) {
+        return snowyLeaves(chance, particle).settings(settings -> settings.sounds(soundGroup));
     }
 
     public static BlockBuilder pot(Block block) {
