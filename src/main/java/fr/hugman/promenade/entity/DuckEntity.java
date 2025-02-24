@@ -67,7 +67,7 @@ public class DuckEntity extends AnimalEntity implements VariantHolder<RegistryEn
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
         super.initDataTracker(builder);
-        builder.add(VARIANT, this.getRegistryManager().getOrThrow(PromenadeRegistryKeys.DUCK_VARIANT).getOrThrow(DuckVariants.PEKIN));
+        builder.add(VARIANT, this.getRegistryManager().getOrThrow(PromenadeRegistryKeys.DUCK_VARIANT).getOrThrow(DuckVariants.DEFAULT));
     }
 
     @Override
@@ -108,7 +108,7 @@ public class DuckEntity extends AnimalEntity implements VariantHolder<RegistryEn
         super.writeCustomDataToNbt(nbt);
         VARIANT_ENTRY_CODEC.encodeStart(this.getRegistryManager().getOps(NbtOps.INSTANCE), this.getVariant()).ifSuccess(nbtElement -> nbt.copyFrom((NbtCompound) nbtElement));
 
-        nbt.putString(VARIANT_KEY, (this.getVariant().getKey().orElse(DuckVariants.PEKIN)).getValue().toString());
+        nbt.putString(VARIANT_KEY, (this.getVariant().getKey().orElse(DuckVariants.DEFAULT)).getValue().toString());
     }
 
     @Override
