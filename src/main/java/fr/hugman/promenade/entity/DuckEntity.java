@@ -97,9 +97,10 @@ public class DuckEntity extends AnimalEntity implements VariantHolder<RegistryEn
         this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
         this.goalSelector.add(3, new TemptGoal(this, 1.0, (stack) -> stack.isIn(PromenadeItemTags.DUCK_FOOD), false));
         this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
-        this.goalSelector.add(5, new WanderAroundFarGoal(this, 1.0D));
-        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.add(7, new LookAroundGoal(this));
+        this.goalSelector.add(5, new SwimAroundGoal(this, 1.0, 10));
+        this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0D));
+        this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
+        this.goalSelector.add(8, new LookAroundGoal(this));
     }
 
     @Override
@@ -136,22 +137,8 @@ public class DuckEntity extends AnimalEntity implements VariantHolder<RegistryEn
     }
 
     @Override
-    public boolean canWalkOnFluid(FluidState fluidState) {
-        return fluidState.isOf(Fluids.WATER);
-    }
-
-    @Override
-    public void travel(Vec3d movementInput) {
-        if (this.canMoveVoluntarily() && this.isTouchingWater()) {
-            this.updateVelocity(this.getMovementSpeed(), movementInput);
-            this.move(MovementType.SELF, this.getVelocity());
-            this.setVelocity(this.getVelocity().multiply(0.9D));
-            if (this.getTarget() == null) {
-                this.setVelocity(this.getVelocity().add(0.0D, -0.005D, 0.0D));
-            }
-        } else {
-            super.travel(movementInput);
-        }
+    protected float getBaseWaterMovementSpeedMultiplier() {
+        return 0.9f;
     }
 
     @Override
