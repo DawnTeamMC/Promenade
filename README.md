@@ -1,8 +1,6 @@
 <p align="center">
 
-[![Promenade](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/header.png)](https://dawnteammc.github.io/promenade)
-
-<h3 align="center">Promenade</h3>
+[![Promenade](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/logo.png)](https://dawnteammc.github.io/promenade)
 
 <div align="center">
   A mod for the latest version of Minecraft that adds new biomes, animals, monsters, structures, and more to the game.
@@ -13,7 +11,7 @@
   <br/>
   <br/>
   <a href="https://github.com/DawnTeamMC/Promenade/issues">Report a Bug</a>
-  .
+  -
   <a href="https://github.com/DawnTeamMC/Promenade/issues">Request a Feature</a>
   <br/>
   <br/>
@@ -31,23 +29,26 @@
 
 </p>
 
-## About
-
-- 💖 Handcrafted with love
-- ⚙️ Easily configurable
-
-Features:
-- 5 new biomes 
-- 2 new animals and 2 new monsters
-- 1 new structure
-- A ton of new blocks and items
-- And more...
+---
 
 <p align="center">
 
-[![Some highlights](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/highlight_1.png)](https://dawnteammc.github.io/promenade)
+![Some highlights](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/highlight_1.png)
 
 </p>
+
+---
+
+## About
+
+- **5 new biomes** 
+- **2 new animals and 2 new monsters**
+- **1 new structure**
+- **A ton of new blocks and items**
+- And more...
+
+- 💖 Handcrafted with love
+- ⚙️ Easily configurable
 
 ## 🎶 Soundtrack
 Sakura Groves feature a new track composed by [**LudoCrypt**](https://ludocrypt.crd.co/): **Brise couleur pastel**!  
