@@ -3,7 +3,9 @@ package fr.hugman.promenade.data.provider.builders;
 import com.google.common.collect.ImmutableList;
 import fr.hugman.promenade.block.MapleLogBlock;
 import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.world.gen.tree.foliage.MapleFoliagePlacer;
 import fr.hugman.promenade.world.gen.tree.foliage.PalmFoliagePlacer;
+import fr.hugman.promenade.world.gen.tree.trunk.BranchingStraightTrunkPlacer;
 import fr.hugman.promenade.world.gen.tree.trunk.LeapingTrunkPlacer;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -16,13 +18,11 @@ import net.minecraft.world.gen.feature.HugeFungusFeatureConfig;
 import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
-import net.minecraft.world.gen.foliage.LargeOakFoliagePlacer;
 import net.minecraft.world.gen.foliage.MegaPineFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.treedecorator.AttachedToLeavesTreeDecorator;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 import net.minecraft.world.gen.trunk.GiantTrunkPlacer;
-import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
 import java.util.List;
 import java.util.OptionalInt;
@@ -119,13 +119,14 @@ public class PromenadeFeatureConfigs {
     public static TreeFeatureConfig.Builder maple(Block leaves, boolean fancy) {
         return new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(PromenadeBlocks.MAPLE_LOG.getDefaultState().with(MapleLogBlock.NATURAL, true)),
-                fancy ? new StraightTrunkPlacer(8, 5, 2) :
-                        new StraightTrunkPlacer(5, 4, 0),
+                fancy ? new BranchingStraightTrunkPlacer(17, 5, 3) :
+                        new BranchingStraightTrunkPlacer(13, 4, 2),
                 BlockStateProvider.of(leaves),
-                new LargeOakFoliagePlacer(BiasedToBottomIntProvider.create(2, 3), ConstantIntProvider.create(1), 4),
+                new MapleFoliagePlacer(BiasedToBottomIntProvider.create(3, 4), UniformIntProvider.create(5, 6), BiasedToBottomIntProvider.create(17, 20)),
                 fancy ? new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)) :
                         new TwoLayersFeatureSize(1, 0, 1, OptionalInt.empty())
-        ).ignoreVines();
+        )
+                .ignoreVines();
     }
 
     public static TreeFeatureConfig.Builder snowyMegaSpruce(Block leaves) {

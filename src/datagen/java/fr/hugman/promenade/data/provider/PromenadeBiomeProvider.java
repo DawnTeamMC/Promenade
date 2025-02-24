@@ -53,7 +53,6 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
         addBasicFeatures(generation);
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.WATER_POOLS_GRAVEL_DECORATED);
-        generation.feature(GenerationStep.Feature.LAKES, PromenadePlacedFeatures.WATER_POOLS_GRAVEL);
         generation.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, PromenadePlacedFeatures.CUTE_LITTLE_ROCKS);
 
         DefaultBiomeFeatures.addForestFlowers(generation);
@@ -111,11 +110,8 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         DefaultBiomeFeatures.addDefaultMushrooms(generation);
         DefaultBiomeFeatures.addDefaultVegetation(generation);
 
-        generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.CARNELIAN_TREEWAY_VERMILION_TREES);
-        generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.CARNELIAN_TREEWAY_FULVOUS_TREES);
-        generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.CARNELIAN_TREEWAY_MIKADO_TREES);
-        generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.CARNELIAN_TREEWAY_SAP_TREES);
-        //TODO add fallen leaves to replace old leaf piles and carpeted grass
+        generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.CARNELIAN_TREEWAY_TREES);
+        generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.CARNELIAN_TREEWAY_FALLEN_LEAVES);
 
         SpawnSettings.Builder spawns = new SpawnSettings.Builder();
 

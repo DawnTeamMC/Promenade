@@ -55,8 +55,10 @@ public class PromenadeFlammables {
         fire.add(PromenadeBlocks.SAKURA_FENCE, 5, 20);
         fire.add(PromenadeBlocks.SAKURA_FENCE_GATE, 5, 20);
         fire.add(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_BLUSH_SAKURA_BLOSSOMS, 30, 60);
         fire.add(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, 30, 60);
         fire.add(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_COTTON_SAKURA_BLOSSOMS, 30, 60);
         fire.add(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, 30, 60);
 
         fire.add(PromenadeBlocks.MAPLE_LOG, 5, 5);
@@ -69,12 +71,20 @@ public class PromenadeFlammables {
         fire.add(PromenadeBlocks.MAPLE_FENCE, 5, 20);
         fire.add(PromenadeBlocks.MAPLE_FENCE_GATE, 5, 20);
         fire.add(PromenadeBlocks.SAP_MAPLE_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_SAP_MAPLE_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.FALLEN_SAP_MAPLE_LEAVES, 30, 60);
         fire.add(PromenadeBlocks.SAP_MAPLE_LEAF_PILE, 30, 60);
         fire.add(PromenadeBlocks.VERMILION_MAPLE_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_VERMILION_MAPLE_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES, 30, 60);
         fire.add(PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, 30, 60);
         fire.add(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_FULVOUS_MAPLE_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES, 30, 60);
         fire.add(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, 30, 60);
         fire.add(PromenadeBlocks.MIKADO_MAPLE_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_MIKADO_MAPLE_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES, 30, 60);
         fire.add(PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE, 30, 60);
 
         fire.add(PromenadeBlocks.PALM_LOG, 5, 5);
@@ -87,6 +97,7 @@ public class PromenadeFlammables {
         fire.add(PromenadeBlocks.PALM_FENCE, 5, 20);
         fire.add(PromenadeBlocks.PALM_FENCE_GATE, 5, 20);
         fire.add(PromenadeBlocks.PALM_LEAVES, 30, 60);
+        fire.add(PromenadeBlocks.SNOWY_PALM_LEAVES, 30, 60);
         fire.add(PromenadeBlocks.PALM_HANGING_LEAVES, 30, 60);
         fire.add(PromenadeBlocks.PALM_LEAF_PILE, 30, 60);
 

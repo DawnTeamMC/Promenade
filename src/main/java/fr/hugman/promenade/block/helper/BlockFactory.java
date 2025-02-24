@@ -201,9 +201,16 @@ public final class BlockFactory {
                 .solidBlock(Blocks::never));
     }
 
+    public static BlockBuilder snowyLeaves(BlockSoundGroup soundGroup) {
+        return snowyLeaves().settings(settings -> settings.sounds(soundGroup));
+    }
 
     public static BlockBuilder snowyLeaves(int chance, ParticleEffect particle) {
         return snowyLeaves().factory(s -> new ParticleSnowyLeavesBlock(chance, particle, s));
+    }
+
+    public static BlockBuilder snowyLeaves(int chance, ParticleEffect particle, BlockSoundGroup soundGroup) {
+        return snowyLeaves(chance, particle).settings(settings -> settings.sounds(soundGroup));
     }
 
     public static BlockBuilder pot(Block block) {
@@ -227,7 +234,25 @@ public final class BlockFactory {
                 .mapColor(color)
                 .burnable()
                 .strength(0.1f)
-                .ticksRandomly()
+                .sounds(sounds)
+                .noCollision()
+                .nonOpaque());
+    }
+
+    public static BlockBuilder fallenLeaves() {
+        return fallenLeaves(MapColor.DARK_GREEN);
+    }
+
+    public static BlockBuilder fallenLeaves(MapColor color) {
+        return fallenLeaves(color, BlockSoundGroup.GRASS);
+    }
+
+    public static BlockBuilder fallenLeaves(MapColor color, BlockSoundGroup sounds) {
+        return new BlockBuilder(PileBlock::new, AbstractBlock.Settings.create()
+                .mapColor(color)
+                .burnable()
+                .replaceable()
+                .breakInstantly()
                 .sounds(sounds)
                 .noCollision()
                 .nonOpaque());

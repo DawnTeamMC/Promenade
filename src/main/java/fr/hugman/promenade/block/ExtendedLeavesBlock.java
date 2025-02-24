@@ -35,7 +35,7 @@ public class ExtendedLeavesBlock extends Block implements Waterloggable {
     }
 
     @Override
-    public MapCodec<ExtendedLeavesBlock> getCodec() {
+    public MapCodec<? extends ExtendedLeavesBlock> getCodec() {
         return CODEC;
     }
 

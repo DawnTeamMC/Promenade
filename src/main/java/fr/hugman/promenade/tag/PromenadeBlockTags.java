@@ -13,6 +13,7 @@ public class PromenadeBlockTags {
 
     public static final TagKey<Block> SNOWY_LEAVES = of("snowy_leaves");
 
+    public static final TagKey<Block> FALLEN_LEAVES = of("fallen_leaves");
     public static final TagKey<Block> LEAF_PILES = of("leaf_piles");
     public static final TagKey<Block> FLOWER_PILES = of("flower_piles");
 
