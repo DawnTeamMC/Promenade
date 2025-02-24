@@ -27,6 +27,9 @@ public class SnowBlockMixin {
 
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void promenade$randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
+        if(state.get(LAYERS) == 8 && world.getBlockState(pos.up()).isOf((SnowBlock)(Object)this)) {
+            return;
+        }
         var downPos = findNextBottomSnowyBlock(world, pos);
         if(downPos.isEmpty()) {
             return;
