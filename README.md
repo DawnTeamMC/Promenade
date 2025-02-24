@@ -1,50 +1,53 @@
-[![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://dawnteammc.github.io/promenade)
+<p align="center">
 
-# 🍁 Promenade
-[![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg?label=Latest%20version&style=for-the-badge)](https://github.com/DawnTeamMC/Promenade/releases/latest)
+[![Promenade](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/header.png)](https://dawnteammc.github.io/promenade)
+
+<h3 align="center">Promenade</h3>
+
+<div align="center">
+  A mod for the latest version of Minecraft that adds new biomes, animals, monsters, structures, and more to the game.
+
+  <br/>
+  <br/>
+  <a href="https://dawnteammc.github.io/promenade"><strong>Explore the wiki »</strong></a>
+  <br/>
+  <br/>
+  <a href="https://github.com/DawnTeamMC/Promenade/issues">Report a Bug</a>
+  .
+  <a href="https://github.com/DawnTeamMC/Promenade/issues">Request a Feature</a>
+  <br/>
+  <br/>
+  <br/>
+
 [![CurseForge downloads](http://cf.way2muchnoise.eu/full_promenade_downloads.svg?badge_style=for_the_badge)](https://www.curseforge.com/minecraft/mc-mods/promenade)
-
+[![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg?label=Latest%20version&style=for-the-badge)](https://github.com/DawnTeamMC/Promenade/releases/latest)
+  <br/>
 [![Discord user count](https://img.shields.io/discord/504608980799062036?label=&color=424549&labelColor=7289da&style=for-the-badge&logo=Discord&logoColor=DDE4EF)](https://discord.gg/8ksTVJu)
 [![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/DawnTeamMC?style=for-the-badge&labelColor=424549&color=424549&logo=x)](https://twitter.com/DawnTeamMC)
-
+  <br/>
 [![License (Polyform Shield 1.0.0)](https://img.shields.io/badge/code%20license-Polyform%20Shield%201.0.0-green.svg?style=for-the-badge)](https://polyformproject.org/licenses/shield/1.0.0/)
 
-Promenade is a mod for the latest version of Minecraft that adds a ton of features to the game related to exploration, diversity and will improve the beauty of your world.
+</div>
 
-**You can visit the [official wiki for Promenade for more information](https://dawnteammc.github.io/promenade).**
+</p>
 
-### Biomes
+## About
 
-* **Sakura Groves** (japanese cherry blossoms)
-* **Carnelian Treeway** (maple trees)
-* **Glacarian Taiga**
-* **Dark Amaranth Forests**
-* **Palms** in deserts
+- 💖 Handcrafted with love
+- ⚙️ Easily configurable
 
+Features:
+- 5 new biomes 
+- 2 new animals and 2 new monsters
+- 1 new structure
+- A ton of new blocks and items
+- And more...
 
-### Animals
+<p align="center">
 
-* **Capybaras** in swamps and rivers
-* **Ducks** in plains and rivers
+[![Some highlights](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/highlight_1.png)](https://dawnteammc.github.io/promenade)
 
-
-### Monsters
-
-* **Sunken** in oceans
-* **Lush Creepers** in caves
-
-
-### Structures
-
-* **Witch Huts** in dark forests
-
-
-### Other
-
-* Moai 🗿 (use tuff in a stonecutter)
-* New rocks: asphalt and blunite
-* Piles of flowers and leaves
-* Blueberries
+</p>
 
 ## 🎶 Soundtrack
 Sakura Groves feature a new track composed by [**LudoCrypt**](https://ludocrypt.crd.co/): **Brise couleur pastel**!  
