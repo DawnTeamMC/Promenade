@@ -75,12 +75,22 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
 
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_OAK_LEAVES, Blocks.OAK_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_SPRUCE_LEAVES, Blocks.SPRUCE_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_BIRCH_LEAVES, Blocks.BIRCH_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_JUNGLE_LEAVES, Blocks.JUNGLE_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_ACACIA_LEAVES, Blocks.ACACIA_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_CHERRY_LEAVES, Blocks.CHERRY_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_DARK_OAK_LEAVES, Blocks.DARK_OAK_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_PALE_OAK_LEAVES, Blocks.PALE_OAK_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_MANGROVE_LEAVES, Blocks.MANGROVE_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_AZALEA_LEAVES, Blocks.AZALEA_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES, Blocks.FLOWERING_AZALEA_LEAVES);
 
         this.offerPlanksRecipe(PromenadeBlocks.SAKURA_PLANKS, PromenadeItemTags.SAKURA_LOGS, 4);
         this.offerBarkBlockRecipe(PromenadeBlocks.SAKURA_WOOD, PromenadeBlocks.SAKURA_LOG);
         this.offerBarkBlockRecipe(PromenadeBlocks.STRIPPED_SAKURA_WOOD, PromenadeBlocks.STRIPPED_SAKURA_LOG);
         this.offerHangingSignRecipe(PromenadeItems.SAKURA_HANGING_SIGN, PromenadeBlocks.STRIPPED_SAKURA_LOG);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_BLUSH_SAKURA_BLOSSOMS, PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_COTTON_SAKURA_BLOSSOMS, PromenadeBlocks.COTTON_SAKURA_BLOSSOMS);
         this.offerLeafPileRecipe(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE);
         this.offerLeafPileRecipe(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE);
         this.offerBoatRecipe(PromenadeItems.SAKURA_BOAT, PromenadeBlocks.SAKURA_PLANKS);
@@ -90,6 +100,10 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
         this.offerBarkBlockRecipe(PromenadeBlocks.MAPLE_WOOD, PromenadeBlocks.MAPLE_LOG);
         this.offerBarkBlockRecipe(PromenadeBlocks.STRIPPED_MAPLE_WOOD, PromenadeBlocks.STRIPPED_MAPLE_LOG);
         this.offerHangingSignRecipe(PromenadeItems.MAPLE_HANGING_SIGN, PromenadeBlocks.STRIPPED_MAPLE_LOG);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_SAP_MAPLE_LEAVES, PromenadeBlocks.SAP_MAPLE_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_VERMILION_MAPLE_LEAVES, PromenadeBlocks.VERMILION_MAPLE_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_FULVOUS_MAPLE_LEAVES, PromenadeBlocks.FULVOUS_MAPLE_LEAVES);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_MIKADO_MAPLE_LEAVES, PromenadeBlocks.MIKADO_MAPLE_LEAVES);
         this.offerFallenLeavesRecipe(PromenadeBlocks.FALLEN_SAP_MAPLE_LEAVES, PromenadeBlocks.SAP_MAPLE_LEAVES);
         this.offerFallenLeavesRecipe(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES, PromenadeBlocks.SAP_MAPLE_LEAVES);
         this.offerFallenLeavesRecipe(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES, PromenadeBlocks.FULVOUS_MAPLE_LEAVES);
@@ -105,6 +119,7 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
         this.offerBarkBlockRecipe(PromenadeBlocks.PALM_WOOD, PromenadeBlocks.PALM_LOG);
         this.offerBarkBlockRecipe(PromenadeBlocks.STRIPPED_PALM_WOOD, PromenadeBlocks.STRIPPED_PALM_LOG);
         this.offerHangingSignRecipe(PromenadeItems.PALM_HANGING_SIGN, PromenadeBlocks.STRIPPED_PALM_LOG);
+        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_PALM_LEAVES, PromenadeBlocks.PALM_LEAVES);
         this.offerLeafPileRecipe(PromenadeBlocks.PALM_LEAF_PILE, PromenadeBlocks.PALM_LEAVES);
         this.offerBoatRecipe(PromenadeItems.PALM_BOAT, PromenadeBlocks.PALM_PLANKS);
         this.offerChestBoatRecipe(PromenadeItems.PALM_CHEST_BOAT, PromenadeItems.PALM_BOAT);

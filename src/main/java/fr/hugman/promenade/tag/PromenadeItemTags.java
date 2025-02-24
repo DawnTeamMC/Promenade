@@ -11,6 +11,8 @@ public class PromenadeItemTags {
     public static final TagKey<Item> PALM_LOGS = of("palm_logs");
     public static final TagKey<Item> DARK_AMARANTH_STEMS = of("dark_amaranth_stems");
 
+    public static final TagKey<Item> SNOWY_LEAVES = of("snowy_leaves");
+
     public static final TagKey<Item> CAPYBARA_FOOD = of("capybara_food");
     public static final TagKey<Item> DUCK_FOOD = of("duck_food");
 

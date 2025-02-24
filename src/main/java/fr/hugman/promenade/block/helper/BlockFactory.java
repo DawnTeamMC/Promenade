@@ -1,6 +1,7 @@
 package fr.hugman.promenade.block.helper;
 
 import fr.hugman.promenade.block.HangingLeavesBlock;
+import fr.hugman.promenade.block.ParticleSnowyLeavesBlock;
 import fr.hugman.promenade.block.PileBlock;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
 import fr.hugman.promenade.sound.PromenadeBlockSounds;
@@ -198,6 +199,18 @@ public final class BlockFactory {
                 .blockVision(Blocks::never)
                 .pistonBehavior(PistonBehavior.DESTROY)
                 .solidBlock(Blocks::never));
+    }
+
+    public static BlockBuilder snowyLeaves(BlockSoundGroup soundGroup) {
+        return snowyLeaves().settings(settings -> settings.sounds(soundGroup));
+    }
+
+    public static BlockBuilder snowyLeaves(int chance, ParticleEffect particle) {
+        return snowyLeaves().factory(s -> new ParticleSnowyLeavesBlock(chance, particle, s));
+    }
+
+    public static BlockBuilder snowyLeaves(int chance, ParticleEffect particle, BlockSoundGroup soundGroup) {
+        return snowyLeaves(chance, particle).settings(settings -> settings.sounds(soundGroup));
     }
 
     public static BlockBuilder pot(Block block) {

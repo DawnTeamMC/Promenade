@@ -25,6 +25,27 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
         getOrCreateTagBuilder(PALM_LOGS).add(PALM_LOG, STRIPPED_PALM_LOG, PALM_WOOD, STRIPPED_PALM_WOOD);
         getOrCreateTagBuilder(DARK_AMARANTH_STEMS).add(DARK_AMARANTH_STEM, STRIPPED_DARK_AMARANTH_STEM, DARK_AMARANTH_HYPHAE, STRIPPED_DARK_AMARANTH_HYPHAE);
 
+        getOrCreateTagBuilder(SNOWY_LEAVES).add(
+                SNOWY_OAK_LEAVES,
+                SNOWY_SPRUCE_LEAVES,
+                SNOWY_BIRCH_LEAVES,
+                SNOWY_JUNGLE_LEAVES,
+                SNOWY_ACACIA_LEAVES,
+                SNOWY_CHERRY_LEAVES,
+                SNOWY_DARK_OAK_LEAVES,
+                SNOWY_PALE_OAK_LEAVES,
+                SNOWY_MANGROVE_LEAVES,
+                SNOWY_AZALEA_LEAVES,
+                SNOWY_FLOWERING_AZALEA_LEAVES,
+                SNOWY_BLUSH_SAKURA_BLOSSOMS,
+                SNOWY_COTTON_SAKURA_BLOSSOMS,
+                SNOWY_SAP_MAPLE_LEAVES,
+                SNOWY_VERMILION_MAPLE_LEAVES,
+                SNOWY_FULVOUS_MAPLE_LEAVES,
+                SNOWY_MIKADO_MAPLE_LEAVES,
+                SNOWY_PALM_LEAVES
+        );
+
         getOrCreateTagBuilder(FALLEN_LEAVES).add(
                 FALLEN_SAP_MAPLE_LEAVES,
                 FALLEN_VERMILION_MAPLE_LEAVES,
@@ -115,11 +136,8 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 SAP_MAPLE_LEAVES,
                 BLUSH_SAKURA_BLOSSOMS,
                 COTTON_SAKURA_BLOSSOMS,
-                PALM_LEAVES,
-                SNOWY_OAK_LEAVES,
-                SNOWY_SPRUCE_LEAVES,
-                SNOWY_JUNGLE_LEAVES
-        );
+                PALM_LEAVES
+        ).addTag(SNOWY_LEAVES);
         getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
                 BLUSH_SAKURA_SAPLING, COTTON_SAKURA_SAPLING,
                 SAP_MAPLE_SAPLING, VERMILION_MAPLE_SAPLING, FULVOUS_MAPLE_SAPLING, MIKADO_MAPLE_SAPLING,
@@ -183,11 +201,9 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                         SAP_MAPLE_LEAVES,
                         BLUSH_SAKURA_BLOSSOMS,
                         COTTON_SAKURA_BLOSSOMS,
-                        PALM_LEAVES,
-                        SNOWY_OAK_LEAVES,
-                        SNOWY_SPRUCE_LEAVES,
-                        SNOWY_JUNGLE_LEAVES
+                        PALM_LEAVES
                 )
+                .addTag(SNOWY_LEAVES)
                 .addTag(FLOWER_PILES)
                 .addTag(LEAF_PILES)
                 .add(DARK_AMARANTH_WART_BLOCK, SOUL_SHROOMLIGHT);

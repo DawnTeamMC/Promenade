@@ -57,7 +57,15 @@ public class PromenadeItemGroupAdditions {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(e -> {
             e.addAfter(Blocks.OAK_LEAVES, PromenadeBlocks.SNOWY_OAK_LEAVES);
             e.addAfter(Blocks.SPRUCE_LEAVES, PromenadeBlocks.SNOWY_SPRUCE_LEAVES);
+            e.addAfter(Blocks.BIRCH_LEAVES, PromenadeBlocks.SNOWY_BIRCH_LEAVES);
             e.addAfter(Blocks.JUNGLE_LEAVES, PromenadeBlocks.SNOWY_JUNGLE_LEAVES);
+            e.addAfter(Blocks.ACACIA_LEAVES, PromenadeBlocks.SNOWY_ACACIA_LEAVES);
+            e.addAfter(Blocks.CHERRY_LEAVES, PromenadeBlocks.SNOWY_CHERRY_LEAVES);
+            e.addAfter(Blocks.DARK_OAK_LEAVES, PromenadeBlocks.SNOWY_DARK_OAK_LEAVES);
+            e.addAfter(Blocks.PALE_OAK_LEAVES, PromenadeBlocks.SNOWY_PALE_OAK_LEAVES);
+            e.addAfter(Blocks.MANGROVE_LEAVES, PromenadeBlocks.SNOWY_MANGROVE_LEAVES);
+            e.addAfter(Blocks.AZALEA_LEAVES, PromenadeBlocks.SNOWY_AZALEA_LEAVES);
+            e.addAfter(Blocks.FLOWERING_AZALEA_LEAVES, PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES);
         });
 
         // SAKURA
@@ -74,10 +82,14 @@ public class PromenadeItemGroupAdditions {
                 PromenadeBlocks.SAKURA_DOOR,
                 PromenadeBlocks.SAKURA_TRAPDOOR,
                 PromenadeBlocks.SAKURA_PRESSURE_PLATE,
-                PromenadeBlocks.SAKURA_BUTTON));
+                PromenadeBlocks.SAKURA_BUTTON
+        ));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(e -> {
             e.addAfter(Blocks.BIRCH_LOG, PromenadeBlocks.SAKURA_LOG);
-            e.addAfter(Blocks.BIRCH_LEAVES, PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, PromenadeBlocks.COTTON_SAKURA_BLOSSOMS);
+            e.addAfter(PromenadeBlocks.SNOWY_BIRCH_LEAVES,
+                    PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, PromenadeBlocks.SNOWY_BLUSH_SAKURA_BLOSSOMS,
+                    PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, PromenadeBlocks.SNOWY_COTTON_SAKURA_BLOSSOMS
+            );
             e.addAfter(Blocks.BIRCH_SAPLING, PromenadeBlocks.BLUSH_SAKURA_SAPLING, PromenadeBlocks.COTTON_SAKURA_SAPLING);
             e.addAfter(PromenadeBlocks.BIRCH_LEAF_PILE, PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE);
         });
@@ -100,7 +112,12 @@ public class PromenadeItemGroupAdditions {
                         PromenadeBlocks.MAPLE_BUTTON));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(e -> {
             e.addAfter(PromenadeBlocks.SAKURA_LOG, PromenadeBlocks.MAPLE_LOG);
-            e.addAfter(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, PromenadeBlocks.SAP_MAPLE_LEAVES, PromenadeBlocks.VERMILION_MAPLE_LEAVES, PromenadeBlocks.FULVOUS_MAPLE_LEAVES, PromenadeBlocks.MIKADO_MAPLE_LEAVES);
+            e.addAfter(PromenadeBlocks.SNOWY_COTTON_SAKURA_BLOSSOMS,
+                    PromenadeBlocks.SAP_MAPLE_LEAVES, PromenadeBlocks.SNOWY_SAP_MAPLE_LEAVES,
+                    PromenadeBlocks.VERMILION_MAPLE_LEAVES, PromenadeBlocks.SNOWY_VERMILION_MAPLE_LEAVES,
+                    PromenadeBlocks.FULVOUS_MAPLE_LEAVES, PromenadeBlocks.SNOWY_FULVOUS_MAPLE_LEAVES,
+                    PromenadeBlocks.MIKADO_MAPLE_LEAVES, PromenadeBlocks.SNOWY_MIKADO_MAPLE_LEAVES
+            );
             e.addAfter(PromenadeBlocks.COTTON_SAKURA_SAPLING, PromenadeBlocks.SAP_MAPLE_SAPLING, PromenadeBlocks.VERMILION_MAPLE_SAPLING, PromenadeBlocks.FULVOUS_MAPLE_SAPLING, PromenadeBlocks.MIKADO_MAPLE_SAPLING);
             e.addAfter(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, PromenadeBlocks.SAP_MAPLE_LEAF_PILE, PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE);
             e.addAfter(Blocks.FLOWERING_AZALEA_LEAVES,
@@ -130,7 +147,7 @@ public class PromenadeItemGroupAdditions {
         });
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(e -> {
             e.addAfter(Blocks.ACACIA_LOG, PromenadeBlocks.PALM_LOG);
-            e.addAfter(Blocks.ACACIA_LEAVES, PromenadeBlocks.PALM_LEAVES, PromenadeBlocks.PALM_HANGING_LEAVES);
+            e.addAfter(PromenadeBlocks.SNOWY_ACACIA_LEAVES, PromenadeBlocks.PALM_LEAVES, PromenadeBlocks.SNOWY_PALM_LEAVES, PromenadeBlocks.PALM_HANGING_LEAVES);
             e.addAfter(Blocks.ACACIA_SAPLING, PromenadeBlocks.PALM_SAPLING);
             e.addAfter(PromenadeBlocks.ACACIA_LEAF_PILE, PromenadeBlocks.PALM_LEAF_PILE);
         });
