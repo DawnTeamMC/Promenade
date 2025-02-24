@@ -5,10 +5,10 @@
   "mixins": [
     "AxeItemMixin",
     "FallLocationMixin",
-    "LeavesBlockMixin",
     "LivingEntityMixin",
     "NetherrackBlockMixin",
-    "ShearsItemMixin"
+    "ShearsItemMixin",
+    "SnowBlockMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FallLocation.class)
 public class FallLocationMixin {
     @Inject(method = "fromBlockState", at = @At("HEAD"), cancellable = true)
-    private static void injectFromBlockState(BlockState state, CallbackInfoReturnable<FallLocation> cir) {
+    private static void promenade$fromBlockState(BlockState state, CallbackInfoReturnable<FallLocation> cir) {
         if (state.isOf(PromenadeBlocks.COILED_VINES) || state.isOf(PromenadeBlocks.COILED_VINES_PLANT)) {
             cir.setReturnValue(PromenadeFallLocations.COILED_VINES);
         }

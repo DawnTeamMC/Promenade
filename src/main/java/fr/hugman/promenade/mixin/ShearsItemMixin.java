@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(ShearsItem.class)
 public class ShearsItemMixin {
     @Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
-    public void useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
+    public void promenade$useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
         World world = context.getWorld();
         BlockPos blockPos = context.getBlockPos();
         BlockState blockState = world.getBlockState(blockPos);

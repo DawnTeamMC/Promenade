@@ -35,19 +35,33 @@ public final class PromenadeBlockRenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.LILY_OF_THE_VALLEY_PILE, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.WITHER_ROSE_PILE, RenderLayer.getCutoutMipped());
 
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_OAK_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_SPRUCE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_BIRCH_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_JUNGLE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_ACACIA_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_CHERRY_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_DARK_OAK_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_PALE_OAK_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_MANGROVE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_AZALEA_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES, RenderLayer.getCutoutMipped());
+
 
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SAKURA_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SAKURA_TRAPDOOR, RenderLayer.getCutout());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_BLUSH_SAKURA_BLOSSOMS, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.BLUSH_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_BLUSH_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, RenderLayer.getCutoutMipped());
 
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_COTTON_SAKURA_BLOSSOMS, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.COTTON_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_COTTON_SAKURA_SAPLING, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, RenderLayer.getCutoutMipped());
 
 
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.MAPLE_DOOR, RenderLayer.getCutout());
@@ -56,24 +70,28 @@ public final class PromenadeBlockRenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SAP_MAPLE_SAPLING, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_SAP_MAPLE_SAPLING, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SAP_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_SAP_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SAP_MAPLE_LEAF_PILE, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.FALLEN_SAP_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.VERMILION_MAPLE_SAPLING, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_VERMILION_MAPLE_SAPLING, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.VERMILION_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_VERMILION_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.VERMILION_MAPLE_LEAF_PILE, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.FULVOUS_MAPLE_SAPLING, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_FULVOUS_MAPLE_SAPLING, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.FULVOUS_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_FULVOUS_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
 
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.MIKADO_MAPLE_SAPLING, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_MIKADO_MAPLE_SAPLING, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.MIKADO_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_MIKADO_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_DOOR, RenderLayer.getCutout());
@@ -82,6 +100,7 @@ public final class PromenadeBlockRenderLayers {
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.POTTED_PALM_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.SNOWY_PALM_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_HANGING_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(PromenadeBlocks.PALM_LEAF_PILE, RenderLayer.getCutout());
 
