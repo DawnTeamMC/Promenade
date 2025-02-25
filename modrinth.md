@@ -17,9 +17,6 @@
   <br/>
   <br/>
 
-[![CurseForge downloads](http://cf.way2muchnoise.eu/full_promenade_downloads.svg?badge_style=for_the_badge)](https://www.curseforge.com/minecraft/mc-mods/promenade)
-[![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg?label=Latest%20version&style=for-the-badge)](https://github.com/DawnTeamMC/Promenade/releases/latest)
-<br/>
 [![Discord user count](https://img.shields.io/discord/504608980799062036?label=&color=424549&labelColor=7289da&style=for-the-badge&logo=Discord&logoColor=DDE4EF)](https://discord.gg/8ksTVJu)
 [![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/DawnTeamMC?style=for-the-badge&labelColor=424549&color=424549&logo=x)](https://twitter.com/DawnTeamMC)
 <br/>
@@ -39,7 +36,7 @@
 
 ---
 
-## About
+## 👾 About
 
 - **5 new biomes**
 - **2 new animals and 2 new monsters**
@@ -52,9 +49,15 @@
 
 ## 🎶 Soundtrack
 Sakura Groves feature a new track composed by [**LudoCrypt**](https://ludocrypt.crd.co/): **Brise couleur pastel**!  
-Listen to **Brise couleur pastel** on [Bandcamp](https://ludocrypt.bandcamp.com/track/brise-couleur-pastel) or YouTube:
+Listen to **Brise couleur pastel**
+on [Bandcamp](https://ludocrypt.bandcamp.com/track/brise-couleur-pastel), [Spotify](https://open.spotify.com/intl-fr/track/7t97yZezsAGDBzXUHj3H0y)
+or YouTube:
 
-[![Brise couleur pastel](https://img.youtube.com/vi/NUTTAB_-uY0/0.jpg)](https://www.youtube.com/watch?v=NUTTAB_-uY0)
+<div align="center">
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NUTTAB_-uY0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+</div>
 
 ## 📦 Download
 We use [CurseForge](https://www.curseforge.com/minecraft/mc-mods/promenade) and [Modrinth](https://modrinth.com/mod/promenade) to publish **stable builds** of Promenade for Minecraft.
@@ -91,5 +94,17 @@ Some money you donate may be used to pay for new features, such as music or art,
 
 ## 📜 License
 
-Except where otherwise stated (see [third-party license notices](thirdparty/NOTICE.txt)), the content of this repository is provided
-under the [Polyform Shield 1.0.0](LICENSE.md) license by [Hugman](https://github.com/Hugman76).
+Except where otherwise stated (
+see [third-party license notices](https://github.com/DawnTeamMC/Promenade/blob/main/thirdparty/NOTICE.txt)), the content
+of this repository is provided
+under the [Polyform Shield 1.0.0](https://github.com/DawnTeamMC/Promenade/blob/main/LICENSE.md) license
+by [Hugman](https://github.com/Hugman76).
+
+## 🎮 My Other Mods
+
+<div align="center">
+	<a href="https://modrinth.com/mod/culinaire"><img alt="Culinaire" width="250" src="https://dawnteammc.github.io/culinaire/images/header.png"></a><br><br>
+	<a href="https://modrinth.com/mod/artisanat"><img alt="Artisanat" width="250" src="https://dawnteammc.github.io/artisanat/images/header.png"></a><br><br>
+	<a href="https://modrinth.com/mod/mubble"><img alt="Mubble" width="250" src="https://dawnteammc.github.io/mubble/images/header.png"></a><br><br>
+	<a href="https://modrinth.com/mod/universal_ores"><img alt="Universal Ores" width="250" src="https://dawnteammc.github.io/universal_ores/images/header.png"></a>
+</div>

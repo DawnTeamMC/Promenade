@@ -39,7 +39,7 @@
 
 ---
 
-## About
+## 👾 About
 
 - **5 new biomes** 
 - **2 new animals and 2 new monsters**
@@ -52,9 +52,15 @@
 
 ## 🎶 Soundtrack
 Sakura Groves feature a new track composed by [**LudoCrypt**](https://ludocrypt.crd.co/): **Brise couleur pastel**!  
-Listen to **Brise couleur pastel** on [Bandcamp](https://ludocrypt.bandcamp.com/track/brise-couleur-pastel) or YouTube:
+Listen to **Brise couleur pastel**
+on [Bandcamp](https://ludocrypt.bandcamp.com/track/brise-couleur-pastel), [Spotify](https://open.spotify.com/intl-fr/track/7t97yZezsAGDBzXUHj3H0y)
+or YouTube:
 
-[![Brise couleur pastel](https://img.youtube.com/vi/NUTTAB_-uY0/0.jpg)](https://www.youtube.com/watch?v=NUTTAB_-uY0)
+<div align="center">
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/NUTTAB_-uY0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+</div>
 
 ## 📦 Download
 We use [CurseForge](https://www.curseforge.com/minecraft/mc-mods/promenade) and [Modrinth](https://modrinth.com/mod/promenade) to publish **stable builds** of Promenade for Minecraft.
