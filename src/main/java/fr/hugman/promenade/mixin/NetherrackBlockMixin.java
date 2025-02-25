@@ -18,14 +18,9 @@ import java.util.List;
 import java.util.Objects;
 
 @Mixin(NetherrackBlock.class)
-public abstract class NetherrackBlockMixin extends Block {
-
-    public NetherrackBlockMixin(Settings settings) {
-        super(settings);
-    }
-
+public abstract class NetherrackBlockMixin {
     @Inject(method = "grow", at = @At("HEAD"), cancellable = true)
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state, CallbackInfo ci) {
+    public void promenade$grow(ServerWorld world, Random random, BlockPos pos, BlockState state, CallbackInfo ci) {
         boolean crimson = false;
         boolean warped = false;
         boolean darkAmaranth = false;
