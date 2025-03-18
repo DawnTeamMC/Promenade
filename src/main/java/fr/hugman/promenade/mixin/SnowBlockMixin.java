@@ -1,7 +1,7 @@
 package fr.hugman.promenade.mixin;
 
-import fr.hugman.promenade.block.SnowyBlocksMap;
 import fr.hugman.promenade.block.SnowyLeavesBlock;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SnowBlock;
@@ -35,7 +35,9 @@ public class SnowBlockMixin {
             return;
         }
         var downState = world.getBlockState(downPos.get());
-        var snowyLeaves = SnowyBlocksMap.get(downState.getBlock());
+        var snowyLeaves = world.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().filter(
+                entry -> entry.baseBlocks().contains(downState.getBlock().getRegistryEntry())
+        ).findFirst().map(sbt -> sbt.snowyBlock().value()).orElse(null);
 
         if(snowyLeaves != null) {
             var layers = state.get(LAYERS) - 1;
@@ -64,16 +66,21 @@ public class SnowBlockMixin {
         do {
             mutable.move(Direction.DOWN);
             blockState = world.getBlockState(mutable);
-        } while (isFullSnowyBlock(blockState));
+        } while (isFullSnowyBlock(world, blockState));
 
-        return SnowyBlocksMap.hasKey(blockState.getBlock()) ? Optional.of(mutable) : Optional.empty();
+        var block = blockState.getBlock();
+        return world.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
+                entry -> entry.baseBlocks().contains(block.getRegistryEntry())
+        ) ? Optional.of(mutable) : Optional.empty();
     }
 
 
     @Unique
-    private boolean isFullSnowyBlock(BlockState state) {
+    private boolean isFullSnowyBlock(ServerWorld world, BlockState state) {
         var block = state.getBlock();
-        if(SnowyBlocksMap.hasValue(block)) return true;
+        if (world.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
+                entry -> entry.snowyBlock().matches(block.getRegistryEntry())
+        )) return true;
         if(state.isOf(Blocks.SNOW_BLOCK) || state.isOf(Blocks.POWDER_SNOW)) return true;
         if(state.isOf(Blocks.SNOW) && state.contains(LAYERS) && state.get(LAYERS) == 8) return true;
         return false;

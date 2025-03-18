@@ -15,9 +15,9 @@ public class PromenadeConsumableComponents {
             .consumeEffect(new RemoveEffectsConsumeEffect(StatusEffects.POISON))
             .build();
 
-    public static final ConsumableComponent RAW_DUCK = applyEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F);
+    public static final ConsumableComponent RAW_DUCK = foodWithEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F);
 
-    public static ConsumableComponent applyEffect(StatusEffectInstance effect, float probability) {
+    public static ConsumableComponent foodWithEffect(StatusEffectInstance effect, float probability) {
         return ConsumableComponents.food().consumeEffect(new ApplyEffectsConsumeEffect(effect, probability)).build();
     }
 }

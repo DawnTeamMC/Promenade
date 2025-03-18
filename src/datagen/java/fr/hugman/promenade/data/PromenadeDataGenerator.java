@@ -22,6 +22,9 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
 
         // Data Pack
 
+        // - Modded stuff
+        pack.addProvider(PromenadeSnowyBlockTransformationProvider::new);
+
         // - Variants
         pack.addProvider(PromenadeWolfVariantProvider::new);
         pack.addProvider(PromenadeCapybaraVariantProvider::new);
@@ -63,6 +66,8 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
 
     @Override
     public void buildRegistry(RegistryBuilder registryBuilder) {
+        registryBuilder.addRegistry(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION, PromenadeSnowyBlockTransformationProvider::register);
+
         registryBuilder.addRegistry(RegistryKeys.WOLF_VARIANT, PromenadeWolfVariantProvider::register);
         registryBuilder.addRegistry(PromenadeRegistryKeys.CAPYBARA_VARIANT, PromenadeCapybaraVariantProvider::register);
         registryBuilder.addRegistry(PromenadeRegistryKeys.DUCK_VARIANT, PromenadeDuckVariantProvider::register);
