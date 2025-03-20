@@ -205,7 +205,7 @@ public class PromenadeBlocks {
     public static final Block PALM_SAPLING = register("palm_sapling", BlockFactory.sapling(PromenadeMapColors.PALM_LEAVES, PromenadeSaplingGenerators.PALM, state -> state.isIn(BlockTags.SAND)));
     public static final Block POTTED_PALM_SAPLING = register("potted_palm_sapling", BlockFactory.pot(PALM_SAPLING));
     public static final Block PALM_LEAVES = register("palm_leaves", BlockFactory.leaves(PromenadeMapColors.PALM_LEAVES).factory(ExtendedLeavesBlock::new));
-    public static final Block SNOWY_PALM_LEAVES = register("snowy_palm_leaves", BlockFactory.snowyLeaves());
+    public static final Block SNOWY_PALM_LEAVES = register("snowy_palm_leaves", BlockFactory.snowyLeaves().factory(SnowyExtendedLeavesBlock::new));
     public static final Block PALM_HANGING_LEAVES = register("palm_hanging_leaves", BlockFactory.hangingLeaves(PromenadeMapColors.PALM_LEAVES));
     public static final Block PALM_LEAF_PILE = register("palm_leaf_pile", BlockFactory.pile(PromenadeMapColors.PALM_LEAVES, BlockSoundGroup.GRASS));
 

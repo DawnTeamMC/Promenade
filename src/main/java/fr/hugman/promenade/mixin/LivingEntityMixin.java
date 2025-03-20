@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
     @Inject(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;setFrozenTicks(I)V", ordinal = 1), cancellable = true)
-    private void tickMovement(CallbackInfo ci) {
+    private void promenade$tickMovement(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
         int frozenTicks = entity.getFrozenTicks();
         if (entity.getEntityWorld() instanceof ServerWorld serverWorld && PromenadeBiomes.canFreezeFromBiomeAndWeather(entity)) {
