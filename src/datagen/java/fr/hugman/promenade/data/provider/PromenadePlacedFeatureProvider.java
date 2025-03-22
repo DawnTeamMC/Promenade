@@ -53,7 +53,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
         of(registerable, PromenadePlacedFeatures.ORE_ASPHALT_UPPER, asphalt, modifiersWithRarity(6, HeightRangePlacementModifier.uniform(YOffset.fixed(64), YOffset.fixed(128))));
         of(registerable, PromenadePlacedFeatures.ORE_ASPHALT_LOWER, asphalt, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(60))));
         var blunite = configured.getOrThrow(PromenadeConfiguredFeatures.BLUNITE_ORE);
-        of(registerable, PromenadePlacedFeatures.ORE_BLUNITE_UPPER, blunite, modifiersWithRarity(6, HeightRangePlacementModifier.uniform(YOffset.fixed(64), YOffset.fixed(128))));
+        of(registerable, PromenadePlacedFeatures.ORE_BLUNITE_UPPER, blunite, modifiersWithRarity(4, HeightRangePlacementModifier.uniform(YOffset.fixed(64), YOffset.fixed(128))));
         of(registerable, PromenadePlacedFeatures.ORE_BLUNITE_LOWER, blunite, modifiersWithCount(2, HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(60))));
 
         of(registerable, PromenadePlacedFeatures.PACKED_ICE_ORE,

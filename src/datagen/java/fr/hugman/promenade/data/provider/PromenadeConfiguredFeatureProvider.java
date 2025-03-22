@@ -55,8 +55,8 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
 
         of(registerable, PromenadeConfiguredFeatures.PACKED_ICE_ORE, Feature.ORE, new OreFeatureConfig(isBaseStoneOverworld, Blocks.PACKED_ICE.getDefaultState(), 50));
         of(registerable, PromenadeConfiguredFeatures.BLUE_ICE_ORE, Feature.ORE, new OreFeatureConfig(isBaseStoneOverworld, Blocks.PACKED_ICE.getDefaultState(), 10));
-        of(registerable, PromenadeConfiguredFeatures.ASPHALT_ORE, Feature.ORE, new OreFeatureConfig(isBaseStoneOverworld, PromenadeBlocks.ASPHALT.getDefaultState(), 64));
-        of(registerable, PromenadeConfiguredFeatures.BLUNITE_ORE, Feature.ORE, new OreFeatureConfig(isBaseStoneOverworld, PromenadeBlocks.BLUNITE.getDefaultState(), 64));
+        of(registerable, PromenadeConfiguredFeatures.ASPHALT_ORE, Feature.ORE, new OreFeatureConfig(isBaseStoneOverworld, PromenadeBlocks.ASPHALT.getDefaultState(), 48));
+        of(registerable, PromenadeConfiguredFeatures.BLUNITE_ORE, Feature.ORE, new OreFeatureConfig(isBaseStoneOverworld, PromenadeBlocks.BLUNITE.getDefaultState(), 48));
 
         // Trees
         var beehive005 = new BeehiveTreeDecorator(0.05F);
