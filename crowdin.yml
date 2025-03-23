@@ -3,6 +3,13 @@ api_token_env: "CROWDIN_PERSONAL_TOKEN"
 preserve_hierarchy: true
 
 files:
-  - source: "src/main/resources/assets/promenade/lang/en_us.json"
-    translation: "src/main/resources/assets/promenade/lang/%locale_with_underscore%.json"
+  - source: "src/client/resources/assets/promenade/lang/en_us.json"
+    translation: "src/client/resources/assets/promenade/lang/%locale_with_underscore%.json"
     dest: "promenade.json"
+  - source: "docs/**/*.*"
+    ignore:
+      - "docs/.assets/**/*"
+      - "docs/.translated/**/*"
+      - "docs/sinytra-wiki.json"
+    translation: "docs/.translated/%locale_with_underscore%/**/%original_file_name%"
+    dest: "promenade-docs/**/%original_file_name%"

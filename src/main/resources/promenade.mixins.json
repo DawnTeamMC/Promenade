@@ -1,8 +1,15 @@
 {
   "required": true,
   "package": "fr.hugman.promenade.mixin",
-  "compatibilityLevel": "JAVA_17",
-  "mixins": ["AxeItemMixin", "LivingEntityMixin"],
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AxeItemMixin",
+    "FallLocationMixin",
+    "LivingEntityMixin",
+    "NetherrackBlockMixin",
+    "ShearsItemMixin",
+    "SnowBlockMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

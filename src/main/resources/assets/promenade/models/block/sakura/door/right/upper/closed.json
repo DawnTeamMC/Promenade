@@ -1,7 +1,0 @@
-{
-	"parent": "minecraft:block/door_top_right",
-	"textures": {
-		"bottom": "promenade:block/sakura/door/bottom",
-		"top": "promenade:block/sakura/door/top"
-	}
-}

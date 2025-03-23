@@ -1,7 +1,0 @@
-{
-	"parent": "minecraft:block/door_bottom_right",
-	"textures": {
-		"bottom": "promenade:block/dark_amaranth/door/bottom",
-		"top": "promenade:block/dark_amaranth/door/top"
-	}
-}

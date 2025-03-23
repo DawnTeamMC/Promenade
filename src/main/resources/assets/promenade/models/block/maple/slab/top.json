@@ -1,8 +1,0 @@
-{
-	"parent": "block/slab_top",
-	"textures": {
-		"bottom": "promenade:block/maple/planks",
-		"top": "promenade:block/maple/planks",
-		"side": "promenade:block/maple/planks"
-	}
-}

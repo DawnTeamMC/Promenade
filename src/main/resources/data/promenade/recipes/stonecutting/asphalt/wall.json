@@ -1,8 +1,0 @@
-{
-	"type": "minecraft:stonecutting",
-	"ingredient": {
-		"item": "promenade:asphalt"
-	},
-	"result": "promenade:asphalt_wall",
-	"count": 1
-}

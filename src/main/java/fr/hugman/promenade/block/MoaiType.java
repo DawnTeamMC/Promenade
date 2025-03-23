@@ -1,18 +1,20 @@
 package fr.hugman.promenade.block;
 
-public enum MoaiType implements net.minecraft.util.StringIdentifiable {
-	SINGLE("single"),
-	TOP("top"),
-	BOTTOM("bottom");
+import net.minecraft.util.StringIdentifiable;
 
-	private final String name;
+public enum MoaiType implements StringIdentifiable {
+    SINGLE("single"),
+    TOP("top"),
+    BOTTOM("bottom");
 
-	MoaiType(String name) {
-		this.name = name;
-	}
+    private final String name;
 
-	@Override
-	public String asString() {
-		return this.name;
-	}
+    MoaiType(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String asString() {
+        return this.name;
+    }
 }

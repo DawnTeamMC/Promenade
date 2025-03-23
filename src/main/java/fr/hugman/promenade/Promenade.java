@@ -1,52 +1,72 @@
 package fr.hugman.promenade;
 
-import fr.hugman.dawn.Registrar;
-import fr.hugman.promenade.config.PromenadeConfig;
+import com.google.common.reflect.Reflection;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.block.dispenser.PromenadeDispenserBehaviors;
+import fr.hugman.promenade.block.entity.PromenadeBlockEntities;
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
+import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
-import fr.hugman.promenade.registry.content.*;
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
-import me.shedaniel.autoconfig.serializer.PartitioningSerializer;
+import fr.hugman.promenade.item.PromenadeItems;
+import fr.hugman.promenade.itemgroup.PromenadeItemGroupAdditions;
+import fr.hugman.promenade.itemgroup.PromenadeItemGroups;
+import fr.hugman.promenade.registry.*;
+import fr.hugman.promenade.sound.PromenadeSoundEvents;
+import fr.hugman.promenade.trade.PromenadeTrades;
+import fr.hugman.promenade.world.biome.PromenadeBiomes;
+import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
+import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
+import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifierTypes;
+import fr.hugman.promenade.world.gen.tree.foliage.PromenadeFoliagePlacerTypes;
+import fr.hugman.promenade.world.gen.tree.trunk.PromenadeTrunkPlacerTypes;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class Promenade implements ModInitializer {
-	public static final Registrar REGISTRAR = new Registrar("promenade");
-	public static final Logger LOGGER = LogManager.getLogger();
-	public static final PromenadeConfig CONFIG = AutoConfig.register(PromenadeConfig.class, PartitioningSerializer.wrap(GsonConfigSerializer::new)).getConfig();
+    public static final String MOD_ID = "promenade";
+    public static final Logger LOGGER = LogManager.getLogger();
 
-	@Override
-	public void onInitialize() {
-		PromenadeTrackedData.init();
-		PromenadeSensorTypes.register(REGISTRAR);
+    @Override
+    public void onInitialize() {
+        PromenadeRegistries.register();
 
-		AnimalContent.register(REGISTRAR);
-		MonsterContent.register(REGISTRAR);
+        Reflection.initialize(PromenadeSoundEvents.class);
 
-		CommonContent.register(REGISTRAR);
-		VanillaPilesContent.register(REGISTRAR);
-		FoodContent.register(REGISTRAR);
-		IgneousContent.register(REGISTRAR);
+        Reflection.initialize(PromenadeBlocks.class);
 
-		SakuraContent.register(REGISTRAR);
-		MapleContent.register(REGISTRAR);
-		TropicalContent.register(REGISTRAR);
-		GlaglaglaContent.register(REGISTRAR);
-		AmaranthContent.register(REGISTRAR);
+        PromenadeStrippables.register();
+        PromenadeFlammables.register();
+        PromenadeBlockEntities.addBlocksToVanillaBlockEntityTypes();
 
-		if(FabricLoader.getInstance().isModLoaded("columns")) {
-			//TODO: haykam
-			//ColumnsContent.init();
-			//Promenade.LOGGER.info("Initialized Columns compatibility");
-			Promenade.LOGGER.warn("Columns compatibility has not yet been implemented");
-		}
-	}
+        Reflection.initialize(PromenadeItems.class);
 
-	public static Identifier id(String path) {
-		return REGISTRAR.id(path);
-	}
+        Reflection.initialize(PromenadeItemGroups.class);
+        PromenadeItemGroupAdditions.appendItemGroups();
+        PromenadeCompostingChances.register();
+        PromenadeTrades.appendVillagerTrades();
+        PromenadeDispenserBehaviors.register();
+
+        Reflection.initialize(PromenadeSensorTypes.class);
+        Reflection.initialize(PromenadeMemoryModuleTypes.class);
+        Reflection.initialize(PromenadeTrackedData.class);
+        Reflection.initialize(PromenadeEntityTypes.class);
+
+        Reflection.initialize(PromenadeTrunkPlacerTypes.class);
+        Reflection.initialize(PromenadeFoliagePlacerTypes.class);
+        Reflection.initialize(PromenadeFeatures.class);
+        Reflection.initialize(PromenadePlacementModifierTypes.class);
+
+        PromenadeEntityTypes.appendWorldGen();
+        PromenadeBiomes.appendWorldGen();
+        PromenadePlacedFeatures.appendWorldGen();
+
+        PromenadeRegistryAliases.registerAliases();
+    }
+
+    public static Identifier id(String path) {
+        return Identifier.of(MOD_ID, path);
+    }
 }

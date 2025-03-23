@@ -1,5 +1,7 @@
 {
     "id": "promenade",
-    "platform": "modrinth",
+    "platforms": {
+        "modrinth": "promenade"
+    },
     "slug": "promenade"
 }

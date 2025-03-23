@@ -6,8 +6,10 @@ name: Synchronize Project
 on:
   push:
     paths:
-      - 'src/main/resources/assets/promenade/lang/en_us.json'
-    branches: [main, dev]
+      - 'src/client/resources/assets/promenade/lang/en_us.json'
+      - 'crowdin.yml'
+      - 'docs/**/*.*'
+    branches: [ main, dev ]
 
 jobs:
   crowdin:

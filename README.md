@@ -1,72 +1,82 @@
-[![Promenade](https://dawnteammc.github.io/promenade/images/header.png)](https://hugman.gitbook.io/promenade/)
+<p align="center">
 
-# 🍁 Promenade
-[![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg)](https://github.com/DawnTeamMC/Promenade/releases/latest)
-[![CurseForge downloads](http://cf.way2muchnoise.eu/full_promenade_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/promenade)
-[![License (Polyform Shield 1.0.0)](https://img.shields.io/badge/code%20license-Polyform%20Shield%201.0.0-green.svg?style=flat-square)](https://polyformproject.org/licenses/shield/1.0.0/)
-[![GitHub stars](https://img.shields.io/github/stars/DawnTeamMC/Promenade.svg?style=flat-square)]()
+[![Promenade](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/logo.png)](https://dawnteammc.github.io/promenade)
 
-[![Discord user count](https://img.shields.io/discord/504608980799062036.svg?logoColor=FFFFFF&logo=discord&color=7289DA&style=flat-square)](https://discord.gg/8ksTVJu)
-[![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/DawnTeamMC)](https://twitter.com/DawnTeamMC)
+<div align="center">
+  A mod for the latest version of Minecraft that adds new biomes, animals, monsters, structures, and more to the game.
 
-Promenade is a mod for the latest version of Minecraft that adds a ton of features to the game related to exploration, diversity and will improve the beauty of you world.
+  <br/>
+  <br/>
+  <a href="https://dawnteammc.github.io/promenade"><strong>Explore the wiki »</strong></a>
+  <br/>
+  <br/>
+  <a href="https://github.com/DawnTeamMC/Promenade/issues">Report a Bug</a>
+  -
+  <a href="https://github.com/DawnTeamMC/Promenade/issues">Request a Feature</a>
+  <br/>
+  <br/>
+  <br/>
 
-**You can visit the [official wiki for Promenade for more information](https://dawnteammc.github.io/promenade).**
+[![CurseForge downloads](http://cf.way2muchnoise.eu/full_promenade_downloads.svg?badge_style=for_the_badge)](https://www.curseforge.com/minecraft/mc-mods/promenade)
+[![Latest release](https://img.shields.io/github/release/DawnTeamMC/Promenade.svg?label=Latest%20version&style=for-the-badge)](https://github.com/DawnTeamMC/Promenade/releases/latest)
+  <br/>
+[![Discord user count](https://img.shields.io/discord/504608980799062036?label=&color=424549&labelColor=7289da&style=for-the-badge&logo=Discord&logoColor=DDE4EF)](https://discord.gg/8ksTVJu)
+[![X (formerly Twitter) Follow](https://img.shields.io/twitter/follow/DawnTeamMC?style=for-the-badge&labelColor=424549&color=424549&logo=x)](https://twitter.com/DawnTeamMC)
+  <br/>
+[![License (Polyform Shield 1.0.0)](https://img.shields.io/badge/code%20license-Polyform%20Shield%201.0.0-green.svg?style=for-the-badge)](https://polyformproject.org/licenses/shield/1.0.0/)
 
-## 👾 Features
-Due to a missing Fabric API module, versions from v2.5.0 to v4.0.0 require [TerraBlender](https://www.curseforge.com/minecraft/mc-mods/terrablender-fabric) to be installed for overworld biomes to appear in your world.
+</div>
 
-### Biomes
+</p>
 
-* **Sakura Groves** (japanese cherry blossoms)
-* **Carnelian Treeway** (maple trees)
-* **Glacarian Taiga**
-* **Dark Amaranth Forests**
-* **Palms** in deserts
+---
 
+<p align="center">
 
-### Animals
+![Some highlights](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/highlight_1.png)
 
-* **Capybaras** in swamps and rivers
-* **Ducks** in plains and rivers
+</p>
 
+---
 
-### Monsters
+## 👾 About
 
-* **Sunken Skeleton** in oceans
-* **Lush Creepers** in caves
+- **5 new biomes** 
+- **2 new animals and 2 new monsters**
+- **1 new structure**
+- **A ton of new blocks and items**
+- And more...
 
-
-### Structures
-
-* **Witch Huts** in dark forests
-
-
-### Other
-
-* Moai 🗿 (use tuff in a stonecutter)
-* New rocks: asphalt and blunite
-* Piles of flowers and leaves
-* Blueberries
+- 💖 Handcrafted with love
+- ⚙️ Easily configurable
 
 ## 🎶 Soundtrack
 Sakura Groves feature a new track composed by [**LudoCrypt**](https://ludocrypt.crd.co/): **Brise couleur pastel**!  
-Listen to **Brise couleur pastel** on [Bandcamp](https://ludocrypt.bandcamp.com/track/brise-couleur-pastel) or YouTube:
+Listen to **Brise couleur pastel**
+on [Bandcamp](https://ludocrypt.bandcamp.com/track/brise-couleur-pastel), [Spotify](https://open.spotify.com/intl-fr/track/7t97yZezsAGDBzXUHj3H0y)
+or YouTube:
+
+<p align="center">
 
 [![Brise couleur pastel](https://img.youtube.com/vi/NUTTAB_-uY0/0.jpg)](https://www.youtube.com/watch?v=NUTTAB_-uY0)
 
-## 📦 Download
-### Required mods
-⚠ Promenade **needs** the following mods to be installed:
+</p>
 
-- Fabric API: [GitHub](https://github.com/FabricMC/fabric) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) / [Modrinth](https://modrinth.com/mod/fabric-api)
-- Dawn API: [GitHub](https://github.com/DawnTeamMC/DawnAPI) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/dawn) / [Modrinth](https://modrinth.com/mod/dawn)
+## 📦 Download
+We use [CurseForge](https://www.curseforge.com/minecraft/mc-mods/promenade) and [Modrinth](https://modrinth.com/mod/promenade) to publish **stable builds** of Promenade for Minecraft.
+
+### Required mods
+⚠ Promenade **requires** Fabric API to be installed: [GitHub](https://github.com/FabricMC/fabric) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) / [Modrinth](https://modrinth.com/mod/fabric-api)
 
 ### Compatible mods
 Promenade is compatible with the following mods:
 
-- Columns: [GitHub](https://github.com/haykam821/Columns) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/columns)
 - Farming for Blockheads: [GitHub](https://github.com/ModdingForBlockheads/FarmingForBlockheads) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/farming-for-blockheads-fabric)
+
+## 🌟 Special Thanks
+
+- **Monika Carpenter** ([LudoCrypt](https://ludocrypt.crd.co/)) - Musician
+- **Lylian** ([@LYLIVN](https://twitter.com/LYLIVN)) - Sound Artist
 
 ## ❤️ Support
 [![Patreon supporters](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3DHugman%26type%3Dpatrons&style=flat-square)](https://patreon.com/Hugman)
