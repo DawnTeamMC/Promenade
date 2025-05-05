@@ -79,7 +79,7 @@ public record PromenadeConfig(
                         Codec.BOOL.optionalFieldOf("igneous_rock_patches", true).forGetter(WorldFeaturesConfig::igneousRockPatches),
                         Codec.BOOL.optionalFieldOf("blueberry_bushes", true).forGetter(WorldFeaturesConfig::blueberryBushes),
                         Codec.BOOL.optionalFieldOf("palms", true).forGetter(WorldFeaturesConfig::palms),
-                        Codec.BOOL.optionalFieldOf("snowy_leaves_naturally_generate", true).forGetter(WorldFeaturesConfig::palms)
+                        Codec.BOOL.optionalFieldOf("snowy_blocks_naturally_generate", true).forGetter(WorldFeaturesConfig::palms)
                 ).apply(instance, WorldFeaturesConfig::new)
         );
     }
