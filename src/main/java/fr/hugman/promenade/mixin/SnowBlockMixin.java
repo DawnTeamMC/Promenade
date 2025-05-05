@@ -1,6 +1,7 @@
 package fr.hugman.promenade.mixin;
 
 import fr.hugman.promenade.block.SnowyLeavesBlock;
+import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -27,6 +28,9 @@ public class SnowBlockMixin {
 
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void promenade$randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
+        if (!PromenadeConfig.get().worldFeatures().snowyBlocksNaturallyGenerate()) {
+            return;
+        }
         if(state.get(LAYERS) == 8 && world.getBlockState(pos.up()).isOf((SnowBlock)(Object)this)) {
             return;
         }
