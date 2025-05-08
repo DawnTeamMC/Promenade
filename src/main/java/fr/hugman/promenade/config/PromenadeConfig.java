@@ -45,7 +45,7 @@ public record PromenadeConfig(
     private PromenadeConfig() {
         this(
                 new BiomesConfig(20, 20, 10, Optional.of(PromenadeBiomes.DEFAULT_DARK_AMARANTH_FOREST_HYPERCUBE)),
-                new WorldFeaturesConfig(true, true, true, true),
+                new WorldFeaturesConfig(true, true, true),
                 new AnimalsConfig(10, 10),
                 new MonstersConfig(15, 10)
         );
@@ -71,15 +71,13 @@ public record PromenadeConfig(
     public record WorldFeaturesConfig(
             boolean igneousRockPatches,
             boolean blueberryBushes,
-            boolean palms,
-            boolean snowyBlocksNaturallyGenerate
+            boolean palms
     ) {
         private static final Codec<WorldFeaturesConfig> CODEC = RecordCodecBuilder.create(instance ->
                 instance.group(
                         Codec.BOOL.optionalFieldOf("igneous_rock_patches", true).forGetter(WorldFeaturesConfig::igneousRockPatches),
                         Codec.BOOL.optionalFieldOf("blueberry_bushes", true).forGetter(WorldFeaturesConfig::blueberryBushes),
-                        Codec.BOOL.optionalFieldOf("palms", true).forGetter(WorldFeaturesConfig::palms),
-                        Codec.BOOL.optionalFieldOf("snowy_blocks_naturally_generate", true).forGetter(WorldFeaturesConfig::palms)
+                        Codec.BOOL.optionalFieldOf("palms", true).forGetter(WorldFeaturesConfig::palms)
                 ).apply(instance, WorldFeaturesConfig::new)
         );
     }
