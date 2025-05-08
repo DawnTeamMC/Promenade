@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         java: [ 21 ]
-        os: [ ubuntu-20.04 ]
+        os: [ ubuntu-latest ]
     name: Build the project (Java ${{ matrix.java }}, on ${{ matrix.os }}))
     runs-on: ${{ matrix.os }}
     steps:
