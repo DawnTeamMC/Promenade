@@ -30,7 +30,8 @@
 
 <p align="center">
 
-![Some highlights](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/highlight_1.png)
+![New Biomes](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/highlight_1.png)
+![New Mobs](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/highlight_2.png)
 
 </p>
 
