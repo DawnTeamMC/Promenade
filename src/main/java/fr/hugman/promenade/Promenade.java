@@ -14,6 +14,7 @@ import fr.hugman.promenade.itemgroup.PromenadeItemGroups;
 import fr.hugman.promenade.registry.*;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.trade.PromenadeTrades;
+import fr.hugman.promenade.world.PromenadeGameRules;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
@@ -64,6 +65,8 @@ public class Promenade implements ModInitializer {
         PromenadePlacedFeatures.appendWorldGen();
 
         PromenadeRegistryAliases.registerAliases();
+
+        Reflection.initialize(PromenadeGameRules.class);
     }
 
     public static Identifier id(String path) {
