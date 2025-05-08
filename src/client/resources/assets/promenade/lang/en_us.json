@@ -233,5 +233,7 @@
   "painting.promenade.nurture.title": "Nurture",
   "name.hugman": "Hugman",
   "item_group.promenade.promenade": "Promenade",
-  "death.fell.accident.coiled_vines": "%1$s fell off some coiled vines"
+  "death.fell.accident.coiled_vines": "%1$s fell off some coiled vines",
+  "gamerule.doBlocksGetSnowy": "Blocks can get snowy",
+  "gamerule.doBlocksGetSnowy.description": "Some blocks may turn into snowy variants when they are covered by a snow layer"
 }

@@ -3,10 +3,20 @@ title: Configuration
 type: other
 ---
 
+## Game rules
+
+Promenade adds 1 game rule to the game:
+- `doBlocksGetSnowy`
+  - **Description**: If set to `true`, some blocks may naturally turn into snowy variants when snow layers are placed on top of them. Currently, this only affects [leaves blocks](../blocks/snowy_leaves).
+  - **Type**: `boolean` (`true` or `false`)
+  - **Default**: `true`
+
+## Configuration file
+
 The configuration file for Promenade can be found at `.minecraft/config/promenade.json`.
 This file is used to **tweak values of the mod's features**. This is not meant to add new features or drastically change the mod's behavior.
 
-## Change the configuration
+### Change the configuration
 
 Open the file using a text editor of your choice. Here's the default configuration values:
 
@@ -43,6 +53,10 @@ Open the file using a text editor of your choice. Here's the default configurati
 ```
 
 To increase or decrease the frequency of a weighted feature, change its weight. **Setting it to 0 or below will prevent the feature from ever appearing.**
+
+<Callout variant="warning">
+    You must restart the server (or your client) for the changes to take effect.
+</Callout>
 
 <Callout variant="info">
     If you are a server owner or a modpack creator, you might want to let players know of disabled features in the first
