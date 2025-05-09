@@ -3,74 +3,58 @@ package fr.hugman.promenade.entity.variant;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import net.minecraft.entity.VariantSelectorProvider;
+import net.minecraft.entity.passive.ChickenVariant;
+import net.minecraft.entity.passive.CowVariant;
+import net.minecraft.entity.passive.FrogVariant;
+import net.minecraft.entity.spawn.SpawnCondition;
+import net.minecraft.entity.spawn.SpawnConditionSelectors;
+import net.minecraft.entity.spawn.SpawnContext;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryElementCodec;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.entry.RegistryFixedCodec;
+import net.minecraft.util.AssetInfo;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.ModelAndTexture;
 
-public final class CapybaraVariant {
+import java.util.List;
+
+public record CapybaraVariant(
+        AssetInfo smallEyesAssetInfo,
+        AssetInfo largeEyesAssetInfo,
+        AssetInfo closedEyesAssetInfo,
+        SpawnConditionSelectors spawnConditions
+) implements VariantSelectorProvider<SpawnContext, SpawnCondition> {
     public static final Codec<CapybaraVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Identifier.CODEC.fieldOf("small_eyes_texture").forGetter(capybara -> capybara.smallEyesTexture),
-            Identifier.CODEC.fieldOf("large_eyes_texture").forGetter(capybara -> capybara.largeEyesTexture),
-            Identifier.CODEC.fieldOf("closed_eyes_texture").forGetter(capybara -> capybara.closedEyesTexture),
-            Codec.INT.fieldOf("spawn_weight").forGetter(CapybaraVariant::spawnWeight)
+            AssetInfo.CODEC.fieldOf("small_eyes_asset_id").forGetter(CapybaraVariant::smallEyesAssetInfo),
+            AssetInfo.CODEC.fieldOf("large_eyes_asset_id").forGetter(CapybaraVariant::largeEyesAssetInfo),
+            AssetInfo.CODEC.fieldOf("closed_eyes_asset_id").forGetter(CapybaraVariant::closedEyesAssetInfo),
+            SpawnConditionSelectors.CODEC.fieldOf("spawn_conditions").forGetter(CapybaraVariant::spawnConditions)
     ).apply(instance, CapybaraVariant::new));
 
-    public static final Codec<RegistryEntry<CapybaraVariant>> ENTRY_CODEC = RegistryElementCodec.of(PromenadeRegistryKeys.CAPYBARA_VARIANT, CODEC);
+    public static final Codec<CapybaraVariant> NETWORK_CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            AssetInfo.MAP_CODEC.forGetter(CapybaraVariant::smallEyesAssetInfo),
+            AssetInfo.MAP_CODEC.forGetter(CapybaraVariant::largeEyesAssetInfo),
+            AssetInfo.MAP_CODEC.forGetter(CapybaraVariant::closedEyesAssetInfo)
+    ).apply(instance, CapybaraVariant::new));
 
-    public static final PacketCodec<RegistryByteBuf, CapybaraVariant> PACKET_CODEC = PacketCodec.tuple(
-            Identifier.PACKET_CODEC, (capybara -> capybara.smallEyesTexture),
-            Identifier.PACKET_CODEC, (capybara -> capybara.largeEyesTexture),
-            Identifier.PACKET_CODEC, (capybara -> capybara.closedEyesTexture),
-            PacketCodecs.INTEGER, CapybaraVariant::spawnWeight,
-            CapybaraVariant::new
-    );
-    public static final PacketCodec<RegistryByteBuf, RegistryEntry<CapybaraVariant>> ENTRY_PACKET_CODEC = PacketCodecs.registryEntry(PromenadeRegistryKeys.CAPYBARA_VARIANT, PACKET_CODEC);
+    public static final Codec<RegistryEntry<CapybaraVariant>> ENTRY_CODEC = RegistryFixedCodec.of(PromenadeRegistryKeys.CAPYBARA_VARIANT);
+    public static final PacketCodec<RegistryByteBuf, RegistryEntry<CapybaraVariant>> ENTRY_PACKET_CODEC = PacketCodecs.registryEntry(PromenadeRegistryKeys.CAPYBARA_VARIANT);
 
-    private final Identifier smallEyesTexture;
-    private final Identifier largeEyesTexture;
-    private final Identifier closedEyesTexture;
-    private final int spawnWeight;
-
-    private final Identifier smallEyesTexturePath;
-    private final Identifier largeEyesTexturePath;
-    private final Identifier closedEyesTexturePath;
-
-    public CapybaraVariant(
-            Identifier smallEyesTexture,
-            Identifier largeEyesTexture,
-            Identifier closedEyesTexture,
-            int spawnWeight
+    private CapybaraVariant(
+            AssetInfo smallEyesAssetInfo,
+            AssetInfo largeEyesAssetInfo,
+            AssetInfo closedEyesAssetInfo
     ) {
-        this.smallEyesTexture = smallEyesTexture;
-        this.largeEyesTexture = largeEyesTexture;
-        this.closedEyesTexture = closedEyesTexture;
-        this.spawnWeight = spawnWeight;
-
-        this.smallEyesTexturePath = getTexturePath(smallEyesTexture);
-        this.largeEyesTexturePath = getTexturePath(largeEyesTexture);
-        this.closedEyesTexturePath = getTexturePath(closedEyesTexture);
+        this(smallEyesAssetInfo, largeEyesAssetInfo, closedEyesAssetInfo, SpawnConditionSelectors.EMPTY);
     }
 
-    public Identifier smallEyesTexture() {
-        return smallEyesTexturePath;
-    }
-
-    public Identifier largeEyesTexture() {
-        return largeEyesTexturePath;
-    }
-
-    public Identifier closedEyesTexture() {
-        return closedEyesTexturePath;
-    }
-
-    public int spawnWeight() {
-        return spawnWeight;
-    }
-
-    private static Identifier getTexturePath(Identifier id) {
-        return id.withPath(oldPath -> "textures/" + oldPath + ".png");
+    @Override
+    public List<Selector<SpawnContext, SpawnCondition>> getSelectors() {
+        return this.spawnConditions.selectors();
     }
 }

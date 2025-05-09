@@ -2,13 +2,18 @@ package fr.hugman.promenade.entity.variant;
 
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import net.minecraft.entity.VariantSelectorProvider;
+import net.minecraft.entity.passive.CowVariant;
+import net.minecraft.entity.spawn.SpawnContext;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.random.Random;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CapybaraVariants {
@@ -36,5 +41,9 @@ public class CapybaraVariants {
         }
 
         return registry.getOptional(DEFAULT).or(registry::getDefaultEntry).orElseThrow();
+    }
+
+    public static Optional<RegistryEntry.Reference<CapybaraVariant>> select(Random random, DynamicRegistryManager registries, SpawnContext context) {
+        return VariantSelectorProvider.select(registries.getOrThrow(PromenadeRegistryKeys.CAPYBARA_VARIANT).streamEntries(), RegistryEntry::value, random, context);
     }
 }
