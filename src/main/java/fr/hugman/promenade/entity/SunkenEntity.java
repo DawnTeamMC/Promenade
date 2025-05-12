@@ -1,12 +1,13 @@
 package fr.hugman.promenade.entity;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
+import fr.hugman.promenade.component.PromenadeComponentTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.entity.variant.SunkenVariant;
 import fr.hugman.promenade.entity.variant.SunkenVariants;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
+import net.minecraft.component.ComponentType;
+import net.minecraft.component.ComponentsAccess;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.NoPenaltyTargeting;
 import net.minecraft.entity.ai.control.MoveControl;
@@ -30,14 +31,13 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.entity.spawn.SpawnContext;
 import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -47,14 +47,10 @@ import net.minecraft.world.*;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser, VariantHolder<RegistryEntry<SunkenVariant>> {
+public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser {
     private static final TrackedData<RegistryEntry<SunkenVariant>> VARIANT = DataTracker.registerData(SunkenEntity.class, PromenadeTrackedData.SUNKEN_VARIANT);
     private static final TrackedData<Boolean> CHARGING = DataTracker.registerData(SunkenEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     private static final TrackedData<Boolean> SWIMMING = DataTracker.registerData(SunkenEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
-
-    public static final String VARIANT_KEY = "variant";
-    public static final MapCodec<RegistryEntry<SunkenVariant>> VARIANT_MAP_CODEC = SunkenVariant.ENTRY_CODEC.fieldOf(VARIANT_KEY);
-    public static final Codec<RegistryEntry<SunkenVariant>> VARIANT_ENTRY_CODEC = VARIANT_MAP_CODEC.codec();
 
     private final static EntityDimensions SWIMMING_DIMENSIONS = EntityDimensions.fixed(0.6F, 0.6F);
 
@@ -84,7 +80,15 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         this.landNavigation = new MobNavigation(this, world);
     }
 
-    public static boolean canSpawn(EntityType<SunkenEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+    @Nullable
+    @Override
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
+        SunkenVariants.select(this.random, this.getRegistryManager(), SpawnContext.of(world, this.getBlockPos())).ifPresent(this::setVariant);
+        this.lootTable = Optional.ofNullable(this.getVariant().value().lootTable());
+        return super.initialize(world, difficulty, spawnReason, entityData);
+    }
+
+    public static boolean canSpawn(EntityType<SunkenEntity> ignoredType, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
         boolean bl = world.getDifficulty() != Difficulty.PEACEFUL
                 && isSpawnDark(world, pos, random)
                 && (spawnReason == SpawnReason.SPAWNER || world.getFluidState(pos).isIn(FluidTags.WATER));
@@ -96,32 +100,37 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         return world.doesNotIntersectEntities(this);
     }
 
+    @Override
+    public EntityDimensions getBaseDimensions(EntityPose pose) {
+        if (this.isBreaststrokeSwimming()) return SWIMMING_DIMENSIONS;
+        else return super.getBaseDimensions(pose);
+    }
+
+    /*========*/
+    /*   AI   */
+    /*========*/
+
     public static DefaultAttributeContainer.Builder createSunkenAttributes() {
         return createAbstractSkeletonAttributes();
     }
 
     @Override
-    protected SoundEvent getAmbientSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_AMBIENT : SoundEvents.ENTITY_SKELETON_AMBIENT;
-    }
+    protected void initGoals() {
+        this.goalSelector.add(1, new MoveIntoWaterGoal(this));
+        this.goalSelector.add(1, new AvoidSunlightGoal(this));
+        this.goalSelector.add(2, new CrossbowAttackGoal(this, 1.0D, 4.5F));
+        this.goalSelector.add(3, new FleeEntityGoal(this, PufferfishEntity.class, 8.0F, 1.0D, 1.2D));
+        this.goalSelector.add(3, new EscapeSunlightGoal(this, 1.0D));
+        this.goalSelector.add(6, new SwimAroundGoal(this, 1.0D, 40));
+        this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0D));
+        this.goalSelector.add(7, new SunkenEntity.TargetAboveWaterGoal(this, 1.0D, this.getWorld().getSeaLevel()));
+        this.goalSelector.add(7, new SunkenEntity.LeaveWaterGoal(this, 1.0D));
+        this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
+        this.goalSelector.add(8, new LookAroundGoal(this));
 
-    @Override
-    protected SoundEvent getHurtSound(DamageSource source) {
-        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_HURT : SoundEvents.ENTITY_SKELETON_HURT;
-    }
-
-    @Override
-    protected SoundEvent getDeathSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_DEATH : SoundEvents.ENTITY_SKELETON_DEATH;
-    }
-
-    @Override
-    protected SoundEvent getStepSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_STEP : SoundEvents.ENTITY_SKELETON_STEP;
-    }
-
-    protected SoundEvent getShootSound() {
-        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SHOOT : (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem) ? SoundEvents.ITEM_CROSSBOW_SHOOT : SoundEvents.ENTITY_SKELETON_SHOOT);
+        this.targetSelector.add(1, new RevengeGoal(this));
+        this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal(this, DolphinEntity.class, true));
     }
 
     @Override
@@ -156,46 +165,6 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         return persistentProjectileEntity;
     }
 
-    @Nullable
-    @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-        this.setVariant(SunkenVariants.getRandom(this.getRegistryManager(), random));
-        this.lootTable = Optional.ofNullable(this.getVariant().value().lootTable());
-        return super.initialize(world, difficulty, spawnReason, entityData);
-    }
-
-    @Override
-    protected void initDataTracker(DataTracker.Builder builder) {
-        super.initDataTracker(builder);
-        builder.add(VARIANT, this.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SUNKEN_VARIANT).getOrThrow(SunkenVariants.DEFAULT));
-        builder.add(CHARGING, false);
-        builder.add(SWIMMING, false);
-    }
-
-    @Override
-    public boolean isPushedByFluids() {
-        return !this.isSwimming();
-    }
-
-    @Override
-    protected void initGoals() {
-        this.goalSelector.add(1, new MoveIntoWaterGoal(this));
-        this.goalSelector.add(1, new AvoidSunlightGoal(this));
-        this.goalSelector.add(2, new CrossbowAttackGoal(this, 1.0D, 4.5F));
-        this.goalSelector.add(3, new FleeEntityGoal(this, PufferfishEntity.class, 8.0F, 1.0D, 1.2D));
-        this.goalSelector.add(3, new EscapeSunlightGoal(this, 1.0D));
-        this.goalSelector.add(6, new SwimAroundGoal(this, 1.0D, 40));
-        this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0D));
-        this.goalSelector.add(7, new SunkenEntity.TargetAboveWaterGoal(this, 1.0D, this.getWorld().getSeaLevel()));
-        this.goalSelector.add(7, new SunkenEntity.LeaveWaterGoal(this, 1.0D));
-        this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
-        this.goalSelector.add(8, new LookAroundGoal(this));
-
-        this.targetSelector.add(1, new RevengeGoal(this));
-        this.targetSelector.add(2, new ActiveTargetGoal(this, PlayerEntity.class, true));
-        this.targetSelector.add(2, new ActiveTargetGoal(this, DolphinEntity.class, true));
-    }
-
     @Override
     protected void initEquipment(Random random, LocalDifficulty difficulty) {
         super.initEquipment(random, difficulty);
@@ -217,6 +186,11 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         } else {
             super.travel(movementInput);
         }
+    }
+
+    @Override
+    public boolean isPushedByFluids() {
+        return !this.isSwimming();
     }
 
     @Override
@@ -255,29 +229,6 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         }
     }
 
-    @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        nbt.putString(VARIANT_KEY, (this.getVariant().getKey().orElse(SunkenVariants.BUBBLE)).getValue().toString());
-    }
-
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-
-        VARIANT_ENTRY_CODEC.parse(this.getRegistryManager().getOps(NbtOps.INSTANCE), nbt).ifSuccess(this::setVariant);
-    }
-
-    @Override
-    public RegistryEntry<SunkenVariant> getVariant() {
-        return this.dataTracker.get(VARIANT);
-    }
-
-    @Override
-    public void setVariant(RegistryEntry<SunkenVariant> variant) {
-        this.dataTracker.set(VARIANT, variant);
-    }
-
     public boolean isCharging() {
         return this.dataTracker.get(CHARGING);
     }
@@ -306,19 +257,6 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         this.despawnCounter = 0;
     }
 
-    public State getState() {
-        if (this.isHolding(Items.CROSSBOW) && this.isCharging()) {
-            return State.CROSSBOW_CHARGE;
-        } else if (this.isHolding(CrossbowItem::isCharged)) {
-            return State.CROSSBOW_HOLD;
-        } else if (this.isBreaststrokeSwimming()) {
-            return State.SWIMMING;
-        } else if (this.isHolding(Items.BOW)) {
-            return State.BOW_HOLD;
-        }
-        return State.NEUTRAL;
-    }
-
     protected boolean hasFinishedCurrentPath() {
         Path path = this.getNavigation().getCurrentPath();
         if (path != null) {
@@ -330,12 +268,6 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         }
 
         return false;
-    }
-
-    @Override
-    public EntityDimensions getBaseDimensions(EntityPose pose) {
-        if (this.isBreaststrokeSwimming()) return SWIMMING_DIMENSIONS;
-        else return super.getBaseDimensions(pose);
     }
 
     boolean isTargetingUnderwater() {
@@ -351,8 +283,61 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         this.targetingUnderwater = targetingUnderwater;
     }
 
-    public Identifier getTexture() {
-        return this.getVariant().value().texture();
+    /*============*/
+    /*   SOUNDS   */
+    /*============*/
+
+    @Override
+    protected SoundEvent getAmbientSound() {
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_AMBIENT : SoundEvents.ENTITY_SKELETON_AMBIENT;
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource source) {
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_HURT : SoundEvents.ENTITY_SKELETON_HURT;
+    }
+
+    @Override
+    protected SoundEvent getDeathSound() {
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_DEATH : SoundEvents.ENTITY_SKELETON_DEATH;
+    }
+
+    @Override
+    protected SoundEvent getStepSound() {
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_STEP : SoundEvents.ENTITY_SKELETON_STEP;
+    }
+
+    protected SoundEvent getShootSound() {
+        return this.isSubmergedIn(FluidTags.WATER) ? PromenadeSoundEvents.SUNKEN_SHOOT : (this.isHolding(stack -> stack.getItem() instanceof CrossbowItem) ? SoundEvents.ITEM_CROSSBOW_SHOOT : SoundEvents.ENTITY_SKELETON_SHOOT);
+    }
+
+    /*==============*/
+    /*   VARIANTS   */
+    /*==============*/
+
+    public RegistryEntry<SunkenVariant> getVariant() {
+        return this.dataTracker.get(VARIANT);
+    }
+
+    public void setVariant(RegistryEntry<SunkenVariant> variant) {
+        this.dataTracker.set(VARIANT, variant);
+    }
+
+    /*============*/
+    /*   STATES   */
+    /*============*/
+
+    public State getState() {
+        if (this.isHolding(Items.CROSSBOW) && this.isCharging()) {
+            return State.CROSSBOW_CHARGE;
+        } else if (this.isHolding(CrossbowItem::isCharged)) {
+            return State.CROSSBOW_HOLD;
+        } else if (this.isBreaststrokeSwimming()) {
+            return State.SWIMMING;
+        } else if (this.isHolding(Items.BOW)) {
+            return State.BOW_HOLD;
+        }
+        return State.NEUTRAL;
     }
 
     public enum State {
@@ -361,6 +346,52 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         BOW_HOLD,
         SWIMMING,
         NEUTRAL
+    }
+
+    /*==========*/
+    /*   DATA   */
+    /*==========*/
+
+    @Override
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(VARIANT, this.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SUNKEN_VARIANT).getOrThrow(SunkenVariants.DEFAULT));
+        builder.add(CHARGING, false);
+        builder.add(SWIMMING, false);
+    }
+
+    @Override
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        Variants.writeVariantToNbt(nbt, this.getVariant());
+    }
+
+    @Override
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        Variants.readVariantFromNbt(nbt, this.getRegistryManager(), PromenadeRegistryKeys.SUNKEN_VARIANT).ifPresent(this::setVariant);
+    }
+
+    @org.jetbrains.annotations.Nullable
+    @Override
+    public <T> T get(ComponentType<? extends T> type) {
+        return type == PromenadeComponentTypes.SUNKEN_VARIANT ? castComponentValue((ComponentType<T>) type, this.getVariant()) : super.get(type);
+    }
+
+    @Override
+    protected void copyComponentsFrom(ComponentsAccess from) {
+        this.copyComponentFrom(from, PromenadeComponentTypes.SUNKEN_VARIANT);
+        super.copyComponentsFrom(from);
+    }
+
+    @Override
+    protected <T> boolean setApplicableComponent(ComponentType<T> type, T value) {
+        if (type == PromenadeComponentTypes.SUNKEN_VARIANT) {
+            this.setVariant(castComponentValue(PromenadeComponentTypes.SUNKEN_VARIANT, value));
+            return true;
+        } else {
+            return super.setApplicableComponent(type, value);
+        }
     }
 
     static class SunkenMoveControl extends MoveControl {
@@ -436,7 +467,6 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
             super.stop();
         }
     }
-
 
     private static class TargetAboveWaterGoal extends Goal {
         private final SunkenEntity sunken;

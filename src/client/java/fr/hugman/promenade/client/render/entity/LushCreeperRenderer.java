@@ -53,7 +53,7 @@ public class LushCreeperRenderer extends MobEntityRenderer<LushCreeperEntity, Cr
 
     public void updateRenderState(LushCreeperEntity lushCreeper, CreeperEntityRenderState creeperEntityRenderState, float f) {
         super.updateRenderState(lushCreeper, creeperEntityRenderState, f);
-        creeperEntityRenderState.fuseTime = lushCreeper.getClientFuseTime(f);
+        creeperEntityRenderState.fuseTime = lushCreeper.getLerpedFuseTime(f);
         creeperEntityRenderState.charged = lushCreeper.isCharged();
     }
 }

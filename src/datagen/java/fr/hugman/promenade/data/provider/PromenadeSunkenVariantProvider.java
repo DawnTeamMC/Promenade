@@ -6,10 +6,12 @@ import fr.hugman.promenade.loot.PromenadeLootTables;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import net.minecraft.entity.spawn.SpawnConditionSelectors;
 import net.minecraft.loot.LootTable;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.AssetInfo;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -29,15 +31,15 @@ public class PromenadeSunkenVariantProvider extends FabricDynamicRegistryProvide
         return "Sunken Variants";
     }
 
-    public static void register(Registerable<SunkenVariant> registerable) {
-        of(registerable, SunkenVariants.TUBE, PromenadeLootTables.TUBE_SUNKEN);
-        of(registerable, SunkenVariants.BRAIN, PromenadeLootTables.BRAIN_SUNKEN);
-        of(registerable, SunkenVariants.BUBBLE, PromenadeLootTables.BUBBLE_SUNKEN);
-        of(registerable, SunkenVariants.FIRE, PromenadeLootTables.FIRE_SUNKEN);
-        of(registerable, SunkenVariants.HORN, PromenadeLootTables.HORN_SUNKEN);
+    public static void register(Registerable<SunkenVariant> registry) {
+        of(registry, SunkenVariants.TUBE, PromenadeLootTables.TUBE_SUNKEN);
+        of(registry, SunkenVariants.BRAIN, PromenadeLootTables.BRAIN_SUNKEN);
+        of(registry, SunkenVariants.BUBBLE, PromenadeLootTables.BUBBLE_SUNKEN);
+        of(registry, SunkenVariants.FIRE, PromenadeLootTables.FIRE_SUNKEN);
+        of(registry, SunkenVariants.HORN, PromenadeLootTables.HORN_SUNKEN);
     }
 
     private static void of(Registerable<SunkenVariant> registry, RegistryKey<SunkenVariant> key, RegistryKey<LootTable> lootTable) {
-        registry.register(key, new SunkenVariant(key.getValue().withPrefixedPath("entity/sunken/"), lootTable));
+        registry.register(key, new SunkenVariant(new AssetInfo(key.getValue().withPrefixedPath("entity/sunken/")), lootTable, SpawnConditionSelectors.createFallback(0)));
     }
 }

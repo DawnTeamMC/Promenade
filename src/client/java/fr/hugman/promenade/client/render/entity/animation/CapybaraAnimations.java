@@ -48,7 +48,7 @@ public class CapybaraAnimations {
                     new Keyframe(1.5f, AnimationHelper.createRotationalVector(27.5f, 0f, 0f), Transformation.Interpolations.CUBIC))).build();
 
     public static final Animation FALL_TO_SLEEP = Animation.Builder.create(1.9167667f)
-            .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.8343334f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.5834333f, AnimationHelper.createTranslationalVector(-12f, -5f, 0f), Transformation.Interpolations.CUBIC)))
@@ -74,7 +74,7 @@ public class CapybaraAnimations {
                     new Keyframe(0.9583434f, AnimationHelper.createScalingVector(1f, 0.8f, 1f), Transformation.Interpolations.LINEAR),
                     new Keyframe(1.0834333f, AnimationHelper.createScalingVector(1f, 0.8f, 1f), Transformation.Interpolations.LINEAR),
                     new Keyframe(1.1676667f, AnimationHelper.createScalingVector(1f, 1f, 1f), Transformation.Interpolations.LINEAR)))
-            .addBoneAnimation(EntityModelPartNames.LEFT_FRONT_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.LEFT_FRONT_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.8343334f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC)))
             .addBoneAnimation(EntityModelPartNames.LEFT_FRONT_LEG, new Transformation(Transformation.Targets.ROTATE,
@@ -94,7 +94,7 @@ public class CapybaraAnimations {
                     new Keyframe(1.625f, AnimationHelper.createRotationalVector(22.480717026093316f, 0.9564494572955482f, 20.19008655601783f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.7916767f, AnimationHelper.createRotationalVector(22.018164129528486f, 4.751129561951075f, 10.924817551732758f), Transformation.Interpolations.LINEAR),
                     new Keyframe(1.9167667f, AnimationHelper.createRotationalVector(22.480717026093316f, 0.9564494572955482f, 20.19008655601783f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.LEFT_HIND_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.LEFT_HIND_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.8343334f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.CUBIC)))
             .addBoneAnimation(EntityModelPartNames.LEFT_HIND_LEG, new Transformation(Transformation.Targets.ROTATE,
@@ -102,7 +102,7 @@ public class CapybaraAnimations {
                     new Keyframe(0.8343334f, AnimationHelper.createRotationalVector(0f, 0f, 42.5f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.1676667f, AnimationHelper.createRotationalVector(5.989807308760465f, 9.302389729048627f, -28.590097057579058f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.625f, AnimationHelper.createRotationalVector(27.5f, 0f, 0f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.HEAD, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.HEAD, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.7083433f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.CUBIC)))
             .addBoneAnimation(EntityModelPartNames.HEAD, new Transformation(Transformation.Targets.ROTATE,
@@ -113,11 +113,11 @@ public class CapybaraAnimations {
                     new Keyframe(1.7083433f, AnimationHelper.createRotationalVector(0f, 0f, -5f), Transformation.Interpolations.CUBIC))).build();
 
     public static final Animation SLEEP = Animation.Builder.create(4.5f).looping()
-            .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(-12f, -5f, 0f), Transformation.Interpolations.CUBIC)))
             .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.ROTATE,
                     new Keyframe(0f, AnimationHelper.createRotationalVector(0f, 0f, -90f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.RIGHT_FRONT_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.RIGHT_FRONT_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.25f, AnimationHelper.createTranslationalVector(0.75f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(2.25f, AnimationHelper.createTranslationalVector(0.75f, 0f, 0f), Transformation.Interpolations.CUBIC),
@@ -131,7 +131,7 @@ public class CapybaraAnimations {
                     new Keyframe(4.5f, AnimationHelper.createRotationalVector(-7.5f, 0f, 17.5f), Transformation.Interpolations.CUBIC)))
             .addBoneAnimation(EntityModelPartNames.LEFT_FRONT_LEG, new Transformation(Transformation.Targets.ROTATE,
                     new Keyframe(0f, AnimationHelper.createRotationalVector(-20f, 0f, 5f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.RIGHT_HIND_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.RIGHT_HIND_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.25f, AnimationHelper.createTranslationalVector(1f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(2.25f, AnimationHelper.createTranslationalVector(1f, 0f, 0f), Transformation.Interpolations.CUBIC),
@@ -143,11 +143,11 @@ public class CapybaraAnimations {
                     new Keyframe(2.25f, AnimationHelper.createRotationalVector(22.30257854223737f, -3.0529741491914137f, 29.898054778260757f), Transformation.Interpolations.CUBIC),
                     new Keyframe(3.5f, AnimationHelper.createRotationalVector(22.48071702609377f, 0.9564494572955482f, 20.190086556017377f), Transformation.Interpolations.CUBIC),
                     new Keyframe(4.5f, AnimationHelper.createRotationalVector(22.48071702609377f, 0.9564494572955482f, 20.190086556017377f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.LEFT_HIND_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.LEFT_HIND_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.CUBIC)))
             .addBoneAnimation(EntityModelPartNames.LEFT_HIND_LEG, new Transformation(Transformation.Targets.ROTATE,
                     new Keyframe(0f, AnimationHelper.createRotationalVector(27.5f, 0f, 0f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.HEAD, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.HEAD, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.CUBIC)))
             .addBoneAnimation(EntityModelPartNames.HEAD, new Transformation(Transformation.Targets.ROTATE,
                     new Keyframe(0f, AnimationHelper.createRotationalVector(0f, 0f, -5f), Transformation.Interpolations.CUBIC),
@@ -155,7 +155,7 @@ public class CapybaraAnimations {
                     new Keyframe(2.5416765f, AnimationHelper.createRotationalVector(-5f, 0f, -5f), Transformation.Interpolations.CUBIC),
                     new Keyframe(3.7083435f, AnimationHelper.createRotationalVector(0f, 0f, -5f), Transformation.Interpolations.CUBIC),
                     new Keyframe(4.5f, AnimationHelper.createRotationalVector(0f, 0f, -5f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.BODY, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.BODY, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.25f, AnimationHelper.createTranslationalVector(0.25f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(2.25f, AnimationHelper.createTranslationalVector(0.25f, 0f, 0f), Transformation.Interpolations.CUBIC),
@@ -169,7 +169,7 @@ public class CapybaraAnimations {
                     new Keyframe(4.5f, AnimationHelper.createScalingVector(1f, 1f, 1f), Transformation.Interpolations.CUBIC))).build();
 
     public static final Animation FART = Animation.Builder.create(3.8343335f)
-            .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.08343333f, AnimationHelper.createTranslationalVector(0f, 5f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.16766666f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC)))
@@ -177,7 +177,7 @@ public class CapybaraAnimations {
                     new Keyframe(0f, AnimationHelper.createScalingVector(1f, 1f, 1f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.08343333f, AnimationHelper.createScalingVector(1f, 1.2f, 1f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.16766666f, AnimationHelper.createScalingVector(1f, 1f, 1f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.RIGHT_FRONT_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.RIGHT_FRONT_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.16766666f, AnimationHelper.createTranslationalVector(1f, 0f, 0f), Transformation.Interpolations.LINEAR),
                     new Keyframe(1.75f, AnimationHelper.createTranslationalVector(1f, 0f, 0f), Transformation.Interpolations.LINEAR),
@@ -189,7 +189,7 @@ public class CapybaraAnimations {
                     new Keyframe(1.75f, AnimationHelper.createRotationalVector(-7.5f, 0f, -17.5f), Transformation.Interpolations.LINEAR),
                     new Keyframe(2.1676665f, AnimationHelper.createRotationalVector(0.2727354654598457f, 0.4131058282196136f, -6.089277436131233f), Transformation.Interpolations.CUBIC),
                     new Keyframe(2.5f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.LEFT_FRONT_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.LEFT_FRONT_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.16766666f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.LINEAR),
                     new Keyframe(1.75f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.LINEAR),
@@ -203,7 +203,7 @@ public class CapybaraAnimations {
                     new Keyframe(2.375f, AnimationHelper.createRotationalVector(-7.5f, 0f, 17.5f), Transformation.Interpolations.LINEAR),
                     new Keyframe(2.7916765f, AnimationHelper.createRotationalVector(-5.111516362223829f, -0.446597721821945f, 6.992121938251076f), Transformation.Interpolations.CUBIC),
                     new Keyframe(3.0416765f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.RIGHT_HIND_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.RIGHT_HIND_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.16766666f, AnimationHelper.createTranslationalVector(1f, 0f, 0f), Transformation.Interpolations.LINEAR),
                     new Keyframe(1.75f, AnimationHelper.createTranslationalVector(1f, 0f, 0f), Transformation.Interpolations.LINEAR),
@@ -217,7 +217,7 @@ public class CapybaraAnimations {
                     new Keyframe(2.2083435f, AnimationHelper.createRotationalVector(0f, 0f, -17.5f), Transformation.Interpolations.LINEAR),
                     new Keyframe(2.625f, AnimationHelper.createRotationalVector(0.2727354654598457f, 0.4131058282196136f, -6.089277436131233f), Transformation.Interpolations.CUBIC),
                     new Keyframe(2.9583435f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.LEFT_HIND_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.LEFT_HIND_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.16766666f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.LINEAR),
                     new Keyframe(1.75f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.LINEAR),
@@ -240,7 +240,7 @@ public class CapybaraAnimations {
                     new Keyframe(2.625f, AnimationHelper.createRotationalVector(1.7645231481382142f, 1.1309400733304573f, 0.14523321293696423f), Transformation.Interpolations.CUBIC),
                     new Keyframe(2.875f, AnimationHelper.createRotationalVector(6.178001369910271f, -0.19388043339675276f, 5.467675351455965f), Transformation.Interpolations.CUBIC),
                     new Keyframe(3.5f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.HEAD, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.HEAD, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.16766666f, AnimationHelper.createTranslationalVector(0f, -1f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.75f, AnimationHelper.createTranslationalVector(0f, -1f, 0f), Transformation.Interpolations.CUBIC),
@@ -258,7 +258,7 @@ public class CapybaraAnimations {
                     new Keyframe(3.7916765f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC))).build();
 
     public static final Animation WAKE_UP = Animation.Builder.create(5.791677f)
-            .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(-12f, -5f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(2.9583435f, AnimationHelper.createTranslationalVector(-12f, -5f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(3.125f, AnimationHelper.createTranslationalVector(-12f, -5f, 0f), Transformation.Interpolations.CUBIC),
@@ -276,7 +276,7 @@ public class CapybaraAnimations {
                     new Keyframe(4.75f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(5f, AnimationHelper.createRotationalVector(0f, 0f, 7.5f), Transformation.Interpolations.CUBIC),
                     new Keyframe(5.291677f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.RIGHT_FRONT_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.RIGHT_FRONT_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.25f, AnimationHelper.createTranslationalVector(0.75f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.875f, AnimationHelper.createTranslationalVector(0.75f, 0f, 0f), Transformation.Interpolations.CUBIC),
@@ -296,7 +296,7 @@ public class CapybaraAnimations {
                     new Keyframe(4.375f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(5f, AnimationHelper.createRotationalVector(0.24117231125816033f, -0.09448572501914895f, -16.85553579291023f), Transformation.Interpolations.CUBIC),
                     new Keyframe(5.291677f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.LEFT_FRONT_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.LEFT_FRONT_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(3.125f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(3.5416765f, AnimationHelper.createTranslationalVector(-1f, -0.75f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(4.125f, AnimationHelper.createTranslationalVector(-0.78f, 0.42000000000000004f, 0f), Transformation.Interpolations.CUBIC),
@@ -312,7 +312,7 @@ public class CapybaraAnimations {
                     new Keyframe(3.9583435f, AnimationHelper.createScalingVector(1f, 0.6f, 1f), Transformation.Interpolations.CUBIC),
                     new Keyframe(4.583433f, AnimationHelper.createScalingVector(1f, 0.6f, 1f), Transformation.Interpolations.CUBIC),
                     new Keyframe(4.75f, AnimationHelper.createScalingVector(1f, 1f, 1f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.RIGHT_HIND_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.RIGHT_HIND_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.25f, AnimationHelper.createTranslationalVector(1f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.875f, AnimationHelper.createTranslationalVector(1f, 0f, 0f), Transformation.Interpolations.CUBIC),
@@ -332,7 +332,7 @@ public class CapybaraAnimations {
                     new Keyframe(4.208343f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(4.834333f, AnimationHelper.createRotationalVector(0.24117231125816033f, -0.09448572501914895f, -16.85553579291023f), Transformation.Interpolations.CUBIC),
                     new Keyframe(5.125f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.LEFT_HIND_LEG, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.LEFT_HIND_LEG, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(2.9583435f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(3.2083435f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
@@ -353,7 +353,7 @@ public class CapybaraAnimations {
                     new Keyframe(4.041677f, AnimationHelper.createScalingVector(1f, 0.6f, 1f), Transformation.Interpolations.CUBIC),
                     new Keyframe(4.583433f, AnimationHelper.createScalingVector(1f, 0.6f, 1f), Transformation.Interpolations.CUBIC),
                     new Keyframe(4.75f, AnimationHelper.createScalingVector(1f, 1f, 1f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.BODY, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.BODY, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.25f, AnimationHelper.createTranslationalVector(0.25f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.875f, AnimationHelper.createTranslationalVector(0.25f, 0f, 0f), Transformation.Interpolations.CUBIC),
@@ -363,7 +363,7 @@ public class CapybaraAnimations {
                     new Keyframe(0f, AnimationHelper.createScalingVector(1f, 1f, 1f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.25f, AnimationHelper.createScalingVector(1.1f, 1f, 1f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.875f, AnimationHelper.createScalingVector(1f, 1f, 1f), Transformation.Interpolations.CUBIC)))
-            .addBoneAnimation(EntityModelPartNames.HEAD, new Transformation(Transformation.Targets.TRANSLATE,
+            .addBoneAnimation(EntityModelPartNames.HEAD, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.5f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.9583434f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),

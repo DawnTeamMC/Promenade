@@ -1,9 +1,9 @@
 package fr.hugman.promenade.block.helper;
 
 import fr.hugman.promenade.block.HangingLeavesBlock;
-import fr.hugman.promenade.block.ParticleSnowyLeavesBlock;
 import fr.hugman.promenade.block.PileBlock;
-import fr.hugman.promenade.block.SnowyLeavesBlock;
+import fr.hugman.promenade.block.TintedParticleSnowyLeavesBlock;
+import fr.hugman.promenade.block.UntintedParticleSnowyLeavesBlock;
 import fr.hugman.promenade.sound.PromenadeBlockSounds;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
@@ -149,7 +149,7 @@ public final class BlockFactory {
     }
 
     public static BlockBuilder leaves(MapColor mapColor) {
-        return new BlockBuilder(LeavesBlock::new, AbstractBlock.Settings.create()
+        return new BlockBuilder(s -> new TintedParticleLeavesBlock(0.01f, s), AbstractBlock.Settings.create()
                 .mapColor(mapColor)
                 .strength(0.2f)
                 .ticksRandomly()
@@ -162,8 +162,8 @@ public final class BlockFactory {
                 .solidBlock(Blocks::never));
     }
 
-    public static BlockBuilder leaves(MapColor mapColor, BlockSoundGroup soundGroup, int chance, ParticleEffect fallingParticle) {
-        return new BlockBuilder(s -> new ParticleLeavesBlock(chance, fallingParticle, s), AbstractBlock.Settings.create()
+    public static BlockBuilder leaves(MapColor mapColor, BlockSoundGroup soundGroup, float particleChance, ParticleEffect fallingParticle) {
+        return new BlockBuilder(s -> new UntintedParticleLeavesBlock(particleChance, fallingParticle, s), AbstractBlock.Settings.create()
                 .mapColor(mapColor)
                 .strength(0.2f)
                 .ticksRandomly()
@@ -187,7 +187,7 @@ public final class BlockFactory {
     }
 
     public static BlockBuilder snowyLeaves() {
-        return new BlockBuilder(SnowyLeavesBlock::new, AbstractBlock.Settings.create()
+        return new BlockBuilder(s -> new TintedParticleSnowyLeavesBlock(0.01f, s), AbstractBlock.Settings.create()
                 .mapColor(MapColor.WHITE)
                 .strength(0.2f)
                 .ticksRandomly()
@@ -205,12 +205,12 @@ public final class BlockFactory {
         return snowyLeaves().settings(settings -> settings.sounds(soundGroup));
     }
 
-    public static BlockBuilder snowyLeaves(int chance, ParticleEffect particle) {
-        return snowyLeaves().factory(s -> new ParticleSnowyLeavesBlock(chance, particle, s));
+    public static BlockBuilder snowyLeaves(float particleChance, ParticleEffect particle) {
+        return snowyLeaves().factory(s -> new UntintedParticleSnowyLeavesBlock(particleChance, particle, s));
     }
 
-    public static BlockBuilder snowyLeaves(int chance, ParticleEffect particle, BlockSoundGroup soundGroup) {
-        return snowyLeaves(chance, particle).settings(settings -> settings.sounds(soundGroup));
+    public static BlockBuilder snowyLeaves(float particleChance, ParticleEffect particle, BlockSoundGroup soundGroup) {
+        return snowyLeaves(particleChance, particle).settings(settings -> settings.sounds(soundGroup));
     }
 
     public static BlockBuilder pot(Block block) {
@@ -239,23 +239,18 @@ public final class BlockFactory {
                 .nonOpaque());
     }
 
-    public static BlockBuilder fallenLeaves() {
-        return fallenLeaves(MapColor.DARK_GREEN);
-    }
-
     public static BlockBuilder fallenLeaves(MapColor color) {
-        return fallenLeaves(color, BlockSoundGroup.GRASS);
+        return fallenLeaves(color, BlockSoundGroup.LEAF_LITTER);
     }
 
     public static BlockBuilder fallenLeaves(MapColor color, BlockSoundGroup sounds) {
-        return new BlockBuilder(PileBlock::new, AbstractBlock.Settings.create()
+        return new BlockBuilder(LeafLitterBlock::new, AbstractBlock.Settings.create()
                 .mapColor(color)
-                .burnable()
                 .replaceable()
-                .breakInstantly()
-                .sounds(sounds)
                 .noCollision()
-                .nonOpaque());
+                .sounds(sounds)
+                .pistonBehavior(PistonBehavior.DESTROY)
+        );
     }
 
     public static BlockBuilder fungus(MapColor mapColor, RegistryKey<ConfiguredFeature<?, ?>> featureKey, TagKey<Block> canPlantOn, TagKey<Block> canGrowOn) {

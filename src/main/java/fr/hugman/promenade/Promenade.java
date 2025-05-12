@@ -4,10 +4,12 @@ import com.google.common.reflect.Reflection;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.block.dispenser.PromenadeDispenserBehaviors;
 import fr.hugman.promenade.block.entity.PromenadeBlockEntities;
+import fr.hugman.promenade.component.PromenadeComponentTypes;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
+import fr.hugman.promenade.entity.spawn.PromenadeSpawnConditions;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.itemgroup.PromenadeItemGroupAdditions;
 import fr.hugman.promenade.itemgroup.PromenadeItemGroups;
@@ -42,6 +44,7 @@ public class Promenade implements ModInitializer {
         PromenadeFlammables.register();
         PromenadeBlockEntities.addBlocksToVanillaBlockEntityTypes();
 
+        Reflection.initialize(PromenadeComponentTypes.class);
         Reflection.initialize(PromenadeItems.class);
 
         Reflection.initialize(PromenadeItemGroups.class);
@@ -59,6 +62,8 @@ public class Promenade implements ModInitializer {
         Reflection.initialize(PromenadeFoliagePlacerTypes.class);
         Reflection.initialize(PromenadeFeatures.class);
         Reflection.initialize(PromenadePlacementModifierTypes.class);
+
+        PromenadeSpawnConditions.register();
 
         PromenadeEntityTypes.appendWorldGen();
         PromenadeBiomes.appendWorldGen();

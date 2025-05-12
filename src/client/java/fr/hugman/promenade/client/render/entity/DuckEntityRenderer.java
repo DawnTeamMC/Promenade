@@ -8,6 +8,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.AgeableMobEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.texture.MissingSprite;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 
@@ -29,13 +30,19 @@ public class DuckEntityRenderer extends AgeableMobEntityRenderer<DuckEntity, Duc
 
     @Override
     public Identifier getTexture(DuckEntityRenderState state) {
-        return state.texture;
+        if (state.variant == null) {
+            return MissingSprite.getMissingSpriteId();
+        }
+        if (state.baby) {
+            return state.variant.babyTexture().texturePath();
+        }
+        return state.variant.texture().texturePath();
     }
 
     public void updateRenderState(DuckEntity duck, DuckEntityRenderState state, float f) {
         super.updateRenderState(duck, state, f);
         state.flapProgress = MathHelper.lerp(f, duck.prevFlapProgress, duck.flapProgress);
         state.maxWingDeviation = MathHelper.lerp(f, duck.prevMaxWingDeviation, duck.maxWingDeviation);
-        state.texture = duck.getTexture();
+        state.variant = duck.getVariant().value();
     }
 }
