@@ -27,7 +27,7 @@ dependencies {
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 
     // Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-fabric
-    modRuntimeOnly "org.sinytra:item-asset-export-fabric:1.1.0+1.21.4"
+    //modRuntimeOnly "org.sinytra:item-asset-export-fabric:1.1.0+1.21.4" FIXME not updated for 1.21.5 yet
 }
 
 loom {

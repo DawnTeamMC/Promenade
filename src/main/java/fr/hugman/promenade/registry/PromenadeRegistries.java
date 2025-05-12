@@ -10,8 +10,8 @@ public class PromenadeRegistries {
     public static void register() {
         DynamicRegistries.registerSynced(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION, SnowyBlockTransformation.CODEC);
 
-        DynamicRegistries.registerSynced(PromenadeRegistryKeys.DUCK_VARIANT, DuckVariant.CODEC);
+        DynamicRegistries.registerSynced(PromenadeRegistryKeys.DUCK_VARIANT, DuckVariant.CODEC, DuckVariant.NETWORK_CODEC);
         DynamicRegistries.registerSynced(PromenadeRegistryKeys.CAPYBARA_VARIANT, CapybaraVariant.CODEC, CapybaraVariant.NETWORK_CODEC);
-        DynamicRegistries.registerSynced(PromenadeRegistryKeys.SUNKEN_VARIANT, SunkenVariant.CODEC);
+        DynamicRegistries.registerSynced(PromenadeRegistryKeys.SUNKEN_VARIANT, SunkenVariant.CODEC, SunkenVariant.NETWORK_CODEC);
     }
 }

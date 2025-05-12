@@ -1,12 +1,10 @@
 package fr.hugman.promenade.client.render.entity.state;
 
-import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.entity.variant.CapybaraVariant;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import net.minecraft.entity.AnimationState;
-import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)

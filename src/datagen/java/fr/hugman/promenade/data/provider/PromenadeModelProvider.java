@@ -17,14 +17,49 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.data.*;
 import net.minecraft.client.render.item.tint.TintSource;
+import net.minecraft.client.render.model.json.ModelVariantOperator;
+import net.minecraft.client.render.model.json.MultipartModelConditionBuilder;
+import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.registry.Registries;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.AxisRotation;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.biome.FoliageColors;
 
+import java.util.function.Function;
+
 public class PromenadeModelProvider extends FabricModelProvider {
+    public static final ModelVariantOperator NO_OP = variant -> variant;
+    public static final ModelVariantOperator UV_LOCK = ModelVariantOperator.UV_LOCK.withValue(true);
+    public static final ModelVariantOperator ROTATE_X_90 = ModelVariantOperator.ROTATION_X.withValue(AxisRotation.R90);
+    public static final ModelVariantOperator ROTATE_X_180 = ModelVariantOperator.ROTATION_X.withValue(AxisRotation.R180);
+    public static final ModelVariantOperator ROTATE_X_270 = ModelVariantOperator.ROTATION_X.withValue(AxisRotation.R270);
+    public static final ModelVariantOperator ROTATE_Y_90 = ModelVariantOperator.ROTATION_Y.withValue(AxisRotation.R90);
+    public static final ModelVariantOperator ROTATE_Y_180 = ModelVariantOperator.ROTATION_Y.withValue(AxisRotation.R180);
+    public static final ModelVariantOperator ROTATE_Y_270 = ModelVariantOperator.ROTATION_Y.withValue(AxisRotation.R270);
+
+    private static final Function<MultipartModelConditionBuilder, MultipartModelConditionBuilder> LEAF_LITTER_MODEL_1_CONDITION_FUNCTION = builder -> builder.put(Properties.SEGMENT_AMOUNT, 1);
+    private static final Function<MultipartModelConditionBuilder, MultipartModelConditionBuilder> LEAF_LITTER_MODEL_2_CONDITION_FUNCTION = builder -> builder.put(Properties.SEGMENT_AMOUNT, 2, 3);
+    private static final Function<MultipartModelConditionBuilder, MultipartModelConditionBuilder> LEAF_LITTER_MODEL_3_CONDITION_FUNCTION = builder -> builder.put(Properties.SEGMENT_AMOUNT, 3);
+    private static final Function<MultipartModelConditionBuilder, MultipartModelConditionBuilder> LEAF_LITTER_MODEL_4_CONDITION_FUNCTION = builder -> builder.put(Properties.SEGMENT_AMOUNT, 4);
+
+    private static final BlockStateVariantMap<ModelVariantOperator> NORTH_DEFAULT_HORIZONTAL_ROTATION_OPERATIONS = BlockStateVariantMap.operations(
+                    Properties.HORIZONTAL_FACING
+            )
+            .register(Direction.EAST, ROTATE_Y_90)
+            .register(Direction.SOUTH, ROTATE_Y_180)
+            .register(Direction.WEST, ROTATE_Y_270)
+            .register(Direction.NORTH, NO_OP);
+    private static final BlockStateVariantMap<ModelVariantOperator> UP_DEFAULT_ROTATION_OPERATIONS = BlockStateVariantMap.operations(Properties.FACING)
+            .register(Direction.DOWN, ROTATE_X_180)
+            .register(Direction.UP, NO_OP)
+            .register(Direction.NORTH, ROTATE_X_90)
+            .register(Direction.SOUTH, ROTATE_X_90.then(ROTATE_Y_180))
+            .register(Direction.WEST, ROTATE_X_90.then(ROTATE_Y_270))
+            .register(Direction.EAST, ROTATE_X_90.then(ROTATE_Y_90));
+
     public PromenadeModelProvider(FabricDataOutput output) {
         super(output);
     }
@@ -71,8 +106,8 @@ public class PromenadeModelProvider extends FabricModelProvider {
         this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_AZALEA_LEAVES, Blocks.AZALEA_LEAVES);
         this.registerSnowyLeaves(gen, PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES, Blocks.FLOWERING_AZALEA_LEAVES);
 
-        gen.registerLog(PromenadeBlocks.SAKURA_LOG).uvLockedLog(PromenadeBlocks.SAKURA_LOG).wood(PromenadeBlocks.SAKURA_WOOD);
-        gen.registerLog(PromenadeBlocks.STRIPPED_SAKURA_LOG).uvLockedLog(PromenadeBlocks.STRIPPED_SAKURA_LOG).wood(PromenadeBlocks.STRIPPED_SAKURA_WOOD);
+        gen.createLogTexturePool(PromenadeBlocks.SAKURA_LOG).uvLockedLog(PromenadeBlocks.SAKURA_LOG).wood(PromenadeBlocks.SAKURA_WOOD);
+        gen.createLogTexturePool(PromenadeBlocks.STRIPPED_SAKURA_LOG).uvLockedLog(PromenadeBlocks.STRIPPED_SAKURA_LOG).wood(PromenadeBlocks.STRIPPED_SAKURA_WOOD);
         gen.registerHangingSign(PromenadeBlocks.STRIPPED_SAKURA_LOG, PromenadeBlocks.SAKURA_HANGING_SIGN, PromenadeBlocks.SAKURA_WALL_HANGING_SIGN);
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.BLUSH_SAKURA_SAPLING, PromenadeBlocks.POTTED_BLUSH_SAKURA_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.COTTON_SAKURA_SAPLING, PromenadeBlocks.POTTED_COTTON_SAKURA_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
@@ -83,9 +118,9 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerSingleton(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS));
         gen.registerSingleton(PromenadeBlocks.COTTON_SAKURA_BLOSSOM_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.COTTON_SAKURA_BLOSSOMS));
 
-        gen.registerLog(PromenadeBlocks.MAPLE_LOG).log(PromenadeBlocks.MAPLE_LOG).wood(PromenadeBlocks.MAPLE_WOOD);
+        gen.createLogTexturePool(PromenadeBlocks.MAPLE_LOG).log(PromenadeBlocks.MAPLE_LOG).wood(PromenadeBlocks.MAPLE_WOOD);
         registerDripLog(gen, PromenadeBlocks.STRIPPED_MAPLE_LOG);
-        gen.registerLog(PromenadeBlocks.STRIPPED_MAPLE_LOG).wood(PromenadeBlocks.STRIPPED_MAPLE_WOOD);
+        gen.createLogTexturePool(PromenadeBlocks.STRIPPED_MAPLE_LOG).wood(PromenadeBlocks.STRIPPED_MAPLE_WOOD);
         gen.registerHangingSign(PromenadeBlocks.STRIPPED_MAPLE_LOG, PromenadeBlocks.MAPLE_HANGING_SIGN, PromenadeBlocks.MAPLE_WALL_HANGING_SIGN);
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.SAP_MAPLE_SAPLING, PromenadeBlocks.POTTED_SAP_MAPLE_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.VERMILION_MAPLE_SAPLING, PromenadeBlocks.POTTED_VERMILION_MAPLE_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
@@ -108,8 +143,8 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerSingleton(PromenadeBlocks.FULVOUS_MAPLE_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.FULVOUS_MAPLE_LEAVES));
         gen.registerSingleton(PromenadeBlocks.MIKADO_MAPLE_LEAF_PILE, PromenadeTexturedModels.pile(PromenadeBlocks.MIKADO_MAPLE_LEAVES));
 
-        gen.registerLog(PromenadeBlocks.PALM_LOG).log(PromenadeBlocks.PALM_LOG).wood(PromenadeBlocks.PALM_WOOD);
-        gen.registerLog(PromenadeBlocks.STRIPPED_PALM_LOG).log(PromenadeBlocks.STRIPPED_PALM_LOG).wood(PromenadeBlocks.STRIPPED_PALM_WOOD);
+        gen.createLogTexturePool(PromenadeBlocks.PALM_LOG).log(PromenadeBlocks.PALM_LOG).wood(PromenadeBlocks.PALM_WOOD);
+        gen.createLogTexturePool(PromenadeBlocks.STRIPPED_PALM_LOG).log(PromenadeBlocks.STRIPPED_PALM_LOG).wood(PromenadeBlocks.STRIPPED_PALM_WOOD);
         gen.registerHangingSign(PromenadeBlocks.STRIPPED_PALM_LOG, PromenadeBlocks.PALM_HANGING_SIGN, PromenadeBlocks.PALM_WALL_HANGING_SIGN);
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.PALM_SAPLING, PromenadeBlocks.POTTED_PALM_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
         gen.registerTintedBlockAndItem(PromenadeBlocks.PALM_LEAVES, TexturedModel.LEAVES, PromenadeFoliageColors.PALM);
@@ -121,8 +156,8 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.registerNetherrackBottomCustomTop(PromenadeBlocks.DARK_AMARANTH_NYLIUM);
         gen.registerSimpleCubeAll(PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);
         gen.registerRoots(PromenadeBlocks.DARK_AMARANTH_ROOTS, PromenadeBlocks.POTTED_DARK_AMARANTH_ROOTS);
-        gen.registerLog(PromenadeBlocks.DARK_AMARANTH_STEM).stem(PromenadeBlocks.DARK_AMARANTH_STEM).wood(PromenadeBlocks.DARK_AMARANTH_HYPHAE);
-        gen.registerLog(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM).stem(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM).wood(PromenadeBlocks.STRIPPED_DARK_AMARANTH_HYPHAE);
+        gen.createLogTexturePool(PromenadeBlocks.DARK_AMARANTH_STEM).stem(PromenadeBlocks.DARK_AMARANTH_STEM).wood(PromenadeBlocks.DARK_AMARANTH_HYPHAE);
+        gen.createLogTexturePool(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM).stem(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM).wood(PromenadeBlocks.STRIPPED_DARK_AMARANTH_HYPHAE);
         gen.registerHangingSign(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM, PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN, PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN);
         gen.registerFlowerPotPlantAndItem(PromenadeBlocks.DARK_AMARANTH_FUNGUS, PromenadeBlocks.POTTED_DARK_AMARANTH_FUNGUS, BlockStateModelGenerator.CrossType.NOT_TINTED);
 
@@ -140,33 +175,20 @@ public class PromenadeModelProvider extends FabricModelProvider {
         var textureMap = new TextureMap().put(TextureKey.SIDE, TextureMap.getId(block)).put(TextureKey.END, TextureMap.getSubId(block, "_top")).put(TextureKey.PARTICLE, TextureMap.getId(block));
         var textureMapDrip = new TextureMap().put(TextureKey.SIDE, TextureMap.getSubId(block, "_drip")).put(TextureKey.END, TextureMap.getSubId(block, "_top")).put(TextureKey.PARTICLE, TextureMap.getId(block));
 
-        Identifier verticalModelId = Models.CUBE_COLUMN.upload(block, textureMap, gen.modelCollector);
-        Identifier horizontalModelId = Models.CUBE_COLUMN_HORIZONTAL.upload(block, textureMap, gen.modelCollector);
+        var verticalModel = BlockStateModelGenerator.createWeightedVariant(Models.CUBE_COLUMN.upload(block, textureMap, gen.modelCollector));
+        var horizontalModel = BlockStateModelGenerator.createWeightedVariant(Models.CUBE_COLUMN_HORIZONTAL.upload(block, textureMap, gen.modelCollector));
 
-        Identifier verticalModelIdDrip = Models.CUBE_COLUMN.upload(block, "_drip", textureMapDrip, gen.modelCollector);
-        Identifier horizontalModelIdDrip = Models.CUBE_COLUMN_HORIZONTAL.upload(block, "_drip", textureMapDrip, gen.modelCollector);
+        var verticalModelDrip = BlockStateModelGenerator.createWeightedVariant(Models.CUBE_COLUMN.upload(block, "_drip", textureMapDrip, gen.modelCollector));
+        var horizontalModelDrip = BlockStateModelGenerator.createWeightedVariant(Models.CUBE_COLUMN_HORIZONTAL.upload(block, "_drip", textureMapDrip, gen.modelCollector));
 
-
-        gen.blockStateCollector.accept(VariantsBlockStateSupplier.create(block).coordinate(
-                BlockStateVariantMap.create(Properties.AXIS, PromenadeBlockProperties.DRIP)
-                        .register(Direction.Axis.Y, false, BlockStateVariant.create().put(VariantSettings.MODEL, verticalModelId))
-                        .register(Direction.Axis.Z, false, BlockStateVariant.create().put(VariantSettings.MODEL, horizontalModelId).put(VariantSettings.X, VariantSettings.Rotation.R90))
-                        .register(
-                                Direction.Axis.X, false,
-                                BlockStateVariant.create()
-                                        .put(VariantSettings.MODEL, horizontalModelId)
-                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
-                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90)
-                        )
-                        .register(Direction.Axis.Y, true, BlockStateVariant.create().put(VariantSettings.MODEL, verticalModelIdDrip))
-                        .register(Direction.Axis.Z, true, BlockStateVariant.create().put(VariantSettings.MODEL, horizontalModelIdDrip).put(VariantSettings.X, VariantSettings.Rotation.R90))
-                        .register(
-                                Direction.Axis.X, true,
-                                BlockStateVariant.create()
-                                        .put(VariantSettings.MODEL, horizontalModelIdDrip)
-                                        .put(VariantSettings.X, VariantSettings.Rotation.R90)
-                                        .put(VariantSettings.Y, VariantSettings.Rotation.R90)
-                        )
+        gen.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(block).with(
+                BlockStateVariantMap.models(Properties.AXIS, PromenadeBlockProperties.DRIP)
+                        .register(Direction.Axis.Y, false, verticalModel)
+                        .register(Direction.Axis.Z, false, horizontalModel.apply(ROTATE_X_90))
+                        .register(Direction.Axis.X, false, horizontalModel.apply(ROTATE_X_90).apply(ROTATE_Y_90))
+                        .register(Direction.Axis.Y, true, verticalModelDrip)
+                        .register(Direction.Axis.Z, true, horizontalModelDrip.apply(ROTATE_X_90))
+                        .register(Direction.Axis.X, true, horizontalModelDrip.apply(ROTATE_X_90).apply(ROTATE_Y_90))
         ));
     }
 
@@ -181,11 +203,10 @@ public class PromenadeModelProvider extends FabricModelProvider {
 
     public final void registerBlueberryBush(BlockStateModelGenerator gen) {
         gen.registerItemModel(PromenadeItems.BLUEBERRIES);
-        gen.blockStateCollector.accept(VariantsBlockStateSupplier.create(PromenadeBlocks.BLUEBERRY_BUSH)
-                .coordinate(
-                        BlockStateVariantMap.create(Properties.AGE_3).register(
-                                stage -> BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(PromenadeBlocks.BLUEBERRY_BUSH, "_stage" + stage, Models.CROSS, TextureMap::cross))
-                        )
+        gen.blockStateCollector.accept(VariantsBlockModelDefinitionCreator.of(PromenadeBlocks.BLUEBERRY_BUSH)
+                .with(
+                        BlockStateVariantMap.models(Properties.AGE_3)
+                                .generate(stage -> BlockStateModelGenerator.createWeightedVariant(gen.createSubModel(PromenadeBlocks.BLUEBERRY_BUSH, "_stage" + stage, Models.CROSS, TextureMap::cross)))
                 )
         );
     }
@@ -194,14 +215,13 @@ public class PromenadeModelProvider extends FabricModelProvider {
         // maybe check if we can't generate the models too?
         gen.blockStateCollector
                 .accept(
-                        VariantsBlockStateSupplier.create(PromenadeBlocks.MOAI)
-                                .coordinate(
-                                        BlockStateVariantMap.create(MoaiBlock.TYPE)
-                                                .register(MoaiType.SINGLE, BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockModelId(PromenadeBlocks.MOAI)))
-                                                .register(MoaiType.TOP, BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(PromenadeBlocks.MOAI, "_top")))
-                                                .register(MoaiType.BOTTOM, BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(PromenadeBlocks.MOAI, "_bottom")))
+                        VariantsBlockModelDefinitionCreator.of(PromenadeBlocks.MOAI)
+                                .with(BlockStateVariantMap.models(MoaiBlock.TYPE)
+                                        .register(MoaiType.SINGLE, BlockStateModelGenerator.createWeightedVariant(ModelIds.getBlockModelId(PromenadeBlocks.MOAI)))
+                                        .register(MoaiType.TOP, BlockStateModelGenerator.createWeightedVariant(ModelIds.getBlockSubModelId(PromenadeBlocks.MOAI, "_top")))
+                                        .register(MoaiType.BOTTOM, BlockStateModelGenerator.createWeightedVariant(ModelIds.getBlockSubModelId(PromenadeBlocks.MOAI, "_bottom")))
                                 )
-                                .coordinate(BlockStateModelGenerator.createNorthDefaultHorizontalRotationStates())
+                                .coordinate(NORTH_DEFAULT_HORIZONTAL_ROTATION_OPERATIONS)
                 );
     }
 
@@ -217,11 +237,11 @@ public class PromenadeModelProvider extends FabricModelProvider {
             gen.registerItemModel(snowyLeaves.asItem(), bottomModel);
         }
         gen.blockStateCollector.accept(
-                VariantsBlockStateSupplier.create(snowyLeaves).coordinate(
-                        BlockStateVariantMap.create(SnowyLeavesBlock.BOTTOM)
-                                .register(true, BlockStateVariant.create().put(VariantSettings.MODEL, bottomModel))
-                                .register(false, BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(snowyLeaves, "", Models.CUBE_ALL, TextureMap::all)))
-                )
+                VariantsBlockModelDefinitionCreator.of(snowyLeaves)
+                        .with(BlockStateVariantMap.models(SnowyLeavesBlock.BOTTOM)
+                                .register(true, BlockStateModelGenerator.createWeightedVariant(bottomModel))
+                                .register(false, BlockStateModelGenerator.createWeightedVariant(gen.createSubModel(snowyLeaves, "", Models.CUBE_ALL, TextureMap::all)))
+                        )
         );
     }
 
@@ -238,11 +258,11 @@ public class PromenadeModelProvider extends FabricModelProvider {
             gen.registerItemModel(snowyLeaves.asItem(), bottomModel);
         }
         gen.blockStateCollector.accept(
-                VariantsBlockStateSupplier.create(snowyLeaves).coordinate(
-                        BlockStateVariantMap.create(SnowyLeavesBlock.BOTTOM)
-                                .register(true, BlockStateVariant.create().put(VariantSettings.MODEL, bottomModel))
-                                .register(false, BlockStateVariant.create().put(VariantSettings.MODEL, gen.createSubModel(snowyLeaves, "", Models.CUBE_ALL, identifier -> TextureMap.all(textureId))))
-                )
+                VariantsBlockModelDefinitionCreator.of(snowyLeaves)
+                        .with(BlockStateVariantMap.models(SnowyLeavesBlock.BOTTOM)
+                                .register(true, BlockStateModelGenerator.createWeightedVariant(bottomModel))
+                                .register(false, BlockStateModelGenerator.createWeightedVariant(gen.createSubModel(snowyLeaves, "", Models.CUBE_ALL, identifier -> TextureMap.all(textureId))))
+                        )
         );
 
     }
@@ -251,14 +271,23 @@ public class PromenadeModelProvider extends FabricModelProvider {
         registerFallenLeaves(gen, fallenLeaves, 0);
     }
 
-    private void registerFallenLeaves(BlockStateModelGenerator gen, Block fallenLeaves, int tintSource) {
+    public final void registerFallenLeaves(BlockStateModelGenerator gen, Block fallenLeaves, int tintSource) {
         if (tintSource != 0) {
             Identifier identifier = gen.uploadBlockItemModel(fallenLeaves.asItem(), fallenLeaves);
             gen.registerTintedItemModel(fallenLeaves, identifier, ItemModels.constantTintSource(tintSource));
         } else {
             gen.registerItemModel(fallenLeaves);
         }
-        gen.blockStateCollector.accept(BlockStateModelGenerator.createBlockStateWithRandomHorizontalRotations(fallenLeaves, PromenadeTexturedModels.FALLEN_LEAVES.upload(fallenLeaves, gen.modelCollector)));
+        var weightedVariant = BlockStateModelGenerator.createWeightedVariant(TexturedModel.TEMPLATE_LEAF_LITTER_1.upload(fallenLeaves, gen.modelCollector));
+        var weightedVariant2 = BlockStateModelGenerator.createWeightedVariant(TexturedModel.TEMPLATE_LEAF_LITTER_2.upload(fallenLeaves, gen.modelCollector));
+        var weightedVariant3 = BlockStateModelGenerator.createWeightedVariant(TexturedModel.TEMPLATE_LEAF_LITTER_3.upload(fallenLeaves, gen.modelCollector));
+        var weightedVariant4 = BlockStateModelGenerator.createWeightedVariant(TexturedModel.TEMPLATE_LEAF_LITTER_4.upload(fallenLeaves, gen.modelCollector));
+        gen.registerSegmentedBlock(fallenLeaves,
+                weightedVariant, LEAF_LITTER_MODEL_1_CONDITION_FUNCTION,
+                weightedVariant2, LEAF_LITTER_MODEL_2_CONDITION_FUNCTION,
+                weightedVariant3, LEAF_LITTER_MODEL_3_CONDITION_FUNCTION,
+                weightedVariant4, LEAF_LITTER_MODEL_4_CONDITION_FUNCTION
+        );
     }
 
     public final void registerFacingPlantPart(BlockStateModelGenerator gen, Block plant, Block plantStem, BlockStateModelGenerator.CrossType tintType) {
@@ -272,10 +301,10 @@ public class PromenadeModelProvider extends FabricModelProvider {
     }
 
     public final void registerFacingTintableCrossBlockState(BlockStateModelGenerator gen, Block block, BlockStateModelGenerator.CrossType tintType, TextureMap crossTexture) {
-        Identifier identifier = tintType.getCrossModel().upload(block, crossTexture, gen.modelCollector);
+        WeightedVariant weightedVariant = BlockStateModelGenerator.createWeightedVariant(tintType.getCrossModel().upload(block, crossTexture, gen.modelCollector));
         gen.blockStateCollector.accept(
-                BlockStateModelGenerator.createSingletonBlockState(block, identifier)
-                        .coordinate(gen.createUpDefaultFacingVariantMap())
+                BlockStateModelGenerator.createSingletonBlockState(block, weightedVariant)
+                        .coordinate(UP_DEFAULT_ROTATION_OPERATIONS)
         );
     }
 
@@ -298,9 +327,9 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.register(PromenadeItems.BOVINE_BANNER_PATTERN, Models.GENERATED);
 
         //TODO: review colors
-        gen.registerSpawnEgg(PromenadeItems.CAPYBARA_SPAWN_EGG, 0xa0704e, 0x433930);
-        gen.registerSpawnEgg(PromenadeItems.DUCK_SPAWN_EGG, 10592673, 15904341);
-        gen.registerSpawnEgg(PromenadeItems.LUSH_CREEPER_SPAWN_EGG, 4347181, 4262661);
-        gen.registerSpawnEgg(PromenadeItems.SUNKEN_SPAWN_EGG, 12233882, 6191682);
+        gen.register(PromenadeItems.CAPYBARA_SPAWN_EGG, Models.GENERATED);
+        gen.register(PromenadeItems.DUCK_SPAWN_EGG, Models.GENERATED);
+        gen.register(PromenadeItems.LUSH_CREEPER_SPAWN_EGG, Models.GENERATED);
+        gen.register(PromenadeItems.SUNKEN_SPAWN_EGG, Models.GENERATED);
     }
 }

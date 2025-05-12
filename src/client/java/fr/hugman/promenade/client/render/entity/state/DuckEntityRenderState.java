@@ -1,17 +1,16 @@
 package fr.hugman.promenade.client.render.entity.state;
 
-import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.entity.variant.DuckVariant;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.state.LivingEntityRenderState;
-import net.minecraft.util.Identifier;
+import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
 public class DuckEntityRenderState extends LivingEntityRenderState {
-    private static final Identifier DEFAULT_TEXTURE = Promenade.id("textures/entity/duck/pekin.png");
+    @Nullable
+    public DuckVariant variant;
 
     public float flapProgress;
     public float maxWingDeviation;
-
-    public Identifier texture = DEFAULT_TEXTURE;
 }

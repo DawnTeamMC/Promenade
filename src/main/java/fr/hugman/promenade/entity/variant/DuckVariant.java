@@ -4,81 +4,46 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import net.minecraft.entity.VariantSelectorProvider;
+import net.minecraft.entity.spawn.SpawnCondition;
+import net.minecraft.entity.spawn.SpawnConditionSelectors;
+import net.minecraft.entity.spawn.SpawnContext;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.registry.RegistryCodecs;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryElementCodec;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.entry.RegistryEntryList;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.registry.entry.RegistryFixedCodec;
+import net.minecraft.util.AssetInfo;
 
-import java.util.Objects;
+import java.util.List;
 
-public final class DuckVariant {
-    public static final Identifier DEFAULT_DUCKLING_TEXTURE = Promenade.id("entity/duck/duckling");
+public record DuckVariant(
+        AssetInfo texture,
+        AssetInfo babyTexture,
+        SpawnConditionSelectors spawnConditions
+) implements VariantSelectorProvider<SpawnContext, SpawnCondition> {
+    public static final AssetInfo DEFAULT_DUCKLING_ASSET = new AssetInfo(Promenade.id("entity/duck/duckling"));
 
     public static final Codec<DuckVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            Identifier.CODEC.fieldOf("texture").forGetter(duck -> duck.texture),
-            Identifier.CODEC.optionalFieldOf("baby_texture", DEFAULT_DUCKLING_TEXTURE).forGetter(duck -> duck.babyTexture),
-            RegistryCodecs.entryList(RegistryKeys.BIOME).fieldOf("biomes").forGetter(duck -> duck.biomes)
+            AssetInfo.MAP_CODEC.forGetter(DuckVariant::texture),
+            AssetInfo.CODEC.optionalFieldOf("baby_texture", DEFAULT_DUCKLING_ASSET).forGetter(DuckVariant::babyTexture),
+            SpawnConditionSelectors.CODEC.fieldOf("spawn_conditions").forGetter(DuckVariant::spawnConditions)
     ).apply(instance, DuckVariant::new));
 
-    public static final Codec<RegistryEntry<DuckVariant>> ENTRY_CODEC = RegistryElementCodec.of(PromenadeRegistryKeys.DUCK_VARIANT, CODEC);
+    public static final Codec<DuckVariant> NETWORK_CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            AssetInfo.MAP_CODEC.forGetter(DuckVariant::texture),
+            AssetInfo.CODEC.optionalFieldOf("baby_texture", DEFAULT_DUCKLING_ASSET).forGetter(DuckVariant::babyTexture)
+    ).apply(instance, DuckVariant::new));
 
-    public static final PacketCodec<RegistryByteBuf, DuckVariant> PACKET_CODEC = PacketCodec.tuple(
-            Identifier.PACKET_CODEC, (duck -> duck.texture),
-            Identifier.PACKET_CODEC, (duck -> duck.babyTexture),
-            PacketCodecs.registryEntryList(RegistryKeys.BIOME), DuckVariant::getBiomes,
-            DuckVariant::new
-    );
+    public static final Codec<RegistryEntry<DuckVariant>> ENTRY_CODEC = RegistryFixedCodec.of(PromenadeRegistryKeys.DUCK_VARIANT);
+    public static final PacketCodec<RegistryByteBuf, RegistryEntry<DuckVariant>> ENTRY_PACKET_CODEC = PacketCodecs.registryEntry(PromenadeRegistryKeys.DUCK_VARIANT);
 
-    public static final PacketCodec<RegistryByteBuf, RegistryEntry<DuckVariant>> ENTRY_PACKET_CODEC = PacketCodecs.registryEntry(PromenadeRegistryKeys.DUCK_VARIANT, PACKET_CODEC);
-
-    private final Identifier texture;
-    private final Identifier babyTexture;
-    private final RegistryEntryList<Biome> biomes;
-
-    private final Identifier texturePath;
-    private final Identifier babyTexturePath;
-
-    public DuckVariant(Identifier texture, Identifier babyTexture, RegistryEntryList<Biome> biomes) {
-        this.texture = texture;
-        this.babyTexture = babyTexture;
-        this.biomes = biomes;
-
-        this.texturePath = getTexturePath(texture);
-        this.babyTexturePath = getTexturePath(babyTexture);
-    }
-
-    public Identifier texture() {
-        return texturePath;
-    }
-
-    public Identifier babyTexture() {
-        return babyTexturePath;
-    }
-
-    public RegistryEntryList<Biome> getBiomes() {
-        return this.biomes;
-    }
-
-    private static Identifier getTexturePath(Identifier id) {
-        return id.withPath(oldPath -> "textures/" + oldPath + ".png");
+    public DuckVariant(AssetInfo texture, AssetInfo babyTexture) {
+        this(texture, babyTexture, SpawnConditionSelectors.EMPTY);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        var that = (DuckVariant) obj;
-        return Objects.equals(this.texture, that.texture) && Objects.equals(this.babyTexture, that.babyTexture);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(texture, babyTexture);
+    public List<Selector<SpawnContext, SpawnCondition>> getSelectors() {
+        return this.spawnConditions.selectors();
     }
 }

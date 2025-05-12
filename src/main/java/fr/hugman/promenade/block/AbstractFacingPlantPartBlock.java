@@ -95,7 +95,7 @@ public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
 
     @Override
     protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return this.outlineShapes[state.get(FACING).getId()];
+        return this.outlineShapes[state.get(FACING).getIndex()];
     }
 
     protected abstract AbstractFacingPlantStemBlock getStem();

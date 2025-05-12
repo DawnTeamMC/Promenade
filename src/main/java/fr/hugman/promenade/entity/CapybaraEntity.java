@@ -35,7 +35,6 @@ import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.AssetInfo;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.Unit;
 import net.minecraft.util.function.ValueLists;
@@ -62,7 +61,6 @@ public class CapybaraEntity extends AnimalEntity {
     protected static final TrackedData<State> STATE = DataTracker.registerData(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_STATE);
     public static final TrackedData<Long> LAST_STATE_TICK = DataTracker.registerData(CapybaraEntity.class, TrackedDataHandlerRegistry.LONG);
 
-    public static final String VARIANT_KEY = "variant";
     public static final String FART_CHANCE_KEY = "fart_chance";
     public static final String LAST_STATE_TICK_KEY = "last_state_tick";
     public static final String STATE_KEY = "state_key";
@@ -109,18 +107,7 @@ public class CapybaraEntity extends AnimalEntity {
 
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {
-        RegistryEntry<CapybaraVariant> variant;
-        if (entityData instanceof Data capybaraData) {
-            variant = capybaraData.variant;
-        } else {
-            variant = CapybaraVariants.getRandom(this.getRegistryManager(), this.random);
-            entityData = new Data(variant);
-        }
-
         CapybaraVariants.select(this.random, this.getRegistryManager(), SpawnContext.of(world, this.getBlockPos())).ifPresent(this::setVariant);
-
-
-        this.setVariant(variant);
         this.dataTracker.set(LAST_STATE_TICK, world.toServerWorld().getTime() - WAKE_UP_LENGTH);
         this.dataTracker.set(FART_CHANCE, FART_CHANCE_PROVIDER.get(this.random));
         return super.initialize(world, difficulty, spawnReason, entityData);
@@ -130,6 +117,12 @@ public class CapybaraEntity extends AnimalEntity {
     /*   AI   */
     /*========*/
 
+    public static DefaultAttributeContainer.Builder createCapybaraAttributes() {
+        return createAnimalAttributes()
+                .add(EntityAttributes.MAX_HEALTH, 10.0)
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.2);
+    }
+
     protected Brain.Profile<CapybaraEntity> createBrainProfile() {
         return CapybaraBrain.createProfile();
     }
@@ -137,12 +130,6 @@ public class CapybaraEntity extends AnimalEntity {
     @Override
     protected Brain<?> deserializeBrain(Dynamic<?> dynamic) {
         return CapybaraBrain.create(this.createBrainProfile().deserialize(dynamic));
-    }
-
-    public static DefaultAttributeContainer.Builder createCapybaraAttributes() {
-        return createAnimalAttributes()
-                .add(EntityAttributes.MAX_HEALTH, 10.0)
-                .add(EntityAttributes.MOVEMENT_SPEED, 0.2);
     }
 
     @Override
@@ -308,7 +295,53 @@ public class CapybaraEntity extends AnimalEntity {
         this.updateState(State.IDLING);
     }
 
+    public void setLastStateTick(long t) {
+        this.dataTracker.set(LAST_STATE_TICK, t);
+    }
 
+    public long getLastStateTickDelta() {
+        return this.getWorld().getTime() - this.dataTracker.get(LAST_STATE_TICK);
+    }
+
+    public State getState() {
+        return this.dataTracker.get(STATE);
+    }
+
+    public void setState(State state) {
+        this.dataTracker.set(STATE, state);
+    }
+
+    public enum State implements StringIdentifiable {
+        IDLING("idling", 0),
+        FARTING("farting", 1),
+        SLEEPING("sleeping", 2),
+        FALL_TO_SLEEP("fall_to_sleep", 3),
+        WAKE_UP("wake_up", 4);
+
+        private final String name;
+        private final int index;
+
+        private static final EnumCodec<State> CODEC = StringIdentifiable.createCodec(State::values);
+        private static final IntFunction<State> INDEX_TO_VALUE = ValueLists.createIndexToValueFunction(State::getIndex, values(), ValueLists.OutOfBoundsHandling.ZERO);
+        public static final PacketCodec<ByteBuf, State> PACKET_CODEC = PacketCodecs.indexed(INDEX_TO_VALUE, State::getIndex);
+
+        State(String name, int index) {
+            this.name = name;
+            this.index = index;
+        }
+
+        public static State fromName(String name) {
+            return CODEC.byId(name, IDLING);
+        }
+
+        public String asString() {
+            return this.name;
+        }
+
+        private int getIndex() {
+            return this.index;
+        }
+    }
 
     /*================*/
     /*   ANIMATIONS   */
@@ -489,76 +522,5 @@ public class CapybaraEntity extends AnimalEntity {
         } else {
             return super.setApplicableComponent(type, value);
         }
-    }
-
-    public void setLastStateTick(long t) {
-        this.dataTracker.set(LAST_STATE_TICK, t);
-    }
-
-    public long getLastStateTickDelta() {
-        return this.getWorld().getTime() - this.dataTracker.get(LAST_STATE_TICK);
-    }
-
-    public State getState() {
-        return this.dataTracker.get(STATE);
-    }
-
-    public void setState(State state) {
-        this.dataTracker.set(STATE, state);
-    }
-
-
-    public enum State implements StringIdentifiable {
-        IDLING("idling", 0),
-        FARTING("farting", 1),
-        SLEEPING("sleeping", 2),
-        FALL_TO_SLEEP("fall_to_sleep", 3),
-        WAKE_UP("wake_up", 4);
-
-        private final String name;
-        private final int index;
-
-        private static final EnumCodec<State> CODEC = StringIdentifiable.createCodec(State::values);
-        private static final IntFunction<State> INDEX_TO_VALUE = ValueLists.createIndexToValueFunction(State::getIndex, values(), ValueLists.OutOfBoundsHandling.ZERO);
-        public static final PacketCodec<ByteBuf, State> PACKET_CODEC = PacketCodecs.indexed(INDEX_TO_VALUE, State::getIndex);
-
-        State(String name, int index) {
-            this.name = name;
-            this.index = index;
-        }
-
-        public static State fromName(String name) {
-            return CODEC.byId(name, IDLING);
-        }
-
-        public String asString() {
-            return this.name;
-        }
-
-        private int getIndex() {
-            return this.index;
-        }
-    }
-
-    public static class Data extends PassiveData {
-        public final RegistryEntry<CapybaraVariant> variant;
-
-        public Data(RegistryEntry<CapybaraVariant> variant) {
-            super(false);
-            this.variant = variant;
-        }
-    }
-
-
-    /*==============*/
-    /*   TEXTURES   */
-    /*==============*/
-
-    public AssetInfo getAssetInfo() {
-        var variant = this.getVariant().value();
-        if (this.hasClosedEyes()) {
-            return variant.closedEyesAssetInfo();
-        }
-        return this.hasLargeEyes() ? variant.largeEyesAssetInfo() : variant.smallEyesAssetInfo();
     }
 }

@@ -14,10 +14,12 @@ import net.minecraft.util.Identifier;
 @Environment(EnvType.CLIENT)
 public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMobEntityRenderer<E, CapybaraEntityRenderState, CapybaraEntityModel> {
     public CapybaraEntityRenderer(EntityRendererFactory.Context context) {
-        super(context,
+        super(
+                context,
                 new CapybaraEntityModel(context.getPart(PromenadeEntityModelLayers.CAPYBARA)),
                 new CapybaraEntityModel(context.getPart(PromenadeEntityModelLayers.CAPYBARA_BABY)),
-                0.5f);
+                0.5f
+        );
     }
 
     @Override
@@ -31,9 +33,9 @@ public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMob
             return MissingSprite.getMissingSpriteId();
         }
         if (state.closedEyes) {
-            return state.variant.closedEyesAssetInfo().texturePath();
+            return state.variant.closedEyesTexture().texturePath();
         }
-        return state.largeEyes ? state.variant.largeEyesAssetInfo().texturePath() : state.variant.smallEyesAssetInfo().texturePath();
+        return state.largeEyes ? state.variant.largeEyesTexture().texturePath() : state.variant.smallEyesTexture().texturePath();
     }
 
     @Override

@@ -2,12 +2,15 @@ package fr.hugman.promenade.entity.variant;
 
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import net.minecraft.entity.VariantSelectorProvider;
+import net.minecraft.entity.spawn.SpawnContext;
 import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
+
+import java.util.Optional;
 
 public class SunkenVariants {
     public static final RegistryKey<SunkenVariant> TUBE = of("tube");
@@ -26,12 +29,7 @@ public class SunkenVariants {
         return RegistryKey.of(PromenadeRegistryKeys.SUNKEN_VARIANT, id);
     }
 
-    public static RegistryEntry<SunkenVariant> getRandom(DynamicRegistryManager dynamicRegistryManager, Random random) {
-        Registry<SunkenVariant> registry = dynamicRegistryManager.getOrThrow(PromenadeRegistryKeys.SUNKEN_VARIANT);
-
-        return registry.getRandom(random)
-                .or(() -> registry.getOptional(DEFAULT))
-                .or(registry::getDefaultEntry)
-                .orElseThrow();
+    public static Optional<RegistryEntry.Reference<SunkenVariant>> select(Random random, DynamicRegistryManager registries, SpawnContext context) {
+        return VariantSelectorProvider.select(registries.getOrThrow(PromenadeRegistryKeys.SUNKEN_VARIANT).streamEntries(), RegistryEntry::value, random, context);
     }
 }
