@@ -1,6 +1,6 @@
 <p align="center">
 
-[![Promenade](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/logo.png)](https://dawnteammc.github.io/promenade)
+[![Promenade](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/logo.svg)](https://dawnteammc.github.io/promenade)
 
 <div align="center">
   A mod for the latest version of Minecraft that adds new biomes, animals, monsters, structures, and more to the game.
