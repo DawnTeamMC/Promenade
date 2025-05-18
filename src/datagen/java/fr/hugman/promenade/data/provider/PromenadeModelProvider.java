@@ -326,7 +326,6 @@ public class PromenadeModelProvider extends FabricModelProvider {
 
         gen.register(PromenadeItems.BOVINE_BANNER_PATTERN, Models.GENERATED);
 
-        //TODO: review colors
         gen.register(PromenadeItems.CAPYBARA_SPAWN_EGG, Models.GENERATED);
         gen.register(PromenadeItems.DUCK_SPAWN_EGG, Models.GENERATED);
         gen.register(PromenadeItems.LUSH_CREEPER_SPAWN_EGG, Models.GENERATED);
