@@ -1,6 +1,6 @@
 <p align="center">
 
-[![Promenade](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/logo.svg)](https://dawnteammc.github.io/promenade)
+[![Promenade](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/main/images/logo.svg)](https://dawnteammc.github.io/promenade)
 
 <div align="center">
   A mod for the latest version of Minecraft that adds new biomes, animals, monsters, structures, and more to the game.
@@ -30,8 +30,8 @@
 
 <p align="center">
 
-![New Biomes](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/highlight_1.png)
-![New Mobs](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/highlight_2.png)
+![New Biomes](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/main/images/highlight_1.png)
+![New Mobs](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/main/images/highlight_2.png)
 
 </p>
 
@@ -104,8 +104,8 @@ by [Hugman](https://github.com/Hugman76).
 ## 🎮 My Other Mods
 
 <div align="center">
-	<a href="https://modrinth.com/mod/culinaire"><img alt="Culinaire" width="250" src="https://raw.githubusercontent.com/DawnTeamMC/Culinaire/refs/heads/dev/images/logo.svg"></a><br><br>
-	<a href="https://modrinth.com/mod/artisanat"><img alt="Artisanat" width="250" src="https://raw.githubusercontent.com/DawnTeamMC/Artisanat/refs/heads/dev/images/logo.svg"></a><br><br>
+	<a href="https://modrinth.com/mod/culinaire"><img alt="Culinaire" width="250" src="https://raw.githubusercontent.com/DawnTeamMC/Culinaire/refs/heads/main/images/logo.svg"></a><br><br>
+	<a href="https://modrinth.com/mod/artisanat"><img alt="Artisanat" width="250" src="https://raw.githubusercontent.com/DawnTeamMC/Artisanat/refs/heads/main/images/logo.svg"></a><br><br>
 	<a href="https://modrinth.com/mod/mubble"><img alt="Mubble" width="250" src="https://dawnteammc.github.io/mubble/images/header.png"></a><br><br>
 	<a href="https://modrinth.com/mod/universal_ores"><img alt="Universal Ores" width="250" src="https://dawnteammc.github.io/universal_ores/images/header.png"></a>
 </div>
