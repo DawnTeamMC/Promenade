@@ -95,11 +95,7 @@ Some money you donate may be used to pay for new features, such as music or art,
 
 ## 📜 License
 
-Except where otherwise stated (
-see [third-party license notices](https://github.com/DawnTeamMC/Promenade/blob/main/thirdparty/NOTICE.txt)), the content
-of this repository is provided
-under the [Polyform Shield 1.0.0](https://github.com/DawnTeamMC/Promenade/blob/main/LICENSE.md) license
-by [Hugman](https://github.com/Hugman76).
+Except where otherwise stated (see [third-party license notices](https://github.com/DawnTeamMC/Promenade/blob/main/thirdparty/NOTICE.txt)), the content of this repository is provided under the [Polyform Shield 1.0.0](https://github.com/DawnTeamMC/Promenade/blob/main/LICENSE.md) license by [Hugman](https://github.com/Hugman76).
 
 ## 🎮 My Other Mods
 
