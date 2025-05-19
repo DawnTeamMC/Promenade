@@ -1,10 +1,11 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.ParticleUtil;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
@@ -14,20 +15,24 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 
-public class ExtendedLeavesBlock extends Block implements Waterloggable {
+public abstract class ExtendedLeavesBlock extends Block implements Waterloggable {
     public static final int MAX_DISTANCE = 14;
     public static final IntProperty DISTANCE = IntProperty.of("distance", 1, MAX_DISTANCE);
     public static final BooleanProperty PERSISTENT = Properties.PERSISTENT;
     public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+    protected final float leafParticleChance;
 
-    public static final MapCodec<ExtendedLeavesBlock> CODEC = createCodec(ExtendedLeavesBlock::new);
-
-    public ExtendedLeavesBlock(AbstractBlock.Settings settings) {
+    public ExtendedLeavesBlock(float leafParticleChance, AbstractBlock.Settings settings) {
         super(settings);
+        this.leafParticleChance = leafParticleChance;
         this.setDefaultState(this.stateManager.getDefaultState()
                 .with(DISTANCE, MAX_DISTANCE)
                 .with(PERSISTENT, false)
@@ -35,8 +40,8 @@ public class ExtendedLeavesBlock extends Block implements Waterloggable {
     }
 
     @Override
-    public MapCodec<? extends ExtendedLeavesBlock> getCodec() {
-        return CODEC;
+    protected VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
+        return VoxelShapes.empty();
     }
 
     @Override
@@ -61,6 +66,12 @@ public class ExtendedLeavesBlock extends Block implements Waterloggable {
         world.setBlockState(pos, ExtendedLeavesBlock.updateDistanceFromLogs(state, world, pos), 3);
     }
 
+    @Override
+    protected int getOpacity(BlockState state) {
+        return 1;
+    }
+
+    @Override
     protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
         if (state.get(WATERLOGGED)) {
             tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
@@ -104,6 +115,35 @@ public class ExtendedLeavesBlock extends Block implements Waterloggable {
 
         return MAX_DISTANCE;
     }
+
+    @Override
+    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+        super.randomDisplayTick(state, world, pos, random);
+        BlockPos blockPos = pos.down();
+        BlockState blockState = world.getBlockState(blockPos);
+        spawnWaterParticle(world, pos, random, blockState, blockPos);
+        this.spawnLeafParticle(world, pos, random, blockState, blockPos);
+    }
+
+    private static void spawnWaterParticle(World world, BlockPos pos, Random random, BlockState state, BlockPos posBelow) {
+        if (world.hasRain(pos.up())) {
+            if (random.nextInt(15) == 1) {
+                if (!state.isOpaque() || !state.isSideSolidFullSquare(world, posBelow, Direction.UP)) {
+                    ParticleUtil.spawnParticle(world, pos, random, ParticleTypes.DRIPPING_WATER);
+                }
+            }
+        }
+    }
+
+    private void spawnLeafParticle(World world, BlockPos pos, Random random, BlockState state, BlockPos posBelow) {
+        if (!(random.nextFloat() >= this.leafParticleChance)) {
+            if (!isFaceFullSquare(state.getCollisionShape(world, posBelow), Direction.UP)) {
+                this.spawnLeafParticle(world, pos, random);
+            }
+        }
+    }
+
+    protected abstract void spawnLeafParticle(World world, BlockPos pos, Random random);
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

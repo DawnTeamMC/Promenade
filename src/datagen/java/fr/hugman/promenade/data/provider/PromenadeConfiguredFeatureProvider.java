@@ -7,16 +7,20 @@ import fr.hugman.promenade.util.NoiseScale;
 import fr.hugman.promenade.world.gen.feature.*;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LeafLitterBlock;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.state.property.EnumProperty;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.structure.rule.TagMatchRuleTest;
-import net.minecraft.util.collection.DataPool;
+import net.minecraft.util.collection.Pool;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.VerticalSurfaceType;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
@@ -116,7 +120,7 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
 
         of(registerable, PromenadeConfiguredFeatures.CUTE_LITTLE_ROCK, PromenadeFeatures.BOULDER, new BoulderFeatureConfig(
                 new WeightedBlockStateProvider(
-                        DataPool.<BlockState>builder()
+                        Pool.<BlockState>builder()
                                 .add(Blocks.STONE.getDefaultState(), 80)
                                 .add(Blocks.CALCITE.getDefaultState(), 20)
                 ),
@@ -137,7 +141,7 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
                 ));
 
         WeightedBlockStateProvider darkAmaranthVegetation = new WeightedBlockStateProvider(
-                DataPool.<BlockState>builder()
+                Pool.<BlockState>builder()
                         .add(PromenadeBlocks.DARK_AMARANTH_ROOTS.getDefaultState(), 87)
                         .add(PromenadeBlocks.DARK_AMARANTH_FUNGUS.getDefaultState(), 11)
                         .add(Blocks.WARPED_FUNGUS.getDefaultState(), 1)
@@ -152,18 +156,15 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
 
         of(registerable, PromenadeConfiguredFeatures.FALLEN_VERMILION_MAPLE_LEAVES, Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(
                 Feature.SIMPLE_BLOCK,
-                new SimpleBlockFeatureConfig(BlockStateProvider.of(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES.getDefaultState())),
-                List.of(Blocks.GRASS_BLOCK)
+                new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES, 1, 3)))
         ));
         of(registerable, PromenadeConfiguredFeatures.FALLEN_FULVOUS_MAPLE_LEAVES, Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(
                 Feature.SIMPLE_BLOCK,
-                new SimpleBlockFeatureConfig(BlockStateProvider.of(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES.getDefaultState())),
-                List.of(Blocks.GRASS_BLOCK)
+                new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES, 1, 3)))
         ));
         of(registerable, PromenadeConfiguredFeatures.FALLEN_MIKADO_MAPLE_LEAVES, Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(
                 Feature.SIMPLE_BLOCK,
-                new SimpleBlockFeatureConfig(BlockStateProvider.of(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES.getDefaultState())),
-                List.of(Blocks.GRASS_BLOCK)
+                new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES, 1, 3)))
         ));
 
         // Grouped features
@@ -219,6 +220,22 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
                         new NoisePickedFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FALLEN_MIKADO_MAPLE_LEAVES), -0.95f, -0.2f)
                 ))
         );
+    }
+
+    public static Pool.Builder<BlockState> fallenLeaves(Block block, int min, int max) {
+        return segmentedBlock(block, min, max, LeafLitterBlock.SEGMENT_AMOUNT, LeafLitterBlock.HORIZONTAL_FACING);
+    }
+
+    private static Pool.Builder<BlockState> segmentedBlock(Block block, int min, int max, IntProperty amountProperty, EnumProperty<Direction> facingProperty) {
+        Pool.Builder<BlockState> builder = Pool.builder();
+
+        for (int i = min; i <= max; ++i) {
+            for (Direction direction : Direction.Type.HORIZONTAL) {
+                builder.add(block.getDefaultState().with(amountProperty, i).with(facingProperty, direction), 1);
+            }
+        }
+
+        return builder;
     }
 
     private static <FC extends FeatureConfig, F extends Feature<FC>> void of(Registerable<ConfiguredFeature<?, ?>> registry, RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {

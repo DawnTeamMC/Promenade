@@ -1,24 +1,39 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.LeavesBlock;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.particle.EntityEffectParticleEffect;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.ParticleUtil;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 
-public abstract class SnowyLeavesBlock extends LeavesBlock {
+public class TintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBlock {
+    public static final MapCodec<TintedParticleSnowyExtendedLeavesBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            Codecs.rangedInclusiveFloat(0.0F, 1.0F).fieldOf("leaf_particle_chance").forGetter(untintedParticleLeavesBlock -> untintedParticleLeavesBlock.leafParticleChance),
+            createSettingsCodec()
+    ).apply(instance, TintedParticleSnowyExtendedLeavesBlock::new));
     public static final BooleanProperty BOTTOM = Properties.BOTTOM;
 
-    public SnowyLeavesBlock(float leafParticleChance, Settings settings) {
+    public TintedParticleSnowyExtendedLeavesBlock(float leafParticleChance, Settings settings) {
         super(leafParticleChance, settings);
         this.setDefaultState(this.getDefaultState().with(BOTTOM, false));
+    }
+
+    @Override
+    public MapCodec<? extends TintedParticleSnowyExtendedLeavesBlock> getCodec() {
+        return CODEC;
     }
 
     @Override
@@ -42,6 +57,12 @@ public abstract class SnowyLeavesBlock extends LeavesBlock {
     }
 
     public static boolean isSnow(BlockState state) {
-        return state.getBlock() instanceof SnowyLeavesBlock;
+        return state.getBlock() instanceof TintedParticleSnowyExtendedLeavesBlock;
+    }
+
+    @Override
+    protected void spawnLeafParticle(World world, BlockPos pos, Random random) {
+        EntityEffectParticleEffect entityEffectParticleEffect = EntityEffectParticleEffect.create(ParticleTypes.TINTED_LEAVES, world.getBlockColor(pos));
+        ParticleUtil.spawnParticle(world, pos, random, entityEffectParticleEffect);
     }
 }

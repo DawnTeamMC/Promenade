@@ -6,11 +6,13 @@ import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.tag.PromenadeBiomeTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import net.minecraft.entity.spawn.SpawnConditionSelectors;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.entry.RegistryEntryList;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.AssetInfo;
 import net.minecraft.world.biome.Biome;
 
 import java.util.concurrent.CompletableFuture;
@@ -32,13 +34,15 @@ public class PromenadeDuckVariantProvider extends FabricDynamicRegistryProvider 
     }
 
     public static void register(Registerable<DuckVariant> registerable) {
-        final var biomes = registerable.getRegistryLookup(RegistryKeys.BIOME);
-
-        of(registerable, DuckVariants.PEKIN, biomes.getOrThrow(PromenadeBiomeTags.SPAWNS_PEKIN_DUCKS));
-        of(registerable, DuckVariants.MALLARD, biomes.getOrThrow(PromenadeBiomeTags.SPAWNS_MALLARD_DUCKS));
+        of(registerable, DuckVariants.PEKIN, PromenadeBiomeTags.SPAWNS_PEKIN_DUCKS);
+        of(registerable, DuckVariants.MALLARD, PromenadeBiomeTags.SPAWNS_MALLARD_DUCKS);
     }
 
-    private static void of(Registerable<DuckVariant> registry, RegistryKey<DuckVariant> key, RegistryEntryList<Biome> biomes) {
-        registry.register(key, new DuckVariant(key.getValue().withPrefixedPath("entity/duck/"), DuckVariant.DEFAULT_DUCKLING_TEXTURE, biomes));
+    private static void of(Registerable<DuckVariant> registry, RegistryKey<DuckVariant> key, TagKey<Biome> biomeTag) {
+        of(registry, key, DataProviderUtil.createSpawnConditions(registry.getRegistryLookup(RegistryKeys.BIOME).getOrThrow(biomeTag)));
+    }
+
+    private static void of(Registerable<DuckVariant> registry, RegistryKey<DuckVariant> key, SpawnConditionSelectors spawnConditions) {
+        registry.register(key, new DuckVariant(new AssetInfo(key.getValue().withPrefixedPath("entity/duck/")), DuckVariant.DEFAULT_DUCKLING_ASSET, spawnConditions));
     }
 }

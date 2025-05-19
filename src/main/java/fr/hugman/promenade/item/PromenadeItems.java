@@ -8,7 +8,7 @@ import fr.hugman.promenade.component.PromenadeFoodComponents;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.item.helper.ItemFactory;
 import net.minecraft.block.Block;
-import net.minecraft.item.BannerPatternItem;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -47,7 +47,7 @@ public class PromenadeItems {
     public static final Item DUCK = register("duck", new Item.Settings().food(PromenadeFoodComponents.RAW_DUCK, PromenadeConsumableComponents.RAW_DUCK));
     public static final Item COOKED_DUCK = register("cooked_duck", new Item.Settings().food(PromenadeFoodComponents.COOKED_DUCK));
 
-    public static final Item BOVINE_BANNER_PATTERN = register("bovine_banner_pattern", s -> new BannerPatternItem(PromenadeBannerPatternTags.BOVINE_PATTERN_ITEM, s), ItemSettings.max1());
+    public static final Item BOVINE_BANNER_PATTERN = register("bovine_banner_pattern", ItemSettings.max1().component(DataComponentTypes.PROVIDES_BANNER_PATTERNS, PromenadeBannerPatternTags.BOVINE_PATTERN_ITEM));
 
     public static final Item CAPYBARA_SPAWN_EGG = register("capybara_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.CAPYBARA));
     public static final Item DUCK_SPAWN_EGG = register("duck_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.DUCK));

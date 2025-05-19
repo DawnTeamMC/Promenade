@@ -6,6 +6,7 @@ import net.fabricmc.api.Environment;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -39,19 +40,20 @@ public class WitherRosePileBlock extends PileBlock {
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random rand) {
         for (int i = 0; i < 5; ++i) {
             if (rand.nextBoolean()) {
-                world.addParticle(ParticleTypes.SMOKE, (double) pos.getX() + (double) (rand.nextInt(17) / 16), (double) pos.getY() + (0.5D - (double) rand.nextFloat()), (double) pos.getZ() + (double) (rand.nextInt(17) / 16), 0.0D, 0.0D, 0.0D);
+                world.addParticleClient(ParticleTypes.SMOKE, (double) pos.getX() + (double) (rand.nextInt(17) / 16), (double) pos.getY() + (0.5D - (double) rand.nextFloat()), (double) pos.getZ() + (double) (rand.nextInt(17) / 16), 0.0D, 0.0D, 0.0D);
             }
         }
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
         if (world instanceof ServerWorld serverWorld
                 && world.getDifficulty() != Difficulty.PEACEFUL
                 && entity instanceof LivingEntity livingEntity
                 && !livingEntity.isInvulnerableTo(serverWorld, world.getDamageSources().wither())) {
             livingEntity.addStatusEffect(this.getContactEffect());
         }
+        super.onEntityCollision(state, world, pos, entity, handler);
     }
 
     public StatusEffectInstance getContactEffect() {

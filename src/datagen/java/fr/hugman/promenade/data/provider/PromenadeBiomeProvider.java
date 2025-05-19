@@ -68,7 +68,7 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_WATERLILY);
 
         DefaultBiomeFeatures.addDefaultMushrooms(generation);
-        DefaultBiomeFeatures.addDefaultVegetation(generation);
+        DefaultBiomeFeatures.addDefaultVegetation(generation, true);
 
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, trees);
 
@@ -76,9 +76,9 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
         DefaultBiomeFeatures.addFarmAnimals(spawns);
         DefaultBiomeFeatures.addBatsAndMonsters(spawns);
-        spawns.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 5, 4, 4));
-        spawns.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.FOX, 16, 1, 3));
-        spawns.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.PANDA, 2, 4, 5));
+        spawns.spawn(SpawnGroup.CREATURE, 5, new SpawnSettings.SpawnEntry(EntityType.WOLF, 4, 4));
+        spawns.spawn(SpawnGroup.CREATURE, 16, new SpawnSettings.SpawnEntry(EntityType.FOX, 1, 3));
+        spawns.spawn(SpawnGroup.CREATURE, 2, new SpawnSettings.SpawnEntry(EntityType.PANDA, 4, 5));
 
         return createBiome(
                 true,
@@ -108,7 +108,7 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         DefaultBiomeFeatures.addForestGrass(generation);
 
         DefaultBiomeFeatures.addDefaultMushrooms(generation);
-        DefaultBiomeFeatures.addDefaultVegetation(generation);
+        DefaultBiomeFeatures.addDefaultVegetation(generation, true);
 
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.CARNELIAN_TREEWAY_TREES);
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.CARNELIAN_TREEWAY_FALLEN_LEAVES);
@@ -117,8 +117,8 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
         DefaultBiomeFeatures.addFarmAnimals(spawns);
         DefaultBiomeFeatures.addBatsAndMonsters(spawns);
-        spawns.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 5, 4, 4));
-        spawns.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.FOX, 7, 2, 3));
+        spawns.spawn(SpawnGroup.CREATURE, 5, new SpawnSettings.SpawnEntry(EntityType.WOLF, 4, 4));
+        spawns.spawn(SpawnGroup.CREATURE, 7, new SpawnSettings.SpawnEntry(EntityType.FOX, 2, 3));
 
         return createBiome(
                 true,
@@ -181,10 +181,10 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         generation.feature(GenerationStep.Feature.VEGETAL_DECORATION, PromenadePlacedFeatures.GLACARIAN_TAIGA_TREES);
         generation.feature(GenerationStep.Feature.TOP_LAYER_MODIFICATION, PromenadePlacedFeatures.FREEZE_TOP_LAYER);
 
-        SpawnSettings.Builder spawns = new SpawnSettings.Builder();
-        spawns.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(PromenadeEntityTypes.DUCK, 4, 4, 4))
-                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.WOLF, 8, 4, 4))
-                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.FOX, 8, 2, 4));
+        SpawnSettings.Builder spawns = new SpawnSettings.Builder()
+                .spawn(SpawnGroup.CREATURE, 4, new SpawnSettings.SpawnEntry(PromenadeEntityTypes.DUCK, 4, 4))
+                .spawn(SpawnGroup.CREATURE, 8, new SpawnSettings.SpawnEntry(EntityType.WOLF, 4, 4))
+                .spawn(SpawnGroup.CREATURE, 8, new SpawnSettings.SpawnEntry(EntityType.FOX, 2, 4));
         DefaultBiomeFeatures.addBatsAndMonsters(spawns);
 
         return createBiome(
@@ -203,8 +203,8 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
     public static Biome createDarkAmaranthForest(RegistryEntryLookup<PlacedFeature> featureLookup, RegistryEntryLookup<ConfiguredCarver<?>> carverLookup) {
         SpawnSettings spawnSettings = new SpawnSettings.Builder()
-                .spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4, 4))
-                .spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 60, 1, 2))
+                .spawn(SpawnGroup.MONSTER, 1, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 4, 4))
+                .spawn(SpawnGroup.CREATURE, 60, new SpawnSettings.SpawnEntry(EntityType.STRIDER, 1, 2))
                 .spawnCost(EntityType.ENDERMAN, 1.0, 0.12)
                 .build();
         GenerationSettings.LookupBackedBuilder lookupBackedBuilder = new GenerationSettings.LookupBackedBuilder(featureLookup, carverLookup)

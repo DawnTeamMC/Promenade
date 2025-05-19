@@ -3,3 +3,4 @@ extendable method net/minecraft/entity/mob/AbstractSkeletonEntity            get
 extendable method net/minecraft/entity/mob/CreeperEntity                     explode      ()V
 accessible method net/minecraft/world/gen/surfacebuilder/VanillaSurfaceRules block        (Lnet/minecraft/block/Block;)Lnet/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRule;
 accessible field net/minecraft/entity/mob/MobEntity lootTable Ljava/util/Optional;
+accessible    method    net/minecraft/client/particle/LeavesParticle    <init>    (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/client/particle/SpriteProvider;FFZZFF)V
