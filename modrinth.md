@@ -1,6 +1,6 @@
 <p align="center">
 
-[![Promenade](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/logo.png)](https://dawnteammc.github.io/promenade)
+[![Promenade](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/main/images/logo.svg)](https://dawnteammc.github.io/promenade)
 
 <div align="center">
   A mod for the latest version of Minecraft that adds new biomes, animals, monsters, structures, and more to the game.
@@ -30,8 +30,8 @@
 
 <p align="center">
 
-![New Biomes](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/highlight_1.png)
-![New Mobs](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/dev/images/highlight_2.png)
+![New Biomes](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/main/images/highlight_1.png)
+![New Mobs](https://raw.githubusercontent.com/DawnTeamMC/Promenade/refs/heads/main/images/highlight_2.png)
 
 </p>
 
@@ -49,6 +49,7 @@
 - ⚙️ Easily configurable
 
 ## 🎶 Soundtrack
+
 Sakura Groves feature a new track composed by [**LudoCrypt**](https://ludocrypt.crd.co/): **Brise couleur pastel**!  
 Listen to **Brise couleur pastel**
 on [Bandcamp](https://ludocrypt.bandcamp.com/track/brise-couleur-pastel), [Spotify](https://open.spotify.com/intl-fr/track/7t97yZezsAGDBzXUHj3H0y)
@@ -61,12 +62,15 @@ or YouTube:
 </div>
 
 ## 📦 Download
+
 We use [CurseForge](https://www.curseforge.com/minecraft/mc-mods/promenade) and [Modrinth](https://modrinth.com/mod/promenade) to publish **stable builds** of Promenade for Minecraft.
 
 ### Required mods
+
 ⚠ Promenade **requires** Fabric API to be installed: [GitHub](https://github.com/FabricMC/fabric) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) / [Modrinth](https://modrinth.com/mod/fabric-api)
 
 ### Compatible mods
+
 Promenade is compatible with the following mods:
 
 - Farming for Blockheads: [GitHub](https://github.com/ModdingForBlockheads/FarmingForBlockheads) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/farming-for-blockheads-fabric)
@@ -77,6 +81,7 @@ Promenade is compatible with the following mods:
 - **Lylian** ([@LYLIVN](https://twitter.com/LYLIVN)) - Sound Artist
 
 ## ❤️ Support
+
 [![Patreon supporters](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3DHugman%26type%3Dpatrons&style=flat-square)](https://patreon.com/Hugman)
 
 You can support Promenade on the [Patreon page of the founder, main developer and maintainer of the Dawn Team mods (Hugman)](https://patreon.com/Hugman).
@@ -89,23 +94,17 @@ By supporting Hugman, you can get access to the following:
 - Get early access to new mods from the Dawn Team mods
 
 **We do not want to lock any in-game feature of the Dawn Team mods behind a paywall, because we believe that any Minecraft mod should forever remain free to download and fully exploit/use.**  
-Supporting via Patreon is a more of way to help Hugman to continue to improve the mods and show the gratitude you might have towards Hugman's work.
-Some money you donate may be used to pay for new features, such as music or art, but not all of it.
-
+Supporting via Patreon is a more of way to help Hugman to continue to improve the mods and show the gratitude you might have towards Hugman's work. Some money you donate may be used to pay for new features, such as music or art, but not all of it.
 
 ## 📜 License
 
-Except where otherwise stated (
-see [third-party license notices](https://github.com/DawnTeamMC/Promenade/blob/main/thirdparty/NOTICE.txt)), the content
-of this repository is provided
-under the [Polyform Shield 1.0.0](https://github.com/DawnTeamMC/Promenade/blob/main/LICENSE.md) license
-by [Hugman](https://github.com/Hugman76).
+Except where otherwise stated (see [third-party license notices](https://github.com/DawnTeamMC/Promenade/blob/main/thirdparty/NOTICE.txt)), the content of this repository is provided under the [Polyform Shield 1.0.0](https://github.com/DawnTeamMC/Promenade/blob/main/LICENSE.md) license by [Hugman](https://github.com/Hugman76).
 
 ## 🎮 My Other Mods
 
 <div align="center">
-	<a href="https://modrinth.com/mod/culinaire"><img alt="Culinaire" width="250" src="https://dawnteammc.github.io/culinaire/images/header.png"></a><br><br>
-	<a href="https://modrinth.com/mod/artisanat"><img alt="Artisanat" width="250" src="https://dawnteammc.github.io/artisanat/images/header.png"></a><br><br>
+	<a href="https://modrinth.com/mod/culinaire"><img alt="Culinaire" width="250" src="https://raw.githubusercontent.com/DawnTeamMC/Culinaire/refs/heads/main/images/logo.svg"></a><br><br>
+	<a href="https://modrinth.com/mod/artisanat"><img alt="Artisanat" width="250" src="https://raw.githubusercontent.com/DawnTeamMC/Artisanat/refs/heads/main/images/logo.svg"></a><br><br>
 	<a href="https://modrinth.com/mod/mubble"><img alt="Mubble" width="250" src="https://dawnteammc.github.io/mubble/images/header.png"></a><br><br>
 	<a href="https://modrinth.com/mod/universal_ores"><img alt="Universal Ores" width="250" src="https://dawnteammc.github.io/universal_ores/images/header.png"></a>
 </div>
