@@ -7,7 +7,7 @@
 
   <br/>
   <br/>
-  <a href="https://dawnteammc.github.io/promenade"><strong>Explore the wiki »</strong></a>
+  <a href="https://dawnteammc.github.io/promenade/wiki"><strong>Explore the wiki »</strong></a>
   <br/>
   <br/>
   <a href="https://github.com/DawnTeamMC/Promenade/issues">Report a Bug</a>

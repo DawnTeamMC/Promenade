@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.10+'
+    id 'fabric-loom' version "${loom_version}"
     id 'org.moddedmc.wiki.toolkit' version '0.2.7'
 }
 
