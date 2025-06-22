@@ -39,7 +39,9 @@ jobs:
         run: ./gradlew clean runDatagen
 
       - name: Build with Gradle
-        run: ./gradlew build -Pversion=${{ github.event.release.tag_name }}
+        run: |
+          VERSION=${{ github.event.release.tag_name }}
+          ./gradlew build -Pversion=${VERSION#v}
 
       - name: Read Gradle properties
         id: gradle_properties
