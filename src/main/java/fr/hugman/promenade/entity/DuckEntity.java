@@ -23,10 +23,11 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.spawn.SpawnContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -179,15 +180,15 @@ public class DuckEntity extends AnimalEntity {
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        Variants.writeVariantToNbt(nbt, this.getVariant());
+    protected void writeCustomData(WriteView view) {
+        super.writeCustomData(view);
+        Variants.writeVariantToNbt(view, this.getVariant());
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        Variants.readVariantFromNbt(nbt, this.getRegistryManager(), PromenadeRegistryKeys.DUCK_VARIANT).ifPresent(this::setVariant);
+    protected void readCustomData(ReadView view) {
+        super.readCustomData(view);
+        Variants.readVariantFromNbt(view, PromenadeRegistryKeys.DUCK_VARIANT).ifPresent(this::setVariant);
     }
 
     @Nullable

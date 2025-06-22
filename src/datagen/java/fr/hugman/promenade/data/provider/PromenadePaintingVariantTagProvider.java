@@ -17,7 +17,7 @@ public class PromenadePaintingVariantTagProvider extends FabricTagProvider<Paint
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-        getOrCreateTagBuilder(PaintingVariantTags.PLACEABLE)
+        builder(PaintingVariantTags.PLACEABLE)
                 .add(PromenadePaintingVariants.OPTIMISM, PromenadePaintingVariants.NURTURE);
     }
 }

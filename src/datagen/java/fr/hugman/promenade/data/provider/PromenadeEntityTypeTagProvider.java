@@ -16,11 +16,11 @@ public class PromenadeEntityTypeTagProvider extends FabricTagProvider.EntityType
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         // Vanilla
-        getOrCreateTagBuilder(EntityTypeTags.SKELETONS).add(PromenadeEntityTypes.SUNKEN);
-        getOrCreateTagBuilder(EntityTypeTags.AXOLOTL_ALWAYS_HOSTILES).add(PromenadeEntityTypes.SUNKEN);
-        getOrCreateTagBuilder(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES).add(PromenadeEntityTypes.DUCK);
-        getOrCreateTagBuilder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(PromenadeEntityTypes.DUCK);
+        valueLookupBuilder(EntityTypeTags.SKELETONS).add(PromenadeEntityTypes.SUNKEN);
+        valueLookupBuilder(EntityTypeTags.AXOLOTL_ALWAYS_HOSTILES).add(PromenadeEntityTypes.SUNKEN);
+        valueLookupBuilder(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES).add(PromenadeEntityTypes.DUCK);
+        valueLookupBuilder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(PromenadeEntityTypes.DUCK);
 
-        getOrCreateTagBuilder(EntityTypeTags.BOAT).add(PromenadeEntityTypes.SAKURA_BOAT, PromenadeEntityTypes.MAPLE_BOAT, PromenadeEntityTypes.PALM_BOAT);
+        valueLookupBuilder(EntityTypeTags.BOAT).add(PromenadeEntityTypes.SAKURA_BOAT, PromenadeEntityTypes.MAPLE_BOAT, PromenadeEntityTypes.PALM_BOAT);
     }
 }

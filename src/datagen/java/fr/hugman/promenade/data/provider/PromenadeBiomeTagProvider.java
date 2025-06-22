@@ -22,46 +22,46 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         // Promenade
-        getOrCreateTagBuilder(SAKURA_GROVES).add(BLUSH_SAKURA_GROVE, COTTON_SAKURA_GROVE);
+        builder(SAKURA_GROVES).add(BLUSH_SAKURA_GROVE, COTTON_SAKURA_GROVE);
 
-        getOrCreateTagBuilder(HAS_PALMS)
+        builder(HAS_PALMS)
                 .add(DESERT)
                 .addOptionalTag(ConventionalBiomeTags.IS_DESERT);
-        getOrCreateTagBuilder(HAS_DARK_FOREST_WITCH_HUT)
+        builder(HAS_DARK_FOREST_WITCH_HUT)
                 .add(DARK_FOREST, PALE_GARDEN)
                 .addOptionalTag(ConventionalBiomeTags.IS_DARK_FOREST);
 
-        getOrCreateTagBuilder(CAN_FREEZE_DURING_SNOWFALL).add(GLACARIAN_TAIGA);
+        builder(CAN_FREEZE_DURING_SNOWFALL).add(GLACARIAN_TAIGA);
 
-        getOrCreateTagBuilder(SPAWNS_CAPYBARAS)
+        builder(SPAWNS_CAPYBARAS)
                 .forceAddTag(BiomeTags.IS_RIVER)
                 .add(MANGROVE_SWAMP, SWAMP)
                 .addOptionalTag(ConventionalBiomeTags.IS_RIVER)
                 .addOptionalTag(ConventionalBiomeTags.IS_SWAMP);
-        getOrCreateTagBuilder(SPAWNS_SUNKEN).add(WARM_OCEAN, LUKEWARM_OCEAN, DEEP_LUKEWARM_OCEAN);
-        getOrCreateTagBuilder(SPAWNS_MALLARD_DUCKS)
+        builder(SPAWNS_SUNKEN).add(WARM_OCEAN, LUKEWARM_OCEAN, DEEP_LUKEWARM_OCEAN);
+        builder(SPAWNS_MALLARD_DUCKS)
                 .forceAddTag(BiomeTags.IS_OCEAN)
                 .forceAddTag(BiomeTags.IS_RIVER)
                 .addOptionalTag(ConventionalBiomeTags.IS_OCEAN)
                 .addOptionalTag(ConventionalBiomeTags.IS_RIVER);
-        getOrCreateTagBuilder(SPAWNS_PEKIN_DUCKS)
+        builder(SPAWNS_PEKIN_DUCKS)
                 .add(PLAINS)
                 .forceAddTag(BiomeTags.IS_FOREST)
                 .addOptionalTag(ConventionalBiomeTags.IS_OCEAN);
 
         // Vanilla
-        getOrCreateTagBuilder(BiomeTags.IS_FOREST).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY);
-        getOrCreateTagBuilder(BiomeTags.IS_NETHER).add(DARK_AMARANTH_FOREST);
-        getOrCreateTagBuilder(BiomeTags.IS_OVERWORLD).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
-        getOrCreateTagBuilder(BiomeTags.IS_TAIGA).add(GLACARIAN_TAIGA);
+        builder(BiomeTags.IS_FOREST).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY);
+        builder(BiomeTags.IS_NETHER).add(DARK_AMARANTH_FOREST);
+        builder(BiomeTags.IS_OVERWORLD).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
+        builder(BiomeTags.IS_TAIGA).add(GLACARIAN_TAIGA);
 
-        getOrCreateTagBuilder(BiomeTags.STRONGHOLD_BIASED_TO).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
-        getOrCreateTagBuilder(BiomeTags.TRIAL_CHAMBERS_HAS_STRUCTURE).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
-        getOrCreateTagBuilder(BiomeTags.BASTION_REMNANT_HAS_STRUCTURE).add(DARK_AMARANTH_FOREST);
+        builder(BiomeTags.STRONGHOLD_BIASED_TO).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
+        builder(BiomeTags.TRIAL_CHAMBERS_HAS_STRUCTURE).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
+        builder(BiomeTags.BASTION_REMNANT_HAS_STRUCTURE).add(DARK_AMARANTH_FOREST);
 
-        getOrCreateTagBuilder(BiomeTags.SPAWNS_COLD_VARIANT_FROGS).add(GLACARIAN_TAIGA);
-        getOrCreateTagBuilder(BiomeTags.SPAWNS_SNOW_FOXES).add(GLACARIAN_TAIGA);
-        getOrCreateTagBuilder(BiomeTags.SPAWNS_WHITE_RABBITS).add(GLACARIAN_TAIGA);
-        getOrCreateTagBuilder(BiomeTags.SNOW_GOLEM_MELTS).add(DARK_AMARANTH_FOREST);
+        builder(BiomeTags.SPAWNS_COLD_VARIANT_FROGS).add(GLACARIAN_TAIGA);
+        builder(BiomeTags.SPAWNS_SNOW_FOXES).add(GLACARIAN_TAIGA);
+        builder(BiomeTags.SPAWNS_WHITE_RABBITS).add(GLACARIAN_TAIGA);
+        builder(BiomeTags.SNOW_GOLEM_MELTS).add(DARK_AMARANTH_FOREST);
     }
 }

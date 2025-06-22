@@ -84,7 +84,7 @@ public class CapybaraBrain {
                 Pair.of(0, LookAtMobWithIntervalTask.follow(EntityType.PLAYER, 6.0f, UniformIntProvider.create(30, 60))),
                 Pair.of(1, new BreedTask(PromenadeEntityTypes.CAPYBARA)),
                 Pair.of(2, new TemptTask(entity -> 1.5f)),
-                Pair.of(3, TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), WalkTowardsClosestAdultTask.create(WALK_TOWARD_ADULT_RANGE, 1.5f))),
+                Pair.of(3, TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), WalkTowardsEntityTask.createNearestVisibleAdult(WALK_TOWARD_ADULT_RANGE, 1.5f))),
                 Pair.of(4, new LookAroundTask(UniformIntProvider.create(150, 250), 30.0f, 0.0f, 10.0f)),
                 Pair.of(5, new RandomTask<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryModuleState.VALUE_ABSENT), ImmutableList.of(
                         Pair.of(TaskTriggerer.runIf(Predicate.not(CapybaraEntity::isStationary), StrollTask.create(1.0f)), 1),

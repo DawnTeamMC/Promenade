@@ -2,7 +2,7 @@ package fr.hugman.promenade.client.render.entity.animation;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.entity.animation.Animation;
+import net.minecraft.client.render.entity.animation.AnimationDefinition;
 import net.minecraft.client.render.entity.animation.AnimationHelper;
 import net.minecraft.client.render.entity.animation.Keyframe;
 import net.minecraft.client.render.entity.animation.Transformation;
@@ -10,7 +10,7 @@ import net.minecraft.client.render.entity.model.EntityModelPartNames;
 
 @Environment(EnvType.CLIENT)
 public class CapybaraAnimations {
-    public static final Animation EAR_WIGGLE = Animation.Builder.create(0.2f)
+    public static final AnimationDefinition EAR_WIGGLE = AnimationDefinition.Builder.create(0.2f)
             .addBoneAnimation(EntityModelPartNames.RIGHT_EAR, new Transformation(Transformation.Targets.ROTATE,
                     new Keyframe(0f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.1f, AnimationHelper.createRotationalVector(-13.5f, -15f, 13f), Transformation.Interpolations.CUBIC),
@@ -21,7 +21,7 @@ public class CapybaraAnimations {
                     new Keyframe(0.2f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC)))
             .build();
 
-    public static final Animation WALKING = Animation.Builder.create(1.5f).looping()
+    public static final AnimationDefinition WALKING = AnimationDefinition.Builder.create(1.5f).looping()
             .addBoneAnimation(EntityModelPartNames.BODY, new Transformation(Transformation.Targets.ROTATE,
                     new Keyframe(0f, AnimationHelper.createRotationalVector(0f, 0f, 2.5f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.75f, AnimationHelper.createRotationalVector(0f, 0f, -2.5f), Transformation.Interpolations.CUBIC),
@@ -47,7 +47,7 @@ public class CapybaraAnimations {
                     new Keyframe(0.75f, AnimationHelper.createRotationalVector(-27.5f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.5f, AnimationHelper.createRotationalVector(27.5f, 0f, 0f), Transformation.Interpolations.CUBIC))).build();
 
-    public static final Animation FALL_TO_SLEEP = Animation.Builder.create(1.9167667f)
+    public static final AnimationDefinition FALL_TO_SLEEP = AnimationDefinition.Builder.create(1.9167667f)
             .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.8343334f, AnimationHelper.createTranslationalVector(-1f, 0f, 0f), Transformation.Interpolations.CUBIC),
@@ -112,7 +112,7 @@ public class CapybaraAnimations {
                     new Keyframe(1.5f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(1.7083433f, AnimationHelper.createRotationalVector(0f, 0f, -5f), Transformation.Interpolations.CUBIC))).build();
 
-    public static final Animation SLEEP = Animation.Builder.create(4.5f).looping()
+    public static final AnimationDefinition SLEEP = AnimationDefinition.Builder.create(4.5f).looping()
             .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(-12f, -5f, 0f), Transformation.Interpolations.CUBIC)))
             .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.ROTATE,
@@ -168,7 +168,7 @@ public class CapybaraAnimations {
                     new Keyframe(3.5f, AnimationHelper.createScalingVector(1f, 1f, 1f), Transformation.Interpolations.CUBIC),
                     new Keyframe(4.5f, AnimationHelper.createScalingVector(1f, 1f, 1f), Transformation.Interpolations.CUBIC))).build();
 
-    public static final Animation FART = Animation.Builder.create(3.8343335f)
+    public static final AnimationDefinition FART = AnimationDefinition.Builder.create(3.8343335f)
             .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(0.08343333f, AnimationHelper.createTranslationalVector(0f, 5f, 0f), Transformation.Interpolations.CUBIC),
@@ -257,7 +257,7 @@ public class CapybaraAnimations {
                     new Keyframe(3.5f, AnimationHelper.createRotationalVector(-7.379261962134369f, 2.46597558997084f, 2.922121806087871f), Transformation.Interpolations.CUBIC),
                     new Keyframe(3.7916765f, AnimationHelper.createRotationalVector(0f, 0f, 0f), Transformation.Interpolations.CUBIC))).build();
 
-    public static final Animation WAKE_UP = Animation.Builder.create(5.791677f)
+    public static final AnimationDefinition WAKE_UP = AnimationDefinition.Builder.create(5.791677f)
             .addBoneAnimation(EntityModelPartNames.ROOT, new Transformation(Transformation.Targets.MOVE_ORIGIN,
                     new Keyframe(0f, AnimationHelper.createTranslationalVector(-12f, -5f, 0f), Transformation.Interpolations.CUBIC),
                     new Keyframe(2.9583435f, AnimationHelper.createTranslationalVector(-12f, -5f, 0f), Transformation.Interpolations.CUBIC),

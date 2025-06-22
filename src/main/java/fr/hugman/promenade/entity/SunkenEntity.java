@@ -33,11 +33,12 @@ import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.entity.spawn.SpawnContext;
 import net.minecraft.item.*;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -361,15 +362,16 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        Variants.writeVariantToNbt(nbt, this.getVariant());
+    protected void writeCustomData(WriteView view) {
+        super.writeCustomData(view);
+        Variants.writeVariantToNbt(view, this.getVariant());
+
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        Variants.readVariantFromNbt(nbt, this.getRegistryManager(), PromenadeRegistryKeys.SUNKEN_VARIANT).ifPresent(this::setVariant);
+    protected void readCustomData(ReadView view) {
+        super.readCustomData(view);
+        Variants.readVariantFromNbt(view, PromenadeRegistryKeys.SUNKEN_VARIANT).ifPresent(this::setVariant);
     }
 
     @org.jetbrains.annotations.Nullable

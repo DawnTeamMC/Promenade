@@ -5,6 +5,7 @@ import fr.hugman.promenade.client.render.entity.state.CapybaraEntityRenderState;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
+import net.minecraft.client.render.entity.animation.Animation;
 import net.minecraft.client.render.entity.model.BabyModelTransformer;
 import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelPartNames;
@@ -19,11 +20,24 @@ public class CapybaraEntityModel extends EntityModel<CapybaraEntityRenderState> 
 
     private final ModelPart head;
 
+    private final Animation walkingAnimation;
+    private final Animation earWiggleAnimation;
+    private final Animation fallToSleepAnimation;
+    private final Animation sleepingAnimation;
+    private final Animation wakeUpAnimation;
+    private final Animation fartAnimation;
+
     public static final ModelTransformer BABY_TRANSFORMER = new BabyModelTransformer(false, 1.00F, 0.6F, Set.of(EntityModelPartNames.HEAD));
 
     public CapybaraEntityModel(ModelPart part) {
         super(part.getChild(EntityModelPartNames.ROOT));
         this.head = this.root.getChild(EntityModelPartNames.HEAD);
+        this.walkingAnimation = CapybaraAnimations.WALKING.createAnimation(this.root);
+        this.earWiggleAnimation = CapybaraAnimations.EAR_WIGGLE.createAnimation(this.root);
+        this.fallToSleepAnimation = CapybaraAnimations.FALL_TO_SLEEP.createAnimation(this.root);
+        this.sleepingAnimation = CapybaraAnimations.SLEEP.createAnimation(this.root);
+        this.wakeUpAnimation = CapybaraAnimations.WAKE_UP.createAnimation(this.root);
+        this.fartAnimation = CapybaraAnimations.FART.createAnimation(this.root);
     }
 
     public static TexturedModelData getTexturedModelData() {
@@ -62,13 +76,13 @@ public class CapybaraEntityModel extends EntityModel<CapybaraEntityRenderState> 
         }
 
         // Dynamic animations
-        this.animateWalking(CapybaraAnimations.WALKING, state.limbSwingAnimationProgress, state.limbSwingAmplitude, 4.0F, 2.5F);
+        this.walkingAnimation.applyWalking(state.limbSwingAnimationProgress, state.limbSwingAmplitude, 4.0F, 2.5F);
 
         // Custom animations
-        this.animate(state.earWiggleAnimState, CapybaraAnimations.EAR_WIGGLE, state.age, state.earWiggleSpeed);
-        this.animate(state.fallToSleepAnimState, CapybaraAnimations.FALL_TO_SLEEP, state.age);
-        this.animate(state.sleepingAnimState, CapybaraAnimations.SLEEP, state.age);
-        this.animate(state.wakeUpAnimState, CapybaraAnimations.WAKE_UP, state.age);
-        this.animate(state.fartAnimState, CapybaraAnimations.FART, state.age);
+        this.earWiggleAnimation.apply(state.earWiggleAnimState, state.age, state.earWiggleSpeed);
+        this.fallToSleepAnimation.apply(state.fallToSleepAnimState, state.age);
+        this.sleepingAnimation.apply(state.sleepingAnimState, state.age);
+        this.wakeUpAnimation.apply(state.wakeUpAnimState, state.age);
+        this.fartAnimation.apply(state.fartAnimState, state.age);
     }
 }
