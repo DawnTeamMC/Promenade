@@ -244,15 +244,15 @@ public class PromenadeBlocks {
     public static final Block DARK_AMARANTH_STAIRS = register("dark_amaranth_stairs", BlockFactory.stairs(DARK_AMARANTH_PLANKS));
     public static final Block DARK_AMARANTH_SLAB = register("dark_amaranth_slab", BlockFactory.slab(DARK_AMARANTH_PLANKS));
     public static final Block DARK_AMARANTH_FENCE = register("dark_amaranth_fence", BlockFactory.fence(DARK_AMARANTH_PLANKS));
-    public static final Block DARK_AMARANTH_FENCE_GATE = register("dark_amaranth_fence_gate", BlockFactory.fenceGate(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.AMARANTH));
-    public static final Block DARK_AMARANTH_DOOR = register("dark_amaranth_door", BlockFactory.door(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.AMARANTH));
-    public static final Block DARK_AMARANTH_TRAPDOOR = register("dark_amaranth_trapdoor", BlockFactory.trapdoor(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.AMARANTH));
-    public static final Block DARK_AMARANTH_BUTTON = register("dark_amaranth_button", BlockFactory.woodenButton(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.AMARANTH));
-    public static final Block DARK_AMARANTH_PRESSURE_PLATE = register("dark_amaranth_pressure_plate", BlockFactory.pressurePlate(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.AMARANTH));
-    public static final Block DARK_AMARANTH_SIGN = register("dark_amaranth_sign", BlockFactory.sign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.AMARANTH));
-    public static final Block DARK_AMARANTH_WALL_SIGN = register("dark_amaranth_wall_sign", BlockFactory.wallSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.AMARANTH));
-    public static final Block DARK_AMARANTH_HANGING_SIGN = register("dark_amaranth_hanging_sign", BlockFactory.hangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.AMARANTH, BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
-    public static final Block DARK_AMARANTH_WALL_HANGING_SIGN = register("dark_amaranth_wall_hanging_sign", BlockFactory.wallHangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.AMARANTH, BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
+    public static final Block DARK_AMARANTH_FENCE_GATE = register("dark_amaranth_fence_gate", BlockFactory.fenceGate(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_DOOR = register("dark_amaranth_door", BlockFactory.door(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_TRAPDOOR = register("dark_amaranth_trapdoor", BlockFactory.trapdoor(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_BUTTON = register("dark_amaranth_button", BlockFactory.woodenButton(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_PRESSURE_PLATE = register("dark_amaranth_pressure_plate", BlockFactory.pressurePlate(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_SIGN = register("dark_amaranth_sign", BlockFactory.sign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_WALL_SIGN = register("dark_amaranth_wall_sign", BlockFactory.wallSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_HANGING_SIGN = register("dark_amaranth_hanging_sign", BlockFactory.hangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH, BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
+    public static final Block DARK_AMARANTH_WALL_HANGING_SIGN = register("dark_amaranth_wall_hanging_sign", BlockFactory.wallHangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH, BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
 
     public static final Block DARK_AMARANTH_FUNGUS = register("dark_amaranth_fungus", BlockFactory.fungus(MapColor.PURPLE, PromenadeConfiguredFeatures.PLANTED_DARK_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON));
     public static final Block POTTED_DARK_AMARANTH_FUNGUS = register("potted_dark_amaranth_fungus", BlockFactory.pot(DARK_AMARANTH_FUNGUS));
