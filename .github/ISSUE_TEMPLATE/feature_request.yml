@@ -1,6 +1,9 @@
 name: Feature Request
 description: Suggest an idea for this mod
 labels: ["feature"]
+projects: [ "DawnTeamMC/1" ]
+assignees:
+  - Hugman76
 body:
   - type: markdown
     attributes:

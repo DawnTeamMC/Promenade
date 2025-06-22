@@ -6,6 +6,7 @@ import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.*;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -92,13 +93,13 @@ public class BerryBushBlock extends PlantBlock implements Fertilizable {
     }
 
     @Override
-    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
         if (!(entity instanceof LivingEntity) || entity.getType() == EntityType.FOX || entity.getType() == EntityType.BEE) {
             return;
         }
         entity.slowMovement(state, new Vec3d(0.8f, 0.75, 0.8f));
         if (this.isSpiny) {
-            if (world instanceof ServerWorld serverWorld && (Integer) state.get(AGE) != 0) {
+            if (world instanceof ServerWorld serverWorld && state.get(AGE) != 0) {
                 Vec3d vec3d = entity.isControlledByPlayer() ? entity.getMovement() : entity.getLastRenderPos().subtract(entity.getPos());
                 if (vec3d.horizontalLengthSquared() > 0.0) {
                     double d = Math.abs(vec3d.getX());

@@ -8,15 +8,18 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.AgeableMobEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.texture.MissingSprite;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMobEntityRenderer<E, CapybaraEntityRenderState, CapybaraEntityModel> {
     public CapybaraEntityRenderer(EntityRendererFactory.Context context) {
-        super(context,
+        super(
+                context,
                 new CapybaraEntityModel(context.getPart(PromenadeEntityModelLayers.CAPYBARA)),
                 new CapybaraEntityModel(context.getPart(PromenadeEntityModelLayers.CAPYBARA_BABY)),
-                0.5f);
+                0.5f
+        );
     }
 
     @Override
@@ -26,7 +29,13 @@ public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMob
 
     @Override
     public Identifier getTexture(CapybaraEntityRenderState state) {
-        return state.texture;
+        if (state.variant == null) {
+            return MissingSprite.getMissingSpriteId();
+        }
+        if (state.closedEyes) {
+            return state.variant.closedEyesTexture().texturePath();
+        }
+        return state.largeEyes ? state.variant.largeEyesTexture().texturePath() : state.variant.smallEyesTexture().texturePath();
     }
 
     @Override
@@ -38,7 +47,9 @@ public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMob
         state.wakeUpAnimState.copyFrom(capybara.wakeUpAnimState);
         state.fartAnimState.copyFrom(capybara.fartAnimState);
 
-        state.texture = capybara.getTexture();
+        state.variant = capybara.getVariant().value();
+        state.closedEyes = capybara.hasClosedEyes();
+        state.largeEyes = capybara.hasLargeEyes();
         state.earWiggleSpeed = capybara.getEarWiggleSpeed();
         state.canAngleHead = capybara.canAngleHead();
     }
