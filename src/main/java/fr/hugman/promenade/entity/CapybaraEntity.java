@@ -498,7 +498,7 @@ public class CapybaraEntity extends AnimalEntity {
         super.readCustomData(view);
         Variants.readVariantFromNbt(view, PromenadeRegistryKeys.CAPYBARA_VARIANT).ifPresent(this::setVariant);
 
-        view.getOptionalString(STATE_KEY).ifPresent(State::fromName);
+        view.getOptionalString(STATE_KEY).ifPresent(s -> this.setState(State.fromName(s)));
         view.getOptionalLong(LAST_STATE_TICK_KEY).ifPresent(this::setLastStateTick);
         this.setFartChance(view.getFloat(FART_CHANCE_KEY, FART_CHANCE_PROVIDER.getMin()));
     }
