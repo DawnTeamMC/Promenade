@@ -17,5 +17,9 @@ public class PromenadeBlockEntities {
         BlockEntityType.SIGN.addSupportedBlock(PromenadeBlocks.PALM_WALL_SIGN);
         BlockEntityType.HANGING_SIGN.addSupportedBlock(PromenadeBlocks.PALM_HANGING_SIGN);
         BlockEntityType.HANGING_SIGN.addSupportedBlock(PromenadeBlocks.PALM_WALL_HANGING_SIGN);
+        BlockEntityType.SIGN.addSupportedBlock(PromenadeBlocks.DARK_AMARANTH_SIGN);
+        BlockEntityType.SIGN.addSupportedBlock(PromenadeBlocks.DARK_AMARANTH_WALL_SIGN);
+        BlockEntityType.HANGING_SIGN.addSupportedBlock(PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN);
+        BlockEntityType.HANGING_SIGN.addSupportedBlock(PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN);
     }
 }

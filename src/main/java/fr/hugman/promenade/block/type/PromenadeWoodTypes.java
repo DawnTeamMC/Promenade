@@ -8,5 +8,5 @@ public class PromenadeWoodTypes {
     public static final WoodType SAKURA = WoodTypeBuilder.copyOf(WoodType.CHERRY).register(Promenade.id("sakura"), PromenadeBlockSetTypes.SAKURA);
     public static final WoodType MAPLE = WoodTypeBuilder.copyOf(WoodType.OAK).register(Promenade.id("maple"), PromenadeBlockSetTypes.MAPLE);
     public static final WoodType PALM = WoodTypeBuilder.copyOf(WoodType.OAK).register(Promenade.id("palm"), PromenadeBlockSetTypes.PALM);
-    public static final WoodType AMARANTH = WoodTypeBuilder.copyOf(WoodType.CRIMSON).register(Promenade.id("amaranth"), PromenadeBlockSetTypes.AMARANTH);
+    public static final WoodType DARK_AMARANTH = WoodTypeBuilder.copyOf(WoodType.CRIMSON).register(Promenade.id("dark_amaranth"), PromenadeBlockSetTypes.DARK_AMARANTH);
 }
