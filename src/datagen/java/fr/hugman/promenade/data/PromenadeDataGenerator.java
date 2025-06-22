@@ -19,6 +19,7 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
 
         // Resource Pack
         pack.addProvider(PromenadeModelProvider::new);
+        pack.addProvider(PromenadeSoundsProvider::new);
 
         // Data Pack
 
