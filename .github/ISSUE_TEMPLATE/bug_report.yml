@@ -1,6 +1,9 @@
 name: Bug Report
 description: File a bug report
 labels: ["bug"]
+projects: [ "DawnTeamMC/1" ]
+assignees:
+  - Hugman76
 body:
   - type: markdown
     attributes:
