@@ -5,16 +5,16 @@ import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
 
 public class PromenadeTrades {
     public static void appendVillagerTrades() {
-        TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
-            factories.add(TradeFactory.sapling(PromenadeBlocks.VERMILION_MAPLE_SAPLING));
-            factories.add(TradeFactory.sapling(PromenadeBlocks.FULVOUS_MAPLE_SAPLING));
-            factories.add(TradeFactory.sapling(PromenadeBlocks.MIKADO_MAPLE_SAPLING));
-            factories.add(TradeFactory.sapling(PromenadeBlocks.SAP_MAPLE_SAPLING));
-        });
-        TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
-            factories.add(TradeFactory.sapling(PromenadeBlocks.BLUSH_SAKURA_SAPLING));
-            factories.add(TradeFactory.sapling(PromenadeBlocks.COTTON_SAKURA_SAPLING));
-        });
-        TradeOfferHelper.registerWanderingTraderOffers(1, factories -> factories.add(TradeFactory.sapling(PromenadeBlocks.PALM_SAPLING)));
+        TradeOfferHelper.registerWanderingTraderOffers(builder -> builder.addOffersToPool(TradeOfferHelper.WanderingTraderOffersBuilder.SELL_COMMON_ITEMS_POOL,
+                TradeFactory.sapling(PromenadeBlocks.VERMILION_MAPLE_SAPLING),
+                TradeFactory.sapling(PromenadeBlocks.FULVOUS_MAPLE_SAPLING),
+                TradeFactory.sapling(PromenadeBlocks.MIKADO_MAPLE_SAPLING),
+                TradeFactory.sapling(PromenadeBlocks.SAP_MAPLE_SAPLING),
+
+                TradeFactory.sapling(PromenadeBlocks.BLUSH_SAKURA_SAPLING),
+                TradeFactory.sapling(PromenadeBlocks.COTTON_SAKURA_SAPLING),
+
+                TradeFactory.sapling(PromenadeBlocks.PALM_SAPLING)
+        ));
     }
 }

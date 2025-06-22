@@ -1,13 +1,16 @@
 package fr.hugman.promenade.data.provider;
 
+import fr.hugman.promenade.entity.spawn.ChanceSpawnCondition;
 import fr.hugman.promenade.entity.variant.CapybaraVariant;
 import fr.hugman.promenade.entity.variant.CapybaraVariants;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import net.minecraft.entity.spawn.SpawnConditionSelectors;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.AssetInfo;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -28,17 +31,21 @@ public class PromenadeCapybaraVariantProvider extends FabricDynamicRegistryProvi
     }
 
     public static void register(Registerable<CapybaraVariant> registerable) {
-        of(registerable, CapybaraVariants.BROWN, 49);
-        of(registerable, CapybaraVariants.ALBINO, 1);
+        of(registerable, CapybaraVariants.BROWN, SpawnConditionSelectors.createFallback(0));
+        of(registerable, CapybaraVariants.ALBINO, 1 / 50f);
     }
 
-    private static void of(Registerable<CapybaraVariant> registry, RegistryKey<CapybaraVariant> key, int spawnWeight) {
+    private static void of(Registerable<CapybaraVariant> registry, RegistryKey<CapybaraVariant> key, float rarity) {
+        of(registry, key, SpawnConditionSelectors.createSingle(new ChanceSpawnCondition(rarity), 0));
+    }
+
+    private static void of(Registerable<CapybaraVariant> registry, RegistryKey<CapybaraVariant> key, SpawnConditionSelectors spawnConditions) {
         var baseId = key.getValue().withPrefixedPath("entity/capybara/");
         registry.register(key, new CapybaraVariant(
-                baseId.withSuffixedPath("/small_eyes"),
-                baseId.withSuffixedPath("/large_eyes"),
-                baseId.withSuffixedPath("/closed_eyes"),
-                spawnWeight
+                new AssetInfo(baseId.withSuffixedPath("/small_eyes")),
+                new AssetInfo(baseId.withSuffixedPath("/large_eyes")),
+                new AssetInfo(baseId.withSuffixedPath("/closed_eyes")),
+                spawnConditions
         ));
     }
 }

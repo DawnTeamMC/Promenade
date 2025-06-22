@@ -24,6 +24,8 @@ import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.FluidPredicate;
 import net.minecraft.predicate.NumberRange;
+import net.minecraft.predicate.component.ComponentPredicateTypes;
+import net.minecraft.predicate.component.ComponentsPredicate;
 import net.minecraft.predicate.entity.EntityEquipmentPredicate;
 import net.minecraft.predicate.entity.EntityFlagsPredicate;
 import net.minecraft.predicate.entity.EntityPredicate;
@@ -31,7 +33,6 @@ import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.EnchantmentsPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.predicate.item.ItemSubPredicateTypes;
 import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -124,9 +125,13 @@ public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvi
                                         EntityEquipmentPredicate.Builder.create()
                                                 .mainhand(
                                                         ItemPredicate.Builder.create()
-                                                                .subPredicate(
-                                                                        ItemSubPredicateTypes.ENCHANTMENTS,
-                                                                        EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(impl.getOrThrow(EnchantmentTags.SMELTS_LOOT), NumberRange.IntRange.ANY)))
+                                                                .components(
+                                                                        ComponentsPredicate.Builder.create()
+                                                                                .partial(
+                                                                                        ComponentPredicateTypes.ENCHANTMENTS,
+                                                                                        EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(impl.getOrThrow(EnchantmentTags.SMELTS_LOOT), NumberRange.IntRange.ANY)))
+                                                                                )
+                                                                                .build()
                                                                 )
                                                 )
                                 )
