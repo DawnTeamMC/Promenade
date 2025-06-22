@@ -32,8 +32,8 @@ public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider 
 
         copy(PromenadeBlockTags.SNOWY_LEAVES, SNOWY_LEAVES);
 
-        getOrCreateTagBuilder(CAPYBARA_FOOD).add(Items.CARROT, Items.MELON_SLICE);
-        getOrCreateTagBuilder(DUCK_FOOD).add(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, Items.TORCHFLOWER_SEEDS, Items.PITCHER_POD);
+        valueLookupBuilder(CAPYBARA_FOOD).add(Items.CARROT, Items.MELON_SLICE);
+        valueLookupBuilder(DUCK_FOOD).add(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, Items.TORCHFLOWER_SEEDS, Items.PITCHER_POD);
 
         // Vanilla
         copy(BlockTags.PLANKS, ItemTags.PLANKS);
@@ -63,12 +63,12 @@ public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider 
         copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
         copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
 
-        getOrCreateTagBuilder(ItemTags.BOATS).add(SAKURA_BOAT, MAPLE_BOAT, PALM_BOAT);
-        getOrCreateTagBuilder(ItemTags.CHEST_BOATS).add(SAKURA_CHEST_BOAT, MAPLE_CHEST_BOAT, PALM_CHEST_BOAT);
-        getOrCreateTagBuilder(ItemTags.MEAT).add(DUCK, COOKED_DUCK);
-        getOrCreateTagBuilder(ItemTags.FOX_FOOD).add(BLUEBERRIES);
+        valueLookupBuilder(ItemTags.BOATS).add(SAKURA_BOAT, MAPLE_BOAT, PALM_BOAT);
+        valueLookupBuilder(ItemTags.CHEST_BOATS).add(SAKURA_CHEST_BOAT, MAPLE_CHEST_BOAT, PALM_CHEST_BOAT);
+        valueLookupBuilder(ItemTags.MEAT).add(DUCK, COOKED_DUCK);
+        valueLookupBuilder(ItemTags.FOX_FOOD).add(BLUEBERRIES);
 
-        getOrCreateTagBuilder(ItemTags.NON_FLAMMABLE_WOOD)
+        valueLookupBuilder(ItemTags.NON_FLAMMABLE_WOOD)
                 .add(
                         PromenadeBlocks.DARK_AMARANTH_STEM.asItem(),
                         PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM.asItem(),
@@ -88,8 +88,8 @@ public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider 
                 );
 
         // Conventional
-        getOrCreateTagBuilder(ConventionalItemTags.RAW_MEAT_FOODS).add(DUCK);
-        getOrCreateTagBuilder(ConventionalItemTags.COOKED_MEAT_FOODS).add(COOKED_DUCK);
+        valueLookupBuilder(ConventionalItemTags.RAW_MEAT_FOODS).add(DUCK);
+        valueLookupBuilder(ConventionalItemTags.COOKED_MEAT_FOODS).add(COOKED_DUCK);
         copy(ConventionalBlockTags.STONES, ConventionalItemTags.STONES);
         copy(ConventionalBlockTags.FENCES, ConventionalItemTags.FENCES);
         copy(ConventionalBlockTags.WOODEN_FENCES, ConventionalItemTags.WOODEN_FENCES);

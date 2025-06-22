@@ -15,7 +15,7 @@ public class LivingEntityMixin {
     private void promenade$tickMovement(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
         int frozenTicks = entity.getFrozenTicks();
-        if (entity.getEntityWorld() instanceof ServerWorld serverWorld && PromenadeBiomes.canFreezeFromBiomeAndWeather(entity)) {
+        if (entity.getWorld() instanceof ServerWorld serverWorld && PromenadeBiomes.canFreezeFromBiomeAndWeather(entity)) {
             entity.setFrozenTicks(Math.min(entity.getMinFreezeDamageTicks(), frozenTicks + 1));
             if (entity.age % 40 == 0 && entity.isFrozen()) {
                 entity.damage(serverWorld, entity.getDamageSources().freeze(), entity.getType().isIn(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES) ? 5 : 1);

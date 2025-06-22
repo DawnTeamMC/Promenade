@@ -18,6 +18,6 @@ public class PromenadeBannerPatternTagProvider extends FabricTagProvider<BannerP
     @Override
     protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
         // Promenade
-        getOrCreateTagBuilder(PromenadeBannerPatternTags.BOVINE_PATTERN_ITEM).add(PromenadeBannerPatterns.BOVINE);
+        builder(PromenadeBannerPatternTags.BOVINE_PATTERN_ITEM).add(PromenadeBannerPatterns.BOVINE);
     }
 }

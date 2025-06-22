@@ -29,12 +29,13 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.spawn.SpawnContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.Unit;
 import net.minecraft.util.function.ValueLists;
@@ -483,23 +484,23 @@ public class CapybaraEntity extends AnimalEntity {
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
+    protected void writeCustomData(WriteView view) {
+        super.writeCustomData(view);
+        Variants.writeVariantToNbt(view, this.getVariant());
 
-        Variants.writeVariantToNbt(nbt, this.getVariant());
-        nbt.putFloat(FART_CHANCE_KEY, this.getFartChance());
-        nbt.putString(STATE_KEY, this.getState().asString());
-        nbt.putLong(LAST_STATE_TICK_KEY, this.dataTracker.get(LAST_STATE_TICK));
+        view.putFloat(FART_CHANCE_KEY, this.getFartChance());
+        view.putString(STATE_KEY, this.getState().asString());
+        view.putLong(LAST_STATE_TICK_KEY, this.dataTracker.get(LAST_STATE_TICK));
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
+    protected void readCustomData(ReadView view) {
+        super.readCustomData(view);
+        Variants.readVariantFromNbt(view, PromenadeRegistryKeys.CAPYBARA_VARIANT).ifPresent(this::setVariant);
 
-        Variants.readVariantFromNbt(nbt, this.getRegistryManager(), PromenadeRegistryKeys.CAPYBARA_VARIANT).ifPresent(this::setVariant);
-
-        nbt.getString(LAST_STATE_TICK_KEY).ifPresent(s -> this.setState(State.fromName(s))); //TODO: default?
-        nbt.getFloat(FART_CHANCE_KEY).ifPresent(this::setFartChance); //TODO: default?
+        view.getOptionalString(STATE_KEY).ifPresent(State::fromName);
+        view.getOptionalLong(LAST_STATE_TICK_KEY).ifPresent(this::setLastStateTick);
+        this.setFartChance(view.getFloat(FART_CHANCE_KEY, FART_CHANCE_PROVIDER.getMin()));
     }
 
     @Nullable
