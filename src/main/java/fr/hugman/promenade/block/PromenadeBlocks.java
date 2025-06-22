@@ -286,7 +286,7 @@ public class PromenadeBlocks {
             .ticksRandomly()
             .noCollision()
             .sounds(BlockSoundGroup.SWEET_BERRY_BUSH)
-            .pistonBehavior(PistonBehavior.DESTROY)));
+            .pistonBehavior(PistonBehavior.DESTROY)).noItem());
 
     private static RegistryKey<Block> keyOf(String id) {
         return RegistryKey.of(RegistryKeys.BLOCK, Promenade.id(id));
