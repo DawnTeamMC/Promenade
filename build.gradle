@@ -1,6 +1,6 @@
 plugins {
     id 'fabric-loom' version "${loom_version}"
-    id 'org.moddedmc.wiki.toolkit' version '0.2.7'
+    id 'org.moddedmc.wiki.toolkit' version '0.3.2'
 }
 
 group = "com.github.hugman"
@@ -26,8 +26,8 @@ dependencies {
 
     compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 
-    // Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-fabric
-    //modRuntimeOnly "org.sinytra:item-asset-export-fabric:1.1.0+1.21.4" FIXME not updated for 1.21.5 yet
+    // Version list: https://maven.su5ed.dev/#/releases/org/sinytra/wiki-exporter-fabric
+    modRuntimeOnly "org.sinytra:wiki-exporter-fabric:2.2.1+1.21.8"
 }
 
 loom {
@@ -41,6 +41,20 @@ loom {
             sourceSet sourceSets.client
         }
     }
+
+    runs {
+        exportClient {
+            client()
+            name = "Wiki Export Client"
+            property "wiki_exporter.enabled", "true"
+            property "wiki_exporter.config.path", "${projectDir}/wiki_exporter_config.json"
+            exportServer {
+                server()
+                name = "Wiki Export Server"
+                property "wiki_exporter.enabled", "true"
+                property "wiki_exporter.config.path", "${projectDir}/wiki_exporter_config.json"
+            }
+        }
 }
 
 fabricApi {
@@ -86,7 +100,6 @@ wiki {
     docs {
         promenade {
             root = file('docs')
-            exportedAssetNamespaces = ['promenade']
         }
     }
 }

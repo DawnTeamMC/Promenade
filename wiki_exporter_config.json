@@ -1,0 +1,16 @@
+{
+  "output_path": "wiki_exporter",
+  "enabled": [
+    "metadata",
+    "render"
+  ],
+  "modules": {
+    "render": {
+      "namespaces": [
+        "promenade"
+      ],
+      "resolution": 128,
+      "png": true
+    }
+  }
+}

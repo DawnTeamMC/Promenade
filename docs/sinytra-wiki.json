@@ -1,5 +1,6 @@
 {
     "id": "promenade",
+  "modid": "promenade",
     "platforms": {
         "modrinth": "promenade"
     },
