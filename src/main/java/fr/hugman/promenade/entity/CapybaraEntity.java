@@ -87,7 +87,7 @@ public class CapybaraEntity extends AnimalEntity {
     @Override
     public void tick() {
         super.tick();
-        if (this.getWorld().isClient()) {
+        if (this.getEntityWorld().isClient()) {
             this.updateAnimations();
         }
         this.tickState();
@@ -98,7 +98,7 @@ public class CapybaraEntity extends AnimalEntity {
         Profiler profiler = Profilers.get();
         profiler.push("capybaraBrain");
         Brain<CapybaraEntity> brain = (Brain<CapybaraEntity>) this.getBrain();
-        brain.tick((ServerWorld) this.getWorld(), this);
+        brain.tick((ServerWorld) this.getEntityWorld(), this);
         profiler.pop();
         profiler.push("capybaraActivityUpdate");
         CapybaraBrain.updateActivities(this);
@@ -199,7 +199,7 @@ public class CapybaraEntity extends AnimalEntity {
 
     public void updateState(State state) {
         this.setState(state);
-        this.setLastStateTick(this.getWorld().getTime());
+        this.setLastStateTick(this.getEntityWorld().getTime());
     }
 
     private void tickState() {
@@ -249,7 +249,7 @@ public class CapybaraEntity extends AnimalEntity {
     }
 
     public boolean canWakeUp() {
-        return this.isAsleep() && this.getWorld().isDay();
+        return this.isAsleep() && this.getEntityWorld().isDay();
     }
 
     public long getWakeUpLength() {
@@ -301,7 +301,7 @@ public class CapybaraEntity extends AnimalEntity {
     }
 
     public long getLastStateTickDelta() {
-        return this.getWorld().getTime() - this.dataTracker.get(LAST_STATE_TICK);
+        return this.getEntityWorld().getTime() - this.dataTracker.get(LAST_STATE_TICK);
     }
 
     public State getState() {
@@ -445,7 +445,7 @@ public class CapybaraEntity extends AnimalEntity {
     @Nullable
     @Override
     public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        var capyBaby = PromenadeEntityTypes.CAPYBARA.create(this.getWorld(), SpawnReason.BREEDING);
+        var capyBaby = PromenadeEntityTypes.CAPYBARA.create(this.getEntityWorld(), SpawnReason.BREEDING);
         if (capyBaby != null && entity instanceof CapybaraEntity capyMama) {
             capyBaby.setVariant(this.random.nextBoolean() ? this.getVariant() : capyMama.getVariant());
         }

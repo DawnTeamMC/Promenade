@@ -99,7 +99,7 @@ public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvi
                                 .with(TagEntry.expandBuilder(ItemTags.CREEPER_DROP_MUSIC_DISCS))
                                 .conditionally(
                                         EntityPropertiesLootCondition.builder(
-                                                LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.create().type(entities, EntityTypeTags.SKELETONS)
+                                                LootContext.EntityReference.ATTACKER, EntityPredicate.Builder.create().type(entities, EntityTypeTags.SKELETONS)
                                         )
                                 )
                         )
@@ -116,10 +116,10 @@ public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvi
         RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
         return AnyOfLootCondition.builder(
                 EntityPropertiesLootCondition.builder(
-                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true))
+                        LootContext.EntityReference.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true))
                 ),
                 EntityPropertiesLootCondition.builder(
-                        LootContext.EntityTarget.DIRECT_ATTACKER,
+                        LootContext.EntityReference.DIRECT_ATTACKER,
                         EntityPredicate.Builder.create()
                                 .equipment(
                                         EntityEquipmentPredicate.Builder.create()

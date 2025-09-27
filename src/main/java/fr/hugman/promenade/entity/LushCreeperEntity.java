@@ -32,14 +32,14 @@ public class LushCreeperEntity extends CreeperEntity {
 
     @Override
     protected void explode() {
-        if (this.getWorld() instanceof ServerWorld serverWorld) {
+        if (this.getEntityWorld() instanceof ServerWorld serverWorld) {
             boolean hasGeneratedMoss = false;
             if (serverWorld.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
                 Registry<ConfiguredFeature<?, ?>> registry = serverWorld.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE);
                 for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
                     BlockPos pos = getBlockPos().down(i);
-                    if (this.getWorld().getBlockState(pos).isSolidBlock(this.getWorld(), pos)) {
-                        if (registry.get(this.getWorld().getRandom().nextBoolean() ? UndergroundConfiguredFeatures.MOSS_PATCH : UndergroundConfiguredFeatures.CLAY_POOL_WITH_DRIPLEAVES).generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.up())) {
+                    if (this.getEntityWorld().getBlockState(pos).isSolidBlock(this.getEntityWorld(), pos)) {
+                        if (registry.get(this.getEntityWorld().getRandom().nextBoolean() ? UndergroundConfiguredFeatures.MOSS_PATCH : UndergroundConfiguredFeatures.CLAY_POOL_WITH_DRIPLEAVES).generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.up())) {
                             hasGeneratedMoss = true;
                         }
                         break;
@@ -47,7 +47,7 @@ public class LushCreeperEntity extends CreeperEntity {
                 }
                 for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
                     BlockPos pos = getBlockPos().up(i);
-                    if (this.getWorld().getBlockState(pos).isSolidBlock(this.getWorld(), pos)) {
+                    if (this.getEntityWorld().getBlockState(pos).isSolidBlock(this.getEntityWorld(), pos)) {
                         if (registry.get(UndergroundConfiguredFeatures.MOSS_PATCH_CEILING).generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.down())) {
                             hasGeneratedMoss = true;
                         }
@@ -58,7 +58,7 @@ public class LushCreeperEntity extends CreeperEntity {
             if (hasGeneratedMoss) {
                 this.dead = true;
                 float f = this.isCharged() ? 2.0F : 1.0F;
-                this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), f, World.ExplosionSourceType.MOB);
+                this.getEntityWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), f, World.ExplosionSourceType.MOB);
                 this.discard();
                 this.spawnEffectsCloud();
             } else {
@@ -70,7 +70,7 @@ public class LushCreeperEntity extends CreeperEntity {
     private void spawnEffectsCloud() {
         Collection<StatusEffectInstance> statusEffects = this.getStatusEffects();
         if (!statusEffects.isEmpty()) {
-            AreaEffectCloudEntity aec = new AreaEffectCloudEntity(this.getWorld(), this.getX(), this.getY(), this.getZ());
+            AreaEffectCloudEntity aec = new AreaEffectCloudEntity(this.getEntityWorld(), this.getX(), this.getY(), this.getZ());
             aec.setRadius(2.5F);
             aec.setRadiusOnUse(-0.5F);
             aec.setWaitTime(10);
@@ -80,7 +80,7 @@ public class LushCreeperEntity extends CreeperEntity {
             for (StatusEffectInstance statusEffectInstance : statusEffects) {
                 aec.addEffect(new StatusEffectInstance(statusEffectInstance));
             }
-            this.getWorld().spawnEntity(aec);
+            this.getEntityWorld().spawnEntity(aec);
         }
     }
 }
