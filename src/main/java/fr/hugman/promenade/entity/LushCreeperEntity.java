@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.entity;
 
 import net.minecraft.entity.AreaEffectCloudEntity;
@@ -20,67 +31,67 @@ import net.minecraft.world.gen.feature.UndergroundConfiguredFeatures;
 import java.util.Collection;
 
 public class LushCreeperEntity extends CreeperEntity {
-    private static final int EXPLOSION_Y_LENGTH = 10;
+	private static final int EXPLOSION_Y_LENGTH = 10;
 
-    public LushCreeperEntity(EntityType<? extends CreeperEntity> entityType, World world) {
-        super(entityType, world);
-    }
+	public LushCreeperEntity(EntityType<? extends CreeperEntity> entityType, World world) {
+		super(entityType, world);
+	}
 
-    public static boolean canSpawn(EntityType<? extends HostileEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
-        return pos.getY() < 0 && HostileEntity.canSpawnInDark(type, world, spawnReason, pos, random);
-    }
+	public static boolean canSpawn(EntityType<? extends HostileEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+		return pos.getY() < 0 && HostileEntity.canSpawnInDark(type, world, spawnReason, pos, random);
+	}
 
-    @Override
-    protected void explode() {
-        if (this.getEntityWorld() instanceof ServerWorld serverWorld) {
-            boolean hasGeneratedMoss = false;
-            if (serverWorld.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
-                Registry<ConfiguredFeature<?, ?>> registry = serverWorld.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE);
-                for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
-                    BlockPos pos = getBlockPos().down(i);
-                    if (this.getEntityWorld().getBlockState(pos).isSolidBlock(this.getEntityWorld(), pos)) {
-                        if (registry.get(this.getEntityWorld().getRandom().nextBoolean() ? UndergroundConfiguredFeatures.MOSS_PATCH : UndergroundConfiguredFeatures.CLAY_POOL_WITH_DRIPLEAVES).generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.up())) {
-                            hasGeneratedMoss = true;
-                        }
-                        break;
-                    }
-                }
-                for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
-                    BlockPos pos = getBlockPos().up(i);
-                    if (this.getEntityWorld().getBlockState(pos).isSolidBlock(this.getEntityWorld(), pos)) {
-                        if (registry.get(UndergroundConfiguredFeatures.MOSS_PATCH_CEILING).generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.down())) {
-                            hasGeneratedMoss = true;
-                        }
-                        break;
-                    }
-                }
-            }
-            if (hasGeneratedMoss) {
-                this.dead = true;
-                float f = this.isCharged() ? 2.0F : 1.0F;
-                this.getEntityWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), f, World.ExplosionSourceType.MOB);
-                this.discard();
-                this.spawnEffectsCloud();
-            } else {
-                super.explode();
-            }
-        }
-    }
+	@Override
+	protected void explode() {
+		if (this.getEntityWorld() instanceof ServerWorld serverWorld) {
+			boolean hasGeneratedMoss = false;
+			if (serverWorld.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+				Registry<ConfiguredFeature<?, ?>> registry = serverWorld.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE);
+				for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
+					BlockPos pos = getBlockPos().down(i);
+					if (this.getEntityWorld().getBlockState(pos).isSolidBlock(this.getEntityWorld(), pos)) {
+						if (registry.get(this.getEntityWorld().getRandom().nextBoolean() ? UndergroundConfiguredFeatures.MOSS_PATCH : UndergroundConfiguredFeatures.CLAY_POOL_WITH_DRIPLEAVES).generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.up())) {
+							hasGeneratedMoss = true;
+						}
+						break;
+					}
+				}
+				for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
+					BlockPos pos = getBlockPos().up(i);
+					if (this.getEntityWorld().getBlockState(pos).isSolidBlock(this.getEntityWorld(), pos)) {
+						if (registry.get(UndergroundConfiguredFeatures.MOSS_PATCH_CEILING).generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.down())) {
+							hasGeneratedMoss = true;
+						}
+						break;
+					}
+				}
+			}
+			if (hasGeneratedMoss) {
+				this.dead = true;
+				float f = this.isCharged() ? 2.0F : 1.0F;
+				this.getEntityWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), f, World.ExplosionSourceType.MOB);
+				this.discard();
+				this.spawnEffectsCloud();
+			} else {
+				super.explode();
+			}
+		}
+	}
 
-    private void spawnEffectsCloud() {
-        Collection<StatusEffectInstance> statusEffects = this.getStatusEffects();
-        if (!statusEffects.isEmpty()) {
-            AreaEffectCloudEntity aec = new AreaEffectCloudEntity(this.getEntityWorld(), this.getX(), this.getY(), this.getZ());
-            aec.setRadius(2.5F);
-            aec.setRadiusOnUse(-0.5F);
-            aec.setWaitTime(10);
-            aec.setDuration(aec.getDuration() / 2);
-            aec.setRadiusGrowth(-aec.getRadius() / (float) aec.getDuration());
+	private void spawnEffectsCloud() {
+		Collection<StatusEffectInstance> statusEffects = this.getStatusEffects();
+		if (! statusEffects.isEmpty()) {
+			AreaEffectCloudEntity aec = new AreaEffectCloudEntity(this.getEntityWorld(), this.getX(), this.getY(), this.getZ());
+			aec.setRadius(2.5F);
+			aec.setRadiusOnUse(- 0.5F);
+			aec.setWaitTime(10);
+			aec.setDuration(aec.getDuration() / 2);
+			aec.setRadiusGrowth(- aec.getRadius() / (float) aec.getDuration());
 
-            for (StatusEffectInstance statusEffectInstance : statusEffects) {
-                aec.addEffect(new StatusEffectInstance(statusEffectInstance));
-            }
-            this.getEntityWorld().spawnEntity(aec);
-        }
-    }
+			for (StatusEffectInstance statusEffectInstance : statusEffects) {
+				aec.addEffect(new StatusEffectInstance(statusEffectInstance));
+			}
+			this.getEntityWorld().spawnEntity(aec);
+		}
+	}
 }

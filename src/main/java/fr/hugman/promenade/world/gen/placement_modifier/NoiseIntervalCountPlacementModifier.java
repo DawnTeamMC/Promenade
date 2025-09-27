@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.world.gen.placement_modifier;
 
 import com.mojang.serialization.Codec;
@@ -10,36 +21,36 @@ import net.minecraft.world.gen.placementmodifier.AbstractCountPlacementModifier;
 import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
 
 public class NoiseIntervalCountPlacementModifier extends AbstractCountPlacementModifier {
-    public static final MapCodec<NoiseIntervalCountPlacementModifier> MODIFIER_CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
-                    Codec.DOUBLE.fieldOf("noise_level_min").forGetter((pm) -> pm.noiseLevelMin),
-                    Codec.DOUBLE.fieldOf("noise_level_max").forGetter((pm) -> pm.noiseLevelMax),
-                    Codec.INT.fieldOf("inside_value").forGetter((pm) -> pm.insideValue),
-                    Codec.INT.fieldOf("outside_value").forGetter((pm) -> pm.outsideValue))
-            .apply(instance, NoiseIntervalCountPlacementModifier::new));
-    private final double noiseLevelMin;
-    private final double noiseLevelMax;
-    private final int insideValue;
-    private final int outsideValue;
+	public static final MapCodec<NoiseIntervalCountPlacementModifier> MODIFIER_CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
+					Codec.DOUBLE.fieldOf("noise_level_min").forGetter((pm) -> pm.noiseLevelMin),
+					Codec.DOUBLE.fieldOf("noise_level_max").forGetter((pm) -> pm.noiseLevelMax),
+					Codec.INT.fieldOf("inside_value").forGetter((pm) -> pm.insideValue),
+					Codec.INT.fieldOf("outside_value").forGetter((pm) -> pm.outsideValue))
+			.apply(instance, NoiseIntervalCountPlacementModifier::new));
+	private final double noiseLevelMin;
+	private final double noiseLevelMax;
+	private final int insideValue;
+	private final int outsideValue;
 
-    private NoiseIntervalCountPlacementModifier(double noiseLevelMin, double noiseLevelMax, int insideValue, int outsideValue) {
-        this.noiseLevelMin = noiseLevelMin;
-        this.noiseLevelMax = noiseLevelMax;
-        this.insideValue = insideValue;
-        this.outsideValue = outsideValue;
-    }
+	private NoiseIntervalCountPlacementModifier(double noiseLevelMin, double noiseLevelMax, int insideValue, int outsideValue) {
+		this.noiseLevelMin = noiseLevelMin;
+		this.noiseLevelMax = noiseLevelMax;
+		this.insideValue = insideValue;
+		this.outsideValue = outsideValue;
+	}
 
-    public static NoiseIntervalCountPlacementModifier of(double noiseLevelMin, double noiseLevelMax, int insideValue, int outsideValue) {
-        return new NoiseIntervalCountPlacementModifier(noiseLevelMin, noiseLevelMax, insideValue, outsideValue);
-    }
+	public static NoiseIntervalCountPlacementModifier of(double noiseLevelMin, double noiseLevelMax, int insideValue, int outsideValue) {
+		return new NoiseIntervalCountPlacementModifier(noiseLevelMin, noiseLevelMax, insideValue, outsideValue);
+	}
 
 
-    @Override
-    protected int getCount(Random random, BlockPos pos) {
-        double d = Biome.FOLIAGE_NOISE.sample((double) pos.getX() / 200.0, (double) pos.getZ() / 200.0, false);
-        return (this.noiseLevelMin < d && d < this.noiseLevelMax) ? this.insideValue : this.outsideValue;
-    }
+	@Override
+	protected int getCount(Random random, BlockPos pos) {
+		double d = Biome.FOLIAGE_NOISE.sample((double) pos.getX() / 200.0, (double) pos.getZ() / 200.0, false);
+		return (this.noiseLevelMin < d && d < this.noiseLevelMax) ? this.insideValue : this.outsideValue;
+	}
 
-    public PlacementModifierType<?> getType() {
-        return PromenadePlacementModifierTypes.NOISE_INTERVAL_COUNT;
-    }
+	public PlacementModifierType<?> getType() {
+		return PromenadePlacementModifierTypes.NOISE_INTERVAL_COUNT;
+	}
 }

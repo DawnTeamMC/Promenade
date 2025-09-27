@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.mixin;
 
 import fr.hugman.promenade.block.SnowyLeavesBlock;
@@ -24,69 +35,73 @@ import java.util.Optional;
 
 @Mixin(SnowBlock.class)
 public class SnowBlockMixin {
-    @Shadow @Final public static IntProperty LAYERS;
+	@Shadow
+	@Final
+	public static IntProperty LAYERS;
 
-    @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
-    private void promenade$randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
-        if (!world.getGameRules().getBoolean(PromenadeGameRules.DO_BLOCKS_GET_SNOWY)) {
-            return;
-        }
-        if(state.get(LAYERS) == 8 && world.getBlockState(pos.up()).isOf((SnowBlock)(Object)this)) {
-            return;
-        }
-        var downPos = findNextBottomSnowyBlock(world, pos);
-        if(downPos.isEmpty()) {
-            return;
-        }
-        var downState = world.getBlockState(downPos.get());
-        var snowyLeaves = world.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().filter(
-                entry -> entry.baseBlocks().contains(downState.getBlock().getRegistryEntry())
-        ).findFirst().map(sbt -> sbt.snowyBlock().value()).orElse(null);
+	@Inject(method="randomTick", at=@At("HEAD"), cancellable=true)
+	private void promenade$randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
+		if (! world.getGameRules().getBoolean(PromenadeGameRules.DO_BLOCKS_GET_SNOWY)) {
+			return;
+		}
+		if (state.get(LAYERS) == 8 && world.getBlockState(pos.up()).isOf((SnowBlock) (Object) this)) {
+			return;
+		}
+		var downPos = findNextBottomSnowyBlock(world, pos);
+		if (downPos.isEmpty()) {
+			return;
+		}
+		var downState = world.getBlockState(downPos.get());
+		var snowyLeaves = world.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().filter(
+				entry -> entry.baseBlocks().contains(downState.getBlock().getRegistryEntry())
+		).findFirst().map(sbt -> sbt.snowyBlock().value()).orElse(null);
 
-        if(snowyLeaves != null) {
-            var layers = state.get(LAYERS) - 1;
-            var newLeavesState = snowyLeaves.getDefaultState();
-            // copy properties of snowy block
-            for (Property property : downState.getProperties()) {
-                newLeavesState = newLeavesState.contains(property) ? newLeavesState.with(property, downState.get(property)) : newLeavesState;
-            }
-            newLeavesState = newLeavesState.contains(SnowyLeavesBlock.BOTTOM) ? newLeavesState.with(SnowyLeavesBlock.BOTTOM, true) : newLeavesState;
-            if(layers < 1) {
-                world.setBlockState(pos, Blocks.AIR.getDefaultState());
-            }
-            else {
-                world.setBlockState(pos, state.with(LAYERS, layers));
-            }
-            world.setBlockState(downPos.get(), newLeavesState);
-            ci.cancel();
-        }
-    }
+		if (snowyLeaves != null) {
+			var layers = state.get(LAYERS) - 1;
+			var newLeavesState = snowyLeaves.getDefaultState();
+			// copy properties of snowy block
+			for (Property property : downState.getProperties()) {
+				newLeavesState = newLeavesState.contains(property) ? newLeavesState.with(property, downState.get(property)) : newLeavesState;
+			}
+			newLeavesState = newLeavesState.contains(SnowyLeavesBlock.BOTTOM) ? newLeavesState.with(SnowyLeavesBlock.BOTTOM, true) : newLeavesState;
+			if (layers < 1) {
+				world.setBlockState(pos, Blocks.AIR.getDefaultState());
+			} else {
+				world.setBlockState(pos, state.with(LAYERS, layers));
+			}
+			world.setBlockState(downPos.get(), newLeavesState);
+			ci.cancel();
+		}
+	}
 
-    @Unique
-    private Optional<BlockPos> findNextBottomSnowyBlock(ServerWorld world, BlockPos pos) {
-        BlockPos.Mutable mutable = pos.mutableCopy();
+	@Unique
+	private Optional<BlockPos> findNextBottomSnowyBlock(ServerWorld world, BlockPos pos) {
+		BlockPos.Mutable mutable = pos.mutableCopy();
 
-        BlockState blockState;
-        do {
-            mutable.move(Direction.DOWN);
-            blockState = world.getBlockState(mutable);
-        } while (isFullSnowyBlock(world, blockState));
+		BlockState blockState;
+		do {
+			mutable.move(Direction.DOWN);
+			blockState = world.getBlockState(mutable);
+		} while (isFullSnowyBlock(world, blockState));
 
-        var block = blockState.getBlock();
-        return world.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
-                entry -> entry.baseBlocks().contains(block.getRegistryEntry())
-        ) ? Optional.of(mutable) : Optional.empty();
-    }
+		var block = blockState.getBlock();
+		return world.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
+				entry -> entry.baseBlocks().contains(block.getRegistryEntry())
+		) ? Optional.of(mutable) : Optional.empty();
+	}
 
 
-    @Unique
-    private boolean isFullSnowyBlock(ServerWorld world, BlockState state) {
-        var block = state.getBlock();
-        if (world.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
-                entry -> entry.snowyBlock().matches(block.getRegistryEntry())
-        )) return true;
-        if(state.isOf(Blocks.SNOW_BLOCK) || state.isOf(Blocks.POWDER_SNOW)) return true;
-        if(state.isOf(Blocks.SNOW) && state.contains(LAYERS) && state.get(LAYERS) == 8) return true;
-        return false;
-    }
+	@Unique
+	private boolean isFullSnowyBlock(ServerWorld world, BlockState state) {
+		var block = state.getBlock();
+		if (world.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
+				entry -> entry.snowyBlock().matches(block.getRegistryEntry())
+		))
+			return true;
+		if (state.isOf(Blocks.SNOW_BLOCK) || state.isOf(Blocks.POWDER_SNOW))
+			return true;
+		if (state.isOf(Blocks.SNOW) && state.contains(LAYERS) && state.get(LAYERS) == 8)
+			return true;
+		return false;
+	}
 }

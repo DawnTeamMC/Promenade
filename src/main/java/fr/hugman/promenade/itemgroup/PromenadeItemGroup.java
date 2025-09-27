@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.itemgroup;
 
 import fr.hugman.promenade.Promenade;
@@ -16,52 +27,52 @@ import java.util.Comparator;
 import java.util.Set;
 
 public final class PromenadeItemGroup {
-    public static void fill(ItemGroup.DisplayContext displayContext, ItemGroup.Entries entries) {
-        Set<ItemStack> set = ItemStackSet.create();
+	public static void fill(ItemGroup.DisplayContext displayContext, ItemGroup.Entries entries) {
+		Set<ItemStack> set = ItemStackSet.create();
 
-        for (ItemGroup itemGroup : Registries.ITEM_GROUP) {
-            if (itemGroup.getType() != ItemGroup.Type.SEARCH) {
-                for (var stack : itemGroup.getSearchTabStacks()) {
-                    if (isPromenade(Registries.ITEM.getEntry(stack.getItem()))) {
-                        set.add(stack);
-                    }
-                }
-            }
-        }
+		for (ItemGroup itemGroup : Registries.ITEM_GROUP) {
+			if (itemGroup.getType() != ItemGroup.Type.SEARCH) {
+				for (var stack : itemGroup.getSearchTabStacks()) {
+					if (isPromenade(Registries.ITEM.getEntry(stack.getItem()))) {
+						set.add(stack);
+					}
+				}
+			}
+		}
 
-        entries.addAll(set);
+		entries.addAll(set);
 
-        // Vanilla Entity Variants
-        //TODO: add spawn eggs
+		// Vanilla Entity Variants
+		//TODO: add spawn eggs
 
-        // Paintings
-        displayContext.lookup()
-                .getOptional(RegistryKeys.PAINTING_VARIANT)
-                .ifPresent(registryWrapper -> registryWrapper.streamEntries()
-                        .filter(PromenadeItemGroup::isPromenade)
-                        .sorted(PAINTING_VARIANT_COMPARATOR)
-                        .forEach(
-                                paintingVariantEntry -> {
-                                    ItemStack itemStack = new ItemStack(Items.PAINTING);
-                                    itemStack.set(DataComponentTypes.PAINTING_VARIANT, paintingVariantEntry);
-                                    entries.add(itemStack, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
-                                }
-                        )
-                );
-    }
+		// Paintings
+		displayContext.lookup()
+				.getOptional(RegistryKeys.PAINTING_VARIANT)
+				.ifPresent(registryWrapper -> registryWrapper.streamEntries()
+						.filter(PromenadeItemGroup::isPromenade)
+						.sorted(PAINTING_VARIANT_COMPARATOR)
+						.forEach(
+								paintingVariantEntry -> {
+									ItemStack itemStack = new ItemStack(Items.PAINTING);
+									itemStack.set(DataComponentTypes.PAINTING_VARIANT, paintingVariantEntry);
+									entries.add(itemStack, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+								}
+						)
+				);
+	}
 
-    private static boolean isPromenade(RegistryEntry<?> entry) {
-        return isPromenade(entry.getKey().orElseThrow());
-    }
+	private static boolean isPromenade(RegistryEntry<?> entry) {
+		return isPromenade(entry.getKey().orElseThrow());
+	}
 
 
-    private static boolean isPromenade(RegistryKey<?> key) {
-        return key.getValue().getNamespace().equals(Promenade.MOD_ID);
-    }
+	private static boolean isPromenade(RegistryKey<?> key) {
+		return key.getValue().getNamespace().equals(Promenade.MOD_ID);
+	}
 
-    // FROM Vanilla ItemGroups
+	// FROM Vanilla ItemGroups
 
-    private static final Comparator<RegistryEntry<PaintingVariant>> PAINTING_VARIANT_COMPARATOR = Comparator.comparing(
-            RegistryEntry::value, Comparator.comparingInt(PaintingVariant::getArea).thenComparing(PaintingVariant::width)
-    );
+	private static final Comparator<RegistryEntry<PaintingVariant>> PAINTING_VARIANT_COMPARATOR = Comparator.comparing(
+			RegistryEntry::value, Comparator.comparingInt(PaintingVariant::getArea).thenComparing(PaintingVariant::width)
+	);
 }

@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
@@ -21,83 +32,83 @@ import net.minecraft.world.tick.ScheduledTickView;
 import java.util.Optional;
 
 public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBlock implements Fertilizable {
-    protected AbstractFacingPlantBlock(Settings settings, VoxelShape[] outlineShapes, boolean bl) {
-        super(settings, outlineShapes, bl);
-    }
+	protected AbstractFacingPlantBlock(Settings settings, VoxelShape[] outlineShapes, boolean bl) {
+		super(settings, outlineShapes, bl);
+	}
 
-    @Override
-    protected abstract MapCodec<? extends AbstractFacingPlantBlock> getCodec();
+	@Override
+	protected abstract MapCodec<? extends AbstractFacingPlantBlock> getCodec();
 
-    protected BlockState copyState(BlockState from, BlockState to) {
-        return to.with(FACING, from.get(FACING));
-    }
+	protected BlockState copyState(BlockState from, BlockState to) {
+		return to.with(FACING, from.get(FACING));
+	}
 
-    @Override
-    protected BlockState getStateForNeighborUpdate(
-            BlockState state,
-            WorldView world,
-            ScheduledTickView tickView,
-            BlockPos pos,
-            Direction direction,
-            BlockPos neighborPos,
-            BlockState neighborState,
-            Random random
-    ) {
-        var facing = state.get(FACING);
-        if (direction == facing.getOpposite() && !state.canPlaceAt(world, pos)) {
-            tickView.scheduleBlockTick(pos, this, 1);
-        }
+	@Override
+	protected BlockState getStateForNeighborUpdate(
+			BlockState state,
+			WorldView world,
+			ScheduledTickView tickView,
+			BlockPos pos,
+			Direction direction,
+			BlockPos neighborPos,
+			BlockState neighborState,
+			Random random
+	) {
+		var facing = state.get(FACING);
+		if (direction == facing.getOpposite() && ! state.canPlaceAt(world, pos)) {
+			tickView.scheduleBlockTick(pos, this, 1);
+		}
 
-        AbstractFacingPlantStemBlock stem = this.getStem();
-        if (direction == facing && !((neighborState.isOf(this) || neighborState.isOf(stem)) && neighborState.get(FACING) == facing)) {
-            return this.copyState(state, stem.getRandomGrowthState(random));
-        } else {
-            if (this.tickWater) {
-                tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-            }
+		AbstractFacingPlantStemBlock stem = this.getStem();
+		if (direction == facing && ! ((neighborState.isOf(this) || neighborState.isOf(stem)) && neighborState.get(FACING) == facing)) {
+			return this.copyState(state, stem.getRandomGrowthState(random));
+		} else {
+			if (this.tickWater) {
+				tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+			}
 
-            return super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
-        }
-    }
+			return super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
+		}
+	}
 
-    @Override
-    protected ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
-        return new ItemStack(this.getStem());
-    }
+	@Override
+	protected ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
+		return new ItemStack(this.getStem());
+	}
 
-    @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
-        var facing = state.get(FACING);
-        Optional<BlockPos> optional = this.getStemHeadPos(world, pos, state.getBlock(), facing);
-        return optional.isPresent() && this.getStem().canGrowAt(world.getBlockState(optional.get().offset(facing)));
-    }
+	@Override
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+		var facing = state.get(FACING);
+		Optional<BlockPos> optional = this.getStemHeadPos(world, pos, state.getBlock(), facing);
+		return optional.isPresent() && this.getStem().canGrowAt(world.getBlockState(optional.get().offset(facing)));
+	}
 
-    @Override
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
-        return true;
-    }
+	@Override
+	public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+		return true;
+	}
 
-    @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        Optional<BlockPos> optional = this.getStemHeadPos(world, pos, state.getBlock(), state.get(FACING));
-        if (optional.isPresent()) {
-            BlockState blockState = world.getBlockState(optional.get());
-            ((AbstractFacingPlantStemBlock) blockState.getBlock()).grow(world, random, optional.get(), blockState);
-        }
-    }
+	@Override
+	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+		Optional<BlockPos> optional = this.getStemHeadPos(world, pos, state.getBlock(), state.get(FACING));
+		if (optional.isPresent()) {
+			BlockState blockState = world.getBlockState(optional.get());
+			((AbstractFacingPlantStemBlock) blockState.getBlock()).grow(world, random, optional.get(), blockState);
+		}
+	}
 
-    private Optional<BlockPos> getStemHeadPos(BlockView world, BlockPos pos, Block block, Direction direction) {
-        return BlockLocating.findColumnEnd(world, pos, block, direction, this.getStem());
-    }
+	private Optional<BlockPos> getStemHeadPos(BlockView world, BlockPos pos, Block block, Direction direction) {
+		return BlockLocating.findColumnEnd(world, pos, block, direction, this.getStem());
+	}
 
-    @Override
-    protected boolean canReplace(BlockState state, ItemPlacementContext context) {
-        boolean bl = super.canReplace(state, context);
-        return (!bl || !context.getStack().isOf(this.getStem().asItem())) && bl;
-    }
+	@Override
+	protected boolean canReplace(BlockState state, ItemPlacementContext context) {
+		boolean bl = super.canReplace(state, context);
+		return (! bl || ! context.getStack().isOf(this.getStem().asItem())) && bl;
+	}
 
-    @Override
-    protected Block getPlant() {
-        return this;
-    }
+	@Override
+	protected Block getPlant() {
+		return this;
+	}
 }

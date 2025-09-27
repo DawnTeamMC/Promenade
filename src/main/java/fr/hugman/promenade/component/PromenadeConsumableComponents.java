@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.component;
 
 import net.minecraft.component.type.ConsumableComponent;
@@ -9,15 +20,15 @@ import net.minecraft.item.consume.RemoveEffectsConsumeEffect;
 import net.minecraft.sound.SoundEvents;
 
 public class PromenadeConsumableComponents {
-    public static final ConsumableComponent MAPLE_SYRUP_BOTTLE = ConsumableComponents.drink()
-            .consumeSeconds(2.0F)
-            .sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK)
-            .consumeEffect(new RemoveEffectsConsumeEffect(StatusEffects.POISON))
-            .build();
+	public static final ConsumableComponent MAPLE_SYRUP_BOTTLE = ConsumableComponents.drink()
+			.consumeSeconds(2.0F)
+			.sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK)
+			.consumeEffect(new RemoveEffectsConsumeEffect(StatusEffects.POISON))
+			.build();
 
-    public static final ConsumableComponent RAW_DUCK = foodWithEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F);
+	public static final ConsumableComponent RAW_DUCK = foodWithEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F);
 
-    public static ConsumableComponent foodWithEffect(StatusEffectInstance effect, float probability) {
-        return ConsumableComponents.food().consumeEffect(new ApplyEffectsConsumeEffect(effect, probability)).build();
-    }
+	public static ConsumableComponent foodWithEffect(StatusEffectInstance effect, float probability) {
+		return ConsumableComponents.food().consumeEffect(new ApplyEffectsConsumeEffect(effect, probability)).build();
+	}
 }

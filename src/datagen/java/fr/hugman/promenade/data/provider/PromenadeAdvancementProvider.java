@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.Promenade;
@@ -41,78 +52,78 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class PromenadeAdvancementProvider extends FabricAdvancementProvider {
-    public PromenadeAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
-        super(output, registryLookup);
-    }
+	public PromenadeAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+		super(output, registryLookup);
+	}
 
-    @Override
-    public void generateAdvancement(RegistryWrapper.WrapperLookup wrapperLookup, Consumer<AdvancementEntry> consumer) {
-        final var entities = wrapperLookup.getOrThrow(RegistryKeys.ENTITY_TYPE);
-        final var fluids = wrapperLookup.getOrThrow(RegistryKeys.FLUID);
-        final var blocks = wrapperLookup.getOrThrow(RegistryKeys.BLOCK);
-        final var items = wrapperLookup.getOrThrow(RegistryKeys.ITEM);
+	@Override
+	public void generateAdvancement(RegistryWrapper.WrapperLookup wrapperLookup, Consumer<AdvancementEntry> consumer) {
+		final var entities = wrapperLookup.getOrThrow(RegistryKeys.ENTITY_TYPE);
+		final var fluids = wrapperLookup.getOrThrow(RegistryKeys.FLUID);
+		final var blocks = wrapperLookup.getOrThrow(RegistryKeys.BLOCK);
+		final var items = wrapperLookup.getOrThrow(RegistryKeys.ITEM);
 
-        Advancement.Builder.create()
-                .display(
-                        PromenadeItems.MAPLE_SYRUP_BOTTLE,
-                        Text.translatable("advancements.promenade.husbandry.harvest_maple_syrup.title"),
-                        Text.translatable("advancements.promenade.husbandry.harvest_maple_syrup.description"),
-                        null,
-                        AdvancementFrame.TASK,
-                        true,
-                        true,
-                        false
-                )
-                .parent(Identifier.of("husbandry/safely_harvest_honey"))
-                .criterion("harvest_maple_syrup", createPickMapleSyrup(blocks, items))
-                .build(consumer, Promenade.MOD_ID + ":husbandry/harvest_maple_syrup");
-        Advancement.Builder.create()
-                .display(
-                        Items.FIRE_CORAL,
-                        Text.translatable("advancements.promenade.adventure.kill_sunken_outside_water.title"),
-                        Text.translatable("advancements.promenade.adventure.kill_sunken_outside_water.description"),
-                        null,
-                        AdvancementFrame.CHALLENGE,
-                        true,
-                        true,
-                        false
-                )
-                .parent(Identifier.of("adventure/whos_the_pillager_now"))
-                .criterion("kill_sunken_outside_water", createCrossbowSunkenOutsideWaterFromWater(fluids, entities))
-                .rewards(AdvancementRewards.Builder.experience(65))
-                .build(consumer, Promenade.MOD_ID + ":adventure/kill_sunken_outside_water");
-
-
-    }
-
-    public static AdvancementCriterion<KilledByArrowCriterion.Conditions> createCrossbowSunkenOutsideWaterFromWater(RegistryEntryLookup<Fluid> fluids, RegistryEntryLookup<EntityType<?>> entities) {
-        return Criteria.KILLED_BY_ARROW.create(
-                new KilledByArrowCriterion.Conditions(
-                        // player is in water
-                        Optional.of(LootContextPredicate.create(LocationCheckLootCondition.builder(LocationPredicate.Builder.create().fluid(FluidPredicate.Builder.create().tag(fluids.getOrThrow(FluidTags.WATER))), new BlockPos(0, 1, 0)).build())),
-                        // entity is a sunken and is outside water
-                        List.of(LootContextPredicate.create(
-                                EntityPropertiesLootCondition.builder(LootContext.EntityReference.THIS, EntityPredicate.Builder.create().type(entities, PromenadeEntityTypes.SUNKEN)).build(),
-                                InvertedLootCondition.builder(EntityPropertiesLootCondition.builder(LootContext.EntityReference.THIS,
-                                        EntityPredicate.Builder.create().location(LocationPredicate.Builder.create().fluid(FluidPredicate.Builder.create().tag(fluids.getOrThrow(FluidTags.WATER))))
-                                )).build()
-                        )),
-                        NumberRange.IntRange.ANY,
-                        Optional.empty()
-                )
-        );
-    }
+		Advancement.Builder.create()
+				.display(
+						PromenadeItems.MAPLE_SYRUP_BOTTLE,
+						Text.translatable("advancements.promenade.husbandry.harvest_maple_syrup.title"),
+						Text.translatable("advancements.promenade.husbandry.harvest_maple_syrup.description"),
+						null,
+						AdvancementFrame.TASK,
+						true,
+						true,
+						false
+				)
+				.parent(Identifier.of("husbandry/safely_harvest_honey"))
+				.criterion("harvest_maple_syrup", createPickMapleSyrup(blocks, items))
+				.build(consumer, Promenade.MOD_ID + ":husbandry/harvest_maple_syrup");
+		Advancement.Builder.create()
+				.display(
+						Items.FIRE_CORAL,
+						Text.translatable("advancements.promenade.adventure.kill_sunken_outside_water.title"),
+						Text.translatable("advancements.promenade.adventure.kill_sunken_outside_water.description"),
+						null,
+						AdvancementFrame.CHALLENGE,
+						true,
+						true,
+						false
+				)
+				.parent(Identifier.of("adventure/whos_the_pillager_now"))
+				.criterion("kill_sunken_outside_water", createCrossbowSunkenOutsideWaterFromWater(fluids, entities))
+				.rewards(AdvancementRewards.Builder.experience(65))
+				.build(consumer, Promenade.MOD_ID + ":adventure/kill_sunken_outside_water");
 
 
-    public static AdvancementCriterion<ItemCriterion.Conditions> createPickMapleSyrup(RegistryEntryLookup<Block> blocks, RegistryEntryLookup<Item> items) {
-        return Criteria.ITEM_USED_ON_BLOCK.create(
-                new ItemCriterion.Conditions(
-                        Optional.empty(),
-                        Optional.of(LootContextPredicate.create(
-                                LocationCheckLootCondition.builder(LocationPredicate.Builder.create().block(BlockPredicate.Builder.create().blocks(blocks, PromenadeBlocks.STRIPPED_MAPLE_LOG))).build(),
-                                MatchToolLootCondition.builder(ItemPredicate.Builder.create().items(items, Items.GLASS_BOTTLE)).build()
-                        ))
-                )
-        );
-    }
+	}
+
+	public static AdvancementCriterion<KilledByArrowCriterion.Conditions> createCrossbowSunkenOutsideWaterFromWater(RegistryEntryLookup<Fluid> fluids, RegistryEntryLookup<EntityType<?>> entities) {
+		return Criteria.KILLED_BY_ARROW.create(
+				new KilledByArrowCriterion.Conditions(
+						// player is in water
+						Optional.of(LootContextPredicate.create(LocationCheckLootCondition.builder(LocationPredicate.Builder.create().fluid(FluidPredicate.Builder.create().tag(fluids.getOrThrow(FluidTags.WATER))), new BlockPos(0, 1, 0)).build())),
+						// entity is a sunken and is outside water
+						List.of(LootContextPredicate.create(
+								EntityPropertiesLootCondition.builder(LootContext.EntityReference.THIS, EntityPredicate.Builder.create().type(entities, PromenadeEntityTypes.SUNKEN)).build(),
+								InvertedLootCondition.builder(EntityPropertiesLootCondition.builder(LootContext.EntityReference.THIS,
+										EntityPredicate.Builder.create().location(LocationPredicate.Builder.create().fluid(FluidPredicate.Builder.create().tag(fluids.getOrThrow(FluidTags.WATER))))
+								)).build()
+						)),
+						NumberRange.IntRange.ANY,
+						Optional.empty()
+				)
+		);
+	}
+
+
+	public static AdvancementCriterion<ItemCriterion.Conditions> createPickMapleSyrup(RegistryEntryLookup<Block> blocks, RegistryEntryLookup<Item> items) {
+		return Criteria.ITEM_USED_ON_BLOCK.create(
+				new ItemCriterion.Conditions(
+						Optional.empty(),
+						Optional.of(LootContextPredicate.create(
+								LocationCheckLootCondition.builder(LocationPredicate.Builder.create().block(BlockPredicate.Builder.create().blocks(blocks, PromenadeBlocks.STRIPPED_MAPLE_LOG))).build(),
+								MatchToolLootCondition.builder(ItemPredicate.Builder.create().items(items, Items.GLASS_BOTTLE)).build()
+						))
+				)
+		);
+	}
 }

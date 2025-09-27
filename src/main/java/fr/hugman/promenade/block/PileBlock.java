@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
@@ -11,37 +22,37 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 
 public class PileBlock extends PlantBlock {
-    public static final MapCodec<PileBlock> CODEC = createCodec(PileBlock::new);
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
+	public static final MapCodec<PileBlock> CODEC = createCodec(PileBlock::new);
+	protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 
-    public PileBlock(Settings settings) {
-        super(settings);
-    }
+	public PileBlock(Settings settings) {
+		super(settings);
+	}
 
-    @Override
-    protected MapCodec<? extends PileBlock> getCodec() {
-        return CODEC;
-    }
+	@Override
+	protected MapCodec<? extends PileBlock> getCodec() {
+		return CODEC;
+	}
 
-    @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView worldIn, BlockPos pos, ShapeContext context) {
-        return SHAPE;
-    }
+	@Override
+	public VoxelShape getOutlineShape(BlockState state, BlockView worldIn, BlockPos pos, ShapeContext context) {
+		return SHAPE;
+	}
 
-    @Override
-    protected int getOpacity(BlockState state) {
-        return 1;
-    }
+	@Override
+	protected int getOpacity(BlockState state) {
+		return 1;
+	}
 
-    @Override
-    protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
-        return !state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
-    }
+	@Override
+	protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
+		return ! state.canPlaceAt(world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
+	}
 
-    @Override
-    public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        BlockPos blockpos = pos.offset(Direction.DOWN);
-        BlockState blockState = world.getBlockState(blockpos);
-        return Block.isFaceFullSquare(blockState.getCollisionShape(world, blockpos), Direction.UP);
-    }
+	@Override
+	public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
+		BlockPos blockpos = pos.offset(Direction.DOWN);
+		BlockState blockState = world.getBlockState(blockpos);
+		return Block.isFaceFullSquare(blockState.getCollisionShape(world, blockpos), Direction.UP);
+	}
 }

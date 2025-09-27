@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
@@ -20,64 +31,64 @@ import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 public class NyliumBlock extends Block implements Fertilizable {
-    public static final MapCodec<NyliumBlock> CODEC = createCodec(NyliumBlock::new);
+	public static final MapCodec<NyliumBlock> CODEC = createCodec(NyliumBlock::new);
 
-    @Override
-    public MapCodec<NyliumBlock> getCodec() {
-        return CODEC;
-    }
+	@Override
+	public MapCodec<NyliumBlock> getCodec() {
+		return CODEC;
+	}
 
-    public NyliumBlock(Settings settings) {
-        super(settings);
-    }
+	public NyliumBlock(Settings settings) {
+		super(settings);
+	}
 
-    private static boolean stayAlive(BlockState state, WorldView world, BlockPos pos) {
-        BlockPos blockPos = pos.up();
-        BlockState blockState = world.getBlockState(blockPos);
-        int i = ChunkLightProvider.getRealisticOpacity(state, blockState, Direction.UP, blockState.getOpacity());
-        return i < 15;
-    }
+	private static boolean stayAlive(BlockState state, WorldView world, BlockPos pos) {
+		BlockPos blockPos = pos.up();
+		BlockState blockState = world.getBlockState(blockPos);
+		int i = ChunkLightProvider.getRealisticOpacity(state, blockState, Direction.UP, blockState.getOpacity());
+		return i < 15;
+	}
 
-    @Override
-    protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (!stayAlive(state, world, pos)) {
-            //TODO: make this configurable
-            world.setBlockState(pos, Blocks.NETHERRACK.getDefaultState());
-        }
-    }
+	@Override
+	protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		if (! stayAlive(state, world, pos)) {
+			//TODO: make this configurable
+			world.setBlockState(pos, Blocks.NETHERRACK.getDefaultState());
+		}
+	}
 
-    @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
-        return world.getBlockState(pos.up()).isAir();
-    }
+	@Override
+	public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
+		return world.getBlockState(pos.up()).isAir();
+	}
 
-    @Override
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
-        return true;
-    }
+	@Override
+	public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+		return true;
+	}
 
-    @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        BlockPos blockPos = pos.up();
-        ChunkGenerator chunkGenerator = world.getChunkManager().getChunkGenerator();
-        Registry<ConfiguredFeature<?, ?>> registry = world.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE);
-        //TODO: make this configurable
-        this.generate(registry, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION, world, chunkGenerator, random, blockPos);
-    }
+	@Override
+	public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
+		BlockPos blockPos = pos.up();
+		ChunkGenerator chunkGenerator = world.getChunkManager().getChunkGenerator();
+		Registry<ConfiguredFeature<?, ?>> registry = world.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE);
+		//TODO: make this configurable
+		this.generate(registry, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION, world, chunkGenerator, random, blockPos);
+	}
 
-    private void generate(
-            Registry<ConfiguredFeature<?, ?>> registry,
-            RegistryKey<ConfiguredFeature<?, ?>> key,
-            ServerWorld world,
-            ChunkGenerator chunkGenerator,
-            Random random,
-            BlockPos pos
-    ) {
-        registry.getOptional(key).ifPresent(entry -> entry.value().generate(world, chunkGenerator, random, pos));
-    }
+	private void generate(
+			Registry<ConfiguredFeature<?, ?>> registry,
+			RegistryKey<ConfiguredFeature<?, ?>> key,
+			ServerWorld world,
+			ChunkGenerator chunkGenerator,
+			Random random,
+			BlockPos pos
+	) {
+		registry.getOptional(key).ifPresent(entry -> entry.value().generate(world, chunkGenerator, random, pos));
+	}
 
-    @Override
-    public FertilizableType getFertilizableType() {
-        return FertilizableType.NEIGHBOR_SPREADER;
-    }
+	@Override
+	public FertilizableType getFertilizableType() {
+		return FertilizableType.NEIGHBOR_SPREADER;
+	}
 }

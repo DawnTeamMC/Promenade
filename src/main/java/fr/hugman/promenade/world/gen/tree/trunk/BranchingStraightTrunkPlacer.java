@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.world.gen.tree.trunk;
 
 import com.google.common.collect.ImmutableList;
@@ -18,51 +29,51 @@ import java.util.List;
 import java.util.function.BiConsumer;
 
 public class BranchingStraightTrunkPlacer extends TrunkPlacer {
-    public static final MapCodec<BranchingStraightTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(
-            instance -> fillTrunkPlacerFields(instance).apply(instance, BranchingStraightTrunkPlacer::new)
-    );
+	public static final MapCodec<BranchingStraightTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(
+			instance -> fillTrunkPlacerFields(instance).apply(instance, BranchingStraightTrunkPlacer::new)
+	);
 
-    public static final List<Direction> HORIZONTAL = List.of(Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST);
+	public static final List<Direction> HORIZONTAL = List.of(Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST);
 
-    public BranchingStraightTrunkPlacer(int baseHeight, int firstRandomHeight, int secondRandomHeight) {
-        super(baseHeight, firstRandomHeight, secondRandomHeight);
-    }
+	public BranchingStraightTrunkPlacer(int baseHeight, int firstRandomHeight, int secondRandomHeight) {
+		super(baseHeight, firstRandomHeight, secondRandomHeight);
+	}
 
-    @Override
-    protected TrunkPlacerType<?> getType() {
-        return PromenadeTrunkPlacerTypes.BRANCHING_STRAIGHT;
-    }
+	@Override
+	protected TrunkPlacerType<?> getType() {
+		return PromenadeTrunkPlacerTypes.BRANCHING_STRAIGHT;
+	}
 
-    @Override
-    public List<FoliagePlacer.TreeNode> generate(
-            TestableWorld world,
-            BiConsumer<BlockPos, BlockState> replacer,
-            Random random,
-            int height,
-            BlockPos startPos,
-            TreeFeatureConfig config
-    ) {
-        setToDirt(world, replacer, random, startPos.down(), config);
+	@Override
+	public List<FoliagePlacer.TreeNode> generate(
+			TestableWorld world,
+			BiConsumer<BlockPos, BlockState> replacer,
+			Random random,
+			int height,
+			BlockPos startPos,
+			TreeFeatureConfig config
+	) {
+		setToDirt(world, replacer, random, startPos.down(), config);
 
-        Direction branchDirection = null;
-        int branches = 0;
+		Direction branchDirection = null;
+		int branches = 0;
 
-        //TODO: configurability
-        for (int i = 0; i < height; i++) {
-            var pos = startPos.up(i);
-            this.getAndSetState(world, replacer, random, pos, config);
-            if (random.nextInt(6) == 0 && branches < 2 && i > 2) {
-                if (branchDirection != null) {
-                    branchDirection = branchDirection.getOpposite();
-                } else {
-                    branchDirection = Direction.Type.HORIZONTAL.random(random);
-                }
-                Direction finalBranchDirection = branchDirection;
-                this.getAndSetState(world, replacer, random, pos.offset(branchDirection), config, state -> state.withIfExists(PillarBlock.AXIS, finalBranchDirection.getAxis()));
-                branches++;
-            }
-        }
+		//TODO: configurability
+		for (int i = 0; i < height; i++) {
+			var pos = startPos.up(i);
+			this.getAndSetState(world, replacer, random, pos, config);
+			if (random.nextInt(6) == 0 && branches < 2 && i > 2) {
+				if (branchDirection != null) {
+					branchDirection = branchDirection.getOpposite();
+				} else {
+					branchDirection = Direction.Type.HORIZONTAL.random(random);
+				}
+				Direction finalBranchDirection = branchDirection;
+				this.getAndSetState(world, replacer, random, pos.offset(branchDirection), config, state -> state.withIfExists(PillarBlock.AXIS, finalBranchDirection.getAxis()));
+				branches++;
+			}
+		}
 
-        return ImmutableList.of(new FoliagePlacer.TreeNode(startPos.up(height), 0, false));
-    }
+		return ImmutableList.of(new FoliagePlacer.TreeNode(startPos.up(height), 0, false));
+	}
 }

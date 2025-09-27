@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.entity.variant;
 
 import com.mojang.serialization.Codec;
@@ -18,32 +29,32 @@ import net.minecraft.util.AssetInfo.TextureAssetInfo;
 import java.util.List;
 
 public record DuckVariant(
-        TextureAssetInfo texture,
-        TextureAssetInfo babyTexture,
-        SpawnConditionSelectors spawnConditions
+		TextureAssetInfo texture,
+		TextureAssetInfo babyTexture,
+		SpawnConditionSelectors spawnConditions
 ) implements VariantSelectorProvider<SpawnContext, SpawnCondition> {
-    public static final TextureAssetInfo DEFAULT_DUCKLING_ASSET = new TextureAssetInfo(Promenade.id("entity/duck/duckling"));
+	public static final TextureAssetInfo DEFAULT_DUCKLING_ASSET = new TextureAssetInfo(Promenade.id("entity/duck/duckling"));
 
-    public static final Codec<DuckVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            TextureAssetInfo.MAP_CODEC.forGetter(DuckVariant::texture),
-            TextureAssetInfo.CODEC.optionalFieldOf("baby_texture", DEFAULT_DUCKLING_ASSET).forGetter(DuckVariant::babyTexture),
-            SpawnConditionSelectors.CODEC.fieldOf("spawn_conditions").forGetter(DuckVariant::spawnConditions)
-    ).apply(instance, DuckVariant::new));
+	public static final Codec<DuckVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+			TextureAssetInfo.MAP_CODEC.forGetter(DuckVariant::texture),
+			TextureAssetInfo.CODEC.optionalFieldOf("baby_texture", DEFAULT_DUCKLING_ASSET).forGetter(DuckVariant::babyTexture),
+			SpawnConditionSelectors.CODEC.fieldOf("spawn_conditions").forGetter(DuckVariant::spawnConditions)
+	).apply(instance, DuckVariant::new));
 
-    public static final Codec<DuckVariant> NETWORK_CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            TextureAssetInfo.MAP_CODEC.forGetter(DuckVariant::texture),
-            TextureAssetInfo.CODEC.optionalFieldOf("baby_texture", DEFAULT_DUCKLING_ASSET).forGetter(DuckVariant::babyTexture)
-    ).apply(instance, DuckVariant::new));
+	public static final Codec<DuckVariant> NETWORK_CODEC = RecordCodecBuilder.create(instance -> instance.group(
+			TextureAssetInfo.MAP_CODEC.forGetter(DuckVariant::texture),
+			TextureAssetInfo.CODEC.optionalFieldOf("baby_texture", DEFAULT_DUCKLING_ASSET).forGetter(DuckVariant::babyTexture)
+	).apply(instance, DuckVariant::new));
 
-    public static final Codec<RegistryEntry<DuckVariant>> ENTRY_CODEC = RegistryFixedCodec.of(PromenadeRegistryKeys.DUCK_VARIANT);
-    public static final PacketCodec<RegistryByteBuf, RegistryEntry<DuckVariant>> ENTRY_PACKET_CODEC = PacketCodecs.registryEntry(PromenadeRegistryKeys.DUCK_VARIANT);
+	public static final Codec<RegistryEntry<DuckVariant>> ENTRY_CODEC = RegistryFixedCodec.of(PromenadeRegistryKeys.DUCK_VARIANT);
+	public static final PacketCodec<RegistryByteBuf, RegistryEntry<DuckVariant>> ENTRY_PACKET_CODEC = PacketCodecs.registryEntry(PromenadeRegistryKeys.DUCK_VARIANT);
 
-    public DuckVariant(TextureAssetInfo texture, TextureAssetInfo babyTexture) {
-        this(texture, babyTexture, SpawnConditionSelectors.EMPTY);
-    }
+	public DuckVariant(TextureAssetInfo texture, TextureAssetInfo babyTexture) {
+		this(texture, babyTexture, SpawnConditionSelectors.EMPTY);
+	}
 
-    @Override
-    public List<Selector<SpawnContext, SpawnCondition>> getSelectors() {
-        return this.spawnConditions.selectors();
-    }
+	@Override
+	public List<Selector<SpawnContext, SpawnCondition>> getSelectors() {
+		return this.spawnConditions.selectors();
+	}
 }

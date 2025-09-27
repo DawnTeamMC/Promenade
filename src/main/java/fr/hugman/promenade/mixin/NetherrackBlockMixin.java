@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.mixin;
 
 import fr.hugman.promenade.block.PromenadeBlocks;
@@ -19,42 +30,42 @@ import java.util.Objects;
 
 @Mixin(NetherrackBlock.class)
 public abstract class NetherrackBlockMixin {
-    @Inject(method = "grow", at = @At("HEAD"), cancellable = true)
-    public void promenade$grow(ServerWorld world, Random random, BlockPos pos, BlockState state, CallbackInfo ci) {
-        boolean crimson = false;
-        boolean warped = false;
-        boolean darkAmaranth = false;
+	@Inject(method="grow", at=@At("HEAD"), cancellable=true)
+	public void promenade$grow(ServerWorld world, Random random, BlockPos pos, BlockState state, CallbackInfo ci) {
+		boolean crimson = false;
+		boolean warped = false;
+		boolean darkAmaranth = false;
 
-        for (BlockPos blockPos : BlockPos.iterate(pos.add(-1, -1, -1), pos.add(1, 1, 1))) {
-            BlockState blockState = world.getBlockState(blockPos);
-            if (blockState.isOf(Blocks.WARPED_NYLIUM)) {
-                warped = true;
-            }
+		for (BlockPos blockPos : BlockPos.iterate(pos.add(- 1, - 1, - 1), pos.add(1, 1, 1))) {
+			BlockState blockState = world.getBlockState(blockPos);
+			if (blockState.isOf(Blocks.WARPED_NYLIUM)) {
+				warped = true;
+			}
 
-            if (blockState.isOf(Blocks.CRIMSON_NYLIUM)) {
-                crimson = true;
-            }
+			if (blockState.isOf(Blocks.CRIMSON_NYLIUM)) {
+				crimson = true;
+			}
 
-            if (blockState.isOf(PromenadeBlocks.DARK_AMARANTH_NYLIUM)) {
-                darkAmaranth = true;
-            }
+			if (blockState.isOf(PromenadeBlocks.DARK_AMARANTH_NYLIUM)) {
+				darkAmaranth = true;
+			}
 
-            if (warped && crimson && darkAmaranth) {
-                break;
-            }
-        }
+			if (warped && crimson && darkAmaranth) {
+				break;
+			}
+		}
 
-        if (warped || crimson || darkAmaranth) {
-            BlockState[] options = {
-                    warped ? Blocks.WARPED_NYLIUM.getDefaultState() : null,
-                    crimson ? Blocks.CRIMSON_NYLIUM.getDefaultState() : null,
-                    darkAmaranth ? PromenadeBlocks.DARK_AMARANTH_NYLIUM.getDefaultState() : null
-            };
+		if (warped || crimson || darkAmaranth) {
+			BlockState[] options = {
+					warped ? Blocks.WARPED_NYLIUM.getDefaultState() : null,
+					crimson ? Blocks.CRIMSON_NYLIUM.getDefaultState() : null,
+					darkAmaranth ? PromenadeBlocks.DARK_AMARANTH_NYLIUM.getDefaultState() : null
+			};
 
-            List<BlockState> available = Arrays.stream(options).filter(Objects::nonNull).toList();
-            world.setBlockState(pos, available.get(random.nextInt(available.size())), Block.NOTIFY_ALL);
-        }
+			List<BlockState> available = Arrays.stream(options).filter(Objects::nonNull).toList();
+			world.setBlockState(pos, available.get(random.nextInt(available.size())), Block.NOTIFY_ALL);
+		}
 
-        ci.cancel();
-    }
+		ci.cancel();
+	}
 }

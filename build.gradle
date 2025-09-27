@@ -1,6 +1,7 @@
 plugins {
     id 'fabric-loom' version "${loom_version}"
     id 'org.moddedmc.wiki.toolkit' version '0.2.7'
+    id "com.diffplug.spotless" version "8.0.0"
 }
 
 group = "com.github.hugman"
@@ -20,7 +21,7 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modApi include ("com.terraformersmc:biolith-fabric:${biolith_version}") {
+    modApi include("com.terraformersmc:biolith-fabric:${biolith_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
@@ -88,5 +89,30 @@ wiki {
             root = file('docs')
             exportedAssetNamespaces = ['promenade']
         }
+    }
+}
+
+// Spotless - Java CodeStyle
+spotless {
+    lineEndings = com.diffplug.spotless.LineEnding.UNIX
+
+    java {
+        licenseHeaderFile(rootProject.file("HEADER"))
+        removeUnusedImports()
+        importOrder('java', 'javax', '', 'net.minecraft', 'net.fabricmc', 'fr.hugman')
+        leadingSpacesToTabs()
+        trimTrailingWhitespace()
+    }
+
+    groovyGradle {
+        target 'src/**/*.gradle', '*.gradle', 'gradle/*.gradle'
+        greclipse()
+    }
+
+    // Sort the en_us translation files
+    json {
+        target 'src/**/lang/en_us.json'
+        targetExclude 'src/**/generated/**'
+        gson().indentWithSpaces(2)
     }
 }

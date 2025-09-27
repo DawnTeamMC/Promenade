@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.world.gen.tree.foliage;
 
 import com.mojang.serialization.MapCodec;
@@ -13,69 +24,70 @@ import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
 
 public class MapleFoliagePlacer extends FoliagePlacer {
-    public static final MapCodec<MapleFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance ->
-            MapleFoliagePlacer.fillFoliagePlacerFields(instance).and(
-                    IntProvider.createValidatingCodec(0, 32).optionalFieldOf("height", ConstantIntProvider.create(0)).forGetter(placer -> placer.height)
-            ).apply(instance, MapleFoliagePlacer::new));
+	public static final MapCodec<MapleFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance ->
+			MapleFoliagePlacer.fillFoliagePlacerFields(instance).and(
+					IntProvider.createValidatingCodec(0, 32).optionalFieldOf("height", ConstantIntProvider.create(0)).forGetter(placer -> placer.height)
+			).apply(instance, MapleFoliagePlacer::new));
 
-    protected final IntProvider height;
+	protected final IntProvider height;
 
-    public MapleFoliagePlacer(IntProvider radius, IntProvider offset, IntProvider height) {
-        super(radius, offset);
-        this.height = height;
-    }
+	public MapleFoliagePlacer(IntProvider radius, IntProvider offset, IntProvider height) {
+		super(radius, offset);
+		this.height = height;
+	}
 
-    @Override
-    protected FoliagePlacerType<?> getType() {
-        return PromenadeFoliagePlacerTypes.MAPLE;
-    }
+	@Override
+	protected FoliagePlacerType<?> getType() {
+		return PromenadeFoliagePlacerTypes.MAPLE;
+	}
 
-    @Override
-    protected void generate(TestableWorld world, BlockPlacer placer, Random random, TreeFeatureConfig config, int trunkHeight, TreeNode treeNode, int foliageHeight, int radius, int offset) {
-        var pos = treeNode.getCenter().down(foliageHeight - offset);
+	@Override
+	protected void generate(TestableWorld world, BlockPlacer placer, Random random, TreeFeatureConfig config, int trunkHeight, TreeNode treeNode, int foliageHeight, int radius, int offset) {
+		var pos = treeNode.getCenter().down(foliageHeight - offset);
 
-        var curvature = radius;
+		var curvature = radius;
 
-        radius = Math.max(
-                (foliageHeight + 1) / 2,
-                (foliageHeight + 1) / 2 * (1 + curvature)
-        );
+		radius = Math.max(
+				(foliageHeight + 1) / 2,
+				(foliageHeight + 1) / 2 * (1 + curvature)
+		);
 
-        //TODO: does this support giant trunks?
-        for (int dx = -radius; dx <= radius; dx++) {
-            for (int dz = -radius; dz <= radius; dz++) {
+		//TODO: does this support giant trunks?
+		for (int dx = - radius; dx <= radius; dx++) {
+			for (int dz = - radius; dz <= radius; dz++) {
 
-                int d = Math.abs(dx) + Math.abs(dz);
-                int k = MathHelper.ceil(Math.abs(Math.abs(dx) - Math.abs(dz)));
+				int d = Math.abs(dx) + Math.abs(dz);
+				int k = MathHelper.ceil(Math.abs(Math.abs(dx) - Math.abs(dz)));
 
-                // the further we are from the trunk, the lower the height
-                int y1 = Math.max(0, d - 1);
-                int y2 = Math.min(foliageHeight, foliageHeight - d * curvature - k);
+				// the further we are from the trunk, the lower the height
+				int y1 = Math.max(0, d - 1);
+				int y2 = Math.min(foliageHeight, foliageHeight - d * curvature - k);
 
-                if (y2 <= y1) continue;
+				if (y2 <= y1)
+					continue;
 
-                this.generateColumn(world, placer, config, random, pos, dz, dx, y1, y2);
-            }
-        }
-    }
+				this.generateColumn(world, placer, config, random, pos, dz, dx, y1, y2);
+			}
+		}
+	}
 
-    protected void generateColumn(TestableWorld world, BlockPlacer placer, TreeFeatureConfig config, Random random, BlockPos centerPos, int dx, int dz, int y1, int y2) {
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-        mutable.set(centerPos, dz, y1, dx);
-        for (int y = y1; y < y2; y++) {
-            mutable.move(0, 1, 0);
-            FoliagePlacer.placeFoliageBlock(world, placer, random, config, mutable);
-        }
-    }
+	protected void generateColumn(TestableWorld world, BlockPlacer placer, TreeFeatureConfig config, Random random, BlockPos centerPos, int dx, int dz, int y1, int y2) {
+		BlockPos.Mutable mutable = new BlockPos.Mutable();
+		mutable.set(centerPos, dz, y1, dx);
+		for (int y = y1; y < y2; y++) {
+			mutable.move(0, 1, 0);
+			FoliagePlacer.placeFoliageBlock(world, placer, random, config, mutable);
+		}
+	}
 
-    @Override
-    public int getRandomHeight(Random random, int trunkHeight, TreeFeatureConfig config) {
-        return this.height.get(random);
-    }
+	@Override
+	public int getRandomHeight(Random random, int trunkHeight, TreeFeatureConfig config) {
+		return this.height.get(random);
+	}
 
 
-    @Override
-    protected boolean isInvalidForLeaves(Random random, int dx, int y, int dz, int radius, boolean giantTrunk) {
-        return false;
-    }
+	@Override
+	protected boolean isInvalidForLeaves(Random random, int dx, int y, int dz, int radius, boolean giantTrunk) {
+		return false;
+	}
 }

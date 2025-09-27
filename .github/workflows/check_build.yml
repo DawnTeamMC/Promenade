@@ -10,16 +10,38 @@ on:
     types: [ opened, synchronize, reopened, ready_for_review ]
 
 jobs:
+  spotless:
+    name: Check code style
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ 21 ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup JDK ${{ matrix.java }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+
+      - name: Make Gradle wrapper executable
+        if: ${{ runner.os != 'Windows' }}
+        run: chmod +x ./gradlew
+
+      - name: Run Spotless check
+        run: ./gradlew spotlessCheck
+
   build:
-    if: github.event.pull_request.draft == false
+    name: Build the project (using Java ${{ matrix.java }} on ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    needs: spotless
     strategy:
       matrix:
         java: [ 21 ]
         os: [ ubuntu-latest ]
-    name: Build the project (Java ${{ matrix.java }}, on ${{ matrix.os }}))
-    runs-on: ${{ matrix.os }}
+    if: github.event.pull_request.draft == false
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v2
 

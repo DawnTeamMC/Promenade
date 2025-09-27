@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.client.render.entity;
 
 import fr.hugman.promenade.Promenade;
@@ -15,45 +26,45 @@ import net.minecraft.util.math.MathHelper;
 
 @Environment(EnvType.CLIENT)
 public class LushCreeperRenderer extends MobEntityRenderer<LushCreeperEntity, CreeperEntityRenderState, CreeperEntityModel> {
-    private static final Identifier TEXTURE = Promenade.id("textures/entity/lush_creeper/base.png");
-    private static final Identifier OVERLAY_TEXTURE = Promenade.id("textures/entity/lush_creeper/overlay.png");
+	private static final Identifier TEXTURE = Promenade.id("textures/entity/lush_creeper/base.png");
+	private static final Identifier OVERLAY_TEXTURE = Promenade.id("textures/entity/lush_creeper/overlay.png");
 
-    public LushCreeperRenderer(EntityRendererFactory.Context context) {
-        super(context, new CreeperEntityModel(context.getPart(PromenadeEntityModelLayers.LUSH_CREEPER)), 0.5F);
-        this.addFeature(new CreeperOverlayRenderer<>(this, context.getEntityModels(), PromenadeEntityModelLayers.LUSH_CREEPER_OUTER, OVERLAY_TEXTURE));
-    }
+	public LushCreeperRenderer(EntityRendererFactory.Context context) {
+		super(context, new CreeperEntityModel(context.getPart(PromenadeEntityModelLayers.LUSH_CREEPER)), 0.5F);
+		this.addFeature(new CreeperOverlayRenderer<>(this, context.getEntityModels(), PromenadeEntityModelLayers.LUSH_CREEPER_OUTER, OVERLAY_TEXTURE));
+	}
 
-    @Override
-    public CreeperEntityRenderState createRenderState() {
-        return new CreeperEntityRenderState();
-    }
+	@Override
+	public CreeperEntityRenderState createRenderState() {
+		return new CreeperEntityRenderState();
+	}
 
-    @Override
-    protected void scale(CreeperEntityRenderState creeperEntityRenderState, MatrixStack matrixStack) {
-        float f = creeperEntityRenderState.fuseTime;
-        float g = 1.0F + MathHelper.sin(f * 100.0F) * f * 0.01F;
-        f = MathHelper.clamp(f, 0.0F, 1.0F);
-        f *= f;
-        f *= f;
-        float h = (1.0F + f * 0.4F) * g;
-        float i = (1.0F + f * 0.1F) / g;
-        matrixStack.scale(h, i, h);
-    }
+	@Override
+	protected void scale(CreeperEntityRenderState creeperEntityRenderState, MatrixStack matrixStack) {
+		float f = creeperEntityRenderState.fuseTime;
+		float g = 1.0F + MathHelper.sin(f * 100.0F) * f * 0.01F;
+		f = MathHelper.clamp(f, 0.0F, 1.0F);
+		f *= f;
+		f *= f;
+		float h = (1.0F + f * 0.4F) * g;
+		float i = (1.0F + f * 0.1F) / g;
+		matrixStack.scale(h, i, h);
+	}
 
-    @Override
-    protected float getAnimationCounter(CreeperEntityRenderState state) {
-        float f = state.fuseTime;
-        return (int) (f * 10.0F) % 2 == 0 ? 0.0F : MathHelper.clamp(f, 0.5F, 1.0F);
-    }
+	@Override
+	protected float getAnimationCounter(CreeperEntityRenderState state) {
+		float f = state.fuseTime;
+		return (int) (f * 10.0F) % 2 == 0 ? 0.0F : MathHelper.clamp(f, 0.5F, 1.0F);
+	}
 
-    @Override
-    public Identifier getTexture(CreeperEntityRenderState state) {
-        return TEXTURE;
-    }
+	@Override
+	public Identifier getTexture(CreeperEntityRenderState state) {
+		return TEXTURE;
+	}
 
-    public void updateRenderState(LushCreeperEntity lushCreeper, CreeperEntityRenderState creeperEntityRenderState, float f) {
-        super.updateRenderState(lushCreeper, creeperEntityRenderState, f);
-        creeperEntityRenderState.fuseTime = lushCreeper.getLerpedFuseTime(f);
-        creeperEntityRenderState.charged = lushCreeper.isCharged();
-    }
+	public void updateRenderState(LushCreeperEntity lushCreeper, CreeperEntityRenderState creeperEntityRenderState, float f) {
+		super.updateRenderState(lushCreeper, creeperEntityRenderState, f);
+		creeperEntityRenderState.fuseTime = lushCreeper.getLerpedFuseTime(f);
+		creeperEntityRenderState.charged = lushCreeper.isCharged();
+	}
 }
