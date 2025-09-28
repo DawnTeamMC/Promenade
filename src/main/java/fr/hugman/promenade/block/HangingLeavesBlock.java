@@ -81,7 +81,7 @@ public class HangingLeavesBlock extends Block implements Waterloggable {
 
 	@Override
 	protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
-		if (direction == Direction.UP && ! this.canPlaceAt(state, world, pos)) {
+		if (direction == Direction.UP && !this.canPlaceAt(state, world, pos)) {
 			return Blocks.AIR.getDefaultState();
 		}
 		if (state.get(WATERLOGGED)) {

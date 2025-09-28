@@ -97,11 +97,11 @@ public abstract class AbstractFacingPlantStemBlock extends AbstractFacingPlantPa
 			Random random
 	) {
 		var facing = state.get(FACING);
-		if (direction == facing.getOpposite() && ! state.canPlaceAt(world, pos)) {
+		if (direction == facing.getOpposite() && !state.canPlaceAt(world, pos)) {
 			tickView.scheduleBlockTick(pos, this, 1);
 		}
 
-		if (direction != facing || ! ((neighborState.isOf(this) || neighborState.isOf(this.getPlant())) && neighborState.get(FACING) == facing)) {
+		if (direction != facing || !((neighborState.isOf(this) || neighborState.isOf(this.getPlant())) && neighborState.get(FACING) == facing)) {
 			if (this.tickWater) {
 				tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
 			}

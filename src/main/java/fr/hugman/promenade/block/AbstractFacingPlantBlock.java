@@ -56,12 +56,12 @@ public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBl
 			Random random
 	) {
 		var facing = state.get(FACING);
-		if (direction == facing.getOpposite() && ! state.canPlaceAt(world, pos)) {
+		if (direction == facing.getOpposite() && !state.canPlaceAt(world, pos)) {
 			tickView.scheduleBlockTick(pos, this, 1);
 		}
 
 		AbstractFacingPlantStemBlock stem = this.getStem();
-		if (direction == facing && ! ((neighborState.isOf(this) || neighborState.isOf(stem)) && neighborState.get(FACING) == facing)) {
+		if (direction == facing && !((neighborState.isOf(this) || neighborState.isOf(stem)) && neighborState.get(FACING) == facing)) {
 			return this.copyState(state, stem.getRandomGrowthState(random));
 		} else {
 			if (this.tickWater) {
@@ -105,7 +105,7 @@ public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBl
 	@Override
 	protected boolean canReplace(BlockState state, ItemPlacementContext context) {
 		boolean bl = super.canReplace(state, context);
-		return (! bl || ! context.getStack().isOf(this.getStem().asItem())) && bl;
+		return (!bl || !context.getStack().isOf(this.getStem().asItem())) && bl;
 	}
 
 	@Override

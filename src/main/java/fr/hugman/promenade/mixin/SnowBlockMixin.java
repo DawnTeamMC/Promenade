@@ -41,9 +41,9 @@ public class SnowBlockMixin {
 	@Final
 	public static IntProperty LAYERS;
 
-	@Inject(method="randomTick", at=@At("HEAD"), cancellable=true)
+	@Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
 	private void promenade$randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random, CallbackInfo ci) {
-		if (! world.getGameRules().getBoolean(PromenadeGameRules.DO_BLOCKS_GET_SNOWY)) {
+		if (!world.getGameRules().getBoolean(PromenadeGameRules.DO_BLOCKS_GET_SNOWY)) {
 			return;
 		}
 		if (state.get(LAYERS) == 8 && world.getBlockState(pos.up()).isOf((SnowBlock) (Object) this)) {

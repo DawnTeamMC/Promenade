@@ -131,9 +131,9 @@ public class CapybaraBrain {
 		@Override
 		protected boolean shouldRun(ServerWorld world, CapybaraEntity capybara) {
 			return capybara.getLastStateTickDelta() >= this.lastPoseTickDelta &&
-					! capybara.isLeashed() &&
+					!capybara.isLeashed() &&
 					capybara.isOnGround() &&
-					! capybara.hasControllingPassenger();
+					!capybara.hasControllingPassenger();
 		}
 
 		@Override
@@ -162,9 +162,9 @@ public class CapybaraBrain {
 
 		protected boolean shouldRun(ServerWorld serverWorld, CapybaraEntity capybara) {
 			return capybara.getLastStateTickDelta() >= this.lastPoseTickDelta &&
-					! capybara.mightBeLeashed() &&
+					!capybara.mightBeLeashed() &&
 					capybara.isOnGround() &&
-					! capybara.hasControllingPassenger();
+					!capybara.hasControllingPassenger();
 		}
 
 		protected boolean shouldKeepRunning(ServerWorld serverWorld, CapybaraEntity capybara, long l) {

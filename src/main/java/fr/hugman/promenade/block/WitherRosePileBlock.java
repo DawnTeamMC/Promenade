@@ -51,7 +51,7 @@ public class WitherRosePileBlock extends PileBlock {
 	@Override
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random rand) {
-		for (int i = 0; i < 5; ++ i) {
+		for (int i = 0; i < 5; ++i) {
 			if (rand.nextBoolean()) {
 				world.addParticleClient(ParticleTypes.SMOKE, (double) pos.getX() + (double) (rand.nextInt(17) / 16), (double) pos.getY() + (0.5D - (double) rand.nextFloat()), (double) pos.getZ() + (double) (rand.nextInt(17) / 16), 0.0D, 0.0D, 0.0D);
 			}
@@ -63,7 +63,7 @@ public class WitherRosePileBlock extends PileBlock {
 		if (world instanceof ServerWorld serverWorld
 				&& world.getDifficulty() != Difficulty.PEACEFUL
 				&& entity instanceof LivingEntity livingEntity
-				&& ! livingEntity.isInvulnerableTo(serverWorld, world.getDamageSources().wither())) {
+				&& !livingEntity.isInvulnerableTo(serverWorld, world.getDamageSources().wither())) {
 			livingEntity.addStatusEffect(this.getContactEffect());
 		}
 		super.onEntityCollision(state, world, pos, entity, handler);

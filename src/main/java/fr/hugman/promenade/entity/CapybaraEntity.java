@@ -154,7 +154,7 @@ public class CapybaraEntity extends AnimalEntity {
 
 	@Override
 	public void travel(Vec3d movementInput) {
-		if (! this.isAlive()) {
+		if (!this.isAlive()) {
 			return;
 		}
 		if (this.isStationary() && this.isOnGround()) {
@@ -190,7 +190,7 @@ public class CapybaraEntity extends AnimalEntity {
 
 		@Override
 		public void tick() {
-			if (! CapybaraEntity.this.isStationary()) {
+			if (!CapybaraEntity.this.isStationary()) {
 				super.tick();
 			}
 		}
@@ -235,7 +235,7 @@ public class CapybaraEntity extends AnimalEntity {
 	}
 
 	public boolean canFallToSleep() {
-		return this.isStanding() && ! this.isPanicking() && ! this.isFarting();
+		return this.isStanding() && !this.isPanicking() && !this.isFarting();
 	}
 
 	public long getFallToSleepLength() {
@@ -415,7 +415,7 @@ public class CapybaraEntity extends AnimalEntity {
 
 	@Environment(EnvType.CLIENT)
 	public boolean canAngleHead() {
-		return ! this.isFarting() && ! this.isAsleep() && ! this.isFallingToSleep() && ! this.isWakingUp();
+		return !this.isFarting() && !this.isAsleep() && !this.isFallingToSleep() && !this.isWakingUp();
 	}
 
 	@Environment(EnvType.CLIENT)
@@ -496,7 +496,7 @@ public class CapybaraEntity extends AnimalEntity {
 		builder.add(VARIANT, Variants.getOrDefaultOrThrow(this.getRegistryManager(), CapybaraVariants.DEFAULT));
 		builder.add(FART_CHANCE, 0.0f);
 		builder.add(STATE, State.IDLING);
-		builder.add(LAST_STATE_TICK, - WAKE_UP_LENGTH);
+		builder.add(LAST_STATE_TICK, -WAKE_UP_LENGTH);
 	}
 
 	@Override

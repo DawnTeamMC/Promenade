@@ -46,8 +46,8 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 			this.generateSquare(world, placer, random, config, blockPos, i, 2, bl);
 		this.generateSquare(world, placer, random, config, blockPos, i + 1, 1, bl);
 		this.generateSquare(world, placer, random, config, blockPos, i + 2, 0, bl);
-		this.generateSquare(world, placer, random, config, blockPos, i + 2, - 1, bl);
-		this.generateSquare(world, placer, random, config, blockPos, i + 1, - 2, bl);
+		this.generateSquare(world, placer, random, config, blockPos, i + 2, -1, bl);
+		this.generateSquare(world, placer, random, config, blockPos, i + 1, -2, bl);
 	}
 
 	@Override
@@ -90,7 +90,7 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 			if (dx == radius - 1 && dz == radius - 2)
 				return false;
 			return d != (radius - 1) * 2 || dx != dz;
-		} else if (y == - 1) {
+		} else if (y == -1) {
 			if (d == 0)
 				return false;
 			if (d == 1)
@@ -104,7 +104,7 @@ public class PalmFoliagePlacer extends FoliagePlacer {
 
 			// Corner leafs
 			return d != (radius - 1) * 2 || dx != dz;
-		} else if (y == - 2) {
+		} else if (y == -2) {
 			// Corner leafs
 			return d != radius * 2 || dx != dz;
 		}

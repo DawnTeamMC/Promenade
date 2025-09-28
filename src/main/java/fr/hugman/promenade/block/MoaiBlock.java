@@ -105,7 +105,7 @@ public class MoaiBlock extends HorizontalFacingBlock {
 	protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
 		var type = state.get(TYPE);
 		if ((type == MoaiType.TOP && direction == Direction.DOWN) || (type == MoaiType.BOTTOM && direction == Direction.UP)) {
-			if (! (neighborState.isOf(this) && neighborState.get(TYPE) == (type == MoaiType.TOP ? MoaiType.BOTTOM : MoaiType.TOP))) {
+			if (!(neighborState.isOf(this) && neighborState.get(TYPE) == (type == MoaiType.TOP ? MoaiType.BOTTOM : MoaiType.TOP))) {
 				return state.with(TYPE, MoaiType.SINGLE);
 			}
 		}

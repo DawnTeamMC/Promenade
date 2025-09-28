@@ -32,7 +32,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
 		int radius = config.radius().get(random);
 		BlockPos pos = context.getOrigin();
 		for (; pos.getY() > world.getBottomY() + radius; pos = pos.down()) {
-			if (! world.isAir(pos)) {
+			if (!world.isAir(pos)) {
 				if (config.replaceableBlocks().test(world, pos)) {
 					break;
 				}
@@ -41,17 +41,17 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
 		if (pos.getY() <= world.getBottomY() + radius) {
 			return false;
 		} else {
-			for (int i = 0; i < 3; ++ i) {
+			for (int i = 0; i < 3; ++i) {
 				int j = random.nextInt(radius);
 				int k = random.nextInt(radius);
 				int l = random.nextInt(radius);
 				float f = (float) (j + k + l) * 0.333F + 0.5F;
-				for (BlockPos pos2 : BlockPos.iterate(pos.add(- j, - k, - l), pos.add(j, k, l))) {
+				for (BlockPos pos2 : BlockPos.iterate(pos.add(-j, -k, -l), pos.add(j, k, l))) {
 					if (pos2.getSquaredDistance(pos) <= (double) (f * f)) {
 						this.setBlockState(world, pos2, config.stateProvider().get(random, pos));
 					}
 				}
-				pos = pos.add(- 1 + random.nextInt(2), - random.nextInt(2), - 1 + random.nextInt(2));
+				pos = pos.add(-1 + random.nextInt(2), -random.nextInt(2), -1 + random.nextInt(2));
 			}
 			return true;
 		}

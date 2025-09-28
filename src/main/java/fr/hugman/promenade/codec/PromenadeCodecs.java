@@ -17,7 +17,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 
 public class PromenadeCodecs {
-	public static final Codec<Float> SAMPLED_NOISE_VALUE = rangedInclusiveFloat(- 1.0F, 1.0F);
+	public static final Codec<Float> SAMPLED_NOISE_VALUE = rangedInclusiveFloat(-1.0F, 1.0F);
 
 	private static Codec<Float> rangedInclusiveFloat(float minInclusive, float maxInclusive, Function<Float, String> messageFactory) {
 		return Codec.FLOAT.validate(

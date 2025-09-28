@@ -54,8 +54,8 @@ public class MapleFoliagePlacer extends FoliagePlacer {
 		);
 
 		//TODO: does this support giant trunks?
-		for (int dx = - radius; dx <= radius; dx++) {
-			for (int dz = - radius; dz <= radius; dz++) {
+		for (int dx = -radius; dx <= radius; dx++) {
+			for (int dz = -radius; dz <= radius; dz++) {
 
 				int d = Math.abs(dx) + Math.abs(dz);
 				int k = MathHelper.ceil(Math.abs(Math.abs(dx) - Math.abs(dz)));

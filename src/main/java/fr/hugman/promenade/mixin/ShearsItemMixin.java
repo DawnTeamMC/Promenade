@@ -34,12 +34,12 @@ import fr.hugman.promenade.block.AbstractFacingPlantStemBlock;
 
 @Mixin(ShearsItem.class)
 public class ShearsItemMixin {
-	@Inject(method="useOnBlock", at=@At("HEAD"), cancellable=true)
+	@Inject(method = "useOnBlock", at = @At("HEAD"), cancellable = true)
 	public void promenade$useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
 		World world = context.getWorld();
 		BlockPos blockPos = context.getBlockPos();
 		BlockState blockState = world.getBlockState(blockPos);
-		if (blockState.getBlock() instanceof AbstractFacingPlantStemBlock stem && ! stem.hasMaxAge(blockState)) {
+		if (blockState.getBlock() instanceof AbstractFacingPlantStemBlock stem && !stem.hasMaxAge(blockState)) {
 			PlayerEntity playerEntity = context.getPlayer();
 			ItemStack itemStack = context.getStack();
 			if (playerEntity instanceof ServerPlayerEntity) {

@@ -66,7 +66,7 @@ public class StrippedMapleLogBlock extends PillarBlock {
 				world.playSound(player, player.getX(), player.getY(), player.getZ(), SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.NEUTRAL, 1.0F, 1.0F);
 				if (stack.isEmpty()) {
 					player.setStackInHand(hand, new ItemStack(PromenadeItems.MAPLE_SYRUP_BOTTLE));
-				} else if (! player.getInventory().insertStack(new ItemStack(PromenadeItems.MAPLE_SYRUP_BOTTLE))) {
+				} else if (!player.getInventory().insertStack(new ItemStack(PromenadeItems.MAPLE_SYRUP_BOTTLE))) {
 					player.dropItem(new ItemStack(PromenadeItems.MAPLE_SYRUP_BOTTLE), false);
 				}
 				world.emitGameEvent(player, GameEvent.FLUID_PICKUP, pos);

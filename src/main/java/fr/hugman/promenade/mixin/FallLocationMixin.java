@@ -24,7 +24,7 @@ import fr.hugman.promenade.entity.damage.PromenadeFallLocations;
 
 @Mixin(FallLocation.class)
 public class FallLocationMixin {
-	@Inject(method="fromBlockState", at=@At("HEAD"), cancellable=true)
+	@Inject(method = "fromBlockState", at = @At("HEAD"), cancellable = true)
 	private static void promenade$fromBlockState(BlockState state, CallbackInfoReturnable<FallLocation> cir) {
 		if (state.isOf(PromenadeBlocks.COILED_VINES) || state.isOf(PromenadeBlocks.COILED_VINES_PLANT)) {
 			cir.setReturnValue(PromenadeFallLocations.COILED_VINES);

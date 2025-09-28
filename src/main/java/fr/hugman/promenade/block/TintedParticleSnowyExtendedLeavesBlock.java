@@ -60,13 +60,13 @@ public class TintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBlock 
 		if (state == null)
 			return null;
 		BlockState stateBelow = context.getWorld().getBlockState(context.getBlockPos().down());
-		return state.with(BOTTOM, ! isSnow(stateBelow));
+		return state.with(BOTTOM, !isSnow(stateBelow));
 	}
 
 	@Override
 	protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
 		BlockState stateBelow = world.getBlockState(pos.down());
-		return super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random).with(BOTTOM, ! isSnow(stateBelow));
+		return super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random).with(BOTTOM, !isSnow(stateBelow));
 	}
 
 	public static boolean isSnow(BlockState state) {

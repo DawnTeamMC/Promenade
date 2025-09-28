@@ -57,7 +57,7 @@ public abstract class ExtendedLeavesBlock extends Block implements Waterloggable
 
 	@Override
 	public boolean hasRandomTicks(BlockState state) {
-		return state.get(DISTANCE) == MAX_DISTANCE && ! state.get(PERSISTENT);
+		return state.get(DISTANCE) == MAX_DISTANCE && !state.get(PERSISTENT);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public abstract class ExtendedLeavesBlock extends Block implements Waterloggable
 	}
 
 	protected boolean shouldDecay(BlockState state) {
-		return ! state.get(PERSISTENT) && state.get(DISTANCE) == MAX_DISTANCE;
+		return !state.get(PERSISTENT) && state.get(DISTANCE) == MAX_DISTANCE;
 	}
 
 	@Override
@@ -139,7 +139,7 @@ public abstract class ExtendedLeavesBlock extends Block implements Waterloggable
 	private static void spawnWaterParticle(World world, BlockPos pos, Random random, BlockState state, BlockPos posBelow) {
 		if (world.hasRain(pos.up())) {
 			if (random.nextInt(15) == 1) {
-				if (! state.isOpaque() || ! state.isSideSolidFullSquare(world, posBelow, Direction.UP)) {
+				if (!state.isOpaque() || !state.isSideSolidFullSquare(world, posBelow, Direction.UP)) {
 					ParticleUtil.spawnParticle(world, pos, random, ParticleTypes.DRIPPING_WATER);
 				}
 			}
@@ -147,8 +147,8 @@ public abstract class ExtendedLeavesBlock extends Block implements Waterloggable
 	}
 
 	private void spawnLeafParticle(World world, BlockPos pos, Random random, BlockState state, BlockPos posBelow) {
-		if (! (random.nextFloat() >= this.leafParticleChance)) {
-			if (! isFaceFullSquare(state.getCollisionShape(world, posBelow), Direction.UP)) {
+		if (!(random.nextFloat() >= this.leafParticleChance)) {
+			if (!isFaceFullSquare(state.getCollisionShape(world, posBelow), Direction.UP)) {
 				this.spawnLeafParticle(world, pos, random);
 			}
 		}

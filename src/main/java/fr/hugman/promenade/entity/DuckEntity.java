@@ -110,10 +110,10 @@ public class DuckEntity extends AnimalEntity {
 	@Override
 	public void tickMovement() {
 		super.tickMovement();
-		boolean isAirBorne = ! this.isOnGround() && ! this.isTouchingWater();
+		boolean isAirBorne = !this.isOnGround() && !this.isTouchingWater();
 		this.prevFlapProgress = this.flapProgress;
 		this.prevMaxWingDeviation = this.maxWingDeviation;
-		this.maxWingDeviation = (float) ((double) this.maxWingDeviation + (double) (! isAirBorne ? - 1 : 4) * 0.3D);
+		this.maxWingDeviation = (float) ((double) this.maxWingDeviation + (double) (!isAirBorne ? -1 : 4) * 0.3D);
 		this.maxWingDeviation = MathHelper.clamp(this.maxWingDeviation, 0.0F, 1.0F);
 		if (isAirBorne && this.wingRotDelta < 0.55F) {
 			this.wingRotDelta = 0.55F;

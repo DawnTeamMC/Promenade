@@ -44,7 +44,7 @@ public class PromenadeBiomes {
 
 	public static final RegistryKey<Biome> DARK_AMARANTH_FOREST = of("dark_amaranth_forest");
 
-	public static final MultiNoiseUtil.NoiseHypercube DEFAULT_DARK_AMARANTH_FOREST_HYPERCUBE = MultiNoiseUtil.createNoiseHypercube(0.15f, - 0.3f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+	public static final MultiNoiseUtil.NoiseHypercube DEFAULT_DARK_AMARANTH_FOREST_HYPERCUBE = MultiNoiseUtil.createNoiseHypercube(0.15f, -0.3f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
 
 	private static RegistryKey<Biome> of(String path) {
 		return RegistryKey.of(RegistryKeys.BIOME, Promenade.id(path));
@@ -106,26 +106,26 @@ public class PromenadeBiomes {
 			// is immune
 			return false;
 		}
-		if (! biome.isIn(PromenadeBiomeTags.CAN_FREEZE_DURING_SNOWFALL) || entity.isSpectator()) {
+		if (!biome.isIn(PromenadeBiomeTags.CAN_FREEZE_DURING_SNOWFALL) || entity.isSpectator()) {
 			// is not the correct biome
 			// is spectator
 			return false;
 		}
-		if (! entity.getEntityWorld().isRaining()) {
+		if (!entity.getEntityWorld().isRaining()) {
 			// is not snowing
 			return false;
 		}
 		boolean exposedToSky = entity.getEntityWorld().getLightLevel(LightType.SKY, entity.getBlockPos()) >= 5;
 		boolean lightSourceNear = entity.getEntityWorld().getLightLevel(LightType.BLOCK, entity.getBlockPos()) >= 5;
-		if (lightSourceNear || ! exposedToSky) {
+		if (lightSourceNear || !exposedToSky) {
 			// is near a light source
 			// is not exposed much to sky
 			return false;
 		}
 		// wear any leather piece
-		return ! entity.getEquippedStack(EquipmentSlot.HEAD).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
-				! entity.getEquippedStack(EquipmentSlot.CHEST).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
-				! entity.getEquippedStack(EquipmentSlot.LEGS).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
-				! entity.getEquippedStack(EquipmentSlot.FEET).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES);
+		return !entity.getEquippedStack(EquipmentSlot.HEAD).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
+				!entity.getEquippedStack(EquipmentSlot.CHEST).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
+				!entity.getEquippedStack(EquipmentSlot.LEGS).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES) &&
+				!entity.getEquippedStack(EquipmentSlot.FEET).isIn(ItemTags.FREEZE_IMMUNE_WEARABLES);
 	}
 }

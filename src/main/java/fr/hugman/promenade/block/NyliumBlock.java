@@ -53,7 +53,7 @@ public class NyliumBlock extends Block implements Fertilizable {
 
 	@Override
 	protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (! stayAlive(state, world, pos)) {
+		if (!stayAlive(state, world, pos)) {
 			//TODO: make this configurable
 			world.setBlockState(pos, Blocks.NETHERRACK.getDefaultState());
 		}

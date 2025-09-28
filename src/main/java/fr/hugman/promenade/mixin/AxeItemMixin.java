@@ -28,7 +28,7 @@ import fr.hugman.promenade.block.StrippedMapleLogBlock;
 
 @Mixin(AxeItem.class)
 public class AxeItemMixin {
-	@Inject(method="getStrippedState", at=@At("RETURN"), cancellable=true)
+	@Inject(method = "getStrippedState", at = @At("RETURN"), cancellable = true)
 	private void promenade$appendCustomStrip(BlockState state, CallbackInfoReturnable<Optional<BlockState>> cir) {
 		if (state.getBlock() == PromenadeBlocks.MAPLE_LOG) {
 			// if the log is natural, it has a 10% chance to be stripped into a stripped log with the state "has_syrup" set to true

@@ -32,13 +32,13 @@ import fr.hugman.promenade.block.PromenadeBlocks;
 
 @Mixin(NetherrackBlock.class)
 public abstract class NetherrackBlockMixin {
-	@Inject(method="grow", at=@At("HEAD"), cancellable=true)
+	@Inject(method = "grow", at = @At("HEAD"), cancellable = true)
 	public void promenade$grow(ServerWorld world, Random random, BlockPos pos, BlockState state, CallbackInfo ci) {
 		boolean crimson = false;
 		boolean warped = false;
 		boolean darkAmaranth = false;
 
-		for (BlockPos blockPos : BlockPos.iterate(pos.add(- 1, - 1, - 1), pos.add(1, 1, 1))) {
+		for (BlockPos blockPos : BlockPos.iterate(pos.add(-1, -1, -1), pos.add(1, 1, 1))) {
 			BlockState blockState = world.getBlockState(blockPos);
 			if (blockState.isOf(Blocks.WARPED_NYLIUM)) {
 				warped = true;

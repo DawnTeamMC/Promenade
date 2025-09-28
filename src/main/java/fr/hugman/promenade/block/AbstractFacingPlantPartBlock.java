@@ -63,7 +63,7 @@ public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
 		for (var direction : placementDirections) {
 			var opposite = direction.getOpposite();
 			var otherState = ctx.getWorld().getBlockState(ctx.getBlockPos().offset(opposite));
-			var newState = ! otherState.isOf(this.getStem()) && ! otherState.isOf(this.getPlant())
+			var newState = !otherState.isOf(this.getStem()) && !otherState.isOf(this.getPlant())
 					? this.getRandomGrowthState(ctx.getWorld().random)
 					: this.getPlant().getDefaultState();
 			if (newState.contains(FACING)) {
@@ -85,7 +85,7 @@ public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
 		var facing = state.get(FACING);
 		var blockPos = pos.offset(facing.getOpposite());
 		var blockState = world.getBlockState(blockPos);
-		if (! this.canAttachTo(blockState))
+		if (!this.canAttachTo(blockState))
 			return false;
 		if (blockState.isOf(this.getStem()) || blockState.isOf(this.getPlant())) {
 			if (blockState.contains(FACING) && blockState.get(FACING) == facing) {
@@ -97,7 +97,7 @@ public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
 
 	@Override
 	protected void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-		if (! state.canPlaceAt(world, pos)) {
+		if (!state.canPlaceAt(world, pos)) {
 			world.breakBlock(pos, true);
 		}
 	}

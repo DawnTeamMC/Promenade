@@ -66,7 +66,7 @@ public class LeapingTrunkPlacer extends TrunkPlacer {
 		int k = j;
 
 		setToDirt(world, replacer, random, mutable, config);
-		for (int i = 0; i < height; ++ i) {
+		for (int i = 0; i < height; ++i) {
 			mutable.move(Direction.UP);
 			if (k <= 0) {
 				j += this.straightDifference.get(random);
