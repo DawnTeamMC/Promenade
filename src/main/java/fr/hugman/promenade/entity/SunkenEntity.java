@@ -11,12 +11,10 @@
  */
 package fr.hugman.promenade.entity;
 
-import fr.hugman.promenade.component.PromenadeComponentTypes;
-import fr.hugman.promenade.entity.data.PromenadeTrackedData;
-import fr.hugman.promenade.entity.variant.SunkenVariant;
-import fr.hugman.promenade.entity.variant.SunkenVariants;
-import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import fr.hugman.promenade.sound.PromenadeSoundEvents;
+import java.util.Optional;
+
+import javax.annotation.Nullable;
+
 import net.minecraft.component.ComponentType;
 import net.minecraft.component.ComponentsAccess;
 import net.minecraft.entity.*;
@@ -56,8 +54,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.*;
 
-import javax.annotation.Nullable;
-import java.util.Optional;
+import fr.hugman.promenade.component.PromenadeComponentTypes;
+import fr.hugman.promenade.entity.data.PromenadeTrackedData;
+import fr.hugman.promenade.entity.variant.SunkenVariant;
+import fr.hugman.promenade.entity.variant.SunkenVariants;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import fr.hugman.promenade.sound.PromenadeSoundEvents;
 
 public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser {
 	private static final TrackedData<RegistryEntry<SunkenVariant>> VARIANT = DataTracker.registerData(SunkenEntity.class, PromenadeTrackedData.SUNKEN_VARIANT);

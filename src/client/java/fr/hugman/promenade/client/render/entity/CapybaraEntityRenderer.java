@@ -11,16 +11,18 @@
  */
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.client.render.entity.model.CapybaraEntityModel;
-import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
-import fr.hugman.promenade.client.render.entity.state.CapybaraEntityRenderState;
-import fr.hugman.promenade.entity.CapybaraEntity;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.AgeableMobEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.texture.MissingSprite;
 import net.minecraft.util.Identifier;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+import fr.hugman.promenade.client.render.entity.model.CapybaraEntityModel;
+import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
+import fr.hugman.promenade.client.render.entity.state.CapybaraEntityRenderState;
+import fr.hugman.promenade.entity.CapybaraEntity;
 
 @Environment(EnvType.CLIENT)
 public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMobEntityRenderer<E, CapybaraEntityRenderState, CapybaraEntityModel> {

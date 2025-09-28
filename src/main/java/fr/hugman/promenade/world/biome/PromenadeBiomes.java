@@ -13,10 +13,7 @@ package fr.hugman.promenade.world.biome;
 
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.config.PromenadeConfig;
-import fr.hugman.promenade.tag.PromenadeBiomeTags;
+
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
@@ -33,6 +30,11 @@ import net.minecraft.world.gen.YOffset;
 import net.minecraft.world.gen.noise.NoiseParametersKeys;
 import net.minecraft.world.gen.surfacebuilder.MaterialRules;
 import net.minecraft.world.gen.surfacebuilder.VanillaSurfaceRules;
+
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.config.PromenadeConfig;
+import fr.hugman.promenade.tag.PromenadeBiomeTags;
 
 public class PromenadeBiomes {
 	public static final RegistryKey<Biome> BLUSH_SAKURA_GROVE = of("blush_sakura_grove");

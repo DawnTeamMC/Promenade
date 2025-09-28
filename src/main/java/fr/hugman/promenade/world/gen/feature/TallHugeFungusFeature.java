@@ -12,6 +12,7 @@
 package fr.hugman.promenade.world.gen.feature;
 
 import com.mojang.serialization.Codec;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

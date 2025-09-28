@@ -11,10 +11,8 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.world.gen.structure.PromenadeStructureKeys;
-import fr.hugman.promenade.world.gen.structure.PromenadeStructureSetKeys;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -22,7 +20,11 @@ import net.minecraft.structure.StructureSet;
 import net.minecraft.world.gen.chunk.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.gen.chunk.placement.SpreadType;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.world.gen.structure.PromenadeStructureKeys;
+import fr.hugman.promenade.world.gen.structure.PromenadeStructureSetKeys;
 
 public class PromenadeStructureSetProvider extends FabricDynamicRegistryProvider {
 	public PromenadeStructureSetProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {

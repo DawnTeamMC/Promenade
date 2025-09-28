@@ -11,13 +11,14 @@
  */
 package fr.hugman.promenade.world.gen.feature;
 
-import fr.hugman.promenade.Promenade;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.minecraft.world.gen.feature.HugeFungusFeatureConfig;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeFeatures {
 	public static final Feature<HugeFungusFeatureConfig> TALL_HUGE_FUNGUS = of("tall_huge_fungus", new TallHugeFungusFeature(HugeFungusFeatureConfig.CODEC));

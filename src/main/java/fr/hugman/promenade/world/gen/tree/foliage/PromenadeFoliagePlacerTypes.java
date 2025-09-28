@@ -12,11 +12,13 @@
 package fr.hugman.promenade.world.gen.tree.foliage;
 
 import com.mojang.serialization.MapCodec;
-import fr.hugman.promenade.Promenade;
+
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.world.gen.foliage.FoliagePlacer;
 import net.minecraft.world.gen.foliage.FoliagePlacerType;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeFoliagePlacerTypes {
 	public static final FoliagePlacerType<PalmFoliagePlacer> PALM = register("palm", PalmFoliagePlacer.CODEC);

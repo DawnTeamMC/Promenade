@@ -12,6 +12,8 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.block.*;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
@@ -27,7 +29,6 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
-import org.jetbrains.annotations.Nullable;
 
 public class HangingLeavesBlock extends Block implements Waterloggable {
 	private static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;

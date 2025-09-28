@@ -11,12 +11,8 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.entity.variant.DuckVariant;
-import fr.hugman.promenade.entity.variant.DuckVariants;
-import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import fr.hugman.promenade.tag.PromenadeBiomeTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.entity.spawn.SpawnConditionSelectors;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -26,7 +22,13 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.AssetInfo.TextureAssetInfo;
 import net.minecraft.world.biome.Biome;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.entity.variant.DuckVariant;
+import fr.hugman.promenade.entity.variant.DuckVariants;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import fr.hugman.promenade.tag.PromenadeBiomeTags;
 
 //TODO: a generic class for other devs
 public class PromenadeDuckVariantProvider extends FabricDynamicRegistryProvider {

@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.block.property;
 
-import fr.hugman.promenade.block.MoaiType;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.state.property.IntProperty;
+
+import fr.hugman.promenade.block.MoaiType;
 
 public class PromenadeBlockProperties {
 	public static final BooleanProperty NATURAL = BooleanProperty.of("natural");

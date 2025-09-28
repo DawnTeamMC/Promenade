@@ -11,11 +11,10 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.entity.PromenadeEntityTypes;
-import fr.hugman.promenade.item.PromenadeItems;
-import fr.hugman.promenade.loot.PromenadeLootTables;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiConsumer;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
@@ -53,9 +52,12 @@ import net.minecraft.registry.tag.EntityTypeTags;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.registry.tag.ItemTags;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.BiConsumer;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
+import fr.hugman.promenade.item.PromenadeItems;
+import fr.hugman.promenade.loot.PromenadeLootTables;
 
 public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvider {
 	private final RegistryWrapper.WrapperLookup registries;

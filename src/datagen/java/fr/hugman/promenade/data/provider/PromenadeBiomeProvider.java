@@ -11,12 +11,10 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.entity.PromenadeEntityTypes;
-import fr.hugman.promenade.sound.PromenadeSoundEvents;
-import fr.hugman.promenade.world.biome.PromenadeBiomes;
-import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import java.util.concurrent.CompletableFuture;
+
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.particle.ParticleTypes;
@@ -27,9 +25,14 @@ import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.carver.ConfiguredCarver;
 import net.minecraft.world.gen.carver.ConfiguredCarvers;
 import net.minecraft.world.gen.feature.*;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
+import fr.hugman.promenade.sound.PromenadeSoundEvents;
+import fr.hugman.promenade.world.biome.PromenadeBiomes;
+import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 
 public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 	public PromenadeBiomeProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {

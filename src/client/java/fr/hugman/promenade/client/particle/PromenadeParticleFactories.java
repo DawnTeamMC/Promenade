@@ -11,11 +11,13 @@
  */
 package fr.hugman.promenade.client.particle;
 
-import fr.hugman.promenade.particle.PromenadeParticleTypes;
+import net.minecraft.client.particle.LeavesParticle;
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.minecraft.client.particle.LeavesParticle;
+
+import fr.hugman.promenade.particle.PromenadeParticleTypes;
 
 @Environment(EnvType.CLIENT)
 public class PromenadeParticleFactories {

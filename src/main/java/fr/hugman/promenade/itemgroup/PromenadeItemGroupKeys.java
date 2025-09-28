@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.itemgroup;
 
-import fr.hugman.promenade.Promenade;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeItemGroupKeys {
 	public static final RegistryKey<ItemGroup> PROMENADE = of("promenade");

@@ -11,13 +11,15 @@
  */
 package fr.hugman.promenade.client.render.entity.model;
 
-import fr.hugman.promenade.client.render.entity.state.SunkenEntityRenderState;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModelPartNames;
 import net.minecraft.client.render.entity.model.SkeletonEntityModel;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+import fr.hugman.promenade.client.render.entity.state.SunkenEntityRenderState;
 
 @Environment(EnvType.CLIENT)
 public class SunkenEntityModel extends SkeletonEntityModel<SunkenEntityRenderState> {

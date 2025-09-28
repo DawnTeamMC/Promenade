@@ -13,6 +13,7 @@ package fr.hugman.promenade.block.snowy;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.block.Block;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryCodecs;

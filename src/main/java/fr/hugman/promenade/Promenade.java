@@ -12,6 +12,13 @@
 package fr.hugman.promenade;
 
 import com.google.common.reflect.Reflection;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import net.minecraft.util.Identifier;
+
+import net.fabricmc.api.ModInitializer;
+
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.block.dispenser.PromenadeDispenserBehaviors;
 import fr.hugman.promenade.block.entity.PromenadeBlockEntities;
@@ -34,10 +41,6 @@ import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifierTypes;
 import fr.hugman.promenade.world.gen.tree.foliage.PromenadeFoliagePlacerTypes;
 import fr.hugman.promenade.world.gen.tree.trunk.PromenadeTrunkPlacerTypes;
-import net.fabricmc.api.ModInitializer;
-import net.minecraft.util.Identifier;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class Promenade implements ModInitializer {
 	public static final String MOD_ID = "promenade";

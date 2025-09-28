@@ -11,8 +11,9 @@
  */
 package fr.hugman.promenade.trade;
 
-import fr.hugman.promenade.block.PromenadeBlocks;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+
+import fr.hugman.promenade.block.PromenadeBlocks;
 
 public class PromenadeTrades {
 	public static void appendVillagerTrades() {

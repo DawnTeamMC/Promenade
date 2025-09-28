@@ -11,13 +11,9 @@
  */
 package fr.hugman.promenade.item;
 
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.banner.PromenadeBannerPatternTags;
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.component.PromenadeConsumableComponents;
-import fr.hugman.promenade.component.PromenadeFoodComponents;
-import fr.hugman.promenade.entity.PromenadeEntityTypes;
-import fr.hugman.promenade.item.helper.ItemFactory;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
 import net.minecraft.block.Block;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.Item;
@@ -26,8 +22,13 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 
-import java.util.function.BiFunction;
-import java.util.function.Function;
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.banner.PromenadeBannerPatternTags;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.component.PromenadeConsumableComponents;
+import fr.hugman.promenade.component.PromenadeFoodComponents;
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
+import fr.hugman.promenade.item.helper.ItemFactory;
 
 public class PromenadeItems {
 	public static final Item SAKURA_SIGN = register(PromenadeBlocks.SAKURA_SIGN, ItemFactory.sign(PromenadeBlocks.SAKURA_WALL_SIGN), ItemSettings.max16());

@@ -12,10 +12,12 @@
 package fr.hugman.promenade.entity.spawn;
 
 import com.mojang.serialization.MapCodec;
-import fr.hugman.promenade.Promenade;
+
 import net.minecraft.entity.spawn.SpawnCondition;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeSpawnConditions {
 	public static void register() {

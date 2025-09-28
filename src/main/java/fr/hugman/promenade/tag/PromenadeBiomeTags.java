@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.tag;
 
-import fr.hugman.promenade.Promenade;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.world.biome.Biome;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeBiomeTags {
 	public static final TagKey<Biome> SAKURA_GROVES = of("sakura_groves");

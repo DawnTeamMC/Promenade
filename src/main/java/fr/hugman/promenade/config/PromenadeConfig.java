@@ -11,19 +11,6 @@
  */
 package fr.hugman.promenade.config;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonParser;
-import com.mojang.datafixers.util.Pair;
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.JsonOps;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.world.biome.PromenadeBiomes;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil;
-import org.apache.commons.io.IOUtils;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -31,6 +18,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.JsonOps;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import org.apache.commons.io.IOUtils;
+import org.jetbrains.annotations.NotNull;
+
+import net.minecraft.world.biome.source.util.MultiNoiseUtil;
+
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.world.biome.PromenadeBiomes;
 
 public record PromenadeConfig(
 		BiomesConfig biomes,

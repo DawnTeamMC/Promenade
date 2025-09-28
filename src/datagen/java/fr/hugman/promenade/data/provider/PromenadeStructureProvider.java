@@ -11,11 +11,8 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.tag.PromenadeBiomeTags;
-import fr.hugman.promenade.world.gen.structure.PromenadeStructureKeys;
-import fr.hugman.promenade.world.gen.structure.PromenadeStructurePoolsKeys;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -27,7 +24,12 @@ import net.minecraft.world.gen.heightprovider.ConstantHeightProvider;
 import net.minecraft.world.gen.structure.JigsawStructure;
 import net.minecraft.world.gen.structure.Structure;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.tag.PromenadeBiomeTags;
+import fr.hugman.promenade.world.gen.structure.PromenadeStructureKeys;
+import fr.hugman.promenade.world.gen.structure.PromenadeStructurePoolsKeys;
 
 public class PromenadeStructureProvider extends FabricDynamicRegistryProvider {
 	public PromenadeStructureProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {

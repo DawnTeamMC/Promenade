@@ -11,18 +11,6 @@
  */
 package fr.hugman.promenade.block;
 
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.block.helper.BlockBuilder;
-import fr.hugman.promenade.block.helper.BlockFactory;
-import fr.hugman.promenade.block.map_color.PromenadeMapColors;
-import fr.hugman.promenade.block.type.PromenadeBlockSetTypes;
-import fr.hugman.promenade.block.type.PromenadeWoodTypes;
-import fr.hugman.promenade.item.PromenadeItemKeys;
-import fr.hugman.promenade.particle.PromenadeParticleTypes;
-import fr.hugman.promenade.sound.PromenadeBlockSounds;
-import fr.hugman.promenade.tag.PromenadeBlockTags;
-import fr.hugman.promenade.world.PromenadeSaplingGenerators;
-import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -35,6 +23,19 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.sound.BlockSoundGroup;
+
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.block.helper.BlockBuilder;
+import fr.hugman.promenade.block.helper.BlockFactory;
+import fr.hugman.promenade.block.map_color.PromenadeMapColors;
+import fr.hugman.promenade.block.type.PromenadeBlockSetTypes;
+import fr.hugman.promenade.block.type.PromenadeWoodTypes;
+import fr.hugman.promenade.item.PromenadeItemKeys;
+import fr.hugman.promenade.particle.PromenadeParticleTypes;
+import fr.hugman.promenade.sound.PromenadeBlockSounds;
+import fr.hugman.promenade.tag.PromenadeBlockTags;
+import fr.hugman.promenade.world.PromenadeSaplingGenerators;
+import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 
 public class PromenadeBlocks {
 	/* ========= */

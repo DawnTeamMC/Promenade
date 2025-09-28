@@ -11,9 +11,11 @@
  */
 package fr.hugman.promenade.block.type;
 
-import fr.hugman.promenade.Promenade;
-import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
 import net.minecraft.block.BlockSetType;
+
+import net.fabricmc.fabric.api.object.builder.v1.block.type.BlockSetTypeBuilder;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeBlockSetTypes {
 	public static final BlockSetType SAKURA = BlockSetTypeBuilder.copyOf(BlockSetType.CHERRY).register(Promenade.id("sakura"));

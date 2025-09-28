@@ -11,13 +11,9 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.block.BerryBushBlock;
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.data.provider.builders.PromenadeFeatureConfigs;
-import fr.hugman.promenade.util.NoiseScale;
-import fr.hugman.promenade.world.gen.feature.*;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -43,8 +39,14 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.block.BerryBushBlock;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.data.provider.builders.PromenadeFeatureConfigs;
+import fr.hugman.promenade.util.NoiseScale;
+import fr.hugman.promenade.world.gen.feature.*;
 
 public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryProvider {
 	public PromenadeConfiguredFeatureProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {

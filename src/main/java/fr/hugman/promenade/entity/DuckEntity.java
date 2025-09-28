@@ -11,13 +11,8 @@
  */
 package fr.hugman.promenade.entity;
 
-import fr.hugman.promenade.component.PromenadeComponentTypes;
-import fr.hugman.promenade.entity.data.PromenadeTrackedData;
-import fr.hugman.promenade.entity.variant.DuckVariant;
-import fr.hugman.promenade.entity.variant.DuckVariants;
-import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import fr.hugman.promenade.sound.PromenadeSoundEvents;
-import fr.hugman.promenade.tag.PromenadeItemTags;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.component.ComponentType;
 import net.minecraft.component.ComponentsAccess;
@@ -45,7 +40,14 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
+
+import fr.hugman.promenade.component.PromenadeComponentTypes;
+import fr.hugman.promenade.entity.data.PromenadeTrackedData;
+import fr.hugman.promenade.entity.variant.DuckVariant;
+import fr.hugman.promenade.entity.variant.DuckVariants;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import fr.hugman.promenade.sound.PromenadeSoundEvents;
+import fr.hugman.promenade.tag.PromenadeItemTags;
 
 public class DuckEntity extends AnimalEntity {
 	private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityDimensions.changing(0.4F, 0.8F).scaled(0.5F).withEyeHeight(0.78125F);

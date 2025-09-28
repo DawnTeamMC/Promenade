@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.loot;
 
-import fr.hugman.promenade.Promenade;
 import net.minecraft.loot.LootTable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeLootTables {
 	public static final RegistryKey<LootTable> TUBE_SUNKEN = of("entities/sunken/tube");

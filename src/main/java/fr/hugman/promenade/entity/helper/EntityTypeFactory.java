@@ -11,13 +11,13 @@
  */
 package fr.hugman.promenade.entity.helper;
 
+import java.util.function.Supplier;
+
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.vehicle.BoatEntity;
 import net.minecraft.entity.vehicle.ChestBoatEntity;
 import net.minecraft.item.Item;
-
-import java.util.function.Supplier;
 
 public class EntityTypeFactory {
 	public static EntityType.Builder<BoatEntity> boat(Supplier<Item> item) {

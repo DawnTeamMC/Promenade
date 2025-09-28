@@ -11,6 +11,8 @@
  */
 package fr.hugman.promenade.entity;
 
+import java.util.Collection;
+
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
@@ -27,8 +29,6 @@ import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.UndergroundConfiguredFeatures;
-
-import java.util.Collection;
 
 public class LushCreeperEntity extends CreeperEntity {
 	private static final int EXPLOSION_Y_LENGTH = 10;

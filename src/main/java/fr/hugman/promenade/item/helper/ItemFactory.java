@@ -11,14 +11,14 @@
  */
 package fr.hugman.promenade.item.helper;
 
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.vehicle.AbstractBoatEntity;
 import net.minecraft.item.*;
-
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public final class ItemFactory {
 	public static Function<Item.Settings, Item> uniqueNameBlock(Block block) {

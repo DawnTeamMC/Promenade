@@ -11,15 +11,17 @@
  */
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
-import fr.hugman.promenade.entity.PromenadeEntityTypes;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.BoatEntityRenderer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.vehicle.AbstractBoatEntity;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+
+import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
 
 @Environment(EnvType.CLIENT)
 public class PromenadeEntityRenderers {

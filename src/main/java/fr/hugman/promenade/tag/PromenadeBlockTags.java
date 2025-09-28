@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.tag;
 
-import fr.hugman.promenade.Promenade;
 import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeBlockTags {
 	public static final TagKey<Block> SAKURA_LOGS = of("sakura_logs");

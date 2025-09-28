@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.entity.ai.brain;
 
-import fr.hugman.promenade.Promenade;
 import net.minecraft.entity.ai.brain.Activity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeActivities {
 	public static final Activity FART = register("fart");

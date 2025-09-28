@@ -11,14 +11,16 @@
  */
 package fr.hugman.promenade.mixin;
 
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.entity.damage.PromenadeFallLocations;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.damage.FallLocation;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+
+import net.minecraft.block.BlockState;
+import net.minecraft.entity.damage.FallLocation;
+
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.entity.damage.PromenadeFallLocations;
 
 @Mixin(FallLocation.class)
 public class FallLocationMixin {

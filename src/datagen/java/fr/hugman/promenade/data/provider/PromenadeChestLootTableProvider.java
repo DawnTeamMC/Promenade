@@ -11,9 +11,9 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.loot.PromenadeLootTables;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiConsumer;
+
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
@@ -24,8 +24,10 @@ import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.function.BiConsumer;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+
+import fr.hugman.promenade.loot.PromenadeLootTables;
 
 public class PromenadeChestLootTableProvider extends SimpleFabricLootTableProvider {
 	public PromenadeChestLootTableProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {

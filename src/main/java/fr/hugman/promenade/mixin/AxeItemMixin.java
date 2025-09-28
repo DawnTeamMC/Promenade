@@ -11,18 +11,20 @@
  */
 package fr.hugman.promenade.mixin;
 
-import fr.hugman.promenade.block.MapleLogBlock;
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.block.StrippedMapleLogBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.item.AxeItem;
+import java.util.Optional;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Optional;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.PillarBlock;
+import net.minecraft.item.AxeItem;
+
+import fr.hugman.promenade.block.MapleLogBlock;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.block.StrippedMapleLogBlock;
 
 @Mixin(AxeItem.class)
 public class AxeItemMixin {

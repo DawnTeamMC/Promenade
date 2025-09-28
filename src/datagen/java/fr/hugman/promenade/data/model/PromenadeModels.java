@@ -11,11 +11,12 @@
  */
 package fr.hugman.promenade.data.model;
 
-import fr.hugman.promenade.Promenade;
+import java.util.Optional;
+
 import net.minecraft.client.data.Model;
 import net.minecraft.client.data.TextureKey;
 
-import java.util.Optional;
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeModels {
 	public static final Model PILE = block("pile", TextureKey.ALL);

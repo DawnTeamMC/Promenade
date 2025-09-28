@@ -11,9 +11,10 @@
  */
 package fr.hugman.promenade.registry;
 
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
+
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.item.PromenadeItems;
-import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 
 public class PromenadeCompostingChances {
 	public static void register() {

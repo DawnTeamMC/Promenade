@@ -11,14 +11,11 @@
  */
 package fr.hugman.promenade.data.provider;
 
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
 import com.google.common.collect.ImmutableList;
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
-import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
-import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
-import fr.hugman.promenade.world.gen.placement_modifier.NoiseIntervalCountPlacementModifier;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
@@ -36,8 +33,14 @@ import net.minecraft.world.gen.feature.PlacedFeatures;
 import net.minecraft.world.gen.heightprovider.TrapezoidHeightProvider;
 import net.minecraft.world.gen.placementmodifier.*;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
+import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
+import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
+import fr.hugman.promenade.world.gen.placement_modifier.NoiseIntervalCountPlacementModifier;
 
 public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvider {
 	private static final PlacementModifier NOT_IN_SURFACE_WATER_MODIFIER = SurfaceWaterDepthFilterPlacementModifier.of(0);

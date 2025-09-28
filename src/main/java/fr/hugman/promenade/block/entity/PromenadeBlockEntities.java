@@ -11,8 +11,9 @@
  */
 package fr.hugman.promenade.block.entity;
 
-import fr.hugman.promenade.block.PromenadeBlocks;
 import net.minecraft.block.entity.BlockEntityType;
+
+import fr.hugman.promenade.block.PromenadeBlocks;
 
 public class PromenadeBlockEntities {
 	public static void addBlocksToVanillaBlockEntityTypes() {

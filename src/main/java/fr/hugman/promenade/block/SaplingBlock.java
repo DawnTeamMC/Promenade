@@ -11,12 +11,12 @@
  */
 package fr.hugman.promenade.block;
 
+import java.util.function.Predicate;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SaplingGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
-
-import java.util.function.Predicate;
 
 //TODO: codec
 public class SaplingBlock extends net.minecraft.block.SaplingBlock {

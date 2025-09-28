@@ -11,13 +11,15 @@
  */
 package fr.hugman.promenade.client.color;
 
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.world.biome.PromenadeFoliageColors;
+import net.minecraft.client.color.world.BiomeColors;
+import net.minecraft.world.biome.FoliageColors;
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
-import net.minecraft.client.color.world.BiomeColors;
-import net.minecraft.world.biome.FoliageColors;
+
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.world.biome.PromenadeFoliageColors;
 
 @Environment(EnvType.CLIENT)
 public final class PromenadeBlockColors {

@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.world.gen.structure;
 
-import fr.hugman.promenade.Promenade;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.structure.StructureSet;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeStructureSetKeys {
 	public static final RegistryKey<StructureSet> WITCH_HUTS = of("witch_huts");

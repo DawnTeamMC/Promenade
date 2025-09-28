@@ -11,9 +11,8 @@
  */
 package fr.hugman.promenade.client.render.entity.model;
 
-import fr.hugman.promenade.client.render.entity.state.DuckEntityRenderState;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import java.util.Set;
+
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.model.BabyModelTransformer;
 import net.minecraft.client.render.entity.model.EntityModel;
@@ -21,7 +20,10 @@ import net.minecraft.client.render.entity.model.EntityModelPartNames;
 import net.minecraft.client.render.entity.model.ModelTransformer;
 import net.minecraft.util.math.MathHelper;
 
-import java.util.Set;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+import fr.hugman.promenade.client.render.entity.state.DuckEntityRenderState;
 
 @Environment(EnvType.CLIENT)
 public class DuckEntityModel extends EntityModel<DuckEntityRenderState> {

@@ -11,12 +11,14 @@
  */
 package fr.hugman.promenade.particle;
 
-import fr.hugman.promenade.Promenade;
-import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeParticleTypes {
 	public static final SimpleParticleType BLUSH_SAKURA_BLOSSOM = register("blush_sakura_blossom", FabricParticleTypes.simple());

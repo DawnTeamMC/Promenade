@@ -11,7 +11,9 @@
  */
 package fr.hugman.promenade.itemgroup;
 
-import fr.hugman.promenade.Promenade;
+import java.util.Comparator;
+import java.util.Set;
+
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.decoration.painting.PaintingVariant;
 import net.minecraft.item.ItemGroup;
@@ -23,8 +25,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 
-import java.util.Comparator;
-import java.util.Set;
+import fr.hugman.promenade.Promenade;
 
 public final class PromenadeItemGroup {
 	public static void fill(ItemGroup.DisplayContext displayContext, ItemGroup.Entries entries) {

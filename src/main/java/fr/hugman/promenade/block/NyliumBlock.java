@@ -12,7 +12,7 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -29,6 +29,8 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.chunk.light.ChunkLightProvider;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
+
+import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 
 public class NyliumBlock extends Block implements Fertilizable {
 	public static final MapCodec<NyliumBlock> CODEC = createCodec(NyliumBlock::new);

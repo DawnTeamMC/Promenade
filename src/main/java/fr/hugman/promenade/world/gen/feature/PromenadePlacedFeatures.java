@@ -11,12 +11,8 @@
  */
 package fr.hugman.promenade.world.gen.feature;
 
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.config.PromenadeConfig;
-import fr.hugman.promenade.tag.PromenadeBiomeTags;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import java.util.function.Predicate;
+
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.gen.GenerationStep;
@@ -24,7 +20,13 @@ import net.minecraft.world.gen.feature.OreConfiguredFeatures;
 import net.minecraft.world.gen.feature.PlacedFeature;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
 
-import java.util.function.Predicate;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.config.PromenadeConfig;
+import fr.hugman.promenade.tag.PromenadeBiomeTags;
 
 public class PromenadePlacedFeatures {
 	// Ores

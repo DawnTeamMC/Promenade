@@ -11,7 +11,15 @@
  */
 package fr.hugman.promenade.mixin;
 
-import fr.hugman.promenade.block.PromenadeBlocks;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -19,14 +27,8 @@ import net.minecraft.block.NetherrackBlock;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import fr.hugman.promenade.block.PromenadeBlocks;
 
 @Mixin(NetherrackBlock.class)
 public abstract class NetherrackBlockMixin {

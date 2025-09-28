@@ -12,10 +12,12 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import fr.hugman.promenade.Promenade;
+
 import net.minecraft.block.Block;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeBlockTypes {
 	public static final MapCodec<BerryBushBlock> BERRY_BUSH = of("berry_bush", BerryBushBlock.CODEC);

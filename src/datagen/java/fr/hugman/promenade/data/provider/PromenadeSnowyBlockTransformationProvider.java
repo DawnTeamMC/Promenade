@@ -11,12 +11,8 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.block.snowy.SnowyBlockTransformation;
-import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
@@ -24,7 +20,13 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.block.snowy.SnowyBlockTransformation;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 
 //TODO: a generic class for other devs
 public class PromenadeSnowyBlockTransformationProvider extends FabricDynamicRegistryProvider {

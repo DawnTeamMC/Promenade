@@ -11,13 +11,15 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.entity.PromenadeEntityTypes;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.EntityTypeTags;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
 
 public class PromenadeEntityTypeTagProvider extends FabricTagProvider.EntityTypeTagProvider {
 	public PromenadeEntityTypeTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {

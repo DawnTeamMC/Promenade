@@ -11,12 +11,11 @@
  */
 package fr.hugman.promenade.data.provider;
 
+import java.util.concurrent.CompletableFuture;
+
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.world.gen.structure.PromenadeStructurePoolsKeys;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -24,7 +23,11 @@ import net.minecraft.structure.pool.StructurePool;
 import net.minecraft.structure.pool.StructurePoolElement;
 import net.minecraft.structure.pool.StructurePools;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.world.gen.structure.PromenadeStructurePoolsKeys;
 
 public class PromenadeTemplatePoolProvider extends FabricDynamicRegistryProvider {
 	public PromenadeTemplatePoolProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {

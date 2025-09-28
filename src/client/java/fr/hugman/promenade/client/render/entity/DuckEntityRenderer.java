@@ -11,17 +11,19 @@
  */
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.client.render.entity.model.DuckEntityModel;
-import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
-import fr.hugman.promenade.client.render.entity.state.DuckEntityRenderState;
-import fr.hugman.promenade.entity.DuckEntity;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.AgeableMobEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.texture.MissingSprite;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+import fr.hugman.promenade.client.render.entity.model.DuckEntityModel;
+import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
+import fr.hugman.promenade.client.render.entity.state.DuckEntityRenderState;
+import fr.hugman.promenade.entity.DuckEntity;
 
 @Environment(EnvType.CLIENT)
 public class DuckEntityRenderer extends AgeableMobEntityRenderer<DuckEntity, DuckEntityRenderState, DuckEntityModel> {

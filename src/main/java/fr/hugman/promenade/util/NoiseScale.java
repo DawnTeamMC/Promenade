@@ -14,6 +14,7 @@ package fr.hugman.promenade.util;
 import com.mojang.datafixers.util.Either;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.util.dynamic.Codecs;
 
 public record NoiseScale(float x, float z) {

@@ -12,8 +12,7 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -28,6 +27,9 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 
 public class WitherRosePileBlock extends PileBlock {
 	public static final MapCodec<WitherRosePileBlock> CODEC = createCodec(WitherRosePileBlock::new);

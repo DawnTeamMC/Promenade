@@ -12,11 +12,13 @@
 package fr.hugman.promenade.world.gen.tree.trunk;
 
 import com.mojang.serialization.MapCodec;
-import fr.hugman.promenade.Promenade;
+
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.world.gen.trunk.TrunkPlacer;
 import net.minecraft.world.gen.trunk.TrunkPlacerType;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeTrunkPlacerTypes {
 	public static final TrunkPlacerType<LeapingTrunkPlacer> LEAPING = register("leaping", LeapingTrunkPlacer.CODEC);

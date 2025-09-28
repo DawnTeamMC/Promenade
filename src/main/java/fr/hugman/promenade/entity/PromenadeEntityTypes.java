@@ -11,15 +11,8 @@
  */
 package fr.hugman.promenade.entity;
 
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.config.PromenadeConfig;
-import fr.hugman.promenade.entity.helper.EntityTypeFactory;
-import fr.hugman.promenade.item.PromenadeItems;
-import fr.hugman.promenade.tag.PromenadeBiomeTags;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType;
+import java.util.function.Predicate;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
@@ -34,7 +27,16 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.biome.BiomeKeys;
 
-import java.util.function.Predicate;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType;
+
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.config.PromenadeConfig;
+import fr.hugman.promenade.entity.helper.EntityTypeFactory;
+import fr.hugman.promenade.item.PromenadeItems;
+import fr.hugman.promenade.tag.PromenadeBiomeTags;
 
 public class PromenadeEntityTypes {
 	public static final EntityType<BoatEntity> SAKURA_BOAT = register("sakura_boat", EntityTypeFactory.boat(() -> PromenadeItems.SAKURA_BOAT));

@@ -11,6 +11,8 @@
  */
 package fr.hugman.promenade.block;
 
+import java.util.function.Predicate;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.registry.RegistryKey;
@@ -19,8 +21,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
-
-import java.util.function.Predicate;
 
 public class FungusBlock extends net.minecraft.block.FungusBlock {
 	private final Predicate<BlockState> canPlantOn;

@@ -11,13 +11,11 @@
  */
 package fr.hugman.promenade.data.provider.builders;
 
+import java.util.List;
+import java.util.OptionalInt;
+
 import com.google.common.collect.ImmutableList;
-import fr.hugman.promenade.block.MapleLogBlock;
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.world.gen.tree.foliage.MapleFoliagePlacer;
-import fr.hugman.promenade.world.gen.tree.foliage.PalmFoliagePlacer;
-import fr.hugman.promenade.world.gen.tree.trunk.BranchingStraightTrunkPlacer;
-import fr.hugman.promenade.world.gen.tree.trunk.LeapingTrunkPlacer;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.Direction;
@@ -35,8 +33,12 @@ import net.minecraft.world.gen.treedecorator.AttachedToLeavesTreeDecorator;
 import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
 import net.minecraft.world.gen.trunk.GiantTrunkPlacer;
 
-import java.util.List;
-import java.util.OptionalInt;
+import fr.hugman.promenade.block.MapleLogBlock;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.world.gen.tree.foliage.MapleFoliagePlacer;
+import fr.hugman.promenade.world.gen.tree.foliage.PalmFoliagePlacer;
+import fr.hugman.promenade.world.gen.tree.trunk.BranchingStraightTrunkPlacer;
+import fr.hugman.promenade.world.gen.tree.trunk.LeapingTrunkPlacer;
 
 public class PromenadeFeatureConfigs {
 	//TODO: should be a tag

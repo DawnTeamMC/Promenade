@@ -11,10 +11,8 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.entity.variant.PromenadeWolfVariants;
-import fr.hugman.promenade.tag.PromenadeBiomeTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.entity.passive.WolfVariant;
 import net.minecraft.entity.spawn.SpawnConditionSelectors;
 import net.minecraft.registry.Registerable;
@@ -25,41 +23,45 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.AssetInfo.TextureAssetInfo;
 import net.minecraft.world.biome.Biome;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.entity.variant.PromenadeWolfVariants;
+import fr.hugman.promenade.tag.PromenadeBiomeTags;
 
 public class PromenadeWolfVariantProvider extends FabricDynamicRegistryProvider {
-    public PromenadeWolfVariantProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
-        super(output, registriesFuture);
-    }
+	public PromenadeWolfVariantProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+		super(output, registriesFuture);
+	}
 
-    @Override
-    protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        var wrapper = registries.getOrThrow(RegistryKeys.WOLF_VARIANT);
-        entries.add(wrapper, PromenadeWolfVariants.SHIBA_INU);
-    }
+	@Override
+	protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
+		var wrapper = registries.getOrThrow(RegistryKeys.WOLF_VARIANT);
+		entries.add(wrapper, PromenadeWolfVariants.SHIBA_INU);
+	}
 
-    @Override
-    public String getName() {
-        return "Wolf Variants";
-    }
+	@Override
+	public String getName() {
+		return "Wolf Variants";
+	}
 
-    public static void register(Registerable<WolfVariant> registry) {
-        of(registry, PromenadeWolfVariants.SHIBA_INU, PromenadeBiomeTags.SAKURA_GROVES);
-    }
+	public static void register(Registerable<WolfVariant> registry) {
+		of(registry, PromenadeWolfVariants.SHIBA_INU, PromenadeBiomeTags.SAKURA_GROVES);
+	}
 
-    private static void of(Registerable<WolfVariant> registry, RegistryKey<WolfVariant> key, TagKey<Biome> biomeTag) {
-        of(registry, key, DataProviderUtil.createSpawnConditions(registry.getRegistryLookup(RegistryKeys.BIOME).getOrThrow(biomeTag)));
-    }
+	private static void of(Registerable<WolfVariant> registry, RegistryKey<WolfVariant> key, TagKey<Biome> biomeTag) {
+		of(registry, key, DataProviderUtil.createSpawnConditions(registry.getRegistryLookup(RegistryKeys.BIOME).getOrThrow(biomeTag)));
+	}
 
-    private static void of(Registerable<WolfVariant> registry, RegistryKey<WolfVariant> key, SpawnConditionSelectors spawnConditions) {
-        var baseId = key.getValue().withPrefixedPath("entity/wolf/");
-        registry.register(key, new WolfVariant(
-                new WolfVariant.WolfAssetInfo(
-                        new TextureAssetInfo(baseId.withSuffixedPath("/wild")),
-                        new TextureAssetInfo(baseId.withSuffixedPath("/tame")),
-                        new TextureAssetInfo(baseId.withSuffixedPath("/angry"))
-                ),
-                spawnConditions
-        ));
-    }
+	private static void of(Registerable<WolfVariant> registry, RegistryKey<WolfVariant> key, SpawnConditionSelectors spawnConditions) {
+		var baseId = key.getValue().withPrefixedPath("entity/wolf/");
+		registry.register(key, new WolfVariant(
+				new WolfVariant.WolfAssetInfo(
+						new TextureAssetInfo(baseId.withSuffixedPath("/wild")),
+						new TextureAssetInfo(baseId.withSuffixedPath("/tame")),
+						new TextureAssetInfo(baseId.withSuffixedPath("/angry"))
+				),
+				spawnConditions
+		));
+	}
 }

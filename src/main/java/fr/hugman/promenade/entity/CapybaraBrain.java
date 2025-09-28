@@ -11,13 +11,14 @@
  */
 package fr.hugman.promenade.entity;
 
+import java.util.Map;
+import java.util.function.Predicate;
+
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.datafixers.util.Pair;
-import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
-import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
-import fr.hugman.promenade.tag.PromenadeItemTags;
+
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.brain.Activity;
 import net.minecraft.entity.ai.brain.Brain;
@@ -30,8 +31,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 
-import java.util.Map;
-import java.util.function.Predicate;
+import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
+import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
+import fr.hugman.promenade.tag.PromenadeItemTags;
 
 public class CapybaraBrain {
 	private static final UniformIntProvider WALK_TOWARD_ADULT_RANGE = UniformIntProvider.create(5, 16);

@@ -11,8 +11,8 @@
  */
 package fr.hugman.promenade.entity.variant;
 
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import java.util.Optional;
+
 import net.minecraft.entity.VariantSelectorProvider;
 import net.minecraft.entity.spawn.SpawnContext;
 import net.minecraft.registry.DynamicRegistryManager;
@@ -21,7 +21,8 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.random.Random;
 
-import java.util.Optional;
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 
 public class SunkenVariants {
 	public static final RegistryKey<SunkenVariant> TUBE = of("tube");

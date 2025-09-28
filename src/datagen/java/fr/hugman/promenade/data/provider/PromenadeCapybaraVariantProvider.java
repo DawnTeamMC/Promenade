@@ -11,19 +11,21 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.entity.spawn.ChanceSpawnCondition;
-import fr.hugman.promenade.entity.variant.CapybaraVariant;
-import fr.hugman.promenade.entity.variant.CapybaraVariants;
-import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.entity.spawn.SpawnConditionSelectors;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.AssetInfo.TextureAssetInfo;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.entity.spawn.ChanceSpawnCondition;
+import fr.hugman.promenade.entity.variant.CapybaraVariant;
+import fr.hugman.promenade.entity.variant.CapybaraVariants;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 
 //TODO: a generic class for other devs
 public class PromenadeCapybaraVariantProvider extends FabricDynamicRegistryProvider {

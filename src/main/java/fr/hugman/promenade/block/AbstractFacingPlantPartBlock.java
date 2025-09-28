@@ -12,6 +12,8 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FacingBlock;
@@ -27,7 +29,6 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
-import org.jetbrains.annotations.Nullable;
 
 public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
 	public static final EnumProperty<Direction> FACING = Properties.FACING;

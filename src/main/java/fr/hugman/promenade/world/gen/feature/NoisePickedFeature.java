@@ -12,6 +12,7 @@
 package fr.hugman.promenade.world.gen.feature;
 
 import com.mojang.serialization.Codec;
+
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;

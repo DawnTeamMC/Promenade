@@ -11,22 +11,25 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.tag.PromenadeBlockTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import static fr.hugman.promenade.item.PromenadeItems.*;
+import static fr.hugman.promenade.tag.PromenadeItemTags.*;
+
+import java.util.concurrent.CompletableFuture;
+
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 
-import static fr.hugman.promenade.item.PromenadeItems.*;
-import static fr.hugman.promenade.tag.PromenadeItemTags.*;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.tag.PromenadeBlockTags;
 
 public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider {
 	public PromenadeItemTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture, @Nullable BlockTagProvider blockTagProvider) {

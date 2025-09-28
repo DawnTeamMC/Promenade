@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.world;
 
-import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
+import java.util.Optional;
+
 import net.minecraft.block.SaplingGenerator;
 
-import java.util.Optional;
+import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 
 public class PromenadeSaplingGenerators {
 	public static final SaplingGenerator BLUSH_SAKURA = new SaplingGenerator("sakura/blush", 0.1F, Optional.empty(), Optional.empty(),

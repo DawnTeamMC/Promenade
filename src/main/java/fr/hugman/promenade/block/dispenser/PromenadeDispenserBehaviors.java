@@ -11,8 +11,6 @@
  */
 package fr.hugman.promenade.block.dispenser;
 
-import fr.hugman.promenade.entity.PromenadeEntityTypes;
-import fr.hugman.promenade.item.PromenadeItems;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.dispenser.BoatDispenserBehavior;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
@@ -23,6 +21,9 @@ import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.event.GameEvent;
+
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
+import fr.hugman.promenade.item.PromenadeItems;
 
 public class PromenadeDispenserBehaviors {
 	public static void register() {

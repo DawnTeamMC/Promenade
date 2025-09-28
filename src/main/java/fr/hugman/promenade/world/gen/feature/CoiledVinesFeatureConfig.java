@@ -11,13 +11,14 @@
  */
 package fr.hugman.promenade.world.gen.feature;
 
+import java.util.List;
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.util.dynamic.Codecs;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.gen.feature.FeatureConfig;
-
-import java.util.List;
 
 public record CoiledVinesFeatureConfig(
 		int spreadWidth,

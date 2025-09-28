@@ -11,11 +11,9 @@
  */
 package fr.hugman.promenade.block.helper;
 
-import fr.hugman.promenade.block.HangingLeavesBlock;
-import fr.hugman.promenade.block.PileBlock;
-import fr.hugman.promenade.block.TintedParticleSnowyLeavesBlock;
-import fr.hugman.promenade.block.UntintedParticleSnowyLeavesBlock;
-import fr.hugman.promenade.sound.PromenadeBlockSounds;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
@@ -26,8 +24,11 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 
-import java.util.function.Function;
-import java.util.function.Predicate;
+import fr.hugman.promenade.block.HangingLeavesBlock;
+import fr.hugman.promenade.block.PileBlock;
+import fr.hugman.promenade.block.TintedParticleSnowyLeavesBlock;
+import fr.hugman.promenade.block.UntintedParticleSnowyLeavesBlock;
+import fr.hugman.promenade.sound.PromenadeBlockSounds;
 
 public final class BlockFactory {
 	public static BlockBuilder of(Function<AbstractBlock.Settings, Block> factory, AbstractBlock.Settings settings) {

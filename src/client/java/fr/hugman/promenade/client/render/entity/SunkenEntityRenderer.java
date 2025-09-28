@@ -11,12 +11,6 @@
  */
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
-import fr.hugman.promenade.client.render.entity.model.SunkenEntityModel;
-import fr.hugman.promenade.client.render.entity.state.SunkenEntityRenderState;
-import fr.hugman.promenade.entity.SunkenEntity;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.AbstractSkeletonEntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.texture.MissingSprite;
@@ -24,6 +18,14 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
+
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
+import fr.hugman.promenade.client.render.entity.model.SunkenEntityModel;
+import fr.hugman.promenade.client.render.entity.state.SunkenEntityRenderState;
+import fr.hugman.promenade.entity.SunkenEntity;
 
 @Environment(EnvType.CLIENT)
 public class SunkenEntityRenderer extends AbstractSkeletonEntityRenderer<SunkenEntity, SunkenEntityRenderState> {

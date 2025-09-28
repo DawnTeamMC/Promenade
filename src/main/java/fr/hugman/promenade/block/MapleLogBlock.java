@@ -12,12 +12,14 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import fr.hugman.promenade.block.property.PromenadeBlockProperties;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
+
+import fr.hugman.promenade.block.property.PromenadeBlockProperties;
 
 public class MapleLogBlock extends PillarBlock {
 	public static final BooleanProperty NATURAL = PromenadeBlockProperties.NATURAL;

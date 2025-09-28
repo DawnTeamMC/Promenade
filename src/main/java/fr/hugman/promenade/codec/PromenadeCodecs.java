@@ -11,10 +11,10 @@
  */
 package fr.hugman.promenade.codec;
 
+import java.util.function.Function;
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
-
-import java.util.function.Function;
 
 public class PromenadeCodecs {
 	public static final Codec<Float> SAMPLED_NOISE_VALUE = rangedInclusiveFloat(- 1.0F, 1.0F);

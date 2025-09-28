@@ -13,6 +13,7 @@ package fr.hugman.promenade.entity.spawn;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.entity.spawn.SpawnCondition;
 import net.minecraft.entity.spawn.SpawnContext;
 import net.minecraft.util.dynamic.Codecs;

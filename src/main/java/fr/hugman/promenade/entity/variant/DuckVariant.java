@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.entity.variant;
 
+import java.util.List;
+
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+
 import net.minecraft.entity.VariantSelectorProvider;
 import net.minecraft.entity.spawn.SpawnCondition;
 import net.minecraft.entity.spawn.SpawnConditionSelectors;
@@ -26,7 +27,8 @@ import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.entry.RegistryFixedCodec;
 import net.minecraft.util.AssetInfo.TextureAssetInfo;
 
-import java.util.List;
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 
 public record DuckVariant(
 		TextureAssetInfo texture,

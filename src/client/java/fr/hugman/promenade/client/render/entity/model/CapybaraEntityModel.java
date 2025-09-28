@@ -11,10 +11,8 @@
  */
 package fr.hugman.promenade.client.render.entity.model;
 
-import fr.hugman.promenade.client.render.entity.animation.CapybaraAnimations;
-import fr.hugman.promenade.client.render.entity.state.CapybaraEntityRenderState;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import java.util.Set;
+
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.entity.animation.Animation;
 import net.minecraft.client.render.entity.model.BabyModelTransformer;
@@ -22,7 +20,11 @@ import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelPartNames;
 import net.minecraft.client.render.entity.model.ModelTransformer;
 
-import java.util.Set;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+import fr.hugman.promenade.client.render.entity.animation.CapybaraAnimations;
+import fr.hugman.promenade.client.render.entity.state.CapybaraEntityRenderState;
 
 @Environment(EnvType.CLIENT)
 public class CapybaraEntityModel extends EntityModel<CapybaraEntityRenderState> {

@@ -11,6 +11,9 @@
  */
 package fr.hugman.promenade.block.helper;
 
+import java.util.function.Function;
+import java.util.function.Supplier;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
@@ -19,9 +22,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 public class BlockBuilder {
 	private static final Function<AbstractBlock.Settings, Block> DEFAULT_FACTORY = Block::new;

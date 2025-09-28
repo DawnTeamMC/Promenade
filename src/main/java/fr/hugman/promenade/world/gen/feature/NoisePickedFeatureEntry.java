@@ -13,13 +13,15 @@ package fr.hugman.promenade.world.gen.feature;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import fr.hugman.promenade.codec.PromenadeCodecs;
+
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.PlacedFeature;
+
+import fr.hugman.promenade.codec.PromenadeCodecs;
 
 public record NoisePickedFeatureEntry(
 		RegistryEntry<PlacedFeature> feature,

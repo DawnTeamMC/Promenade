@@ -12,6 +12,7 @@
 package fr.hugman.promenade.world.gen.feature;
 
 import com.mojang.serialization.Codec;
+
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;

@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.banner;
 
-import fr.hugman.promenade.Promenade;
 import net.minecraft.block.entity.BannerPattern;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeBannerPatternTags {
 	public static final TagKey<BannerPattern> BOVINE_PATTERN_ITEM = of("pattern_item/bovine");

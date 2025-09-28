@@ -11,8 +11,9 @@
  */
 package fr.hugman.promenade.registry;
 
-import fr.hugman.promenade.block.PromenadeBlocks;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+
+import fr.hugman.promenade.block.PromenadeBlocks;
 
 public class PromenadeFlammables {
 	public static void register() {

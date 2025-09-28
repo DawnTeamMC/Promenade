@@ -11,16 +11,18 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.sound.PromenadeSoundEvents;
-import net.fabricmc.fabric.api.client.datagen.v1.builder.SoundTypeBuilder;
-import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricSoundsProvider;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.data.DataOutput;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.client.datagen.v1.builder.SoundTypeBuilder;
+import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricSoundsProvider;
+
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.sound.PromenadeSoundEvents;
 
 public class PromenadeSoundsProvider extends FabricSoundsProvider {
 	public PromenadeSoundsProvider(DataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {

@@ -12,7 +12,7 @@
 package fr.hugman.promenade.world.gen.feature;
 
 import com.mojang.serialization.Codec;
-import fr.hugman.promenade.block.PromenadeBlocks;
+
 import net.minecraft.block.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -22,6 +22,8 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
+
+import fr.hugman.promenade.block.PromenadeBlocks;
 
 public class CoiledVinesFeature extends Feature<CoiledVinesFeatureConfig> {
 	public CoiledVinesFeature(Codec<CoiledVinesFeatureConfig> configCodec) {

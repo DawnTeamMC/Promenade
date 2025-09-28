@@ -11,13 +11,14 @@
  */
 package fr.hugman.promenade.registry;
 
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.snowy.SnowyBlockTransformation;
 import fr.hugman.promenade.entity.variant.CapybaraVariant;
 import fr.hugman.promenade.entity.variant.DuckVariant;
 import fr.hugman.promenade.entity.variant.SunkenVariant;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
 
 public class PromenadeRegistryKeys {
 	public static final RegistryKey<Registry<SnowyBlockTransformation>> SNOWY_BLOCK_TRANSFORMATION = RegistryKey.ofRegistry(Promenade.id("snowy_block_transformation"));

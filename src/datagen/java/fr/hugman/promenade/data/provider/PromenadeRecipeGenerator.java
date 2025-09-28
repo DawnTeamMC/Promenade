@@ -11,12 +11,8 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.data.PromenadeBlockFamilies;
-import fr.hugman.promenade.item.PromenadeItems;
-import fr.hugman.promenade.tag.PromenadeItemTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.block.Blocks;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.data.recipe.RecipeExporter;
@@ -29,7 +25,13 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.resource.featuretoggle.FeatureSet;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.data.PromenadeBlockFamilies;
+import fr.hugman.promenade.item.PromenadeItems;
+import fr.hugman.promenade.tag.PromenadeItemTags;
 
 public class PromenadeRecipeGenerator extends RecipeGenerator {
 	public PromenadeRecipeGenerator(RegistryWrapper.WrapperLookup registries, RecipeExporter exporter) {

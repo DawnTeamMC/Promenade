@@ -11,18 +11,12 @@
  */
 package fr.hugman.promenade.entity;
 
+import java.util.function.IntFunction;
+
 import com.mojang.serialization.Dynamic;
-import fr.hugman.promenade.component.PromenadeComponentTypes;
-import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
-import fr.hugman.promenade.entity.data.PromenadeTrackedData;
-import fr.hugman.promenade.entity.variant.CapybaraVariant;
-import fr.hugman.promenade.entity.variant.CapybaraVariants;
-import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import fr.hugman.promenade.sound.PromenadeSoundEvents;
-import fr.hugman.promenade.tag.PromenadeItemTags;
 import io.netty.buffer.ByteBuf;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.SharedConstants;
 import net.minecraft.component.ComponentType;
 import net.minecraft.component.ComponentsAccess;
@@ -62,9 +56,18 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.function.IntFunction;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
+import fr.hugman.promenade.component.PromenadeComponentTypes;
+import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
+import fr.hugman.promenade.entity.data.PromenadeTrackedData;
+import fr.hugman.promenade.entity.variant.CapybaraVariant;
+import fr.hugman.promenade.entity.variant.CapybaraVariants;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import fr.hugman.promenade.sound.PromenadeSoundEvents;
+import fr.hugman.promenade.tag.PromenadeItemTags;
 
 public class CapybaraEntity extends AnimalEntity {
 	private static final FloatProvider FART_CHANCE_PROVIDER = TrapezoidFloatProvider.create(0.1F, 0.55F, 0.2F);

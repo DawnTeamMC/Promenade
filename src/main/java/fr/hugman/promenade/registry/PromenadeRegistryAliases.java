@@ -11,11 +11,12 @@
  */
 package fr.hugman.promenade.registry;
 
-import fr.hugman.promenade.Promenade;
+import java.util.HashMap;
+
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
-import java.util.HashMap;
+import fr.hugman.promenade.Promenade;
 
 /**
  * Registry aliases for Promenade. Prevents players from losing stuff when content is removed along new versions.

@@ -12,7 +12,8 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import fr.hugman.promenade.block.property.PromenadeBlockProperties;
+import org.jetbrains.annotations.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalFacingBlock;
@@ -27,7 +28,8 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
-import org.jetbrains.annotations.Nullable;
+
+import fr.hugman.promenade.block.property.PromenadeBlockProperties;
 
 public class MoaiBlock extends HorizontalFacingBlock {
 	public static final MapCodec<MoaiBlock> CODEC = createCodec(MoaiBlock::new);

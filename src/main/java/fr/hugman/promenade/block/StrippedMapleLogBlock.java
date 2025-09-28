@@ -12,8 +12,7 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import fr.hugman.promenade.block.property.PromenadeBlockProperties;
-import fr.hugman.promenade.item.PromenadeItems;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.PillarBlock;
@@ -31,6 +30,9 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
+
+import fr.hugman.promenade.block.property.PromenadeBlockProperties;
+import fr.hugman.promenade.item.PromenadeItems;
 
 //TODO make generic
 public class StrippedMapleLogBlock extends PillarBlock {

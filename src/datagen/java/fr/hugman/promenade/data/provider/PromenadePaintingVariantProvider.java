@@ -11,9 +11,9 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.entity.variant.PromenadePaintingVariants;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.entity.decoration.painting.PaintingVariant;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -22,8 +22,10 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.entity.variant.PromenadePaintingVariants;
 
 public class PromenadePaintingVariantProvider extends FabricDynamicRegistryProvider {
 	public PromenadePaintingVariantProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {

@@ -11,11 +11,13 @@
  */
 package fr.hugman.promenade.client.render.block;
 
-import fr.hugman.promenade.block.PromenadeBlocks;
+import net.minecraft.client.render.BlockRenderLayer;
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.minecraft.client.render.BlockRenderLayer;
+
+import fr.hugman.promenade.block.PromenadeBlocks;
 
 @Environment(EnvType.CLIENT)
 public final class PromenadeBlockRenderLayers {

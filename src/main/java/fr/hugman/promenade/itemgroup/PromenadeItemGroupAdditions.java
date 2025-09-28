@@ -11,15 +11,17 @@
  */
 package fr.hugman.promenade.itemgroup;
 
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.item.PromenadeItems;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import java.util.Collections;
+import java.util.function.Predicate;
+
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 
-import java.util.Collections;
-import java.util.function.Predicate;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.item.PromenadeItems;
 
 public class PromenadeItemGroupAdditions {
 	public static void appendItemGroups() {

@@ -11,9 +11,16 @@
  */
 package fr.hugman.promenade.mixin;
 
-import fr.hugman.promenade.block.SnowyLeavesBlock;
-import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import fr.hugman.promenade.world.PromenadeGameRules;
+import java.util.Optional;
+
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SnowBlock;
@@ -23,15 +30,10 @@ import net.minecraft.state.property.Property;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
-import org.spongepowered.asm.mixin.Final;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Optional;
+import fr.hugman.promenade.block.SnowyLeavesBlock;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import fr.hugman.promenade.world.PromenadeGameRules;
 
 @Mixin(SnowBlock.class)
 public class SnowBlockMixin {

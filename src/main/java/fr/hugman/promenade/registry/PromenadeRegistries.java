@@ -11,11 +11,12 @@
  */
 package fr.hugman.promenade.registry;
 
+import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
+
 import fr.hugman.promenade.block.snowy.SnowyBlockTransformation;
 import fr.hugman.promenade.entity.variant.CapybaraVariant;
 import fr.hugman.promenade.entity.variant.DuckVariant;
 import fr.hugman.promenade.entity.variant.SunkenVariant;
-import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 
 public class PromenadeRegistries {
 	public static void register() {

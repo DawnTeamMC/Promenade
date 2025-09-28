@@ -11,12 +11,11 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.entity.PromenadeEntityTypes;
-import fr.hugman.promenade.item.PromenadeItems;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
+import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
+
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.Criteria;
 import net.minecraft.advancement.criterion.ItemCriterion;
@@ -46,10 +45,13 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.Consumer;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
+
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
+import fr.hugman.promenade.item.PromenadeItems;
 
 public class PromenadeAdvancementProvider extends FabricAdvancementProvider {
 	public PromenadeAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {

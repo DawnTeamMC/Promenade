@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.entity.variant;
 
-import fr.hugman.promenade.Promenade;
 import net.minecraft.entity.passive.WolfVariant;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeWolfVariants {
 	public static final RegistryKey<WolfVariant> SHIBA_INU = of("shiba_inu");

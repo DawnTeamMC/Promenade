@@ -11,8 +11,9 @@
  */
 package fr.hugman.promenade.registry;
 
-import fr.hugman.promenade.block.PromenadeBlocks;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
+
+import fr.hugman.promenade.block.PromenadeBlocks;
 
 public class PromenadeStrippables {
 	public static void register() {

@@ -11,11 +11,10 @@
  */
 package fr.hugman.promenade.component;
 
+import java.util.function.UnaryOperator;
+
 import com.mojang.serialization.Codec;
-import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.entity.variant.CapybaraVariant;
-import fr.hugman.promenade.entity.variant.DuckVariant;
-import fr.hugman.promenade.entity.variant.SunkenVariant;
+
 import net.minecraft.component.ComponentType;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -23,7 +22,10 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 
-import java.util.function.UnaryOperator;
+import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.entity.variant.CapybaraVariant;
+import fr.hugman.promenade.entity.variant.DuckVariant;
+import fr.hugman.promenade.entity.variant.SunkenVariant;
 
 public class PromenadeComponentTypes {
 	public static final ComponentType<RegistryEntry<DuckVariant>> DUCK_VARIANT = of("duck/variant", DuckVariant.ENTRY_CODEC, DuckVariant.ENTRY_PACKET_CODEC);

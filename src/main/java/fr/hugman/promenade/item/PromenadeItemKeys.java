@@ -11,10 +11,11 @@
  */
 package fr.hugman.promenade.item;
 
-import fr.hugman.promenade.Promenade;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+
+import fr.hugman.promenade.Promenade;
 
 public class PromenadeItemKeys {
 	public static final RegistryKey<Item> BLUEBERRIES = of("blueberries");

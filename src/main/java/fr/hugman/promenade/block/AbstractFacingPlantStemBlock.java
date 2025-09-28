@@ -12,6 +12,7 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
+
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

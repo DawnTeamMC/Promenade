@@ -11,19 +11,8 @@
  */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.block.MoaiBlock;
-import fr.hugman.promenade.block.MoaiType;
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.block.SnowyLeavesBlock;
-import fr.hugman.promenade.block.property.PromenadeBlockProperties;
-import fr.hugman.promenade.data.PromenadeBlockFamilies;
-import fr.hugman.promenade.data.model.PromenadeModels;
-import fr.hugman.promenade.data.model.PromenadeTextureMaps;
-import fr.hugman.promenade.data.model.PromenadeTexturedModels;
-import fr.hugman.promenade.item.PromenadeItems;
-import fr.hugman.promenade.world.biome.PromenadeFoliageColors;
-import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import java.util.function.Function;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.data.*;
@@ -39,7 +28,20 @@ import net.minecraft.util.math.AxisRotation;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.biome.FoliageColors;
 
-import java.util.function.Function;
+import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+
+import fr.hugman.promenade.block.MoaiBlock;
+import fr.hugman.promenade.block.MoaiType;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.block.SnowyLeavesBlock;
+import fr.hugman.promenade.block.property.PromenadeBlockProperties;
+import fr.hugman.promenade.data.PromenadeBlockFamilies;
+import fr.hugman.promenade.data.model.PromenadeModels;
+import fr.hugman.promenade.data.model.PromenadeTextureMaps;
+import fr.hugman.promenade.data.model.PromenadeTexturedModels;
+import fr.hugman.promenade.item.PromenadeItems;
+import fr.hugman.promenade.world.biome.PromenadeFoliageColors;
 
 public class PromenadeModelProvider extends FabricModelProvider {
 	public static final ModelVariantOperator NO_OP = variant -> variant;
