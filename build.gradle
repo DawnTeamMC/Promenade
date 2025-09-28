@@ -20,7 +20,7 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modApi include ("com.terraformersmc:biolith-fabric:${biolith_version}") {
+    modApi include("com.terraformersmc:biolith-fabric:${biolith_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
@@ -48,13 +48,14 @@ loom {
             name = "Wiki Export Client"
             property "wiki_exporter.enabled", "true"
             property "wiki_exporter.config.path", "${projectDir}/wiki_exporter_config.json"
-            exportServer {
-                server()
-                name = "Wiki Export Server"
-                property "wiki_exporter.enabled", "true"
-                property "wiki_exporter.config.path", "${projectDir}/wiki_exporter_config.json"
-            }
         }
+        exportServer {
+            server()
+            name = "Wiki Export Server"
+            property "wiki_exporter.enabled", "true"
+            property "wiki_exporter.config.path", "${projectDir}/wiki_exporter_config.json"
+        }
+    }
 }
 
 fabricApi {

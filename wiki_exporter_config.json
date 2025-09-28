@@ -5,6 +5,11 @@
     "render"
   ],
   "modules": {
+    "metadata": {
+      "namespaces": [
+        "promenade"
+      ]
+    },
     "render": {
       "namespaces": [
         "promenade"
