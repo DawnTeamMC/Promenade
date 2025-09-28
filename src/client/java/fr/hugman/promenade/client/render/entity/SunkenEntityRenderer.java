@@ -19,8 +19,7 @@ public class SunkenEntityRenderer extends AbstractSkeletonEntityRenderer<SunkenE
     public SunkenEntityRenderer(EntityRendererFactory.Context context) {
         super(
                 context,
-                PromenadeEntityModelLayers.SUNKEN_INNER_ARMOR,
-                PromenadeEntityModelLayers.SUNKEN_OUTER_ARMOR,
+                PromenadeEntityModelLayers.SUNKEN_EQUIPMENT,
                 new SunkenEntityModel(context.getPart(PromenadeEntityModelLayers.SUNKEN))
         );
     }

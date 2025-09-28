@@ -88,7 +88,7 @@ public class PromenadeBiomes {
      * @return true if the entity can freeze, false otherwise.
      */
     public static boolean canFreezeFromBiomeAndWeather(LivingEntity entity) {
-        RegistryEntry<Biome> biome = entity.getWorld().getBiome(entity.getBlockPos());
+        RegistryEntry<Biome> biome = entity.getEntityWorld().getBiome(entity.getBlockPos());
         if (entity.getType().isIn(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)) {
             // is immune
             return false;
@@ -98,12 +98,12 @@ public class PromenadeBiomes {
             // is spectator
             return false;
         }
-        if (!entity.getWorld().isRaining()) {
+        if (!entity.getEntityWorld().isRaining()) {
             // is not snowing
             return false;
         }
-        boolean exposedToSky = entity.getWorld().getLightLevel(LightType.SKY, entity.getBlockPos()) >= 5;
-        boolean lightSourceNear = entity.getWorld().getLightLevel(LightType.BLOCK, entity.getBlockPos()) >= 5;
+        boolean exposedToSky = entity.getEntityWorld().getLightLevel(LightType.SKY, entity.getBlockPos()) >= 5;
+        boolean lightSourceNear = entity.getEntityWorld().getLightLevel(LightType.BLOCK, entity.getBlockPos()) >= 5;
         if (lightSourceNear || !exposedToSky) {
             // is near a light source
             // is not exposed much to sky

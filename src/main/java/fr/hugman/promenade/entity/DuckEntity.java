@@ -154,7 +154,7 @@ public class DuckEntity extends AnimalEntity {
     @Nullable
     @Override
     public DuckEntity createChild(ServerWorld serverWorld, PassiveEntity entity) {
-        DuckEntity child = PromenadeEntityTypes.DUCK.create(this.getWorld(), SpawnReason.BREEDING);
+        DuckEntity child = PromenadeEntityTypes.DUCK.create(this.getEntityWorld(), SpawnReason.BREEDING);
         if (child != null && entity instanceof DuckEntity mama) {
             child.setVariant(this.random.nextFloat() < 0.5f ? mama.getVariant() : this.getVariant());
         }

@@ -124,7 +124,7 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         this.goalSelector.add(3, new EscapeSunlightGoal(this, 1.0D));
         this.goalSelector.add(6, new SwimAroundGoal(this, 1.0D, 40));
         this.goalSelector.add(7, new WanderAroundFarGoal(this, 1.0D));
-        this.goalSelector.add(7, new SunkenEntity.TargetAboveWaterGoal(this, 1.0D, this.getWorld().getSeaLevel()));
+        this.goalSelector.add(7, new SunkenEntity.TargetAboveWaterGoal(this, 1.0D, this.getEntityWorld().getSeaLevel()));
         this.goalSelector.add(7, new SunkenEntity.LeaveWaterGoal(this, 1.0D));
         this.goalSelector.add(8, new LookAtEntityGoal(this, PlayerEntity.class, 8.0F));
         this.goalSelector.add(8, new LookAroundGoal(this));
@@ -145,9 +145,9 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
             double e = target.getBodyY(0.3333333333333333D) - persistentProjectileEntity.getY();
             double f = target.getZ() - this.getZ();
             double g = Math.sqrt(d * d + f * f);
-            persistentProjectileEntity.setVelocity(d, e + g * 0.20000000298023224D, f, 1.6F, (float) (14 - this.getWorld().getDifficulty().getId() * 4));
+            persistentProjectileEntity.setVelocity(d, e + g * 0.20000000298023224D, f, 1.6F, (float) (14 - this.getEntityWorld().getDifficulty().getId() * 4));
             this.playSound(this.getShootSound(), 1.0F, 1.0F / (this.getRandom().nextFloat() * 0.4F + 0.8F));
-            this.getWorld().spawnEntity(persistentProjectileEntity);
+            this.getEntityWorld().spawnEntity(persistentProjectileEntity);
         }
     }
 
@@ -196,8 +196,8 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
 
     @Override
     public void updateSwimming() {
-        if (!this.getWorld().isClient) {
-            boolean b = this.getWorld().isAir(this.getBlockPos().up(2));
+        if (!this.getEntityWorld().isClient()) {
+            boolean b = this.getEntityWorld().isAir(this.getBlockPos().up(2));
             if (!b && this.canMoveVoluntarily() && this.isSubmergedInWater()) {
                 this.navigation = this.waterNavigation;
                 this.setSwimming(true);
@@ -212,7 +212,7 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
 
     @Override
     public void updateAttackType() {
-        if (this.getWorld() != null && !this.getWorld().isClient) {
+        if (this.getEntityWorld() != null && !this.getEntityWorld().isClient()) {
             if (this.bowAttackGoal != null && this.crossbowAttackGoal != null && this.meleeAttackGoal != null) {
                 this.goalSelector.remove(this.bowAttackGoal);
                 this.goalSelector.remove(this.crossbowAttackGoal);
@@ -221,7 +221,7 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
                 if (itemStack.isOf(Items.CROSSBOW)) {
                     this.goalSelector.add(4, this.crossbowAttackGoal);
                 } else if (itemStack.isOf(Items.BOW)) {
-                    this.bowAttackGoal.setAttackInterval(this.getWorld().getDifficulty() != Difficulty.HARD ? 40 : 20);
+                    this.bowAttackGoal.setAttackInterval(this.getEntityWorld().getDifficulty() != Difficulty.HARD ? 40 : 20);
                     this.goalSelector.add(4, this.bowAttackGoal);
                 } else {
                     this.goalSelector.add(4, this.meleeAttackGoal);
@@ -447,7 +447,7 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         }
 
         public boolean canStart() {
-            return super.canStart() && !this.sunken.getWorld().isDay() && this.sunken.isTouchingWater() && this.sunken.getY() >= (double) (this.sunken.getWorld().getSeaLevel() - 3);
+            return super.canStart() && !this.sunken.getEntityWorld().isDay() && this.sunken.isTouchingWater() && this.sunken.getY() >= (double) (this.sunken.getEntityWorld().getSeaLevel() - 3);
         }
 
         public boolean shouldContinue() {
@@ -483,7 +483,7 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         }
 
         public boolean canStart() {
-            return !this.sunken.getWorld().isDay() && this.sunken.isTouchingWater() && !this.sunken.isTargetingUnderwater() && this.sunken.getY() < (double) (this.minY - 2);
+            return !this.sunken.getEntityWorld().isDay() && this.sunken.isTouchingWater() && !this.sunken.isTargetingUnderwater() && this.sunken.getY() < (double) (this.minY - 2);
         }
 
         public boolean shouldContinue() {
