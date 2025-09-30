@@ -188,7 +188,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.PALM_HANGING_LEAVES, this::dropsWithSilkTouchOrShears);
         addDrop(PromenadeBlocks.PALM_LEAF_PILE, this::dropsWithSilkTouchOrShears);
 
-        addDrop(PromenadeBlocks.DARK_AMARANTH_NYLIUM, block -> this.drops(block, Blocks.END_STONE));
+        addDrop(PromenadeBlocks.DARK_AMARANTH_NYLIUM, block -> this.drops(block, Blocks.NETHERRACK));
         addDrop(PromenadeBlocks.DARK_AMARANTH_WART_BLOCK);
         addDrop(PromenadeBlocks.DARK_AMARANTH_ROOTS);
         addPottedPlantDrops(PromenadeBlocks.POTTED_DARK_AMARANTH_ROOTS);

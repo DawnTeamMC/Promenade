@@ -28,19 +28,19 @@ public class PromenadeSoundsProvider extends FabricSoundsProvider {
         soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_PLACE, variantSoundBuilder(4, Promenade.id("block/snowy_leaves/break")).subtitle("subtitles.block.generic.place"));
         soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_FALL, variantSoundBuilder(6, Promenade.id("block/snowy_leaves/step")));
         soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_HIT, variantSoundBuilder(6, Promenade.id("block/snowy_leaves/step")).subtitle("subtitles.block.generic.hit"));
-        soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_STEP, variantSoundBuilder(6, Promenade.id("block/snowy_leaves/step")).subtitle("subtitles.block.generic.step"));
+        soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_LEAVES_STEP, variantSoundBuilder(6, Promenade.id("block/snowy_leaves/step")).subtitle("subtitles.block.generic.footsteps"));
 
         soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_AZALEA_LEAVES_BREAK, variantSoundBuilder(7, Promenade.id("block/snowy_azalea_leaves/break")).subtitle("subtitles.block.generic.break"));
         soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_AZALEA_LEAVES_PLACE, variantSoundBuilder(7, Promenade.id("block/snowy_azalea_leaves/break")).subtitle("subtitles.block.generic.place"));
         soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_AZALEA_LEAVES_FALL, variantSoundBuilder(5, Promenade.id("block/snowy_azalea_leaves/step")));
         soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_AZALEA_LEAVES_HIT, variantSoundBuilder(5, Promenade.id("block/snowy_azalea_leaves/step")).subtitle("subtitles.block.generic.hit"));
-        soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_AZALEA_LEAVES_STEP, variantSoundBuilder(5, Promenade.id("block/snowy_azalea_leaves/step")).subtitle("subtitles.block.generic.step"));
+        soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_AZALEA_LEAVES_STEP, variantSoundBuilder(5, Promenade.id("block/snowy_azalea_leaves/step")).subtitle("subtitles.block.generic.footsteps"));
 
         soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_CHERRY_LEAVES_BREAK, variantSoundBuilder(5, Promenade.id("block/snowy_cherry_leaves/break")).subtitle("subtitles.block.generic.break"));
         soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_CHERRY_LEAVES_PLACE, variantSoundBuilder(5, Promenade.id("block/snowy_cherry_leaves/break")).subtitle("subtitles.block.generic.place"));
         soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_CHERRY_LEAVES_FALL, variantSoundBuilder(5, Promenade.id("block/snowy_cherry_leaves/step")));
         soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_CHERRY_LEAVES_HIT, variantSoundBuilder(5, Promenade.id("block/snowy_cherry_leaves/step")).subtitle("subtitles.block.generic.hit"));
-        soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_CHERRY_LEAVES_STEP, variantSoundBuilder(5, Promenade.id("block/snowy_cherry_leaves/step")).subtitle("subtitles.block.generic.step"));
+        soundExporter.add(PromenadeSoundEvents.BLOCK_SNOWY_CHERRY_LEAVES_STEP, variantSoundBuilder(5, Promenade.id("block/snowy_cherry_leaves/step")).subtitle("subtitles.block.generic.footsteps"));
 
         // Entities
         soundExporter.add(PromenadeSoundEvents.DUCK_AMBIENT, variantSoundBuilder(PromenadeSoundEvents.DUCK_AMBIENT, 4));
@@ -52,7 +52,7 @@ public class PromenadeSoundsProvider extends FabricSoundsProvider {
         );
 
         soundExporter.add(PromenadeSoundEvents.CAPYBARA_AMBIENT, variantSoundBuilder(PromenadeSoundEvents.CAPYBARA_AMBIENT, 5));
-        soundExporter.add(PromenadeSoundEvents.CAPYBARA_AMBIENT_BABY, variantSoundBuilder(PromenadeSoundEvents.CAPYBARA_AMBIENT_BABY, 6));
+        soundExporter.add(PromenadeSoundEvents.CAPYBARA_AMBIENT_BABY, variantSoundBuilder(PromenadeSoundEvents.CAPYBARA_AMBIENT_BABY, 6).subtitle("subtitles.promenade.entity.capybara.ambient"));
         soundExporter.add(PromenadeSoundEvents.CAPYBARA_FART, variantSoundBuilder(PromenadeSoundEvents.CAPYBARA_FART, 6));
 
         soundExporter.add(PromenadeSoundEvents.SUNKEN_AMBIENT, variantSoundBuilder(PromenadeSoundEvents.SUNKEN_AMBIENT, 3));

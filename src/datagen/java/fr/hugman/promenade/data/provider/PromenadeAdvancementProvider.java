@@ -92,8 +92,8 @@ public class PromenadeAdvancementProvider extends FabricAdvancementProvider {
                         Optional.of(LootContextPredicate.create(LocationCheckLootCondition.builder(LocationPredicate.Builder.create().fluid(FluidPredicate.Builder.create().tag(fluids.getOrThrow(FluidTags.WATER))), new BlockPos(0, 1, 0)).build())),
                         // entity is a sunken and is outside water
                         List.of(LootContextPredicate.create(
-                                EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(entities, PromenadeEntityTypes.SUNKEN)).build(),
-                                InvertedLootCondition.builder(EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS,
+                                EntityPropertiesLootCondition.builder(LootContext.EntityReference.THIS, EntityPredicate.Builder.create().type(entities, PromenadeEntityTypes.SUNKEN)).build(),
+                                InvertedLootCondition.builder(EntityPropertiesLootCondition.builder(LootContext.EntityReference.THIS,
                                         EntityPredicate.Builder.create().location(LocationPredicate.Builder.create().fluid(FluidPredicate.Builder.create().tag(fluids.getOrThrow(FluidTags.WATER))))
                                 )).build()
                         )),

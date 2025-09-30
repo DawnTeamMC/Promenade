@@ -5,9 +5,9 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.particle.EntityEffectParticleEffect;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.particle.ParticleUtil;
+import net.minecraft.particle.TintedParticleEffect;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
@@ -62,7 +62,6 @@ public class TintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBlock 
 
     @Override
     protected void spawnLeafParticle(World world, BlockPos pos, Random random) {
-        EntityEffectParticleEffect entityEffectParticleEffect = EntityEffectParticleEffect.create(ParticleTypes.TINTED_LEAVES, world.getBlockColor(pos));
-        ParticleUtil.spawnParticle(world, pos, random, entityEffectParticleEffect);
+        ParticleUtil.spawnParticle(world, pos, random, TintedParticleEffect.create(ParticleTypes.TINTED_LEAVES, world.getBlockColor(pos)));
     }
 }

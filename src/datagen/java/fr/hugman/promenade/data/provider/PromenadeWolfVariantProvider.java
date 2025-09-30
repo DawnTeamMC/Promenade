@@ -11,7 +11,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.AssetInfo;
+import net.minecraft.util.AssetInfo.TextureAssetInfo;
 import net.minecraft.world.biome.Biome;
 
 import java.util.concurrent.CompletableFuture;
@@ -44,9 +44,9 @@ public class PromenadeWolfVariantProvider extends FabricDynamicRegistryProvider 
         var baseId = key.getValue().withPrefixedPath("entity/wolf/");
         registry.register(key, new WolfVariant(
                 new WolfVariant.WolfAssetInfo(
-                        new AssetInfo(baseId.withSuffixedPath("/wild")),
-                        new AssetInfo(baseId.withSuffixedPath("/tame")),
-                        new AssetInfo(baseId.withSuffixedPath("/angry"))
+                        new TextureAssetInfo(baseId.withSuffixedPath("/wild")),
+                        new TextureAssetInfo(baseId.withSuffixedPath("/tame")),
+                        new TextureAssetInfo(baseId.withSuffixedPath("/angry"))
                 ),
                 spawnConditions
         ));

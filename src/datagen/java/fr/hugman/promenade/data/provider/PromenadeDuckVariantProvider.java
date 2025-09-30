@@ -12,7 +12,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.AssetInfo;
+import net.minecraft.util.AssetInfo.TextureAssetInfo;
 import net.minecraft.world.biome.Biome;
 
 import java.util.concurrent.CompletableFuture;
@@ -43,6 +43,6 @@ public class PromenadeDuckVariantProvider extends FabricDynamicRegistryProvider 
     }
 
     private static void of(Registerable<DuckVariant> registry, RegistryKey<DuckVariant> key, SpawnConditionSelectors spawnConditions) {
-        registry.register(key, new DuckVariant(new AssetInfo(key.getValue().withPrefixedPath("entity/duck/")), DuckVariant.DEFAULT_DUCKLING_ASSET, spawnConditions));
+        registry.register(key, new DuckVariant(new TextureAssetInfo(key.getValue().withPrefixedPath("entity/duck/")), DuckVariant.DEFAULT_DUCKLING_ASSET, spawnConditions));
     }
 }

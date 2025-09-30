@@ -13,32 +13,32 @@ import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.entry.RegistryFixedCodec;
-import net.minecraft.util.AssetInfo;
+import net.minecraft.util.AssetInfo.TextureAssetInfo;
 
 import java.util.List;
 
 public record DuckVariant(
-        AssetInfo texture,
-        AssetInfo babyTexture,
+        TextureAssetInfo texture,
+        TextureAssetInfo babyTexture,
         SpawnConditionSelectors spawnConditions
 ) implements VariantSelectorProvider<SpawnContext, SpawnCondition> {
-    public static final AssetInfo DEFAULT_DUCKLING_ASSET = new AssetInfo(Promenade.id("entity/duck/duckling"));
+    public static final TextureAssetInfo DEFAULT_DUCKLING_ASSET = new TextureAssetInfo(Promenade.id("entity/duck/duckling"));
 
     public static final Codec<DuckVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            AssetInfo.MAP_CODEC.forGetter(DuckVariant::texture),
-            AssetInfo.CODEC.optionalFieldOf("baby_texture", DEFAULT_DUCKLING_ASSET).forGetter(DuckVariant::babyTexture),
+            TextureAssetInfo.MAP_CODEC.forGetter(DuckVariant::texture),
+            TextureAssetInfo.CODEC.optionalFieldOf("baby_texture", DEFAULT_DUCKLING_ASSET).forGetter(DuckVariant::babyTexture),
             SpawnConditionSelectors.CODEC.fieldOf("spawn_conditions").forGetter(DuckVariant::spawnConditions)
     ).apply(instance, DuckVariant::new));
 
     public static final Codec<DuckVariant> NETWORK_CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            AssetInfo.MAP_CODEC.forGetter(DuckVariant::texture),
-            AssetInfo.CODEC.optionalFieldOf("baby_texture", DEFAULT_DUCKLING_ASSET).forGetter(DuckVariant::babyTexture)
+            TextureAssetInfo.MAP_CODEC.forGetter(DuckVariant::texture),
+            TextureAssetInfo.CODEC.optionalFieldOf("baby_texture", DEFAULT_DUCKLING_ASSET).forGetter(DuckVariant::babyTexture)
     ).apply(instance, DuckVariant::new));
 
     public static final Codec<RegistryEntry<DuckVariant>> ENTRY_CODEC = RegistryFixedCodec.of(PromenadeRegistryKeys.DUCK_VARIANT);
     public static final PacketCodec<RegistryByteBuf, RegistryEntry<DuckVariant>> ENTRY_PACKET_CODEC = PacketCodecs.registryEntry(PromenadeRegistryKeys.DUCK_VARIANT);
 
-    public DuckVariant(AssetInfo texture, AssetInfo babyTexture) {
+    public DuckVariant(TextureAssetInfo texture, TextureAssetInfo babyTexture) {
         this(texture, babyTexture, SpawnConditionSelectors.EMPTY);
     }
 

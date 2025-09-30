@@ -8,6 +8,8 @@ import net.minecraft.client.particle.ParticleFactory;
 import net.minecraft.client.particle.SpriteProvider;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.particle.SimpleParticleType;
+import net.minecraft.util.math.random.Random;
+import org.jetbrains.annotations.Nullable;
 
 public class PromenadeLeavesParticleFactories {
     @Environment(EnvType.CLIENT)
@@ -18,8 +20,9 @@ public class PromenadeLeavesParticleFactories {
             this.spriteProvider = spriteProvider;
         }
 
-        public Particle createParticle(SimpleParticleType simpleParticleType, ClientWorld clientWorld, double d, double e, double f, double g, double h, double i) {
-            return new LeavesParticle(clientWorld, d, e, f, this.spriteProvider, 0.07F, 5.0F, true, false, 1.5F, 0.021F);
+        @Override
+        public @Nullable Particle createParticle(SimpleParticleType parameters, ClientWorld world, double x, double y, double z, double velocityX, double velocityY, double velocityZ, Random random) {
+            return new LeavesParticle(world, x, y, z, this.spriteProvider.getSprite(random), 0.07F, 5.0F, true, false, 1.5F, 0.021F);
         }
     }
 }
