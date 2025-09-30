@@ -1,3 +1,14 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.block;
 
 import net.minecraft.block.*;
@@ -24,137 +35,137 @@ import net.minecraft.world.WorldView;
 import net.minecraft.world.tick.ScheduledTickView;
 
 public abstract class ExtendedLeavesBlock extends Block implements Waterloggable {
-    public static final int MAX_DISTANCE = 14;
-    public static final IntProperty DISTANCE = IntProperty.of("distance", 1, MAX_DISTANCE);
-    public static final BooleanProperty PERSISTENT = Properties.PERSISTENT;
-    public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
-    protected final float leafParticleChance;
+	public static final int MAX_DISTANCE = 14;
+	public static final IntProperty DISTANCE = IntProperty.of("distance", 1, MAX_DISTANCE);
+	public static final BooleanProperty PERSISTENT = Properties.PERSISTENT;
+	public static final BooleanProperty WATERLOGGED = Properties.WATERLOGGED;
+	protected final float leafParticleChance;
 
-    public ExtendedLeavesBlock(float leafParticleChance, AbstractBlock.Settings settings) {
-        super(settings);
-        this.leafParticleChance = leafParticleChance;
-        this.setDefaultState(this.stateManager.getDefaultState()
-                .with(DISTANCE, MAX_DISTANCE)
-                .with(PERSISTENT, false)
-                .with(WATERLOGGED, false));
-    }
+	public ExtendedLeavesBlock(float leafParticleChance, AbstractBlock.Settings settings) {
+		super(settings);
+		this.leafParticleChance = leafParticleChance;
+		this.setDefaultState(this.stateManager.getDefaultState()
+				.with(DISTANCE, MAX_DISTANCE)
+				.with(PERSISTENT, false)
+				.with(WATERLOGGED, false));
+	}
 
-    @Override
-    protected VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
-        return VoxelShapes.empty();
-    }
+	@Override
+	protected VoxelShape getSidesShape(BlockState state, BlockView world, BlockPos pos) {
+		return VoxelShapes.empty();
+	}
 
-    @Override
-    public boolean hasRandomTicks(BlockState state) {
-        return state.get(DISTANCE) == MAX_DISTANCE && !state.get(PERSISTENT);
-    }
+	@Override
+	public boolean hasRandomTicks(BlockState state) {
+		return state.get(DISTANCE) == MAX_DISTANCE && !state.get(PERSISTENT);
+	}
 
-    @Override
-    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (this.shouldDecay(state)) {
-            ExtendedLeavesBlock.dropStacks(state, world, pos);
-            world.removeBlock(pos, false);
-        }
-    }
+	@Override
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		if (this.shouldDecay(state)) {
+			ExtendedLeavesBlock.dropStacks(state, world, pos);
+			world.removeBlock(pos, false);
+		}
+	}
 
-    protected boolean shouldDecay(BlockState state) {
-        return !state.get(PERSISTENT) && state.get(DISTANCE) == MAX_DISTANCE;
-    }
+	protected boolean shouldDecay(BlockState state) {
+		return !state.get(PERSISTENT) && state.get(DISTANCE) == MAX_DISTANCE;
+	}
 
-    @Override
-    public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        world.setBlockState(pos, ExtendedLeavesBlock.updateDistanceFromLogs(state, world, pos), 3);
-    }
+	@Override
+	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+		world.setBlockState(pos, ExtendedLeavesBlock.updateDistanceFromLogs(state, world, pos), 3);
+	}
 
-    @Override
-    protected int getOpacity(BlockState state) {
-        return 1;
-    }
+	@Override
+	protected int getOpacity(BlockState state) {
+		return 1;
+	}
 
-    @Override
-    protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
-        if (state.get(WATERLOGGED)) {
-            tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
-        }
+	@Override
+	protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
+		if (state.get(WATERLOGGED)) {
+			tickView.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+		}
 
-        int distance = ExtendedLeavesBlock.getDistanceFromLog(neighborState) + 1;
-        if (distance != 1 || state.get(DISTANCE) != distance) {
-            tickView.scheduleBlockTick(pos, this, 1);
-        }
+		int distance = ExtendedLeavesBlock.getDistanceFromLog(neighborState) + 1;
+		if (distance != 1 || state.get(DISTANCE) != distance) {
+			tickView.scheduleBlockTick(pos, this, 1);
+		}
 
-        return state;
-    }
+		return state;
+	}
 
-    private static BlockState updateDistanceFromLogs(BlockState state, WorldAccess world, BlockPos pos) {
-        int distance = MAX_DISTANCE;
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
+	private static BlockState updateDistanceFromLogs(BlockState state, WorldAccess world, BlockPos pos) {
+		int distance = MAX_DISTANCE;
+		BlockPos.Mutable mutable = new BlockPos.Mutable();
 
-        for (Direction direction : Direction.values()) {
-            mutable.set(pos, direction);
-            distance = Math.min(distance, ExtendedLeavesBlock.getDistanceFromLog(world.getBlockState(mutable)) + 1);
-            if (distance == 1) {
-                break;
-            }
-        }
+		for (Direction direction : Direction.values()) {
+			mutable.set(pos, direction);
+			distance = Math.min(distance, ExtendedLeavesBlock.getDistanceFromLog(world.getBlockState(mutable)) + 1);
+			if (distance == 1) {
+				break;
+			}
+		}
 
-        return state.with(DISTANCE, distance);
-    }
+		return state.with(DISTANCE, distance);
+	}
 
-    private static int getDistanceFromLog(BlockState state) {
-        if (state.isIn(BlockTags.LOGS)) {
-            return 0;
-        }
+	private static int getDistanceFromLog(BlockState state) {
+		if (state.isIn(BlockTags.LOGS)) {
+			return 0;
+		}
 
-        Block block = state.getBlock();
-        if (block instanceof ExtendedLeavesBlock) {
-            return state.get(DISTANCE);
-        } else if (block instanceof LeavesBlock) {
-            int distance = state.get(LeavesBlock.DISTANCE);
-            return distance < LeavesBlock.MAX_DISTANCE ? distance : MAX_DISTANCE;
-        }
+		Block block = state.getBlock();
+		if (block instanceof ExtendedLeavesBlock) {
+			return state.get(DISTANCE);
+		} else if (block instanceof LeavesBlock) {
+			int distance = state.get(LeavesBlock.DISTANCE);
+			return distance < LeavesBlock.MAX_DISTANCE ? distance : MAX_DISTANCE;
+		}
 
-        return MAX_DISTANCE;
-    }
+		return MAX_DISTANCE;
+	}
 
-    @Override
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
-        super.randomDisplayTick(state, world, pos, random);
-        BlockPos blockPos = pos.down();
-        BlockState blockState = world.getBlockState(blockPos);
-        spawnWaterParticle(world, pos, random, blockState, blockPos);
-        this.spawnLeafParticle(world, pos, random, blockState, blockPos);
-    }
+	@Override
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+		super.randomDisplayTick(state, world, pos, random);
+		BlockPos blockPos = pos.down();
+		BlockState blockState = world.getBlockState(blockPos);
+		spawnWaterParticle(world, pos, random, blockState, blockPos);
+		this.spawnLeafParticle(world, pos, random, blockState, blockPos);
+	}
 
-    private static void spawnWaterParticle(World world, BlockPos pos, Random random, BlockState state, BlockPos posBelow) {
-        if (world.hasRain(pos.up())) {
-            if (random.nextInt(15) == 1) {
-                if (!state.isOpaque() || !state.isSideSolidFullSquare(world, posBelow, Direction.UP)) {
-                    ParticleUtil.spawnParticle(world, pos, random, ParticleTypes.DRIPPING_WATER);
-                }
-            }
-        }
-    }
+	private static void spawnWaterParticle(World world, BlockPos pos, Random random, BlockState state, BlockPos posBelow) {
+		if (world.hasRain(pos.up())) {
+			if (random.nextInt(15) == 1) {
+				if (!state.isOpaque() || !state.isSideSolidFullSquare(world, posBelow, Direction.UP)) {
+					ParticleUtil.spawnParticle(world, pos, random, ParticleTypes.DRIPPING_WATER);
+				}
+			}
+		}
+	}
 
-    private void spawnLeafParticle(World world, BlockPos pos, Random random, BlockState state, BlockPos posBelow) {
-        if (!(random.nextFloat() >= this.leafParticleChance)) {
-            if (!isFaceFullSquare(state.getCollisionShape(world, posBelow), Direction.UP)) {
-                this.spawnLeafParticle(world, pos, random);
-            }
-        }
-    }
+	private void spawnLeafParticle(World world, BlockPos pos, Random random, BlockState state, BlockPos posBelow) {
+		if (!(random.nextFloat() >= this.leafParticleChance)) {
+			if (!isFaceFullSquare(state.getCollisionShape(world, posBelow), Direction.UP)) {
+				this.spawnLeafParticle(world, pos, random);
+			}
+		}
+	}
 
-    protected abstract void spawnLeafParticle(World world, BlockPos pos, Random random);
+	protected abstract void spawnLeafParticle(World world, BlockPos pos, Random random);
 
-    @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        builder.add(DISTANCE, PERSISTENT, WATERLOGGED);
-    }
+	@Override
+	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+		builder.add(DISTANCE, PERSISTENT, WATERLOGGED);
+	}
 
-    @Override
-    public BlockState getPlacementState(ItemPlacementContext context) {
-        FluidState fluidState = context.getWorld().getFluidState(context.getBlockPos());
-        BlockState blockState = this.getDefaultState().with(PERSISTENT, true).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+	@Override
+	public BlockState getPlacementState(ItemPlacementContext context) {
+		FluidState fluidState = context.getWorld().getFluidState(context.getBlockPos());
+		BlockState blockState = this.getDefaultState().with(PERSISTENT, true).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
 
-        return ExtendedLeavesBlock.updateDistanceFromLogs(blockState, context.getWorld(), context.getBlockPos());
-    }
+		return ExtendedLeavesBlock.updateDistanceFromLogs(blockState, context.getWorld(), context.getBlockPos());
+	}
 }

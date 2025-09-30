@@ -1,27 +1,40 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.mixin;
 
-import fr.hugman.promenade.block.MapleLogBlock;
-import fr.hugman.promenade.block.PromenadeBlocks;
-import fr.hugman.promenade.block.StrippedMapleLogBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.item.AxeItem;
+import java.util.Optional;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import java.util.Optional;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.PillarBlock;
+import net.minecraft.item.AxeItem;
+
+import fr.hugman.promenade.block.MapleLogBlock;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import fr.hugman.promenade.block.StrippedMapleLogBlock;
 
 @Mixin(AxeItem.class)
 public class AxeItemMixin {
-    @Inject(method = "getStrippedState", at = @At("RETURN"), cancellable = true)
-    private void promenade$appendCustomStrip(BlockState state, CallbackInfoReturnable<Optional<BlockState>> cir) {
-        if (state.getBlock() == PromenadeBlocks.MAPLE_LOG) {
-            // if the log is natural, it has a 10% chance to be stripped into a stripped log with the state "has_syrup" set to true
-            cir.setReturnValue(Optional.of(PromenadeBlocks.STRIPPED_MAPLE_LOG.getDefaultState()
-                    .with(PillarBlock.AXIS, state.get(PillarBlock.AXIS))
-                    .with(StrippedMapleLogBlock.DRIP, state.get(MapleLogBlock.NATURAL) && Math.random() < 0.1f)));
-        }
-    }
+	@Inject(method = "getStrippedState", at = @At("RETURN"), cancellable = true)
+	private void promenade$appendCustomStrip(BlockState state, CallbackInfoReturnable<Optional<BlockState>> cir) {
+		if (state.getBlock() == PromenadeBlocks.MAPLE_LOG) {
+			// if the log is natural, it has a 10% chance to be stripped into a stripped log with the state "has_syrup" set to true
+			cir.setReturnValue(Optional.of(PromenadeBlocks.STRIPPED_MAPLE_LOG.getDefaultState()
+					.with(PillarBlock.AXIS, state.get(PillarBlock.AXIS))
+					.with(StrippedMapleLogBlock.DRIP, state.get(MapleLogBlock.NATURAL) && Math.random() < 0.1f)));
+		}
+	}
 }

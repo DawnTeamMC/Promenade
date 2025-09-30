@@ -1,11 +1,18 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.entity.variant.SunkenVariant;
-import fr.hugman.promenade.entity.variant.SunkenVariants;
-import fr.hugman.promenade.loot.PromenadeLootTables;
-import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.entity.spawn.SpawnConditionSelectors;
 import net.minecraft.loot.LootTable;
 import net.minecraft.registry.Registerable;
@@ -13,33 +20,39 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.util.AssetInfo.TextureAssetInfo;
 
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.entity.variant.SunkenVariant;
+import fr.hugman.promenade.entity.variant.SunkenVariants;
+import fr.hugman.promenade.loot.PromenadeLootTables;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 
 //TODO: a generic class for other devs
 public class PromenadeSunkenVariantProvider extends FabricDynamicRegistryProvider {
-    public PromenadeSunkenVariantProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
-        super(output, registriesFuture);
-    }
+	public PromenadeSunkenVariantProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+		super(output, registriesFuture);
+	}
 
-    @Override
-    protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        entries.addAll(registries.getOrThrow(PromenadeRegistryKeys.SUNKEN_VARIANT));
-    }
+	@Override
+	protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
+		entries.addAll(registries.getOrThrow(PromenadeRegistryKeys.SUNKEN_VARIANT));
+	}
 
-    @Override
-    public String getName() {
-        return "Sunken Variants";
-    }
+	@Override
+	public String getName() {
+		return "Sunken Variants";
+	}
 
-    public static void register(Registerable<SunkenVariant> registry) {
-        of(registry, SunkenVariants.TUBE, PromenadeLootTables.TUBE_SUNKEN);
-        of(registry, SunkenVariants.BRAIN, PromenadeLootTables.BRAIN_SUNKEN);
-        of(registry, SunkenVariants.BUBBLE, PromenadeLootTables.BUBBLE_SUNKEN);
-        of(registry, SunkenVariants.FIRE, PromenadeLootTables.FIRE_SUNKEN);
-        of(registry, SunkenVariants.HORN, PromenadeLootTables.HORN_SUNKEN);
-    }
+	public static void register(Registerable<SunkenVariant> registry) {
+		of(registry, SunkenVariants.TUBE, PromenadeLootTables.TUBE_SUNKEN);
+		of(registry, SunkenVariants.BRAIN, PromenadeLootTables.BRAIN_SUNKEN);
+		of(registry, SunkenVariants.BUBBLE, PromenadeLootTables.BUBBLE_SUNKEN);
+		of(registry, SunkenVariants.FIRE, PromenadeLootTables.FIRE_SUNKEN);
+		of(registry, SunkenVariants.HORN, PromenadeLootTables.HORN_SUNKEN);
+	}
 
-    private static void of(Registerable<SunkenVariant> registry, RegistryKey<SunkenVariant> key, RegistryKey<LootTable> lootTable) {
-        registry.register(key, new SunkenVariant(new TextureAssetInfo(key.getValue().withPrefixedPath("entity/sunken/")), lootTable, SpawnConditionSelectors.createFallback(0)));
-    }
+	private static void of(Registerable<SunkenVariant> registry, RegistryKey<SunkenVariant> key, RegistryKey<LootTable> lootTable) {
+		registry.register(key, new SunkenVariant(new TextureAssetInfo(key.getValue().withPrefixedPath("entity/sunken/")), lootTable, SpawnConditionSelectors.createFallback(0)));
+	}
 }

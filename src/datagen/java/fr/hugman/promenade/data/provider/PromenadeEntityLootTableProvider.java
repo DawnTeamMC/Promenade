@@ -1,10 +1,20 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.entity.PromenadeEntityTypes;
-import fr.hugman.promenade.item.PromenadeItems;
-import fr.hugman.promenade.loot.PromenadeLootTables;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.function.BiConsumer;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
@@ -42,125 +52,128 @@ import net.minecraft.registry.tag.EntityTypeTags;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.registry.tag.ItemTags;
 
-import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.BiConsumer;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+
+import fr.hugman.promenade.entity.PromenadeEntityTypes;
+import fr.hugman.promenade.item.PromenadeItems;
+import fr.hugman.promenade.loot.PromenadeLootTables;
 
 public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvider {
-    private final RegistryWrapper.WrapperLookup registries;
+	private final RegistryWrapper.WrapperLookup registries;
 
-    public PromenadeEntityLootTableProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
-        super(output, registryLookup, LootContextTypes.ENTITY);
-        this.registries = registryLookup.join();
-    }
+	public PromenadeEntityLootTableProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+		super(output, registryLookup, LootContextTypes.ENTITY);
+		this.registries = registryLookup.join();
+	}
 
-    @Override
-    public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> output) {
-        final var entities = this.registries.getOrThrow(RegistryKeys.ENTITY_TYPE);
-        final var fluids = this.registries.getOrThrow(RegistryKeys.FLUID);
+	@Override
+	public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> output) {
+		final var entities = this.registries.getOrThrow(RegistryKeys.ENTITY_TYPE);
+		final var fluids = this.registries.getOrThrow(RegistryKeys.FLUID);
 
-        output.accept(PromenadeEntityTypes.CAPYBARA.getLootTableKey().orElseThrow(), LootTable.builder());
-        output.accept(
-                PromenadeEntityTypes.DUCK.getLootTableKey().orElseThrow(),
-                LootTable.builder()
-                        .pool(LootPool.builder()
-                                .with(ItemEntry.builder(Items.FEATHER)
-                                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                        .apply(EnchantedCountIncreaseLootFunction.builder(registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
-                                )
-                        )
-                        .pool(LootPool.builder()
-                                .with(ItemEntry.builder(PromenadeItems.DUCK)
-                                        .apply(FurnaceSmeltLootFunction.builder().conditionally(this.createSmeltLootCondition()))
-                                        .apply(EnchantedCountIncreaseLootFunction.builder(registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
-                                )
-                        )
-        );
+		output.accept(PromenadeEntityTypes.CAPYBARA.getLootTableKey().orElseThrow(), LootTable.builder());
+		output.accept(
+				PromenadeEntityTypes.DUCK.getLootTableKey().orElseThrow(),
+				LootTable.builder()
+						.pool(LootPool.builder()
+								.with(ItemEntry.builder(Items.FEATHER)
+										.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
+										.apply(EnchantedCountIncreaseLootFunction.builder(registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+								)
+						)
+						.pool(LootPool.builder()
+								.with(ItemEntry.builder(PromenadeItems.DUCK)
+										.apply(FurnaceSmeltLootFunction.builder().conditionally(this.createSmeltLootCondition()))
+										.apply(EnchantedCountIncreaseLootFunction.builder(registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+								)
+						)
+		);
 
-        output.accept(
-                PromenadeEntityTypes.LUSH_CREEPER.getLootTableKey().orElseThrow(),
-                LootTable.builder()
-                        .pool(LootPool.builder()
-                                .with(ItemEntry.builder(Items.GUNPOWDER)
-                                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                        .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
-                                )
-                        )
-                        .pool(LootPool.builder()
-                                .with(ItemEntry.builder(Items.BONE_MEAL).weight(2).quality(2)
-                                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                        .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
-                                )
-                                .with(ItemEntry.builder(Items.MOSS_BLOCK).weight(1).quality(5)
-                                        .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
-                                )
-                        )
-                        .pool(LootPool.builder()
-                                .with(TagEntry.expandBuilder(ItemTags.CREEPER_DROP_MUSIC_DISCS))
-                                .conditionally(
-                                        EntityPropertiesLootCondition.builder(
-                                                LootContext.EntityReference.ATTACKER, EntityPredicate.Builder.create().type(entities, EntityTypeTags.SKELETONS)
-                                        )
-                                )
-                        )
-        );
+		output.accept(
+				PromenadeEntityTypes.LUSH_CREEPER.getLootTableKey().orElseThrow(),
+				LootTable.builder()
+						.pool(LootPool.builder()
+								.with(ItemEntry.builder(Items.GUNPOWDER)
+										.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
+										.apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+								)
+						)
+						.pool(LootPool.builder()
+								.with(ItemEntry.builder(Items.BONE_MEAL).weight(2).quality(2)
+										.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
+										.apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+								)
+								.with(ItemEntry.builder(Items.MOSS_BLOCK).weight(1).quality(5)
+										.apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+								)
+						)
+						.pool(LootPool.builder()
+								.with(TagEntry.expandBuilder(ItemTags.CREEPER_DROP_MUSIC_DISCS))
+								.conditionally(
+										EntityPropertiesLootCondition.builder(
+												LootContext.EntityReference.ATTACKER, EntityPredicate.Builder.create().type(entities, EntityTypeTags.SKELETONS)
+										)
+								)
+						)
+		);
 
-        output.accept(PromenadeLootTables.TUBE_SUNKEN, sunken(fluids, Items.TUBE_CORAL, Items.DEAD_TUBE_CORAL));
-        output.accept(PromenadeLootTables.BRAIN_SUNKEN, sunken(fluids, Items.BRAIN_CORAL, Items.DEAD_BRAIN_CORAL));
-        output.accept(PromenadeLootTables.BUBBLE_SUNKEN, sunken(fluids, Items.BUBBLE_CORAL, Items.DEAD_BUBBLE_CORAL));
-        output.accept(PromenadeLootTables.FIRE_SUNKEN, sunken(fluids, Items.FIRE_CORAL, Items.DEAD_FIRE_CORAL));
-        output.accept(PromenadeLootTables.HORN_SUNKEN, sunken(fluids, Items.HORN_CORAL, Items.DEAD_HORN_CORAL));
-    }
+		output.accept(PromenadeLootTables.TUBE_SUNKEN, sunken(fluids, Items.TUBE_CORAL, Items.DEAD_TUBE_CORAL));
+		output.accept(PromenadeLootTables.BRAIN_SUNKEN, sunken(fluids, Items.BRAIN_CORAL, Items.DEAD_BRAIN_CORAL));
+		output.accept(PromenadeLootTables.BUBBLE_SUNKEN, sunken(fluids, Items.BUBBLE_CORAL, Items.DEAD_BUBBLE_CORAL));
+		output.accept(PromenadeLootTables.FIRE_SUNKEN, sunken(fluids, Items.FIRE_CORAL, Items.DEAD_FIRE_CORAL));
+		output.accept(PromenadeLootTables.HORN_SUNKEN, sunken(fluids, Items.HORN_CORAL, Items.DEAD_HORN_CORAL));
+	}
 
-    protected final AnyOfLootCondition.Builder createSmeltLootCondition() {
-        RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
-        return AnyOfLootCondition.builder(
-                EntityPropertiesLootCondition.builder(
-                        LootContext.EntityReference.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true))
-                ),
-                EntityPropertiesLootCondition.builder(
-                        LootContext.EntityReference.DIRECT_ATTACKER,
-                        EntityPredicate.Builder.create()
-                                .equipment(
-                                        EntityEquipmentPredicate.Builder.create()
-                                                .mainhand(
-                                                        ItemPredicate.Builder.create()
-                                                                .components(
-                                                                        ComponentsPredicate.Builder.create()
-                                                                                .partial(
-                                                                                        ComponentPredicateTypes.ENCHANTMENTS,
-                                                                                        EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(impl.getOrThrow(EnchantmentTags.SMELTS_LOOT), NumberRange.IntRange.ANY)))
-                                                                                )
-                                                                                .build()
-                                                                )
-                                                )
-                                )
-                )
-        );
-    }
+	protected final AnyOfLootCondition.Builder createSmeltLootCondition() {
+		RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
+		return AnyOfLootCondition.builder(
+				EntityPropertiesLootCondition.builder(
+						LootContext.EntityReference.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true))
+				),
+				EntityPropertiesLootCondition.builder(
+						LootContext.EntityReference.DIRECT_ATTACKER,
+						EntityPredicate.Builder.create()
+								.equipment(
+										EntityEquipmentPredicate.Builder.create()
+												.mainhand(
+														ItemPredicate.Builder.create()
+																.components(
+																		ComponentsPredicate.Builder.create()
+																				.partial(
+																						ComponentPredicateTypes.ENCHANTMENTS,
+																						EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(impl.getOrThrow(EnchantmentTags.SMELTS_LOOT), NumberRange.IntRange.ANY)))
+																				)
+																				.build()
+																)
+												)
+								)
+				)
+		);
+	}
 
-    protected final LootTable.Builder sunken(RegistryEntryLookup<Fluid> fluids, Item coral, Item deadCoral) {
-        return LootTable.builder()
-                .pool(LootPool.builder()
-                        .with(ItemEntry.builder(Items.ARROW)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
-                        )
-                )
-                .pool(LootPool.builder()
-                        .with(ItemEntry.builder(Items.BONE)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
-                        )
-                )
-                .pool(LootPool.builder()
-                        .with(
-                                ItemEntry.builder(coral)
-                                        .conditionally(LocationCheckLootCondition.builder(LocationPredicate.Builder.create().fluid(FluidPredicate.Builder.create().tag(fluids.getOrThrow(FluidTags.WATER)))))
-                                        .alternatively(ItemEntry.builder(deadCoral))
-                        )
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
-                        .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
-                );
-    }
+	protected final LootTable.Builder sunken(RegistryEntryLookup<Fluid> fluids, Item coral, Item deadCoral) {
+		return LootTable.builder()
+				.pool(LootPool.builder()
+						.with(ItemEntry.builder(Items.ARROW)
+								.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
+								.apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+						)
+				)
+				.pool(LootPool.builder()
+						.with(ItemEntry.builder(Items.BONE)
+								.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
+								.apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+						)
+				)
+				.pool(LootPool.builder()
+						.with(
+								ItemEntry.builder(coral)
+										.conditionally(LocationCheckLootCondition.builder(LocationPredicate.Builder.create().fluid(FluidPredicate.Builder.create().tag(fluids.getOrThrow(FluidTags.WATER)))))
+										.alternatively(ItemEntry.builder(deadCoral))
+						)
+						.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
+						.apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+				);
+	}
 }

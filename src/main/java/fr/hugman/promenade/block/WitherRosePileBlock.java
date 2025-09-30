@@ -1,8 +1,18 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.Entity;
@@ -18,45 +28,48 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
 public class WitherRosePileBlock extends PileBlock {
-    public static final MapCodec<WitherRosePileBlock> CODEC = createCodec(WitherRosePileBlock::new);
+	public static final MapCodec<WitherRosePileBlock> CODEC = createCodec(WitherRosePileBlock::new);
 
-    public WitherRosePileBlock(Settings builder) {
-        super(builder);
-    }
+	public WitherRosePileBlock(Settings builder) {
+		super(builder);
+	}
 
-    @Override
-    protected MapCodec<WitherRosePileBlock> getCodec() {
-        return CODEC;
-    }
+	@Override
+	protected MapCodec<WitherRosePileBlock> getCodec() {
+		return CODEC;
+	}
 
-    @Override
-    public boolean canPlantOnTop(BlockState state, BlockView world, BlockPos pos) {
-        return super.canPlantOnTop(state, world, pos) || state.getBlock() == Blocks.SOUL_SAND;
-    }
+	@Override
+	public boolean canPlantOnTop(BlockState state, BlockView world, BlockPos pos) {
+		return super.canPlantOnTop(state, world, pos) || state.getBlock() == Blocks.SOUL_SAND;
+	}
 
-    @Override
-    @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random rand) {
-        for (int i = 0; i < 5; ++i) {
-            if (rand.nextBoolean()) {
-                world.addParticleClient(ParticleTypes.SMOKE, (double) pos.getX() + (double) (rand.nextInt(17) / 16), (double) pos.getY() + (0.5D - (double) rand.nextFloat()), (double) pos.getZ() + (double) (rand.nextInt(17) / 16), 0.0D, 0.0D, 0.0D);
-            }
-        }
-    }
+	@Override
+	@Environment(EnvType.CLIENT)
+	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random rand) {
+		for (int i = 0; i < 5; ++i) {
+			if (rand.nextBoolean()) {
+				world.addParticleClient(ParticleTypes.SMOKE, (double) pos.getX() + (double) (rand.nextInt(17) / 16), (double) pos.getY() + (0.5D - (double) rand.nextFloat()), (double) pos.getZ() + (double) (rand.nextInt(17) / 16), 0.0D, 0.0D, 0.0D);
+			}
+		}
+	}
 
-    @Override
-    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
-        if (world instanceof ServerWorld serverWorld
-                && world.getDifficulty() != Difficulty.PEACEFUL
-                && entity instanceof LivingEntity livingEntity
-                && !livingEntity.isInvulnerableTo(serverWorld, world.getDamageSources().wither())) {
-            livingEntity.addStatusEffect(this.getContactEffect());
-        }
-        super.onEntityCollision(state, world, pos, entity, handler);
-    }
+	@Override
+	protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
+		if (world instanceof ServerWorld serverWorld
+				&& world.getDifficulty() != Difficulty.PEACEFUL
+				&& entity instanceof LivingEntity livingEntity
+				&& !livingEntity.isInvulnerableTo(serverWorld, world.getDamageSources().wither())) {
+			livingEntity.addStatusEffect(this.getContactEffect());
+		}
+		super.onEntityCollision(state, world, pos, entity, handler);
+	}
 
-    public StatusEffectInstance getContactEffect() {
-        return new StatusEffectInstance(StatusEffects.WITHER, 40);
-    }
+	public StatusEffectInstance getContactEffect() {
+		return new StatusEffectInstance(StatusEffects.WITHER, 40);
+	}
 }

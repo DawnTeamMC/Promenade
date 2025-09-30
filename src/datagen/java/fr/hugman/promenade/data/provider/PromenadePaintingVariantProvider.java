@@ -1,8 +1,19 @@
+/*
+ * Copyright (c) 2020, 2021, 2022, 2023, 2024, 2025 Hugman
+ *
+ * This software is licensed under the PolyForm Shield License 1.0.0.
+ * You may obtain a copy of the License at
+ *
+ *      https://polyformproject.org/licenses/shield/1.0.0
+ *
+ * You may use this software only for non-commercial purposes.
+ * For commercial use, you must obtain a separate commercial license.
+ */
 package fr.hugman.promenade.data.provider;
 
-import fr.hugman.promenade.entity.variant.PromenadePaintingVariants;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
+
 import net.minecraft.entity.decoration.painting.PaintingVariant;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -11,38 +22,40 @@ import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
+
+import fr.hugman.promenade.entity.variant.PromenadePaintingVariants;
 
 public class PromenadePaintingVariantProvider extends FabricDynamicRegistryProvider {
-    public PromenadePaintingVariantProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
-        super(output, registriesFuture);
-    }
+	public PromenadePaintingVariantProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+		super(output, registriesFuture);
+	}
 
-    @Override
-    protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        final var wrapper = registries.getOrThrow(RegistryKeys.PAINTING_VARIANT);
-        entries.add(wrapper, PromenadePaintingVariants.OPTIMISM);
-        entries.add(wrapper, PromenadePaintingVariants.NURTURE);
-    }
+	@Override
+	protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
+		final var wrapper = registries.getOrThrow(RegistryKeys.PAINTING_VARIANT);
+		entries.add(wrapper, PromenadePaintingVariants.OPTIMISM);
+		entries.add(wrapper, PromenadePaintingVariants.NURTURE);
+	}
 
-    @Override
-    public String getName() {
-        return "Painting Variants";
-    }
+	@Override
+	public String getName() {
+		return "Painting Variants";
+	}
 
-    public static void register(Registerable<PaintingVariant> registerable) {
-        of(registerable, PromenadePaintingVariants.OPTIMISM, 2, 2, "hugman");
-        of(registerable, PromenadePaintingVariants.NURTURE, 2, 2, "hugman");
-    }
+	public static void register(Registerable<PaintingVariant> registerable) {
+		of(registerable, PromenadePaintingVariants.OPTIMISM, 2, 2, "hugman");
+		of(registerable, PromenadePaintingVariants.NURTURE, 2, 2, "hugman");
+	}
 
-    private static void of(Registerable<PaintingVariant> registry, RegistryKey<PaintingVariant> key, int width, int height, String authorKey) {
-        registry.register(key, new PaintingVariant(
-                width,
-                height,
-                key.getValue(),
-                Optional.of(Text.translatable(key.getValue().toTranslationKey("painting", "title")).formatted(Formatting.YELLOW)),
-                Optional.of(Text.translatable("name." + authorKey).formatted(Formatting.GRAY)))
-        );
-    }
+	private static void of(Registerable<PaintingVariant> registry, RegistryKey<PaintingVariant> key, int width, int height, String authorKey) {
+		registry.register(key, new PaintingVariant(
+				width,
+				height,
+				key.getValue(),
+				Optional.of(Text.translatable(key.getValue().toTranslationKey("painting", "title")).formatted(Formatting.YELLOW)),
+				Optional.of(Text.translatable("name." + authorKey).formatted(Formatting.GRAY)))
+		);
+	}
 }

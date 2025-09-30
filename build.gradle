@@ -1,92 +1,118 @@
 plugins {
-    id 'fabric-loom' version "${loom_version}"
-    id 'org.moddedmc.wiki.toolkit' version '0.2.7'
+	id 'fabric-loom' version "${loom_version}"
+	id 'org.moddedmc.wiki.toolkit' version '0.2.7'
+	id "com.diffplug.spotless" version "8.0.0"
 }
 
 group = "com.github.hugman"
 
 base {
-    archivesName = project.mod_id
+	archivesName = project.mod_id
 }
 
 repositories {
-    maven { url 'https://maven.terraformersmc.com/' } // Required for Biolith
+	maven { url 'https://maven.terraformersmc.com/' } // Required for Biolith
 }
 
 dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modApi include ("com.terraformersmc:biolith-fabric:${biolith_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
-    }
+	modApi include("com.terraformersmc:biolith-fabric:${biolith_version}") {
+		exclude(group: "net.fabricmc.fabric-api")
+	}
 
-    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+	compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 
-    // Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-fabric
-    //modRuntimeOnly "org.sinytra:item-asset-export-fabric:1.1.0+1.21.4" FIXME not updated for 1.21.5 yet
+	// Version list: https://maven.sinytra.org/org/sinytra/item-asset-export-fabric
+	//modRuntimeOnly "org.sinytra:item-asset-export-fabric:1.1.0+1.21.4" FIXME not updated for 1.21.5 yet
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/promenade.accesswidener")
+	accessWidenerPath = file("src/main/resources/promenade.accesswidener")
 
-    splitEnvironmentSourceSets()
+	splitEnvironmentSourceSets()
 
-    mods {
-        "promenade" {
-            sourceSet sourceSets.main
-            sourceSet sourceSets.client
-        }
-    }
+	mods {
+		"promenade" {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
 }
 
 fabricApi {
-    configureDataGeneration() {
-        modId = "promenade-datagen"
-        createSourceSet = true
-        client = true
-    }
+	configureDataGeneration() {
+		modId = "promenade-datagen"
+		createSourceSet = true
+		client = true
+	}
 }
 
 processResources {
-    inputs.property "version", project.version
+	inputs.property "version", project.version
 
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
-    }
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.encoding = "UTF-8"
-    it.options.release = 21
+	it.options.encoding = "UTF-8"
+	it.options.release = 21
 }
 
 java {
-    withSourcesJar()
+	withSourcesJar()
 
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
-    from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}" }
-    }
+	from("LICENSE") {
+		rename { "${it}_${project.archivesBaseName}" }
+	}
 }
 
 // for JitPack
 configurations.configureEach {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+	resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 wiki {
-    docs {
-        promenade {
-            root = file('docs')
-            exportedAssetNamespaces = ['promenade']
-        }
-    }
+	docs {
+		promenade {
+			root = file('docs')
+			exportedAssetNamespaces = ['promenade']
+		}
+	}
+}
+
+// Spotless - Java CodeStyle
+spotless {
+	lineEndings = com.diffplug.spotless.LineEnding.UNIX
+
+	java {
+		licenseHeaderFile(rootProject.file("HEADER"))
+		removeUnusedImports()
+		importOrder('java', 'javax', '', 'net.minecraft', 'net.fabricmc', 'fr.hugman')
+		leadingSpacesToTabs()
+		trimTrailingWhitespace()
+	}
+
+	groovyGradle {
+		target 'src/**/*.gradle', '*.gradle', 'gradle/*.gradle'
+		greclipse()
+	}
+
+	// Sort the en_us translation files
+	json {
+		target 'src/**/lang/en_us.json'
+		targetExclude 'src/**/generated/**'
+		gson().indentWithSpaces(2)
+	}
 }
