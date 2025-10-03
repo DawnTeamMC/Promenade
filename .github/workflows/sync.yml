@@ -1,29 +1,42 @@
-# Automatically upload translations to Crowdin for every push to the main or dev branch.
-# This allows strings to be translated before a new version is released.
-
 name: Synchronize Project
 
 on:
   push:
-    paths:
-      - 'src/client/resources/assets/promenade/lang/en_us.json'
-      - 'crowdin.yml'
-      - 'docs/**/*.*'
     branches: [ main, dev ]
 
 jobs:
-  crowdin:
-    runs-on: ubuntu-latest
+  build_and_crowdin:
+    strategy:
+      matrix:
+        java: [ 21 ]
+        os: [ ubuntu-latest ]
+    name: Build the project (Java ${{ matrix.java }}, on ${{ matrix.os }})) and upload translations to Crowdin
+    runs-on: ${{ matrix.os }}
     steps:
 
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Upload translations source file to Crowdin
-      uses: crowdin/github-action@v1
-      with:
-        upload_sources: true
-        upload_translations: false
-        download_translations: false
-      env:
-        CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+
+      - name: Setup JDK ${{ matrix.java }}
+        uses: actions/setup-java@v1
+        with:
+          java-version: ${{ matrix.java }}
+
+      - name: Make Gradle wrapper executable
+        if: ${{ runner.os != 'Windows' }}
+        run: chmod +x ./gradlew
+
+      - name: Generate data files
+        run: ./gradlew runDatagen
+
+      - name: Upload translations source file to Crowdin
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: true
+          upload_translations: false
+          download_translations: false
+        env:
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
