@@ -90,12 +90,36 @@ public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider 
         // Conventional
         valueLookupBuilder(ConventionalItemTags.RAW_MEAT_FOODS).add(DUCK);
         valueLookupBuilder(ConventionalItemTags.COOKED_MEAT_FOODS).add(COOKED_DUCK);
-        copy(ConventionalBlockTags.STONES, ConventionalItemTags.STONES);
-        copy(ConventionalBlockTags.FENCES, ConventionalItemTags.FENCES);
-        copy(ConventionalBlockTags.WOODEN_FENCES, ConventionalItemTags.WOODEN_FENCES);
-        copy(ConventionalBlockTags.FENCE_GATES, ConventionalItemTags.FENCE_GATES);
-        copy(ConventionalBlockTags.WOODEN_FENCE_GATES, ConventionalItemTags.WOODEN_FENCE_GATES);
-        copy(ConventionalBlockTags.STRIPPED_WOODS, ConventionalItemTags.STRIPPED_WOODS);
-        copy(ConventionalBlockTags.STRIPPED_LOGS, ConventionalItemTags.STRIPPED_LOGS);
-    }
+		valueLookupBuilder(APRICOTS_FOODS).add(APRICOT);
+		valueLookupBuilder(BANANA_FOODS).add(BANANA);
+		valueLookupBuilder(MANGOES_FOODS).add(MANGO);
+		valueLookupBuilder(BLUEBERRIES_FOODS).add(BLUEBERRIES);
+
+		valueLookupBuilder(ConventionalItemTags.FOODS)
+				.add(DUCK)
+				.add(COOKED_DUCK);
+
+		valueLookupBuilder(ConventionalItemTags.FRUIT_FOODS)
+				.addTag(APRICOTS_FOODS)
+				.addTag(BANANA_FOODS)
+				.addTag(MANGOES_FOODS);
+
+		valueLookupBuilder(ConventionalItemTags.BERRY_FOODS)
+				.addTag(BLUEBERRIES_FOODS);
+
+		valueLookupBuilder(MAPLE_SYRUP_DRINKS)
+				.add(MAPLE_SYRUP_BOTTLE);
+
+		valueLookupBuilder(ConventionalItemTags.DRINK_CONTAINING_BOTTLE)
+				.add(MAPLE_SYRUP_BOTTLE);
+
+		copy(ConventionalBlockTags.STONES, ConventionalItemTags.STONES);
+		copy(ConventionalBlockTags.FENCES, ConventionalItemTags.FENCES);
+		copy(ConventionalBlockTags.WOODEN_FENCES, ConventionalItemTags.WOODEN_FENCES);
+		copy(ConventionalBlockTags.FENCE_GATES, ConventionalItemTags.FENCE_GATES);
+		copy(ConventionalBlockTags.WOODEN_FENCE_GATES, ConventionalItemTags.WOODEN_FENCE_GATES);
+		copy(ConventionalBlockTags.STRIPPED_WOODS, ConventionalItemTags.STRIPPED_WOODS);
+		copy(ConventionalBlockTags.STRIPPED_LOGS, ConventionalItemTags.STRIPPED_LOGS);
+		copy(PromenadeBlockTags.IGNEOUS_ROCKS, IGNEOUS_ROCKS);
+	}
 }
