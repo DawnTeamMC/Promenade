@@ -15,8 +15,8 @@ public class PromenadeItemTags {
 
     public static final TagKey<Item> SNOWY_LEAVES = of("snowy_leaves");
 
-    public static final TagKey<Item> CAPYBARA_FOOD = of("capybara_food");
-    public static final TagKey<Item> DUCK_FOOD = of("duck_food");
+    public static final TagKey<Item> CAPYBARA_FOOD = of("animal_food/capybara");
+    public static final TagKey<Item> DUCK_FOOD = of("animal_food/duck");
 
     public static final TagKey<Item> APRICOTS_FOODS = ofConventional("food/apricot");
     public static final TagKey<Item> BANANA_FOODS = ofConventional("food/banana");
@@ -26,7 +26,6 @@ public class PromenadeItemTags {
 	public static final TagKey<Item> MAPLE_SYRUP_DRINKS = ofConventional("drinks/maple_syrup");
 
 	public static final TagKey<Item> IGNEOUS_ROCKS = ofConventional("igneous_rocks");
-
 
     private static TagKey<Item> of(String path) {
         return TagKey.of(RegistryKeys.ITEM, Promenade.id(path));
