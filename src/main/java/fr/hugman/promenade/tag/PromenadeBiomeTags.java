@@ -23,7 +23,7 @@ public class PromenadeBiomeTags {
 
 	public static final TagKey<Biome> PRIMARY_WOOD_TYPE_SAKURA = ofConventional("primary_wood_type/sakura");
 	public static final TagKey<Biome> PRIMARY_WOOD_TYPE_PALM = ofConventional("primary_wood_type/palm");
-	public static final TagKey<Biome> PRIMARY_WOOD_TYPE_MAPLE = ofConventional("primary_wood_type/palm");
+	public static final TagKey<Biome> PRIMARY_WOOD_TYPE_MAPLE = ofConventional("primary_wood_type/maple");
 	public static final TagKey<Biome> PRIMARY_WOOD_TYPE_DARK_AMARANTH = ofConventional("primary_wood_type/dark_amaranth");
 
     private static TagKey<Biome> of(String path) {
