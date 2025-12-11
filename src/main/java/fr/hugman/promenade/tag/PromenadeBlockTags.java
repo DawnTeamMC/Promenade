@@ -1,9 +1,12 @@
 package fr.hugman.promenade.tag;
 
 import fr.hugman.promenade.Promenade;
+import net.fabricmc.fabric.api.tag.convention.v2.TagUtil;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
 
 public class PromenadeBlockTags {
     public static final TagKey<Block> SAKURA_LOGS = of("sakura_logs");
@@ -21,7 +24,13 @@ public class PromenadeBlockTags {
     public static final TagKey<Block> DARK_AMARANTH_FUNGUS_GROWABLE_ON = of("dark_amaranth_fungus_growable_on");
     public static final TagKey<Block> DARK_AMARANTH_ROOTS_PLACEABLE_ON = of("dark_amaranth_roots_placeable_on");
 
+	public static final TagKey<Block> IGNEOUS_ROCKS = ofConventional("igneous_rocks");
+
     public static TagKey<Block> of(String path) {
         return TagKey.of(RegistryKeys.BLOCK, Promenade.id(path));
     }
+
+	private static TagKey<Block> ofConventional(String path) {
+		return TagKey.of(RegistryKeys.BLOCK, Identifier.of(TagUtil.C_TAG_NAMESPACE, path));
+	}
 }

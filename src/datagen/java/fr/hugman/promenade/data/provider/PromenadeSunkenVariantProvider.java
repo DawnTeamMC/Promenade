@@ -11,7 +11,7 @@ import net.minecraft.loot.LootTable;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.AssetInfo;
+import net.minecraft.util.AssetInfo.TextureAssetInfo;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -40,6 +40,6 @@ public class PromenadeSunkenVariantProvider extends FabricDynamicRegistryProvide
     }
 
     private static void of(Registerable<SunkenVariant> registry, RegistryKey<SunkenVariant> key, RegistryKey<LootTable> lootTable) {
-        registry.register(key, new SunkenVariant(new AssetInfo(key.getValue().withPrefixedPath("entity/sunken/")), lootTable, SpawnConditionSelectors.createFallback(0)));
+        registry.register(key, new SunkenVariant(new TextureAssetInfo(key.getValue().withPrefixedPath("entity/sunken/")), lootTable, SpawnConditionSelectors.createFallback(0)));
     }
 }

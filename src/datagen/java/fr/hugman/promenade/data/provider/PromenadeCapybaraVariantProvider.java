@@ -10,7 +10,7 @@ import net.minecraft.entity.spawn.SpawnConditionSelectors;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.AssetInfo;
+import net.minecraft.util.AssetInfo.TextureAssetInfo;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -42,9 +42,9 @@ public class PromenadeCapybaraVariantProvider extends FabricDynamicRegistryProvi
     private static void of(Registerable<CapybaraVariant> registry, RegistryKey<CapybaraVariant> key, SpawnConditionSelectors spawnConditions) {
         var baseId = key.getValue().withPrefixedPath("entity/capybara/");
         registry.register(key, new CapybaraVariant(
-                new AssetInfo(baseId.withSuffixedPath("/small_eyes")),
-                new AssetInfo(baseId.withSuffixedPath("/large_eyes")),
-                new AssetInfo(baseId.withSuffixedPath("/closed_eyes")),
+                new TextureAssetInfo(baseId.withSuffixedPath("/small_eyes")),
+                new TextureAssetInfo(baseId.withSuffixedPath("/large_eyes")),
+                new TextureAssetInfo(baseId.withSuffixedPath("/closed_eyes")),
                 spawnConditions
         ));
     }

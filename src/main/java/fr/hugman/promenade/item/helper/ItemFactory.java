@@ -23,7 +23,7 @@ public final class ItemFactory {
     }
 
     public static Function<Item.Settings, SpawnEggItem> spawnEgg(EntityType<? extends MobEntity> entityType) {
-        return s -> new SpawnEggItem(entityType, s);
+        return s -> new SpawnEggItem(s.spawnEgg(entityType));
     }
 
     public static Function<Item.Settings, BoatItem> boat(EntityType<? extends AbstractBoatEntity> boatEntity) {

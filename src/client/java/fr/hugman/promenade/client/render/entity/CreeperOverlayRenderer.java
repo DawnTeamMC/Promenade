@@ -2,7 +2,7 @@ package fr.hugman.promenade.client.render.entity;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.VertexConsumerProvider;
+import net.minecraft.client.render.command.OrderedRenderCommandQueue;
 import net.minecraft.client.render.entity.feature.FeatureRenderer;
 import net.minecraft.client.render.entity.feature.FeatureRendererContext;
 import net.minecraft.client.render.entity.model.CreeperEntityModel;
@@ -25,8 +25,8 @@ public class CreeperOverlayRenderer<S extends CreeperEntityRenderState, M extend
     }
 
     @Override
-    public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CreeperEntityRenderState state, float limbAngle, float limbDistance) {
-        render(this.model, this.texture, matrices, vertexConsumers, light, state, -1);
+    public void render(MatrixStack matrices, OrderedRenderCommandQueue queue, int light, S state, float limbAngle, float limbDistance) {
+        render(this.model, this.texture, matrices, queue, light, state, -1, 1);
     }
 }
 

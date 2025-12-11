@@ -19,7 +19,7 @@ public class PromenadeDispenserBehaviors {
             @Override
             public ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
                 Direction direction = pointer.state().get(DispenserBlock.FACING);
-                EntityType<?> entityType = ((SpawnEggItem) stack.getItem()).getEntityType(pointer.world().getRegistryManager(), stack);
+                EntityType<?> entityType = ((SpawnEggItem) stack.getItem()).getEntityType(stack);
 
                 try {
                     entityType.spawnFromItemStack(pointer.world(), stack, null, pointer.pos().offset(direction), SpawnReason.DISPENSER, direction != Direction.UP, false);
