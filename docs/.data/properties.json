@@ -1,0 +1,775 @@
+{
+  "promenade:maple_planks": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:moai": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_fence": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_fulvous_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:polished_asphalt_stairs": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:spruce_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_hanging_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_chest_boat": {
+    "stack_size": 1,
+    "rarity": "common"
+  },
+  "promenade:stripped_dark_amaranth_stem": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_pressure_plate": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:fallen_fulvous_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:stripped_palm_wood": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:stripped_dark_amaranth_hyphae": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_chest_boat": {
+    "stack_size": 1,
+    "rarity": "common"
+  },
+  "promenade:blush_sakura_blossom_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_log": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:bovine_banner_pattern": {
+    "stack_size": 1,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_trapdoor": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:fallen_mikado_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:potted_vermilion_maple_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:vermilion_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_wood": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:oxeye_daisy_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:fallen_vermilion_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:stripped_maple_wood": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_hyphae": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:vermilion_maple_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:banana": {
+    "stack_size": 64,
+    "rarity": "common",
+    "nutrition": 4
+  },
+  "promenade:potted_dark_amaranth_roots": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_sign": {
+    "stack_size": 16,
+    "rarity": "common"
+  },
+  "promenade:asphalt": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_planks": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:blush_sakura_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:lily_of_the_valley_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_fence": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:blue_orchid_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_door": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:potted_cotton_sakura_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:polished_blunite_stairs": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_button": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_fence_gate": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:asphalt_stairs": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_slab": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:mikado_maple_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_pressure_plate": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_boat": {
+    "stack_size": 1,
+    "rarity": "common"
+  },
+  "promenade:snowy_azalea_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_birch_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_button": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:oak_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_wall_hanging_sign": {
+    "stack_size": 16,
+    "required_tool": "minecraft:wooden_axe",
+    "blast_resistance": 1.0,
+    "hardness": 1.0,
+    "flammable": true
+  },
+  "promenade:maple_wall_hanging_sign": {
+    "stack_size": 16,
+    "required_tool": "minecraft:wooden_axe",
+    "blast_resistance": 1.0,
+    "hardness": 1.0,
+    "flammable": true
+  },
+  "promenade:sakura_planks": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_hanging_sign": {
+    "stack_size": 16,
+    "rarity": "common"
+  },
+  "promenade:potted_palm_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:potted_blush_sakura_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_wall_hanging_sign": {
+    "stack_size": 16,
+    "required_tool": "minecraft:wooden_axe",
+    "blast_resistance": 1.0,
+    "hardness": 1.0,
+    "flammable": true
+  },
+  "promenade:blush_sakura_blossoms": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_stem": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_acacia_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_boat": {
+    "stack_size": 1,
+    "rarity": "common"
+  },
+  "promenade:stripped_palm_log": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:cotton_sakura_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:asphalt_slab": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:azalea_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_fence_gate": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:cooked_duck": {
+    "stack_size": 64,
+    "rarity": "common",
+    "nutrition": 6
+  },
+  "promenade:potted_mikado_maple_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sap_maple_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_planks": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sap_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_log": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_nylium": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_slab": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:cotton_sakura_blossoms": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_cotton_sakura_blossoms": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:stripped_sakura_log": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:potted_sap_maple_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_blush_sakura_blossoms": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_wall_sign": {
+    "stack_size": 16,
+    "required_tool": "minecraft:wooden_axe",
+    "blast_resistance": 1.0,
+    "hardness": 1.0,
+    "flammable": true
+  },
+  "promenade:sakura_pressure_plate": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_sign": {
+    "stack_size": 16,
+    "rarity": "common"
+  },
+  "promenade:sakura_trapdoor": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:pink_tulip_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:blunite_wall": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_door": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_syrup_bottle": {
+    "stack_size": 16,
+    "rarity": "common",
+    "nutrition": 6
+  },
+  "promenade:dark_amaranth_hanging_sign": {
+    "stack_size": 16,
+    "rarity": "common"
+  },
+  "promenade:stripped_maple_log": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:azure_bluet_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:poppy_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:duck_spawn_egg": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_wood": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:polished_blunite_slab": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:capybara_spawn_egg": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dandelion_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_oak_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_oak_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:allium_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:mikado_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:birch_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:fulvous_maple_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:blunite_stairs": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:pale_oak_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_spruce_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_wall_sign": {
+    "stack_size": 16,
+    "required_tool": "minecraft:wooden_axe",
+    "blast_resistance": 1.0,
+    "hardness": 1.0,
+    "flammable": false
+  },
+  "promenade:jungle_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_stairs": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_button": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:vermilion_maple_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:polished_asphalt": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_cherry_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:fulvous_maple_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_door": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:potted_fulvous_maple_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_wall_hanging_sign": {
+    "stack_size": 16,
+    "required_tool": "minecraft:wooden_axe",
+    "blast_resistance": 1.0,
+    "hardness": 1.0,
+    "flammable": false
+  },
+  "promenade:sakura_wall_sign": {
+    "stack_size": 16,
+    "required_tool": "minecraft:wooden_axe",
+    "blast_resistance": 1.0,
+    "hardness": 1.0,
+    "flammable": true
+  },
+  "promenade:white_tulip_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:blueberries": {
+    "stack_size": 64,
+    "rarity": "common",
+    "nutrition": 2
+  },
+  "promenade:lush_creeper_spawn_egg": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:blunite": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:coiled_vines": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:flowering_azalea_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_fence_gate": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sap_maple_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sunken_spawn_egg": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_jungle_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:apricot": {
+    "stack_size": 64,
+    "rarity": "common",
+    "nutrition": 4
+  },
+  "promenade:snowy_vermilion_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_button": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_fungus": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:stripped_sakura_wood": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_stairs": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_slab": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_sign": {
+    "stack_size": 16,
+    "rarity": "common"
+  },
+  "promenade:mikado_maple_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_stairs": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_wood": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:fallen_sap_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:mangrove_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:cherry_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:duck": {
+    "stack_size": 64,
+    "rarity": "common",
+    "nutrition": 2
+  },
+  "promenade:dark_amaranth_roots": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_flowering_azalea_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_pressure_plate": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_stairs": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_trapdoor": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_sapling": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:cotton_sakura_blossom_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:fulvous_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_pale_oak_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_trapdoor": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_fence": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:soul_shroomlight": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_chest_boat": {
+    "stack_size": 1,
+    "rarity": "common"
+  },
+  "promenade:blueberry_bush": {
+    "stack_size": 64,
+    "blast_resistance": 0.0,
+    "hardness": 0.0,
+    "flammable": false
+  },
+  "promenade:dark_amaranth_door": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_log": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:orange_tulip_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:cornflower_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_fence": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_mangrove_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:maple_sign": {
+    "stack_size": 16,
+    "rarity": "common"
+  },
+  "promenade:mango": {
+    "stack_size": 64,
+    "rarity": "common",
+    "nutrition": 4
+  },
+  "promenade:snowy_palm_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_fence_gate": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:acacia_leaf_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_slab": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:potted_dark_amaranth_fungus": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:polished_asphalt_slab": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:polished_blunite": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:snowy_dark_oak_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_wall_sign": {
+    "stack_size": 16,
+    "required_tool": "minecraft:wooden_axe",
+    "blast_resistance": 1.0,
+    "hardness": 1.0,
+    "flammable": true
+  },
+  "promenade:asphalt_wall": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:palm_hanging_sign": {
+    "stack_size": 16,
+    "rarity": "common"
+  },
+  "promenade:snowy_sap_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:wither_rose_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:red_tulip_pile": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:blunite_slab": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:dark_amaranth_wart_block": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_boat": {
+    "stack_size": 1,
+    "rarity": "common"
+  },
+  "promenade:snowy_mikado_maple_leaves": {
+    "stack_size": 64,
+    "rarity": "common"
+  },
+  "promenade:sakura_hanging_sign": {
+    "stack_size": 16,
+    "rarity": "common"
+  }
+}

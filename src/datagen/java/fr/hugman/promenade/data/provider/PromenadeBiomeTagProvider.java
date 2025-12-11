@@ -27,7 +27,7 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
         builder(HAS_PALMS)
                 .add(DESERT)
                 .addOptionalTag(ConventionalBiomeTags.IS_DESERT);
-        builder(HAS_DARK_FOREST_WITCH_HUT)
+        builder(HAS_DARK_FOREST_WITCH_HUTS)
                 .add(DARK_FOREST, PALE_GARDEN)
                 .addOptionalTag(ConventionalBiomeTags.IS_DARK_FOREST);
 
@@ -63,5 +63,15 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
         builder(BiomeTags.SPAWNS_SNOW_FOXES).add(GLACARIAN_TAIGA);
         builder(BiomeTags.SPAWNS_WHITE_RABBITS).add(GLACARIAN_TAIGA);
         builder(BiomeTags.SNOW_GOLEM_MELTS).add(DARK_AMARANTH_FOREST);
+
+		// Conventional
+		builder(PRIMARY_WOOD_TYPE_SAKURA).addTag(SAKURA_GROVES);
+		builder(PRIMARY_WOOD_TYPE_PALM).addTag(HAS_PALMS);
+		builder(PRIMARY_WOOD_TYPE_MAPLE).add(CARNELIAN_TREEWAY);
+		builder(PRIMARY_WOOD_TYPE_DARK_AMARANTH).add(DARK_AMARANTH_FOREST);
+		builder(ConventionalBiomeTags.IS_CONIFEROUS_TREE).add(CARNELIAN_TREEWAY);
+		builder(ConventionalBiomeTags.IS_SNOWY).add(GLACARIAN_TAIGA);
+		builder(ConventionalBiomeTags.IS_ICY).add(GLACARIAN_TAIGA);
+		builder(ConventionalBiomeTags.IS_NETHER_FOREST).add(DARK_AMARANTH_FOREST);
     }
 }

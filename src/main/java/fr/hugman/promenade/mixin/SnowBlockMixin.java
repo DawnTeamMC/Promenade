@@ -40,7 +40,7 @@ public class SnowBlockMixin {
         }
         var downState = world.getBlockState(downPos.get());
         var snowyLeaves = world.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().filter(
-                entry -> entry.baseBlocks().contains(downState.getBlock().getRegistryEntry())
+                entry -> entry.baseBlock().matches(downState.getBlock().getRegistryEntry())
         ).findFirst().map(sbt -> sbt.snowyBlock().value()).orElse(null);
 
         if(snowyLeaves != null) {
@@ -74,7 +74,7 @@ public class SnowBlockMixin {
 
         var block = blockState.getBlock();
         return world.getRegistryManager().getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
-                entry -> entry.baseBlocks().contains(block.getRegistryEntry())
+                entry -> entry.baseBlock().matches(block.getRegistryEntry())
         ) ? Optional.of(mutable) : Optional.empty();
     }
 

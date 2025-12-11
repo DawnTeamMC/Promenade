@@ -3,6 +3,7 @@ package fr.hugman.promenade.data.provider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
@@ -10,6 +11,7 @@ import net.minecraft.registry.tag.BlockTags;
 import java.util.concurrent.CompletableFuture;
 
 import static fr.hugman.promenade.block.PromenadeBlocks.*;
+import static fr.hugman.promenade.item.PromenadeItems.MAPLE_SYRUP_BOTTLE;
 import static fr.hugman.promenade.tag.PromenadeBlockTags.*;
 
 public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvider {
@@ -217,6 +219,9 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
         valueLookupBuilder(ConventionalBlockTags.WOODEN_FENCE_GATES).add(SAKURA_FENCE_GATE, MAPLE_FENCE_GATE, PALM_FENCE_GATE, DARK_AMARANTH_FENCE_GATE);
         valueLookupBuilder(ConventionalBlockTags.STRIPPED_LOGS).add(STRIPPED_SAKURA_LOG, STRIPPED_MAPLE_LOG, STRIPPED_PALM_LOG, STRIPPED_DARK_AMARANTH_STEM);
         valueLookupBuilder(ConventionalBlockTags.STRIPPED_WOODS).add(STRIPPED_SAKURA_WOOD, STRIPPED_MAPLE_WOOD, STRIPPED_PALM_WOOD, STRIPPED_DARK_AMARANTH_HYPHAE);
+
+		valueLookupBuilder(IGNEOUS_ROCKS)
+				.add(Blocks.ANDESITE, Blocks.DIORITE, Blocks.GRANITE, Blocks.TUFF, BLUNITE);
 
     }
 }

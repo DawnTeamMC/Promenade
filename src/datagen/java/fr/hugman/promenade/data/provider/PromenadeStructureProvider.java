@@ -40,7 +40,7 @@ public class PromenadeStructureProvider extends FabricDynamicRegistryProvider {
         registerable.register(
                 PromenadeStructureKeys.DARK_FOREST_WITCH_HUT,
                 new JigsawStructure(
-                        new Structure.Config.Builder(biomes.getOrThrow(PromenadeBiomeTags.HAS_DARK_FOREST_WITCH_HUT))
+                        new Structure.Config.Builder(biomes.getOrThrow(PromenadeBiomeTags.HAS_DARK_FOREST_WITCH_HUTS))
                                 .step(GenerationStep.Feature.SURFACE_STRUCTURES)
                                 .terrainAdaptation(StructureTerrainAdaptation.BEARD_THIN)
                                 .build(),

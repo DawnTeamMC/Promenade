@@ -1,7 +1,9 @@
 {
-    "id": "promenade",
-    "platforms": {
-        "modrinth": "promenade"
-    },
-    "slug": "promenade"
+  "id": "promenade",
+  "modid": "promenade",
+  "platforms": {
+    "modrinth": "promenade",
+    "curseforge": "promenade"
+  },
+  "slug": "promenade"
 }
