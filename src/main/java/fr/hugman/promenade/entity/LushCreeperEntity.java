@@ -11,11 +11,11 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.UndergroundConfiguredFeatures;
+import net.minecraft.world.rule.GameRules;
 
 import java.util.Collection;
 
@@ -34,7 +34,7 @@ public class LushCreeperEntity extends CreeperEntity {
     protected void explode() {
         if (this.getEntityWorld() instanceof ServerWorld serverWorld) {
             boolean hasGeneratedMoss = false;
-            if (serverWorld.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+			if (serverWorld.getGameRules().getValue(GameRules.DO_MOB_GRIEFING)) {
                 Registry<ConfiguredFeature<?, ?>> registry = serverWorld.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE);
                 for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
                     BlockPos pos = getBlockPos().down(i);

@@ -10,7 +10,7 @@ import net.minecraft.client.render.BlockRenderLayer;
 public final class PromenadeBlockRenderLayers {
     public static void register() {
 
-        BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT_MIPPED,
+		BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT,
                 PromenadeBlocks.OAK_LEAF_PILE,
                 PromenadeBlocks.SPRUCE_LEAF_PILE,
                 PromenadeBlocks.BIRCH_LEAF_PILE,

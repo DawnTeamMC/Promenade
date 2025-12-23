@@ -46,14 +46,14 @@ public class WitherRosePileBlock extends PileBlock {
     }
 
     @Override
-    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
+	protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler, boolean bl) {
         if (world instanceof ServerWorld serverWorld
                 && world.getDifficulty() != Difficulty.PEACEFUL
                 && entity instanceof LivingEntity livingEntity
                 && !livingEntity.isInvulnerableTo(serverWorld, world.getDamageSources().wither())) {
             livingEntity.addStatusEffect(this.getContactEffect());
         }
-        super.onEntityCollision(state, world, pos, entity, handler);
+		super.onEntityCollision(state, world, pos, entity, handler, bl);
     }
 
     public StatusEffectInstance getContactEffect() {

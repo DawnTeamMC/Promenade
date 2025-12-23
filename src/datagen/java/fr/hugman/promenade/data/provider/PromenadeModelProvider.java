@@ -221,7 +221,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
                                         .register(MoaiType.TOP, BlockStateModelGenerator.createWeightedVariant(ModelIds.getBlockSubModelId(PromenadeBlocks.MOAI, "_top")))
                                         .register(MoaiType.BOTTOM, BlockStateModelGenerator.createWeightedVariant(ModelIds.getBlockSubModelId(PromenadeBlocks.MOAI, "_bottom")))
                                 )
-                                .coordinate(NORTH_DEFAULT_HORIZONTAL_ROTATION_OPERATIONS)
+								.apply(NORTH_DEFAULT_HORIZONTAL_ROTATION_OPERATIONS)
                 );
     }
 
@@ -304,7 +304,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
         WeightedVariant weightedVariant = BlockStateModelGenerator.createWeightedVariant(tintType.getCrossModel().upload(block, crossTexture, gen.modelCollector));
         gen.blockStateCollector.accept(
                 BlockStateModelGenerator.createSingletonBlockState(block, weightedVariant)
-                        .coordinate(UP_DEFAULT_ROTATION_OPERATIONS)
+						.apply(UP_DEFAULT_ROTATION_OPERATIONS)
         );
     }
 
