@@ -21,5 +21,10 @@ public class PromenadeBlockEntities {
         BlockEntityType.SIGN.addSupportedBlock(PromenadeBlocks.DARK_AMARANTH_WALL_SIGN);
         BlockEntityType.HANGING_SIGN.addSupportedBlock(PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN);
         BlockEntityType.HANGING_SIGN.addSupportedBlock(PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN);
+
+        BlockEntityType.SHELF.addSupportedBlock(PromenadeBlocks.SAKURA_SHELF);
+        BlockEntityType.SHELF.addSupportedBlock(PromenadeBlocks.MAPLE_SHELF);
+        BlockEntityType.SHELF.addSupportedBlock(PromenadeBlocks.PALM_SHELF);
+        BlockEntityType.SHELF.addSupportedBlock(PromenadeBlocks.DARK_AMARANTH_SHELF);
     }
 }

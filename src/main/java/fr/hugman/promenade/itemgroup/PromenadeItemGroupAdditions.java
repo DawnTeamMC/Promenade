@@ -184,16 +184,20 @@ public class PromenadeItemGroupAdditions {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(e -> e.addAfter(Blocks.CUT_RED_SANDSTONE_SLAB, PromenadeBlocks.MOAI));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.BIRCH_HANGING_SIGN, PromenadeItems.SAKURA_SIGN, PromenadeItems.SAKURA_HANGING_SIGN));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.BIRCH_SHELF, PromenadeBlocks.SAKURA_SHELF));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(e -> e.addAfter(Items.BIRCH_CHEST_BOAT, PromenadeItems.SAKURA_BOAT, PromenadeItems.SAKURA_CHEST_BOAT));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(PromenadeItems.SAKURA_HANGING_SIGN, PromenadeItems.MAPLE_SIGN, PromenadeItems.MAPLE_HANGING_SIGN));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(PromenadeBlocks.SAKURA_SHELF, PromenadeBlocks.MAPLE_SHELF));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(e -> e.addAfter(PromenadeItems.SAKURA_CHEST_BOAT, PromenadeItems.MAPLE_BOAT, PromenadeItems.MAPLE_CHEST_BOAT));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(e -> e.addAfter(Items.HONEY_BOTTLE, PromenadeItems.MAPLE_SYRUP_BOTTLE));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.ACACIA_HANGING_SIGN, PromenadeItems.PALM_SIGN, PromenadeItems.PALM_HANGING_SIGN));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.ACACIA_SHELF, PromenadeBlocks.PALM_SHELF));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(e -> e.addAfter(Items.ACACIA_CHEST_BOAT, PromenadeItems.PALM_BOAT, PromenadeItems.PALM_CHEST_BOAT));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.WARPED_HANGING_SIGN, PromenadeItems.DARK_AMARANTH_SIGN, PromenadeItems.DARK_AMARANTH_HANGING_SIGN));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.WARPED_SHELF, PromenadeBlocks.DARK_AMARANTH_SHELF));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(e -> {
             e.addAfter(Items.SWEET_BERRIES, PromenadeItems.BLUEBERRIES);

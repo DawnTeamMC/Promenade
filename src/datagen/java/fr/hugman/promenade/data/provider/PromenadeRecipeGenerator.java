@@ -89,6 +89,7 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
         this.offerBarkBlockRecipe(PromenadeBlocks.SAKURA_WOOD, PromenadeBlocks.SAKURA_LOG);
         this.offerBarkBlockRecipe(PromenadeBlocks.STRIPPED_SAKURA_WOOD, PromenadeBlocks.STRIPPED_SAKURA_LOG);
         this.offerHangingSignRecipe(PromenadeItems.SAKURA_HANGING_SIGN, PromenadeBlocks.STRIPPED_SAKURA_LOG);
+        this.offerShelfRecipe(PromenadeBlocks.SAKURA_SHELF, PromenadeBlocks.STRIPPED_SAKURA_LOG);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_BLUSH_SAKURA_BLOSSOMS, PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_COTTON_SAKURA_BLOSSOMS, PromenadeBlocks.COTTON_SAKURA_BLOSSOMS);
         this.offerLeafPileRecipe(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE);
@@ -100,6 +101,7 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
         this.offerBarkBlockRecipe(PromenadeBlocks.MAPLE_WOOD, PromenadeBlocks.MAPLE_LOG);
         this.offerBarkBlockRecipe(PromenadeBlocks.STRIPPED_MAPLE_WOOD, PromenadeBlocks.STRIPPED_MAPLE_LOG);
         this.offerHangingSignRecipe(PromenadeItems.MAPLE_HANGING_SIGN, PromenadeBlocks.STRIPPED_MAPLE_LOG);
+        this.offerShelfRecipe(PromenadeBlocks.MAPLE_SHELF, PromenadeBlocks.STRIPPED_MAPLE_LOG);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_SAP_MAPLE_LEAVES, PromenadeBlocks.SAP_MAPLE_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_VERMILION_MAPLE_LEAVES, PromenadeBlocks.VERMILION_MAPLE_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_FULVOUS_MAPLE_LEAVES, PromenadeBlocks.FULVOUS_MAPLE_LEAVES);
@@ -119,6 +121,7 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
         this.offerBarkBlockRecipe(PromenadeBlocks.PALM_WOOD, PromenadeBlocks.PALM_LOG);
         this.offerBarkBlockRecipe(PromenadeBlocks.STRIPPED_PALM_WOOD, PromenadeBlocks.STRIPPED_PALM_LOG);
         this.offerHangingSignRecipe(PromenadeItems.PALM_HANGING_SIGN, PromenadeBlocks.STRIPPED_PALM_LOG);
+        this.offerShelfRecipe(PromenadeBlocks.PALM_SHELF, PromenadeBlocks.STRIPPED_PALM_LOG);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_PALM_LEAVES, PromenadeBlocks.PALM_LEAVES);
         this.offerLeafPileRecipe(PromenadeBlocks.PALM_LEAF_PILE, PromenadeBlocks.PALM_LEAVES);
         this.offerBoatRecipe(PromenadeItems.PALM_BOAT, PromenadeBlocks.PALM_PLANKS);
@@ -128,6 +131,7 @@ public class PromenadeRecipeGenerator extends RecipeGenerator {
         this.offerBarkBlockRecipe(PromenadeBlocks.DARK_AMARANTH_HYPHAE, PromenadeBlocks.DARK_AMARANTH_STEM);
         this.offerBarkBlockRecipe(PromenadeBlocks.STRIPPED_DARK_AMARANTH_HYPHAE, PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM);
         this.offerHangingSignRecipe(PromenadeItems.DARK_AMARANTH_HANGING_SIGN, PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM);
+        this.offerShelfRecipe(PromenadeBlocks.DARK_AMARANTH_SHELF, PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM);
 
         this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.MOAI, Blocks.TUFF);
 
