@@ -12,10 +12,7 @@ import fr.hugman.promenade.sound.PromenadeBlockSounds;
 import fr.hugman.promenade.tag.PromenadeBlockTags;
 import fr.hugman.promenade.world.PromenadeSaplingGenerators;
 import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.MapColor;
+import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.EquipmentSlot;
@@ -115,6 +112,7 @@ public class PromenadeBlocks {
     public static final Block SAKURA_WALL_SIGN = register("sakura_wall_sign", BlockFactory.wallSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA));
     public static final Block SAKURA_HANGING_SIGN = register("sakura_hanging_sign", BlockFactory.hangingSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA, BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN));
     public static final Block SAKURA_WALL_HANGING_SIGN = register("sakura_wall_hanging_sign", BlockFactory.wallHangingSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA, BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN));
+    public static final Block SAKURA_SHELF = register("sakura_shelf", BlockFactory.shelf(SAKURA_PLANKS));
 
     public static final Block BLUSH_SAKURA_SAPLING = register("blush_sakura_sapling", BlockFactory.sapling(PromenadeMapColors.BLUSH_BLOSSOMS, PromenadeSaplingGenerators.BLUSH_SAKURA));
     public static final Block POTTED_BLUSH_SAKURA_SAPLING = register("potted_blush_sakura_sapling", BlockFactory.pot(BLUSH_SAKURA_SAPLING));
@@ -150,6 +148,7 @@ public class PromenadeBlocks {
     public static final Block MAPLE_WALL_SIGN = register("maple_wall_sign", BlockFactory.wallSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE));
     public static final Block MAPLE_HANGING_SIGN = register("maple_hanging_sign", BlockFactory.hangingSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE, BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN));
     public static final Block MAPLE_WALL_HANGING_SIGN = register("maple_wall_hanging_sign", BlockFactory.wallHangingSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE, BlockSoundGroup.CHERRY_WOOD_HANGING_SIGN));
+    public static final Block MAPLE_SHELF = register("maple_shelf", BlockFactory.shelf(MAPLE_PLANKS));
 
     public static final Block SAP_MAPLE_SAPLING = register("sap_maple_sapling", BlockFactory.sapling(PromenadeMapColors.SAP_MAPLE_LEAVES, PromenadeSaplingGenerators.SAP_MAPLE));
     public static final Block POTTED_SAP_MAPLE_SAPLING = register("potted_sap_maple_sapling", BlockFactory.pot(SAP_MAPLE_SAPLING));
@@ -201,6 +200,7 @@ public class PromenadeBlocks {
     public static final Block PALM_WALL_SIGN = register("palm_wall_sign", BlockFactory.wallSign(PALM_PLANKS, PromenadeWoodTypes.PALM));
     public static final Block PALM_HANGING_SIGN = register("palm_hanging_sign", BlockFactory.hangingSign(PALM_PLANKS, PromenadeWoodTypes.PALM, BlockSoundGroup.HANGING_SIGN));
     public static final Block PALM_WALL_HANGING_SIGN = register("palm_wall_hanging_sign", BlockFactory.wallHangingSign(PALM_PLANKS, PromenadeWoodTypes.PALM, BlockSoundGroup.HANGING_SIGN));
+    public static final Block PALM_SHELF = register("palm_shelf", BlockFactory.shelf(PALM_PLANKS));
 
     public static final Block PALM_SAPLING = register("palm_sapling", BlockFactory.sapling(PromenadeMapColors.PALM_LEAVES, PromenadeSaplingGenerators.PALM, state -> state.isIn(BlockTags.SAND)));
     public static final Block POTTED_PALM_SAPLING = register("potted_palm_sapling", BlockFactory.pot(PALM_SAPLING));
@@ -253,6 +253,7 @@ public class PromenadeBlocks {
     public static final Block DARK_AMARANTH_WALL_SIGN = register("dark_amaranth_wall_sign", BlockFactory.wallSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH));
     public static final Block DARK_AMARANTH_HANGING_SIGN = register("dark_amaranth_hanging_sign", BlockFactory.hangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH, BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
     public static final Block DARK_AMARANTH_WALL_HANGING_SIGN = register("dark_amaranth_wall_hanging_sign", BlockFactory.wallHangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH, BlockSoundGroup.NETHER_WOOD_HANGING_SIGN));
+    public static final Block DARK_AMARANTH_SHELF = register("dark_amaranth_shelf", BlockFactory.shelf(DARK_AMARANTH_PLANKS));
 
     public static final Block DARK_AMARANTH_FUNGUS = register("dark_amaranth_fungus", BlockFactory.fungus(MapColor.PURPLE, PromenadeConfiguredFeatures.PLANTED_DARK_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON));
     public static final Block POTTED_DARK_AMARANTH_FUNGUS = register("potted_dark_amaranth_fungus", BlockFactory.pot(DARK_AMARANTH_FUNGUS));

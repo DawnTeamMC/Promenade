@@ -8,6 +8,8 @@ import fr.hugman.promenade.sound.PromenadeBlockSounds;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.tag.TagKey;
@@ -116,6 +118,10 @@ public final class BlockFactory {
                 .noCollision()
                 .strength(1.0F)
                 .sounds(soundGroup)).noItem();
+    }
+
+    public static BlockBuilder shelf(Block planks) {
+        return copy(planks).factory(ShelfBlock::new).settings(AbstractBlock.Settings.copyShallow(planks).sounds(BlockSoundGroup.SHELF)).itemSettings((s -> s.component(DataComponentTypes.CONTAINER, ContainerComponent.DEFAULT)));
     }
 
     public static BlockBuilder log(MapColor woodColor, MapColor barkColor, BlockSoundGroup sounds, boolean flammable) {

@@ -108,6 +108,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.SAKURA_PRESSURE_PLATE);
         addDrop(PromenadeBlocks.SAKURA_SIGN);
         addDrop(PromenadeBlocks.SAKURA_HANGING_SIGN);
+        addDrop(PromenadeBlocks.SAKURA_SHELF);
 
         addDrop(PromenadeBlocks.BLUSH_SAKURA_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_BLUSH_SAKURA_SAPLING);
@@ -136,6 +137,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.MAPLE_PRESSURE_PLATE);
         addDrop(PromenadeBlocks.MAPLE_SIGN);
         addDrop(PromenadeBlocks.MAPLE_HANGING_SIGN);
+        addDrop(PromenadeBlocks.MAPLE_SHELF);
 
         addDrop(PromenadeBlocks.SAP_MAPLE_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_SAP_MAPLE_SAPLING);
@@ -180,6 +182,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.PALM_PRESSURE_PLATE);
         addDrop(PromenadeBlocks.PALM_SIGN);
         addDrop(PromenadeBlocks.PALM_HANGING_SIGN);
+        addDrop(PromenadeBlocks.PALM_SHELF);
 
         addDrop(PromenadeBlocks.PALM_SAPLING);
         addPottedPlantDrops(PromenadeBlocks.POTTED_PALM_SAPLING);
@@ -208,6 +211,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         addDrop(PromenadeBlocks.DARK_AMARANTH_PRESSURE_PLATE);
         addDrop(PromenadeBlocks.DARK_AMARANTH_SIGN);
         addDrop(PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN);
+        addDrop(PromenadeBlocks.DARK_AMARANTH_SHELF);
 
         addDrop(PromenadeBlocks.DARK_AMARANTH_FUNGUS);
         addPottedPlantDrops(PromenadeBlocks.POTTED_DARK_AMARANTH_FUNGUS);
