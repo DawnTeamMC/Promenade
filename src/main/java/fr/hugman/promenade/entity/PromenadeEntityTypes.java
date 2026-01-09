@@ -54,14 +54,16 @@ public class PromenadeEntityTypes {
                     .spawnRestriction(SpawnLocationTypes.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, LushCreeperEntity::canSpawn)
             )
             .dimensions(0.6f, 1.7f)
-            .maxTrackingRange(8));
+            .maxTrackingRange(8)
+            .notAllowedInPeaceful());
     public static final EntityType<SunkenEntity> SUNKEN = register("sunken", FabricEntityType.Builder.createMob(SunkenEntity::new, SpawnGroup.MONSTER, mob -> mob
                     .defaultAttributes(SunkenEntity::createSunkenAttributes)
                     .spawnRestriction(SpawnLocationTypes.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, SunkenEntity::canSpawn)
             )
             .dimensions(0.6F, 1.99F)
             .eyeHeight(1.74F)
-            .maxTrackingRange(8));
+            .maxTrackingRange(8)
+            .notAllowedInPeaceful());
 
     private static <T extends Entity> EntityType<T> register(String path, EntityType.Builder<T> type) {
         var key = RegistryKey.of(RegistryKeys.ENTITY_TYPE, Promenade.id(path));
