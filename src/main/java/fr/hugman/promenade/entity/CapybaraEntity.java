@@ -486,7 +486,7 @@ public class CapybaraEntity extends AnimalEntity {
     @Override
     protected void writeCustomData(WriteView view) {
         super.writeCustomData(view);
-        Variants.writeVariantToNbt(view, this.getVariant());
+		Variants.writeData(view, this.getVariant());
 
         view.putFloat(FART_CHANCE_KEY, this.getFartChance());
         view.putString(STATE_KEY, this.getState().asString());
@@ -496,7 +496,7 @@ public class CapybaraEntity extends AnimalEntity {
     @Override
     protected void readCustomData(ReadView view) {
         super.readCustomData(view);
-        Variants.readVariantFromNbt(view, PromenadeRegistryKeys.CAPYBARA_VARIANT).ifPresent(this::setVariant);
+		Variants.fromData(view, PromenadeRegistryKeys.CAPYBARA_VARIANT).ifPresent(this::setVariant);
 
         view.getOptionalString(STATE_KEY).ifPresent(s -> this.setState(State.fromName(s)));
         view.getOptionalLong(LAST_STATE_TICK_KEY).ifPresent(this::setLastStateTick);

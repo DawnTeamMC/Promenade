@@ -22,6 +22,8 @@ public class PromenadeEntityTypeTagProvider extends FabricTagProvider.EntityType
 		valueLookupBuilder(EntityTypeTags.BOAT).add(SAKURA_BOAT, MAPLE_BOAT, PALM_BOAT);
 		valueLookupBuilder(EntityTypeTags.AQUATIC).add(SUNKEN, CAPYBARA);
 
+		valueLookupBuilder(EntityTypeTags.BURN_IN_DAYLIGHT).add(SUNKEN);
+
 		valueLookupBuilder(EntityTypeTags.AXOLOTL_ALWAYS_HOSTILES).add(SUNKEN);
 		valueLookupBuilder(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES).add(DUCK);
 		valueLookupBuilder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(DUCK);

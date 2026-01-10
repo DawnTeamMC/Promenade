@@ -62,7 +62,6 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
         builder(BiomeTags.SPAWNS_COLD_VARIANT_FROGS).add(GLACARIAN_TAIGA);
         builder(BiomeTags.SPAWNS_SNOW_FOXES).add(GLACARIAN_TAIGA);
         builder(BiomeTags.SPAWNS_WHITE_RABBITS).add(GLACARIAN_TAIGA);
-        builder(BiomeTags.SNOW_GOLEM_MELTS).add(DARK_AMARANTH_FOREST);
 
 		// Conventional
 		builder(PRIMARY_WOOD_TYPE_SAKURA).addTag(SAKURA_GROVES);

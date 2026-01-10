@@ -130,6 +130,7 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
         valueLookupBuilder(BlockTags.WALL_SIGNS).add(SAKURA_WALL_SIGN, MAPLE_WALL_SIGN, PALM_WALL_SIGN, DARK_AMARANTH_WALL_SIGN);
         valueLookupBuilder(BlockTags.CEILING_HANGING_SIGNS).add(SAKURA_HANGING_SIGN, MAPLE_HANGING_SIGN, PALM_HANGING_SIGN, DARK_AMARANTH_HANGING_SIGN);
         valueLookupBuilder(BlockTags.WALL_HANGING_SIGNS).add(SAKURA_WALL_HANGING_SIGN, MAPLE_WALL_HANGING_SIGN, PALM_WALL_HANGING_SIGN, DARK_AMARANTH_WALL_HANGING_SIGN);
+        valueLookupBuilder(BlockTags.WOODEN_SHELVES).add(SAKURA_SHELF, MAPLE_SHELF, PALM_SHELF, DARK_AMARANTH_SHELF);
 
         valueLookupBuilder(BlockTags.LEAVES).add(
                 VERMILION_MAPLE_LEAVES,
@@ -172,6 +173,7 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
         valueLookupBuilder(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(DARK_AMARANTH_ROOTS);
 
         valueLookupBuilder(BlockTags.CLIMBABLE).add(COILED_VINES, COILED_VINES_PLANT);
+        valueLookupBuilder(BlockTags.CAN_GLIDE_THROUGH).add(COILED_VINES, COILED_VINES_PLANT);
         valueLookupBuilder(BlockTags.REPLACEABLE).addTag(FALLEN_LEAVES);
 
         valueLookupBuilder(BlockTags.SWORD_EFFICIENT)

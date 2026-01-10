@@ -1,0 +1,36 @@
+---
+title: Mob variants
+---
+
+[Mob variants](https://minecraft.wiki/w/Mob_variant_definitions) define the assets and models used and define the conditions in which a variant spawns.
+They are defined in the datapack, and the mod allows you to add and edit variants of some mobs added by Promenade.
+
+## JSON format
+
+### Duck
+
+Duck variants are defined in the `data/<namespace>/promenade/duck_variant` folder.
+
+* [JSON Object]
+  * [String] `asset_id` - The resource location of the texture to use for the adult duck.
+  * [String] `baby_texture` - The resource location of the texture to use for the duckling. (defaults to `promenade:entity/duck/duckling`)
+  * [String] `spawn_conditions` - The spawn conditions of this variant, see [spawn conditions](https://minecraft.wiki/w/Mob_variant_definitions#Spawn_condition).
+
+### Capybara
+
+Capybara variants are defined in the `data/<namespace>/promenade/capybara_variant` folder.
+
+* [JSON Object]
+  * [String] `small_eyes_texture` - The resource location of the texture to use for adult capybaras.
+  * [String] `large_eyes_texture` - The resource location of the texture to use for baby capybaras and farting adult capybaras.
+  * [String] `closed_eyes_texture` - The resource location of the texture to use for sleeping capybaras.
+  * [String] `spawn_conditions` - The spawn conditions of this variant, see [spawn conditions](https://minecraft.wiki/w/Mob_variant_definitions#Spawn_condition).
+
+### Sunken
+
+Sunken variants are defined in the `data/<namespace>/promenade/capybara_variant` folder.
+
+* [JSON Object]
+  * [String] `asset_id` - The resource location of the texture to use.
+  * [String] `loot_table` - The resource location of the loot table to use upon death.
+  * [String] `spawn_conditions` - The spawn conditions of this variant, see [spawn conditions](https://minecraft.wiki/w/Mob_variant_definitions#Spawn_condition).

@@ -5,10 +5,6 @@ import fr.hugman.promenade.item.PromenadeItems;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.*;
-import net.minecraft.registry.Registries;
-
-import java.util.Collections;
-import java.util.function.Predicate;
 
 public class PromenadeItemGroupAdditions {
     public static void appendItemGroups() {
@@ -184,16 +180,20 @@ public class PromenadeItemGroupAdditions {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(e -> e.addAfter(Blocks.CUT_RED_SANDSTONE_SLAB, PromenadeBlocks.MOAI));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.BIRCH_HANGING_SIGN, PromenadeItems.SAKURA_SIGN, PromenadeItems.SAKURA_HANGING_SIGN));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.BIRCH_SHELF, PromenadeBlocks.SAKURA_SHELF));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(e -> e.addAfter(Items.BIRCH_CHEST_BOAT, PromenadeItems.SAKURA_BOAT, PromenadeItems.SAKURA_CHEST_BOAT));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(PromenadeItems.SAKURA_HANGING_SIGN, PromenadeItems.MAPLE_SIGN, PromenadeItems.MAPLE_HANGING_SIGN));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(PromenadeBlocks.SAKURA_SHELF, PromenadeBlocks.MAPLE_SHELF));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(e -> e.addAfter(PromenadeItems.SAKURA_CHEST_BOAT, PromenadeItems.MAPLE_BOAT, PromenadeItems.MAPLE_CHEST_BOAT));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(e -> e.addAfter(Items.HONEY_BOTTLE, PromenadeItems.MAPLE_SYRUP_BOTTLE));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.ACACIA_HANGING_SIGN, PromenadeItems.PALM_SIGN, PromenadeItems.PALM_HANGING_SIGN));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.ACACIA_SHELF, PromenadeBlocks.PALM_SHELF));
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(e -> e.addAfter(Items.ACACIA_CHEST_BOAT, PromenadeItems.PALM_BOAT, PromenadeItems.PALM_CHEST_BOAT));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.WARPED_HANGING_SIGN, PromenadeItems.DARK_AMARANTH_SIGN, PromenadeItems.DARK_AMARANTH_HANGING_SIGN));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(e -> e.addAfter(Blocks.WARPED_SHELF, PromenadeBlocks.DARK_AMARANTH_SHELF));
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(e -> {
             e.addAfter(Items.SWEET_BERRIES, PromenadeItems.BLUEBERRIES);
@@ -205,33 +205,9 @@ public class PromenadeItemGroupAdditions {
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(e -> e.addAfter(Items.FLOWER_BANNER_PATTERN, PromenadeItems.BOVINE_BANNER_PATTERN));
 
-        appendSpawnEgg(PromenadeItems.CAPYBARA_SPAWN_EGG);
-        appendSpawnEgg(PromenadeItems.DUCK_SPAWN_EGG);
-        appendSpawnEgg(PromenadeItems.LUSH_CREEPER_SPAWN_EGG);
-        appendSpawnEgg(PromenadeItems.SUNKEN_SPAWN_EGG);
-    }
-
-    public static void appendSpawnEgg(Item spawnEgg) {
-        var itemGroup = Registries.ITEM_GROUP.get(ItemGroups.SPAWN_EGGS);
-        String path = Registries.ITEM.getId(spawnEgg).getPath();
-
-        if (itemGroup == null) {
-            return;
-        }
-
-        Predicate<ItemStack> predicate = stack1 -> {
-            String path1 = Registries.ITEM.getId(stack1.getItem()).getPath();
-            for (ItemStack stack2 : itemGroup.getDisplayStacks()) {
-                String path2 = Registries.ITEM.getId(stack2.getItem()).getPath();
-                if (path1.matches(".*_spawn_egg") && path2.matches(".*_spawn_egg")) {
-                    // check if path is lexicographically between path1 and path2
-                    if (path.compareTo(path1) > 0 && path.compareTo(path2) < 0) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        };
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(e -> e.addAfter(predicate, Collections.singleton(new ItemStack(spawnEgg)), ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(e -> e.addAfter(Items.CHICKEN_SPAWN_EGG, PromenadeItems.DUCK_SPAWN_EGG));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(e -> e.addAfter(Items.PIG_SPAWN_EGG, PromenadeItems.CAPYBARA_SPAWN_EGG));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(e -> e.addAfter(Items.CREEPER_SPAWN_EGG, PromenadeItems.LUSH_CREEPER_SPAWN_EGG));
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(e -> e.addAfter(Items.DROWNED_SPAWN_EGG, PromenadeItems.SUNKEN_SPAWN_EGG));
     }
 }
