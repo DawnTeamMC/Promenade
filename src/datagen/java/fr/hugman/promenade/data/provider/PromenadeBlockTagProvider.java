@@ -173,6 +173,7 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
         valueLookupBuilder(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(DARK_AMARANTH_ROOTS);
 
         valueLookupBuilder(BlockTags.CLIMBABLE).add(COILED_VINES, COILED_VINES_PLANT);
+        valueLookupBuilder(BlockTags.CAN_GLIDE_THROUGH).add(COILED_VINES, COILED_VINES_PLANT);
         valueLookupBuilder(BlockTags.REPLACEABLE).addTag(FALLEN_LEAVES);
 
         valueLookupBuilder(BlockTags.SWORD_EFFICIENT)
