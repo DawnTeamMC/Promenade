@@ -32,7 +32,10 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
 import net.minecraft.entity.spawn.SpawnContext;
-import net.minecraft.item.*;
+import net.minecraft.item.BowItem;
+import net.minecraft.item.CrossbowItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.sound.SoundEvent;
@@ -172,12 +175,13 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(Items.CROSSBOW));
     }
 
-    @Override
-    public boolean canUseRangedWeapon(RangedWeaponItem weapon) {
-        return weapon instanceof BowItem || weapon instanceof CrossbowItem;
-    }
+	@Override
+	public boolean canUseRangedWeapon(ItemStack stack) {
+		var weapon = stack.getItem();
+		return weapon instanceof BowItem || weapon instanceof CrossbowItem;
+	}
 
-    @Override
+	@Override
     public void travel(Vec3d movementInput) {
         if (this.canMoveVoluntarily() && this.isTouchingWater()) {
             float speed = 0.075F;
@@ -364,14 +368,14 @@ public class SunkenEntity extends AbstractSkeletonEntity implements CrossbowUser
     @Override
     protected void writeCustomData(WriteView view) {
         super.writeCustomData(view);
-        Variants.writeVariantToNbt(view, this.getVariant());
+		Variants.writeData(view, this.getVariant());
 
     }
 
     @Override
     protected void readCustomData(ReadView view) {
         super.readCustomData(view);
-        Variants.readVariantFromNbt(view, PromenadeRegistryKeys.SUNKEN_VARIANT).ifPresent(this::setVariant);
+		Variants.fromData(view, PromenadeRegistryKeys.SUNKEN_VARIANT).ifPresent(this::setVariant);
     }
 
     @org.jetbrains.annotations.Nullable
