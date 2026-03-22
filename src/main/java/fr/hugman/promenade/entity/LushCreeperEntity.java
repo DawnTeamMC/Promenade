@@ -1,54 +1,53 @@
 package fr.hugman.promenade.entity;
 
-import net.minecraft.entity.AreaEffectCloudEntity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.mob.CreeperEntity;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.UndergroundConfiguredFeatures;
-import net.minecraft.world.rule.GameRules;
-
 import java.util.Collection;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.features.CaveFeatures;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.AreaEffectCloud;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.monster.Creeper;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.gamerules.GameRules;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
-public class LushCreeperEntity extends CreeperEntity {
+public class LushCreeperEntity extends Creeper {
     private static final int EXPLOSION_Y_LENGTH = 10;
 
-    public LushCreeperEntity(EntityType<? extends CreeperEntity> entityType, World world) {
+    public LushCreeperEntity(EntityType<? extends Creeper> entityType, Level world) {
         super(entityType, world);
     }
 
-    public static boolean canSpawn(EntityType<? extends HostileEntity> type, ServerWorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
-        return pos.getY() < 0 && HostileEntity.canSpawnInDark(type, world, spawnReason, pos, random);
+    public static boolean canSpawn(EntityType<? extends Monster> type, ServerLevelAccessor world, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
+        return pos.getY() < 0 && Monster.checkMonsterSpawnRules(type, world, spawnReason, pos, random);
     }
 
     @Override
-    protected void explode() {
-        if (this.getEntityWorld() instanceof ServerWorld serverWorld) {
+    protected void explodeCreeper() {
+        if (this.level() instanceof ServerLevel serverWorld) {
             boolean hasGeneratedMoss = false;
-			if (serverWorld.getGameRules().getValue(GameRules.DO_MOB_GRIEFING)) {
-                Registry<ConfiguredFeature<?, ?>> registry = serverWorld.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE);
+			if (serverWorld.getGameRules().get(GameRules.MOB_GRIEFING)) {
+                Registry<ConfiguredFeature<?, ?>> registry = serverWorld.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE);
                 for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
-                    BlockPos pos = getBlockPos().down(i);
-                    if (this.getEntityWorld().getBlockState(pos).isSolidBlock(this.getEntityWorld(), pos)) {
-                        if (registry.get(this.getEntityWorld().getRandom().nextBoolean() ? UndergroundConfiguredFeatures.MOSS_PATCH : UndergroundConfiguredFeatures.CLAY_POOL_WITH_DRIPLEAVES).generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.up())) {
+                    BlockPos pos = blockPosition().below(i);
+                    if (this.level().getBlockState(pos).isRedstoneConductor(this.level(), pos)) {
+                        if (registry.getValue(this.level().getRandom().nextBoolean() ? CaveFeatures.MOSS_PATCH : CaveFeatures.CLAY_POOL_WITH_DRIPLEAVES).place(serverWorld, serverWorld.getChunkSource().getGenerator(), random, pos.above())) {
                             hasGeneratedMoss = true;
                         }
                         break;
                     }
                 }
                 for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
-                    BlockPos pos = getBlockPos().up(i);
-                    if (this.getEntityWorld().getBlockState(pos).isSolidBlock(this.getEntityWorld(), pos)) {
-                        if (registry.get(UndergroundConfiguredFeatures.MOSS_PATCH_CEILING).generate(serverWorld, serverWorld.getChunkManager().getChunkGenerator(), random, pos.down())) {
+                    BlockPos pos = blockPosition().above(i);
+                    if (this.level().getBlockState(pos).isRedstoneConductor(this.level(), pos)) {
+                        if (registry.getValue(CaveFeatures.MOSS_PATCH_CEILING).place(serverWorld, serverWorld.getChunkSource().getGenerator(), random, pos.below())) {
                             hasGeneratedMoss = true;
                         }
                         break;
@@ -57,30 +56,30 @@ public class LushCreeperEntity extends CreeperEntity {
             }
             if (hasGeneratedMoss) {
                 this.dead = true;
-                float f = this.isCharged() ? 2.0F : 1.0F;
-                this.getEntityWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), f, World.ExplosionSourceType.MOB);
+                float f = this.isPowered() ? 2.0F : 1.0F;
+                this.level().explode(this, this.getX(), this.getY(), this.getZ(), f, Level.ExplosionInteraction.MOB);
                 this.discard();
-                this.spawnEffectsCloud();
+                this.spawnLingeringCloud();
             } else {
-                super.explode();
+                super.explodeCreeper();
             }
         }
     }
 
-    private void spawnEffectsCloud() {
-        Collection<StatusEffectInstance> statusEffects = this.getStatusEffects();
+    private void spawnLingeringCloud() {
+        Collection<MobEffectInstance> statusEffects = this.getActiveEffects();
         if (!statusEffects.isEmpty()) {
-            AreaEffectCloudEntity aec = new AreaEffectCloudEntity(this.getEntityWorld(), this.getX(), this.getY(), this.getZ());
+            AreaEffectCloud aec = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
             aec.setRadius(2.5F);
             aec.setRadiusOnUse(-0.5F);
             aec.setWaitTime(10);
             aec.setDuration(aec.getDuration() / 2);
-            aec.setRadiusGrowth(-aec.getRadius() / (float) aec.getDuration());
+            aec.setRadiusPerTick(-aec.getRadius() / (float) aec.getDuration());
 
-            for (StatusEffectInstance statusEffectInstance : statusEffects) {
-                aec.addEffect(new StatusEffectInstance(statusEffectInstance));
+            for (MobEffectInstance statusEffectInstance : statusEffects) {
+                aec.addEffect(new MobEffectInstance(statusEffectInstance));
             }
-            this.getEntityWorld().spawnEntity(aec);
+            this.level().addFreshEntity(aec);
         }
     }
 }

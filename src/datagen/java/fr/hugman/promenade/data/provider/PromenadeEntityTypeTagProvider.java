@@ -2,21 +2,20 @@ package fr.hugman.promenade.data.provider;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.EntityTypeTags;
-
+import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.EntityTypeTags;
 import java.util.concurrent.CompletableFuture;
 
 import static fr.hugman.promenade.entity.PromenadeEntityTypes.*;
 import static fr.hugman.promenade.tag.PromenadeEntityTypeTags.*;
 
 public class PromenadeEntityTypeTagProvider extends FabricTagProvider.EntityTypeTagProvider {
-	public PromenadeEntityTypeTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+	public PromenadeEntityTypeTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
 		super(output, completableFuture);
 	}
 
 	@Override
-	protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+	protected void addTags(HolderLookup.Provider wrapperLookup) {
 		// Vanilla
 		valueLookupBuilder(EntityTypeTags.SKELETONS).add(SUNKEN);
 		valueLookupBuilder(EntityTypeTags.BOAT).add(SAKURA_BOAT, MAPLE_BOAT, PALM_BOAT);

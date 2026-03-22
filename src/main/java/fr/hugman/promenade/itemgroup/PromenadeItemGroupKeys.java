@@ -1,14 +1,14 @@
 package fr.hugman.promenade.itemgroup;
 
 import fr.hugman.promenade.Promenade;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.CreativeModeTab;
 
 public class PromenadeItemGroupKeys {
-    public static final RegistryKey<ItemGroup> PROMENADE = of("promenade");
+    public static final ResourceKey<CreativeModeTab> PROMENADE = of("promenade");
 
-    private static RegistryKey<ItemGroup> of(String path) {
-        return RegistryKey.of(RegistryKeys.ITEM_GROUP, Promenade.id(path));
+    private static ResourceKey<CreativeModeTab> of(String path) {
+        return ResourceKey.create(Registries.CREATIVE_MODE_TAB, Promenade.id(path));
     }
 }

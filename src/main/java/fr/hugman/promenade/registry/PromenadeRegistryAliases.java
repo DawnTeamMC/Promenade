@@ -1,10 +1,9 @@
 package fr.hugman.promenade.registry;
 
 import fr.hugman.promenade.Promenade;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
-
 import java.util.HashMap;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 
 /**
  * Registry aliases for Promenade. Prevents players from losing stuff when content is removed along new versions.
@@ -14,7 +13,7 @@ public class PromenadeRegistryAliases {
         HashMap<Identifier, Identifier> blockAliases = new HashMap<>();
 
         // I forgot what version that was in
-        Registries.ENTITY_TYPE.addAlias(Promenade.id("sunken_skeleton"), Promenade.id("sunken"));
+        BuiltInRegistries.ENTITY_TYPE.addAlias(Promenade.id("sunken_skeleton"), Promenade.id("sunken"));
 
         // v3.0.0
 
@@ -46,7 +45,7 @@ public class PromenadeRegistryAliases {
         blockAliases.put(Promenade.id("cherry_oak_pressure_plate"), Promenade.id("sakura_pressure_plate"));
         blockAliases.put(Promenade.id("cherry_oak_button"), Promenade.id("sakura_button"));
         blockAliases.put(Promenade.id("cherry_oak_sign"), Promenade.id("sakura_sign"));
-        Registries.BLOCK.addAlias(Promenade.id("cherry_oak_wall_sign"), Promenade.id("sakura_wall_sign"));
+        BuiltInRegistries.BLOCK.addAlias(Promenade.id("cherry_oak_wall_sign"), Promenade.id("sakura_wall_sign"));
 
         blockAliases.put(Promenade.id("pink_cherry_oak_sapling"), Promenade.id("blush_sakura_sapling"));
         blockAliases.put(Promenade.id("potted_pink_cherry_oak_sapling"), Promenade.id("potted_blush_sakura_sapling"));
@@ -58,7 +57,7 @@ public class PromenadeRegistryAliases {
         blockAliases.put(Promenade.id("white_cherry_oak_leaves"), Promenade.id("cotton_sakura_blossoms"));
         blockAliases.put(Promenade.id("white_cherry_oak_leaf_pile"), Promenade.id("cotton_sakura_blossom_pile"));
 
-        Registries.ITEM.addAlias(Promenade.id("cherry_oak_boat"), Promenade.id("sakura_boat"));
+        BuiltInRegistries.ITEM.addAlias(Promenade.id("cherry_oak_boat"), Promenade.id("sakura_boat"));
 
         // v4.0.0
         blockAliases.put(Promenade.id("carbonite"), Promenade.id("asphalt"));
@@ -71,7 +70,7 @@ public class PromenadeRegistryAliases {
         blockAliases.put(Promenade.id("polished_carbonite_stairs"), Promenade.id("polished_asphalt_stairs"));
 
         // v5.0.0
-        var grassId = Identifier.ofVanilla("grass_block");
+        var grassId = Identifier.withDefaultNamespace("grass_block");
         blockAliases.put(Promenade.id("vermilion_carpeted_grass_block"), grassId);
         blockAliases.put(Promenade.id("fulvous_carpeted_grass_block"), grassId);
         blockAliases.put(Promenade.id("mikado_carpeted_grass_block"), grassId);
@@ -79,8 +78,8 @@ public class PromenadeRegistryAliases {
         blockAliases.put(Promenade.id("black_dylium"), Promenade.id("dark_amaranth_nylium"));
 
         for (var entry : blockAliases.entrySet()) {
-            Registries.BLOCK.addAlias(entry.getKey(), entry.getValue());
-            Registries.ITEM.addAlias(entry.getKey(), entry.getValue());
+            BuiltInRegistries.BLOCK.addAlias(entry.getKey(), entry.getValue());
+            BuiltInRegistries.ITEM.addAlias(entry.getKey(), entry.getValue());
         }
     }
 }

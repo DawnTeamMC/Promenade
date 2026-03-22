@@ -2,10 +2,10 @@ package fr.hugman.promenade.particle;
 
 import fr.hugman.promenade.Promenade;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.particle.SimpleParticleType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
 
 public class PromenadeParticleTypes {
     public static final SimpleParticleType BLUSH_SAKURA_BLOSSOM = register("blush_sakura_blossom", FabricParticleTypes.simple());
@@ -16,6 +16,6 @@ public class PromenadeParticleTypes {
     public static final SimpleParticleType MIKADO_MAPLE_LEAF = register("mikado_maple_leaf", FabricParticleTypes.simple());
 
     public static <B extends ParticleType<?>> B register(String path, B particleType) {
-        return Registry.register(Registries.PARTICLE_TYPE, Promenade.id(path), particleType);
+        return Registry.register(BuiltInRegistries.PARTICLE_TYPE, Promenade.id(path), particleType);
     }
 }

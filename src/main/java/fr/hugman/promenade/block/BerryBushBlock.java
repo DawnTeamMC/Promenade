@@ -4,108 +4,113 @@ import com.mojang.datafixers.DataFixUtils;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.*;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCollisionHandler;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.VegetationBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BerryBushBlock extends PlantBlock implements Fertilizable {
+public class BerryBushBlock extends VegetationBlock implements BonemealableBlock {
     public static final MapCodec<BerryBushBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                    RegistryKey.createCodec(RegistryKeys.ITEM).fieldOf("berry").forGetter(block -> block.berry),
+                    ResourceKey.codec(Registries.ITEM).fieldOf("berry").forGetter(block -> block.berry),
                     Codec.BOOL.fieldOf("is_spiny").forGetter(block -> block.isSpiny),
-                    createSettingsCodec())
+                    propertiesCodec())
             .apply(instance, BerryBushBlock::new));
 
     private static final float MIN_MOVEMENT_FOR_DAMAGE = 0.003f;
     public static final int MAX_AGE = 3;
-    public static final IntProperty AGE = Properties.AGE_3;
-    private static final VoxelShape SMALL_SHAPE = Block.createCuboidShape(3.0, 0.0, 3.0, 13.0, 8.0, 13.0);
-    private static final VoxelShape LARGE_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
+    private static final VoxelShape SMALL_SHAPE = Block.box(3.0, 0.0, 3.0, 13.0, 8.0, 13.0);
+    private static final VoxelShape LARGE_SHAPE = Block.box(1.0, 0.0, 1.0, 15.0, 16.0, 15.0);
 
-    private final RegistryKey<Item> berry;
+    private final ResourceKey<Item> berry;
     private final boolean isSpiny;
 
-    public BerryBushBlock(RegistryKey<Item> berry, boolean isSpiny, AbstractBlock.Settings settings) {
+    public BerryBushBlock(ResourceKey<Item> berry, boolean isSpiny, BlockBehaviour.Properties settings) {
         super(settings);
         this.berry = berry;
         this.isSpiny = isSpiny;
-        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
+        this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
 
     @Override
-    public MapCodec<BerryBushBlock> getCodec() {
+    public MapCodec<BerryBushBlock> codec() {
         return CODEC;
     }
 
     @Override
-    protected ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
-        return new ItemStack(DataFixUtils.orElse(world.getRegistryManager().getOrThrow(RegistryKeys.ITEM).getOptionalValue(this.berry), this));
+    protected ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
+        return new ItemStack(DataFixUtils.orElse(world.registryAccess().lookupOrThrow(Registries.ITEM).getOptional(this.berry), this));
     }
 
     @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if (state.get(AGE) == 0) {
+    protected VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        if (state.getValue(AGE) == 0) {
             return SMALL_SHAPE;
         }
-        if (state.get(AGE) < MAX_AGE) {
+        if (state.getValue(AGE) < MAX_AGE) {
             return LARGE_SHAPE;
         }
-        return super.getOutlineShape(state, world, pos, context);
+        return super.getShape(state, world, pos, context);
     }
 
     @Override
-    protected boolean hasRandomTicks(BlockState state) {
-        return state.get(AGE) < MAX_AGE;
+    protected boolean isRandomlyTicking(BlockState state) {
+        return state.getValue(AGE) < MAX_AGE;
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int age = state.get(AGE);
-        if (age < MAX_AGE && random.nextInt(5) == 0 && world.getBaseLightLevel(pos.up(), 0) >= 9) {
-            BlockState blockState = state.with(AGE, age + 1);
-            world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(blockState));
+    protected void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        int age = state.getValue(AGE);
+        if (age < MAX_AGE && random.nextInt(5) == 0 && world.getRawBrightness(pos.above(), 0) >= 9) {
+            BlockState blockState = state.setValue(AGE, age + 1);
+            world.setBlock(pos, blockState, Block.UPDATE_CLIENTS);
+            world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
         }
     }
 
 	@Override
-	protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler, boolean bl) {
+	protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entity, InsideBlockEffectApplier handler, boolean bl) {
         if (!(entity instanceof LivingEntity) || entity.getType() == EntityType.FOX || entity.getType() == EntityType.BEE) {
             return;
         }
-        entity.slowMovement(state, new Vec3d(0.8f, 0.75, 0.8f));
+        entity.makeStuckInBlock(state, new Vec3(0.8f, 0.75, 0.8f));
         if (this.isSpiny) {
-            if (world instanceof ServerWorld serverWorld && state.get(AGE) != 0) {
-                Vec3d vec3d = entity.isControlledByPlayer() ? entity.getMovement() : entity.getLastRenderPos().subtract(entity.getEntityPos());
-                if (vec3d.horizontalLengthSquared() > 0.0) {
-                    double d = Math.abs(vec3d.getX());
-                    double e = Math.abs(vec3d.getZ());
+            if (world instanceof ServerLevel serverWorld && state.getValue(AGE) != 0) {
+                Vec3 vec3d = entity.isClientAuthoritative() ? entity.getKnownMovement() : entity.oldPosition().subtract(entity.position());
+                if (vec3d.horizontalDistanceSqr() > 0.0) {
+                    double d = Math.abs(vec3d.x());
+                    double e = Math.abs(vec3d.z());
                     if (d >= MIN_MOVEMENT_FOR_DAMAGE || e >= MIN_MOVEMENT_FOR_DAMAGE) {
-                        entity.damage(serverWorld, world.getDamageSources().sweetBerryBush(), 1.0F);
+                        entity.hurtServer(serverWorld, world.damageSources().sweetBerryBush(), 1.0F);
                     }
                 }
             }
@@ -113,43 +118,43 @@ public class BerryBushBlock extends PlantBlock implements Fertilizable {
     }
 
     @Override
-    protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        return state.get(AGE) != 3 && stack.isOf(Items.BONE_MEAL) ? ActionResult.PASS : super.onUseWithItem(stack, state, world, pos, player, hand, hit);
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        return state.getValue(AGE) != 3 && stack.is(Items.BONE_MEAL) ? InteractionResult.PASS : super.useItemOn(stack, state, world, pos, player, hand, hit);
     }
 
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
-        int age = state.get(AGE);
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+        int age = state.getValue(AGE);
         if (age > 1) {
             int j = 1 + world.random.nextInt(2);
-            dropStack(world, pos, new ItemStack(DataFixUtils.orElse(world.getRegistryManager().getOrThrow(RegistryKeys.ITEM).getOptionalValue(this.berry), this), j + (age == MAX_AGE ? 1 : 0)));
-            world.playSound(null, pos, SoundEvents.BLOCK_SWEET_BERRY_BUSH_PICK_BERRIES, SoundCategory.BLOCKS, 1.0f, 0.8f + world.random.nextFloat() * 0.4f);
-            BlockState blockState = state.with(AGE, 1);
-            world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
-            world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, blockState));
-            return ActionResult.SUCCESS;
+            popResource(world, pos, new ItemStack(DataFixUtils.orElse(world.registryAccess().lookupOrThrow(Registries.ITEM).getOptional(this.berry), this), j + (age == MAX_AGE ? 1 : 0)));
+            world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0f, 0.8f + world.random.nextFloat() * 0.4f);
+            BlockState blockState = state.setValue(AGE, 1);
+            world.setBlock(pos, blockState, Block.UPDATE_CLIENTS);
+            world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockState));
+            return InteractionResult.SUCCESS;
         }
-        return super.onUse(state, world, pos, player, hit);
+        return super.useWithoutItem(state, world, pos, player, hit);
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
-        return state.get(AGE) < 3;
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+        return state.getValue(AGE) < 3;
     }
 
     @Override
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        int i = Math.min(MAX_AGE, state.get(AGE) + 1);
-        world.setBlockState(pos, state.with(AGE, i), Block.NOTIFY_LISTENERS);
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+        int i = Math.min(MAX_AGE, state.getValue(AGE) + 1);
+        world.setBlock(pos, state.setValue(AGE, i), Block.UPDATE_CLIENTS);
     }
 }

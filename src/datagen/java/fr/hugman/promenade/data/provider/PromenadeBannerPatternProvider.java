@@ -3,22 +3,21 @@ package fr.hugman.promenade.data.provider;
 import fr.hugman.promenade.banner.PromenadeBannerPatterns;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.entity.BannerPattern;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeBannerPatternProvider extends FabricDynamicRegistryProvider {
-    public PromenadeBannerPatternProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public PromenadeBannerPatternProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        entries.addAll(registries.getOrThrow(RegistryKeys.BANNER_PATTERN));
+    protected void configure(HolderLookup.Provider registries, Entries entries) {
+        entries.addAll(registries.lookupOrThrow(Registries.BANNER_PATTERN));
     }
 
     @Override
@@ -26,12 +25,12 @@ public class PromenadeBannerPatternProvider extends FabricDynamicRegistryProvide
         return "Banner Patterns";
     }
 
-    public static void register(Registerable<BannerPattern> registerable) {
+    public static void register(BootstrapContext<BannerPattern> registerable) {
         of(registerable, PromenadeBannerPatterns.BOVINE);
     }
 
-    public static void of(Registerable<BannerPattern> registerable, RegistryKey<BannerPattern> key) {
-        registerable.register(key, new BannerPattern(key.getValue(), "block.promenade.banner." + key.getValue().getPath()));
+    public static void of(BootstrapContext<BannerPattern> registerable, ResourceKey<BannerPattern> key) {
+        registerable.register(key, new BannerPattern(key.identifier(), "block.promenade.banner." + key.identifier().getPath()));
     }
 
 }

@@ -7,39 +7,54 @@ import fr.hugman.promenade.entity.variant.DuckVariants;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.tag.PromenadeItemTags;
-import net.minecraft.block.BlockState;
-import net.minecraft.component.ComponentType;
-import net.minecraft.component.ComponentsAccess;
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.ai.pathing.PathNodeType;
-import net.minecraft.entity.attribute.DefaultAttributeContainer.Builder;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.spawn.SpawnContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.storage.ReadView;
-import net.minecraft.storage.WriteView;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.LocalDifficulty;
-import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityDimensions;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier.Builder;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.BreedGoal;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.FollowParentGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.PanicGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.variant.SpawnContext;
+import net.minecraft.world.entity.variant.VariantUtils;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class DuckEntity extends AnimalEntity {
-    private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityDimensions.changing(0.4F, 0.8F).scaled(0.5F).withEyeHeight(0.78125F);
+public class DuckEntity extends Animal {
+    private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityDimensions.scalable(0.4F, 0.8F).scale(0.5F).withEyeHeight(0.78125F);
 
-    private static final TrackedData<RegistryEntry<DuckVariant>> VARIANT = DataTracker.registerData(DuckEntity.class, PromenadeTrackedData.DUCK_VARIANT);
+    private static final EntityDataAccessor<Holder<DuckVariant>> VARIANT = SynchedEntityData.defineId(DuckEntity.class, PromenadeTrackedData.DUCK_VARIANT);
 
     public float flapProgress;
     public float maxWingDeviation;
@@ -47,27 +62,27 @@ public class DuckEntity extends AnimalEntity {
     public float prevFlapProgress;
     public float wingRotDelta = 1.0F;
 
-    public DuckEntity(EntityType<? extends DuckEntity> type, World worldIn) {
+    public DuckEntity(EntityType<? extends DuckEntity> type, Level worldIn) {
         super(type, worldIn);
-        this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
+        this.setPathfindingMalus(PathType.WATER, 0.0F);
     }
 
     @Override
-    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @org.jetbrains.annotations.Nullable EntityData entityData) {
-        DuckVariants.select(this.random, this.getRegistryManager(), SpawnContext.of(world, this.getBlockPos())).ifPresent(this::setVariant);
-        return super.initialize(world, difficulty, spawnReason, entityData);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, EntitySpawnReason spawnReason, @org.jetbrains.annotations.Nullable SpawnGroupData entityData) {
+        DuckVariants.select(this.random, this.registryAccess(), SpawnContext.create(world, this.blockPosition())).ifPresent(this::setVariant);
+        return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
     }
 
     @Override
-    protected EntityDimensions getBaseDimensions(EntityPose pose) {
-        return this.isBaby() ? BABY_BASE_DIMENSIONS : super.getBaseDimensions(pose);
+    protected EntityDimensions getDefaultDimensions(Pose pose) {
+        return this.isBaby() ? BABY_BASE_DIMENSIONS : super.getDefaultDimensions(pose);
     }
 
     @Override
-    protected void updatePassengerPosition(Entity passenger, Entity.PositionUpdater positionUpdater) {
-        super.updatePassengerPosition(passenger, positionUpdater);
+    protected void positionRider(Entity passenger, Entity.MoveFunction positionUpdater) {
+        super.positionRider(passenger, positionUpdater);
         if (passenger instanceof LivingEntity) {
-            ((LivingEntity) passenger).bodyYaw = this.bodyYaw;
+            ((LivingEntity) passenger).yBodyRot = this.yBodyRot;
         }
     }
 
@@ -77,49 +92,49 @@ public class DuckEntity extends AnimalEntity {
 
     public static Builder createDuckAttributes() {
         return createAnimalAttributes()
-                .add(EntityAttributes.MAX_HEALTH, 4.0D)
-                .add(EntityAttributes.MOVEMENT_SPEED, 0.25D);
+                .add(Attributes.MAX_HEALTH, 4.0D)
+                .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
 
     @Override
-    protected void initGoals() {
-        this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new EscapeDangerGoal(this, 1.4D));
-        this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
-        this.goalSelector.add(3, new TemptGoal(this, 1.0, (stack) -> stack.isIn(PromenadeItemTags.DUCK_FOOD), false));
-        this.goalSelector.add(4, new FollowParentGoal(this, 1.1D));
-        this.goalSelector.add(5, new SwimAroundGoal(this, 1.0, 10));
-        this.goalSelector.add(6, new WanderAroundFarGoal(this, 1.0D));
-        this.goalSelector.add(7, new LookAtEntityGoal(this, PlayerEntity.class, 6.0F));
-        this.goalSelector.add(8, new LookAroundGoal(this));
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.4D));
+        this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, (stack) -> stack.is(PromenadeItemTags.DUCK_FOOD), false));
+        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
+        this.goalSelector.addGoal(5, new RandomSwimmingGoal(this, 1.0, 10));
+        this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+        this.goalSelector.addGoal(7, new LookAtPlayerGoal(this, Player.class, 6.0F));
+        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
     }
 
     @Override
-    public void tickMovement() {
-        super.tickMovement();
-        boolean isAirBorne = !this.isOnGround() && !this.isTouchingWater();
+    public void aiStep() {
+        super.aiStep();
+        boolean isAirBorne = !this.onGround() && !this.isInWater();
         this.prevFlapProgress = this.flapProgress;
         this.prevMaxWingDeviation = this.maxWingDeviation;
         this.maxWingDeviation = (float) ((double) this.maxWingDeviation + (double) (!isAirBorne ? -1 : 4) * 0.3D);
-        this.maxWingDeviation = MathHelper.clamp(this.maxWingDeviation, 0.0F, 1.0F);
+        this.maxWingDeviation = Mth.clamp(this.maxWingDeviation, 0.0F, 1.0F);
         if (isAirBorne && this.wingRotDelta < 0.55F) {
             this.wingRotDelta = 0.55F;
         }
         this.wingRotDelta = (float) ((double) this.wingRotDelta * 0.9D);
-        Vec3d vec3d = this.getVelocity();
+        Vec3 vec3d = this.getDeltaMovement();
         if (isAirBorne && vec3d.y < 0.0D) {
-            this.setVelocity(vec3d.multiply(1.0D, 0.75D, 1.0D));
+            this.setDeltaMovement(vec3d.multiply(1.0D, 0.75D, 1.0D));
         }
         this.flapProgress += this.wingRotDelta * 2.0F;
     }
 
     @Override
-    public boolean isBreedingItem(ItemStack stack) {
-        return stack.isIn(PromenadeItemTags.DUCK_FOOD);
+    public boolean isFood(ItemStack stack) {
+        return stack.is(PromenadeItemTags.DUCK_FOOD);
     }
 
     @Override
-    protected float getBaseWaterMovementSpeedMultiplier() {
+    protected float getWaterSlowDown() {
         return 0.9f;
     }
 
@@ -153,20 +168,20 @@ public class DuckEntity extends AnimalEntity {
 
     @Nullable
     @Override
-    public DuckEntity createChild(ServerWorld serverWorld, PassiveEntity entity) {
-        DuckEntity child = PromenadeEntityTypes.DUCK.create(this.getEntityWorld(), SpawnReason.BREEDING);
+    public DuckEntity getBreedOffspring(ServerLevel serverWorld, AgeableMob entity) {
+        DuckEntity child = PromenadeEntityTypes.DUCK.create(this.level(), EntitySpawnReason.BREEDING);
         if (child != null && entity instanceof DuckEntity mama) {
             child.setVariant(this.random.nextFloat() < 0.5f ? mama.getVariant() : this.getVariant());
         }
         return child;
     }
 
-    public RegistryEntry<DuckVariant> getVariant() {
-        return this.dataTracker.get(VARIANT);
+    public Holder<DuckVariant> getVariant() {
+        return this.entityData.get(VARIANT);
     }
 
-    public void setVariant(RegistryEntry<DuckVariant> registryEntry) {
-        this.dataTracker.set(VARIANT, registryEntry);
+    public void setVariant(Holder<DuckVariant> registryEntry) {
+        this.entityData.set(VARIANT, registryEntry);
     }
 
     /*==========*/
@@ -174,42 +189,42 @@ public class DuckEntity extends AnimalEntity {
     /*==========*/
 
     @Override
-    protected void initDataTracker(DataTracker.Builder builder) {
-        super.initDataTracker(builder);
-        builder.add(VARIANT, Variants.getOrDefaultOrThrow(this.getRegistryManager(), DuckVariants.DEFAULT));
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(VARIANT, VariantUtils.getDefaultOrAny(this.registryAccess(), DuckVariants.DEFAULT));
     }
 
     @Override
-    protected void writeCustomData(WriteView view) {
-        super.writeCustomData(view);
-		Variants.writeData(view, this.getVariant());
+    protected void addAdditionalSaveData(ValueOutput view) {
+        super.addAdditionalSaveData(view);
+		VariantUtils.writeVariant(view, this.getVariant());
     }
 
     @Override
-    protected void readCustomData(ReadView view) {
-        super.readCustomData(view);
-		Variants.fromData(view, PromenadeRegistryKeys.DUCK_VARIANT).ifPresent(this::setVariant);
+    protected void readAdditionalSaveData(ValueInput view) {
+        super.readAdditionalSaveData(view);
+		VariantUtils.readVariant(view, PromenadeRegistryKeys.DUCK_VARIANT).ifPresent(this::setVariant);
     }
 
     @Nullable
     @Override
-    public <T> T get(ComponentType<? extends T> type) {
-        return type == PromenadeComponentTypes.DUCK_VARIANT ? castComponentValue((ComponentType<T>) type, this.getVariant()) : super.get(type);
+    public <T> T get(DataComponentType<? extends T> type) {
+        return type == PromenadeComponentTypes.DUCK_VARIANT ? castComponentValue((DataComponentType<T>) type, this.getVariant()) : super.get(type);
     }
 
     @Override
-    protected void copyComponentsFrom(ComponentsAccess from) {
-        this.copyComponentFrom(from, PromenadeComponentTypes.DUCK_VARIANT);
-        super.copyComponentsFrom(from);
+    protected void applyImplicitComponents(DataComponentGetter from) {
+        this.applyImplicitComponentIfPresent(from, PromenadeComponentTypes.DUCK_VARIANT);
+        super.applyImplicitComponents(from);
     }
 
     @Override
-    protected <T> boolean setApplicableComponent(ComponentType<T> type, T value) {
+    protected <T> boolean applyImplicitComponent(DataComponentType<T> type, T value) {
         if (type == PromenadeComponentTypes.DUCK_VARIANT) {
             this.setVariant(castComponentValue(PromenadeComponentTypes.DUCK_VARIANT, value));
             return true;
         } else {
-            return super.setApplicableComponent(type, value);
+            return super.applyImplicitComponent(type, value);
         }
     }
 

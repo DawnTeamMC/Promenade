@@ -5,101 +5,100 @@ import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.loot.PromenadeLootTables;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.AnyOfLootCondition;
-import net.minecraft.loot.condition.EntityPropertiesLootCondition;
-import net.minecraft.loot.condition.LocationCheckLootCondition;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.entry.TagEntry;
-import net.minecraft.loot.function.EnchantedCountIncreaseLootFunction;
-import net.minecraft.loot.function.FurnaceSmeltLootFunction;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.predicate.FluidPredicate;
-import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.component.ComponentPredicateTypes;
-import net.minecraft.predicate.component.ComponentsPredicate;
-import net.minecraft.predicate.entity.EntityEquipmentPredicate;
-import net.minecraft.predicate.entity.EntityFlagsPredicate;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.entity.LocationPredicate;
-import net.minecraft.predicate.item.EnchantmentPredicate;
-import net.minecraft.predicate.item.EnchantmentsPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.registry.RegistryEntryLookup;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.EnchantmentTags;
-import net.minecraft.registry.tag.EntityTypeTags;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.registry.tag.ItemTags;
-
+import net.minecraft.advancements.criterion.DataComponentMatchers;
+import net.minecraft.advancements.criterion.EnchantmentPredicate;
+import net.minecraft.advancements.criterion.EntityEquipmentPredicate;
+import net.minecraft.advancements.criterion.EntityFlagsPredicate;
+import net.minecraft.advancements.criterion.EntityPredicate;
+import net.minecraft.advancements.criterion.FluidPredicate;
+import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.criterion.LocationPredicate;
+import net.minecraft.advancements.criterion.MinMaxBounds;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.predicates.DataComponentPredicates;
+import net.minecraft.core.component.predicates.EnchantmentsPredicate;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.tags.FluidTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.TagEntry;
+import net.minecraft.world.level.storage.loot.functions.EnchantedCountIncreaseFunction;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.functions.SmeltItemFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.AnyOfCondition;
+import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
+import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
 public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvider {
-    private final RegistryWrapper.WrapperLookup registries;
+    private final HolderLookup.Provider registries;
 
-    public PromenadeEntityLootTableProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
-        super(output, registryLookup, LootContextTypes.ENTITY);
+    public PromenadeEntityLootTableProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        super(output, registryLookup, LootContextParamSets.ENTITY);
         this.registries = registryLookup.join();
     }
 
     @Override
-    public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> output) {
-        final var entities = this.registries.getOrThrow(RegistryKeys.ENTITY_TYPE);
-        final var fluids = this.registries.getOrThrow(RegistryKeys.FLUID);
+    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output) {
+        final var entities = this.registries.lookupOrThrow(Registries.ENTITY_TYPE);
+        final var fluids = this.registries.lookupOrThrow(Registries.FLUID);
 
-        output.accept(PromenadeEntityTypes.CAPYBARA.getLootTableKey().orElseThrow(), LootTable.builder());
+        output.accept(PromenadeEntityTypes.CAPYBARA.getDefaultLootTable().orElseThrow(), LootTable.lootTable());
         output.accept(
-                PromenadeEntityTypes.DUCK.getLootTableKey().orElseThrow(),
-                LootTable.builder()
-                        .pool(LootPool.builder()
-                                .with(ItemEntry.builder(Items.FEATHER)
-                                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                        .apply(EnchantedCountIncreaseLootFunction.builder(registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                PromenadeEntityTypes.DUCK.getDefaultLootTable().orElseThrow(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(Items.FEATHER)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                        .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F)))
                                 )
                         )
-                        .pool(LootPool.builder()
-                                .with(ItemEntry.builder(PromenadeItems.DUCK)
-                                        .apply(FurnaceSmeltLootFunction.builder().conditionally(this.createSmeltLootCondition()))
-                                        .apply(EnchantedCountIncreaseLootFunction.builder(registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(PromenadeItems.DUCK)
+                                        .apply(SmeltItemFunction.smelted().when(this.createSmeltLootCondition()))
+                                        .apply(EnchantedCountIncreaseFunction.lootingMultiplier(registries, UniformGenerator.between(0.0F, 1.0F)))
                                 )
                         )
         );
 
         output.accept(
-                PromenadeEntityTypes.LUSH_CREEPER.getLootTableKey().orElseThrow(),
-                LootTable.builder()
-                        .pool(LootPool.builder()
-                                .with(ItemEntry.builder(Items.GUNPOWDER)
-                                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                        .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                PromenadeEntityTypes.LUSH_CREEPER.getDefaultLootTable().orElseThrow(),
+                LootTable.lootTable()
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(Items.GUNPOWDER)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                        .apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))
                                 )
                         )
-                        .pool(LootPool.builder()
-                                .with(ItemEntry.builder(Items.BONE_MEAL).weight(2).quality(2)
-                                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                        .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                        .withPool(LootPool.lootPool()
+                                .add(LootItem.lootTableItem(Items.BONE_MEAL).setWeight(2).setQuality(2)
+                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                        .apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))
                                 )
-                                .with(ItemEntry.builder(Items.MOSS_BLOCK).weight(1).quality(5)
-                                        .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                                .add(LootItem.lootTableItem(Items.MOSS_BLOCK).setWeight(1).setQuality(5)
+                                        .apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))
                                 )
                         )
-                        .pool(LootPool.builder()
-                                .with(TagEntry.expandBuilder(ItemTags.CREEPER_DROP_MUSIC_DISCS))
-                                .conditionally(
-                                        EntityPropertiesLootCondition.builder(
-                                                LootContext.EntityReference.ATTACKER, EntityPredicate.Builder.create().type(entities, EntityTypeTags.SKELETONS)
+                        .withPool(LootPool.lootPool()
+                                .add(TagEntry.expandTag(ItemTags.CREEPER_DROP_MUSIC_DISCS))
+                                .when(
+                                        LootItemEntityPropertyCondition.hasProperties(
+                                                LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().of(entities, EntityTypeTags.SKELETONS)
                                         )
                                 )
                         )
@@ -112,24 +111,24 @@ public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvi
         output.accept(PromenadeLootTables.HORN_SUNKEN, sunken(fluids, Items.HORN_CORAL, Items.DEAD_HORN_CORAL));
     }
 
-    protected final AnyOfLootCondition.Builder createSmeltLootCondition() {
-        RegistryWrapper.Impl<Enchantment> impl = this.registries.getOrThrow(RegistryKeys.ENCHANTMENT);
-        return AnyOfLootCondition.builder(
-                EntityPropertiesLootCondition.builder(
-                        LootContext.EntityReference.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true))
+    protected final AnyOfCondition.Builder createSmeltLootCondition() {
+        HolderLookup.RegistryLookup<Enchantment> impl = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+        return AnyOfCondition.anyOf(
+                LootItemEntityPropertyCondition.hasProperties(
+                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true))
                 ),
-                EntityPropertiesLootCondition.builder(
-                        LootContext.EntityReference.DIRECT_ATTACKER,
-                        EntityPredicate.Builder.create()
+                LootItemEntityPropertyCondition.hasProperties(
+                        LootContext.EntityTarget.DIRECT_ATTACKER,
+                        EntityPredicate.Builder.entity()
                                 .equipment(
-                                        EntityEquipmentPredicate.Builder.create()
+                                        EntityEquipmentPredicate.Builder.equipment()
                                                 .mainhand(
-                                                        ItemPredicate.Builder.create()
-                                                                .components(
-                                                                        ComponentsPredicate.Builder.create()
+                                                        ItemPredicate.Builder.item()
+                                                                .withComponents(
+                                                                        DataComponentMatchers.Builder.components()
                                                                                 .partial(
-                                                                                        ComponentPredicateTypes.ENCHANTMENTS,
-                                                                                        EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(impl.getOrThrow(EnchantmentTags.SMELTS_LOOT), NumberRange.IntRange.ANY)))
+                                                                                        DataComponentPredicates.ENCHANTMENTS,
+                                                                                        EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(impl.getOrThrow(EnchantmentTags.SMELTS_LOOT), MinMaxBounds.Ints.ANY)))
                                                                                 )
                                                                                 .build()
                                                                 )
@@ -139,28 +138,28 @@ public class PromenadeEntityLootTableProvider extends SimpleFabricLootTableProvi
         );
     }
 
-    protected final LootTable.Builder sunken(RegistryEntryLookup<Fluid> fluids, Item coral, Item deadCoral) {
-        return LootTable.builder()
-                .pool(LootPool.builder()
-                        .with(ItemEntry.builder(Items.ARROW)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+    protected final LootTable.Builder sunken(HolderGetter<Fluid> fluids, Item coral, Item deadCoral) {
+        return LootTable.lootTable()
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(Items.ARROW)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                .apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))
                         )
                 )
-                .pool(LootPool.builder()
-                        .with(ItemEntry.builder(Items.BONE)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                .withPool(LootPool.lootPool()
+                        .add(LootItem.lootTableItem(Items.BONE)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(0.0F, 2.0F)))
+                                .apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))
                         )
                 )
-                .pool(LootPool.builder()
-                        .with(
-                                ItemEntry.builder(coral)
-                                        .conditionally(LocationCheckLootCondition.builder(LocationPredicate.Builder.create().fluid(FluidPredicate.Builder.create().tag(fluids.getOrThrow(FluidTags.WATER)))))
-                                        .alternatively(ItemEntry.builder(deadCoral))
+                .withPool(LootPool.lootPool()
+                        .add(
+                                LootItem.lootTableItem(coral)
+                                        .when(LocationCheck.checkLocation(LocationPredicate.Builder.location().setFluid(FluidPredicate.Builder.fluid().of(fluids.getOrThrow(FluidTags.WATER)))))
+                                        .otherwise(LootItem.lootTableItem(deadCoral))
                         )
-                        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
-                        .apply(EnchantedCountIncreaseLootFunction.builder(this.registries, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 3.0F)))
+                        .apply(EnchantedCountIncreaseFunction.lootingMultiplier(this.registries, UniformGenerator.between(0.0F, 1.0F)))
                 );
     }
 }

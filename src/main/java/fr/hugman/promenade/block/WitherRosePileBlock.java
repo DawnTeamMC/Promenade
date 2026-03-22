@@ -3,60 +3,60 @@ package fr.hugman.promenade.block;
 import com.mojang.serialization.MapCodec;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCollisionHandler;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.World;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class WitherRosePileBlock extends PileBlock {
-    public static final MapCodec<WitherRosePileBlock> CODEC = createCodec(WitherRosePileBlock::new);
+    public static final MapCodec<WitherRosePileBlock> CODEC = simpleCodec(WitherRosePileBlock::new);
 
-    public WitherRosePileBlock(Settings builder) {
+    public WitherRosePileBlock(Properties builder) {
         super(builder);
     }
 
     @Override
-    protected MapCodec<WitherRosePileBlock> getCodec() {
+    protected MapCodec<WitherRosePileBlock> codec() {
         return CODEC;
     }
 
     @Override
-    public boolean canPlantOnTop(BlockState state, BlockView world, BlockPos pos) {
-        return super.canPlantOnTop(state, world, pos) || state.getBlock() == Blocks.SOUL_SAND;
+    public boolean mayPlaceOn(BlockState state, BlockGetter world, BlockPos pos) {
+        return super.mayPlaceOn(state, world, pos) || state.getBlock() == Blocks.SOUL_SAND;
     }
 
     @Override
     @Environment(EnvType.CLIENT)
-    public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random rand) {
+    public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource rand) {
         for (int i = 0; i < 5; ++i) {
             if (rand.nextBoolean()) {
-                world.addParticleClient(ParticleTypes.SMOKE, (double) pos.getX() + (double) (rand.nextInt(17) / 16), (double) pos.getY() + (0.5D - (double) rand.nextFloat()), (double) pos.getZ() + (double) (rand.nextInt(17) / 16), 0.0D, 0.0D, 0.0D);
+                world.addParticle(ParticleTypes.SMOKE, (double) pos.getX() + (double) (rand.nextInt(17) / 16), (double) pos.getY() + (0.5D - (double) rand.nextFloat()), (double) pos.getZ() + (double) (rand.nextInt(17) / 16), 0.0D, 0.0D, 0.0D);
             }
         }
     }
 
     @Override
-	protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler, boolean bl) {
-        if (world instanceof ServerWorld serverWorld
+	protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entity, InsideBlockEffectApplier handler, boolean bl) {
+        if (world instanceof ServerLevel serverWorld
                 && world.getDifficulty() != Difficulty.PEACEFUL
                 && entity instanceof LivingEntity livingEntity
-                && !livingEntity.isInvulnerableTo(serverWorld, world.getDamageSources().wither())) {
-            livingEntity.addStatusEffect(this.getContactEffect());
+                && !livingEntity.isInvulnerableTo(serverWorld, world.damageSources().wither())) {
+            livingEntity.addEffect(this.getContactEffect());
         }
-		super.onEntityCollision(state, world, pos, entity, handler, bl);
+		super.entityInside(state, world, pos, entity, handler, bl);
     }
 
-    public StatusEffectInstance getContactEffect() {
-        return new StatusEffectInstance(StatusEffects.WITHER, 40);
+    public MobEffectInstance getContactEffect() {
+        return new MobEffectInstance(MobEffects.WITHER, 40);
     }
 }

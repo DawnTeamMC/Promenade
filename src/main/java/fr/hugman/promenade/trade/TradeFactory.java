@@ -1,14 +1,14 @@
 package fr.hugman.promenade.trade;
 
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.village.TradeOffer;
-import net.minecraft.village.TradeOffers;
-import net.minecraft.village.TradedItem;
+import net.minecraft.world.entity.npc.villager.VillagerTrades;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.ItemLike;
 
 public class TradeFactory {
-    public static TradeOffers.Factory sapling(ItemConvertible sapling) {
-		return (world, entity, random) -> new TradeOffer(new TradedItem(Items.EMERALD, 5), new ItemStack(sapling), 8, 1, 0.05f);
+    public static VillagerTrades.ItemListing sapling(ItemLike sapling) {
+		return (world, entity, random) -> new MerchantOffer(new ItemCost(Items.EMERALD, 5), new ItemStack(sapling), 8, 1, 0.05f);
     }
 }

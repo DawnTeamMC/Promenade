@@ -1,26 +1,26 @@
 package fr.hugman.promenade.client.render.entity;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.SunkenEntityModel;
 import fr.hugman.promenade.client.render.entity.state.SunkenEntityRenderState;
 import fr.hugman.promenade.entity.SunkenEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.entity.AbstractSkeletonEntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.texture.MissingSprite;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RotationAxis;
+import net.minecraft.client.renderer.entity.AbstractSkeletonRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class SunkenEntityRenderer extends AbstractSkeletonEntityRenderer<SunkenEntity, SunkenEntityRenderState> {
-    public SunkenEntityRenderer(EntityRendererFactory.Context context) {
+public class SunkenEntityRenderer extends AbstractSkeletonRenderer<SunkenEntity, SunkenEntityRenderState> {
+    public SunkenEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
                 PromenadeEntityModelLayers.SUNKEN_EQUIPMENT,
-                new SunkenEntityModel(context.getPart(PromenadeEntityModelLayers.SUNKEN))
+                new SunkenEntityModel(context.bakeLayer(PromenadeEntityModelLayers.SUNKEN))
         );
     }
 
@@ -30,32 +30,32 @@ public class SunkenEntityRenderer extends AbstractSkeletonEntityRenderer<SunkenE
     }
 
     @Override
-    protected void setupTransforms(SunkenEntityRenderState state, MatrixStack matrices, float bodyYaw, float baseHeight) {
-        float h = state.leaningPitch;
-        float i = state.pitch;
+    protected void setupRotations(SunkenEntityRenderState state, PoseStack poseStack, float bodyYaw, float baseHeight) {
+        float h = state.swimAmount;
+        float i = state.xRot;
 
-        super.setupTransforms(state, matrices, bodyYaw, baseHeight);
+        super.setupRotations(state, poseStack, bodyYaw, baseHeight);
         if (h > 0.0F) {
-            float jx = state.touchingWater ? -90.0F - i : -90.0F;
-            float k = MathHelper.lerp(h, 0.0F, jx);
-            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(k));
-            if (state.isSwimming) {
-                matrices.translate(0.0F, -1.0F, 0.3F);
+            float jx = state.isInWater ? -90.0F - i : -90.0F;
+            float k = Mth.lerp(h, 0.0F, jx);
+            poseStack.mulPose(Axis.XP.rotationDegrees(k));
+            if (state.isVisuallySwimming) {
+                poseStack.translate(0.0F, -1.0F, 0.3F);
             }
         }
     }
 
     @Override
-    public Identifier getTexture(SunkenEntityRenderState state) {
+    public Identifier getTextureLocation(SunkenEntityRenderState state) {
         if (state.variant == null) {
-            return MissingSprite.getMissingSpriteId();
+            return MissingTextureAtlasSprite.getLocation();
         }
         return state.variant.texture().texturePath();
     }
 
     @Override
-    public void updateRenderState(SunkenEntity sunken, SunkenEntityRenderState state, float f) {
-        super.updateRenderState(sunken, state, f);
+    public void extractRenderState(SunkenEntity sunken, SunkenEntityRenderState state, float f) {
+        super.extractRenderState(sunken, state, f);
         state.variant = sunken.getVariant().value();
     }
 }

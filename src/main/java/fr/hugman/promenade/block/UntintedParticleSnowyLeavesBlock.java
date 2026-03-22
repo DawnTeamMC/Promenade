@@ -2,34 +2,34 @@ package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.particle.ParticleUtil;
-import net.minecraft.util.dynamic.Codecs;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.ExtraCodecs;
+import net.minecraft.util.ParticleUtils;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 
 public class UntintedParticleSnowyLeavesBlock extends SnowyLeavesBlock {
     public static final MapCodec<UntintedParticleSnowyLeavesBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            Codecs.rangedInclusiveFloat(0.0F, 1.0F).fieldOf("leaf_particle_chance").forGetter(untintedParticleLeavesBlock -> untintedParticleLeavesBlock.leafParticleChance),
-            ParticleTypes.TYPE_CODEC.fieldOf("leaf_particle").forGetter(untintedParticleLeavesBlock -> untintedParticleLeavesBlock.leafParticleEffect),
-            createSettingsCodec()
+            ExtraCodecs.floatRange(0.0F, 1.0F).fieldOf("leaf_particle_chance").forGetter(untintedParticleLeavesBlock -> untintedParticleLeavesBlock.leafParticleChance),
+            ParticleTypes.CODEC.fieldOf("leaf_particle").forGetter(untintedParticleLeavesBlock -> untintedParticleLeavesBlock.leafParticleEffect),
+            propertiesCodec()
     ).apply(instance, UntintedParticleSnowyLeavesBlock::new));
-    protected final ParticleEffect leafParticleEffect;
+    protected final ParticleOptions leafParticleEffect;
 
-    public UntintedParticleSnowyLeavesBlock(float leafParticleChance, ParticleEffect leafParticleEffect, Settings settings) {
+    public UntintedParticleSnowyLeavesBlock(float leafParticleChance, ParticleOptions leafParticleEffect, Properties settings) {
         super(leafParticleChance, settings);
         this.leafParticleEffect = leafParticleEffect;
     }
 
     @Override
-    protected void spawnLeafParticle(World world, BlockPos pos, Random random) {
-        ParticleUtil.spawnParticle(world, pos, random, this.leafParticleEffect);
+    protected void spawnFallingLeavesParticle(Level world, BlockPos pos, RandomSource random) {
+        ParticleUtils.spawnParticleBelow(world, pos, random, this.leafParticleEffect);
     }
 
     @Override
-    public MapCodec<UntintedParticleSnowyLeavesBlock> getCodec() {
+    public MapCodec<UntintedParticleSnowyLeavesBlock> codec() {
         return CODEC;
     }
 }

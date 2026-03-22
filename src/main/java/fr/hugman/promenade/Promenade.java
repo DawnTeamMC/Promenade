@@ -24,7 +24,7 @@ import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifi
 import fr.hugman.promenade.world.gen.tree.foliage.PromenadeFoliagePlacerTypes;
 import fr.hugman.promenade.world.gen.tree.trunk.PromenadeTrunkPlacerTypes;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -75,6 +75,6 @@ public class Promenade implements ModInitializer {
     }
 
     public static Identifier id(String path) {
-        return Identifier.of(MOD_ID, path);
+        return Identifier.fromNamespaceAndPath(MOD_ID, path);
     }
 }

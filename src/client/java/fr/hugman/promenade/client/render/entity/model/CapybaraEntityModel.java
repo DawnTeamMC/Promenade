@@ -4,13 +4,16 @@ import fr.hugman.promenade.client.render.entity.animation.CapybaraAnimations;
 import fr.hugman.promenade.client.render.entity.state.CapybaraEntityRenderState;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.animation.KeyframeAnimation;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.entity.animation.Animation;
-import net.minecraft.client.render.entity.model.BabyModelTransformer;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.EntityModelPartNames;
-import net.minecraft.client.render.entity.model.ModelTransformer;
-
+import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartNames;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.CubeListBuilder;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.client.model.geom.builders.MeshDefinition;
+import net.minecraft.client.model.geom.builders.MeshTransformer;
+import net.minecraft.client.model.geom.builders.PartDefinition;
 import java.util.Set;
 
 @Environment(EnvType.CLIENT)
@@ -20,69 +23,69 @@ public class CapybaraEntityModel extends EntityModel<CapybaraEntityRenderState> 
 
     private final ModelPart head;
 
-    private final Animation walkingAnimation;
-    private final Animation earWiggleAnimation;
-    private final Animation fallToSleepAnimation;
-    private final Animation sleepingAnimation;
-    private final Animation wakeUpAnimation;
-    private final Animation fartAnimation;
+    private final KeyframeAnimation walkingAnimation;
+    private final KeyframeAnimation earWiggleAnimation;
+    private final KeyframeAnimation fallToSleepAnimation;
+    private final KeyframeAnimation sleepingAnimation;
+    private final KeyframeAnimation wakeUpAnimation;
+    private final KeyframeAnimation fartAnimation;
 
-    public static final ModelTransformer BABY_TRANSFORMER = new BabyModelTransformer(false, 1.00F, 0.6F, Set.of(EntityModelPartNames.HEAD));
+    public static final MeshTransformer BABY_TRANSFORMER = new BabyModelTransform(false, 1.00F, 0.6F, Set.of(PartNames.HEAD));
 
     public CapybaraEntityModel(ModelPart part) {
-        super(part.getChild(EntityModelPartNames.ROOT));
-        this.head = this.root.getChild(EntityModelPartNames.HEAD);
-        this.walkingAnimation = CapybaraAnimations.WALKING.createAnimation(this.root);
-        this.earWiggleAnimation = CapybaraAnimations.EAR_WIGGLE.createAnimation(this.root);
-        this.fallToSleepAnimation = CapybaraAnimations.FALL_TO_SLEEP.createAnimation(this.root);
-        this.sleepingAnimation = CapybaraAnimations.SLEEP.createAnimation(this.root);
-        this.wakeUpAnimation = CapybaraAnimations.WAKE_UP.createAnimation(this.root);
-        this.fartAnimation = CapybaraAnimations.FART.createAnimation(this.root);
+        super(part.getChild(PartNames.ROOT));
+        this.head = this.root.getChild(PartNames.HEAD);
+        this.walkingAnimation = CapybaraAnimations.WALKING.bake(this.root);
+        this.earWiggleAnimation = CapybaraAnimations.EAR_WIGGLE.bake(this.root);
+        this.fallToSleepAnimation = CapybaraAnimations.FALL_TO_SLEEP.bake(this.root);
+        this.sleepingAnimation = CapybaraAnimations.SLEEP.bake(this.root);
+        this.wakeUpAnimation = CapybaraAnimations.WAKE_UP.bake(this.root);
+        this.fartAnimation = CapybaraAnimations.FART.bake(this.root);
     }
 
-    public static TexturedModelData getTexturedModelData() {
-        ModelData modelData = new ModelData();
-        ModelPartData modelPartData = modelData.getRoot();
-        ModelPartData root = modelPartData.addChild(EntityModelPartNames.ROOT, ModelPartBuilder.create(), ModelTransform.origin(0.5F, 14.5F, 0.5F));
+    public static LayerDefinition getTexturedModelData() {
+        MeshDefinition modelData = new MeshDefinition();
+        PartDefinition modelPartData = modelData.getRoot();
+        PartDefinition root = modelPartData.addOrReplaceChild(PartNames.ROOT, CubeListBuilder.create(), PartPose.offset(0.5F, 14.5F, 0.5F));
 
-        root.addChild(EntityModelPartNames.RIGHT_HIND_LEG, ModelPartBuilder.create().uv(31, 0).cuboid(-1.5F, 0.0F, -0.5F, 3.0F, 7.0F, 3.0F), ModelTransform.origin(1.5F, 2.5F, 5.5F));
-        root.addChild(EntityModelPartNames.LEFT_HIND_LEG, ModelPartBuilder.create().uv(0, 0).cuboid(-1.5F, 0.0F, -0.5F, 3.0F, 7.0F, 3.0F), ModelTransform.origin(-2.5F, 2.5F, 5.5F));
-        root.addChild(EntityModelPartNames.RIGHT_FRONT_LEG, ModelPartBuilder.create().uv(0, 36).cuboid(-1.5F, -1.0F, -2.0F, 3.0F, 6.0F, 3.0F), ModelTransform.origin(1.5F, 4.5F, -4.5F));
-        root.addChild(EntityModelPartNames.LEFT_FRONT_LEG, ModelPartBuilder.create().uv(12, 36).cuboid(-1.5F, -1.0F, -2.0F, 3.0F, 6.0F, 3.0F), ModelTransform.origin(-2.5F, 4.5F, -4.5F));
+        root.addOrReplaceChild(PartNames.RIGHT_HIND_LEG, CubeListBuilder.create().texOffs(31, 0).addBox(-1.5F, 0.0F, -0.5F, 3.0F, 7.0F, 3.0F), PartPose.offset(1.5F, 2.5F, 5.5F));
+        root.addOrReplaceChild(PartNames.LEFT_HIND_LEG, CubeListBuilder.create().texOffs(0, 0).addBox(-1.5F, 0.0F, -0.5F, 3.0F, 7.0F, 3.0F), PartPose.offset(-2.5F, 2.5F, 5.5F));
+        root.addOrReplaceChild(PartNames.RIGHT_FRONT_LEG, CubeListBuilder.create().texOffs(0, 36).addBox(-1.5F, -1.0F, -2.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(1.5F, 4.5F, -4.5F));
+        root.addOrReplaceChild(PartNames.LEFT_FRONT_LEG, CubeListBuilder.create().texOffs(12, 36).addBox(-1.5F, -1.0F, -2.0F, 3.0F, 6.0F, 3.0F), PartPose.offset(-2.5F, 4.5F, -4.5F));
 
-        root.addChild(EntityModelPartNames.BODY, ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -4.0F, -7.5F, 8.0F, 8.0F, 15.0F), ModelTransform.origin(-0.5F, 0.5F, 0.0F));
-        ModelPartData head = root.addChild(EntityModelPartNames.HEAD, ModelPartBuilder.create()
-                        .uv(20, 23).cuboid(-3.0F, 1.0F, -5.0F, 6.0F, 1.0F, 5.0F)
-                        .uv(0, 23).cuboid(-3.0F, -4.0F, -8.0F, 6.0F, 5.0F, 8.0F),
-                ModelTransform.of(-0.5F, -2.5F, -6.5F, -0.0436F, 0.0F, 0.0F));
-        ModelPartData jaw = head.addChild(EntityModelPartNames.JAW, ModelPartBuilder.create().uv(28, 29).cuboid(-3.0F, 0.0F, -3.0F, 6.0F, 1.0F, 3.0F), ModelTransform.origin(0.0F, 1.0F, -5.0F));
+        root.addOrReplaceChild(PartNames.BODY, CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -4.0F, -7.5F, 8.0F, 8.0F, 15.0F), PartPose.offset(-0.5F, 0.5F, 0.0F));
+        PartDefinition head = root.addOrReplaceChild(PartNames.HEAD, CubeListBuilder.create()
+                        .texOffs(20, 23).addBox(-3.0F, 1.0F, -5.0F, 6.0F, 1.0F, 5.0F)
+                        .texOffs(0, 23).addBox(-3.0F, -4.0F, -8.0F, 6.0F, 5.0F, 8.0F),
+                PartPose.offsetAndRotation(-0.5F, -2.5F, -6.5F, -0.0436F, 0.0F, 0.0F));
+        PartDefinition jaw = head.addOrReplaceChild(PartNames.JAW, CubeListBuilder.create().texOffs(28, 29).addBox(-3.0F, 0.0F, -3.0F, 6.0F, 1.0F, 3.0F), PartPose.offset(0.0F, 1.0F, -5.0F));
 
-        head.addChild(EntityModelPartNames.LEFT_EAR, ModelPartBuilder.create().uv(0, 10).cuboid(0.0F, -2.0F, 0.0F, 1.0F, 2.0F, 2.0F), ModelTransform.of(2.0F, -3.0F, -1.0F, -0.2F, 0.2F, 0.0F));
-        head.addChild(EntityModelPartNames.RIGHT_EAR, ModelPartBuilder.create().uv(6, 10).cuboid(-1.0F, -2.0F, 0.0F, 1.0F, 2.0F, 2.0F), ModelTransform.of(-2.0F, -3.0F, -1.0F, -0.2F, -0.2F, 0.0F));
-        head.addChild(UPPER_TEETH, ModelPartBuilder.create().uv(9, 0).cuboid(-1.0F, -0.25F, 0.0F, 2.0F, 1.0F, 0.0F), ModelTransform.origin(0.0F, 1.0F, -7.0F));
-        jaw.addChild(LOWER_TEETH, ModelPartBuilder.create().uv(9, 1).cuboid(-1.0F, -0.75F, 0.0F, 2.0F, 1.0F, 0.0F), ModelTransform.origin(0.0F, 0.0F, -2.0F));
+        head.addOrReplaceChild(PartNames.LEFT_EAR, CubeListBuilder.create().texOffs(0, 10).addBox(0.0F, -2.0F, 0.0F, 1.0F, 2.0F, 2.0F), PartPose.offsetAndRotation(2.0F, -3.0F, -1.0F, -0.2F, 0.2F, 0.0F));
+        head.addOrReplaceChild(PartNames.RIGHT_EAR, CubeListBuilder.create().texOffs(6, 10).addBox(-1.0F, -2.0F, 0.0F, 1.0F, 2.0F, 2.0F), PartPose.offsetAndRotation(-2.0F, -3.0F, -1.0F, -0.2F, -0.2F, 0.0F));
+        head.addOrReplaceChild(UPPER_TEETH, CubeListBuilder.create().texOffs(9, 0).addBox(-1.0F, -0.25F, 0.0F, 2.0F, 1.0F, 0.0F), PartPose.offset(0.0F, 1.0F, -7.0F));
+        jaw.addOrReplaceChild(LOWER_TEETH, CubeListBuilder.create().texOffs(9, 1).addBox(-1.0F, -0.75F, 0.0F, 2.0F, 1.0F, 0.0F), PartPose.offset(0.0F, 0.0F, -2.0F));
 
-        return TexturedModelData.of(modelData, 64, 64);
+        return LayerDefinition.create(modelData, 64, 64);
     }
 
     @Override
-    public void setAngles(CapybaraEntityRenderState state) {
-        super.setAngles(state);
+    public void setupAnim(CapybaraEntityRenderState state) {
+        super.setupAnim(state);
 
         // Head
         if (state.canAngleHead) {
-            this.head.pitch = state.pitch * (float) (Math.PI / 180.0);
-            this.head.yaw = state.relativeHeadYaw * (float) (Math.PI / 180.0);
+            this.head.xRot = state.xRot * (float) (Math.PI / 180.0);
+            this.head.yRot = state.yRot * (float) (Math.PI / 180.0);
         }
 
         // Dynamic animations
-        this.walkingAnimation.applyWalking(state.limbSwingAnimationProgress, state.limbSwingAmplitude, 4.0F, 2.5F);
+        this.walkingAnimation.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 4.0F, 2.5F);
 
         // Custom animations
-        this.earWiggleAnimation.apply(state.earWiggleAnimState, state.age, state.earWiggleSpeed);
-        this.fallToSleepAnimation.apply(state.fallToSleepAnimState, state.age);
-        this.sleepingAnimation.apply(state.sleepingAnimState, state.age);
-        this.wakeUpAnimation.apply(state.wakeUpAnimState, state.age);
-        this.fartAnimation.apply(state.fartAnimState, state.age);
+        this.earWiggleAnimation.apply(state.earWiggleAnimState, state.ageInTicks, state.earWiggleSpeed);
+        this.fallToSleepAnimation.apply(state.fallToSleepAnimState, state.ageInTicks);
+        this.sleepingAnimation.apply(state.sleepingAnimState, state.ageInTicks);
+        this.wakeUpAnimation.apply(state.wakeUpAnimState, state.ageInTicks);
+        this.fartAnimation.apply(state.fartAnimState, state.ageInTicks);
     }
 }

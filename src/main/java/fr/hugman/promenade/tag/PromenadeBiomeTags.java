@@ -2,11 +2,10 @@ package fr.hugman.promenade.tag;
 
 import fr.hugman.promenade.Promenade;
 import net.fabricmc.fabric.api.tag.convention.v2.TagUtil;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.biome.Biome;
 
 public class PromenadeBiomeTags {
     public static final TagKey<Biome> SAKURA_GROVES = of("sakura_groves");
@@ -27,10 +26,10 @@ public class PromenadeBiomeTags {
 	public static final TagKey<Biome> PRIMARY_WOOD_TYPE_DARK_AMARANTH = ofConventional("primary_wood_type/dark_amaranth");
 
     private static TagKey<Biome> of(String path) {
-        return TagKey.of(RegistryKeys.BIOME, Promenade.id(path));
+        return TagKey.create(Registries.BIOME, Promenade.id(path));
     }
 
 	private static TagKey<Biome> ofConventional(String path) {
-		return TagKey.of(RegistryKeys.BIOME, Identifier.of(TagUtil.C_TAG_NAMESPACE, path));
+		return TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, path));
 	}
 }

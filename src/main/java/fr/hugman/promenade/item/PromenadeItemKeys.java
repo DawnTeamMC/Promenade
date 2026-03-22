@@ -1,14 +1,14 @@
 package fr.hugman.promenade.item;
 
 import fr.hugman.promenade.Promenade;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Item;
 
 public class PromenadeItemKeys {
-    public static final RegistryKey<Item> BLUEBERRIES = of("blueberries");
+    public static final ResourceKey<Item> BLUEBERRIES = of("blueberries");
 
-    private static RegistryKey<Item> of(String path) {
-        return RegistryKey.of(RegistryKeys.ITEM, Promenade.id(path));
+    private static ResourceKey<Item> of(String path) {
+        return ResourceKey.create(Registries.ITEM, Promenade.id(path));
     }
 }

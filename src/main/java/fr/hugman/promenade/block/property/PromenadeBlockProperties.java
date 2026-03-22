@@ -1,13 +1,13 @@
 package fr.hugman.promenade.block.property;
 
 import fr.hugman.promenade.block.MoaiType;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.IntProperty;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class PromenadeBlockProperties {
-    public static final BooleanProperty NATURAL = BooleanProperty.of("natural");
-    public static final BooleanProperty DRIP = BooleanProperty.of("drip");
-    public static final EnumProperty<MoaiType> MOAI_TYPE = EnumProperty.of("type", MoaiType.class);
-    public static final IntProperty DISTANCE_1_14 = IntProperty.of("distance", 1, 14);
+    public static final BooleanProperty NATURAL = BooleanProperty.create("natural");
+    public static final BooleanProperty DRIP = BooleanProperty.create("drip");
+    public static final EnumProperty<MoaiType> MOAI_TYPE = EnumProperty.create("type", MoaiType.class);
+    public static final IntegerProperty DISTANCE_1_14 = IntegerProperty.create("distance", 1, 14);
 }

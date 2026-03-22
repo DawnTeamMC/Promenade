@@ -3,11 +3,11 @@ package fr.hugman.promenade.client.render.entity.state;
 import fr.hugman.promenade.entity.variant.SunkenVariant;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.entity.state.SkeletonEntityRenderState;
+import net.minecraft.client.renderer.entity.state.SkeletonRenderState;
 import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
-public class SunkenEntityRenderState extends SkeletonEntityRenderState {
+public class SunkenEntityRenderState extends SkeletonRenderState {
     @Nullable
     public SunkenVariant variant;
 }

@@ -2,17 +2,17 @@ package fr.hugman.promenade.world.gen.tree.foliage;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.intprovider.IntProvider;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.TestableWorld;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
-import net.minecraft.world.gen.foliage.FoliagePlacer;
-import net.minecraft.world.gen.foliage.FoliagePlacerType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
 public class PalmFoliagePlacer extends FoliagePlacer {
     public static final MapCodec<PalmFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance ->
-            PalmFoliagePlacer.fillFoliagePlacerFields(instance)
+            PalmFoliagePlacer.foliagePlacerParts(instance)
                     .apply(instance, PalmFoliagePlacer::new));
 
     public PalmFoliagePlacer(IntProvider radius, IntProvider offset) {
@@ -20,30 +20,30 @@ public class PalmFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    protected FoliagePlacerType<?> getType() {
+    protected FoliagePlacerType<?> type() {
         return PromenadeFoliagePlacerTypes.PALM;
     }
 
     @Override
-    protected void generate(TestableWorld world, BlockPlacer placer, Random random, TreeFeatureConfig config, int trunkHeight, TreeNode treeNode, int foliageHeight, int radius, int offset) {
-        boolean bl = treeNode.isGiantTrunk();
-        BlockPos blockPos = treeNode.getCenter().down();
+    protected void createFoliage(LevelSimulatedReader world, FoliageSetter placer, RandomSource random, TreeConfiguration config, int trunkHeight, FoliageAttachment treeNode, int foliageHeight, int radius, int offset) {
+        boolean bl = treeNode.doubleTrunk();
+        BlockPos blockPos = treeNode.pos().below();
 
-        int i = radius + treeNode.getFoliageRadius();
-        if (i > 1) this.generateSquare(world, placer, random, config, blockPos, i, 2, bl);
-        this.generateSquare(world, placer, random, config, blockPos, i + 1, 1, bl);
-        this.generateSquare(world, placer, random, config, blockPos, i + 2, 0, bl);
-        this.generateSquare(world, placer, random, config, blockPos, i + 2, -1, bl);
-        this.generateSquare(world, placer, random, config, blockPos, i + 1, -2, bl);
+        int i = radius + treeNode.radiusOffset();
+        if (i > 1) this.placeLeavesRow(world, placer, random, config, blockPos, i, 2, bl);
+        this.placeLeavesRow(world, placer, random, config, blockPos, i + 1, 1, bl);
+        this.placeLeavesRow(world, placer, random, config, blockPos, i + 2, 0, bl);
+        this.placeLeavesRow(world, placer, random, config, blockPos, i + 2, -1, bl);
+        this.placeLeavesRow(world, placer, random, config, blockPos, i + 1, -2, bl);
     }
 
     @Override
-    public int getRandomHeight(Random random, int trunkHeight, TreeFeatureConfig config) {
+    public int foliageHeight(RandomSource random, int trunkHeight, TreeConfiguration config) {
         return 0;
     }
 
     @Override
-    protected boolean isInvalidForLeaves(Random random, int dx, int y, int dz, int radius, boolean giantTrunk) {
+    protected boolean shouldSkipLocation(RandomSource random, int dx, int y, int dz, int radius, boolean giantTrunk) {
         int d = dx + dz; // Distance from center
 
         if (y == 2) {

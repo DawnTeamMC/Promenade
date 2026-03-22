@@ -6,23 +6,22 @@ import fr.hugman.promenade.entity.variant.CapybaraVariants;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
-import net.minecraft.entity.spawn.SpawnConditionSelectors;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.AssetInfo.TextureAssetInfo;
-
+import net.minecraft.core.ClientAsset.ResourceTexture;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.variant.SpawnPrioritySelectors;
 import java.util.concurrent.CompletableFuture;
 
 //TODO: a generic class for other devs
 public class PromenadeCapybaraVariantProvider extends FabricDynamicRegistryProvider {
-    public PromenadeCapybaraVariantProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public PromenadeCapybaraVariantProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        entries.addAll(registries.getOrThrow(PromenadeRegistryKeys.CAPYBARA_VARIANT));
+    protected void configure(HolderLookup.Provider registries, Entries entries) {
+        entries.addAll(registries.lookupOrThrow(PromenadeRegistryKeys.CAPYBARA_VARIANT));
     }
 
     @Override
@@ -30,21 +29,21 @@ public class PromenadeCapybaraVariantProvider extends FabricDynamicRegistryProvi
         return "Capybara Variants";
     }
 
-    public static void register(Registerable<CapybaraVariant> registerable) {
-        of(registerable, CapybaraVariants.BROWN, SpawnConditionSelectors.createFallback(0));
+    public static void register(BootstrapContext<CapybaraVariant> registerable) {
+        of(registerable, CapybaraVariants.BROWN, SpawnPrioritySelectors.fallback(0));
         of(registerable, CapybaraVariants.ALBINO, 1 / 50f);
     }
 
-    private static void of(Registerable<CapybaraVariant> registry, RegistryKey<CapybaraVariant> key, float rarity) {
-        of(registry, key, SpawnConditionSelectors.createSingle(new ChanceSpawnCondition(rarity), 0));
+    private static void of(BootstrapContext<CapybaraVariant> registry, ResourceKey<CapybaraVariant> key, float rarity) {
+        of(registry, key, SpawnPrioritySelectors.single(new ChanceSpawnCondition(rarity), 0));
     }
 
-    private static void of(Registerable<CapybaraVariant> registry, RegistryKey<CapybaraVariant> key, SpawnConditionSelectors spawnConditions) {
-        var baseId = key.getValue().withPrefixedPath("entity/capybara/");
+    private static void of(BootstrapContext<CapybaraVariant> registry, ResourceKey<CapybaraVariant> key, SpawnPrioritySelectors spawnConditions) {
+        var baseId = key.identifier().withPrefix("entity/capybara/");
         registry.register(key, new CapybaraVariant(
-                new TextureAssetInfo(baseId.withSuffixedPath("/small_eyes")),
-                new TextureAssetInfo(baseId.withSuffixedPath("/large_eyes")),
-                new TextureAssetInfo(baseId.withSuffixedPath("/closed_eyes")),
+                new ResourceTexture(baseId.withSuffix("/small_eyes")),
+                new ResourceTexture(baseId.withSuffix("/large_eyes")),
+                new ResourceTexture(baseId.withSuffix("/closed_eyes")),
                 spawnConditions
         ));
     }

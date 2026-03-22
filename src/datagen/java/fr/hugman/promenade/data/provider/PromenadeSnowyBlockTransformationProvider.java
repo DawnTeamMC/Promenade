@@ -6,24 +6,23 @@ import fr.hugman.promenade.block.snowy.SnowyBlockTransformation;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryWrapper;
-
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import java.util.concurrent.CompletableFuture;
 
 //TODO: a generic class for other devs
 public class PromenadeSnowyBlockTransformationProvider extends FabricDynamicRegistryProvider {
-    public PromenadeSnowyBlockTransformationProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public PromenadeSnowyBlockTransformationProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        entries.addAll(registries.getOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION));
+    protected void configure(HolderLookup.Provider registries, Entries entries) {
+        entries.addAll(registries.lookupOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION));
     }
 
     @Override
@@ -31,7 +30,7 @@ public class PromenadeSnowyBlockTransformationProvider extends FabricDynamicRegi
         return "Snowy Block Transformations";
     }
 
-    public static void register(Registerable<SnowyBlockTransformation> registerable) {
+    public static void register(BootstrapContext<SnowyBlockTransformation> registerable) {
         of(registerable, Blocks.OAK_LEAVES, PromenadeBlocks.SNOWY_OAK_LEAVES);
         of(registerable, Blocks.SPRUCE_LEAVES, PromenadeBlocks.SNOWY_SPRUCE_LEAVES);
         of(registerable, Blocks.BIRCH_LEAVES, PromenadeBlocks.SNOWY_BIRCH_LEAVES);
@@ -52,8 +51,8 @@ public class PromenadeSnowyBlockTransformationProvider extends FabricDynamicRegi
         of(registerable, PromenadeBlocks.PALM_LEAVES, PromenadeBlocks.SNOWY_PALM_LEAVES);
     }
 
-    private static void of(Registerable<SnowyBlockTransformation> registry, Block baseBlock, Block snowyBlock) {
-        var id = RegistryKey.of(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION, Promenade.id(Registries.BLOCK.getId(snowyBlock).getPath()));
-        registry.register(id, new SnowyBlockTransformation(baseBlock.getRegistryEntry(), snowyBlock.getRegistryEntry()));
+    private static void of(BootstrapContext<SnowyBlockTransformation> registry, Block baseBlock, Block snowyBlock) {
+        var id = ResourceKey.create(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION, Promenade.id(BuiltInRegistries.BLOCK.getKey(snowyBlock).getPath()));
+        registry.register(id, new SnowyBlockTransformation(baseBlock.builtInRegistryHolder(), snowyBlock.builtInRegistryHolder()));
     }
 }

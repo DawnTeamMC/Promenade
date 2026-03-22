@@ -4,25 +4,24 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.block.BlockState;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.intprovider.IntProvider;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.TestableWorld;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
-import net.minecraft.world.gen.foliage.FoliagePlacer;
-import net.minecraft.world.gen.trunk.TrunkPlacer;
-import net.minecraft.world.gen.trunk.TrunkPlacerType;
-
 import java.util.List;
 import java.util.function.BiConsumer;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
 public class LeapingTrunkPlacer extends TrunkPlacer {
-    public static final MapCodec<LeapingTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(instance -> fillTrunkPlacerFields(instance).and(instance.group(
-            IntProvider.createValidatingCodec(0, 80).fieldOf("straight_max").forGetter(placer -> placer.straightMax),
-            IntProvider.VALUE_CODEC.fieldOf("straight_difference").forGetter(placer -> placer.straightDifference),
+    public static final MapCodec<LeapingTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(instance -> trunkPlacerParts(instance).and(instance.group(
+            IntProvider.codec(0, 80).fieldOf("straight_max").forGetter(placer -> placer.straightMax),
+            IntProvider.CODEC.fieldOf("straight_difference").forGetter(placer -> placer.straightDifference),
             Codec.FLOAT.fieldOf("decline_chance").forGetter(placer -> placer.declineChance),
             Codec.INT.fieldOf("max_foliage_radius_bonus").forGetter(placer -> placer.maxFoliageRadiusBonus))
     ).apply(instance, LeapingTrunkPlacer::new));
@@ -41,41 +40,41 @@ public class LeapingTrunkPlacer extends TrunkPlacer {
     }
 
     @Override
-    protected TrunkPlacerType<?> getType() {
+    protected TrunkPlacerType<?> type() {
         return PromenadeTrunkPlacerTypes.LEAPING;
     }
 
     @Override
-    public List<FoliagePlacer.TreeNode> generate(TestableWorld world, BiConsumer<BlockPos, BlockState> replacer, Random random, int height, BlockPos startPos, TreeFeatureConfig config) {
-        Direction direction = Direction.Type.HORIZONTAL.random(random);
-        BlockPos.Mutable mutable = startPos.mutableCopy().move(Direction.DOWN);
+    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader world, BiConsumer<BlockPos, BlockState> replacer, RandomSource random, int height, BlockPos startPos, TreeConfiguration config) {
+        Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
+        BlockPos.MutableBlockPos mutable = startPos.mutable().move(Direction.DOWN);
 
-        int j = this.straightMax.get(random);
+        int j = this.straightMax.sample(random);
         int k = j;
 
-        setToDirt(world, replacer, random, mutable, config);
+        setDirtAt(world, replacer, random, mutable, config);
         for (int i = 0; i < height; ++i) {
             mutable.move(Direction.UP);
             if (k <= 0) {
-                j += this.straightDifference.get(random);
+                j += this.straightDifference.sample(random);
                 k = j;
                 if (random.nextFloat() < this.declineChance && i < height - 1) {
-                    getAndSetState(world, replacer, random, mutable, config);
+                    placeLog(world, replacer, random, mutable, config);
                     if (random.nextBoolean()) {
-                        mutable.move(direction.rotateYClockwise());
+                        mutable.move(direction.getClockWise());
                     } else {
-                        mutable.move(direction.rotateYCounterclockwise());
+                        mutable.move(direction.getCounterClockWise());
                     }
                 }
                 mutable.move(direction);
             }
-            getAndSetState(world, replacer, random, mutable, config);
+            placeLog(world, replacer, random, mutable, config);
             k--;
         }
 
         mutable.move(Direction.UP);
 
-        double heightRatio = MathHelper.clamp((height - this.baseHeight) / (double) (this.firstRandomHeight + this.secondRandomHeight), 0.0D, 0.999D);
-        return ImmutableList.of(new FoliagePlacer.TreeNode(mutable, MathHelper.floor((this.maxFoliageRadiusBonus + 1) * heightRatio), false));
+        double heightRatio = Mth.clamp((height - this.baseHeight) / (double) (this.heightRandA + this.heightRandB), 0.0D, 0.999D);
+        return ImmutableList.of(new FoliagePlacer.FoliageAttachment(mutable, Mth.floor((this.maxFoliageRadiusBonus + 1) * heightRatio), false));
     }
 }

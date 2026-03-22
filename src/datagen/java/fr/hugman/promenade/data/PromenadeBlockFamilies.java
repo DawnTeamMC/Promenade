@@ -2,18 +2,17 @@ package fr.hugman.promenade.data;
 
 import com.google.common.collect.Maps;
 import fr.hugman.promenade.block.PromenadeBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.data.family.BlockFamily;
-import net.minecraft.registry.Registries;
-
 import java.util.Map;
 import java.util.stream.Stream;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.BlockFamily;
+import net.minecraft.world.level.block.Block;
 
 public class PromenadeBlockFamilies {
     private static final Map<Block, BlockFamily> BASE_BLOCKS_TO_FAMILIES = Maps.newHashMap();
 
     /**
-     * The group used for the recipes of wooden block families.
+     * The recipeGroupPrefix used for the recipes of wooden block families.
      */
     private static final String WOODEN_GROUP = "wooden";
     /**
@@ -26,23 +25,23 @@ public class PromenadeBlockFamilies {
             .stairs(PromenadeBlocks.ASPHALT_STAIRS)
             .slab(PromenadeBlocks.ASPHALT_SLAB)
             .polished(PromenadeBlocks.POLISHED_ASPHALT)
-            .build();
+            .getFamily();
     public static final BlockFamily POLISHED_ASPHALT = register(PromenadeBlocks.POLISHED_ASPHALT)
             .stairs(PromenadeBlocks.POLISHED_ASPHALT_STAIRS)
             .slab(PromenadeBlocks.POLISHED_ASPHALT_SLAB)
-            .build();
+            .getFamily();
 
     public static final BlockFamily BLUNITE = register(PromenadeBlocks.BLUNITE)
             .wall(PromenadeBlocks.BLUNITE_WALL)
             .stairs(PromenadeBlocks.BLUNITE_STAIRS)
             .slab(PromenadeBlocks.BLUNITE_SLAB)
             .polished(PromenadeBlocks.POLISHED_BLUNITE)
-            .build();
+            .getFamily();
 
     public static final BlockFamily POLISHED_BLUNITE = register(PromenadeBlocks.POLISHED_BLUNITE)
             .stairs(PromenadeBlocks.POLISHED_BLUNITE_STAIRS)
             .slab(PromenadeBlocks.POLISHED_BLUNITE_SLAB)
-            .build();
+            .getFamily();
 
     public static final BlockFamily SAKURA = register(PromenadeBlocks.SAKURA_PLANKS)
             .button(PromenadeBlocks.SAKURA_BUTTON)
@@ -54,9 +53,9 @@ public class PromenadeBlockFamilies {
             .stairs(PromenadeBlocks.SAKURA_STAIRS)
             .door(PromenadeBlocks.SAKURA_DOOR)
             .trapdoor(PromenadeBlocks.SAKURA_TRAPDOOR)
-            .group(WOODEN_GROUP)
-            .unlockCriterionName(WOODEN_UNLOCK_CRITERION_NAME)
-            .build();
+            .recipeGroupPrefix(WOODEN_GROUP)
+            .recipeUnlockedBy(WOODEN_UNLOCK_CRITERION_NAME)
+            .getFamily();
 
     public static final BlockFamily MAPLE = register(PromenadeBlocks.MAPLE_PLANKS)
             .button(PromenadeBlocks.MAPLE_BUTTON)
@@ -68,9 +67,9 @@ public class PromenadeBlockFamilies {
             .stairs(PromenadeBlocks.MAPLE_STAIRS)
             .door(PromenadeBlocks.MAPLE_DOOR)
             .trapdoor(PromenadeBlocks.MAPLE_TRAPDOOR)
-            .group(WOODEN_GROUP)
-            .unlockCriterionName(WOODEN_UNLOCK_CRITERION_NAME)
-            .build();
+            .recipeGroupPrefix(WOODEN_GROUP)
+            .recipeUnlockedBy(WOODEN_UNLOCK_CRITERION_NAME)
+            .getFamily();
 
     public static final BlockFamily PALM = register(PromenadeBlocks.PALM_PLANKS)
             .button(PromenadeBlocks.PALM_BUTTON)
@@ -82,9 +81,9 @@ public class PromenadeBlockFamilies {
             .stairs(PromenadeBlocks.PALM_STAIRS)
             .door(PromenadeBlocks.PALM_DOOR)
             .trapdoor(PromenadeBlocks.PALM_TRAPDOOR)
-            .group(WOODEN_GROUP)
-            .unlockCriterionName(WOODEN_UNLOCK_CRITERION_NAME)
-            .build();
+            .recipeGroupPrefix(WOODEN_GROUP)
+            .recipeUnlockedBy(WOODEN_UNLOCK_CRITERION_NAME)
+            .getFamily();
 
     public static final BlockFamily DARK_AMARANTH = register(PromenadeBlocks.DARK_AMARANTH_PLANKS)
             .button(PromenadeBlocks.DARK_AMARANTH_BUTTON)
@@ -96,16 +95,16 @@ public class PromenadeBlockFamilies {
             .stairs(PromenadeBlocks.DARK_AMARANTH_STAIRS)
             .door(PromenadeBlocks.DARK_AMARANTH_DOOR)
             .trapdoor(PromenadeBlocks.DARK_AMARANTH_TRAPDOOR)
-            .group(WOODEN_GROUP)
-            .unlockCriterionName(WOODEN_UNLOCK_CRITERION_NAME)
-            .build();
+            .recipeGroupPrefix(WOODEN_GROUP)
+            .recipeUnlockedBy(WOODEN_UNLOCK_CRITERION_NAME)
+            .getFamily();
 
 
     public static BlockFamily.Builder register(Block baseBlock) {
         BlockFamily.Builder builder = new BlockFamily.Builder(baseBlock);
-        BlockFamily blockFamily = BASE_BLOCKS_TO_FAMILIES.put(baseBlock, builder.build());
+        BlockFamily blockFamily = BASE_BLOCKS_TO_FAMILIES.put(baseBlock, builder.getFamily());
         if (blockFamily != null) {
-            throw new IllegalStateException("Duplicate family definition for " + Registries.BLOCK.getId(baseBlock));
+            throw new IllegalStateException("Duplicate family definition for " + BuiltInRegistries.BLOCK.getKey(baseBlock));
         } else {
             return builder;
         }

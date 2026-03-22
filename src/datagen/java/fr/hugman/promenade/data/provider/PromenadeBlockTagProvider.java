@@ -4,10 +4,9 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
-import net.minecraft.block.Blocks;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
-
+import net.minecraft.core.HolderLookup;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Blocks;
 import java.util.concurrent.CompletableFuture;
 
 import static fr.hugman.promenade.block.PromenadeBlocks.*;
@@ -15,12 +14,12 @@ import static fr.hugman.promenade.item.PromenadeItems.MAPLE_SYRUP_BOTTLE;
 import static fr.hugman.promenade.tag.PromenadeBlockTags.*;
 
 public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvider {
-    public PromenadeBlockTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public PromenadeBlockTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+    protected void addTags(HolderLookup.Provider wrapperLookup) {
         // Promenade
         valueLookupBuilder(SAKURA_LOGS).add(SAKURA_LOG, STRIPPED_SAKURA_LOG, SAKURA_WOOD, STRIPPED_SAKURA_WOOD);
         valueLookupBuilder(MAPLE_LOGS).add(MAPLE_LOG, STRIPPED_MAPLE_LOG, MAPLE_WOOD, STRIPPED_MAPLE_WOOD);
@@ -180,7 +179,7 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 .addTag(LEAF_PILES)
                 .addTag(FLOWER_PILES)
                 .add(DARK_AMARANTH_ROOTS, COILED_VINES, COILED_VINES_PLANT);
-        valueLookupBuilder(BlockTags.PICKAXE_MINEABLE).add(
+        valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 BLUNITE,
                 BLUNITE_STAIRS,
                 BLUNITE_SLAB,
@@ -196,8 +195,8 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 MOAI,
                 DARK_AMARANTH_NYLIUM
         );
-        valueLookupBuilder(BlockTags.AXE_MINEABLE).add(DARK_AMARANTH_FUNGUS, COILED_VINES, COILED_VINES_PLANT);
-        valueLookupBuilder(BlockTags.HOE_MINEABLE)
+        valueLookupBuilder(BlockTags.MINEABLE_WITH_AXE).add(DARK_AMARANTH_FUNGUS, COILED_VINES, COILED_VINES_PLANT);
+        valueLookupBuilder(BlockTags.MINEABLE_WITH_HOE)
                 .add(
                         VERMILION_MAPLE_LEAVES,
                         FULVOUS_MAPLE_LEAVES,

@@ -2,51 +2,51 @@ package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.block.property.PromenadeBlockProperties;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.tick.ScheduledTickView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jetbrains.annotations.Nullable;
 
-public class MoaiBlock extends HorizontalFacingBlock {
-    public static final MapCodec<MoaiBlock> CODEC = createCodec(MoaiBlock::new);
+public class MoaiBlock extends HorizontalDirectionalBlock {
+    public static final MapCodec<MoaiBlock> CODEC = simpleCodec(MoaiBlock::new);
     public static final EnumProperty<MoaiType> TYPE = PromenadeBlockProperties.MOAI_TYPE;
 
-    public MoaiBlock(Settings settings) {
+    public MoaiBlock(Properties settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState().with(TYPE, MoaiType.SINGLE).with(FACING, Direction.NORTH));
+        this.registerDefaultState(this.stateDefinition.any().setValue(TYPE, MoaiType.SINGLE).setValue(FACING, Direction.NORTH));
     }
 
     @Override
-    protected MapCodec<? extends HorizontalFacingBlock> getCodec() {
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
         return CODEC;
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(TYPE, FACING);
     }
 
     @Override
-    public BlockState getPlacementState(ItemPlacementContext context) {
-        var world = context.getWorld();
-        boolean sneaking = context.shouldCancelInteraction(); // stupid yarn name
-        var direction = context.getHorizontalPlayerFacing().getOpposite();
-        var hitSide = context.getSide();
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        var world = context.getLevel();
+        boolean sneaking = context.isSecondaryUseActive(); // stupid yarn name
+        var direction = context.getHorizontalDirection().getOpposite();
+        var hitSide = context.getClickedFace();
 
-        var posBelow = context.getBlockPos().down();
-        var posAbove = context.getBlockPos().up();
+        var posBelow = context.getClickedPos().below();
+        var posAbove = context.getClickedPos().above();
 
         boolean mergeWithBelow = isSingleMoai(direction, world.getBlockState(posBelow));
         boolean mergeWithAbove = isSingleMoai(direction, world.getBlockState(posAbove));
@@ -65,41 +65,41 @@ public class MoaiBlock extends HorizontalFacingBlock {
         }
 
         if (mergeWithBelow) {
-            return this.getDefaultState().with(TYPE, MoaiType.TOP).with(FACING, direction);
+            return this.defaultBlockState().setValue(TYPE, MoaiType.TOP).setValue(FACING, direction);
         } else if (mergeWithAbove) {
-            return this.getDefaultState().with(TYPE, MoaiType.BOTTOM).with(FACING, direction);
+            return this.defaultBlockState().setValue(TYPE, MoaiType.BOTTOM).setValue(FACING, direction);
         } else {
-            return this.getDefaultState().with(TYPE, MoaiType.SINGLE).with(FACING, direction);
+            return this.defaultBlockState().setValue(TYPE, MoaiType.SINGLE).setValue(FACING, direction);
         }
     }
 
     @Override
-    public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
-        super.onPlaced(world, pos, state, placer, itemStack);
-        var type = state.get(TYPE);
-        var direction = state.get(FACING);
-        var posBelow = pos.down();
-        var posAbove = pos.up();
+    public void setPlacedBy(Level world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
+        super.setPlacedBy(world, pos, state, placer, itemStack);
+        var type = state.getValue(TYPE);
+        var direction = state.getValue(FACING);
+        var posBelow = pos.below();
+        var posAbove = pos.above();
 
         if (isSingleMoai(direction, world.getBlockState(posBelow)) && type == MoaiType.TOP) {
-            world.setBlockState(posBelow, world.getBlockState(posBelow).with(TYPE, MoaiType.BOTTOM), Block.NOTIFY_ALL);
+            world.setBlock(posBelow, world.getBlockState(posBelow).setValue(TYPE, MoaiType.BOTTOM), Block.UPDATE_ALL);
         } else if (isSingleMoai(direction, world.getBlockState(posAbove)) && type == MoaiType.BOTTOM) {
-            world.setBlockState(posAbove, world.getBlockState(posAbove).with(TYPE, MoaiType.TOP), Block.NOTIFY_ALL);
+            world.setBlock(posAbove, world.getBlockState(posAbove).setValue(TYPE, MoaiType.TOP), Block.UPDATE_ALL);
         }
     }
 
     @Override
-    protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
-        var type = state.get(TYPE);
+    protected BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        var type = state.getValue(TYPE);
         if ((type == MoaiType.TOP && direction == Direction.DOWN) || (type == MoaiType.BOTTOM && direction == Direction.UP)) {
-            if (!(neighborState.isOf(this) && neighborState.get(TYPE) == (type == MoaiType.TOP ? MoaiType.BOTTOM : MoaiType.TOP))) {
-                return state.with(TYPE, MoaiType.SINGLE);
+            if (!(neighborState.is(this) && neighborState.getValue(TYPE) == (type == MoaiType.TOP ? MoaiType.BOTTOM : MoaiType.TOP))) {
+                return state.setValue(TYPE, MoaiType.SINGLE);
             }
         }
         return state;
     }
 
     public boolean isSingleMoai(Direction direction, BlockState state) {
-        return state.isOf(this) && state.get(TYPE) == MoaiType.SINGLE && state.get(FACING) == direction;
+        return state.is(this) && state.getValue(TYPE) == MoaiType.SINGLE && state.getValue(FACING) == direction;
     }
 }

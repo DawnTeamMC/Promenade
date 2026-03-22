@@ -6,8 +6,8 @@ import fr.hugman.promenade.data.provider.*;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.minecraft.registry.RegistryBuilder;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
 import org.jetbrains.annotations.Nullable;
 
 public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
@@ -67,24 +67,24 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
     }
 
     @Override
-    public void buildRegistry(RegistryBuilder registryBuilder) {
-        registryBuilder.addRegistry(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION, PromenadeSnowyBlockTransformationProvider::register);
+    public void buildRegistry(RegistrySetBuilder registryBuilder) {
+        registryBuilder.add(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION, PromenadeSnowyBlockTransformationProvider::register);
 
-        registryBuilder.addRegistry(RegistryKeys.WOLF_VARIANT, PromenadeWolfVariantProvider::register);
-        registryBuilder.addRegistry(PromenadeRegistryKeys.CAPYBARA_VARIANT, PromenadeCapybaraVariantProvider::register);
-        registryBuilder.addRegistry(PromenadeRegistryKeys.DUCK_VARIANT, PromenadeDuckVariantProvider::register);
-        registryBuilder.addRegistry(PromenadeRegistryKeys.SUNKEN_VARIANT, PromenadeSunkenVariantProvider::register);
-        registryBuilder.addRegistry(RegistryKeys.PAINTING_VARIANT, PromenadePaintingVariantProvider::register);
+        registryBuilder.add(Registries.WOLF_VARIANT, PromenadeWolfVariantProvider::register);
+        registryBuilder.add(PromenadeRegistryKeys.CAPYBARA_VARIANT, PromenadeCapybaraVariantProvider::register);
+        registryBuilder.add(PromenadeRegistryKeys.DUCK_VARIANT, PromenadeDuckVariantProvider::register);
+        registryBuilder.add(PromenadeRegistryKeys.SUNKEN_VARIANT, PromenadeSunkenVariantProvider::register);
+        registryBuilder.add(Registries.PAINTING_VARIANT, PromenadePaintingVariantProvider::register);
 
-        registryBuilder.addRegistry(RegistryKeys.TEMPLATE_POOL, PromenadeTemplatePoolProvider::register);
-        registryBuilder.addRegistry(RegistryKeys.STRUCTURE, PromenadeStructureProvider::register);
-        registryBuilder.addRegistry(RegistryKeys.STRUCTURE_SET, PromenadeStructureSetProvider::register);
+        registryBuilder.add(Registries.TEMPLATE_POOL, PromenadeTemplatePoolProvider::register);
+        registryBuilder.add(Registries.STRUCTURE, PromenadeStructureProvider::register);
+        registryBuilder.add(Registries.STRUCTURE_SET, PromenadeStructureSetProvider::register);
 
-        registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, PromenadeConfiguredFeatureProvider::register);
-        registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, PromenadePlacedFeatureProvider::register);
-        registryBuilder.addRegistry(RegistryKeys.BIOME, PromenadeBiomeProvider::register);
+        registryBuilder.add(Registries.CONFIGURED_FEATURE, PromenadeConfiguredFeatureProvider::register);
+        registryBuilder.add(Registries.PLACED_FEATURE, PromenadePlacedFeatureProvider::register);
+        registryBuilder.add(Registries.BIOME, PromenadeBiomeProvider::register);
 
-        registryBuilder.addRegistry(RegistryKeys.BANNER_PATTERN, PromenadeBannerPatternProvider::register);
+        registryBuilder.add(Registries.BANNER_PATTERN, PromenadeBannerPatternProvider::register);
     }
 
     @Override

@@ -1,32 +1,32 @@
 package fr.hugman.promenade.client.render.entity;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.command.OrderedRenderCommandQueue;
-import net.minecraft.client.render.entity.feature.FeatureRenderer;
-import net.minecraft.client.render.entity.feature.FeatureRendererContext;
-import net.minecraft.client.render.entity.model.CreeperEntityModel;
-import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.client.render.entity.model.LoadedEntityModels;
-import net.minecraft.client.render.entity.state.CreeperEntityRenderState;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.EntityModelSet;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.monster.creeper.CreeperModel;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.entity.state.CreeperRenderState;
+import net.minecraft.resources.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class CreeperOverlayRenderer<S extends CreeperEntityRenderState, M extends EntityModel<S>> extends FeatureRenderer<S, M> {
-    private final CreeperEntityModel model;
+public class CreeperOverlayRenderer<S extends CreeperRenderState, M extends EntityModel<S>> extends RenderLayer<S, M> {
+    private final CreeperModel model;
     private final Identifier texture;
 
-    public CreeperOverlayRenderer(FeatureRendererContext<S, M> context, LoadedEntityModels loader, EntityModelLayer layer, Identifier texture) {
+    public CreeperOverlayRenderer(RenderLayerParent<S, M> context, EntityModelSet loader, ModelLayerLocation layer, Identifier texture) {
         super(context);
-        this.model = new CreeperEntityModel(loader.getModelPart(layer));
+        this.model = new CreeperModel(loader.bakeLayer(layer));
         this.texture = texture;
     }
 
     @Override
-    public void render(MatrixStack matrices, OrderedRenderCommandQueue queue, int light, S state, float limbAngle, float limbDistance) {
-        render(this.model, this.texture, matrices, queue, light, state, -1, 1);
+    public void submit(PoseStack poseStack, SubmitNodeCollector submitNodeCollector, int i, S entityRenderState, float f, float g) {
+        coloredCutoutModelCopyLayerRender(this.model, this.texture, poseStack, submitNodeCollector, i, entityRenderState, -1, 1);
     }
 }
 

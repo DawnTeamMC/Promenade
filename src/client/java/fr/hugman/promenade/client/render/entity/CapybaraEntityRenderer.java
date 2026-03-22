@@ -6,18 +6,18 @@ import fr.hugman.promenade.client.render.entity.state.CapybaraEntityRenderState;
 import fr.hugman.promenade.entity.CapybaraEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.entity.AgeableMobEntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.texture.MissingSprite;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.entity.AgeableMobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
+import net.minecraft.resources.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMobEntityRenderer<E, CapybaraEntityRenderState, CapybaraEntityModel> {
-    public CapybaraEntityRenderer(EntityRendererFactory.Context context) {
+public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMobRenderer<E, CapybaraEntityRenderState, CapybaraEntityModel> {
+    public CapybaraEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
-                new CapybaraEntityModel(context.getPart(PromenadeEntityModelLayers.CAPYBARA)),
-                new CapybaraEntityModel(context.getPart(PromenadeEntityModelLayers.CAPYBARA_BABY)),
+                new CapybaraEntityModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA)),
+                new CapybaraEntityModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA_BABY)),
                 0.5f
         );
     }
@@ -28,9 +28,9 @@ public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMob
     }
 
     @Override
-    public Identifier getTexture(CapybaraEntityRenderState state) {
+    public Identifier getTextureLocation(CapybaraEntityRenderState state) {
         if (state.variant == null) {
-            return MissingSprite.getMissingSpriteId();
+            return MissingTextureAtlasSprite.getLocation();
         }
         if (state.closedEyes) {
             return state.variant.closedEyesTexture().texturePath();
@@ -39,8 +39,8 @@ public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMob
     }
 
     @Override
-    public void updateRenderState(E capybara, CapybaraEntityRenderState state, float f) {
-        super.updateRenderState(capybara, state, f);
+    public void extractRenderState(E capybara, CapybaraEntityRenderState state, float f) {
+        super.extractRenderState(capybara, state, f);
         state.earWiggleAnimState.copyFrom(capybara.earWiggleAnimState);
         state.fallToSleepAnimState.copyFrom(capybara.fallToSleepAnimState);
         state.sleepingAnimState.copyFrom(capybara.sleepingAnimState);

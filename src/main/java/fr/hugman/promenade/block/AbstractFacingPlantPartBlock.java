@@ -1,31 +1,31 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FacingBlock;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
-    public static final EnumProperty<Direction> FACING = Properties.FACING;
+public abstract class AbstractFacingPlantPartBlock extends DirectionalBlock {
+    public static final EnumProperty<Direction> FACING = BlockStateProperties.FACING;
 
     protected final VoxelShape[] outlineShapes;
     protected final boolean tickWater;
 
     public AbstractFacingPlantPartBlock(
-            Settings settings,
+            Properties settings,
             VoxelShape[] outlineShapes,
             boolean tickWater
     ) {
@@ -35,57 +35,57 @@ public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
     }
 
     @Override
-    protected abstract MapCodec<? extends AbstractFacingPlantPartBlock> getCodec();
+    protected abstract MapCodec<? extends AbstractFacingPlantPartBlock> codec();
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(FACING);
     }
 
     @Nullable
     @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        var placementDirections = ctx.getPlacementDirections();
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        var placementDirections = ctx.getNearestLookingDirections();
         //TODO: make it prefer existing stems if not sneaking
         for (var direction : placementDirections) {
             var opposite = direction.getOpposite();
-            var otherState = ctx.getWorld().getBlockState(ctx.getBlockPos().offset(opposite));
-            var newState = !otherState.isOf(this.getStem()) && !otherState.isOf(this.getPlant())
-                    ? this.getRandomGrowthState(ctx.getWorld().random)
-                    : this.getPlant().getDefaultState();
-            if (newState.contains(FACING)) {
-                newState = newState.with(FACING, opposite);
+            var otherState = ctx.getLevel().getBlockState(ctx.getClickedPos().relative(opposite));
+            var newState = !otherState.is(this.getStem()) && !otherState.is(this.getPlant())
+                    ? this.getRandomGrowthState(ctx.getLevel().random)
+                    : this.getPlant().defaultBlockState();
+            if (newState.hasProperty(FACING)) {
+                newState = newState.setValue(FACING, opposite);
             }
-            if (newState.canPlaceAt(ctx.getWorld(), ctx.getBlockPos())) {
+            if (newState.canSurvive(ctx.getLevel(), ctx.getClickedPos())) {
                 return newState;
             }
         }
         return null;
     }
 
-    public BlockState getRandomGrowthState(Random random) {
-        return this.getDefaultState();
+    public BlockState getRandomGrowthState(RandomSource random) {
+        return this.defaultBlockState();
     }
 
     @Override
-    protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        var facing = state.get(FACING);
-        var blockPos = pos.offset(facing.getOpposite());
+    protected boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        var facing = state.getValue(FACING);
+        var blockPos = pos.relative(facing.getOpposite());
         var blockState = world.getBlockState(blockPos);
         if (!this.canAttachTo(blockState)) return false;
-        if (blockState.isOf(this.getStem()) || blockState.isOf(this.getPlant())) {
-            if (blockState.contains(FACING) && blockState.get(FACING) == facing) {
+        if (blockState.is(this.getStem()) || blockState.is(this.getPlant())) {
+            if (blockState.hasProperty(FACING) && blockState.getValue(FACING) == facing) {
                 return true;
             }
         }
-        return blockState.isSideSolidFullSquare(world, blockPos, facing);
+        return blockState.isFaceSturdy(world, blockPos, facing);
     }
 
     @Override
-    protected void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (!state.canPlaceAt(world, pos)) {
-            world.breakBlock(pos, true);
+    protected void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+        if (!state.canSurvive(world, pos)) {
+            world.destroyBlock(pos, true);
         }
     }
 
@@ -94,8 +94,8 @@ public abstract class AbstractFacingPlantPartBlock extends FacingBlock {
     }
 
     @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return this.outlineShapes[state.get(FACING).getIndex()];
+    protected VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return this.outlineShapes[state.getValue(FACING).get3DDataValue()];
     }
 
     protected abstract AbstractFacingPlantStemBlock getStem();

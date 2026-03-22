@@ -1,35 +1,39 @@
 package fr.hugman.promenade.world.gen.feature;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.block.*;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.DefaultFeatureConfig;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.util.FeatureContext;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SnowLayerBlock;
+import net.minecraft.world.level.block.SnowyDirtBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class FreezeTopLayerFeature extends Feature<DefaultFeatureConfig> {
-    public FreezeTopLayerFeature(Codec<DefaultFeatureConfig> codec) {
+public class FreezeTopLayerFeature extends Feature<NoneFeatureConfiguration> {
+    public FreezeTopLayerFeature(Codec<NoneFeatureConfiguration> codec) {
         super(codec);
     }
 
     @Override
-    public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
-        var world = context.getWorld();
-        var random = context.getRandom();
-        var blockPos = context.getOrigin();
-        var topMutable = new BlockPos.Mutable();
-        var groundMutable = new BlockPos.Mutable();
-        var undergroundMutable = new BlockPos.Mutable();
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        var world = context.level();
+        var random = context.random();
+        var blockPos = context.origin();
+        var topMutable = new BlockPos.MutableBlockPos();
+        var groundMutable = new BlockPos.MutableBlockPos();
+        var undergroundMutable = new BlockPos.MutableBlockPos();
 
-        var snowDepth = ConstantIntProvider.create(3);
-        var topSnowLayers = UniformIntProvider.create(2, 3);
-        var packedIceDepth = UniformIntProvider.create(2, 3);
-        var normalIceDepth = UniformIntProvider.create(2, 3);
+        var snowDepth = ConstantInt.of(3);
+        var topSnowLayers = UniformInt.of(2, 3);
+        var packedIceDepth = UniformInt.of(2, 3);
+        var normalIceDepth = UniformInt.of(2, 3);
 
         for (int i = 0; i < 16; ++i) {
             for (int j = 0; j < 16; ++j) {
@@ -39,41 +43,41 @@ public class FreezeTopLayerFeature extends Feature<DefaultFeatureConfig> {
                 /* ==================== */
                 /* SURFACE GROUND LEVEL */
                 /* ==================== */
-                topMutable.set(x, world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z), z);
+                topMutable.set(x, world.getHeight(Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z), z);
                 Biome biome = world.getBiome(topMutable).value();
                 groundMutable.set(topMutable).move(Direction.DOWN, 1);
 
                 // Layers of Snow
-                if (biome.canSetSnow(world, topMutable)) {
-                    for (int n = 1; n <= snowDepth.get(random); n++) {
-                        if (!biome.canSetSnow(world, topMutable)) {
+                if (biome.shouldSnow(world, topMutable)) {
+                    for (int n = 1; n <= snowDepth.sample(random); n++) {
+                        if (!biome.shouldSnow(world, topMutable)) {
                             break;
                         }
-                        world.setBlockState(topMutable, Blocks.SNOW_BLOCK.getDefaultState(), Block.NOTIFY_LISTENERS);
+                        world.setBlock(topMutable, Blocks.SNOW_BLOCK.defaultBlockState(), Block.UPDATE_CLIENTS);
                         topMutable.move(Direction.UP, 1);
                     }
 
                     BlockState blockState = world.getBlockState(groundMutable);
-                    if (blockState.contains(SnowyBlock.SNOWY)) {
-                        world.setBlockState(groundMutable, blockState.with(SnowyBlock.SNOWY, true), Block.NOTIFY_LISTENERS);
+                    if (blockState.hasProperty(SnowyDirtBlock.SNOWY)) {
+                        world.setBlock(groundMutable, blockState.setValue(SnowyDirtBlock.SNOWY, true), Block.UPDATE_CLIENTS);
                     }
                 }
 
                 // Water -> Ice
-                if (biome.canSetIce(world, groundMutable, false)) {
+                if (biome.shouldFreeze(world, groundMutable, false)) {
                     undergroundMutable.set(groundMutable);
-                    for (int n = 1; n <= packedIceDepth.get(random); n++) {
-                        if (!biome.canSetIce(world, undergroundMutable, false)) {
+                    for (int n = 1; n <= packedIceDepth.sample(random); n++) {
+                        if (!biome.shouldFreeze(world, undergroundMutable, false)) {
                             break;
                         }
-                        world.setBlockState(undergroundMutable, Blocks.PACKED_ICE.getDefaultState(), Block.NOTIFY_LISTENERS);
+                        world.setBlock(undergroundMutable, Blocks.PACKED_ICE.defaultBlockState(), Block.UPDATE_CLIENTS);
                         undergroundMutable.move(Direction.DOWN, 1);
                     }
-                    for (int n = 1; n <= normalIceDepth.get(random); n++) {
-                        if (!biome.canSetIce(world, undergroundMutable, false)) {
+                    for (int n = 1; n <= normalIceDepth.sample(random); n++) {
+                        if (!biome.shouldFreeze(world, undergroundMutable, false)) {
                             break;
                         }
-                        world.setBlockState(undergroundMutable, Blocks.ICE.getDefaultState(), Block.NOTIFY_LISTENERS);
+                        world.setBlock(undergroundMutable, Blocks.ICE.defaultBlockState(), Block.UPDATE_CLIENTS);
                         undergroundMutable.move(Direction.DOWN, 1);
                     }
                 }
@@ -81,17 +85,17 @@ public class FreezeTopLayerFeature extends Feature<DefaultFeatureConfig> {
                 /* ======================= */
                 /* SURFACE MOTION BLOCKING */
                 /* ======================= */
-                topMutable.set(x, world.getTopY(Heightmap.Type.MOTION_BLOCKING, x, z), z);
+                topMutable.set(x, world.getHeight(Heightmap.Types.MOTION_BLOCKING, x, z), z);
                 groundMutable.set(topMutable).move(Direction.DOWN, 1);
                 biome = world.getBiome(topMutable).value(); // just in case I guess?
 
                 // Thin Snow
-                if (biome.canSetSnow(world, topMutable)) {
-                    world.setBlockState(topMutable, Blocks.SNOW.getDefaultState().with(SnowBlock.LAYERS, topSnowLayers.get(random)), Block.NOTIFY_LISTENERS);
+                if (biome.shouldSnow(world, topMutable)) {
+                    world.setBlock(topMutable, Blocks.SNOW.defaultBlockState().setValue(SnowLayerBlock.LAYERS, topSnowLayers.sample(random)), Block.UPDATE_CLIENTS);
 
                     BlockState blockState = world.getBlockState(groundMutable);
-                    if (blockState.contains(SnowyBlock.SNOWY)) {
-                        world.setBlockState(groundMutable, blockState.with(SnowyBlock.SNOWY, true), Block.NOTIFY_LISTENERS);
+                    if (blockState.hasProperty(SnowyDirtBlock.SNOWY)) {
+                        world.setBlock(groundMutable, blockState.setValue(SnowyDirtBlock.SNOWY, true), Block.UPDATE_CLIENTS);
                     }
                 }
             }

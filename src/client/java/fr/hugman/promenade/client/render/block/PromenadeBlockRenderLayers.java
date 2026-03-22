@@ -4,13 +4,13 @@ import fr.hugman.promenade.block.PromenadeBlocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
-import net.minecraft.client.render.BlockRenderLayer;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 
 @Environment(EnvType.CLIENT)
 public final class PromenadeBlockRenderLayers {
     public static void register() {
 
-		BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT,
+		BlockRenderLayerMap.putBlocks(ChunkSectionLayer.CUTOUT,
                 PromenadeBlocks.OAK_LEAF_PILE,
                 PromenadeBlocks.SPRUCE_LEAF_PILE,
                 PromenadeBlocks.BIRCH_LEAF_PILE,
@@ -87,7 +87,7 @@ public final class PromenadeBlockRenderLayers {
                 PromenadeBlocks.POTTED_DARK_AMARANTH_FUNGUS
         );
 
-        BlockRenderLayerMap.putBlocks(BlockRenderLayer.CUTOUT,
+        BlockRenderLayerMap.putBlocks(ChunkSectionLayer.CUTOUT,
                 PromenadeBlocks.SAKURA_DOOR,
                 PromenadeBlocks.SAKURA_TRAPDOOR,
                 PromenadeBlocks.MAPLE_DOOR,

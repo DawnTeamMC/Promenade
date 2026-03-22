@@ -5,10 +5,10 @@ import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.minecraft.client.render.entity.BoatEntityRenderer;
-import net.minecraft.client.render.entity.model.EntityModelLayer;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.vehicle.AbstractBoatEntity;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.renderer.entity.BoatRenderer;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 
 @Environment(EnvType.CLIENT)
 public class PromenadeEntityRenderers {
@@ -26,7 +26,7 @@ public class PromenadeEntityRenderers {
         registerBoat(PromenadeEntityTypes.PALM_CHEST_BOAT, PromenadeEntityModelLayers.PALM_CHEST_BOAT);
     }
 
-    private static void registerBoat(EntityType<? extends AbstractBoatEntity> type, EntityModelLayer modelLayer) {
-        EntityRendererRegistry.register(type, context -> new BoatEntityRenderer(context, modelLayer));
+    private static void registerBoat(EntityType<? extends AbstractBoat> type, ModelLayerLocation modelLayer) {
+        EntityRendererRegistry.register(type, context -> new BoatRenderer(context, modelLayer));
     }
 }

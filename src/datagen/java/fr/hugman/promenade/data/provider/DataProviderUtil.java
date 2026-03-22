@@ -1,12 +1,12 @@
 package fr.hugman.promenade.data.provider;
 
-import net.minecraft.entity.spawn.BiomeSpawnCondition;
-import net.minecraft.entity.spawn.SpawnConditionSelectors;
-import net.minecraft.registry.entry.RegistryEntryList;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.core.HolderSet;
+import net.minecraft.world.entity.variant.BiomeCheck;
+import net.minecraft.world.entity.variant.SpawnPrioritySelectors;
+import net.minecraft.world.level.biome.Biome;
 
 public final class DataProviderUtil {
-    public static SpawnConditionSelectors createSpawnConditions(RegistryEntryList<Biome> requiredBiomes) {
-        return SpawnConditionSelectors.createSingle(new BiomeSpawnCondition(requiredBiomes), 1);
+    public static SpawnPrioritySelectors createSpawnConditions(HolderSet<Biome> requiredBiomes) {
+        return SpawnPrioritySelectors.single(new BiomeCheck(requiredBiomes), 1);
     }
 }

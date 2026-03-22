@@ -2,20 +2,20 @@ package fr.hugman.promenade.world.gen.tree.foliage;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.math.intprovider.IntProvider;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.TestableWorld;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
-import net.minecraft.world.gen.foliage.FoliagePlacer;
-import net.minecraft.world.gen.foliage.FoliagePlacerType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
 public class MapleFoliagePlacer extends FoliagePlacer {
     public static final MapCodec<MapleFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance ->
-            MapleFoliagePlacer.fillFoliagePlacerFields(instance).and(
-                    IntProvider.createValidatingCodec(0, 32).optionalFieldOf("height", ConstantIntProvider.create(0)).forGetter(placer -> placer.height)
+            MapleFoliagePlacer.foliagePlacerParts(instance).and(
+                    IntProvider.codec(0, 32).optionalFieldOf("height", ConstantInt.of(0)).forGetter(placer -> placer.height)
             ).apply(instance, MapleFoliagePlacer::new));
 
     protected final IntProvider height;
@@ -26,13 +26,13 @@ public class MapleFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    protected FoliagePlacerType<?> getType() {
+    protected FoliagePlacerType<?> type() {
         return PromenadeFoliagePlacerTypes.MAPLE;
     }
 
     @Override
-    protected void generate(TestableWorld world, BlockPlacer placer, Random random, TreeFeatureConfig config, int trunkHeight, TreeNode treeNode, int foliageHeight, int radius, int offset) {
-        var pos = treeNode.getCenter().down(foliageHeight - offset);
+    protected void createFoliage(LevelSimulatedReader world, FoliageSetter placer, RandomSource random, TreeConfiguration config, int trunkHeight, FoliageAttachment treeNode, int foliageHeight, int radius, int offset) {
+        var pos = treeNode.pos().below(foliageHeight - offset);
 
         var curvature = radius;
 
@@ -46,7 +46,7 @@ public class MapleFoliagePlacer extends FoliagePlacer {
             for (int dz = -radius; dz <= radius; dz++) {
 
                 int d = Math.abs(dx) + Math.abs(dz);
-                int k = MathHelper.ceil(Math.abs(Math.abs(dx) - Math.abs(dz)));
+                int k = Mth.ceil(Math.abs(Math.abs(dx) - Math.abs(dz)));
 
                 // the further we are from the trunk, the lower the height
                 int y1 = Math.max(0, d - 1);
@@ -59,23 +59,23 @@ public class MapleFoliagePlacer extends FoliagePlacer {
         }
     }
 
-    protected void generateColumn(TestableWorld world, BlockPlacer placer, TreeFeatureConfig config, Random random, BlockPos centerPos, int dx, int dz, int y1, int y2) {
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-        mutable.set(centerPos, dz, y1, dx);
+    protected void generateColumn(LevelSimulatedReader world, FoliageSetter placer, TreeConfiguration config, RandomSource random, BlockPos centerPos, int dx, int dz, int y1, int y2) {
+        BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
+        mutable.setWithOffset(centerPos, dz, y1, dx);
         for (int y = y1; y < y2; y++) {
             mutable.move(0, 1, 0);
-            FoliagePlacer.placeFoliageBlock(world, placer, random, config, mutable);
+            FoliagePlacer.tryPlaceLeaf(world, placer, random, config, mutable);
         }
     }
 
     @Override
-    public int getRandomHeight(Random random, int trunkHeight, TreeFeatureConfig config) {
-        return this.height.get(random);
+    public int foliageHeight(RandomSource random, int trunkHeight, TreeConfiguration config) {
+        return this.height.sample(random);
     }
 
 
     @Override
-    protected boolean isInvalidForLeaves(Random random, int dx, int y, int dz, int radius, boolean giantTrunk) {
+    protected boolean shouldSkipLocation(RandomSource random, int dx, int y, int dz, int radius, boolean giantTrunk) {
         return false;
     }
 }

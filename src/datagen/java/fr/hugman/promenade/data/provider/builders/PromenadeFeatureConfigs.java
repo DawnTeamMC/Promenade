@@ -7,29 +7,28 @@ import fr.hugman.promenade.world.gen.tree.foliage.MapleFoliagePlacer;
 import fr.hugman.promenade.world.gen.tree.foliage.PalmFoliagePlacer;
 import fr.hugman.promenade.world.gen.tree.trunk.BranchingStraightTrunkPlacer;
 import fr.hugman.promenade.world.gen.tree.trunk.LeapingTrunkPlacer;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.intprovider.BiasedToBottomIntProvider;
-import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.world.gen.blockpredicate.BlockPredicate;
-import net.minecraft.world.gen.feature.HugeFungusFeatureConfig;
-import net.minecraft.world.gen.feature.TreeFeatureConfig;
-import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
-import net.minecraft.world.gen.foliage.AcaciaFoliagePlacer;
-import net.minecraft.world.gen.foliage.MegaPineFoliagePlacer;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
-import net.minecraft.world.gen.treedecorator.AttachedToLeavesTreeDecorator;
-import net.minecraft.world.gen.trunk.ForkingTrunkPlacer;
-import net.minecraft.world.gen.trunk.GiantTrunkPlacer;
-
 import java.util.List;
 import java.util.OptionalInt;
+import net.minecraft.core.Direction;
+import net.minecraft.util.valueproviders.BiasedToBottomInt;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
+import net.minecraft.world.level.levelgen.feature.HugeFungusConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.MegaPineFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.treedecorators.AttachedToLeavesDecorator;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
 
 public class PromenadeFeatureConfigs {
     //TODO: should be a tag
-    public static final BlockPredicate FUNGUS_REPLACEABLE = BlockPredicate.matchingBlocks(
+    public static final BlockPredicate FUNGUS_REPLACEABLE = BlockPredicate.matchesBlocks(
             Blocks.OAK_SAPLING,
             Blocks.SPRUCE_SAPLING,
             Blocks.BIRCH_SAPLING,
@@ -91,60 +90,60 @@ public class PromenadeFeatureConfigs {
     );
 
 
-    public static TreeFeatureConfig.Builder palm() {
-        return new TreeFeatureConfig.Builder(
-                BlockStateProvider.of(PromenadeBlocks.PALM_LOG),
-                new LeapingTrunkPlacer(6, 5, 2, BiasedToBottomIntProvider.create(3, 10), UniformIntProvider.create(-1, 0), 0.45f, 2),
-                BlockStateProvider.of(PromenadeBlocks.PALM_LEAVES),
-                new PalmFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0)),
+    public static TreeConfiguration.TreeConfigurationBuilder palm() {
+        return new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(PromenadeBlocks.PALM_LOG),
+                new LeapingTrunkPlacer(6, 5, 2, BiasedToBottomInt.of(3, 10), UniformInt.of(-1, 0), 0.45f, 2),
+                BlockStateProvider.simple(PromenadeBlocks.PALM_LEAVES),
+                new PalmFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0)),
                 new TwoLayersFeatureSize(1, 0, 1)
         )
-                .decorators(ImmutableList.of(new AttachedToLeavesTreeDecorator(0.8f, 1, 0, BlockStateProvider.of(PromenadeBlocks.PALM_HANGING_LEAVES), 2, List.of(Direction.DOWN))))
-                .dirtProvider(BlockStateProvider.of(Blocks.SAND))
+                .decorators(ImmutableList.of(new AttachedToLeavesDecorator(0.8f, 1, 0, BlockStateProvider.simple(PromenadeBlocks.PALM_HANGING_LEAVES), 2, List.of(Direction.DOWN))))
+                .dirt(BlockStateProvider.simple(Blocks.SAND))
                 .forceDirt()
                 .ignoreVines();
     }
 
-    public static TreeFeatureConfig.Builder sakura(Block leaves, boolean fancy) {
-        return new TreeFeatureConfig.Builder(
-                BlockStateProvider.of(PromenadeBlocks.SAKURA_LOG),
+    public static TreeConfiguration.TreeConfigurationBuilder sakura(Block leaves, boolean fancy) {
+        return new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(PromenadeBlocks.SAKURA_LOG),
                 fancy ? new ForkingTrunkPlacer(5, 3, 2) :
                         new ForkingTrunkPlacer(3, 2, 1),
-                BlockStateProvider.of(leaves),
-                new AcaciaFoliagePlacer(UniformIntProvider.create(1, 2), ConstantIntProvider.create(0)),
+                BlockStateProvider.simple(leaves),
+                new AcaciaFoliagePlacer(UniformInt.of(1, 2), ConstantInt.of(0)),
                 new TwoLayersFeatureSize(1, 0, 1)
         ).ignoreVines();
     }
 
-    public static TreeFeatureConfig.Builder maple(Block leaves, boolean fancy) {
-        return new TreeFeatureConfig.Builder(
-                BlockStateProvider.of(PromenadeBlocks.MAPLE_LOG.getDefaultState().with(MapleLogBlock.NATURAL, true)),
+    public static TreeConfiguration.TreeConfigurationBuilder maple(Block leaves, boolean fancy) {
+        return new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(PromenadeBlocks.MAPLE_LOG.defaultBlockState().setValue(MapleLogBlock.NATURAL, true)),
                 fancy ? new BranchingStraightTrunkPlacer(17, 5, 3) :
                         new BranchingStraightTrunkPlacer(13, 4, 2),
-                BlockStateProvider.of(leaves),
-                new MapleFoliagePlacer(BiasedToBottomIntProvider.create(3, 4), UniformIntProvider.create(5, 6), BiasedToBottomIntProvider.create(17, 20)),
+                BlockStateProvider.simple(leaves),
+                new MapleFoliagePlacer(BiasedToBottomInt.of(3, 4), UniformInt.of(5, 6), BiasedToBottomInt.of(17, 20)),
                 fancy ? new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)) :
                         new TwoLayersFeatureSize(1, 0, 1, OptionalInt.empty())
         )
                 .ignoreVines();
     }
 
-    public static TreeFeatureConfig.Builder snowyMegaSpruce(Block leaves) {
-        return new TreeFeatureConfig.Builder(
-                BlockStateProvider.of(Blocks.SPRUCE_LOG),
+    public static TreeConfiguration.TreeConfigurationBuilder snowyMegaSpruce(Block leaves) {
+        return new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.SPRUCE_LOG),
                 new GiantTrunkPlacer(13, 2, 14),
-                BlockStateProvider.of(leaves),
-                new MegaPineFoliagePlacer(ConstantIntProvider.create(0), ConstantIntProvider.create(0), UniformIntProvider.create(13, 17)),
+                BlockStateProvider.simple(leaves),
+                new MegaPineFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), UniformInt.of(13, 17)),
                 new TwoLayersFeatureSize(1, 1, 2)
         );
     }
 
-    public static HugeFungusFeatureConfig hugeDarkAmaranthFungus(boolean planted) {
-        return new HugeFungusFeatureConfig(
-                PromenadeBlocks.DARK_AMARANTH_NYLIUM.getDefaultState(),
-                PromenadeBlocks.DARK_AMARANTH_STEM.getDefaultState(),
-                PromenadeBlocks.DARK_AMARANTH_WART_BLOCK.getDefaultState(),
-                PromenadeBlocks.SOUL_SHROOMLIGHT.getDefaultState(),
+    public static HugeFungusConfiguration hugeDarkAmaranthFungus(boolean planted) {
+        return new HugeFungusConfiguration(
+                PromenadeBlocks.DARK_AMARANTH_NYLIUM.defaultBlockState(),
+                PromenadeBlocks.DARK_AMARANTH_STEM.defaultBlockState(),
+                PromenadeBlocks.DARK_AMARANTH_WART_BLOCK.defaultBlockState(),
+                PromenadeBlocks.SOUL_SHROOMLIGHT.defaultBlockState(),
                 PromenadeFeatureConfigs.FUNGUS_REPLACEABLE,
                 planted
         );

@@ -1,24 +1,23 @@
 package fr.hugman.promenade.block;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.SaplingGenerator;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.BlockView;
-
 import java.util.function.Predicate;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.grower.TreeGrower;
+import net.minecraft.world.level.block.state.BlockState;
 
 //TODO: codec
-public class SaplingBlock extends net.minecraft.block.SaplingBlock {
+public class SaplingBlock extends net.minecraft.world.level.block.SaplingBlock {
     private final Predicate<BlockState> predicate;
 
-    public SaplingBlock(SaplingGenerator saplingGenerator, Predicate<BlockState> predicate, Settings settings) {
+    public SaplingBlock(TreeGrower saplingGenerator, Predicate<BlockState> predicate, Properties settings) {
         super(saplingGenerator, settings);
         this.predicate = predicate;
     }
 
     @Override
-    protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+    protected boolean mayPlaceOn(BlockState floor, BlockGetter world, BlockPos pos) {
         if (predicate != null) return predicate.test(floor);
-        return super.canPlantOnTop(floor, world, pos);
+        return super.mayPlaceOn(floor, world, pos);
     }
 }

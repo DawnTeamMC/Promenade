@@ -3,24 +3,23 @@ package fr.hugman.promenade.data.provider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BiomeTags;
-import net.minecraft.world.biome.Biome;
-
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.level.biome.Biome;
 import java.util.concurrent.CompletableFuture;
 
 import static fr.hugman.promenade.tag.PromenadeBiomeTags.*;
 import static fr.hugman.promenade.world.biome.PromenadeBiomes.*;
-import static net.minecraft.world.biome.BiomeKeys.*;
+import static net.minecraft.world.level.biome.Biomes.*;
 
 public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
-    public PromenadeBiomeTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
-        super(output, RegistryKeys.BIOME, completableFuture);
+    public PromenadeBiomeTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
+        super(output, Registries.BIOME, completableFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+    protected void addTags(HolderLookup.Provider wrapperLookup) {
         // Promenade
         builder(SAKURA_GROVES).add(BLUSH_SAKURA_GROVE, COTTON_SAKURA_GROVE);
 
@@ -56,8 +55,8 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
         builder(BiomeTags.IS_TAIGA).add(GLACARIAN_TAIGA);
 
         builder(BiomeTags.STRONGHOLD_BIASED_TO).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
-        builder(BiomeTags.TRIAL_CHAMBERS_HAS_STRUCTURE).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
-        builder(BiomeTags.BASTION_REMNANT_HAS_STRUCTURE).add(DARK_AMARANTH_FOREST);
+        builder(BiomeTags.HAS_TRIAL_CHAMBERS).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
+        builder(BiomeTags.HAS_BASTION_REMNANT).add(DARK_AMARANTH_FOREST);
 
         builder(BiomeTags.SPAWNS_COLD_VARIANT_FROGS).add(GLACARIAN_TAIGA);
         builder(BiomeTags.SPAWNS_SNOW_FOXES).add(GLACARIAN_TAIGA);

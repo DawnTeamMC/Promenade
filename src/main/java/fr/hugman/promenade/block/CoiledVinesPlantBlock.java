@@ -1,26 +1,26 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.Block;
-import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CoiledVinesPlantBlock extends AbstractFacingPlantBlock {
-    public static final MapCodec<CoiledVinesPlantBlock> CODEC = createCodec(CoiledVinesPlantBlock::new);
+    public static final MapCodec<CoiledVinesPlantBlock> CODEC = simpleCodec(CoiledVinesPlantBlock::new);
     public static final VoxelShape[] SHAPES = new VoxelShape[]{
-            Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 16.0, 14.0), // DOWN
-            Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 16.0, 14.0), // UP
-            Block.createCuboidShape(2.0, 2.0, 0.0, 14.0, 14.0, 16.0), // NORTH
-            Block.createCuboidShape(2.0, 2.0, 0.0, 14.0, 14.0, 16.0), // SOUTH
-            Block.createCuboidShape(0.0, 2.0, 2.0, 16.0, 14.0, 14.0), // WEST
-            Block.createCuboidShape(0.0, 2.0, 2.0, 16.0, 14.0, 14.0) // EAST
+            Block.box(2.0, 0.0, 2.0, 14.0, 16.0, 14.0), // DOWN
+            Block.box(2.0, 0.0, 2.0, 14.0, 16.0, 14.0), // UP
+            Block.box(2.0, 2.0, 0.0, 14.0, 14.0, 16.0), // NORTH
+            Block.box(2.0, 2.0, 0.0, 14.0, 14.0, 16.0), // SOUTH
+            Block.box(0.0, 2.0, 2.0, 16.0, 14.0, 14.0), // WEST
+            Block.box(0.0, 2.0, 2.0, 16.0, 14.0, 14.0) // EAST
     };
 
-    public CoiledVinesPlantBlock(Settings settings) {
+    public CoiledVinesPlantBlock(Properties settings) {
         super(settings, SHAPES, false);
     }
 
     @Override
-    protected MapCodec<CoiledVinesPlantBlock> getCodec() {
+    protected MapCodec<CoiledVinesPlantBlock> codec() {
         return CODEC;
     }
 

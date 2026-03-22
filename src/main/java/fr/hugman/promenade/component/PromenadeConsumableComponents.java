@@ -1,23 +1,23 @@
 package fr.hugman.promenade.component;
 
-import net.minecraft.component.type.ConsumableComponent;
-import net.minecraft.component.type.ConsumableComponents;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
-import net.minecraft.item.consume.RemoveEffectsConsumeEffect;
-import net.minecraft.sound.SoundEvents;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.component.Consumables;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
+import net.minecraft.world.item.consume_effects.RemoveStatusEffectsConsumeEffect;
 
 public class PromenadeConsumableComponents {
-    public static final ConsumableComponent MAPLE_SYRUP_BOTTLE = ConsumableComponents.drink()
+    public static final Consumable MAPLE_SYRUP_BOTTLE = Consumables.defaultDrink()
             .consumeSeconds(2.0F)
-            .sound(SoundEvents.ITEM_HONEY_BOTTLE_DRINK)
-            .consumeEffect(new RemoveEffectsConsumeEffect(StatusEffects.POISON))
+            .sound(SoundEvents.HONEY_DRINK)
+            .onConsume(new RemoveStatusEffectsConsumeEffect(MobEffects.POISON))
             .build();
 
-    public static final ConsumableComponent RAW_DUCK = foodWithEffect(new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.3F);
+    public static final Consumable RAW_DUCK = foodWithEffect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F);
 
-    public static ConsumableComponent foodWithEffect(StatusEffectInstance effect, float probability) {
-        return ConsumableComponents.food().consumeEffect(new ApplyEffectsConsumeEffect(effect, probability)).build();
+    public static Consumable foodWithEffect(MobEffectInstance effect, float probability) {
+        return Consumables.defaultFood().onConsume(new ApplyStatusEffectsConsumeEffect(effect, probability)).build();
     }
 }

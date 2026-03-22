@@ -1,26 +1,26 @@
 package fr.hugman.promenade.block;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.MapColor;
-import net.minecraft.block.enums.NoteBlockInstrument;
-import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 
 public final class BlockSettings {
-    public static AbstractBlock.Settings rock() {
-        return AbstractBlock.Settings.create().instrument(NoteBlockInstrument.BASEDRUM).requiresTool().strength(1.5F, 6.0f);
+    public static BlockBehaviour.Properties rock() {
+        return BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(1.5F, 6.0f);
     }
 
-    public static AbstractBlock.Settings rock(MapColor mapColor, BlockSoundGroup sounds) {
-        return rock().mapColor(mapColor).sounds(sounds);
+    public static BlockBehaviour.Properties rock(MapColor mapColor, SoundType sounds) {
+        return rock().mapColor(mapColor).sound(sounds);
     }
 
-    public static AbstractBlock.Settings planks(MapColor color, BlockSoundGroup sounds, boolean flammable) {
-        AbstractBlock.Settings settings = AbstractBlock.Settings.create()
+    public static BlockBehaviour.Properties planks(MapColor color, SoundType sounds, boolean flammable) {
+        BlockBehaviour.Properties settings = BlockBehaviour.Properties.of()
                 .mapColor(color)
                 .instrument(NoteBlockInstrument.BASS)
                 .strength(2.0f, 3.0f)
-                .sounds(sounds);
-        if (flammable) settings.burnable();
+                .sound(sounds);
+        if (flammable) settings.ignitedByLava();
         return settings;
     }
 }

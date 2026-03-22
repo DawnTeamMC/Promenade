@@ -3,20 +3,19 @@ package fr.hugman.promenade.data.provider;
 import fr.hugman.promenade.entity.variant.PromenadePaintingVariants;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.entity.decoration.painting.PaintingVariant;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.PaintingVariantTags;
-
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.PaintingVariantTags;
+import net.minecraft.world.entity.decoration.painting.PaintingVariant;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadePaintingVariantTagProvider extends FabricTagProvider<PaintingVariant> {
-    public PromenadePaintingVariantTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
-        super(output, RegistryKeys.PAINTING_VARIANT, completableFuture);
+    public PromenadePaintingVariantTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
+        super(output, Registries.PAINTING_VARIANT, completableFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+    protected void addTags(HolderLookup.Provider wrapperLookup) {
         builder(PaintingVariantTags.PLACEABLE)
                 .add(PromenadePaintingVariants.OPTIMISM, PromenadePaintingVariants.NURTURE);
     }
