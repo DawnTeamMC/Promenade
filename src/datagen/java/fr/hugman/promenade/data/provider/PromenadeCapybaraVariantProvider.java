@@ -42,9 +42,16 @@ public class PromenadeCapybaraVariantProvider extends FabricDynamicRegistryProvi
     private static void of(BootstrapContext<CapybaraVariant> registry, ResourceKey<CapybaraVariant> key, SpawnPrioritySelectors spawnConditions) {
         var baseId = key.identifier().withPrefix("entity/capybara/");
         registry.register(key, new CapybaraVariant(
-                new ResourceTexture(baseId.withSuffix("/small_eyes")),
-                new ResourceTexture(baseId.withSuffix("/large_eyes")),
-                new ResourceTexture(baseId.withSuffix("/closed_eyes")),
+                new CapybaraVariant.AssetInfo(
+                        new ResourceTexture(baseId.withSuffix("/normal")),
+                        new ResourceTexture(baseId.withSuffix("/farting")),
+                        new ResourceTexture(baseId.withSuffix("/sleeping"))
+                ),
+                new CapybaraVariant.AssetInfo(
+                        new ResourceTexture(baseId.withSuffix("/normal_baby")),
+                        new ResourceTexture(baseId.withSuffix("/normal_baby")),
+                        new ResourceTexture(baseId.withSuffix("/sleeping_baby"))
+                ),
                 spawnConditions
         ));
     }

@@ -1,7 +1,9 @@
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.client.render.entity.model.CapybaraEntityModel;
+import fr.hugman.promenade.client.render.entity.model.capybara.BabyCapybaraModel;
+import fr.hugman.promenade.client.render.entity.model.capybara.AdultCapybaraModel;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
+import fr.hugman.promenade.client.render.entity.model.capybara.CapybaraModel;
 import fr.hugman.promenade.client.render.entity.state.CapybaraEntityRenderState;
 import fr.hugman.promenade.entity.CapybaraEntity;
 import net.fabricmc.api.EnvType;
@@ -12,12 +14,12 @@ import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.resources.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMobRenderer<E, CapybaraEntityRenderState, CapybaraEntityModel> {
+public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMobRenderer<E, CapybaraEntityRenderState, CapybaraModel> {
     public CapybaraEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
-                new CapybaraEntityModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA)),
-                new CapybaraEntityModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA_BABY)),
+                new AdultCapybaraModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA)),
+                new BabyCapybaraModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA_BABY)),
                 0.5f
         );
     }
@@ -32,10 +34,11 @@ public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMob
         if (state.variant == null) {
             return MissingTextureAtlasSprite.getLocation();
         }
+        var textureInfo = state.isBaby ? state.variant.babyInfo() : state.variant.adultInfo();
         if (state.closedEyes) {
-            return state.variant.closedEyesTexture().texturePath();
+            return textureInfo.sleeping().texturePath();
         }
-        return state.largeEyes ? state.variant.largeEyesTexture().texturePath() : state.variant.smallEyesTexture().texturePath();
+        return state.largeEyes ? textureInfo.farting().texturePath() : textureInfo.normal().texturePath();
     }
 
     @Override

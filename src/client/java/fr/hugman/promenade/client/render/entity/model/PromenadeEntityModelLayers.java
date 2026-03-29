@@ -1,6 +1,8 @@
 package fr.hugman.promenade.client.render.entity.model;
 
 import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.client.render.entity.model.capybara.AdultCapybaraModel;
+import fr.hugman.promenade.client.render.entity.model.capybara.BabyCapybaraModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
@@ -42,10 +44,8 @@ public class PromenadeEntityModelLayers {
     public static void register() {
         ArmorModelSet<LayerDefinition> equipmentModelData = HumanoidModel.createArmorMeshSet(HAT_DILATION, ARMOR_DILATION).map((data) -> LayerDefinition.create(data, 64, 32));
 
-        var capybaraModelData = CapybaraEntityModel.getTexturedModelData();
-
-        ModelLayerRegistry.registerModelLayer(CAPYBARA, () -> capybaraModelData);
-        ModelLayerRegistry.registerModelLayer(CAPYBARA_BABY, () -> capybaraModelData.apply(CapybaraEntityModel.BABY_TRANSFORMER));
+        ModelLayerRegistry.registerModelLayer(CAPYBARA, AdultCapybaraModel::getTexturedModelData);
+        ModelLayerRegistry.registerModelLayer(CAPYBARA_BABY, BabyCapybaraModel::getTexturedModelData);
 
         var duckModelData = DuckEntityModel.getTexturedModelData();
 

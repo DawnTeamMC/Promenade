@@ -59,7 +59,7 @@ import java.util.function.IntFunction;
 
 public class CapybaraEntity extends Animal {
     private static final FloatProvider FART_CHANCE_PROVIDER = TrapezoidFloat.of(0.1F, 0.55F, 0.2F);
-    private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityDimensions.scalable(0.7f, 0.875f).scale(0.5F).withEyeHeight(0.5F);
+    private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.scalable(0.49f, 0.45f).withEyeHeight(0.5F);
 
     protected static final EntityDataAccessor<State> STATE = SynchedEntityData.defineId(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_STATE);
     public static final EntityDataAccessor<Long> LAST_STATE_TICK = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.LONG);
@@ -168,7 +168,7 @@ public class CapybaraEntity extends Animal {
 
     @Override
     protected EntityDimensions getDefaultDimensions(Pose pose) {
-        return this.isBaby() ? BABY_BASE_DIMENSIONS : super.getDefaultDimensions(pose);
+        return this.isBaby() ? BABY_DIMENSIONS : super.getDefaultDimensions(pose);
     }
 
     @Override
