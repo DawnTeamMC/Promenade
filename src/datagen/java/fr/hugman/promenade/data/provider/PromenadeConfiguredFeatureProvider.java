@@ -5,7 +5,7 @@ import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.data.provider.builders.PromenadeFeatureConfigs;
 import fr.hugman.promenade.util.NoiseScale;
 import fr.hugman.promenade.world.gen.feature.*;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
@@ -30,24 +30,19 @@ import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.NetherForestVegetationConfig;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.VegetationPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.BeehiveDecorator;
 import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
 import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
+
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryProvider {
-    public PromenadeConfiguredFeatureProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public PromenadeConfiguredFeatureProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -119,7 +114,7 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
                 new VegetationPatchConfiguration(
                         BlockTags.LUSH_GROUND_REPLACEABLE,
                         BlockStateProvider.simple(Blocks.GRAVEL),
-                        PlacementUtils.inlinePlaced(Holder.direct(new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(configured.getOrThrow(VegetationFeatures.BAMBOO_SOME_PODZOL)), 0.4F)), PlacementUtils.inlinePlaced(configured.getOrThrow(VegetationFeatures.PATCH_WATERLILY)))))), //hello there
+                        PlacementUtils.inlinePlaced(Holder.direct(new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(configured.getOrThrow(VegetationFeatures.BAMBOO_SOME_PODZOL)), 0.4F)), PlacementUtils.inlinePlaced(configured.getOrThrow(VegetationFeatures.WATERLILY)))))), //hello there
                         CaveSurface.FLOOR,
                         ConstantInt.of(3),
                         0.8F,
@@ -139,17 +134,7 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
                 UniformInt.of(3, 4)
         ));
 
-
-        of(registerable, PromenadeConfiguredFeatures.BAMBOO_PATCH, Feature.RANDOM_PATCH,
-                new RandomPatchConfiguration(25, 3, 3,
-                        PlacementUtils.inlinePlaced(configured.getOrThrow(VegetationFeatures.BAMBOO_SOME_PODZOL), BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE))
-                ));
-        of(registerable, PromenadeConfiguredFeatures.BLUEBERRY_BUSH_PATCH, Feature.RANDOM_PATCH,
-                FeatureUtils.simplePatchConfiguration(
-                        Feature.SIMPLE_BLOCK,
-                        new SimpleBlockConfiguration(BlockStateProvider.simple(PromenadeBlocks.BLUEBERRY_BUSH.defaultBlockState().setValue(BerryBushBlock.AGE, 3))),
-                        List.of(Blocks.GRASS_BLOCK)
-                ));
+        of(registerable, PromenadeConfiguredFeatures.BLUEBERRY_BUSH, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(PromenadeBlocks.BLUEBERRY_BUSH.defaultBlockState().setValue(BerryBushBlock.AGE, 3))));
 
         WeightedStateProvider darkAmaranthVegetation = new WeightedStateProvider(
                 WeightedList.<BlockState>builder()
@@ -165,18 +150,9 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
         var horizontalDirections = List.of(Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST);
         of(registerable, PromenadeConfiguredFeatures.COILED_VINES, PromenadeFeatures.COILED_VINES, new CoiledVinesFeatureConfig(8, 4, 8, horizontalDirections));
 
-        of(registerable, PromenadeConfiguredFeatures.FALLEN_VERMILION_MAPLE_LEAVES, Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(
-                Feature.SIMPLE_BLOCK,
-                new SimpleBlockConfiguration(new WeightedStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES, 1, 3)))
-        ));
-        of(registerable, PromenadeConfiguredFeatures.FALLEN_FULVOUS_MAPLE_LEAVES, Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(
-                Feature.SIMPLE_BLOCK,
-                new SimpleBlockConfiguration(new WeightedStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES, 1, 3)))
-        ));
-        of(registerable, PromenadeConfiguredFeatures.FALLEN_MIKADO_MAPLE_LEAVES, Feature.RANDOM_PATCH, FeatureUtils.simplePatchConfiguration(
-                Feature.SIMPLE_BLOCK,
-                new SimpleBlockConfiguration(new WeightedStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES, 1, 3)))
-        ));
+        of(registerable, PromenadeConfiguredFeatures.FALLEN_VERMILION_MAPLE_LEAVES, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES, 1, 3))));
+        of(registerable, PromenadeConfiguredFeatures.FALLEN_FULVOUS_MAPLE_LEAVES, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES, 1, 3))));
+        of(registerable, PromenadeConfiguredFeatures.FALLEN_MIKADO_MAPLE_LEAVES, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES, 1, 3))));
 
         // Grouped features
         of(registerable, PromenadeConfiguredFeatures.BLUSH_SAKURA_GROVE_TREE, Feature.RANDOM_SELECTOR,

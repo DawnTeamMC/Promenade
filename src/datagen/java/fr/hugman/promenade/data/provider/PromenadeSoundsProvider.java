@@ -8,6 +8,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
+
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeSoundsProvider extends FabricSoundsProvider {
@@ -46,8 +47,8 @@ public class PromenadeSoundsProvider extends FabricSoundsProvider {
         soundExporter.add(PromenadeSoundEvents.DUCK_HURT, variantSoundBuilder(PromenadeSoundEvents.DUCK_HURT, 3));
         soundExporter.add(PromenadeSoundEvents.DUCK_DEATH, variantSoundBuilder(PromenadeSoundEvents.DUCK_DEATH, 1));
         soundExporter.add(PromenadeSoundEvents.DUCK_STEP, SoundTypeBuilder.of().subtitle("subtitles.block.generic.footsteps")
-                .sound(SoundTypeBuilder.EntryBuilder.ofFile(Identifier.parse("mob/chicken/step1")))
-                .sound(SoundTypeBuilder.EntryBuilder.ofFile(Identifier.parse("mob/chicken/step2")))
+                .sound(SoundTypeBuilder.RegistrationBuilder.ofFile(Identifier.parse("mob/chicken/step1")))
+                .sound(SoundTypeBuilder.RegistrationBuilder.ofFile(Identifier.parse("mob/chicken/step2")))
         );
 
         soundExporter.add(PromenadeSoundEvents.CAPYBARA_AMBIENT, variantSoundBuilder(PromenadeSoundEvents.CAPYBARA_AMBIENT, 5));
@@ -62,14 +63,14 @@ public class PromenadeSoundsProvider extends FabricSoundsProvider {
 
         // Music
         soundExporter.add(PromenadeSoundEvents.MUSIC_OVERWORLD_SAKURA_GROVES, SoundTypeBuilder.of()
-                .sound(SoundTypeBuilder.EntryBuilder.ofFile(Promenade.id("music/brise_couleur_pastel")).stream(true).volume(0.4f).weight(6))
-                .sound(SoundTypeBuilder.EntryBuilder.ofFile(Identifier.parse("minecraft:music/game/minecraft")).stream(true))
-                .sound(SoundTypeBuilder.EntryBuilder.ofFile(Identifier.parse("minecraft:music/game/sweden")).stream(true))
-                .sound(SoundTypeBuilder.EntryBuilder.ofFile(Identifier.parse("minecraft:music/game/clark")).stream(true))
-                .sound(SoundTypeBuilder.EntryBuilder.ofFile(Identifier.parse("minecraft:music/game/left_to_bloom")).stream(true).volume(0.4f))
-                .sound(SoundTypeBuilder.EntryBuilder.ofFile(Identifier.parse("minecraft:music/game/featherfall")).stream(true).volume(0.4f).weight(3))
-                .sound(SoundTypeBuilder.EntryBuilder.ofFile(Identifier.parse("minecraft:music/game/echo_in_the_wind")).stream(true).volume(0.4f).weight(3))
-                .sound(SoundTypeBuilder.EntryBuilder.ofFile(Identifier.parse("minecraft:music/game/bromeliad")).stream(true).volume(0.4f).weight(3))
+                .sound(SoundTypeBuilder.RegistrationBuilder.ofFile(Promenade.id("music/brise_couleur_pastel")).stream(true).volume(0.4f).weight(6))
+                .sound(SoundTypeBuilder.RegistrationBuilder.ofFile(Identifier.parse("minecraft:music/game/minecraft")).stream(true))
+                .sound(SoundTypeBuilder.RegistrationBuilder.ofFile(Identifier.parse("minecraft:music/game/sweden")).stream(true))
+                .sound(SoundTypeBuilder.RegistrationBuilder.ofFile(Identifier.parse("minecraft:music/game/clark")).stream(true))
+                .sound(SoundTypeBuilder.RegistrationBuilder.ofFile(Identifier.parse("minecraft:music/game/left_to_bloom")).stream(true).volume(0.4f))
+                .sound(SoundTypeBuilder.RegistrationBuilder.ofFile(Identifier.parse("minecraft:music/game/featherfall")).stream(true).volume(0.4f).weight(3))
+                .sound(SoundTypeBuilder.RegistrationBuilder.ofFile(Identifier.parse("minecraft:music/game/echo_in_the_wind")).stream(true).volume(0.4f).weight(3))
+                .sound(SoundTypeBuilder.RegistrationBuilder.ofFile(Identifier.parse("minecraft:music/game/bromeliad")).stream(true).volume(0.4f).weight(3))
         );
     }
 
@@ -89,10 +90,10 @@ public class PromenadeSoundsProvider extends FabricSoundsProvider {
         if (count > 1) {
             for (int i = 1; i <= count; i++) {
                 Identifier soundId = baseId.withSuffix("/" + i);
-                builder.sound(SoundTypeBuilder.EntryBuilder.ofFile(soundId));
+                builder.sound(SoundTypeBuilder.RegistrationBuilder.ofFile(soundId));
             }
         } else {
-            builder.sound(SoundTypeBuilder.EntryBuilder.ofFile(baseId));
+            builder.sound(SoundTypeBuilder.RegistrationBuilder.ofFile(baseId));
         }
         return builder;
     }

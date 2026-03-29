@@ -7,10 +7,11 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.NetherFungusBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
-public class FungusBlock extends net.minecraft.world.level.block.FungusBlock {
+public class FungusBlock extends NetherFungusBlock {
     private final Predicate<BlockState> canPlantOn;
     private final Predicate<BlockState> canGrowOn;
 
@@ -19,7 +20,7 @@ public class FungusBlock extends net.minecraft.world.level.block.FungusBlock {
     }
 
     public FungusBlock(ResourceKey<ConfiguredFeature<?, ?>> featureKey, Predicate<BlockState> canPlantOn, Predicate<BlockState> canGrowOn, Properties settings) {
-        super(featureKey, null, settings);
+        super(featureKey, null, null, settings);
         this.canPlantOn = canPlantOn;
         this.canGrowOn = canGrowOn;
     }

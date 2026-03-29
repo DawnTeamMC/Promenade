@@ -3,7 +3,7 @@ package fr.hugman.promenade.client.render.entity.model;
 import fr.hugman.promenade.Promenade;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -43,31 +43,32 @@ public class PromenadeEntityModelLayers {
         ArmorModelSet<LayerDefinition> equipmentModelData = HumanoidModel.createArmorMeshSet(HAT_DILATION, ARMOR_DILATION).map((data) -> LayerDefinition.create(data, 64, 32));
 
         var capybaraModelData = CapybaraEntityModel.getTexturedModelData();
-        EntityModelLayerRegistry.registerModelLayer(CAPYBARA, () -> capybaraModelData);
-        EntityModelLayerRegistry.registerModelLayer(CAPYBARA_BABY, () -> capybaraModelData.apply(CapybaraEntityModel.BABY_TRANSFORMER));
+
+        ModelLayerRegistry.registerModelLayer(CAPYBARA, () -> capybaraModelData);
+        ModelLayerRegistry.registerModelLayer(CAPYBARA_BABY, () -> capybaraModelData.apply(CapybaraEntityModel.BABY_TRANSFORMER));
 
         var duckModelData = DuckEntityModel.getTexturedModelData();
 
-        EntityModelLayerRegistry.registerModelLayer(DUCK, () -> duckModelData);
-        EntityModelLayerRegistry.registerModelLayer(DUCK_BABY, () -> duckModelData.apply(DuckEntityModel.BABY_TRANSFORMER));
+        ModelLayerRegistry.registerModelLayer(DUCK, () -> duckModelData);
+        ModelLayerRegistry.registerModelLayer(DUCK_BABY, () -> duckModelData.apply(DuckEntityModel.BABY_TRANSFORMER));
 
-        EntityModelLayerRegistry.registerModelLayer(LUSH_CREEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
-        EntityModelLayerRegistry.registerModelLayer(LUSH_CREEPER_OUTER, () -> CreeperModel.createBodyLayer(new CubeDeformation(0.25f)));
+        ModelLayerRegistry.registerModelLayer(LUSH_CREEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
+        ModelLayerRegistry.registerModelLayer(LUSH_CREEPER_OUTER, () -> CreeperModel.createBodyLayer(new CubeDeformation(0.25f)));
 
-        EntityModelLayerRegistry.registerModelLayer(SUNKEN, SunkenEntityModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(SUNKEN_EQUIPMENT.head(), equipmentModelData::head);
-        EntityModelLayerRegistry.registerModelLayer(SUNKEN_EQUIPMENT.chest(), equipmentModelData::chest);
-        EntityModelLayerRegistry.registerModelLayer(SUNKEN_EQUIPMENT.legs(), equipmentModelData::legs);
-        EntityModelLayerRegistry.registerModelLayer(SUNKEN_EQUIPMENT.feet(), equipmentModelData::feet);
+        ModelLayerRegistry.registerModelLayer(SUNKEN, SunkenEntityModel::getTexturedModelData);
+        ModelLayerRegistry.registerModelLayer(SUNKEN_EQUIPMENT.head(), equipmentModelData::head);
+        ModelLayerRegistry.registerModelLayer(SUNKEN_EQUIPMENT.chest(), equipmentModelData::chest);
+        ModelLayerRegistry.registerModelLayer(SUNKEN_EQUIPMENT.legs(), equipmentModelData::legs);
+        ModelLayerRegistry.registerModelLayer(SUNKEN_EQUIPMENT.feet(), equipmentModelData::feet);
 
         LayerDefinition boatModel = BoatModel.createBoatModel();
         LayerDefinition chestBoatModel = BoatModel.createChestBoatModel();
-        EntityModelLayerRegistry.registerModelLayer(SAKURA_BOAT, () -> boatModel);
-        EntityModelLayerRegistry.registerModelLayer(SAKURA_CHEST_BOAT, () -> chestBoatModel);
-        EntityModelLayerRegistry.registerModelLayer(MAPLE_BOAT, () -> boatModel);
-        EntityModelLayerRegistry.registerModelLayer(MAPLE_CHEST_BOAT, () -> chestBoatModel);
-        EntityModelLayerRegistry.registerModelLayer(PALM_BOAT, () -> boatModel);
-        EntityModelLayerRegistry.registerModelLayer(PALM_CHEST_BOAT, () -> chestBoatModel);
+        ModelLayerRegistry.registerModelLayer(SAKURA_BOAT, () -> boatModel);
+        ModelLayerRegistry.registerModelLayer(SAKURA_CHEST_BOAT, () -> chestBoatModel);
+        ModelLayerRegistry.registerModelLayer(MAPLE_BOAT, () -> boatModel);
+        ModelLayerRegistry.registerModelLayer(MAPLE_CHEST_BOAT, () -> chestBoatModel);
+        ModelLayerRegistry.registerModelLayer(PALM_BOAT, () -> boatModel);
+        ModelLayerRegistry.registerModelLayer(PALM_CHEST_BOAT, () -> chestBoatModel);
     }
 
     private static ModelLayerLocation of(String name, String layer) {

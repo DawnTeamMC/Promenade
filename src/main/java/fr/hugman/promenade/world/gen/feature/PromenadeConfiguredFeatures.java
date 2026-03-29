@@ -61,24 +61,23 @@ public class PromenadeConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> CARNELIAN_TREEWAY_MIKADO_TREE = of("tree/carnelian_treeway/mikado");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CARNELIAN_TREEWAY_TREE = of("tree/carnelian_treeway");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> CARNELIAN_TREEWAY_FALLEN_LEAVES = of("patch/carnelian_treeway/fallen_leaves");
 
     // Vegetation
     public static final ResourceKey<ConfiguredFeature<?, ?>> WATER_POOL_GRAVEL_DECORATED = of("water_pool_gravel_decorated");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> CUTE_LITTLE_ROCK = of("cute_little_rock");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BAMBOO_PATCH = of("bamboo_patch");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> BLUEBERRY_BUSH_PATCH = of("blueberry_bush_patch");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> BLUEBERRY_BUSH = of("blueberry_bush");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_AMARANTH_FOREST_VEGETATION = of("dark_amaranth_forest_vegetation");
     public static final ResourceKey<ConfiguredFeature<?, ?>> DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION = of("dark_amaranth_forest_vegetation/bonemeal");
 
     public static final ResourceKey<ConfiguredFeature<?, ?>> COILED_VINES = of("coiled_vines");
 
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_VERMILION_MAPLE_LEAVES = of("patch/fallen_vermilion_maple_leaves");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_FULVOUS_MAPLE_LEAVES = of("patch/fallen_fulvous_maple_leaves");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_MIKADO_MAPLE_LEAVES = of("patch/fallen_mikado_maple_leaves");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_VERMILION_MAPLE_LEAVES = of("fallen_vermilion_maple_leaves");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_FULVOUS_MAPLE_LEAVES = of("fallen_fulvous_maple_leaves");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FALLEN_MIKADO_MAPLE_LEAVES = of("fallen_mikado_maple_leaves");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CARNELIAN_TREEWAY_FALLEN_LEAVES = of("carnelian_treeway/fallen_leaves");
 
     private static ResourceKey<ConfiguredFeature<?, ?>> of(String path) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, Promenade.id(path));

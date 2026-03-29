@@ -4,18 +4,19 @@ import fr.hugman.promenade.entity.spawn.ChanceSpawnCondition;
 import fr.hugman.promenade.entity.variant.CapybaraVariant;
 import fr.hugman.promenade.entity.variant.CapybaraVariants;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.ClientAsset.ResourceTexture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.variant.SpawnPrioritySelectors;
+
 import java.util.concurrent.CompletableFuture;
 
 //TODO: a generic class for other devs
 public class PromenadeCapybaraVariantProvider extends FabricDynamicRegistryProvider {
-    public PromenadeCapybaraVariantProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public PromenadeCapybaraVariantProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 

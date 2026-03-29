@@ -1,7 +1,7 @@
 package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.entity.variant.PromenadePaintingVariants;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.HolderLookup;
@@ -10,11 +10,12 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.decoration.painting.PaintingVariant;
+
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadePaintingVariantProvider extends FabricDynamicRegistryProvider {
-    public PromenadePaintingVariantProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public PromenadePaintingVariantProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 

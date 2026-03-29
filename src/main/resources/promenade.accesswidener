@@ -1,4 +1,4 @@
-accessWidener	v1	named
+accessWidener	v1	official
 extendable	method	net/minecraft/world/entity/monster/skeleton/AbstractSkeleton	getStepSound	()Lnet/minecraft/sounds/SoundEvent;
 extendable	method	net/minecraft/world/entity/monster/Creeper	explodeCreeper	()V
 accessible	method	net/minecraft/data/worldgen/SurfaceRuleData	makeStateRule	(Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/levelgen/SurfaceRules$RuleSource;

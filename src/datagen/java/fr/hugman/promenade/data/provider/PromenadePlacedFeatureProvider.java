@@ -6,15 +6,18 @@ import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.NoiseIntervalCountPlacementModifier;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.Util;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -22,24 +25,15 @@ import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.heightproviders.TrapezoidHeight;
-import net.minecraft.world.level.levelgen.placement.BiomeFilter;
-import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
-import net.minecraft.world.level.levelgen.placement.CountOnEveryLayerPlacement;
-import net.minecraft.world.level.levelgen.placement.CountPlacement;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
-import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
-import net.minecraft.world.level.levelgen.placement.NoiseBasedCountPlacement;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-import net.minecraft.world.level.levelgen.placement.PlacementModifier;
-import net.minecraft.world.level.levelgen.placement.RarityFilter;
-import net.minecraft.world.level.levelgen.placement.SurfaceWaterDepthFilter;
+import net.minecraft.world.level.levelgen.placement.*;
+
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvider {
     private static final PlacementModifier NOT_IN_SURFACE_WATER_MODIFIER = SurfaceWaterDepthFilter.forMaxDepth(0);
 
-    public PromenadePlacedFeatureProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public PromenadePlacedFeatureProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -104,11 +98,39 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
 
 
         // Vegetation
-        var blueberryBush = configured.getOrThrow(PromenadeConfiguredFeatures.BLUEBERRY_BUSH_PATCH);
-        of(registerable, PromenadePlacedFeatures.BLUEBERRY_BUSH_COMMON_PATCH, blueberryBush, rare(32));
-        of(registerable, PromenadePlacedFeatures.BLUEBERRY_BUSH_RARE_PATCH, blueberryBush, rare(384));
+        var blueberryBush = configured.getOrThrow(PromenadeConfiguredFeatures.BLUEBERRY_BUSH);
+        of(registerable, PromenadePlacedFeatures.BLUEBERRY_BUSH_COMMON_PATCH, blueberryBush,
+                RarityFilter.onAverageOnceEvery(32),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                BiomeFilter.biome(),
+                CountPlacement.of(96),
+                RandomOffsetPlacement.ofTriangle(7, 3),
+                BlockPredicateFilter.forPredicate(
+                        BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.matchesBlocks(Direction.DOWN.getUnitVec3i(), Blocks.GRASS_BLOCK))
+                )
+        );
+        of(registerable, PromenadePlacedFeatures.BLUEBERRY_BUSH_RARE_PATCH, blueberryBush,
+                RarityFilter.onAverageOnceEvery(384),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                BiomeFilter.biome(),
+                CountPlacement.of(96),
+                RandomOffsetPlacement.ofTriangle(7, 3),
+                BlockPredicateFilter.forPredicate(
+                        BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.matchesBlocks(Direction.DOWN.getUnitVec3i(), Blocks.GRASS_BLOCK))
+                )
+        );
 
-        of(registerable, PromenadePlacedFeatures.SAKURA_GROVE_BAMBOO, configured.getOrThrow(PromenadeConfiguredFeatures.BAMBOO_PATCH), modifiers(NoiseBasedCountPlacement.of(2, 50.0d, 0.1d), PlacementUtils.HEIGHTMAP_WORLD_SURFACE));
+        of(registerable, PromenadePlacedFeatures.SAKURA_GROVE_BAMBOO, configured.getOrThrow(VegetationFeatures.BAMBOO_SOME_PODZOL),
+                NoiseBasedCountPlacement.of(2, 50.0, 0.1),
+                InSquarePlacement.spread(),
+                PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
+                BiomeFilter.biome(),
+                CountPlacement.of(25),
+                RandomOffsetPlacement.ofTriangle(7, 3),
+                BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
+        );
 
         of(registerable, PromenadePlacedFeatures.CUTE_LITTLE_ROCKS, configured.getOrThrow(PromenadeConfiguredFeatures.CUTE_LITTLE_ROCK), count(2, PlacementUtils.HEIGHTMAP));
 
@@ -133,7 +155,13 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
                 treeModifiers(PlacementUtils.countExtra(2, 0.1F, 1)));
 
         of(registerable, PromenadePlacedFeatures.CARNELIAN_TREEWAY_TREES, configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_TREE), treeModifiers(PlacementUtils.countExtra(10, 0.1F, 1)));
-        of(registerable, PromenadePlacedFeatures.CARNELIAN_TREEWAY_FALLEN_LEAVES, configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FALLEN_LEAVES), count(25));
+        of(registerable, PromenadePlacedFeatures.CARNELIAN_TREEWAY_FALLEN_LEAVES, configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FALLEN_LEAVES),
+                Util.copyAndAdd(
+                    worldSurfaceSquaredWithCount(20),
+                    CountPlacement.of(32),
+                    RandomOffsetPlacement.ofTriangle(7, 3),
+                    BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
+        ));
 
         of(registerable, PromenadePlacedFeatures.GLACARIAN_TAIGA_TREES, configured.getOrThrow(PromenadeConfiguredFeatures.SNOWY_MEGA_SPRUCE), treeModifiersWithWouldSurvive(PlacementUtils.countExtra(14, 0.1F, 4), Blocks.SPRUCE_SAPLING));
 
@@ -141,6 +169,10 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
 
         of(registerable, PromenadePlacedFeatures.DARK_AMARANTH_FUNGI, configured.getOrThrow(PromenadeConfiguredFeatures.DARK_AMARANTH_FUNGUS), netherCount(8));
 
+    }
+
+    public static List<PlacementModifier> worldSurfaceSquaredWithCount(final int count) {
+        return List.of(CountPlacement.of(count), InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP_WORLD_SURFACE, BiomeFilter.biome());
     }
 
     public static List<PlacementModifier> rare(int chance) {

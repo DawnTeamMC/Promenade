@@ -4,23 +4,20 @@ import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.data.PromenadeBlockFamilies;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.tag.PromenadeItemTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.BlockFamily;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
-import net.minecraft.world.item.crafting.CampfireCookingRecipe;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SmeltingRecipe;
-import net.minecraft.world.item.crafting.SmokingRecipe;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeRecipeGenerator extends RecipeProvider {
@@ -30,7 +27,7 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
 
     @Override
     public void buildRecipes() {
-        PromenadeBlockFamilies.getFamilies().filter(BlockFamily::shouldGenerateRecipe).forEach(family -> this.generateRecipes(family, FeatureFlagSet.of(FeatureFlags.VANILLA)));
+        PromenadeBlockFamilies.getFamilies().forEach(family -> this.generateRecipes(family, FeatureFlagSet.of(FeatureFlags.VANILLA)));
 
         this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.ASPHALT_SLAB, PromenadeBlocks.ASPHALT, 2);
         this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.ASPHALT_STAIRS, PromenadeBlocks.ASPHALT);
@@ -138,9 +135,9 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
 
         this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.MOAI, Blocks.TUFF);
 
-        this.cookRecipes("smelting", RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, 200);
-        this.cookRecipes("smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);
-        this.cookRecipes("campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600);
+        this.cookRecipes("smelting", SmeltingRecipe::new, 200);
+        this.cookRecipes("smoking", CampfireCookingRecipe::new, 100);
+        this.cookRecipes("campfire_cooking", CampfireCookingRecipe::new, 600);
 
         this.oneToOneConversionRecipe(Items.MAGENTA_DYE, PromenadeItems.BLUEBERRIES, "magenta_dye", 1);
 
@@ -191,13 +188,11 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
                 .save(this.output);
     }
 
-    public <T extends AbstractCookingRecipe> void cookRecipes(
-            String cooker, RecipeSerializer<T> serializer, AbstractCookingRecipe.Factory<T> recipeFactory, int cookingTime
-    ) {
-        this.simpleCookingRecipe(cooker, serializer, recipeFactory, cookingTime, PromenadeItems.DUCK, PromenadeItems.COOKED_DUCK, 0.35F);
+    public <T extends AbstractCookingRecipe> void cookRecipes(final String source, final AbstractCookingRecipe.Factory<T> factory, final int cookingTime) {
+        this.simpleCookingRecipe(source, factory, cookingTime, PromenadeItems.DUCK, PromenadeItems.COOKED_DUCK, 0.35F);
     }
 
-    public static FabricRecipeProvider create(FabricDataOutput fabricDataOutput, CompletableFuture<HolderLookup.Provider> completableFuture) {
+    public static FabricRecipeProvider create(FabricPackOutput fabricDataOutput, CompletableFuture<HolderLookup.Provider> completableFuture) {
         return new FabricRecipeProvider(fabricDataOutput, completableFuture) {
             @Override
             protected RecipeProvider createRecipeProvider(HolderLookup.Provider wrapperLookup, RecipeOutput recipeExporter) {

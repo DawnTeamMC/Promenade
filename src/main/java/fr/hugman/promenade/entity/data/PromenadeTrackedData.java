@@ -5,7 +5,7 @@ import fr.hugman.promenade.entity.CapybaraEntity;
 import fr.hugman.promenade.entity.variant.CapybaraVariant;
 import fr.hugman.promenade.entity.variant.DuckVariant;
 import fr.hugman.promenade.entity.variant.SunkenVariant;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricTrackedDataRegistry;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityDataRegistry;
 import net.minecraft.core.Holder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
@@ -20,7 +20,7 @@ public class PromenadeTrackedData {
 
     public static <T> EntityDataSerializer<T> of(String name, StreamCodec<? super RegistryFriendlyByteBuf, T> codec) {
         var handler = EntityDataSerializer.forValueType(codec);
-        FabricTrackedDataRegistry.register(Promenade.id(name), handler);
+        FabricEntityDataRegistry.register(Promenade.id(name), handler);
         return handler;
     }
 }

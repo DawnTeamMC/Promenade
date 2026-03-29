@@ -2,6 +2,7 @@ package fr.hugman.promenade.data.model;
 
 import net.minecraft.client.data.models.model.TextureMapping;
 import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
 
@@ -18,7 +19,7 @@ public class PromenadeTextureMaps {
 
         return new TextureMapping()
                 .put(TextureSlot.ALL, TextureMapping.getBlockTexture(baseLeaves))
-                .put(TextureSlot.TOP, snowyLeavesTexture)
-                .put(TextureSlot.SIDE, snowyLeavesTexture.withSuffix("_bottom"));
+                .put(TextureSlot.TOP, new Material(snowyLeavesTexture))
+                .put(TextureSlot.SIDE, new Material(snowyLeavesTexture.withSuffix("_bottom")));
     }
 }

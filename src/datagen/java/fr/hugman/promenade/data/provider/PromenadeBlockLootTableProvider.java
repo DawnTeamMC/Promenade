@@ -3,8 +3,8 @@ package fr.hugman.promenade.data.provider;
 import fr.hugman.promenade.block.BerryBushBlock;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.item.PromenadeItems;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -26,12 +26,12 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvider {
+public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider {
     private static final float[] JUNGLE_SAPLING_DROP_CHANCE = new float[]{0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F};
     protected static final float[] SAPLING_DROP_CHANCE = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
     private static final float[] LEAVES_STICK_DROP_CHANCE = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
 
-    public PromenadeBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+    public PromenadeBlockLootTableProvider(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(dataOutput, registryLookup);
     }
 
@@ -246,8 +246,6 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
                                 )
                 )
         );
-
-        this.map.forEach((id, lootTable) -> lootTable.setRandomSequence(id.identifier()));
     }
 
     public LootTable.Builder snowyLeavesDrops(Block leaves, Block sapling, float... saplingChance) {

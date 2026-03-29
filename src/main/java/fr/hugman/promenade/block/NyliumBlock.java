@@ -34,7 +34,7 @@ public class NyliumBlock extends Block implements BonemealableBlock {
     private static boolean stayAlive(BlockState state, LevelReader world, BlockPos pos) {
         BlockPos blockPos = pos.above();
         BlockState blockState = world.getBlockState(blockPos);
-        int i = LightEngine.getLightBlockInto(state, blockState, Direction.UP, blockState.getLightBlock());
+        int i = LightEngine.getLightBlockInto(state, blockState, Direction.UP, blockState.getLightDampening());
         return i < 15;
     }
 

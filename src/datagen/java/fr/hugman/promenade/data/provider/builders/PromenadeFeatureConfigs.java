@@ -7,8 +7,6 @@ import fr.hugman.promenade.world.gen.tree.foliage.MapleFoliagePlacer;
 import fr.hugman.promenade.world.gen.tree.foliage.PalmFoliagePlacer;
 import fr.hugman.promenade.world.gen.tree.trunk.BranchingStraightTrunkPlacer;
 import fr.hugman.promenade.world.gen.tree.trunk.LeapingTrunkPlacer;
-import java.util.List;
-import java.util.OptionalInt;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.BiasedToBottomInt;
 import net.minecraft.util.valueproviders.ConstantInt;
@@ -25,6 +23,9 @@ import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvi
 import net.minecraft.world.level.levelgen.feature.treedecorators.AttachedToLeavesDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
+
+import java.util.List;
+import java.util.OptionalInt;
 
 public class PromenadeFeatureConfigs {
     //TODO: should be a tag
@@ -99,8 +100,7 @@ public class PromenadeFeatureConfigs {
                 new TwoLayersFeatureSize(1, 0, 1)
         )
                 .decorators(ImmutableList.of(new AttachedToLeavesDecorator(0.8f, 1, 0, BlockStateProvider.simple(PromenadeBlocks.PALM_HANGING_LEAVES), 2, List.of(Direction.DOWN))))
-                .dirt(BlockStateProvider.simple(Blocks.SAND))
-                .forceDirt()
+                .belowTrunkProvider(BlockStateProvider.simple(Blocks.SAND))
                 .ignoreVines();
     }
 

@@ -18,7 +18,7 @@ public class LivingEntityMixin {
         if (entity.level() instanceof ServerLevel serverWorld && PromenadeBiomes.canFreezeFromBiomeAndWeather(entity)) {
             entity.setTicksFrozen(Math.min(entity.getTicksRequiredToFreeze(), frozenTicks + 1));
             if (entity.tickCount % 40 == 0 && entity.isFullyFrozen()) {
-                entity.hurtServer(serverWorld, entity.damageSources().freeze(), entity.getType().is(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES) ? 5 : 1);
+                entity.hurtServer(serverWorld, entity.damageSources().freeze(), entity.is(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES) ? 5 : 1);
             }
             ci.cancel();
         }

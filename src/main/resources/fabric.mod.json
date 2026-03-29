@@ -30,9 +30,8 @@
   ],
   "accessWidener": "promenade.accesswidener",
   "depends": {
-    "minecraft": "^1.21.11",
-    "fabric": "*",
-    "biolith": "*"
+    "minecraft": "~26.1-",
+    "fabric-api": "*"
   },
   "suggests": {
     "farmingforblockheads": "*",

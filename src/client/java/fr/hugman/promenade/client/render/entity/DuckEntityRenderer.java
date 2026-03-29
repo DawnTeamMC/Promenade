@@ -39,7 +39,8 @@ public class DuckEntityRenderer extends AgeableMobRenderer<DuckEntity, DuckEntit
         return state.variant.texture().texturePath();
     }
 
-    public void updateRenderState(DuckEntity duck, DuckEntityRenderState state, float f) {
+    @Override
+    public void extractRenderState(DuckEntity duck, DuckEntityRenderState state, float f) {
         super.extractRenderState(duck, state, f);
         state.flapProgress = Mth.lerp(f, duck.prevFlapProgress, duck.flapProgress);
         state.maxWingDeviation = Mth.lerp(f, duck.prevMaxWingDeviation, duck.maxWingDeviation);

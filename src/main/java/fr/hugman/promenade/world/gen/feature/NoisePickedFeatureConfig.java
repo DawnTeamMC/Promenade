@@ -5,6 +5,8 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.promenade.util.NoiseScale;
 import java.util.List;
 import java.util.stream.Stream;
+
+import net.minecraft.core.Holder;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
@@ -18,7 +20,7 @@ public record NoisePickedFeatureConfig(
     ).apply(instance, NoisePickedFeatureConfig::new));
 
     @Override
-    public Stream<ConfiguredFeature<?, ?>> getFeatures() {
+    public Stream<Holder<ConfiguredFeature<?, ?>>> getSubFeatures() {
         return entries.stream().flatMap(entry -> entry.feature().value().getFeatures());
     }
 }

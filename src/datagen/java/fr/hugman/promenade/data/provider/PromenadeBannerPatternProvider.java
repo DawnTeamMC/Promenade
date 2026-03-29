@@ -1,17 +1,18 @@
 package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.banner.PromenadeBannerPatterns;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.entity.BannerPattern;
+
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeBannerPatternProvider extends FabricDynamicRegistryProvider {
-    public PromenadeBannerPatternProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public PromenadeBannerPatternProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 

@@ -15,7 +15,6 @@ import fr.hugman.promenade.itemgroup.PromenadeItemGroupAdditions;
 import fr.hugman.promenade.itemgroup.PromenadeItemGroups;
 import fr.hugman.promenade.registry.*;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
-import fr.hugman.promenade.trade.PromenadeTrades;
 import fr.hugman.promenade.world.PromenadeGameRules;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
@@ -50,7 +49,6 @@ public class Promenade implements ModInitializer {
         Reflection.initialize(PromenadeItemGroups.class);
         PromenadeItemGroupAdditions.appendItemGroups();
         PromenadeCompostingChances.register();
-        PromenadeTrades.appendVillagerTrades();
         PromenadeDispenserBehaviors.register();
 
         Reflection.initialize(PromenadeSensorTypes.class);

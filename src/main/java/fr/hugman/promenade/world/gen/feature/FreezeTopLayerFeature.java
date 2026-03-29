@@ -9,7 +9,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SnowLayerBlock;
-import net.minecraft.world.level.block.SnowyDirtBlock;
+import net.minecraft.world.level.block.SnowyBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -58,8 +58,8 @@ public class FreezeTopLayerFeature extends Feature<NoneFeatureConfiguration> {
                     }
 
                     BlockState blockState = world.getBlockState(groundMutable);
-                    if (blockState.hasProperty(SnowyDirtBlock.SNOWY)) {
-                        world.setBlock(groundMutable, blockState.setValue(SnowyDirtBlock.SNOWY, true), Block.UPDATE_CLIENTS);
+                    if (blockState.hasProperty(SnowyBlock.SNOWY)) {
+                        world.setBlock(groundMutable, blockState.setValue(SnowyBlock.SNOWY, true), Block.UPDATE_CLIENTS);
                     }
                 }
 
@@ -94,8 +94,8 @@ public class FreezeTopLayerFeature extends Feature<NoneFeatureConfiguration> {
                     world.setBlock(topMutable, Blocks.SNOW.defaultBlockState().setValue(SnowLayerBlock.LAYERS, topSnowLayers.sample(random)), Block.UPDATE_CLIENTS);
 
                     BlockState blockState = world.getBlockState(groundMutable);
-                    if (blockState.hasProperty(SnowyDirtBlock.SNOWY)) {
-                        world.setBlock(groundMutable, blockState.setValue(SnowyDirtBlock.SNOWY, true), Block.UPDATE_CLIENTS);
+                    if (blockState.hasProperty(SnowyBlock.SNOWY)) {
+                        world.setBlock(groundMutable, blockState.setValue(SnowyBlock.SNOWY, true), Block.UPDATE_CLIENTS);
                     }
                 }
             }

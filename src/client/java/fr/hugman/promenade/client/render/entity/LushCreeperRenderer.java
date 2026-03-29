@@ -51,7 +51,8 @@ public class LushCreeperRenderer extends MobRenderer<LushCreeperEntity, CreeperR
         return TEXTURE;
     }
 
-    public void updateRenderState(LushCreeperEntity lushCreeper, CreeperRenderState creeperEntityRenderState, float f) {
+    @Override
+    public void extractRenderState(LushCreeperEntity lushCreeper, CreeperRenderState creeperEntityRenderState, float f) {
         super.extractRenderState(lushCreeper, creeperEntityRenderState, f);
         creeperEntityRenderState.swelling = lushCreeper.getSwelling(f);
         creeperEntityRenderState.isPowered = lushCreeper.isPowered();

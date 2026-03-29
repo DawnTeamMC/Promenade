@@ -14,6 +14,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BannerPatternTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -46,7 +47,7 @@ public class PromenadeItems {
     public static final Item DUCK = register("duck", new Item.Properties().food(PromenadeFoodComponents.RAW_DUCK, PromenadeConsumableComponents.RAW_DUCK));
     public static final Item COOKED_DUCK = register("cooked_duck", new Item.Properties().food(PromenadeFoodComponents.COOKED_DUCK));
 
-    public static final Item BOVINE_BANNER_PATTERN = register("bovine_banner_pattern", ItemSettings.max1().component(DataComponents.PROVIDES_BANNER_PATTERNS, PromenadeBannerPatternTags.BOVINE_PATTERN_ITEM));
+    public static final Item BOVINE_BANNER_PATTERN = register("bovine_banner_pattern", ItemSettings.max1().delayedComponent(DataComponents.PROVIDES_BANNER_PATTERNS, context -> context.getOrThrow(PromenadeBannerPatternTags.BOVINE_PATTERN_ITEM)));
 
     public static final Item CAPYBARA_SPAWN_EGG = register("capybara_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.CAPYBARA));
     public static final Item DUCK_SPAWN_EGG = register("duck_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.DUCK));

@@ -71,9 +71,9 @@ public class PromenadePlacedFeatures {
 
     public static final ResourceKey<PlacedFeature> COILED_VINES = of("coiled_vines");
 
-    public static final ResourceKey<PlacedFeature> FALLEN_VERMILION_MAPLE_LEAVES = of("patch/fallen_vermilion_maple_leaves");
-    public static final ResourceKey<PlacedFeature> FALLEN_FULVOUS_MAPLE_LEAVES = of("patch/fallen_fulvous_maple_leaves");
-    public static final ResourceKey<PlacedFeature> FALLEN_MIKADO_MAPLE_LEAVES = of("patch/fallen_mikado_maple_leaves");
+    public static final ResourceKey<PlacedFeature> FALLEN_VERMILION_MAPLE_LEAVES = of("fallen_vermilion_maple_leaves");
+    public static final ResourceKey<PlacedFeature> FALLEN_FULVOUS_MAPLE_LEAVES = of("fallen_fulvous_maple_leaves");
+    public static final ResourceKey<PlacedFeature> FALLEN_MIKADO_MAPLE_LEAVES = of("fallen_mikado_maple_leaves");
 
     // Grouped features
     public static final ResourceKey<PlacedFeature> BLUSH_SAKURA_GROVE_TREES = of("trees/blush_sakura_grove");

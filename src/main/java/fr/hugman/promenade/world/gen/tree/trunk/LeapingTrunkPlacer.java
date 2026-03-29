@@ -11,7 +11,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.util.valueproviders.IntProviders;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
@@ -20,8 +22,8 @@ import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
 
 public class LeapingTrunkPlacer extends TrunkPlacer {
     public static final MapCodec<LeapingTrunkPlacer> CODEC = RecordCodecBuilder.mapCodec(instance -> trunkPlacerParts(instance).and(instance.group(
-            IntProvider.codec(0, 80).fieldOf("straight_max").forGetter(placer -> placer.straightMax),
-            IntProvider.CODEC.fieldOf("straight_difference").forGetter(placer -> placer.straightDifference),
+            IntProviders.codec(0, 80).fieldOf("straight_max").forGetter(placer -> placer.straightMax),
+            IntProviders.CODEC.fieldOf("straight_difference").forGetter(placer -> placer.straightDifference),
             Codec.FLOAT.fieldOf("decline_chance").forGetter(placer -> placer.declineChance),
             Codec.INT.fieldOf("max_foliage_radius_bonus").forGetter(placer -> placer.maxFoliageRadiusBonus))
     ).apply(instance, LeapingTrunkPlacer::new));
@@ -45,14 +47,14 @@ public class LeapingTrunkPlacer extends TrunkPlacer {
     }
 
     @Override
-    public List<FoliagePlacer.FoliageAttachment> placeTrunk(LevelSimulatedReader world, BiConsumer<BlockPos, BlockState> replacer, RandomSource random, int height, BlockPos startPos, TreeConfiguration config) {
+    public List<FoliagePlacer.FoliageAttachment> placeTrunk(WorldGenLevel world, BiConsumer<BlockPos, BlockState> replacer, RandomSource random, int height, BlockPos startPos, TreeConfiguration config) {
         Direction direction = Direction.Plane.HORIZONTAL.getRandomDirection(random);
         BlockPos.MutableBlockPos mutable = startPos.mutable().move(Direction.DOWN);
 
         int j = this.straightMax.sample(random);
         int k = j;
 
-        setDirtAt(world, replacer, random, mutable, config);
+        placeBelowTrunkBlock(world, replacer, random, mutable, config);
         for (int i = 0; i < height; ++i) {
             mutable.move(Direction.UP);
             if (k <= 0) {

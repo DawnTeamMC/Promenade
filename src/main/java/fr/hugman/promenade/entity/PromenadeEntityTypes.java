@@ -36,13 +36,13 @@ public class PromenadeEntityTypes {
 
     public static final EntityType<CapybaraEntity> CAPYBARA = register("capybara", FabricEntityType.Builder.createMob(CapybaraEntity::new, MobCategory.CREATURE, mob -> mob
                     .defaultAttributes(CapybaraEntity::createCapybaraAttributes)
-                    .spawnRestriction(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules)
+                    .spawnPlacement(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules)
             )
             .sized(0.7f, 0.875f)
             .eyeHeight(0.875f));
     public static final EntityType<DuckEntity> DUCK = register("duck", FabricEntityType.Builder.createMob(DuckEntity::new, MobCategory.CREATURE, mob -> mob
                     .defaultAttributes(DuckEntity::createDuckAttributes)
-                    .spawnRestriction(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules)
+                    .spawnPlacement(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules)
             )
             .sized(0.4F, 0.8F)
             .eyeHeight(1.09375f)
@@ -50,14 +50,14 @@ public class PromenadeEntityTypes {
             .updateInterval(3));
     public static final EntityType<LushCreeperEntity> LUSH_CREEPER = register("lush_creeper", FabricEntityType.Builder.createMob(LushCreeperEntity::new, MobCategory.MONSTER, mob -> mob
                     .defaultAttributes(LushCreeperEntity::createAttributes)
-                    .spawnRestriction(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LushCreeperEntity::canSpawn)
+                    .spawnPlacement(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LushCreeperEntity::canSpawn)
             )
             .sized(0.6f, 1.7f)
             .clientTrackingRange(8)
             .notInPeaceful());
     public static final EntityType<SunkenEntity> SUNKEN = register("sunken", FabricEntityType.Builder.createMob(SunkenEntity::new, MobCategory.MONSTER, mob -> mob
                     .defaultAttributes(SunkenEntity::createSunkenAttributes)
-                    .spawnRestriction(SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SunkenEntity::canSpawn)
+                    .spawnPlacement(SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SunkenEntity::canSpawn)
             )
             .sized(0.6F, 1.99F)
             .eyeHeight(1.74F)

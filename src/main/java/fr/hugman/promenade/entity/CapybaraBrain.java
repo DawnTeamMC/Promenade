@@ -10,6 +10,7 @@ import fr.hugman.promenade.tag.PromenadeItemTags;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.ActivityData;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.behavior.*;
 import net.minecraft.world.entity.ai.behavior.declarative.BehaviorBuilder;
@@ -17,8 +18,12 @@ import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.ai.sensing.SensorType;
+import net.minecraft.world.entity.animal.camel.Camel;
+import net.minecraft.world.entity.animal.camel.CamelAi;
 import net.minecraft.world.entity.schedule.Activity;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -51,39 +56,38 @@ public class CapybaraBrain {
             PromenadeMemoryModuleTypes.FART_COOLDOWN
     );
 
-    public static Brain.Provider<CapybaraEntity> createProfile() {
-        return Brain.provider(MEMORY_MODULES, SENSORS);
+    protected static List<ActivityData<CapybaraEntity>> getActivities() {
+        return List.of(initCoreActivity(), initIdleActivity());
     }
 
-    protected static Brain<?> create(Brain<CapybaraEntity> brain) {
-        CapybaraBrain.addCoreActivities(brain);
-        CapybaraBrain.addIdleActivities(brain);
-        brain.setCoreActivities(ImmutableSet.of(Activity.CORE));
-        brain.setDefaultActivity(Activity.IDLE);
-        brain.useDefaultActivity();
-        return brain;
+    private static ActivityData<CapybaraEntity> initCoreActivity() {
+        return ActivityData.create(
+                Activity.CORE,
+                0,
+                ImmutableList.of(
+                        new Swim<>(0.8f),
+                        new AnimalPanic<>(1.0F) {
+                            private void run(ServerLevel serverWorld, CapybaraEntity capybaraEntity, long l) {
+                                capybaraEntity.forceDefaultState();
+                                super.start(serverWorld, capybaraEntity, l);
+                            }
+                        },
+                        new LookAtTargetSink(45, 90),
+                        new MoveToTargetSink(),
+                        new CountDownCooldownTicks(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS),
+                        new CountDownCooldownTicks(MemoryModuleType.GAZE_COOLDOWN_TICKS)
+                )
+        );
     }
 
-    private static void addCoreActivities(Brain<CapybaraEntity> brain) {
-        brain.addActivity(Activity.CORE, 0, ImmutableList.of(
-                new Swim<>(0.8f),
-                new AnimalPanic<>(1.0F) {
-                    private void run(ServerLevel serverWorld, CapybaraEntity capybaraEntity, long l) {
-                        capybaraEntity.forceDefaultState();
-                        super.start(serverWorld, capybaraEntity, l);
-                    }
-                },
-                new LookAtTargetSink(45, 90),
-                new MoveToTargetSink(),
-                new CountDownCooldownTicks(MemoryModuleType.TEMPTATION_COOLDOWN_TICKS),
-                new CountDownCooldownTicks(MemoryModuleType.GAZE_COOLDOWN_TICKS)));
-    }
 
-    private static void addIdleActivities(Brain<CapybaraEntity> brain) {
-        brain.addActivity(Activity.IDLE, ImmutableList.of(
+    private static ActivityData<CapybaraEntity> initIdleActivity() {
+        return ActivityData.create(
+                Activity.IDLE,
+                ImmutableList.of(
                 Pair.of(0, SetEntityLookTargetSometimes.create(EntityType.PLAYER, 6.0f, UniformInt.of(30, 60))),
                 Pair.of(1, new AnimalMakeLove(PromenadeEntityTypes.CAPYBARA)),
-                Pair.of(2, new FollowTemptation(entity -> 1.5f)),
+                Pair.of(2, new FollowTemptation(_ -> 1.5f)),
                 Pair.of(3, BehaviorBuilder.triggerIf(Predicate.not(CapybaraEntity::isStationary), BabyFollowAdult.create(WALK_TOWARD_ADULT_RANGE, 1.5f))),
                 Pair.of(4, new RandomLookAround(UniformInt.of(150, 250), 30.0f, 0.0f, 10.0f)),
                 Pair.of(5, new RunOne<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT), ImmutableList.of(
@@ -92,7 +96,8 @@ public class CapybaraBrain {
                         Pair.of(new SleepOrWakeUpTask(20), 1),
                         Pair.of(new FartTask(10), 1),
                         Pair.of(new DoNothing(30, 60), 1)
-                )))));
+                ))))
+        );
     }
 
     public static void updateActivities(CapybaraEntity capybara) {

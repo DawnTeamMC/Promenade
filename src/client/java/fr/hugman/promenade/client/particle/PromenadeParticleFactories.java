@@ -3,13 +3,13 @@ package fr.hugman.promenade.client.particle;
 import fr.hugman.promenade.particle.PromenadeParticleTypes;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
+import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
 import net.minecraft.client.particle.FallingLeavesParticle;
 
 @Environment(EnvType.CLIENT)
 public class PromenadeParticleFactories {
     public static void register() {
-        var instance = ParticleFactoryRegistry.getInstance();
+        var instance = ParticleProviderRegistry.getInstance();
 
         instance.register(PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM, FallingLeavesParticle.CherryProvider::new);
         instance.register(PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM, FallingLeavesParticle.CherryProvider::new);

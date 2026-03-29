@@ -1,8 +1,8 @@
 package fr.hugman.promenade.entity;
 
-import com.mojang.serialization.Dynamic;
 import fr.hugman.promenade.component.PromenadeComponentTypes;
 import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
+import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.entity.variant.CapybaraVariant;
 import fr.hugman.promenade.entity.variant.CapybaraVariants;
@@ -34,19 +34,14 @@ import net.minecraft.util.valueproviders.FloatProvider;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.TrapezoidFloat;
 import net.minecraft.world.DifficultyInstance;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntitySpawnReason;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Pose;
-import net.minecraft.world.entity.SpawnGroupData;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.BodyRotationControl;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
+import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.variant.SpawnContext;
 import net.minecraft.world.entity.variant.VariantUtils;
@@ -59,6 +54,7 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.function.IntFunction;
 
 public class CapybaraEntity extends Animal {
@@ -74,6 +70,16 @@ public class CapybaraEntity extends Animal {
 
     private static final EntityDataAccessor<Holder<CapybaraVariant>> VARIANT = SynchedEntityData.defineId(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_VARIANT);
     private static final EntityDataAccessor<Float> FART_CHANCE = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.FLOAT);
+
+    private static final Brain.Provider<CapybaraEntity> BRAIN_PROVIDER = Brain.provider(
+            List.of(
+                    SensorType.NEAREST_LIVING_ENTITIES,
+                    SensorType.HURT_BY,
+                    PromenadeSensorTypes.CAPYBARA_TEMPTATIONS,
+                    SensorType.NEAREST_ADULT,
+                    SensorType.IS_IN_WATER
+            ), _ -> CapybaraBrain.getActivities()
+    );
 
     private static final int EAR_WIGGLE_LENGHT = (int) (0.2f * SharedConstants.TICKS_PER_SECOND);
     private static final IntProvider EAR_WIGGLE_COOLDOWN_PROVIDER = BiasedToBottomInt.of(EAR_WIGGLE_LENGHT, 64); // Minimum MUST be the length of the anim
@@ -130,13 +136,9 @@ public class CapybaraEntity extends Animal {
                 .add(Attributes.MOVEMENT_SPEED, 0.2);
     }
 
-    protected Brain.Provider<CapybaraEntity> brainProvider() {
-        return CapybaraBrain.createProfile();
-    }
-
     @Override
-    protected Brain<?> makeBrain(Dynamic<?> dynamic) {
-        return CapybaraBrain.create(this.brainProvider().makeBrain(dynamic));
+    protected Brain<? extends LivingEntity> makeBrain(Brain.Packed packedBrain) {
+        return BRAIN_PROVIDER.makeBrain(this, packedBrain);
     }
 
     @Override
@@ -506,7 +508,7 @@ public class CapybaraEntity extends Animal {
 
         view.getString(STATE_KEY).ifPresent(s -> this.setState(State.fromName(s)));
         view.getLong(LAST_STATE_TICK_KEY).ifPresent(this::setLastStateTick);
-        this.setFartChance(view.getFloatOr(FART_CHANCE_KEY, FART_CHANCE_PROVIDER.getMinValue()));
+        this.setFartChance(view.getFloatOr(FART_CHANCE_KEY, FART_CHANCE_PROVIDER.min()));
     }
 
     @Nullable

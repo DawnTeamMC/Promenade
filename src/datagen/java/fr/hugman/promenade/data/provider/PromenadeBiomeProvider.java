@@ -4,7 +4,7 @@ import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
@@ -14,20 +14,11 @@ import net.minecraft.data.worldgen.BiomeDefaultFeatures;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.Carvers;
 import net.minecraft.data.worldgen.biome.OverworldBiomes;
-import net.minecraft.data.worldgen.placement.CavePlacements;
-import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
-import net.minecraft.data.worldgen.placement.NetherPlacements;
-import net.minecraft.data.worldgen.placement.OrePlacements;
-import net.minecraft.data.worldgen.placement.VegetationPlacements;
+import net.minecraft.data.worldgen.placement.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.attribute.AmbientAdditionsSettings;
-import net.minecraft.world.attribute.AmbientMoodSettings;
-import net.minecraft.world.attribute.AmbientParticle;
-import net.minecraft.world.attribute.AmbientSounds;
-import net.minecraft.world.attribute.BackgroundMusic;
-import net.minecraft.world.attribute.EnvironmentAttributes;
+import net.minecraft.world.attribute.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
@@ -37,12 +28,13 @@ import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
-    public PromenadeBiomeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public PromenadeBiomeProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -96,20 +88,20 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         MobSpawnSettings.Builder spawns = new MobSpawnSettings.Builder();
 
         BiomeDefaultFeatures.farmAnimals(spawns);
-		BiomeDefaultFeatures.commonSpawns(spawns);
+        BiomeDefaultFeatures.commonSpawns(spawns);
         spawns.addSpawn(MobCategory.CREATURE, 5, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 4, 4));
         spawns.addSpawn(MobCategory.CREATURE, 16, new MobSpawnSettings.SpawnerData(EntityType.FOX, 1, 3));
         spawns.addSpawn(MobCategory.CREATURE, 2, new MobSpawnSettings.SpawnerData(EntityType.PANDA, 4, 5));
 
-		return biome(0.6F, 0.4F)
-				.mobSpawnSettings(spawns.build())
-				.generationSettings(generation.build())
-				.specialEffects(new BiomeSpecialEffects.Builder()
-						.waterColor(6459391)
-						.grassColorOverride(6484135)
-						.build())
-				.setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(Musics.createGameMusic(PromenadeSoundEvents.MUSIC_OVERWORLD_SAKURA_GROVES)))
-				.build();
+        return biome(0.6F, 0.4F)
+                .mobSpawnSettings(spawns.build())
+                .generationSettings(generation.build())
+                .specialEffects(new BiomeSpecialEffects.Builder()
+                        .waterColor(6459391)
+                        .grassColorOverride(6484135)
+                        .build())
+                .setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(Musics.createGameMusic(PromenadeSoundEvents.MUSIC_OVERWORLD_SAKURA_GROVES)))
+                .build();
     }
 
     public static Biome createCarnelianTreeway(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
@@ -134,20 +126,20 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         MobSpawnSettings.Builder spawns = new MobSpawnSettings.Builder();
 
         BiomeDefaultFeatures.farmAnimals(spawns);
-		BiomeDefaultFeatures.commonSpawns(spawns);
+        BiomeDefaultFeatures.commonSpawns(spawns);
         spawns.addSpawn(MobCategory.CREATURE, 5, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 4, 4));
         spawns.addSpawn(MobCategory.CREATURE, 7, new MobSpawnSettings.SpawnerData(EntityType.FOX, 2, 3));
 
-		return biome(1.2F, 0.9F)
-				.mobSpawnSettings(spawns.build())
-				.generationSettings(generation.build())
-				.specialEffects(new BiomeSpecialEffects.Builder()
-						.waterColor(155336)
-						.grassColorOverride(9090320)
-						.foliageColorOverride(10931465)
-						.build())
-				.setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, 541)
-				.build();
+        return biome(1.2F, 0.9F)
+                .mobSpawnSettings(spawns.build())
+                .generationSettings(generation.build())
+                .specialEffects(new BiomeSpecialEffects.Builder()
+                        .waterColor(155336)
+                        .grassColorOverride(9090320)
+                        .foliageColorOverride(10931465)
+                        .build())
+                .setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, 541)
+                .build();
     }
 
     public static Biome createGlacarianTaiga(HolderGetter<PlacedFeature> featureLookup, HolderGetter<ConfiguredWorldCarver<?>> carverLookup) {
@@ -201,17 +193,17 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
                 .addSpawn(MobCategory.CREATURE, 4, new MobSpawnSettings.SpawnerData(PromenadeEntityTypes.DUCK, 4, 4))
                 .addSpawn(MobCategory.CREATURE, 8, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 4, 4))
                 .addSpawn(MobCategory.CREATURE, 8, new MobSpawnSettings.SpawnerData(EntityType.FOX, 2, 4));
-		BiomeDefaultFeatures.commonSpawns(spawns);
+        BiomeDefaultFeatures.commonSpawns(spawns);
 
-		return biome(- 0.7F, 0.8f)
-				.mobSpawnSettings(spawns.build())
-				.generationSettings(generation.build())
-				.specialEffects(new BiomeSpecialEffects.Builder()
-						.waterColor(1724346)
-						.build())
-				.setAttribute(EnvironmentAttributes.FOG_COLOR, 12638463)
-				.setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, 197394)
-				.build();
+        return biome(-0.7F, 0.8f)
+                .mobSpawnSettings(spawns.build())
+                .generationSettings(generation.build())
+                .specialEffects(new BiomeSpecialEffects.Builder()
+                        .waterColor(1724346)
+                        .build())
+                .setAttribute(EnvironmentAttributes.FOG_COLOR, 12638463)
+                .setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, 197394)
+                .build();
     }
 
     public static Biome createDarkAmaranthForest(HolderGetter<PlacedFeature> featureLookup, HolderGetter<ConfiguredWorldCarver<?>> carverLookup) {
@@ -238,15 +230,15 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
                 .hasPrecipitation(false)
                 .temperature(2.0F)
                 .downfall(0.0F)
-				.specialEffects(new BiomeSpecialEffects.Builder().waterColor(4159204).build())
-				.setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, List.of(new AmbientParticle(ParticleTypes.WARPED_SPORE, 0.01428F))) //TODO
-				.setAttribute(EnvironmentAttributes.FOG_COLOR, 524562)
-				.setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(
-						Optional.of(SoundEvents.AMBIENT_WARPED_FOREST_LOOP),
-						Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0)),
-						List.of(new AmbientAdditionsSettings(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111))
-				))
-				.setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(Musics.createGameMusic(SoundEvents.MUSIC_BIOME_WARPED_FOREST)))
+                .specialEffects(new BiomeSpecialEffects.Builder().waterColor(4159204).build())
+                .setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, List.of(new AmbientParticle(ParticleTypes.WARPED_SPORE, 0.01428F))) //TODO
+                .setAttribute(EnvironmentAttributes.FOG_COLOR, 524562)
+                .setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(
+                        Optional.of(SoundEvents.AMBIENT_WARPED_FOREST_LOOP),
+                        Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0)),
+                        List.of(new AmbientAdditionsSettings(SoundEvents.AMBIENT_WARPED_FOREST_ADDITIONS, 0.0111))
+                ))
+                .setAttribute(EnvironmentAttributes.BACKGROUND_MUSIC, new BackgroundMusic(Musics.createGameMusic(SoundEvents.MUSIC_BIOME_WARPED_FOREST)))
                 .mobSpawnSettings(spawnSettings)
                 .generationSettings(lookupBackedBuilder.build())
                 .build();
@@ -261,7 +253,7 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         BiomeDefaultFeatures.addSurfaceFreezing(generationSettings);
     }
 
-	public static Biome.BiomeBuilder biome(float temperature, float downfall) {
-		return (new Biome.BiomeBuilder()).hasPrecipitation(true).temperature(temperature).downfall(downfall).setAttribute(EnvironmentAttributes.SKY_COLOR, OverworldBiomes.calculateSkyColor(temperature)).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).build());
-	}
+    public static Biome.BiomeBuilder biome(float temperature, float downfall) {
+        return (new Biome.BiomeBuilder()).hasPrecipitation(true).temperature(temperature).downfall(downfall).setAttribute(EnvironmentAttributes.SKY_COLOR, OverworldBiomes.calculateSkyColor(temperature)).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).build());
+    }
 }

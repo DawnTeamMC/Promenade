@@ -2,11 +2,12 @@ package fr.hugman.promenade.data;
 
 import com.google.common.collect.Maps;
 import fr.hugman.promenade.block.PromenadeBlocks;
-import java.util.Map;
-import java.util.stream.Stream;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.world.level.block.Block;
+
+import java.util.Map;
+import java.util.stream.Stream;
 
 public class PromenadeBlockFamilies {
     private static final Map<Block, BlockFamily> BASE_BLOCKS_TO_FAMILIES = Maps.newHashMap();

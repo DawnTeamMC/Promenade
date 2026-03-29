@@ -4,7 +4,7 @@ import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.block.snowy.SnowyBlockTransformation;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -12,11 +12,12 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+
 import java.util.concurrent.CompletableFuture;
 
 //TODO: a generic class for other devs
 public class PromenadeSnowyBlockTransformationProvider extends FabricDynamicRegistryProvider {
-    public PromenadeSnowyBlockTransformationProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public PromenadeSnowyBlockTransformationProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 

@@ -2,7 +2,7 @@ package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.entity.variant.PromenadeWolfVariants;
 import fr.hugman.promenade.tag.PromenadeBiomeTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.ClientAsset.ResourceTexture;
 import net.minecraft.core.HolderLookup;
@@ -13,10 +13,11 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.animal.wolf.WolfVariant;
 import net.minecraft.world.entity.variant.SpawnPrioritySelectors;
 import net.minecraft.world.level.biome.Biome;
+
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeWolfVariantProvider extends FabricDynamicRegistryProvider {
-    public PromenadeWolfVariantProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public PromenadeWolfVariantProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -46,6 +47,11 @@ public class PromenadeWolfVariantProvider extends FabricDynamicRegistryProvider 
                         new ResourceTexture(baseId.withSuffix("/wild")),
                         new ResourceTexture(baseId.withSuffix("/tame")),
                         new ResourceTexture(baseId.withSuffix("/angry"))
+                ),
+                new WolfVariant.AssetInfo(
+                        new ResourceTexture(baseId.withSuffix("/wild_baby")),
+                        new ResourceTexture(baseId.withSuffix("/tame_baby")),
+                        new ResourceTexture(baseId.withSuffix("/angry_baby"))
                 ),
                 spawnConditions
         ));

@@ -36,7 +36,7 @@ public class BoulderFeature extends Feature<BoulderFeatureConfig> {
                 float f = (float) (j + k + l) * 0.333F + 0.5F;
                 for (BlockPos pos2 : BlockPos.betweenClosed(pos.offset(-j, -k, -l), pos.offset(j, k, l))) {
                     if (pos2.distSqr(pos) <= (double) (f * f)) {
-                        this.setBlock(world, pos2, config.stateProvider().getState(random, pos));
+                        this.setBlock(world, pos2, config.stateProvider().getState(world, random, pos));
                     }
                 }
                 pos = pos.offset(-1 + random.nextInt(2), -random.nextInt(2), -1 + random.nextInt(2));

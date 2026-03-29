@@ -126,9 +126,9 @@ public class BerryBushBlock extends VegetationBlock implements BonemealableBlock
     protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         int age = state.getValue(AGE);
         if (age > 1) {
-            int j = 1 + world.random.nextInt(2);
+            int j = 1 + world.getRandom().nextInt(2);
             popResource(world, pos, new ItemStack(DataFixUtils.orElse(world.registryAccess().lookupOrThrow(Registries.ITEM).getOptional(this.berry), this), j + (age == MAX_AGE ? 1 : 0)));
-            world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0f, 0.8f + world.random.nextFloat() * 0.4f);
+            world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0f, 0.8f + world.getRandom().nextFloat() * 0.4f);
             BlockState blockState = state.setValue(AGE, 1);
             world.setBlock(pos, blockState, Block.UPDATE_CLIENTS);
             world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockState));

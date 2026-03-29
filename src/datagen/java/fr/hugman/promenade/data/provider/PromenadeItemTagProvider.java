@@ -2,8 +2,8 @@ package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.tag.PromenadeBlockTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
@@ -17,8 +17,8 @@ import java.util.concurrent.CompletableFuture;
 import static fr.hugman.promenade.item.PromenadeItems.*;
 import static fr.hugman.promenade.tag.PromenadeItemTags.*;
 
-public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider {
-    public PromenadeItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable BlockTagProvider blockTagProvider) {
+public class PromenadeItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
+    public PromenadeItemTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable BlockTagsProvider blockTagProvider) {
         super(output, completableFuture, blockTagProvider);
     }
 
@@ -91,36 +91,36 @@ public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider 
         // Conventional
         valueLookupBuilder(ConventionalItemTags.RAW_MEAT_FOODS).add(DUCK);
         valueLookupBuilder(ConventionalItemTags.COOKED_MEAT_FOODS).add(COOKED_DUCK);
-		valueLookupBuilder(APRICOTS_FOODS).add(APRICOT);
-		valueLookupBuilder(BANANA_FOODS).add(BANANA);
-		valueLookupBuilder(MANGOES_FOODS).add(MANGO);
-		valueLookupBuilder(BLUEBERRIES_FOODS).add(BLUEBERRIES);
+        valueLookupBuilder(APRICOTS_FOODS).add(APRICOT);
+        valueLookupBuilder(BANANA_FOODS).add(BANANA);
+        valueLookupBuilder(MANGOES_FOODS).add(MANGO);
+        valueLookupBuilder(BLUEBERRIES_FOODS).add(BLUEBERRIES);
 
-		valueLookupBuilder(ConventionalItemTags.FOODS)
-				.add(DUCK)
-				.add(COOKED_DUCK);
+        valueLookupBuilder(ConventionalItemTags.FOODS)
+                .add(DUCK)
+                .add(COOKED_DUCK);
 
-		valueLookupBuilder(ConventionalItemTags.FRUIT_FOODS)
-				.addTag(APRICOTS_FOODS)
-				.addTag(BANANA_FOODS)
-				.addTag(MANGOES_FOODS);
+        valueLookupBuilder(ConventionalItemTags.FRUIT_FOODS)
+                .addTag(APRICOTS_FOODS)
+                .addTag(BANANA_FOODS)
+                .addTag(MANGOES_FOODS);
 
-		valueLookupBuilder(ConventionalItemTags.BERRY_FOODS)
-				.addTag(BLUEBERRIES_FOODS);
+        valueLookupBuilder(ConventionalItemTags.BERRY_FOODS)
+                .addTag(BLUEBERRIES_FOODS);
 
-		valueLookupBuilder(MAPLE_SYRUP_DRINKS)
-				.add(MAPLE_SYRUP_BOTTLE);
+        valueLookupBuilder(MAPLE_SYRUP_DRINKS)
+                .add(MAPLE_SYRUP_BOTTLE);
 
-		valueLookupBuilder(ConventionalItemTags.DRINK_CONTAINING_BOTTLE)
-				.add(MAPLE_SYRUP_BOTTLE);
+        valueLookupBuilder(ConventionalItemTags.DRINK_CONTAINING_BOTTLE)
+                .add(MAPLE_SYRUP_BOTTLE);
 
-		copy(ConventionalBlockTags.STONES, ConventionalItemTags.STONES);
-		copy(ConventionalBlockTags.FENCES, ConventionalItemTags.FENCES);
-		copy(ConventionalBlockTags.WOODEN_FENCES, ConventionalItemTags.WOODEN_FENCES);
-		copy(ConventionalBlockTags.FENCE_GATES, ConventionalItemTags.FENCE_GATES);
-		copy(ConventionalBlockTags.WOODEN_FENCE_GATES, ConventionalItemTags.WOODEN_FENCE_GATES);
-		copy(ConventionalBlockTags.STRIPPED_WOODS, ConventionalItemTags.STRIPPED_WOODS);
-		copy(ConventionalBlockTags.STRIPPED_LOGS, ConventionalItemTags.STRIPPED_LOGS);
-		copy(PromenadeBlockTags.IGNEOUS_ROCKS, IGNEOUS_ROCKS);
-	}
+        copy(ConventionalBlockTags.STONES, ConventionalItemTags.STONES);
+        copy(ConventionalBlockTags.FENCES, ConventionalItemTags.FENCES);
+        copy(ConventionalBlockTags.WOODEN_FENCES, ConventionalItemTags.WOODEN_FENCES);
+        copy(ConventionalBlockTags.FENCE_GATES, ConventionalItemTags.FENCE_GATES);
+        copy(ConventionalBlockTags.WOODEN_FENCE_GATES, ConventionalItemTags.WOODEN_FENCE_GATES);
+        copy(ConventionalBlockTags.STRIPPED_WOODS, ConventionalItemTags.STRIPPED_WOODS);
+        copy(ConventionalBlockTags.STRIPPED_LOGS, ConventionalItemTags.STRIPPED_LOGS);
+        copy(PromenadeBlockTags.IGNEOUS_ROCKS, IGNEOUS_ROCKS);
+    }
 }

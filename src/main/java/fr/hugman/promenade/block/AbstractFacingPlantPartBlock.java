@@ -52,7 +52,7 @@ public abstract class AbstractFacingPlantPartBlock extends DirectionalBlock {
             var opposite = direction.getOpposite();
             var otherState = ctx.getLevel().getBlockState(ctx.getClickedPos().relative(opposite));
             var newState = !otherState.is(this.getStem()) && !otherState.is(this.getPlant())
-                    ? this.getRandomGrowthState(ctx.getLevel().random)
+                    ? this.getRandomGrowthState(ctx.getLevel().getRandom())
                     : this.getPlant().defaultBlockState();
             if (newState.hasProperty(FACING)) {
                 newState = newState.setValue(FACING, opposite);

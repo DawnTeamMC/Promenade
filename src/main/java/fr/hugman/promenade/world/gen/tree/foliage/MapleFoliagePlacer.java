@@ -7,7 +7,9 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.IntProvider;
+import net.minecraft.util.valueproviders.IntProviders;
 import net.minecraft.world.level.LevelSimulatedReader;
+import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
@@ -15,7 +17,7 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerTy
 public class MapleFoliagePlacer extends FoliagePlacer {
     public static final MapCodec<MapleFoliagePlacer> CODEC = RecordCodecBuilder.mapCodec(instance ->
             MapleFoliagePlacer.foliagePlacerParts(instance).and(
-                    IntProvider.codec(0, 32).optionalFieldOf("height", ConstantInt.of(0)).forGetter(placer -> placer.height)
+                    IntProviders.codec(0, 32).optionalFieldOf("height", ConstantInt.of(0)).forGetter(placer -> placer.height)
             ).apply(instance, MapleFoliagePlacer::new));
 
     protected final IntProvider height;
@@ -31,7 +33,7 @@ public class MapleFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    protected void createFoliage(LevelSimulatedReader world, FoliageSetter placer, RandomSource random, TreeConfiguration config, int trunkHeight, FoliageAttachment treeNode, int foliageHeight, int radius, int offset) {
+    protected void createFoliage(WorldGenLevel world, FoliageSetter placer, RandomSource random, TreeConfiguration config, int trunkHeight, FoliageAttachment treeNode, int foliageHeight, int radius, int offset) {
         var pos = treeNode.pos().below(foliageHeight - offset);
 
         var curvature = radius;
@@ -59,7 +61,7 @@ public class MapleFoliagePlacer extends FoliagePlacer {
         }
     }
 
-    protected void generateColumn(LevelSimulatedReader world, FoliageSetter placer, TreeConfiguration config, RandomSource random, BlockPos centerPos, int dx, int dz, int y1, int y2) {
+    protected void generateColumn(WorldGenLevel world, FoliageSetter placer, TreeConfiguration config, RandomSource random, BlockPos centerPos, int dx, int dz, int y1, int y2) {
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         mutable.setWithOffset(centerPos, dz, y1, dx);
         for (int y = y1; y < y2; y++) {

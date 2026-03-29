@@ -1,9 +1,10 @@
 package fr.hugman.promenade.data.model;
 
 import fr.hugman.promenade.Promenade;
-import java.util.Optional;
 import net.minecraft.client.data.models.model.ModelTemplate;
 import net.minecraft.client.data.models.model.TextureSlot;
+
+import java.util.Optional;
 
 public class PromenadeModels {
     public static final ModelTemplate PILE = block("pile", TextureSlot.ALL);

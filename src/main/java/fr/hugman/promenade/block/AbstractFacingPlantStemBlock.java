@@ -52,7 +52,7 @@ public abstract class AbstractFacingPlantStemBlock extends AbstractFacingPlantPa
         if (state.getValue(AGE) < 25 && random.nextDouble() < this.growthChance) {
             BlockPos blockPos = pos.relative(state.getValue(FACING));
             if (this.canGrowAt(world.getBlockState(blockPos))) {
-                world.setBlockAndUpdate(blockPos, this.age(state, world.random));
+                world.setBlockAndUpdate(blockPos, this.age(state, world.getRandom()));
             }
         }
     }

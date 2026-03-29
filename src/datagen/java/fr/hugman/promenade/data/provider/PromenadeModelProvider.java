@@ -13,22 +13,17 @@ import fr.hugman.promenade.data.model.PromenadeTexturedModels;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.world.biome.PromenadeFoliageColors;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.minecraft.client.color.item.ItemTintSource;
-import net.minecraft.client.data.*;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.ConditionBuilder;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.data.models.model.ItemModelUtils;
-import net.minecraft.client.data.models.model.ModelLocationUtils;
-import net.minecraft.client.data.models.model.ModelTemplates;
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TextureSlot;
-import net.minecraft.client.data.models.model.TexturedModel;
-import net.minecraft.client.renderer.block.model.VariantMutator;
+import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.block.dispatch.VariantMutator;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
@@ -37,6 +32,7 @@ import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+
 import java.util.function.Function;
 
 public class PromenadeModelProvider extends FabricModelProvider {
@@ -69,7 +65,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
             .select(Direction.WEST, ROTATE_X_90.then(ROTATE_Y_270))
             .select(Direction.EAST, ROTATE_X_90.then(ROTATE_Y_90));
 
-    public PromenadeModelProvider(FabricDataOutput output) {
+    public PromenadeModelProvider(FabricPackOutput output) {
         super(output);
     }
 
@@ -234,7 +230,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
                                         .select(MoaiType.TOP, BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(PromenadeBlocks.MOAI, "_top")))
                                         .select(MoaiType.BOTTOM, BlockModelGenerators.plainVariant(ModelLocationUtils.getModelLocation(PromenadeBlocks.MOAI, "_bottom")))
                                 )
-								.with(NORTH_DEFAULT_HORIZONTAL_ROTATION_OPERATIONS)
+                                .with(NORTH_DEFAULT_HORIZONTAL_ROTATION_OPERATIONS)
                 );
     }
 
@@ -274,7 +270,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
                 MultiVariantGenerator.dispatch(snowyLeaves)
                         .with(PropertyDispatch.initial(SnowyLeavesBlock.BOTTOM)
                                 .select(true, BlockModelGenerators.plainVariant(bottomModel))
-                                .select(false, BlockModelGenerators.plainVariant(gen.createSuffixedVariant(snowyLeaves, "", ModelTemplates.CUBE_ALL, identifier -> TextureMapping.cube(textureId))))
+                                .select(false, BlockModelGenerators.plainVariant(gen.createSuffixedVariant(snowyLeaves, "", ModelTemplates.CUBE_ALL, identifier -> TextureMapping.cube(new Material(textureId)))))
                         )
         );
 
@@ -317,7 +313,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
         MultiVariant weightedVariant = BlockModelGenerators.plainVariant(tintType.getCross().create(block, crossTexture, gen.modelOutput));
         gen.blockStateOutput.accept(
                 BlockModelGenerators.createSimpleBlock(block, weightedVariant)
-						.with(UP_DEFAULT_ROTATION_OPERATIONS)
+                        .with(UP_DEFAULT_ROTATION_OPERATIONS)
         );
     }
 
