@@ -17,8 +17,8 @@ public class CapybaraEntityRenderState extends LivingEntityRenderState {
 
     @Nullable
     public CapybaraVariant variant;
-    public boolean closedEyes = false;
-    public boolean largeEyes = false;
+    public boolean sleeping = false;
+    public boolean surprised = false;
     public float earWiggleSpeed = 1.0f;
 
     public boolean canAngleHead = true;

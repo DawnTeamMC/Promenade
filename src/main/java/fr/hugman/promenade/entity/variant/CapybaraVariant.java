@@ -10,7 +10,6 @@ import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.RegistryFixedCodec;
-import net.minecraft.world.entity.animal.wolf.WolfVariant;
 import net.minecraft.world.entity.variant.PriorityProvider;
 import net.minecraft.world.entity.variant.SpawnCondition;
 import net.minecraft.world.entity.variant.SpawnContext;
@@ -46,13 +45,13 @@ public record CapybaraVariant(
 
     public record AssetInfo(
             ResourceTexture normal,
-            ResourceTexture farting,
+            ResourceTexture surprised,
             ResourceTexture sleeping
     ) {
         public static final Codec<AssetInfo> CODEC = RecordCodecBuilder.create(
                 instance -> instance.group(
                                 ResourceTexture.CODEC.fieldOf("normal").forGetter(AssetInfo::normal),
-                                ResourceTexture.CODEC.fieldOf("farting").forGetter(AssetInfo::farting),
+                                ResourceTexture.CODEC.fieldOf("surprised").forGetter(AssetInfo::surprised),
                                 ResourceTexture.CODEC.fieldOf("sleeping").forGetter(AssetInfo::sleeping)
                         )
                         .apply(instance, AssetInfo::new)

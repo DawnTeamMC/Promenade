@@ -44,7 +44,7 @@ public class PromenadeCapybaraVariantProvider extends FabricDynamicRegistryProvi
         registry.register(key, new CapybaraVariant(
                 new CapybaraVariant.AssetInfo(
                         new ResourceTexture(baseId.withSuffix("/normal")),
-                        new ResourceTexture(baseId.withSuffix("/farting")),
+                        new ResourceTexture(baseId.withSuffix("/surprised")),
                         new ResourceTexture(baseId.withSuffix("/sleeping"))
                 ),
                 new CapybaraVariant.AssetInfo(

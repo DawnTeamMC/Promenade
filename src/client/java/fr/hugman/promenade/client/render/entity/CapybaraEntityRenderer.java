@@ -35,10 +35,10 @@ public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMob
             return MissingTextureAtlasSprite.getLocation();
         }
         var textureInfo = state.isBaby ? state.variant.babyInfo() : state.variant.adultInfo();
-        if (state.closedEyes) {
+        if (state.sleeping) {
             return textureInfo.sleeping().texturePath();
         }
-        return state.largeEyes ? textureInfo.farting().texturePath() : textureInfo.normal().texturePath();
+        return state.surprised ? textureInfo.surprised().texturePath() : textureInfo.normal().texturePath();
     }
 
     @Override
@@ -51,8 +51,8 @@ public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMob
         state.fartAnimState.copyFrom(capybara.fartAnimState);
 
         state.variant = capybara.getVariant().value();
-        state.closedEyes = capybara.hasClosedEyes();
-        state.largeEyes = capybara.hasLargeEyes();
+        state.sleeping = capybara.isVisuallySleeping();
+        state.surprised = capybara.isSurprised();
         state.earWiggleSpeed = capybara.getEarWiggleSpeed();
         state.canAngleHead = capybara.canAngleHead();
     }

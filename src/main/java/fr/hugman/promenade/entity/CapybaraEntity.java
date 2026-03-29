@@ -392,13 +392,13 @@ public class CapybaraEntity extends Animal {
     }
 
     @Environment(EnvType.CLIENT)
-    public boolean hasLargeEyes() {
+    public boolean isSurprised() {
         boolean surprisedByFart = this.isFarting() && this.getLastStateTickDelta() < 40L;
         return isBaby() || surprisedByFart;
     }
 
     @Environment(EnvType.CLIENT)
-    public boolean hasClosedEyes() {
+    public boolean isVisuallySleeping() {
         boolean aboutToStartToSleep = this.isFallingToSleep() && this.getLastStateTickDelta() > 31L;
         boolean shakingHead = this.isFarting() && (40L < this.getLastStateTickDelta() && this.getLastStateTickDelta() < 65L);
         boolean wakingUp = this.isWakingUp() && (this.getLastStateTickDelta() < 5L || (18L < this.getLastStateTickDelta() && this.getLastStateTickDelta() < 34L));
