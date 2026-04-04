@@ -3,6 +3,9 @@ package fr.hugman.promenade.client.render.entity.model;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.client.render.entity.model.capybara.AdultCapybaraModel;
 import fr.hugman.promenade.client.render.entity.model.capybara.BabyCapybaraModel;
+import fr.hugman.promenade.client.render.entity.model.duck.AdultDuckModel;
+import fr.hugman.promenade.client.render.entity.model.duck.BabyDuckModel;
+import fr.hugman.promenade.client.render.entity.model.duck.DuckModel;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.ModelLayerRegistry;
@@ -47,10 +50,8 @@ public class PromenadeEntityModelLayers {
         ModelLayerRegistry.registerModelLayer(CAPYBARA, AdultCapybaraModel::getTexturedModelData);
         ModelLayerRegistry.registerModelLayer(CAPYBARA_BABY, BabyCapybaraModel::getTexturedModelData);
 
-        var duckModelData = DuckEntityModel.getTexturedModelData();
-
-        ModelLayerRegistry.registerModelLayer(DUCK, () -> duckModelData);
-        ModelLayerRegistry.registerModelLayer(DUCK_BABY, () -> duckModelData.apply(DuckEntityModel.BABY_TRANSFORMER));
+        ModelLayerRegistry.registerModelLayer(DUCK, AdultDuckModel::getTexturedModelData);
+        ModelLayerRegistry.registerModelLayer(DUCK_BABY, BabyDuckModel::getTexturedModelData);
 
         ModelLayerRegistry.registerModelLayer(LUSH_CREEPER, () -> CreeperModel.createBodyLayer(CubeDeformation.NONE));
         ModelLayerRegistry.registerModelLayer(LUSH_CREEPER_OUTER, () -> CreeperModel.createBodyLayer(new CubeDeformation(0.25f)));

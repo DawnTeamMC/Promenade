@@ -52,7 +52,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class DuckEntity extends Animal {
-    private static final EntityDimensions BABY_BASE_DIMENSIONS = EntityDimensions.scalable(0.4F, 0.8F).scale(0.5F).withEyeHeight(0.78125F);
+    private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.scalable(4 / 16f, 5 / 16f).withEyeHeight(3.5f / 16f);
 
     private static final EntityDataAccessor<Holder<DuckVariant>> VARIANT = SynchedEntityData.defineId(DuckEntity.class, PromenadeTrackedData.DUCK_VARIANT);
 
@@ -75,7 +75,7 @@ public class DuckEntity extends Animal {
 
     @Override
     protected EntityDimensions getDefaultDimensions(Pose pose) {
-        return this.isBaby() ? BABY_BASE_DIMENSIONS : super.getDefaultDimensions(pose);
+        return this.isBaby() ? BABY_DIMENSIONS : super.getDefaultDimensions(pose);
     }
 
     @Override
@@ -135,7 +135,7 @@ public class DuckEntity extends Animal {
 
     @Override
     protected float getWaterSlowDown() {
-        return 0.9f;
+        return 0.98f;
     }
 
     /*============*/

@@ -39,13 +39,13 @@ public class PromenadeEntityTypes {
                     .spawnPlacement(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules)
             )
             .sized(0.7f, 0.875f)
-            .eyeHeight(0.875f));
+            .eyeHeight(0.85f));
     public static final EntityType<DuckEntity> DUCK = register("duck", FabricEntityType.Builder.createMob(DuckEntity::new, MobCategory.CREATURE, mob -> mob
                     .defaultAttributes(DuckEntity::createDuckAttributes)
                     .spawnPlacement(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules)
             )
-            .sized(0.4F, 0.8F)
-            .eyeHeight(1.09375f)
+            .sized(8f /16, 10f /16)
+            .eyeHeight(9.75f /16)
             .clientTrackingRange(10)
             .updateInterval(3));
     public static final EntityType<LushCreeperEntity> LUSH_CREEPER = register("lush_creeper", FabricEntityType.Builder.createMob(LushCreeperEntity::new, MobCategory.MONSTER, mob -> mob

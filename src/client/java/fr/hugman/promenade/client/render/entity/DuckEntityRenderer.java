@@ -1,6 +1,8 @@
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.client.render.entity.model.DuckEntityModel;
+import fr.hugman.promenade.client.render.entity.model.duck.AdultDuckModel;
+import fr.hugman.promenade.client.render.entity.model.duck.BabyDuckModel;
+import fr.hugman.promenade.client.render.entity.model.duck.DuckModel;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.state.DuckEntityRenderState;
 import fr.hugman.promenade.entity.DuckEntity;
@@ -13,12 +15,12 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class DuckEntityRenderer extends AgeableMobRenderer<DuckEntity, DuckEntityRenderState, DuckEntityModel> {
+public class DuckEntityRenderer extends AgeableMobRenderer<DuckEntity, DuckEntityRenderState, DuckModel> {
     public DuckEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
-                new DuckEntityModel(context.bakeLayer(PromenadeEntityModelLayers.DUCK)),
-                new DuckEntityModel(context.bakeLayer(PromenadeEntityModelLayers.DUCK_BABY)),
+                new AdultDuckModel(context.bakeLayer(PromenadeEntityModelLayers.DUCK)),
+                new BabyDuckModel(context.bakeLayer(PromenadeEntityModelLayers.DUCK_BABY)),
                 0.3F
         );
     }
