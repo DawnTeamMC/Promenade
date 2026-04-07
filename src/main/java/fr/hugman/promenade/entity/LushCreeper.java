@@ -18,10 +18,10 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.gamerules.GameRules;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
-public class LushCreeperEntity extends Creeper {
+public class LushCreeper extends Creeper {
     private static final int EXPLOSION_Y_LENGTH = 10;
 
-    public LushCreeperEntity(EntityType<? extends Creeper> entityType, Level world) {
+    public LushCreeper(EntityType<? extends Creeper> entityType, Level world) {
         super(entityType, world);
     }
 

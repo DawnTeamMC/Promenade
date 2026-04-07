@@ -51,10 +51,10 @@ import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-public class DuckEntity extends Animal {
+public class Duck extends Animal {
     private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.scalable(4 / 16f, 5 / 16f).withEyeHeight(3.5f / 16f);
 
-    private static final EntityDataAccessor<Holder<DuckVariant>> VARIANT = SynchedEntityData.defineId(DuckEntity.class, PromenadeTrackedData.DUCK_VARIANT);
+    private static final EntityDataAccessor<Holder<DuckVariant>> VARIANT = SynchedEntityData.defineId(Duck.class, PromenadeTrackedData.DUCK_VARIANT);
 
     public float flapProgress;
     public float maxWingDeviation;
@@ -62,7 +62,7 @@ public class DuckEntity extends Animal {
     public float prevFlapProgress;
     public float wingRotDelta = 1.0F;
 
-    public DuckEntity(EntityType<? extends DuckEntity> type, Level worldIn) {
+    public Duck(EntityType<? extends Duck> type, Level worldIn) {
         super(type, worldIn);
         this.setPathfindingMalus(PathType.WATER, 0.0F);
     }
@@ -168,9 +168,9 @@ public class DuckEntity extends Animal {
 
     @Nullable
     @Override
-    public DuckEntity getBreedOffspring(ServerLevel serverWorld, AgeableMob entity) {
-        DuckEntity child = PromenadeEntityTypes.DUCK.create(this.level(), EntitySpawnReason.BREEDING);
-        if (child != null && entity instanceof DuckEntity mama) {
+    public Duck getBreedOffspring(ServerLevel serverWorld, AgeableMob entity) {
+        Duck child = PromenadeEntityTypes.DUCK.create(this.level(), EntitySpawnReason.BREEDING);
+        if (child != null && entity instanceof Duck mama) {
             child.setVariant(this.random.nextFloat() < 0.5f ? mama.getVariant() : this.getVariant());
         }
         return child;

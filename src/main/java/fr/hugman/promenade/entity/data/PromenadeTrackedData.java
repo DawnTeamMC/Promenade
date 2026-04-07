@@ -1,7 +1,7 @@
 package fr.hugman.promenade.entity.data;
 
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.entity.CapybaraEntity;
+import fr.hugman.promenade.entity.Capybara;
 import fr.hugman.promenade.entity.variant.CapybaraVariant;
 import fr.hugman.promenade.entity.variant.DuckVariant;
 import fr.hugman.promenade.entity.variant.SunkenVariant;
@@ -16,7 +16,7 @@ public class PromenadeTrackedData {
     public static final EntityDataSerializer<Holder<CapybaraVariant>> CAPYBARA_VARIANT = of("capybara_variant", CapybaraVariant.ENTRY_PACKET_CODEC);
     public static final EntityDataSerializer<Holder<SunkenVariant>> SUNKEN_VARIANT = of("sunken_variant", SunkenVariant.ENTRY_PACKET_CODEC);
 
-    public static final EntityDataSerializer<CapybaraEntity.State> CAPYBARA_STATE = of("capybara_state", CapybaraEntity.State.PACKET_CODEC);
+    public static final EntityDataSerializer<Capybara.State> CAPYBARA_STATE = of("capybara_state", Capybara.State.PACKET_CODEC);
 
     public static <T> EntityDataSerializer<T> of(String name, StreamCodec<? super RegistryFriendlyByteBuf, T> codec) {
         var handler = EntityDataSerializer.forValueType(codec);

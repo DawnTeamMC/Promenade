@@ -5,7 +5,7 @@ import fr.hugman.promenade.client.render.entity.model.capybara.AdultCapybaraMode
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.capybara.CapybaraModel;
 import fr.hugman.promenade.client.render.entity.state.CapybaraEntityRenderState;
-import fr.hugman.promenade.entity.CapybaraEntity;
+import fr.hugman.promenade.entity.Capybara;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.AgeableMobRenderer;
@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.resources.Identifier;
 
 @Environment(EnvType.CLIENT)
-public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMobRenderer<E, CapybaraEntityRenderState, CapybaraModel> {
+public class CapybaraEntityRenderer<E extends Capybara> extends AgeableMobRenderer<E, CapybaraEntityRenderState, CapybaraModel> {
     public CapybaraEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,

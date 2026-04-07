@@ -76,31 +76,31 @@ import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public class SunkenEntity extends AbstractSkeleton implements CrossbowAttackMob {
-    private static final EntityDataAccessor<Holder<SunkenVariant>> VARIANT = SynchedEntityData.defineId(SunkenEntity.class, PromenadeTrackedData.SUNKEN_VARIANT);
-    private static final EntityDataAccessor<Boolean> CHARGING = SynchedEntityData.defineId(SunkenEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Boolean> SWIMMING = SynchedEntityData.defineId(SunkenEntity.class, EntityDataSerializers.BOOLEAN);
+public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
+    private static final EntityDataAccessor<Holder<SunkenVariant>> VARIANT = SynchedEntityData.defineId(Sunken.class, PromenadeTrackedData.SUNKEN_VARIANT);
+    private static final EntityDataAccessor<Boolean> CHARGING = SynchedEntityData.defineId(Sunken.class, EntityDataSerializers.BOOLEAN);
+    private static final EntityDataAccessor<Boolean> SWIMMING = SynchedEntityData.defineId(Sunken.class, EntityDataSerializers.BOOLEAN);
 
     private final static EntityDimensions SWIMMING_DIMENSIONS = EntityDimensions.fixed(0.6F, 0.6F);
 
     protected final WaterBoundPathNavigation waterNavigation;
     protected final GroundPathNavigation landNavigation;
-    private final RangedCrossbowAttackGoal<SunkenEntity> crossbowAttackGoal = new RangedCrossbowAttackGoal<>(this, 1.0D, 20.0F);
+    private final RangedCrossbowAttackGoal<Sunken> crossbowAttackGoal = new RangedCrossbowAttackGoal<>(this, 1.0D, 20.0F);
     private final RangedBowAttackGoal<AbstractSkeleton> bowAttackGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
     private final MeleeAttackGoal meleeAttackGoal = new MeleeAttackGoal(this, 1.2D, false) {
         public void stop() {
             super.stop();
-            SunkenEntity.this.setAggressive(false);
+            Sunken.this.setAggressive(false);
         }
 
         public void start() {
             super.start();
-            SunkenEntity.this.setAggressive(true);
+            Sunken.this.setAggressive(true);
         }
     };
     boolean targetingUnderwater;
 
-    public SunkenEntity(EntityType<? extends SunkenEntity> entityType, Level world) {
+    public Sunken(EntityType<? extends Sunken> entityType, Level world) {
         super(entityType, world);
         this.reassessWeaponGoal();
         this.moveControl = new SunkenMoveControl(this);
@@ -117,7 +117,7 @@ public class SunkenEntity extends AbstractSkeleton implements CrossbowAttackMob 
         return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
     }
 
-    public static boolean canSpawn(EntityType<SunkenEntity> ignoredType, ServerLevelAccessor world, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
+    public static boolean canSpawn(EntityType<Sunken> ignoredType, ServerLevelAccessor world, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
         boolean bl = world.getDifficulty() != Difficulty.PEACEFUL
                 && isDarkEnoughToSpawn(world, pos, random)
                 && (spawnReason == EntitySpawnReason.SPAWNER || world.getFluidState(pos).is(FluidTags.WATER));
@@ -152,8 +152,8 @@ public class SunkenEntity extends AbstractSkeleton implements CrossbowAttackMob 
         this.goalSelector.addGoal(3, new FleeSunGoal(this, 1.0D));
         this.goalSelector.addGoal(6, new RandomSwimmingGoal(this, 1.0D, 40));
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(7, new SunkenEntity.TargetAboveWaterGoal(this, 1.0D, this.level().getSeaLevel()));
-        this.goalSelector.addGoal(7, new SunkenEntity.LeaveWaterGoal(this, 1.0D));
+        this.goalSelector.addGoal(7, new Sunken.TargetAboveWaterGoal(this, 1.0D, this.level().getSeaLevel()));
+        this.goalSelector.addGoal(7, new Sunken.LeaveWaterGoal(this, 1.0D));
         this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
 
@@ -426,9 +426,9 @@ public class SunkenEntity extends AbstractSkeleton implements CrossbowAttackMob 
     }
 
     static class SunkenMoveControl extends MoveControl {
-        private final SunkenEntity sunken;
+        private final Sunken sunken;
 
-        public SunkenMoveControl(SunkenEntity sunken) {
+        public SunkenMoveControl(Sunken sunken) {
             super(sunken);
             this.sunken = sunken;
         }
@@ -468,9 +468,9 @@ public class SunkenEntity extends AbstractSkeleton implements CrossbowAttackMob 
     }
 
     static class LeaveWaterGoal extends MoveToBlockGoal {
-        private final SunkenEntity sunken;
+        private final Sunken sunken;
 
-        public LeaveWaterGoal(SunkenEntity sunken, double speed) {
+        public LeaveWaterGoal(Sunken sunken, double speed) {
             super(sunken, speed, 8, 2);
             this.sunken = sunken;
         }
@@ -500,12 +500,12 @@ public class SunkenEntity extends AbstractSkeleton implements CrossbowAttackMob 
     }
 
     private static class TargetAboveWaterGoal extends Goal {
-        private final SunkenEntity sunken;
+        private final Sunken sunken;
         private final double speed;
         private final int minY;
         private boolean foundTarget;
 
-        public TargetAboveWaterGoal(SunkenEntity sunken, double speed, int minY) {
+        public TargetAboveWaterGoal(Sunken sunken, double speed, int minY) {
             this.sunken = sunken;
             this.speed = speed;
             this.minY = minY;

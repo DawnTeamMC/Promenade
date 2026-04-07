@@ -34,30 +34,30 @@ public class PromenadeEntityTypes {
     public static final EntityType<Boat> PALM_BOAT = register("palm_boat", EntityTypeFactory.boat(() -> PromenadeItems.PALM_BOAT));
     public static final EntityType<ChestBoat> PALM_CHEST_BOAT = register("palm_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.PALM_CHEST_BOAT));
 
-    public static final EntityType<CapybaraEntity> CAPYBARA = register("capybara", FabricEntityType.Builder.createMob(CapybaraEntity::new, MobCategory.CREATURE, mob -> mob
-                    .defaultAttributes(CapybaraEntity::createCapybaraAttributes)
+    public static final EntityType<Capybara> CAPYBARA = register("capybara", FabricEntityType.Builder.createMob(Capybara::new, MobCategory.CREATURE, mob -> mob
+                    .defaultAttributes(Capybara::createCapybaraAttributes)
                     .spawnPlacement(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules)
             )
             .sized(0.7f, 0.875f)
             .eyeHeight(0.85f));
-    public static final EntityType<DuckEntity> DUCK = register("duck", FabricEntityType.Builder.createMob(DuckEntity::new, MobCategory.CREATURE, mob -> mob
-                    .defaultAttributes(DuckEntity::createDuckAttributes)
+    public static final EntityType<Duck> DUCK = register("duck", FabricEntityType.Builder.createMob(Duck::new, MobCategory.CREATURE, mob -> mob
+                    .defaultAttributes(Duck::createDuckAttributes)
                     .spawnPlacement(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Animal::checkAnimalSpawnRules)
             )
             .sized(8f /16, 10f /16)
             .eyeHeight(9.75f /16)
             .clientTrackingRange(10)
             .updateInterval(3));
-    public static final EntityType<LushCreeperEntity> LUSH_CREEPER = register("lush_creeper", FabricEntityType.Builder.createMob(LushCreeperEntity::new, MobCategory.MONSTER, mob -> mob
-                    .defaultAttributes(LushCreeperEntity::createAttributes)
-                    .spawnPlacement(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LushCreeperEntity::canSpawn)
+    public static final EntityType<LushCreeper> LUSH_CREEPER = register("lush_creeper", FabricEntityType.Builder.createMob(LushCreeper::new, MobCategory.MONSTER, mob -> mob
+                    .defaultAttributes(LushCreeper::createAttributes)
+                    .spawnPlacement(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, LushCreeper::canSpawn)
             )
             .sized(0.6f, 1.7f)
             .clientTrackingRange(8)
             .notInPeaceful());
-    public static final EntityType<SunkenEntity> SUNKEN = register("sunken", FabricEntityType.Builder.createMob(SunkenEntity::new, MobCategory.MONSTER, mob -> mob
-                    .defaultAttributes(SunkenEntity::createSunkenAttributes)
-                    .spawnPlacement(SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, SunkenEntity::canSpawn)
+    public static final EntityType<Sunken> SUNKEN = register("sunken", FabricEntityType.Builder.createMob(Sunken::new, MobCategory.MONSTER, mob -> mob
+                    .defaultAttributes(Sunken::createSunkenAttributes)
+                    .spawnPlacement(SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Sunken::canSpawn)
             )
             .sized(0.6F, 1.99F)
             .eyeHeight(1.74F)

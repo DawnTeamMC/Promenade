@@ -57,28 +57,28 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.IntFunction;
 
-public class CapybaraEntity extends Animal {
+public class Capybara extends Animal {
     private static final FloatProvider FART_CHANCE_PROVIDER = TrapezoidFloat.of(0.1F, 0.55F, 0.2F);
     private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.scalable(0.49f, 0.45f).withEyeHeight(0.40F);
 
-    protected static final EntityDataAccessor<State> STATE = SynchedEntityData.defineId(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_STATE);
-    public static final EntityDataAccessor<Long> LAST_STATE_TICK = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.LONG);
+    protected static final EntityDataAccessor<State> STATE = SynchedEntityData.defineId(Capybara.class, PromenadeTrackedData.CAPYBARA_STATE);
+    public static final EntityDataAccessor<Long> LAST_STATE_TICK = SynchedEntityData.defineId(Capybara.class, EntityDataSerializers.LONG);
 
     public static final String FART_CHANCE_KEY = "fart_chance";
     public static final String LAST_STATE_TICK_KEY = "last_state_tick";
     public static final String STATE_KEY = "state_key";
 
-    private static final EntityDataAccessor<Holder<CapybaraVariant>> VARIANT = SynchedEntityData.defineId(CapybaraEntity.class, PromenadeTrackedData.CAPYBARA_VARIANT);
-    private static final EntityDataAccessor<Float> FART_CHANCE = SynchedEntityData.defineId(CapybaraEntity.class, EntityDataSerializers.FLOAT);
+    private static final EntityDataAccessor<Holder<CapybaraVariant>> VARIANT = SynchedEntityData.defineId(Capybara.class, PromenadeTrackedData.CAPYBARA_VARIANT);
+    private static final EntityDataAccessor<Float> FART_CHANCE = SynchedEntityData.defineId(Capybara.class, EntityDataSerializers.FLOAT);
 
-    private static final Brain.Provider<CapybaraEntity> BRAIN_PROVIDER = Brain.provider(
+    private static final Brain.Provider<Capybara> BRAIN_PROVIDER = Brain.provider(
             List.of(
                     SensorType.NEAREST_LIVING_ENTITIES,
                     SensorType.HURT_BY,
                     PromenadeSensorTypes.CAPYBARA_TEMPTATIONS,
                     SensorType.NEAREST_ADULT,
                     SensorType.IS_IN_WATER
-            ), _ -> CapybaraBrain.getActivities()
+            ), _ -> CapybaraAi.getActivities()
     );
 
     private static final int EAR_WIGGLE_LENGHT = (int) (0.2f * SharedConstants.TICKS_PER_SECOND);
@@ -91,7 +91,7 @@ public class CapybaraEntity extends Animal {
 
     public int earWiggleCooldown = 0;
 
-    public CapybaraEntity(EntityType<? extends Animal> entityType, Level world) {
+    public Capybara(EntityType<? extends Animal> entityType, Level world) {
         super(entityType, world);
         this.getNavigation().setCanFloat(true);
     }
@@ -109,11 +109,11 @@ public class CapybaraEntity extends Animal {
     protected void customServerAiStep(ServerLevel world) {
         ProfilerFiller profiler = Profiler.get();
         profiler.push("capybaraBrain");
-        Brain<CapybaraEntity> brain = (Brain<CapybaraEntity>) this.getBrain();
+        Brain<Capybara> brain = (Brain<Capybara>) this.getBrain();
         brain.tick((ServerLevel) this.level(), this);
         profiler.pop();
         profiler.push("capybaraActivityUpdate");
-        CapybaraBrain.updateActivities(this);
+        CapybaraAi.updateActivities(this);
         profiler.pop();
         super.customServerAiStep(world);
     }
@@ -178,13 +178,13 @@ public class CapybaraEntity extends Animal {
 
     class CapybaraBodyControl extends BodyRotationControl {
 
-        public CapybaraBodyControl(CapybaraEntity capybara) {
+        public CapybaraBodyControl(Capybara capybara) {
             super(capybara);
         }
 
         @Override
         public void clientTick() {
-            if (!CapybaraEntity.this.isStationary()) {
+            if (!Capybara.this.isStationary()) {
                 super.clientTick();
             }
         }
@@ -454,7 +454,7 @@ public class CapybaraEntity extends Animal {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
         var capyBaby = PromenadeEntityTypes.CAPYBARA.create(this.level(), EntitySpawnReason.BREEDING);
-        if (capyBaby != null && entity instanceof CapybaraEntity capyMama) {
+        if (capyBaby != null && entity instanceof Capybara capyMama) {
             capyBaby.setVariant(this.random.nextBoolean() ? this.getVariant() : capyMama.getVariant());
         }
         return capyBaby;

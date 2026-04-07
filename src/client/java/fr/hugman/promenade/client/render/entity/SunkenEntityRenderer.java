@@ -5,7 +5,7 @@ import com.mojang.math.Axis;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.SunkenEntityModel;
 import fr.hugman.promenade.client.render.entity.state.SunkenEntityRenderState;
-import fr.hugman.promenade.entity.SunkenEntity;
+import fr.hugman.promenade.entity.Sunken;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.AbstractSkeletonRenderer;
@@ -15,7 +15,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class SunkenEntityRenderer extends AbstractSkeletonRenderer<SunkenEntity, SunkenEntityRenderState> {
+public class SunkenEntityRenderer extends AbstractSkeletonRenderer<Sunken, SunkenEntityRenderState> {
     public SunkenEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
@@ -54,7 +54,7 @@ public class SunkenEntityRenderer extends AbstractSkeletonRenderer<SunkenEntity,
     }
 
     @Override
-    public void extractRenderState(SunkenEntity sunken, SunkenEntityRenderState state, float f) {
+    public void extractRenderState(Sunken sunken, SunkenEntityRenderState state, float f) {
         super.extractRenderState(sunken, state, f);
         state.variant = sunken.getVariant().value();
     }

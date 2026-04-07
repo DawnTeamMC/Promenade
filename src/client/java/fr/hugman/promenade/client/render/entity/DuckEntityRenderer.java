@@ -5,7 +5,7 @@ import fr.hugman.promenade.client.render.entity.model.duck.BabyDuckModel;
 import fr.hugman.promenade.client.render.entity.model.duck.DuckModel;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.state.DuckEntityRenderState;
-import fr.hugman.promenade.entity.DuckEntity;
+import fr.hugman.promenade.entity.Duck;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.entity.AgeableMobRenderer;
@@ -15,7 +15,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class DuckEntityRenderer extends AgeableMobRenderer<DuckEntity, DuckEntityRenderState, DuckModel> {
+public class DuckEntityRenderer extends AgeableMobRenderer<Duck, DuckEntityRenderState, DuckModel> {
     public DuckEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
@@ -42,7 +42,7 @@ public class DuckEntityRenderer extends AgeableMobRenderer<DuckEntity, DuckEntit
     }
 
     @Override
-    public void extractRenderState(DuckEntity duck, DuckEntityRenderState state, float f) {
+    public void extractRenderState(Duck duck, DuckEntityRenderState state, float f) {
         super.extractRenderState(duck, state, f);
         state.flapProgress = Mth.lerp(f, duck.prevFlapProgress, duck.flapProgress);
         state.maxWingDeviation = Mth.lerp(f, duck.prevMaxWingDeviation, duck.maxWingDeviation);

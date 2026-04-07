@@ -3,7 +3,7 @@ package fr.hugman.promenade.client.render.entity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
-import fr.hugman.promenade.entity.LushCreeperEntity;
+import fr.hugman.promenade.entity.LushCreeper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.monster.creeper.CreeperModel;
@@ -14,7 +14,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class LushCreeperRenderer extends MobRenderer<LushCreeperEntity, CreeperRenderState, CreeperModel> {
+public class LushCreeperRenderer extends MobRenderer<LushCreeper, CreeperRenderState, CreeperModel> {
     private static final Identifier TEXTURE = Promenade.id("textures/entity/lush_creeper/base.png");
     private static final Identifier OVERLAY_TEXTURE = Promenade.id("textures/entity/lush_creeper/overlay.png");
 
@@ -52,7 +52,7 @@ public class LushCreeperRenderer extends MobRenderer<LushCreeperEntity, CreeperR
     }
 
     @Override
-    public void extractRenderState(LushCreeperEntity lushCreeper, CreeperRenderState creeperEntityRenderState, float f) {
+    public void extractRenderState(LushCreeper lushCreeper, CreeperRenderState creeperEntityRenderState, float f) {
         super.extractRenderState(lushCreeper, creeperEntityRenderState, f);
         creeperEntityRenderState.swelling = lushCreeper.getSwelling(f);
         creeperEntityRenderState.isPowered = lushCreeper.isPowered();
