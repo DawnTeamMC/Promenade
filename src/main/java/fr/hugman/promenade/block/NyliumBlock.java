@@ -2,82 +2,82 @@ package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.Fertilizable;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.chunk.light.ChunkLightProvider;
-import net.minecraft.world.gen.chunk.ChunkGenerator;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.lighting.LightEngine;
 
-public class NyliumBlock extends Block implements Fertilizable {
-    public static final MapCodec<NyliumBlock> CODEC = createCodec(NyliumBlock::new);
+public class NyliumBlock extends Block implements BonemealableBlock {
+    public static final MapCodec<NyliumBlock> CODEC = simpleCodec(NyliumBlock::new);
 
     @Override
-    public MapCodec<NyliumBlock> getCodec() {
+    public MapCodec<NyliumBlock> codec() {
         return CODEC;
     }
 
-    public NyliumBlock(Settings settings) {
+    public NyliumBlock(Properties settings) {
         super(settings);
     }
 
-    private static boolean stayAlive(BlockState state, WorldView world, BlockPos pos) {
-        BlockPos blockPos = pos.up();
+    private static boolean stayAlive(BlockState state, LevelReader world, BlockPos pos) {
+        BlockPos blockPos = pos.above();
         BlockState blockState = world.getBlockState(blockPos);
-        int i = ChunkLightProvider.getRealisticOpacity(state, blockState, Direction.UP, blockState.getOpacity());
+        int i = LightEngine.getLightBlockInto(state, blockState, Direction.UP, blockState.getLightDampening());
         return i < 15;
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+    protected void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!stayAlive(state, world, pos)) {
             //TODO: make this configurable
-            world.setBlockState(pos, Blocks.NETHERRACK.getDefaultState());
+            world.setBlockAndUpdate(pos, Blocks.NETHERRACK.defaultBlockState());
         }
     }
 
     @Override
-    public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
-        return world.getBlockState(pos.up()).isAir();
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+        return world.getBlockState(pos.above()).isAir();
     }
 
     @Override
-    public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        BlockPos blockPos = pos.up();
-        ChunkGenerator chunkGenerator = world.getChunkManager().getChunkGenerator();
-        Registry<ConfiguredFeature<?, ?>> registry = world.getRegistryManager().getOrThrow(RegistryKeys.CONFIGURED_FEATURE);
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+        BlockPos blockPos = pos.above();
+        ChunkGenerator chunkGenerator = world.getChunkSource().getGenerator();
+        Registry<ConfiguredFeature<?, ?>> registry = world.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE);
         //TODO: make this configurable
         this.generate(registry, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION, world, chunkGenerator, random, blockPos);
     }
 
     private void generate(
             Registry<ConfiguredFeature<?, ?>> registry,
-            RegistryKey<ConfiguredFeature<?, ?>> key,
-            ServerWorld world,
+            ResourceKey<ConfiguredFeature<?, ?>> key,
+            ServerLevel world,
             ChunkGenerator chunkGenerator,
-            Random random,
+            RandomSource random,
             BlockPos pos
     ) {
-        registry.getOptional(key).ifPresent(entry -> entry.value().generate(world, chunkGenerator, random, pos));
+        registry.get(key).ifPresent(entry -> entry.value().place(world, chunkGenerator, random, pos));
     }
 
     @Override
-    public FertilizableType getFertilizableType() {
-        return FertilizableType.NEIGHBOR_SPREADER;
+    public Type getType() {
+        return Type.NEIGHBOR_SPREADER;
     }
 }

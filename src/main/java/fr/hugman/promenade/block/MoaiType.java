@@ -1,8 +1,8 @@
 package fr.hugman.promenade.block;
 
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.StringRepresentable;
 
-public enum MoaiType implements StringIdentifiable {
+public enum MoaiType implements StringRepresentable {
     SINGLE("single"),
     TOP("top"),
     BOTTOM("bottom");
@@ -14,7 +14,7 @@ public enum MoaiType implements StringIdentifiable {
     }
 
     @Override
-    public String asString() {
+    public String getSerializedName() {
         return this.name;
     }
 }

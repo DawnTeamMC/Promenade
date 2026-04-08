@@ -13,7 +13,7 @@ Duck variants are defined in the `data/<namespace>/promenade/duck_variant` folde
 
 * [JSON Object]
   * [String] `asset_id` - The resource location of the texture to use for the adult duck.
-  * [String] `baby_texture` - The resource location of the texture to use for the duckling. (defaults to `promenade:entity/duck/duckling`)
+  * [String] `baby_asset_id` - The resource location of the texture to use for the duckling. (defaults to `promenade:entity/duck/duckling`)
   * [String] `spawn_conditions` - The spawn conditions of this variant, see [spawn conditions](https://minecraft.wiki/w/Mob_variant_definitions#Spawn_condition).
 
 ### Capybara
@@ -21,10 +21,14 @@ Duck variants are defined in the `data/<namespace>/promenade/duck_variant` folde
 Capybara variants are defined in the `data/<namespace>/promenade/capybara_variant` folder.
 
 * [JSON Object]
-  * [String] `small_eyes_texture` - The resource location of the texture to use for adult capybaras.
-  * [String] `large_eyes_texture` - The resource location of the texture to use for baby capybaras and farting adult capybaras.
-  * [String] `closed_eyes_texture` - The resource location of the texture to use for sleeping capybaras.
-  * [String] `spawn_conditions` - The spawn conditions of this variant, see [spawn conditions](https://minecraft.wiki/w/Mob_variant_definitions#Spawn_condition).
+  * `assets` - Assets used for the adult.
+    * [String] `normal` - The resource location of the texture to use for normal adult capybaras.
+    * [String] `surprised` - The resource location of the texture to use for surprised adult capybaras. (eg. when farting)
+    * [String] `sleeping` - The resource location of the texture to use sleeping adult capybaras.
+  * `baby_assets` - Assets used for the baby.
+    * [String] `normal` - The resource location of the texture to use for normal baby capybaras.
+    * [String] `surprised` - The resource location of the texture to use for surprised baby capybaras. (eg. when farting)
+    * [String] `sleeping` - The resource location of the texture to use sleeping baby capybaras.
 
 ### Sunken
 

@@ -3,47 +3,46 @@ package fr.hugman.promenade.entity.variant;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import net.minecraft.entity.VariantSelectorProvider;
-import net.minecraft.entity.spawn.SpawnCondition;
-import net.minecraft.entity.spawn.SpawnConditionSelectors;
-import net.minecraft.entity.spawn.SpawnContext;
-import net.minecraft.loot.LootTable;
-import net.minecraft.network.RegistryByteBuf;
-import net.minecraft.network.codec.PacketCodec;
-import net.minecraft.network.codec.PacketCodecs;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.entry.RegistryFixedCodec;
-import net.minecraft.util.AssetInfo.TextureAssetInfo;
-
 import java.util.List;
+import net.minecraft.core.ClientAsset.ResourceTexture;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.resources.RegistryFixedCodec;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.variant.PriorityProvider;
+import net.minecraft.world.entity.variant.SpawnCondition;
+import net.minecraft.world.entity.variant.SpawnContext;
+import net.minecraft.world.entity.variant.SpawnPrioritySelectors;
+import net.minecraft.world.level.storage.loot.LootTable;
 
 public record SunkenVariant(
-        TextureAssetInfo texture,
-        RegistryKey<LootTable> lootTable,
-        SpawnConditionSelectors spawnConditions
-) implements VariantSelectorProvider<SpawnContext, SpawnCondition> {
+        ResourceTexture texture,
+        ResourceKey<LootTable> lootTable,
+        SpawnPrioritySelectors spawnConditions
+) implements PriorityProvider<SpawnContext, SpawnCondition> {
     public static final Codec<SunkenVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            TextureAssetInfo.MAP_CODEC.forGetter(SunkenVariant::texture),
-            RegistryKey.createCodec(RegistryKeys.LOOT_TABLE).fieldOf("loot_table").forGetter(SunkenVariant::lootTable),
-            SpawnConditionSelectors.CODEC.fieldOf("spawn_conditions").forGetter(SunkenVariant::spawnConditions)
+            ResourceTexture.DEFAULT_FIELD_CODEC.forGetter(SunkenVariant::texture),
+            ResourceKey.codec(Registries.LOOT_TABLE).fieldOf("loot_table").forGetter(SunkenVariant::lootTable),
+            SpawnPrioritySelectors.CODEC.fieldOf("spawn_conditions").forGetter(SunkenVariant::spawnConditions)
     ).apply(instance, SunkenVariant::new));
 
     public static final Codec<SunkenVariant> NETWORK_CODEC = RecordCodecBuilder.create(instance -> instance.group(
-            TextureAssetInfo.MAP_CODEC.forGetter(SunkenVariant::texture),
-            RegistryKey.createCodec(RegistryKeys.LOOT_TABLE).fieldOf("loot_table").forGetter(SunkenVariant::lootTable)
+            ResourceTexture.DEFAULT_FIELD_CODEC.forGetter(SunkenVariant::texture),
+            ResourceKey.codec(Registries.LOOT_TABLE).fieldOf("loot_table").forGetter(SunkenVariant::lootTable)
     ).apply(instance, SunkenVariant::new));
 
-    public static final Codec<RegistryEntry<SunkenVariant>> ENTRY_CODEC = RegistryFixedCodec.of(PromenadeRegistryKeys.SUNKEN_VARIANT);
-    public static final PacketCodec<RegistryByteBuf, RegistryEntry<SunkenVariant>> ENTRY_PACKET_CODEC = PacketCodecs.registryEntry(PromenadeRegistryKeys.SUNKEN_VARIANT);
+    public static final Codec<Holder<SunkenVariant>> ENTRY_CODEC = RegistryFixedCodec.create(PromenadeRegistryKeys.SUNKEN_VARIANT);
+    public static final StreamCodec<RegistryFriendlyByteBuf, Holder<SunkenVariant>> ENTRY_PACKET_CODEC = ByteBufCodecs.holderRegistry(PromenadeRegistryKeys.SUNKEN_VARIANT);
 
-    public SunkenVariant(TextureAssetInfo texture, RegistryKey<LootTable> lootTable) {
-        this(texture, lootTable, SpawnConditionSelectors.EMPTY);
+    public SunkenVariant(ResourceTexture texture, ResourceKey<LootTable> lootTable) {
+        this(texture, lootTable, SpawnPrioritySelectors.EMPTY);
     }
 
     @Override
-    public List<Selector<SpawnContext, SpawnCondition>> getSelectors() {
+    public List<Selector<SpawnContext, SpawnCondition>> selectors() {
         return this.spawnConditions.selectors();
     }
 }

@@ -2,34 +2,33 @@ package fr.hugman.promenade.entity.variant;
 
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import net.minecraft.entity.VariantSelectorProvider;
-import net.minecraft.entity.spawn.SpawnContext;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.random.Random;
-
 import java.util.Optional;
+import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.variant.PriorityProvider;
+import net.minecraft.world.entity.variant.SpawnContext;
 
 public class SunkenVariants {
-    public static final RegistryKey<SunkenVariant> TUBE = of("tube");
-    public static final RegistryKey<SunkenVariant> BRAIN = of("brain");
-    public static final RegistryKey<SunkenVariant> BUBBLE = of("bubble");
-    public static final RegistryKey<SunkenVariant> FIRE = of("fire");
-    public static final RegistryKey<SunkenVariant> HORN = of("horn");
+    public static final ResourceKey<SunkenVariant> TUBE = of("tube");
+    public static final ResourceKey<SunkenVariant> BRAIN = of("brain");
+    public static final ResourceKey<SunkenVariant> BUBBLE = of("bubble");
+    public static final ResourceKey<SunkenVariant> FIRE = of("fire");
+    public static final ResourceKey<SunkenVariant> HORN = of("horn");
 
-    public static final RegistryKey<SunkenVariant> DEFAULT = TUBE;
+    public static final ResourceKey<SunkenVariant> DEFAULT = TUBE;
 
-    private static RegistryKey<SunkenVariant> of(String path) {
+    private static ResourceKey<SunkenVariant> of(String path) {
         return of(Promenade.id(path));
     }
 
-    public static RegistryKey<SunkenVariant> of(Identifier id) {
-        return RegistryKey.of(PromenadeRegistryKeys.SUNKEN_VARIANT, id);
+    public static ResourceKey<SunkenVariant> of(Identifier id) {
+        return ResourceKey.create(PromenadeRegistryKeys.SUNKEN_VARIANT, id);
     }
 
-    public static Optional<RegistryEntry.Reference<SunkenVariant>> select(Random random, DynamicRegistryManager registries, SpawnContext context) {
-        return VariantSelectorProvider.select(registries.getOrThrow(PromenadeRegistryKeys.SUNKEN_VARIANT).streamEntries(), RegistryEntry::value, random, context);
+    public static Optional<Holder.Reference<SunkenVariant>> select(RandomSource random, RegistryAccess registries, SpawnContext context) {
+        return PriorityProvider.pick(registries.lookupOrThrow(PromenadeRegistryKeys.SUNKEN_VARIANT).listElements(), Holder::value, random, context);
     }
 }

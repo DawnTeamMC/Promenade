@@ -2,29 +2,29 @@ package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.block.property.PromenadeBlockProperties;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
-public class MapleLogBlock extends PillarBlock {
+public class MapleLogBlock extends RotatedPillarBlock {
     public static final BooleanProperty NATURAL = PromenadeBlockProperties.NATURAL;
-    public static final MapCodec<MapleLogBlock> CODEC = createCodec(MapleLogBlock::new);
+    public static final MapCodec<MapleLogBlock> CODEC = simpleCodec(MapleLogBlock::new);
 
-    public MapleLogBlock(Settings settings) {
+    public MapleLogBlock(Properties settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(NATURAL, false));
+        this.registerDefaultState(this.defaultBlockState().setValue(NATURAL, false));
     }
 
     @Override
-    public MapCodec<MapleLogBlock> getCodec() {
+    public MapCodec<MapleLogBlock> codec() {
         return CODEC;
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(NATURAL);
     }
 }

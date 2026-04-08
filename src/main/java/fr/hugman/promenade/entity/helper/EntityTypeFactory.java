@@ -1,29 +1,28 @@
 package fr.hugman.promenade.entity.helper;
 
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.entity.vehicle.BoatEntity;
-import net.minecraft.entity.vehicle.ChestBoatEntity;
-import net.minecraft.item.Item;
-
 import java.util.function.Supplier;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.vehicle.boat.Boat;
+import net.minecraft.world.entity.vehicle.boat.ChestBoat;
+import net.minecraft.world.item.Item;
 
 public class EntityTypeFactory {
-    public static EntityType.Builder<BoatEntity> boat(Supplier<Item> item) {
-        EntityType.EntityFactory<BoatEntity> factory = (type, world) -> new BoatEntity(type, world, item);
-        return EntityType.Builder.create(factory, SpawnGroup.MISC)
-                .dropsNothing()
-                .dimensions(1.375F, 0.5625F)
+    public static EntityType.Builder<Boat> boat(Supplier<Item> item) {
+        EntityType.EntityFactory<Boat> factory = (type, world) -> new Boat(type, world, item);
+        return EntityType.Builder.of(factory, MobCategory.MISC)
+                .noLootTable()
+                .sized(1.375F, 0.5625F)
                 .eyeHeight(0.5625F)
-                .maxTrackingRange(10);
+                .clientTrackingRange(10);
     }
 
-    public static EntityType.Builder<ChestBoatEntity> chestBoat(Supplier<Item> item) {
-        EntityType.EntityFactory<ChestBoatEntity> factory = (type, world) -> new ChestBoatEntity(type, world, item);
-        return EntityType.Builder.create(factory, SpawnGroup.MISC)
-                .dropsNothing()
-                .dimensions(1.375F, 0.5625F)
+    public static EntityType.Builder<ChestBoat> chestBoat(Supplier<Item> item) {
+        EntityType.EntityFactory<ChestBoat> factory = (type, world) -> new ChestBoat(type, world, item);
+        return EntityType.Builder.of(factory, MobCategory.MISC)
+                .noLootTable()
+                .sized(1.375F, 0.5625F)
                 .eyeHeight(0.5625F)
-                .maxTrackingRange(10);
+                .clientTrackingRange(10);
     }
 }

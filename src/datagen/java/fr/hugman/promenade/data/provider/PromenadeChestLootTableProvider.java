@@ -1,62 +1,62 @@
 package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.loot.PromenadeLootTables;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryWrapper;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableSubProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 
-public class PromenadeChestLootTableProvider extends SimpleFabricLootTableProvider {
-    public PromenadeChestLootTableProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
-        super(output, registryLookup, LootContextTypes.CHEST);
+public class PromenadeChestLootTableProvider extends SimpleFabricLootTableSubProvider {
+    public PromenadeChestLootTableProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
+        super(output, registryLookup, LootContextParamSets.CHEST);
     }
 
     @Override
-    public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> output) {
+    public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output) {
         output.accept(PromenadeLootTables.WITCH_HUT_CHEST,
-                LootTable.builder().pool(LootPool.builder()
-                        .rolls(UniformLootNumberProvider.create(4, 7))
-                        .with(ItemEntry.builder(Items.GLASS_BOTTLE)
-                                .weight(5)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 3)))
+                LootTable.lootTable().withPool(LootPool.lootPool()
+                        .setRolls(UniformGenerator.between(4, 7))
+                        .add(LootItem.lootTableItem(Items.GLASS_BOTTLE)
+                                .setWeight(5)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3)))
                         )
-                        .with(ItemEntry.builder(Items.MAGMA_CREAM).weight(2))
-                        .with(ItemEntry.builder(Items.MELON_SLICE)
-                                .weight(6)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 3)))
+                        .add(LootItem.lootTableItem(Items.MAGMA_CREAM).setWeight(2))
+                        .add(LootItem.lootTableItem(Items.MELON_SLICE)
+                                .setWeight(6)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 3)))
                         )
-                        .with(ItemEntry.builder(Items.GLISTERING_MELON_SLICE).weight(2))
-                        .with(ItemEntry.builder(Items.CARROT)
-                                .weight(10)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 4)))
+                        .add(LootItem.lootTableItem(Items.GLISTERING_MELON_SLICE).setWeight(2))
+                        .add(LootItem.lootTableItem(Items.CARROT)
+                                .setWeight(10)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4)))
                         )
-                        .with(ItemEntry.builder(Items.GOLDEN_CARROT).weight(2))
-                        .with(ItemEntry.builder(Items.APPLE)
-                                .weight(10)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 5)))
+                        .add(LootItem.lootTableItem(Items.GOLDEN_CARROT).setWeight(2))
+                        .add(LootItem.lootTableItem(Items.APPLE)
+                                .setWeight(10)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 5)))
                         )
-                        .with(ItemEntry.builder(Items.GOLDEN_APPLE))
-                        .with(ItemEntry.builder(Items.RABBIT_FOOT)
-                                .weight(3)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 2)))
+                        .add(LootItem.lootTableItem(Items.GOLDEN_APPLE))
+                        .add(LootItem.lootTableItem(Items.RABBIT_FOOT)
+                                .setWeight(3)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2)))
                         )
-                        .with(ItemEntry.builder(Items.SPIDER_EYE)
-                                .weight(6)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 2)))
+                        .add(LootItem.lootTableItem(Items.SPIDER_EYE)
+                                .setWeight(6)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 2)))
                         )
-                        .with(ItemEntry.builder(Items.EMERALD)
-                                .weight(4)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1, 4)))
+                        .add(LootItem.lootTableItem(Items.EMERALD)
+                                .setWeight(4)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1, 4)))
                         )
                 )
         );

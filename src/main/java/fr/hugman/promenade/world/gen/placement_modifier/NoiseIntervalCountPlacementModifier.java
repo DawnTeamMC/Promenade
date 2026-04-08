@@ -3,13 +3,13 @@ package fr.hugman.promenade.world.gen.placement_modifier;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.placementmodifier.AbstractCountPlacementModifier;
-import net.minecraft.world.gen.placementmodifier.PlacementModifierType;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
+import net.minecraft.world.level.levelgen.placement.RepeatingPlacement;
 
-public class NoiseIntervalCountPlacementModifier extends AbstractCountPlacementModifier {
+public class NoiseIntervalCountPlacementModifier extends RepeatingPlacement {
     public static final MapCodec<NoiseIntervalCountPlacementModifier> MODIFIER_CODEC = RecordCodecBuilder.mapCodec((instance) -> instance.group(
                     Codec.DOUBLE.fieldOf("noise_level_min").forGetter((pm) -> pm.noiseLevelMin),
                     Codec.DOUBLE.fieldOf("noise_level_max").forGetter((pm) -> pm.noiseLevelMax),
@@ -34,12 +34,12 @@ public class NoiseIntervalCountPlacementModifier extends AbstractCountPlacementM
 
 
     @Override
-    protected int getCount(Random random, BlockPos pos) {
-        double d = Biome.FOLIAGE_NOISE.sample((double) pos.getX() / 200.0, (double) pos.getZ() / 200.0, false);
+    protected int count(RandomSource random, BlockPos pos) {
+        double d = Biome.BIOME_INFO_NOISE.getValue((double) pos.getX() / 200.0, (double) pos.getZ() / 200.0, false);
         return (this.noiseLevelMin < d && d < this.noiseLevelMax) ? this.insideValue : this.outsideValue;
     }
 
-    public PlacementModifierType<?> getType() {
+    public PlacementModifierType<?> type() {
         return PromenadePlacementModifierTypes.NOISE_INTERVAL_COUNT;
     }
 }

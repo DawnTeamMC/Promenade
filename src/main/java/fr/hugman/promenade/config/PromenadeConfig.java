@@ -9,7 +9,6 @@ import com.mojang.serialization.JsonOps;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.world.biome.PromenadeBiomes;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import org.apache.commons.io.IOUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -20,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
+import net.minecraft.world.level.biome.Climate;
 
 public record PromenadeConfig(
         BiomesConfig biomes,
@@ -55,7 +55,7 @@ public record PromenadeConfig(
             int carnelianTreewayWeight,
             int sakuraGrovesWeight,
             int glacarianTaigaWeight,
-            Optional<MultiNoiseUtil.NoiseHypercube> darkAmaranthForestsNoise
+            Optional<Climate.ParameterPoint> darkAmaranthForestsNoise
     ) {
 
         private static final Codec<BiomesConfig> CODEC = RecordCodecBuilder.create(instance ->
@@ -63,7 +63,7 @@ public record PromenadeConfig(
                         Codec.INT.optionalFieldOf("carnelian_treeway_weight", 20).forGetter(BiomesConfig::carnelianTreewayWeight),
                         Codec.INT.optionalFieldOf("sakura_groves_weight", 20).forGetter(BiomesConfig::sakuraGrovesWeight),
                         Codec.INT.optionalFieldOf("glacarian_taiga_weight", 10).forGetter(BiomesConfig::glacarianTaigaWeight),
-                        MultiNoiseUtil.NoiseHypercube.CODEC.optionalFieldOf("dark_amaranth_forests_noise").forGetter(BiomesConfig::darkAmaranthForestsNoise)
+                        Climate.ParameterPoint.CODEC.optionalFieldOf("dark_amaranth_forests_noise").forGetter(BiomesConfig::darkAmaranthForestsNoise)
                 ).apply(instance, BiomesConfig::new)
         );
     }

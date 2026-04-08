@@ -5,44 +5,50 @@ import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.data.provider.builders.PromenadeFeatureConfigs;
 import fr.hugman.promenade.util.NoiseScale;
 import fr.hugman.promenade.world.gen.feature.*;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.LeafLitterBlock;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.structure.rule.TagMatchRuleTest;
-import net.minecraft.util.collection.Pool;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.VerticalSurfaceType;
-import net.minecraft.util.math.intprovider.ConstantIntProvider;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
-import net.minecraft.world.gen.blockpredicate.BlockPredicate;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.placementmodifier.BlockFilterPlacementModifier;
-import net.minecraft.world.gen.stateprovider.BlockStateProvider;
-import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
-import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.features.FeatureUtils;
+import net.minecraft.data.worldgen.features.VegetationFeatures;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.random.WeightedList;
+import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeafLitterBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
+import net.minecraft.world.level.levelgen.feature.treedecorators.BeehiveDecorator;
+import net.minecraft.world.level.levelgen.placement.BlockPredicateFilter;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
+import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryProvider {
-    public PromenadeConfiguredFeatureProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public PromenadeConfiguredFeatureProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        entries.addAll(registries.getOrThrow(RegistryKeys.CONFIGURED_FEATURE));
+    protected void configure(HolderLookup.Provider registries, Entries entries) {
+        entries.addAll(registries.lookupOrThrow(Registries.CONFIGURED_FEATURE));
     }
 
     @Override
@@ -50,21 +56,21 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
         return "Configured Features";
     }
 
-    public static void register(Registerable<ConfiguredFeature<?, ?>> registerable) {
-        final var configured = registerable.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
-        final var placed = registerable.getRegistryLookup(RegistryKeys.PLACED_FEATURE);
+    public static void register(BootstrapContext<ConfiguredFeature<?, ?>> registerable) {
+        final var configured = registerable.lookup(Registries.CONFIGURED_FEATURE);
+        final var placed = registerable.lookup(Registries.PLACED_FEATURE);
 
         // Ores
-        var isBaseStoneOverworld = new TagMatchRuleTest(BlockTags.BASE_STONE_OVERWORLD);
+        var isBaseStoneOverworld = new TagMatchTest(BlockTags.BASE_STONE_OVERWORLD);
 
-        of(registerable, PromenadeConfiguredFeatures.PACKED_ICE_ORE, Feature.ORE, new OreFeatureConfig(isBaseStoneOverworld, Blocks.PACKED_ICE.getDefaultState(), 50));
-        of(registerable, PromenadeConfiguredFeatures.BLUE_ICE_ORE, Feature.ORE, new OreFeatureConfig(isBaseStoneOverworld, Blocks.PACKED_ICE.getDefaultState(), 10));
-        of(registerable, PromenadeConfiguredFeatures.ASPHALT_ORE, Feature.ORE, new OreFeatureConfig(isBaseStoneOverworld, PromenadeBlocks.ASPHALT.getDefaultState(), 48));
-        of(registerable, PromenadeConfiguredFeatures.BLUNITE_ORE, Feature.ORE, new OreFeatureConfig(isBaseStoneOverworld, PromenadeBlocks.BLUNITE.getDefaultState(), 48));
+        of(registerable, PromenadeConfiguredFeatures.PACKED_ICE_ORE, Feature.ORE, new OreConfiguration(isBaseStoneOverworld, Blocks.PACKED_ICE.defaultBlockState(), 50));
+        of(registerable, PromenadeConfiguredFeatures.BLUE_ICE_ORE, Feature.ORE, new OreConfiguration(isBaseStoneOverworld, Blocks.PACKED_ICE.defaultBlockState(), 10));
+        of(registerable, PromenadeConfiguredFeatures.ASPHALT_ORE, Feature.ORE, new OreConfiguration(isBaseStoneOverworld, PromenadeBlocks.ASPHALT.defaultBlockState(), 48));
+        of(registerable, PromenadeConfiguredFeatures.BLUNITE_ORE, Feature.ORE, new OreConfiguration(isBaseStoneOverworld, PromenadeBlocks.BLUNITE.defaultBlockState(), 48));
 
         // Trees
-        var beehive005 = new BeehiveTreeDecorator(0.05F);
-        var beehive002 = new BeehiveTreeDecorator(0.02F);
+        var beehive005 = new BeehiveDecorator(0.05F);
+        var beehive002 = new BeehiveDecorator(0.02F);
 
         of(registerable, PromenadeConfiguredFeatures.BLUSH_SAKURA, Feature.TREE, PromenadeFeatureConfigs.sakura(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, false).build());
         of(registerable, PromenadeConfiguredFeatures.FANCY_BLUSH_SAKURA, Feature.TREE, PromenadeFeatureConfigs.sakura(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, true).build());
@@ -105,112 +111,93 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
 
         // Vegetation
         of(registerable, PromenadeConfiguredFeatures.WATER_POOL_GRAVEL_DECORATED, Feature.WATERLOGGED_VEGETATION_PATCH,
-                new VegetationPatchFeatureConfig(
+                new VegetationPatchConfiguration(
                         BlockTags.LUSH_GROUND_REPLACEABLE,
-                        BlockStateProvider.of(Blocks.GRAVEL),
-                        PlacedFeatures.createEntry(RegistryEntry.of(new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfig(List.of(new RandomFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(VegetationConfiguredFeatures.BAMBOO_SOME_PODZOL)), 0.4F)), PlacedFeatures.createEntry(configured.getOrThrow(VegetationConfiguredFeatures.PATCH_WATERLILY)))))), //hello there
-                        VerticalSurfaceType.FLOOR,
-                        ConstantIntProvider.create(3),
+                        BlockStateProvider.simple(Blocks.GRAVEL),
+                        PlacementUtils.inlinePlaced(Holder.direct(new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(configured.getOrThrow(VegetationFeatures.BAMBOO_SOME_PODZOL)), 0.4F)), PlacementUtils.inlinePlaced(configured.getOrThrow(VegetationFeatures.WATERLILY)))))), //hello there
+                        CaveSurface.FLOOR,
+                        ConstantInt.of(3),
                         0.8F,
                         5,
                         0.15F,
-                        UniformIntProvider.create(4, 7),
+                        UniformInt.of(4, 7),
                         0.7F
                 ));
 
         of(registerable, PromenadeConfiguredFeatures.CUTE_LITTLE_ROCK, PromenadeFeatures.BOULDER, new BoulderFeatureConfig(
-                new WeightedBlockStateProvider(
-                        Pool.<BlockState>builder()
-                                .add(Blocks.STONE.getDefaultState(), 80)
-                                .add(Blocks.CALCITE.getDefaultState(), 20)
+                new WeightedStateProvider(
+                        WeightedList.<BlockState>builder()
+                                .add(Blocks.STONE.defaultBlockState(), 80)
+                                .add(Blocks.CALCITE.defaultBlockState(), 20)
                 ),
-                BlockPredicate.matchingBlocks(Blocks.GRASS_BLOCK),
-                UniformIntProvider.create(3, 4)
+                BlockPredicate.matchesBlocks(Blocks.GRASS_BLOCK),
+                UniformInt.of(3, 4)
         ));
 
+        of(registerable, PromenadeConfiguredFeatures.BLUEBERRY_BUSH, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(BlockStateProvider.simple(PromenadeBlocks.BLUEBERRY_BUSH.defaultBlockState().setValue(BerryBushBlock.AGE, 3))));
 
-        of(registerable, PromenadeConfiguredFeatures.BAMBOO_PATCH, Feature.RANDOM_PATCH,
-                new RandomPatchFeatureConfig(25, 3, 3,
-                        PlacedFeatures.createEntry(configured.getOrThrow(VegetationConfiguredFeatures.BAMBOO_SOME_PODZOL), BlockFilterPlacementModifier.of(BlockPredicate.IS_AIR))
-                ));
-        of(registerable, PromenadeConfiguredFeatures.BLUEBERRY_BUSH_PATCH, Feature.RANDOM_PATCH,
-                ConfiguredFeatures.createRandomPatchFeatureConfig(
-                        Feature.SIMPLE_BLOCK,
-                        new SimpleBlockFeatureConfig(BlockStateProvider.of(PromenadeBlocks.BLUEBERRY_BUSH.getDefaultState().with(BerryBushBlock.AGE, 3))),
-                        List.of(Blocks.GRASS_BLOCK)
-                ));
-
-        WeightedBlockStateProvider darkAmaranthVegetation = new WeightedBlockStateProvider(
-                Pool.<BlockState>builder()
-                        .add(PromenadeBlocks.DARK_AMARANTH_ROOTS.getDefaultState(), 87)
-                        .add(PromenadeBlocks.DARK_AMARANTH_FUNGUS.getDefaultState(), 11)
-                        .add(Blocks.WARPED_FUNGUS.getDefaultState(), 1)
-                        .add(Blocks.WARPED_ROOTS.getDefaultState(), 1)
+        WeightedStateProvider darkAmaranthVegetation = new WeightedStateProvider(
+                WeightedList.<BlockState>builder()
+                        .add(PromenadeBlocks.DARK_AMARANTH_ROOTS.defaultBlockState(), 87)
+                        .add(PromenadeBlocks.DARK_AMARANTH_FUNGUS.defaultBlockState(), 11)
+                        .add(Blocks.WARPED_FUNGUS.defaultBlockState(), 1)
+                        .add(Blocks.WARPED_ROOTS.defaultBlockState(), 1)
         );
 
-        of(registerable, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_VEGETATION, Feature.NETHER_FOREST_VEGETATION, new NetherForestVegetationFeatureConfig(darkAmaranthVegetation, 8, 4));
-        of(registerable, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION, Feature.NETHER_FOREST_VEGETATION, new NetherForestVegetationFeatureConfig(darkAmaranthVegetation, 3, 1));
+        of(registerable, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_VEGETATION, Feature.NETHER_FOREST_VEGETATION, new NetherForestVegetationConfig(darkAmaranthVegetation, 8, 4));
+        of(registerable, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION, Feature.NETHER_FOREST_VEGETATION, new NetherForestVegetationConfig(darkAmaranthVegetation, 3, 1));
 
         var horizontalDirections = List.of(Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST);
         of(registerable, PromenadeConfiguredFeatures.COILED_VINES, PromenadeFeatures.COILED_VINES, new CoiledVinesFeatureConfig(8, 4, 8, horizontalDirections));
 
-        of(registerable, PromenadeConfiguredFeatures.FALLEN_VERMILION_MAPLE_LEAVES, Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(
-                Feature.SIMPLE_BLOCK,
-                new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES, 1, 3)))
-        ));
-        of(registerable, PromenadeConfiguredFeatures.FALLEN_FULVOUS_MAPLE_LEAVES, Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(
-                Feature.SIMPLE_BLOCK,
-                new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES, 1, 3)))
-        ));
-        of(registerable, PromenadeConfiguredFeatures.FALLEN_MIKADO_MAPLE_LEAVES, Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(
-                Feature.SIMPLE_BLOCK,
-                new SimpleBlockFeatureConfig(new WeightedBlockStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES, 1, 3)))
-        ));
+        of(registerable, PromenadeConfiguredFeatures.FALLEN_VERMILION_MAPLE_LEAVES, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_VERMILION_MAPLE_LEAVES, 1, 3))));
+        of(registerable, PromenadeConfiguredFeatures.FALLEN_FULVOUS_MAPLE_LEAVES, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_FULVOUS_MAPLE_LEAVES, 1, 3))));
+        of(registerable, PromenadeConfiguredFeatures.FALLEN_MIKADO_MAPLE_LEAVES, Feature.SIMPLE_BLOCK, new SimpleBlockConfiguration(new WeightedStateProvider(fallenLeaves(PromenadeBlocks.FALLEN_MIKADO_MAPLE_LEAVES, 1, 3))));
 
         // Grouped features
         of(registerable, PromenadeConfiguredFeatures.BLUSH_SAKURA_GROVE_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_BLUSH_SAKURA), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.COTTON_SAKURA), 0.2f)
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.FANCY_BLUSH_SAKURA), 0.1f),
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.COTTON_SAKURA), 0.2f)
                 ), placed.getOrThrow(PromenadePlacedFeatures.BLUSH_SAKURA))
         );
         of(registerable, PromenadeConfiguredFeatures.COTTON_SAKURA_GROVE_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_COTTON_SAKURA), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.BLUSH_SAKURA), 0.2f)
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.FANCY_COTTON_SAKURA), 0.1f),
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.BLUSH_SAKURA), 0.2f)
                 ), placed.getOrThrow(PromenadePlacedFeatures.COTTON_SAKURA))
         );
 
         of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_SAP_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_SAP_MAPLE_BEES), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_SAP_MAPLE), 0.2f)
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.FANCY_SAP_MAPLE_BEES), 0.1f),
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.FANCY_SAP_MAPLE), 0.2f)
                 ), placed.getOrThrow(PromenadePlacedFeatures.SAP_MAPLE))
         );
         of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_VERMILION_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_VERMILION_MAPLE_BEES), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_VERMILION_MAPLE), 0.2f)
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.FANCY_VERMILION_MAPLE_BEES), 0.1f),
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.FANCY_VERMILION_MAPLE), 0.2f)
                 ), placed.getOrThrow(PromenadePlacedFeatures.VERMILION_MAPLE))
         );
         of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FULVOUS_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_FULVOUS_MAPLE_BEES), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_FULVOUS_MAPLE), 0.2f)
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.FANCY_FULVOUS_MAPLE_BEES), 0.1f),
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.FANCY_FULVOUS_MAPLE), 0.2f)
                 ), placed.getOrThrow(PromenadePlacedFeatures.FULVOUS_MAPLE))
         );
         of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_MIKADO_TREE, Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_MIKADO_MAPLE_BEES), 0.1f),
-                        new RandomFeatureEntry(placed.getOrThrow(PromenadePlacedFeatures.FANCY_MIKADO_MAPLE), 0.2f)
+                new RandomFeatureConfiguration(List.of(
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.FANCY_MIKADO_MAPLE_BEES), 0.1f),
+                        new WeightedPlacedFeature(placed.getOrThrow(PromenadePlacedFeatures.FANCY_MIKADO_MAPLE), 0.2f)
                 ), placed.getOrThrow(PromenadePlacedFeatures.MIKADO_MAPLE))
         );
         of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_TREE, PromenadeFeatures.NOISE_PICKED,
                 new NoisePickedFeatureConfig(NoiseScale.of(200.0f), List.of(
-                        new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_SAP_TREE)), -1.0f, 1.0f),
-                        new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_VERMILION_TREE)), 0.2f, 0.95f),
-                        new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FULVOUS_TREE)), -0.5f, 0.5f),
-                        new NoisePickedFeatureEntry(PlacedFeatures.createEntry(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_MIKADO_TREE)), -0.95f, -0.2f)
+                        new NoisePickedFeatureEntry(PlacementUtils.inlinePlaced(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_SAP_TREE)), -1.0f, 1.0f),
+                        new NoisePickedFeatureEntry(PlacementUtils.inlinePlaced(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_VERMILION_TREE)), 0.2f, 0.95f),
+                        new NoisePickedFeatureEntry(PlacementUtils.inlinePlaced(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FULVOUS_TREE)), -0.5f, 0.5f),
+                        new NoisePickedFeatureEntry(PlacementUtils.inlinePlaced(configured.getOrThrow(PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_MIKADO_TREE)), -0.95f, -0.2f)
                 ))
         );
         of(registerable, PromenadeConfiguredFeatures.CARNELIAN_TREEWAY_FALLEN_LEAVES, PromenadeFeatures.NOISE_PICKED,
@@ -222,23 +209,23 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
         );
     }
 
-    public static Pool.Builder<BlockState> fallenLeaves(Block block, int min, int max) {
-        return segmentedBlock(block, min, max, LeafLitterBlock.SEGMENT_AMOUNT, LeafLitterBlock.HORIZONTAL_FACING);
+    public static WeightedList.Builder<BlockState> fallenLeaves(Block block, int min, int max) {
+        return segmentedBlock(block, min, max, LeafLitterBlock.AMOUNT, LeafLitterBlock.FACING);
     }
 
-    private static Pool.Builder<BlockState> segmentedBlock(Block block, int min, int max, IntProperty amountProperty, EnumProperty<Direction> facingProperty) {
-        Pool.Builder<BlockState> builder = Pool.builder();
+    private static WeightedList.Builder<BlockState> segmentedBlock(Block block, int min, int max, IntegerProperty amountProperty, EnumProperty<Direction> facingProperty) {
+        WeightedList.Builder<BlockState> builder = WeightedList.builder();
 
         for (int i = min; i <= max; ++i) {
-            for (Direction direction : Direction.Type.HORIZONTAL) {
-                builder.add(block.getDefaultState().with(amountProperty, i).with(facingProperty, direction), 1);
+            for (Direction direction : Direction.Plane.HORIZONTAL) {
+                builder.add(block.defaultBlockState().setValue(amountProperty, i).setValue(facingProperty, direction), 1);
             }
         }
 
         return builder;
     }
 
-    private static <FC extends FeatureConfig, F extends Feature<FC>> void of(Registerable<ConfiguredFeature<?, ?>> registry, RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
-        ConfiguredFeatures.register(registry, key, feature, config);
+    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void of(BootstrapContext<ConfiguredFeature<?, ?>> registry, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
+        FeatureUtils.register(registry, key, feature, config);
     }
 }

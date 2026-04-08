@@ -1,24 +1,25 @@
 package fr.hugman.promenade.data.model;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.data.TextureKey;
-import net.minecraft.client.data.TextureMap;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.data.models.model.TextureMapping;
+import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.block.Block;
 
 public class PromenadeTextureMaps {
-    public static TextureMap snowyLeaves(Block snowyLeaves, Block baseLeaves) {
-        return new TextureMap()
-                .put(TextureKey.ALL, TextureMap.getId(baseLeaves))
-                .put(TextureKey.TOP, TextureMap.getId(snowyLeaves))
-                .put(TextureKey.SIDE, TextureMap.getSubId(snowyLeaves, "_bottom"));
+    public static TextureMapping snowyLeaves(Block snowyLeaves, Block baseLeaves) {
+        return new TextureMapping()
+                .put(TextureSlot.ALL, TextureMapping.getBlockTexture(baseLeaves))
+                .put(TextureSlot.TOP, TextureMapping.getBlockTexture(snowyLeaves))
+                .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(snowyLeaves, "_bottom"));
     }
 
 
-    public static TextureMap snowyLeaves(Identifier snowyLeavesTexture, Block baseLeaves) {
+    public static TextureMapping snowyLeaves(Identifier snowyLeavesTexture, Block baseLeaves) {
 
-        return new TextureMap()
-                .put(TextureKey.ALL, TextureMap.getId(baseLeaves))
-                .put(TextureKey.TOP, snowyLeavesTexture)
-                .put(TextureKey.SIDE, snowyLeavesTexture.withSuffixedPath("_bottom"));
+        return new TextureMapping()
+                .put(TextureSlot.ALL, TextureMapping.getBlockTexture(baseLeaves))
+                .put(TextureSlot.TOP, new Material(snowyLeavesTexture))
+                .put(TextureSlot.SIDE, new Material(snowyLeavesTexture.withSuffix("_bottom")));
     }
 }
