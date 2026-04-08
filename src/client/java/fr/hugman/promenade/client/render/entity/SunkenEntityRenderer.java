@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.SunkenEntityModel;
-import fr.hugman.promenade.client.render.entity.state.SunkenEntityRenderState;
+import fr.hugman.promenade.client.render.entity.state.SunkenRenderState;
 import fr.hugman.promenade.entity.Sunken;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -15,7 +15,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class SunkenEntityRenderer extends AbstractSkeletonRenderer<Sunken, SunkenEntityRenderState> {
+public class SunkenEntityRenderer extends AbstractSkeletonRenderer<Sunken, SunkenRenderState> {
     public SunkenEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
@@ -25,12 +25,12 @@ public class SunkenEntityRenderer extends AbstractSkeletonRenderer<Sunken, Sunke
     }
 
     @Override
-    public SunkenEntityRenderState createRenderState() {
-        return new SunkenEntityRenderState();
+    public SunkenRenderState createRenderState() {
+        return new SunkenRenderState();
     }
 
     @Override
-    protected void setupRotations(SunkenEntityRenderState state, PoseStack poseStack, float bodyYaw, float baseHeight) {
+    protected void setupRotations(SunkenRenderState state, PoseStack poseStack, float bodyYaw, float baseHeight) {
         float h = state.swimAmount;
         float i = state.xRot;
 
@@ -46,7 +46,7 @@ public class SunkenEntityRenderer extends AbstractSkeletonRenderer<Sunken, Sunke
     }
 
     @Override
-    public Identifier getTextureLocation(SunkenEntityRenderState state) {
+    public Identifier getTextureLocation(SunkenRenderState state) {
         if (state.variant == null) {
             return MissingTextureAtlasSprite.getLocation();
         }
@@ -54,7 +54,7 @@ public class SunkenEntityRenderer extends AbstractSkeletonRenderer<Sunken, Sunke
     }
 
     @Override
-    public void extractRenderState(Sunken sunken, SunkenEntityRenderState state, float f) {
+    public void extractRenderState(Sunken sunken, SunkenRenderState state, float f) {
         super.extractRenderState(sunken, state, f);
         state.variant = sunken.getVariant().value();
     }

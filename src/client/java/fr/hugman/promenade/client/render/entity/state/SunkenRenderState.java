@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.state.SkeletonRenderState;
 import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
-public class SunkenEntityRenderState extends SkeletonRenderState {
+public class SunkenRenderState extends SkeletonRenderState {
     @Nullable
     public SunkenVariant variant;
 }

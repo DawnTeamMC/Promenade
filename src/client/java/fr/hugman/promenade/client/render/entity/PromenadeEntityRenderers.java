@@ -2,15 +2,13 @@ package fr.hugman.promenade.client.render.entity;
 
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.BoatRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 
-@Environment(EnvType.CLIENT)
 public class PromenadeEntityRenderers {
     public static void register() {
         EntityRenderers.register(PromenadeEntityTypes.CAPYBARA, CapybaraEntityRenderer::new);
@@ -26,7 +24,7 @@ public class PromenadeEntityRenderers {
         registerBoat(PromenadeEntityTypes.PALM_CHEST_BOAT, PromenadeEntityModelLayers.PALM_CHEST_BOAT);
     }
 
-    private static void registerBoat(EntityType<? extends AbstractBoat> type, ModelLayerLocation modelLayer) {
-        EntityRenderers.register(type, context -> new BoatRenderer(context, modelLayer));
+    private static void registerBoat(EntityType<? extends AbstractBoat> type, ModelLayerLocation modelId) {
+        EntityRenderers.register(type, context -> new BoatRenderer(context, modelId));
     }
 }

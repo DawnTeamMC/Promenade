@@ -17,7 +17,6 @@ import net.minecraft.client.model.monster.creeper.CreeperModel;
 import net.minecraft.client.model.object.boat.BoatModel;
 import net.minecraft.client.renderer.entity.ArmorModelSet;
 
-@Environment(EnvType.CLIENT)
 public class PromenadeEntityModelLayers {
     public static final ModelLayerLocation SAKURA_BOAT = ofMain("boat/sakura");
     public static final ModelLayerLocation SAKURA_CHEST_BOAT = ofMain("chest_boat/sakura");

@@ -1,7 +1,7 @@
 package fr.hugman.promenade.client;
 
-import fr.hugman.promenade.client.color.PromenadeBlockColors;
-import fr.hugman.promenade.client.particle.PromenadeParticleFactories;
+import fr.hugman.promenade.client.color.block.PromenadeBlockColors;
+import fr.hugman.promenade.client.particle.PromenadeParticles;
 import fr.hugman.promenade.client.render.entity.PromenadeEntityRenderers;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import net.fabricmc.api.ClientModInitializer;
@@ -12,6 +12,6 @@ public class PromenadeClient implements ClientModInitializer {
         PromenadeEntityModelLayers.register();
         PromenadeBlockColors.register();
         PromenadeEntityRenderers.register();
-        PromenadeParticleFactories.register();
+        PromenadeParticles.register();
     }
 }

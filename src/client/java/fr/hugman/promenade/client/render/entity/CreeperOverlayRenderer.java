@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.entity.state.CreeperRenderState;
 import net.minecraft.resources.Identifier;
 
-@Environment(EnvType.CLIENT)
 public class CreeperOverlayRenderer<S extends CreeperRenderState, M extends EntityModel<S>> extends RenderLayer<S, M> {
     private final CreeperModel model;
     private final Identifier texture;

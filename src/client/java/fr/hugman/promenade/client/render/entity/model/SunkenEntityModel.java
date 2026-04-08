@@ -1,6 +1,6 @@
 package fr.hugman.promenade.client.render.entity.model;
 
-import fr.hugman.promenade.client.render.entity.state.SunkenEntityRenderState;
+import fr.hugman.promenade.client.render.entity.state.SunkenRenderState;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.model.*;
@@ -14,8 +14,7 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.model.monster.skeleton.SkeletonModel;
 
-@Environment(EnvType.CLIENT)
-public class SunkenEntityModel extends SkeletonModel<SunkenEntityRenderState> {
+public class SunkenEntityModel extends SkeletonModel<SunkenRenderState> {
     public SunkenEntityModel(ModelPart root) {
         super(root);
     }
@@ -30,7 +29,7 @@ public class SunkenEntityModel extends SkeletonModel<SunkenEntityRenderState> {
     }
 
     @Override
-    public void setupAnim(SunkenEntityRenderState state) {
+    public void setupAnim(SunkenRenderState state) {
         super.setupAnim(state);
         this.hat.visible = state.headEquipment.isEmpty();
     }

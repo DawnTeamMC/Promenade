@@ -4,7 +4,7 @@ import fr.hugman.promenade.client.render.entity.model.duck.AdultDuckModel;
 import fr.hugman.promenade.client.render.entity.model.duck.BabyDuckModel;
 import fr.hugman.promenade.client.render.entity.model.duck.DuckModel;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
-import fr.hugman.promenade.client.render.entity.state.DuckEntityRenderState;
+import fr.hugman.promenade.client.render.entity.state.DuckRenderState;
 import fr.hugman.promenade.entity.Duck;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -15,7 +15,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class DuckEntityRenderer extends AgeableMobRenderer<Duck, DuckEntityRenderState, DuckModel> {
+public class DuckEntityRenderer extends AgeableMobRenderer<Duck, DuckRenderState, DuckModel> {
     public DuckEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
@@ -26,12 +26,12 @@ public class DuckEntityRenderer extends AgeableMobRenderer<Duck, DuckEntityRende
     }
 
     @Override
-    public DuckEntityRenderState createRenderState() {
-        return new DuckEntityRenderState();
+    public DuckRenderState createRenderState() {
+        return new DuckRenderState();
     }
 
     @Override
-    public Identifier getTextureLocation(DuckEntityRenderState state) {
+    public Identifier getTextureLocation(DuckRenderState state) {
         if (state.variant == null) {
             return MissingTextureAtlasSprite.getLocation();
         }
@@ -42,7 +42,7 @@ public class DuckEntityRenderer extends AgeableMobRenderer<Duck, DuckEntityRende
     }
 
     @Override
-    public void extractRenderState(Duck duck, DuckEntityRenderState state, float f) {
+    public void extractRenderState(Duck duck, DuckRenderState state, float f) {
         super.extractRenderState(duck, state, f);
         state.flapProgress = Mth.lerp(f, duck.prevFlapProgress, duck.flapProgress);
         state.maxWingDeviation = Mth.lerp(f, duck.prevMaxWingDeviation, duck.maxWingDeviation);

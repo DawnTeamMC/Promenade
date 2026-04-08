@@ -1,16 +1,13 @@
-package fr.hugman.promenade.client.color;
+package fr.hugman.promenade.client.color.block;
 
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.world.biome.PromenadeFoliageColors;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockColorRegistry;
 import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.world.level.FoliageColor;
 
 import java.util.List;
 
-@Environment(EnvType.CLIENT)
 public final class PromenadeBlockColors {
     public static void register() {
         BlockColorRegistry.register(List.of(BlockTintSources.foliage()),

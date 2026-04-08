@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.entity.state.CreeperRenderState;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 
-@Environment(EnvType.CLIENT)
 public class LushCreeperRenderer extends MobRenderer<LushCreeper, CreeperRenderState, CreeperModel> {
     private static final Identifier TEXTURE = Promenade.id("textures/entity/lush_creeper/base.png");
     private static final Identifier OVERLAY_TEXTURE = Promenade.id("textures/entity/lush_creeper/overlay.png");

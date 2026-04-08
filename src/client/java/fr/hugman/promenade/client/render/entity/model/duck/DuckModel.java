@@ -1,21 +1,12 @@
 package fr.hugman.promenade.client.render.entity.model.duck;
 
-import fr.hugman.promenade.client.render.entity.state.DuckEntityRenderState;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
+import fr.hugman.promenade.client.render.entity.state.DuckRenderState;
 import net.minecraft.client.model.*;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartNames;
-import net.minecraft.client.model.geom.PartPose;
-import net.minecraft.client.model.geom.builders.CubeListBuilder;
-import net.minecraft.client.model.geom.builders.LayerDefinition;
-import net.minecraft.client.model.geom.builders.MeshDefinition;
-import net.minecraft.client.model.geom.builders.MeshTransformer;
-import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.util.Mth;
-import java.util.Set;
 
-abstract public class DuckModel extends EntityModel<DuckEntityRenderState> {
+abstract public class DuckModel extends EntityModel<DuckRenderState> {
     private final ModelPart head;
     private final ModelPart rightLeg;
     private final ModelPart leftLeg;
@@ -29,7 +20,7 @@ abstract public class DuckModel extends EntityModel<DuckEntityRenderState> {
     }
 
     @Override
-    public void setupAnim(DuckEntityRenderState state) {
+    public void setupAnim(DuckRenderState state) {
         super.setupAnim(state);
 
         // Head

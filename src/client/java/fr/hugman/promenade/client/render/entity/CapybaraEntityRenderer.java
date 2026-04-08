@@ -4,7 +4,7 @@ import fr.hugman.promenade.client.render.entity.model.capybara.BabyCapybaraModel
 import fr.hugman.promenade.client.render.entity.model.capybara.AdultCapybaraModel;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.capybara.CapybaraModel;
-import fr.hugman.promenade.client.render.entity.state.CapybaraEntityRenderState;
+import fr.hugman.promenade.client.render.entity.state.CapybaraRenderState;
 import fr.hugman.promenade.entity.Capybara;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -13,8 +13,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.resources.Identifier;
 
-@Environment(EnvType.CLIENT)
-public class CapybaraEntityRenderer<E extends Capybara> extends AgeableMobRenderer<E, CapybaraEntityRenderState, CapybaraModel> {
+public class CapybaraEntityRenderer<E extends Capybara> extends AgeableMobRenderer<E, CapybaraRenderState, CapybaraModel> {
     public CapybaraEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
@@ -25,12 +24,12 @@ public class CapybaraEntityRenderer<E extends Capybara> extends AgeableMobRender
     }
 
     @Override
-    public CapybaraEntityRenderState createRenderState() {
-        return new CapybaraEntityRenderState();
+    public CapybaraRenderState createRenderState() {
+        return new CapybaraRenderState();
     }
 
     @Override
-    public Identifier getTextureLocation(CapybaraEntityRenderState state) {
+    public Identifier getTextureLocation(CapybaraRenderState state) {
         if (state.variant == null) {
             return MissingTextureAtlasSprite.getLocation();
         }
@@ -42,13 +41,13 @@ public class CapybaraEntityRenderer<E extends Capybara> extends AgeableMobRender
     }
 
     @Override
-    public void extractRenderState(E capybara, CapybaraEntityRenderState state, float f) {
+    public void extractRenderState(E capybara, CapybaraRenderState state, float f) {
         super.extractRenderState(capybara, state, f);
-        state.earWiggleAnimState.copyFrom(capybara.earWiggleAnimState);
-        state.fallToSleepAnimState.copyFrom(capybara.fallToSleepAnimState);
-        state.sleepingAnimState.copyFrom(capybara.sleepingAnimState);
-        state.wakeUpAnimState.copyFrom(capybara.wakeUpAnimState);
-        state.fartAnimState.copyFrom(capybara.fartAnimState);
+        state.earWiggleAnimationState.copyFrom(capybara.earWiggleAnimState);
+        state.fallToSleepAnimationState.copyFrom(capybara.fallToSleepAnimState);
+        state.sleepingAnimationState.copyFrom(capybara.sleepingAnimState);
+        state.wakeUpAnimationState.copyFrom(capybara.wakeUpAnimState);
+        state.fartAnimationState.copyFrom(capybara.fartAnimState);
 
         state.variant = capybara.getVariant().value();
         state.sleeping = capybara.isVisuallySleeping();

@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
-public class DuckEntityRenderState extends LivingEntityRenderState {
+public class DuckRenderState extends LivingEntityRenderState {
     @Nullable
     public DuckVariant variant;
 

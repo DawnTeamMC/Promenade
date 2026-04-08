@@ -1,17 +1,11 @@
 package fr.hugman.promenade.client.render.entity.model.duck;
 
-import fr.hugman.promenade.client.render.entity.state.DuckEntityRenderState;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.model.BabyModelTransform;
-import net.minecraft.client.model.EntityModel;
+import fr.hugman.promenade.client.render.entity.state.DuckRenderState;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartNames;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
-
-import java.util.Set;
 
 public class AdultDuckModel extends DuckModel {
     private final ModelPart rightWing;
@@ -43,7 +37,7 @@ public class AdultDuckModel extends DuckModel {
     }
 
     @Override
-    public void setupAnim(DuckEntityRenderState state) {
+    public void setupAnim(DuckRenderState state) {
         super.setupAnim(state);
 
         // Wings

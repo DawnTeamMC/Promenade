@@ -8,7 +8,6 @@ import net.minecraft.client.animation.Keyframe;
 import net.minecraft.client.animation.KeyframeAnimations;
 import net.minecraft.client.model.geom.PartNames;
 
-@Environment(EnvType.CLIENT)
 public class CapybaraAnimations {
     public static final AnimationDefinition EAR_WIGGLE = AnimationDefinition.Builder.withLength(0.2f)
             .addAnimation(PartNames.RIGHT_EAR, new AnimationChannel(AnimationChannel.Targets.ROTATION,

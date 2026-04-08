@@ -8,12 +8,12 @@ import net.minecraft.world.entity.AnimationState;
 import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
-public class CapybaraEntityRenderState extends LivingEntityRenderState {
-    public final AnimationState earWiggleAnimState = new AnimationState();
-    public final AnimationState fallToSleepAnimState = new AnimationState();
-    public final AnimationState sleepingAnimState = new AnimationState();
-    public final AnimationState wakeUpAnimState = new AnimationState();
-    public final AnimationState fartAnimState = new AnimationState();
+public class CapybaraRenderState extends LivingEntityRenderState {
+    public final AnimationState earWiggleAnimationState = new AnimationState();
+    public final AnimationState fallToSleepAnimationState = new AnimationState();
+    public final AnimationState sleepingAnimationState = new AnimationState();
+    public final AnimationState wakeUpAnimationState = new AnimationState();
+    public final AnimationState fartAnimationState = new AnimationState();
 
     @Nullable
     public CapybaraVariant variant;
