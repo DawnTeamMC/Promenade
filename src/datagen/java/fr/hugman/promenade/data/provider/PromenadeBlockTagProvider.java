@@ -160,6 +160,8 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
                 .add(DARK_AMARANTH_ROOTS);
         valueLookupBuilder(BlockTags.BEE_GROWABLES).add(BLUEBERRY_BUSH);
         valueLookupBuilder(BlockTags.OVERRIDES_MUSHROOM_LIGHT_REQUIREMENT).add(DARK_AMARANTH_NYLIUM);
+        valueLookupBuilder(BlockTags.HUGE_BROWN_MUSHROOM_CAN_PLACE_ON).add(DARK_AMARANTH_NYLIUM);
+        valueLookupBuilder(BlockTags.HUGE_RED_MUSHROOM_CAN_PLACE_ON).add(DARK_AMARANTH_NYLIUM);
 
         valueLookupBuilder(BlockTags.NYLIUM).add(DARK_AMARANTH_NYLIUM);
         valueLookupBuilder(BlockTags.WART_BLOCKS).add(DARK_AMARANTH_WART_BLOCK);
