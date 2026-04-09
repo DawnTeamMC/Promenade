@@ -2,9 +2,9 @@ package fr.hugman.promenade.entity.spawn;
 
 import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.Promenade;
-import net.minecraft.entity.spawn.SpawnCondition;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.entity.variant.SpawnCondition;
 
 public class PromenadeSpawnConditions {
     public static void register() {
@@ -12,6 +12,6 @@ public class PromenadeSpawnConditions {
     }
 
     public static MapCodec<? extends SpawnCondition> of(String name, MapCodec<? extends SpawnCondition> codec) {
-        return Registry.register(Registries.SPAWN_CONDITION_TYPE, Promenade.id(name), codec);
+        return Registry.register(BuiltInRegistries.SPAWN_CONDITION_TYPE, Promenade.id(name), codec);
     }
 }

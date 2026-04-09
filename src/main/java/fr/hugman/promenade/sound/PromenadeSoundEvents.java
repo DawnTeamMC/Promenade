@@ -1,15 +1,14 @@
 package fr.hugman.promenade.sound;
 
 import fr.hugman.promenade.Promenade;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.sound.SoundEvent;
-
 import java.util.Optional;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.sounds.SoundEvent;
 
 public class PromenadeSoundEvents {
-    public static final RegistryEntry.Reference<SoundEvent> MUSIC_OVERWORLD_SAKURA_GROVES = ofRef("music.overworld.sakura_groves");
+    public static final Holder.Reference<SoundEvent> MUSIC_OVERWORLD_SAKURA_GROVES = ofRef("music.overworld.sakura_groves");
 
     public static final SoundEvent BLOCK_SNOWY_LEAVES_BREAK = of("block.snowy_leaves.break");
     public static final SoundEvent BLOCK_SNOWY_LEAVES_STEP = of("block.snowy_leaves.step");
@@ -44,13 +43,13 @@ public class PromenadeSoundEvents {
     public static final SoundEvent SUNKEN_STEP = of("entity.sunken.step");
     public static final SoundEvent SUNKEN_SHOOT = of("entity.sunken.shoot");
 
-    private static RegistryEntry.Reference<SoundEvent> ofRef(String path) {
+    private static Holder.Reference<SoundEvent> ofRef(String path) {
         var id = Promenade.id(path);
-        return Registry.registerReference(Registries.SOUND_EVENT, id, new SoundEvent(id, Optional.empty()));
+        return Registry.registerForHolder(BuiltInRegistries.SOUND_EVENT, id, new SoundEvent(id, Optional.empty()));
     }
 
     private static SoundEvent of(String path) {
         var id = Promenade.id(path);
-        return Registry.register(Registries.SOUND_EVENT, id, new SoundEvent(id, Optional.empty()));
+        return Registry.register(BuiltInRegistries.SOUND_EVENT, id, new SoundEvent(id, Optional.empty()));
     }
 }

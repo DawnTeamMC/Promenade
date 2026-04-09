@@ -1,55 +1,57 @@
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.client.render.entity.model.CapybaraEntityModel;
+import fr.hugman.promenade.client.render.entity.model.capybara.BabyCapybaraModel;
+import fr.hugman.promenade.client.render.entity.model.capybara.AdultCapybaraModel;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
-import fr.hugman.promenade.client.render.entity.state.CapybaraEntityRenderState;
-import fr.hugman.promenade.entity.CapybaraEntity;
+import fr.hugman.promenade.client.render.entity.model.capybara.CapybaraModel;
+import fr.hugman.promenade.client.render.entity.state.CapybaraRenderState;
+import fr.hugman.promenade.entity.Capybara;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.entity.AgeableMobEntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.texture.MissingSprite;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.renderer.entity.AgeableMobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
+import net.minecraft.resources.Identifier;
 
-@Environment(EnvType.CLIENT)
-public class CapybaraEntityRenderer<E extends CapybaraEntity> extends AgeableMobEntityRenderer<E, CapybaraEntityRenderState, CapybaraEntityModel> {
-    public CapybaraEntityRenderer(EntityRendererFactory.Context context) {
+public class CapybaraEntityRenderer<E extends Capybara> extends AgeableMobRenderer<E, CapybaraRenderState, CapybaraModel> {
+    public CapybaraEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
-                new CapybaraEntityModel(context.getPart(PromenadeEntityModelLayers.CAPYBARA)),
-                new CapybaraEntityModel(context.getPart(PromenadeEntityModelLayers.CAPYBARA_BABY)),
+                new AdultCapybaraModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA)),
+                new BabyCapybaraModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA_BABY)),
                 0.5f
         );
     }
 
     @Override
-    public CapybaraEntityRenderState createRenderState() {
-        return new CapybaraEntityRenderState();
+    public CapybaraRenderState createRenderState() {
+        return new CapybaraRenderState();
     }
 
     @Override
-    public Identifier getTexture(CapybaraEntityRenderState state) {
+    public Identifier getTextureLocation(CapybaraRenderState state) {
         if (state.variant == null) {
-            return MissingSprite.getMissingSpriteId();
+            return MissingTextureAtlasSprite.getLocation();
         }
-        if (state.closedEyes) {
-            return state.variant.closedEyesTexture().texturePath();
+        var textureInfo = state.isBaby ? state.variant.babyInfo() : state.variant.adultInfo();
+        if (state.sleeping) {
+            return textureInfo.sleeping().texturePath();
         }
-        return state.largeEyes ? state.variant.largeEyesTexture().texturePath() : state.variant.smallEyesTexture().texturePath();
+        return state.surprised ? textureInfo.surprised().texturePath() : textureInfo.normal().texturePath();
     }
 
     @Override
-    public void updateRenderState(E capybara, CapybaraEntityRenderState state, float f) {
-        super.updateRenderState(capybara, state, f);
-        state.earWiggleAnimState.copyFrom(capybara.earWiggleAnimState);
-        state.fallToSleepAnimState.copyFrom(capybara.fallToSleepAnimState);
-        state.sleepingAnimState.copyFrom(capybara.sleepingAnimState);
-        state.wakeUpAnimState.copyFrom(capybara.wakeUpAnimState);
-        state.fartAnimState.copyFrom(capybara.fartAnimState);
+    public void extractRenderState(E capybara, CapybaraRenderState state, float f) {
+        super.extractRenderState(capybara, state, f);
+        state.earWiggleAnimationState.copyFrom(capybara.earWiggleAnimState);
+        state.fallToSleepAnimationState.copyFrom(capybara.fallToSleepAnimState);
+        state.sleepingAnimationState.copyFrom(capybara.sleepingAnimState);
+        state.wakeUpAnimationState.copyFrom(capybara.wakeUpAnimState);
+        state.fartAnimationState.copyFrom(capybara.fartAnimState);
 
         state.variant = capybara.getVariant().value();
-        state.closedEyes = capybara.hasClosedEyes();
-        state.largeEyes = capybara.hasLargeEyes();
+        state.sleeping = capybara.isVisuallySleeping();
+        state.surprised = capybara.isSurprised();
         state.earWiggleSpeed = capybara.getEarWiggleSpeed();
         state.canAngleHead = capybara.canAngleHead();
     }

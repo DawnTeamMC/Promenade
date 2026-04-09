@@ -2,31 +2,31 @@ package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.particle.ParticleTypes;
-import net.minecraft.particle.ParticleUtil;
-import net.minecraft.particle.TintedParticleEffect;
-import net.minecraft.util.dynamic.Codecs;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.ExtraCodecs;
+import net.minecraft.util.ParticleUtils;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 
 public class TintedParticleExtendedLeavesBlock extends ExtendedLeavesBlock {
     public static final MapCodec<TintedParticleExtendedLeavesBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            Codecs.rangedInclusiveFloat(0.0F, 1.0F).fieldOf("leaf_particle_chance").forGetter(tintedParticleLeavesBlock -> tintedParticleLeavesBlock.leafParticleChance),
-            createSettingsCodec()
+            ExtraCodecs.floatRange(0.0F, 1.0F).fieldOf("leaf_particle_chance").forGetter(tintedParticleLeavesBlock -> tintedParticleLeavesBlock.leafParticleChance),
+            propertiesCodec()
     ).apply(instance, TintedParticleExtendedLeavesBlock::new));
 
-    public TintedParticleExtendedLeavesBlock(float f, Settings settings) {
+    public TintedParticleExtendedLeavesBlock(float f, Properties settings) {
         super(f, settings);
     }
 
     @Override
-    protected void spawnLeafParticle(World world, BlockPos pos, Random random) {
-        ParticleUtil.spawnParticle(world, pos, random, TintedParticleEffect.create(ParticleTypes.TINTED_LEAVES, world.getBlockColor(pos)));
+    protected void spawnLeafParticle(Level world, BlockPos pos, RandomSource random) {
+        ParticleUtils.spawnParticleBelow(world, pos, random, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, world.getClientLeafTintColor(pos)));
     }
 
     @Override
-    public MapCodec<? extends TintedParticleExtendedLeavesBlock> getCodec() {
+    public MapCodec<? extends TintedParticleExtendedLeavesBlock> codec() {
         return CODEC;
     }
 }

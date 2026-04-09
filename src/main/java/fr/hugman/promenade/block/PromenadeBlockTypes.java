@@ -2,9 +2,9 @@ package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.Promenade;
-import net.minecraft.block.Block;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.level.block.Block;
 
 public class PromenadeBlockTypes {
     public static final MapCodec<BerryBushBlock> BERRY_BUSH = of("berry_bush", BerryBushBlock.CODEC);
@@ -23,6 +23,6 @@ public class PromenadeBlockTypes {
     public static final MapCodec<NyliumBlock> NYLIUM = of("nylium", NyliumBlock.CODEC);
 
     private static <B extends Block> MapCodec<B> of(String path, MapCodec<B> blockType) {
-        return Registry.register(Registries.BLOCK_TYPE, Promenade.id(path), blockType);
+        return Registry.register(BuiltInRegistries.BLOCK_TYPE, Promenade.id(path), blockType);
     }
 }

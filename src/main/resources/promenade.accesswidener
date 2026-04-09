@@ -1,6 +1,6 @@
-accessWidener	v1	named
-extendable method net/minecraft/entity/mob/AbstractSkeletonEntity            getStepSound ()Lnet/minecraft/sound/SoundEvent;
-extendable method net/minecraft/entity/mob/CreeperEntity                     explode      ()V
-accessible method net/minecraft/world/gen/surfacebuilder/VanillaSurfaceRules block        (Lnet/minecraft/block/Block;)Lnet/minecraft/world/gen/surfacebuilder/MaterialRules$MaterialRule;
-accessible field net/minecraft/entity/mob/MobEntity lootTable Ljava/util/Optional;
-accessible    method    net/minecraft/client/particle/LeavesParticle    <init>    (Lnet/minecraft/client/world/ClientWorld;DDDLnet/minecraft/client/texture/Sprite;FFZZFF)V
+accessWidener	v1	official
+extendable	method	net/minecraft/world/entity/monster/skeleton/AbstractSkeleton	getStepSound	()Lnet/minecraft/sounds/SoundEvent;
+extendable	method	net/minecraft/world/entity/monster/Creeper	explodeCreeper	()V
+accessible	method	net/minecraft/data/worldgen/SurfaceRuleData	makeStateRule	(Lnet/minecraft/world/level/block/Block;)Lnet/minecraft/world/level/levelgen/SurfaceRules$RuleSource;
+accessible	field	net/minecraft/world/entity/Mob	lootTable	Ljava/util/Optional;
+accessible	method	net/minecraft/client/particle/FallingLeavesParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/client/renderer/texture/TextureAtlasSprite;FFZZFF)V

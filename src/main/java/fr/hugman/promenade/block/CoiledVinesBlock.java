@@ -1,29 +1,29 @@
 package fr.hugman.promenade.block;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.VineLogic;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.NetherVines;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CoiledVinesBlock extends AbstractFacingPlantStemBlock {
-    public static final MapCodec<CoiledVinesBlock> CODEC = createCodec(CoiledVinesBlock::new);
+    public static final MapCodec<CoiledVinesBlock> CODEC = simpleCodec(CoiledVinesBlock::new);
     public static final VoxelShape[] SHAPES = new VoxelShape[]{
-            Block.createCuboidShape(2.0, 2.0, 2.0, 14.0, 16.0, 14.0), // DOWN
-            Block.createCuboidShape(2.0, 0.0, 2.0, 14.0, 14.0, 14.0), // UP
-            Block.createCuboidShape(2.0, 2.0, 2.0, 14.0, 14.0, 16.0), // NORTH
-            Block.createCuboidShape(2.0, 2.0, 0.0, 14.0, 14.0, 14.0), // SOUTH
-            Block.createCuboidShape(2.0, 2.0, 2.0, 16.0, 14.0, 14.0), // WEST
-            Block.createCuboidShape(0.0, 2.0, 2.0, 14.0, 14.0, 14.0) // EAST
+            Block.box(2.0, 2.0, 2.0, 14.0, 16.0, 14.0), // DOWN
+            Block.box(2.0, 0.0, 2.0, 14.0, 14.0, 14.0), // UP
+            Block.box(2.0, 2.0, 2.0, 14.0, 14.0, 16.0), // NORTH
+            Block.box(2.0, 2.0, 0.0, 14.0, 14.0, 14.0), // SOUTH
+            Block.box(2.0, 2.0, 2.0, 16.0, 14.0, 14.0), // WEST
+            Block.box(0.0, 2.0, 2.0, 14.0, 14.0, 14.0) // EAST
     };
 
-    public CoiledVinesBlock(Settings settings) {
+    public CoiledVinesBlock(Properties settings) {
         super(settings, SHAPES, false, 0.1);
     }
 
     @Override
-    protected MapCodec<CoiledVinesBlock> getCodec() {
+    protected MapCodec<CoiledVinesBlock> codec() {
         return CODEC;
     }
 
@@ -33,12 +33,12 @@ public class CoiledVinesBlock extends AbstractFacingPlantStemBlock {
     }
 
     @Override
-    protected int getGrowthLength(Random random) {
-        return VineLogic.getGrowthLength(random);
+    protected int getGrowthLength(RandomSource random) {
+        return NetherVines.getBlocksToGrowWhenBonemealed(random);
     }
 
     @Override
     protected boolean canGrowAt(BlockState state) {
-        return VineLogic.isValidForWeepingStem(state);
+        return NetherVines.isValidGrowthState(state);
     }
 }

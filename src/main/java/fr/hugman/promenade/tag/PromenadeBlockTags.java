@@ -2,11 +2,10 @@ package fr.hugman.promenade.tag;
 
 import fr.hugman.promenade.Promenade;
 import net.fabricmc.fabric.api.tag.convention.v2.TagUtil;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 
 public class PromenadeBlockTags {
     public static final TagKey<Block> SAKURA_LOGS = of("sakura_logs");
@@ -27,10 +26,10 @@ public class PromenadeBlockTags {
 	public static final TagKey<Block> IGNEOUS_ROCKS = ofConventional("igneous_rocks");
 
     public static TagKey<Block> of(String path) {
-        return TagKey.of(RegistryKeys.BLOCK, Promenade.id(path));
+        return TagKey.create(Registries.BLOCK, Promenade.id(path));
     }
 
 	private static TagKey<Block> ofConventional(String path) {
-		return TagKey.of(RegistryKeys.BLOCK, Identifier.of(TagUtil.C_TAG_NAMESPACE, path));
+		return TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(TagUtil.C_TAG_NAMESPACE, path));
 	}
 }

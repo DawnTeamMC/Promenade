@@ -2,21 +2,21 @@ package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.banner.PromenadeBannerPatternTags;
 import fr.hugman.promenade.banner.PromenadeBannerPatterns;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.minecraft.block.entity.BannerPattern;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
+import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.level.block.entity.BannerPattern;
 
 import java.util.concurrent.CompletableFuture;
 
-public class PromenadeBannerPatternTagProvider extends FabricTagProvider<BannerPattern> {
-    public PromenadeBannerPatternTagProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
-        super(output, RegistryKeys.BANNER_PATTERN, registriesFuture);
+public class PromenadeBannerPatternTagProvider extends FabricTagsProvider<BannerPattern> {
+    public PromenadeBannerPatternTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        super(output, Registries.BANNER_PATTERN, registriesFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+    protected void addTags(HolderLookup.Provider wrapperLookup) {
         // Promenade
         builder(PromenadeBannerPatternTags.BOVINE_PATTERN_ITEM).add(PromenadeBannerPatterns.BOVINE);
     }

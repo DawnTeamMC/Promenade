@@ -1,67 +1,66 @@
 package fr.hugman.promenade.itemgroup;
 
 import fr.hugman.promenade.Promenade;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.entity.decoration.painting.PaintingVariant;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemStackSet;
-import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-
 import java.util.Comparator;
 import java.util.Set;
+import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.entity.decoration.painting.PaintingVariant;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackLinkedSet;
+import net.minecraft.world.item.Items;
 
 public final class PromenadeItemGroup {
-    public static void fill(ItemGroup.DisplayContext displayContext, ItemGroup.Entries entries) {
-        Set<ItemStack> set = ItemStackSet.create();
+    public static void fill(CreativeModeTab.ItemDisplayParameters displayContext, CreativeModeTab.Output entries) {
+        Set<ItemStack> set = ItemStackLinkedSet.createTypeAndComponentsSet();
 
-        for (ItemGroup itemGroup : Registries.ITEM_GROUP) {
-            if (itemGroup.getType() != ItemGroup.Type.SEARCH) {
-                for (var stack : itemGroup.getSearchTabStacks()) {
-                    if (isPromenade(Registries.ITEM.getEntry(stack.getItem()))) {
+        for (CreativeModeTab itemGroup : BuiltInRegistries.CREATIVE_MODE_TAB) {
+            if (itemGroup.getType() != CreativeModeTab.Type.SEARCH) {
+                for (var stack : itemGroup.getSearchTabDisplayItems()) {
+                    if (isPromenade(BuiltInRegistries.ITEM.wrapAsHolder(stack.getItem()))) {
                         set.add(stack);
                     }
                 }
             }
         }
 
-        entries.addAll(set);
+        entries.acceptAll(set);
 
         // Vanilla Entity Variants
         //TODO: add spawn eggs
 
         // Paintings
-        displayContext.lookup()
-                .getOptional(RegistryKeys.PAINTING_VARIANT)
-                .ifPresent(registryWrapper -> registryWrapper.streamEntries()
+        displayContext.holders()
+                .lookup(Registries.PAINTING_VARIANT)
+                .ifPresent(registryWrapper -> registryWrapper.listElements()
                         .filter(PromenadeItemGroup::isPromenade)
                         .sorted(PAINTING_VARIANT_COMPARATOR)
                         .forEach(
                                 paintingVariantEntry -> {
                                     ItemStack itemStack = new ItemStack(Items.PAINTING);
-                                    itemStack.set(DataComponentTypes.PAINTING_VARIANT, paintingVariantEntry);
-                                    entries.add(itemStack, ItemGroup.StackVisibility.PARENT_AND_SEARCH_TABS);
+                                    itemStack.set(DataComponents.PAINTING_VARIANT, paintingVariantEntry);
+                                    entries.accept(itemStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                                 }
                         )
                 );
     }
 
-    private static boolean isPromenade(RegistryEntry<?> entry) {
-        return isPromenade(entry.getKey().orElseThrow());
+    private static boolean isPromenade(Holder<?> entry) {
+        return isPromenade(entry.unwrapKey().orElseThrow());
     }
 
 
-    private static boolean isPromenade(RegistryKey<?> key) {
-        return key.getValue().getNamespace().equals(Promenade.MOD_ID);
+    private static boolean isPromenade(ResourceKey<?> key) {
+        return key.identifier().getNamespace().equals(Promenade.MOD_ID);
     }
 
     // FROM Vanilla ItemGroups
 
-    private static final Comparator<RegistryEntry<PaintingVariant>> PAINTING_VARIANT_COMPARATOR = Comparator.comparing(
-            RegistryEntry::value, Comparator.comparingInt(PaintingVariant::getArea).thenComparing(PaintingVariant::width)
+    private static final Comparator<Holder<PaintingVariant>> PAINTING_VARIANT_COMPARATOR = Comparator.comparing(
+            Holder::value, Comparator.comparingInt(PaintingVariant::area).thenComparing(PaintingVariant::width)
     );
 }

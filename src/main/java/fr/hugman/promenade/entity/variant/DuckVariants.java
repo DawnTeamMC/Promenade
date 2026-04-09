@@ -2,31 +2,30 @@ package fr.hugman.promenade.entity.variant;
 
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
-import net.minecraft.entity.VariantSelectorProvider;
-import net.minecraft.entity.spawn.SpawnContext;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.random.Random;
-
 import java.util.Optional;
+import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.variant.PriorityProvider;
+import net.minecraft.world.entity.variant.SpawnContext;
 
 public class DuckVariants {
-    public static final RegistryKey<DuckVariant> PEKIN = of("pekin");
-    public static final RegistryKey<DuckVariant> MALLARD = of("mallard");
+    public static final ResourceKey<DuckVariant> PEKIN = of("pekin");
+    public static final ResourceKey<DuckVariant> MALLARD = of("mallard");
 
-    public static final RegistryKey<DuckVariant> DEFAULT = PEKIN;
+    public static final ResourceKey<DuckVariant> DEFAULT = PEKIN;
 
-    private static RegistryKey<DuckVariant> of(String path) {
+    private static ResourceKey<DuckVariant> of(String path) {
         return of(Promenade.id(path));
     }
 
-    public static RegistryKey<DuckVariant> of(Identifier id) {
-        return RegistryKey.of(PromenadeRegistryKeys.DUCK_VARIANT, id);
+    public static ResourceKey<DuckVariant> of(Identifier id) {
+        return ResourceKey.create(PromenadeRegistryKeys.DUCK_VARIANT, id);
     }
 
-    public static Optional<RegistryEntry.Reference<DuckVariant>> select(Random random, DynamicRegistryManager registries, SpawnContext context) {
-        return VariantSelectorProvider.select(registries.getOrThrow(PromenadeRegistryKeys.DUCK_VARIANT).streamEntries(), RegistryEntry::value, random, context);
+    public static Optional<Holder.Reference<DuckVariant>> select(RandomSource random, RegistryAccess registries, SpawnContext context) {
+        return PriorityProvider.pick(registries.lookupOrThrow(PromenadeRegistryKeys.DUCK_VARIANT).listElements(), Holder::value, random, context);
     }
 }

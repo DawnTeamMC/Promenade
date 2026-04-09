@@ -1,48 +1,51 @@
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.client.render.entity.model.DuckEntityModel;
+import fr.hugman.promenade.client.render.entity.model.duck.AdultDuckModel;
+import fr.hugman.promenade.client.render.entity.model.duck.BabyDuckModel;
+import fr.hugman.promenade.client.render.entity.model.duck.DuckModel;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
-import fr.hugman.promenade.client.render.entity.state.DuckEntityRenderState;
-import fr.hugman.promenade.entity.DuckEntity;
+import fr.hugman.promenade.client.render.entity.state.DuckRenderState;
+import fr.hugman.promenade.entity.Duck;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.minecraft.client.render.entity.AgeableMobEntityRenderer;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.texture.MissingSprite;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.client.renderer.entity.AgeableMobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.Mth;
 
 @Environment(EnvType.CLIENT)
-public class DuckEntityRenderer extends AgeableMobEntityRenderer<DuckEntity, DuckEntityRenderState, DuckEntityModel> {
-    public DuckEntityRenderer(EntityRendererFactory.Context context) {
+public class DuckEntityRenderer extends AgeableMobRenderer<Duck, DuckRenderState, DuckModel> {
+    public DuckEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
-                new DuckEntityModel(context.getPart(PromenadeEntityModelLayers.DUCK)),
-                new DuckEntityModel(context.getPart(PromenadeEntityModelLayers.DUCK_BABY)),
+                new AdultDuckModel(context.bakeLayer(PromenadeEntityModelLayers.DUCK)),
+                new BabyDuckModel(context.bakeLayer(PromenadeEntityModelLayers.DUCK_BABY)),
                 0.3F
         );
     }
 
     @Override
-    public DuckEntityRenderState createRenderState() {
-        return new DuckEntityRenderState();
+    public DuckRenderState createRenderState() {
+        return new DuckRenderState();
     }
 
     @Override
-    public Identifier getTexture(DuckEntityRenderState state) {
+    public Identifier getTextureLocation(DuckRenderState state) {
         if (state.variant == null) {
-            return MissingSprite.getMissingSpriteId();
+            return MissingTextureAtlasSprite.getLocation();
         }
-        if (state.baby) {
+        if (state.isBaby) {
             return state.variant.babyTexture().texturePath();
         }
         return state.variant.texture().texturePath();
     }
 
-    public void updateRenderState(DuckEntity duck, DuckEntityRenderState state, float f) {
-        super.updateRenderState(duck, state, f);
-        state.flapProgress = MathHelper.lerp(f, duck.prevFlapProgress, duck.flapProgress);
-        state.maxWingDeviation = MathHelper.lerp(f, duck.prevMaxWingDeviation, duck.maxWingDeviation);
+    @Override
+    public void extractRenderState(Duck duck, DuckRenderState state, float f) {
+        super.extractRenderState(duck, state, f);
+        state.flapProgress = Mth.lerp(f, duck.prevFlapProgress, duck.flapProgress);
+        state.maxWingDeviation = Mth.lerp(f, duck.prevMaxWingDeviation, duck.maxWingDeviation);
         state.variant = duck.getVariant().value();
     }
 }
