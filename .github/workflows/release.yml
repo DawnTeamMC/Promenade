@@ -79,7 +79,7 @@ jobs:
           echo "${{ github.event.release.body }}" >> $GITHUB_STEP_SUMMARY
 
       - name: Send Discord webhook
-        uses: Ilshidur/action-discord@0.3.2
+        uses: Ilshidur/action-discord@0.4.0
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
           DISCORD_EMBEDS: |
