@@ -60,7 +60,9 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
           changelog: ${{ github.event.release.body }}
-          java: 21
+          java: 25
+          game-versions: |
+            >=26.1
 
           modrinth-featured: false
 
