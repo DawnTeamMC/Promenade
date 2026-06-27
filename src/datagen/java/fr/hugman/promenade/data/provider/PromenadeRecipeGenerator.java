@@ -136,7 +136,7 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
         this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.MOAI, Blocks.TUFF);
 
         this.cookRecipes("smelting", SmeltingRecipe::new, 200);
-        this.cookRecipes("smoking", CampfireCookingRecipe::new, 100);
+        this.cookRecipes("smoking", SmokingRecipe::new, 100);
         this.cookRecipes("campfire_cooking", CampfireCookingRecipe::new, 600);
 
         this.oneToOneConversionRecipe(Items.MAGENTA_DYE, PromenadeItems.BLUEBERRIES, "magenta_dye", 1);

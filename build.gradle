@@ -1,6 +1,6 @@
 plugins {
     id "net.fabricmc.fabric-loom" version "${loom_version}"
-    id 'org.moddedmc.wiki.toolkit' version '0.3.2'
+    id 'org.moddedmc.wiki.toolkit' version '0.4.1'
 }
 
 group = "com.github.hugman"
