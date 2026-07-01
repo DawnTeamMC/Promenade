@@ -6,6 +6,7 @@ import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.tag.PromenadeBiomeTags;
+import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.SurfaceRuleData;
@@ -66,19 +67,6 @@ public class PromenadeBiomes {
 
         if (biomeConfig.darkAmaranthForestsNoise().isPresent()) {
             BiomePlacement.addNether(PromenadeBiomes.DARK_AMARANTH_FOREST, biomeConfig.darkAmaranthForestsNoise().get());
-
-            SurfaceGeneration.addNetherSurfaceRules(Promenade.id("dark_amaranth_forest"),
-                    SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
-                            SurfaceRules.sequence(
-                                    SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(32), 0)), SurfaceRules.ifTrue(SurfaceRules.hole(), SurfaceRuleData.makeStateRule(Blocks.LAVA))),
-                                    SurfaceRules.ifTrue(SurfaceRules.isBiome(PromenadeBiomes.DARK_AMARANTH_FOREST),
-                                            SurfaceRules.ifTrue(
-                                                    SurfaceRules.not(SurfaceRules.noiseCondition(Noises.NETHERRACK, 0.54)),
-                                                    SurfaceRules.ifTrue(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(31), 0), SurfaceRules.sequence(SurfaceRules.ifTrue(SurfaceRules.noiseCondition(Noises.NETHER_WART, 1.17), SurfaceRuleData.makeStateRule(PromenadeBlocks.DARK_AMARANTH_WART_BLOCK)), SurfaceRuleData.makeStateRule(PromenadeBlocks.DARK_AMARANTH_NYLIUM)))
-                                            )
-                                    )
-                            )
-                    ));
         }
     }
 

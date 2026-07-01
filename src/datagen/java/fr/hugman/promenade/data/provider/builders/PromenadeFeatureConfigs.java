@@ -20,6 +20,7 @@ import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSi
 import net.minecraft.world.level.levelgen.feature.foliageplacers.AcaciaFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.MegaPineFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.RuleBasedStateProvider;
 import net.minecraft.world.level.levelgen.feature.treedecorators.AttachedToLeavesDecorator;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
@@ -97,10 +98,10 @@ public class PromenadeFeatureConfigs {
                 new LeapingTrunkPlacer(6, 5, 2, BiasedToBottomInt.of(3, 10), UniformInt.of(-1, 0), 0.45f, 2),
                 BlockStateProvider.simple(PromenadeBlocks.PALM_LEAVES),
                 new PalmFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0)),
-                new TwoLayersFeatureSize(1, 0, 1)
+                new TwoLayersFeatureSize(1, 0, 1),
+                BlockStateProvider.simple(Blocks.SAND)
         )
                 .decorators(ImmutableList.of(new AttachedToLeavesDecorator(0.8f, 1, 0, BlockStateProvider.simple(PromenadeBlocks.PALM_HANGING_LEAVES), 2, List.of(Direction.DOWN))))
-                .belowTrunkProvider(BlockStateProvider.simple(Blocks.SAND))
                 .ignoreVines();
     }
 
@@ -111,7 +112,8 @@ public class PromenadeFeatureConfigs {
                         new ForkingTrunkPlacer(3, 2, 1),
                 BlockStateProvider.simple(leaves),
                 new AcaciaFoliagePlacer(UniformInt.of(1, 2), ConstantInt.of(0)),
-                new TwoLayersFeatureSize(1, 0, 1)
+                new TwoLayersFeatureSize(1, 0, 1),
+                RuleBasedStateProvider.ifTrueThenProvide(TreeConfiguration.CAN_PLACE_BELOW_TREE_TRUNKS, Blocks.DIRT)
         ).ignoreVines();
     }
 
@@ -123,7 +125,8 @@ public class PromenadeFeatureConfigs {
                 BlockStateProvider.simple(leaves),
                 new MapleFoliagePlacer(BiasedToBottomInt.of(3, 4), UniformInt.of(5, 6), BiasedToBottomInt.of(17, 20)),
                 fancy ? new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4)) :
-                        new TwoLayersFeatureSize(1, 0, 1, OptionalInt.empty())
+                        new TwoLayersFeatureSize(1, 0, 1, OptionalInt.empty()),
+                RuleBasedStateProvider.ifTrueThenProvide(TreeConfiguration.CAN_PLACE_BELOW_TREE_TRUNKS, Blocks.DIRT)
         )
                 .ignoreVines();
     }
@@ -134,7 +137,8 @@ public class PromenadeFeatureConfigs {
                 new GiantTrunkPlacer(13, 2, 14),
                 BlockStateProvider.simple(leaves),
                 new MegaPineFoliagePlacer(ConstantInt.of(0), ConstantInt.of(0), UniformInt.of(13, 17)),
-                new TwoLayersFeatureSize(1, 1, 2)
+                new TwoLayersFeatureSize(1, 1, 2),
+                RuleBasedStateProvider.ifTrueThenProvide(TreeConfiguration.CAN_PLACE_BELOW_TREE_TRUNKS, Blocks.DIRT)
         );
     }
 

@@ -13,10 +13,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.InsideBlockEffectApplier;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -99,7 +96,7 @@ public class BerryBushBlock extends VegetationBlock implements BonemealableBlock
 
 	@Override
 	protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entity, InsideBlockEffectApplier handler, boolean bl) {
-        if (!(entity instanceof LivingEntity) || entity.getType() == EntityType.FOX || entity.getType() == EntityType.BEE) {
+        if (!(entity instanceof LivingEntity) || entity.getType() == EntityTypes.FOX || entity.getType() == EntityTypes.BEE) {
             return;
         }
         entity.makeStuckInBlock(state, new Vec3(0.8f, 0.75, 0.8f));

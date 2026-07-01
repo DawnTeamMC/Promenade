@@ -42,6 +42,7 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(PromenadeConfiguredFeatureProvider::new);
         pack.addProvider(PromenadePlacedFeatureProvider::new);
         pack.addProvider(PromenadeBiomeProvider::new);
+        pack.addProvider(PromenadeBiolithSurfaceProvider::new);
 
         // - Loot tables
         pack.addProvider(PromenadeBlockLootTableProvider::new);

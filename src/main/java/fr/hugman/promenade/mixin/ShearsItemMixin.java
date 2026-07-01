@@ -1,7 +1,7 @@
 package fr.hugman.promenade.mixin;
 
 import fr.hugman.promenade.block.AbstractFacingPlantStemBlock;
-import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.advancements.triggers.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;

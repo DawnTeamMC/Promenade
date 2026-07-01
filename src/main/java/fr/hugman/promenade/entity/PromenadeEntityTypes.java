@@ -13,10 +13,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.SpawnPlacementTypes;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.vehicle.boat.Boat;
 import net.minecraft.world.entity.vehicle.boat.ChestBoat;
@@ -72,10 +69,10 @@ public class PromenadeEntityTypes {
     public static void appendWorldGen() {
         var duckWeight = PromenadeConfig.get().animals().ducksWeight();
         if (duckWeight != 0) {
-            Predicate<BiomeSelectionContext> hasFarmAnimals = BiomeSelectors.spawnsOneOf(EntityType.COW)
-                    .and(BiomeSelectors.spawnsOneOf(EntityType.SHEEP))
-                    .and(BiomeSelectors.spawnsOneOf(EntityType.CHICKEN))
-                    .and(BiomeSelectors.spawnsOneOf(EntityType.PIG));
+            Predicate<BiomeSelectionContext> hasFarmAnimals = BiomeSelectors.spawnsOneOf(EntityTypes.COW)
+                    .and(BiomeSelectors.spawnsOneOf(EntityTypes.SHEEP))
+                    .and(BiomeSelectors.spawnsOneOf(EntityTypes.CHICKEN))
+                    .and(BiomeSelectors.spawnsOneOf(EntityTypes.PIG));
             BiomeModifications.addSpawn(hasFarmAnimals, MobCategory.CREATURE, PromenadeEntityTypes.DUCK, duckWeight, 4, 4);
         }
 
@@ -86,7 +83,7 @@ public class PromenadeEntityTypes {
 
         var lushCreeperWeight = PromenadeConfig.get().monsters().lushCreepersWeight();
         if (lushCreeperWeight != 0) {
-            BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityType.CREEPER).and(BiomeSelectors.excludeByKey(Biomes.LUSH_CAVES)), MobCategory.MONSTER, LUSH_CREEPER, lushCreeperWeight, 2, 3);
+            BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityTypes.CREEPER).and(BiomeSelectors.excludeByKey(Biomes.LUSH_CAVES)), MobCategory.MONSTER, LUSH_CREEPER, lushCreeperWeight, 2, 3);
             BiomeModifications.addSpawn(BiomeSelectors.includeByKey(Biomes.LUSH_CAVES), MobCategory.MONSTER, LUSH_CREEPER, lushCreeperWeight * 4, 2, 4);
         }
 

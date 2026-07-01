@@ -20,6 +20,7 @@ import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.attribute.*;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeGenerationSettings;
@@ -89,9 +90,9 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
         BiomeDefaultFeatures.farmAnimals(spawns);
         BiomeDefaultFeatures.commonSpawns(spawns);
-        spawns.addSpawn(MobCategory.CREATURE, 5, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 4, 4));
-        spawns.addSpawn(MobCategory.CREATURE, 16, new MobSpawnSettings.SpawnerData(EntityType.FOX, 1, 3));
-        spawns.addSpawn(MobCategory.CREATURE, 2, new MobSpawnSettings.SpawnerData(EntityType.PANDA, 4, 5));
+        spawns.addSpawn(MobCategory.CREATURE, 5, new MobSpawnSettings.SpawnerData(EntityTypes.WOLF, 4, 4));
+        spawns.addSpawn(MobCategory.CREATURE, 16, new MobSpawnSettings.SpawnerData(EntityTypes.FOX, 1, 3));
+        spawns.addSpawn(MobCategory.CREATURE, 2, new MobSpawnSettings.SpawnerData(EntityTypes.PANDA, 4, 5));
 
         return biome(0.6F, 0.4F)
                 .mobSpawnSettings(spawns.build())
@@ -127,8 +128,8 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
         BiomeDefaultFeatures.farmAnimals(spawns);
         BiomeDefaultFeatures.commonSpawns(spawns);
-        spawns.addSpawn(MobCategory.CREATURE, 5, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 4, 4));
-        spawns.addSpawn(MobCategory.CREATURE, 7, new MobSpawnSettings.SpawnerData(EntityType.FOX, 2, 3));
+        spawns.addSpawn(MobCategory.CREATURE, 5, new MobSpawnSettings.SpawnerData(EntityTypes.WOLF, 4, 4));
+        spawns.addSpawn(MobCategory.CREATURE, 7, new MobSpawnSettings.SpawnerData(EntityTypes.FOX, 2, 3));
 
         return biome(1.2F, 0.9F)
                 .mobSpawnSettings(spawns.build())
@@ -191,8 +192,8 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
         MobSpawnSettings.Builder spawns = new MobSpawnSettings.Builder()
                 .addSpawn(MobCategory.CREATURE, 4, new MobSpawnSettings.SpawnerData(PromenadeEntityTypes.DUCK, 4, 4))
-                .addSpawn(MobCategory.CREATURE, 8, new MobSpawnSettings.SpawnerData(EntityType.WOLF, 4, 4))
-                .addSpawn(MobCategory.CREATURE, 8, new MobSpawnSettings.SpawnerData(EntityType.FOX, 2, 4));
+                .addSpawn(MobCategory.CREATURE, 8, new MobSpawnSettings.SpawnerData(EntityTypes.WOLF, 4, 4))
+                .addSpawn(MobCategory.CREATURE, 8, new MobSpawnSettings.SpawnerData(EntityTypes.FOX, 2, 4));
         BiomeDefaultFeatures.commonSpawns(spawns);
 
         return biome(-0.7F, 0.8f)
@@ -208,9 +209,9 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
     public static Biome createDarkAmaranthForest(HolderGetter<PlacedFeature> featureLookup, HolderGetter<ConfiguredWorldCarver<?>> carverLookup) {
         MobSpawnSettings spawnSettings = new MobSpawnSettings.Builder()
-                .addSpawn(MobCategory.MONSTER, 1, new MobSpawnSettings.SpawnerData(EntityType.ENDERMAN, 4, 4))
-                .addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityType.STRIDER, 1, 2))
-                .addMobCharge(EntityType.ENDERMAN, 1.0, 0.12)
+                .addSpawn(MobCategory.MONSTER, 1, new MobSpawnSettings.SpawnerData(EntityTypes.ENDERMAN, 4, 4))
+                .addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityTypes.STRIDER, 1, 2))
+                .addMobCharge(EntityTypes.ENDERMAN, 1.0, 0.12)
                 .build();
         BiomeGenerationSettings.Builder lookupBackedBuilder = new BiomeGenerationSettings.Builder(featureLookup, carverLookup)
                 .addCarver(Carvers.NETHER_CAVE)

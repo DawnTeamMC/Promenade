@@ -7,8 +7,9 @@ import net.minecraft.tags.EntityTypeTags;
 
 import java.util.concurrent.CompletableFuture;
 
-import static fr.hugman.promenade.entity.PromenadeEntityTypes.*;
 import static fr.hugman.promenade.tag.PromenadeEntityTypeTags.*;
+import static fr.hugman.promenade.references.PromenadeEntityTypeIds.*;
+
 
 public class PromenadeEntityTypeTagProvider extends FabricTagsProvider.EntityTypeTagsProvider {
     public PromenadeEntityTypeTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
@@ -18,26 +19,26 @@ public class PromenadeEntityTypeTagProvider extends FabricTagsProvider.EntityTyp
     @Override
     protected void addTags(HolderLookup.Provider wrapperLookup) {
         // Vanilla
-        valueLookupBuilder(EntityTypeTags.SKELETONS).add(SUNKEN);
-        valueLookupBuilder(EntityTypeTags.BOAT).add(SAKURA_BOAT, MAPLE_BOAT, PALM_BOAT);
-        valueLookupBuilder(EntityTypeTags.AQUATIC).add(SUNKEN, CAPYBARA);
+        builder(EntityTypeTags.SKELETONS).add(SUNKEN);
+        builder(EntityTypeTags.BOAT).add(SAKURA_BOAT, MAPLE_BOAT, PALM_BOAT);
+        builder(EntityTypeTags.AQUATIC).add(SUNKEN, CAPYBARA);
 
-        valueLookupBuilder(EntityTypeTags.BURN_IN_DAYLIGHT).add(SUNKEN);
+        builder(EntityTypeTags.BURN_IN_DAYLIGHT).add(SUNKEN);
 
-        valueLookupBuilder(EntityTypeTags.AXOLOTL_ALWAYS_HOSTILES).add(SUNKEN);
-        valueLookupBuilder(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES).add(DUCK);
-        valueLookupBuilder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(DUCK);
-        valueLookupBuilder(EntityTypeTags.POWDER_SNOW_WALKABLE_MOBS).add(DUCK);
-        valueLookupBuilder(EntityTypeTags.NOT_SCARY_FOR_PUFFERFISH).add(CAPYBARA);
-        valueLookupBuilder(EntityTypeTags.CANDIDATE_FOR_IRON_GOLEM_GIFT).add(CAPYBARA);
-        valueLookupBuilder(EntityTypeTags.FOLLOWABLE_FRIENDLY_MOBS).add(DUCK, CAPYBARA);
+        builder(EntityTypeTags.AXOLOTL_ALWAYS_HOSTILES).add(SUNKEN);
+        builder(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES).add(DUCK);
+        builder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(DUCK);
+        builder(EntityTypeTags.POWDER_SNOW_WALKABLE_MOBS).add(DUCK);
+        builder(EntityTypeTags.NOT_SCARY_FOR_PUFFERFISH).add(CAPYBARA);
+        builder(EntityTypeTags.CANDIDATE_FOR_IRON_GOLEM_GIFT).add(CAPYBARA);
+        builder(EntityTypeTags.FOLLOWABLE_FRIENDLY_MOBS).add(DUCK, CAPYBARA);
 
         // Conventional
-        valueLookupBuilder(ANIMALS).add(DUCK, CAPYBARA);
-        valueLookupBuilder(MONSTERS).add(LUSH_CREEPER);
+        builder(ANIMALS).add(DUCK, CAPYBARA);
+        builder(MONSTERS).add(LUSH_CREEPER);
 
-        valueLookupBuilder(BIRDS).add(DUCK);
-        valueLookupBuilder(RODENTS).add(CAPYBARA);
-        valueLookupBuilder(CREEPERS).add(LUSH_CREEPER);
+        builder(BIRDS).add(DUCK);
+        builder(RODENTS).add(CAPYBARA);
+        builder(CREEPERS).add(LUSH_CREEPER);
     }
 }

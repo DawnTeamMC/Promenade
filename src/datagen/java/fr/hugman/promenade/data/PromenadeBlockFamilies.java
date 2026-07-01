@@ -45,11 +45,14 @@ public class PromenadeBlockFamilies {
             .getFamily();
 
     public static final BlockFamily SAKURA = register(PromenadeBlocks.SAKURA_PLANKS)
+            .log(PromenadeBlocks.SAKURA_LOG)
+            .strippedLog(PromenadeBlocks.STRIPPED_SAKURA_LOG)
             .button(PromenadeBlocks.SAKURA_BUTTON)
             .fence(PromenadeBlocks.SAKURA_FENCE)
             .fenceGate(PromenadeBlocks.SAKURA_FENCE_GATE)
             .pressurePlate(PromenadeBlocks.SAKURA_PRESSURE_PLATE)
             .sign(PromenadeBlocks.SAKURA_SIGN, PromenadeBlocks.SAKURA_WALL_SIGN)
+            .hangingSign(PromenadeBlocks.SAKURA_HANGING_SIGN, PromenadeBlocks.SAKURA_WALL_HANGING_SIGN)
             .slab(PromenadeBlocks.SAKURA_SLAB)
             .stairs(PromenadeBlocks.SAKURA_STAIRS)
             .door(PromenadeBlocks.SAKURA_DOOR)
@@ -59,11 +62,14 @@ public class PromenadeBlockFamilies {
             .getFamily();
 
     public static final BlockFamily MAPLE = register(PromenadeBlocks.MAPLE_PLANKS)
+            .log(PromenadeBlocks.MAPLE_LOG)
+            .strippedLog(PromenadeBlocks.STRIPPED_MAPLE_LOG)
             .button(PromenadeBlocks.MAPLE_BUTTON)
             .fence(PromenadeBlocks.MAPLE_FENCE)
             .fenceGate(PromenadeBlocks.MAPLE_FENCE_GATE)
             .pressurePlate(PromenadeBlocks.MAPLE_PRESSURE_PLATE)
             .sign(PromenadeBlocks.MAPLE_SIGN, PromenadeBlocks.MAPLE_WALL_SIGN)
+            .hangingSign(PromenadeBlocks.MAPLE_HANGING_SIGN, PromenadeBlocks.MAPLE_WALL_HANGING_SIGN)
             .slab(PromenadeBlocks.MAPLE_SLAB)
             .stairs(PromenadeBlocks.MAPLE_STAIRS)
             .door(PromenadeBlocks.MAPLE_DOOR)
@@ -73,11 +79,14 @@ public class PromenadeBlockFamilies {
             .getFamily();
 
     public static final BlockFamily PALM = register(PromenadeBlocks.PALM_PLANKS)
+            .log(PromenadeBlocks.PALM_LOG)
+            .strippedLog(PromenadeBlocks.STRIPPED_PALM_LOG)
             .button(PromenadeBlocks.PALM_BUTTON)
             .fence(PromenadeBlocks.PALM_FENCE)
             .fenceGate(PromenadeBlocks.PALM_FENCE_GATE)
             .pressurePlate(PromenadeBlocks.PALM_PRESSURE_PLATE)
             .sign(PromenadeBlocks.PALM_SIGN, PromenadeBlocks.PALM_WALL_SIGN)
+            .hangingSign(PromenadeBlocks.PALM_HANGING_SIGN, PromenadeBlocks.PALM_WALL_HANGING_SIGN)
             .slab(PromenadeBlocks.PALM_SLAB)
             .stairs(PromenadeBlocks.PALM_STAIRS)
             .door(PromenadeBlocks.PALM_DOOR)
@@ -87,11 +96,14 @@ public class PromenadeBlockFamilies {
             .getFamily();
 
     public static final BlockFamily DARK_AMARANTH = register(PromenadeBlocks.DARK_AMARANTH_PLANKS)
+            .log(PromenadeBlocks.DARK_AMARANTH_STEM)
+            .strippedLog(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM)
             .button(PromenadeBlocks.DARK_AMARANTH_BUTTON)
             .fence(PromenadeBlocks.DARK_AMARANTH_FENCE)
             .fenceGate(PromenadeBlocks.DARK_AMARANTH_FENCE_GATE)
             .pressurePlate(PromenadeBlocks.DARK_AMARANTH_PRESSURE_PLATE)
             .sign(PromenadeBlocks.DARK_AMARANTH_SIGN, PromenadeBlocks.DARK_AMARANTH_WALL_SIGN)
+            .hangingSign(PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN, PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN)
             .slab(PromenadeBlocks.DARK_AMARANTH_SLAB)
             .stairs(PromenadeBlocks.DARK_AMARANTH_STAIRS)
             .door(PromenadeBlocks.DARK_AMARANTH_DOOR)
