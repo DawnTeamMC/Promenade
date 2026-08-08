@@ -32,7 +32,7 @@ public class PromenadeBiolithSurfaceProvider extends FabricCodecDataProvider<Sur
 		var biomes = registryLookup.lookupOrThrow(Registries.BIOME);
 		provider.accept(Promenade.id("dark_amaranth_forest"), new SurfaceGenerationMarshaller(List.of(
 			new SurfaceGenerationMarshaller.SurfaceRuleMarshaller(
-				BuiltinDimensionTypes.NETHER, Promenade.id("rules/nether"), List.of(SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
+				BuiltinDimensionTypes.NETHER, Identifier.withDefaultNamespace("rules/nether"), List.of(SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
 					SurfaceRules.sequence(
 							SurfaceRules.ifTrue(SurfaceRules.not(SurfaceRules.yBlockCheck(VerticalAnchor.absolute(32), 0)), SurfaceRules.ifTrue(SurfaceRules.hole(), SurfaceRuleData.makeStateRule(Blocks.LAVA))),
 							SurfaceRules.ifTrue(SurfaceRules.isBiome(biomes, PromenadeBiomes.DARK_AMARANTH_FOREST),
