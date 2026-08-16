@@ -57,6 +57,7 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
     }
 
     public static void register(BootstrapContext<ConfiguredFeature<?, ?>> registerable) {
+        final var blocks = registerable.lookup(Registries.BLOCK);
         final var configured = registerable.lookup(Registries.CONFIGURED_FEATURE);
         final var placed = registerable.lookup(Registries.PLACED_FEATURE);
 
@@ -112,7 +113,7 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
         // Vegetation
         of(registerable, PromenadeConfiguredFeatures.WATER_POOL_GRAVEL_DECORATED, Feature.WATERLOGGED_VEGETATION_PATCH,
                 new VegetationPatchConfiguration(
-                        BlockTags.LUSH_GROUND_REPLACEABLE,
+                        blocks.getOrThrow(BlockTags.LUSH_GROUND_REPLACEABLE),
                         BlockStateProvider.simple(Blocks.GRAVEL),
                         PlacementUtils.inlinePlaced(Holder.direct(new ConfiguredFeature<>(Feature.RANDOM_SELECTOR, new RandomFeatureConfiguration(List.of(new WeightedPlacedFeature(PlacementUtils.inlinePlaced(configured.getOrThrow(VegetationFeatures.BAMBOO_SOME_PODZOL)), 0.4F)), PlacementUtils.inlinePlaced(configured.getOrThrow(VegetationFeatures.WATERLILY)))))), //hello there
                         CaveSurface.FLOOR,
