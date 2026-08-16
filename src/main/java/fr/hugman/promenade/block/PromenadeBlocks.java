@@ -1,19 +1,20 @@
 package fr.hugman.promenade.block;
 
-import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.block.helper.BlockBuilder;
 import fr.hugman.promenade.block.helper.BlockFactory;
 import fr.hugman.promenade.block.map_color.PromenadeMapColors;
 import fr.hugman.promenade.block.type.PromenadeBlockSetTypes;
 import fr.hugman.promenade.block.type.PromenadeWoodTypes;
 import fr.hugman.promenade.item.PromenadeItemKeys;
+import fr.hugman.promenade.references.PromenadeBlockIds;
+import fr.hugman.promenade.references.PromenadeBlockItemIds;
 import fr.hugman.promenade.particle.PromenadeParticleTypes;
 import fr.hugman.promenade.sound.PromenadeBlockSounds;
 import fr.hugman.promenade.tag.PromenadeBlockTags;
 import fr.hugman.promenade.world.PromenadeSaplingGenerators;
 import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.references.BlockItemId;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -29,194 +30,194 @@ public class PromenadeBlocks {
     /* ========= */
     /*   ROCKS   */
     /* ========= */
-    public static final Block ASPHALT = register("asphalt", BlockFactory.of(BlockSettings.rock(MapColor.DEEPSLATE, SoundType.BASALT)));
-    public static final Block ASPHALT_SLAB = register("asphalt_slab", BlockFactory.slab(ASPHALT));
-    public static final Block ASPHALT_STAIRS = register("asphalt_stairs", BlockFactory.stairs(ASPHALT));
-    public static final Block ASPHALT_WALL = register("asphalt_wall", BlockFactory.wall(ASPHALT));
+    public static final Block ASPHALT = register(PromenadeBlockItemIds.ASPHALT, BlockFactory.of(BlockSettings.rock(MapColor.DEEPSLATE, SoundType.BASALT)));
+    public static final Block ASPHALT_SLAB = register(PromenadeBlockItemIds.ASPHALT_SLAB, BlockFactory.slab(ASPHALT));
+    public static final Block ASPHALT_STAIRS = register(PromenadeBlockItemIds.ASPHALT_STAIRS, BlockFactory.stairs(ASPHALT));
+    public static final Block ASPHALT_WALL = register(PromenadeBlockItemIds.ASPHALT_WALL, BlockFactory.wall(ASPHALT));
 
-    public static final Block POLISHED_ASPHALT = register("polished_asphalt", BlockFactory.copy(ASPHALT));
-    public static final Block POLISHED_ASPHALT_SLAB = register("polished_asphalt_slab", BlockFactory.slab(POLISHED_ASPHALT));
-    public static final Block POLISHED_ASPHALT_STAIRS = register("polished_asphalt_stairs", BlockFactory.stairs(POLISHED_ASPHALT));
+    public static final Block POLISHED_ASPHALT = register(PromenadeBlockItemIds.POLISHED_ASPHALT, BlockFactory.copy(ASPHALT));
+    public static final Block POLISHED_ASPHALT_SLAB = register(PromenadeBlockItemIds.POLISHED_ASPHALT_SLAB, BlockFactory.slab(POLISHED_ASPHALT));
+    public static final Block POLISHED_ASPHALT_STAIRS = register(PromenadeBlockItemIds.POLISHED_ASPHALT_STAIRS, BlockFactory.stairs(POLISHED_ASPHALT));
 
-    public static final Block BLUNITE = register("blunite", BlockFactory.of(BlockSettings.rock(MapColor.TERRACOTTA_CYAN, SoundType.TUFF)));
-    public static final Block BLUNITE_SLAB = register("blunite_slab", BlockFactory.slab(BLUNITE));
-    public static final Block BLUNITE_STAIRS = register("blunite_stairs", BlockFactory.stairs(BLUNITE));
-    public static final Block BLUNITE_WALL = register("blunite_wall", BlockFactory.wall(BLUNITE));
+    public static final Block BLUNITE = register(PromenadeBlockItemIds.BLUNITE, BlockFactory.of(BlockSettings.rock(MapColor.TERRACOTTA_CYAN, SoundType.TUFF)));
+    public static final Block BLUNITE_SLAB = register(PromenadeBlockItemIds.BLUNITE_SLAB, BlockFactory.slab(BLUNITE));
+    public static final Block BLUNITE_STAIRS = register(PromenadeBlockItemIds.BLUNITE_STAIRS, BlockFactory.stairs(BLUNITE));
+    public static final Block BLUNITE_WALL = register(PromenadeBlockItemIds.BLUNITE_WALL, BlockFactory.wall(BLUNITE));
 
-    public static final Block POLISHED_BLUNITE = register("polished_blunite", BlockFactory.copy(BLUNITE));
-    public static final Block POLISHED_BLUNITE_SLAB = register("polished_blunite_slab", BlockFactory.slab(POLISHED_BLUNITE));
-    public static final Block POLISHED_BLUNITE_STAIRS = register("polished_blunite_stairs", BlockFactory.stairs(POLISHED_BLUNITE));
+    public static final Block POLISHED_BLUNITE = register(PromenadeBlockItemIds.POLISHED_BLUNITE, BlockFactory.copy(BLUNITE));
+    public static final Block POLISHED_BLUNITE_SLAB = register(PromenadeBlockItemIds.POLISHED_BLUNITE_SLAB, BlockFactory.slab(POLISHED_BLUNITE));
+    public static final Block POLISHED_BLUNITE_STAIRS = register(PromenadeBlockItemIds.POLISHED_BLUNITE_STAIRS, BlockFactory.stairs(POLISHED_BLUNITE));
 
 
     /* ================= */
     /*   VANILLA PILES   */
     /* ================= */
-    public static final Block OAK_LEAF_PILE = register("oak_leaf_pile", BlockFactory.pile());
-    public static final Block SPRUCE_LEAF_PILE = register("spruce_leaf_pile", BlockFactory.pile());
-    public static final Block BIRCH_LEAF_PILE = register("birch_leaf_pile", BlockFactory.pile());
-    public static final Block JUNGLE_LEAF_PILE = register("jungle_leaf_pile", BlockFactory.pile());
-    public static final Block ACACIA_LEAF_PILE = register("acacia_leaf_pile", BlockFactory.pile());
-    public static final Block CHERRY_LEAF_PILE = register("cherry_leaf_pile", BlockFactory.pile(MapColor.COLOR_PINK).settings(s -> s.sound(SoundType.CHERRY_LEAVES)));
-    public static final Block DARK_OAK_LEAF_PILE = register("dark_oak_leaf_pile", BlockFactory.pile());
-    public static final Block PALE_OAK_LEAF_PILE = register("pale_oak_leaf_pile", BlockFactory.pile());
-    public static final Block MANGROVE_LEAF_PILE = register("mangrove_leaf_pile", BlockFactory.pile());
-    public static final Block AZALEA_LEAF_PILE = register("azalea_leaf_pile", BlockFactory.pile().settings(s -> s.sound(SoundType.AZALEA_LEAVES)));
-    public static final Block FLOWERING_AZALEA_LEAF_PILE = register("flowering_azalea_leaf_pile", BlockFactory.pile().settings(s -> s.sound(SoundType.AZALEA_LEAVES)));
+    public static final Block OAK_LEAF_PILE = register(PromenadeBlockItemIds.OAK_LEAF_PILE, BlockFactory.pile());
+    public static final Block SPRUCE_LEAF_PILE = register(PromenadeBlockItemIds.SPRUCE_LEAF_PILE, BlockFactory.pile());
+    public static final Block BIRCH_LEAF_PILE = register(PromenadeBlockItemIds.BIRCH_LEAF_PILE, BlockFactory.pile());
+    public static final Block JUNGLE_LEAF_PILE = register(PromenadeBlockItemIds.JUNGLE_LEAF_PILE, BlockFactory.pile());
+    public static final Block ACACIA_LEAF_PILE = register(PromenadeBlockItemIds.ACACIA_LEAF_PILE, BlockFactory.pile());
+    public static final Block CHERRY_LEAF_PILE = register(PromenadeBlockItemIds.CHERRY_LEAF_PILE, BlockFactory.pile(MapColor.COLOR_PINK).settings(s -> s.sound(SoundType.CHERRY_LEAVES)));
+    public static final Block DARK_OAK_LEAF_PILE = register(PromenadeBlockItemIds.DARK_OAK_LEAF_PILE, BlockFactory.pile());
+    public static final Block PALE_OAK_LEAF_PILE = register(PromenadeBlockItemIds.PALE_OAK_LEAF_PILE, BlockFactory.pile());
+    public static final Block MANGROVE_LEAF_PILE = register(PromenadeBlockItemIds.MANGROVE_LEAF_PILE, BlockFactory.pile());
+    public static final Block AZALEA_LEAF_PILE = register(PromenadeBlockItemIds.AZALEA_LEAF_PILE, BlockFactory.pile().settings(s -> s.sound(SoundType.AZALEA_LEAVES)));
+    public static final Block FLOWERING_AZALEA_LEAF_PILE = register(PromenadeBlockItemIds.FLOWERING_AZALEA_LEAF_PILE, BlockFactory.pile().settings(s -> s.sound(SoundType.AZALEA_LEAVES)));
 
-    public static final Block DANDELION_PILE = register("dandelion_pile", BlockFactory.pile(MapColor.GOLD));
-    public static final Block POPPY_PILE = register("poppy_pile", BlockFactory.pile(MapColor.CRIMSON_NYLIUM));
-    public static final Block BLUE_ORCHID_PILE = register("blue_orchid_pile", BlockFactory.pile(MapColor.COLOR_LIGHT_BLUE));
-    public static final Block ALLIUM_PILE = register("allium_pile", BlockFactory.pile(MapColor.COLOR_MAGENTA));
-    public static final Block AZURE_BLUET_PILE = register("azure_bluet_pile", BlockFactory.pile(MapColor.SAND));
-    public static final Block RED_TULIP_PILE = register("red_tulip_pile", BlockFactory.pile(MapColor.CRIMSON_NYLIUM));
-    public static final Block ORANGE_TULIP_PILE = register("orange_tulip_pile", BlockFactory.pile(MapColor.COLOR_ORANGE));
-    public static final Block WHITE_TULIP_PILE = register("white_tulip_pile", BlockFactory.pile(MapColor.SNOW));
-    public static final Block PINK_TULIP_PILE = register("pink_tulip_pile", BlockFactory.pile(MapColor.COLOR_PINK));
-    public static final Block OXEYE_DAISY_PILE = register("oxeye_daisy_pile", BlockFactory.pile(MapColor.GOLD));
-    public static final Block CORNFLOWER_PILE = register("cornflower_pile", BlockFactory.pile(MapColor.LAPIS));
-    public static final Block LILY_OF_THE_VALLEY_PILE = register("lily_of_the_valley_pile", BlockFactory.pile(MapColor.SNOW));
-    public static final Block WITHER_ROSE_PILE = register("wither_rose_pile", BlockFactory.pile(MapColor.COLOR_BLACK).factory(WitherRosePileBlock::new));
+    public static final Block DANDELION_PILE = register(PromenadeBlockItemIds.DANDELION_PILE, BlockFactory.pile(MapColor.GOLD));
+    public static final Block POPPY_PILE = register(PromenadeBlockItemIds.POPPY_PILE, BlockFactory.pile(MapColor.CRIMSON_NYLIUM));
+    public static final Block BLUE_ORCHID_PILE = register(PromenadeBlockItemIds.BLUE_ORCHID_PILE, BlockFactory.pile(MapColor.COLOR_LIGHT_BLUE));
+    public static final Block ALLIUM_PILE = register(PromenadeBlockItemIds.ALLIUM_PILE, BlockFactory.pile(MapColor.COLOR_MAGENTA));
+    public static final Block AZURE_BLUET_PILE = register(PromenadeBlockItemIds.AZURE_BLUET_PILE, BlockFactory.pile(MapColor.SAND));
+    public static final Block RED_TULIP_PILE = register(PromenadeBlockItemIds.RED_TULIP_PILE, BlockFactory.pile(MapColor.CRIMSON_NYLIUM));
+    public static final Block ORANGE_TULIP_PILE = register(PromenadeBlockItemIds.ORANGE_TULIP_PILE, BlockFactory.pile(MapColor.COLOR_ORANGE));
+    public static final Block WHITE_TULIP_PILE = register(PromenadeBlockItemIds.WHITE_TULIP_PILE, BlockFactory.pile(MapColor.SNOW));
+    public static final Block PINK_TULIP_PILE = register(PromenadeBlockItemIds.PINK_TULIP_PILE, BlockFactory.pile(MapColor.COLOR_PINK));
+    public static final Block OXEYE_DAISY_PILE = register(PromenadeBlockItemIds.OXEYE_DAISY_PILE, BlockFactory.pile(MapColor.GOLD));
+    public static final Block CORNFLOWER_PILE = register(PromenadeBlockItemIds.CORNFLOWER_PILE, BlockFactory.pile(MapColor.LAPIS));
+    public static final Block LILY_OF_THE_VALLEY_PILE = register(PromenadeBlockItemIds.LILY_OF_THE_VALLEY_PILE, BlockFactory.pile(MapColor.SNOW));
+    public static final Block WITHER_ROSE_PILE = register(PromenadeBlockItemIds.WITHER_ROSE_PILE, BlockFactory.pile(MapColor.COLOR_BLACK).factory(WitherRosePileBlock::new));
 
 
     /* ======================== */
     /*   VANILLA SNOWY LEAVES   */
     /* ======================== */
-    public static final Block SNOWY_OAK_LEAVES = register("snowy_oak_leaves", BlockFactory.snowyLeaves());
-    public static final Block SNOWY_SPRUCE_LEAVES = register("snowy_spruce_leaves", BlockFactory.snowyLeaves());
-    public static final Block SNOWY_BIRCH_LEAVES = register("snowy_birch_leaves", BlockFactory.snowyLeaves());
-    public static final Block SNOWY_JUNGLE_LEAVES = register("snowy_jungle_leaves", BlockFactory.snowyLeaves());
-    public static final Block SNOWY_ACACIA_LEAVES = register("snowy_acacia_leaves", BlockFactory.snowyLeaves());
-    public static final Block SNOWY_CHERRY_LEAVES = register("snowy_cherry_leaves", BlockFactory.snowyLeaves(0.1f, ParticleTypes.CHERRY_LEAVES, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES));
-    public static final Block SNOWY_DARK_OAK_LEAVES = register("snowy_dark_oak_leaves", BlockFactory.snowyLeaves());
-    public static final Block SNOWY_PALE_OAK_LEAVES = register("snowy_pale_oak_leaves", BlockFactory.snowyLeaves(0.02F, ParticleTypes.PALE_OAK_LEAVES));
-    public static final Block SNOWY_MANGROVE_LEAVES = register("snowy_mangrove_leaves", BlockFactory.snowyLeaves());
-    public static final Block SNOWY_AZALEA_LEAVES = register("snowy_azalea_leaves", BlockFactory.snowyLeaves(PromenadeBlockSounds.SNOWY_AZALEA_LEAVES));
-    public static final Block SNOWY_FLOWERING_AZALEA_LEAVES = register("snowy_flowering_azalea_leaves", BlockFactory.snowyLeaves(PromenadeBlockSounds.SNOWY_AZALEA_LEAVES));
+    public static final Block SNOWY_OAK_LEAVES = register(PromenadeBlockItemIds.SNOWY_OAK_LEAVES, BlockFactory.snowyLeaves());
+    public static final Block SNOWY_SPRUCE_LEAVES = register(PromenadeBlockItemIds.SNOWY_SPRUCE_LEAVES, BlockFactory.snowyLeaves());
+    public static final Block SNOWY_BIRCH_LEAVES = register(PromenadeBlockItemIds.SNOWY_BIRCH_LEAVES, BlockFactory.snowyLeaves());
+    public static final Block SNOWY_JUNGLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_JUNGLE_LEAVES, BlockFactory.snowyLeaves());
+    public static final Block SNOWY_ACACIA_LEAVES = register(PromenadeBlockItemIds.SNOWY_ACACIA_LEAVES, BlockFactory.snowyLeaves());
+    public static final Block SNOWY_CHERRY_LEAVES = register(PromenadeBlockItemIds.SNOWY_CHERRY_LEAVES, BlockFactory.snowyLeaves(0.1f, ParticleTypes.CHERRY_LEAVES, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES));
+    public static final Block SNOWY_DARK_OAK_LEAVES = register(PromenadeBlockItemIds.SNOWY_DARK_OAK_LEAVES, BlockFactory.snowyLeaves());
+    public static final Block SNOWY_PALE_OAK_LEAVES = register(PromenadeBlockItemIds.SNOWY_PALE_OAK_LEAVES, BlockFactory.snowyLeaves(0.02F, ParticleTypes.PALE_OAK_LEAVES));
+    public static final Block SNOWY_MANGROVE_LEAVES = register(PromenadeBlockItemIds.SNOWY_MANGROVE_LEAVES, BlockFactory.snowyLeaves());
+    public static final Block SNOWY_AZALEA_LEAVES = register(PromenadeBlockItemIds.SNOWY_AZALEA_LEAVES, BlockFactory.snowyLeaves(PromenadeBlockSounds.SNOWY_AZALEA_LEAVES));
+    public static final Block SNOWY_FLOWERING_AZALEA_LEAVES = register(PromenadeBlockItemIds.SNOWY_FLOWERING_AZALEA_LEAVES, BlockFactory.snowyLeaves(PromenadeBlockSounds.SNOWY_AZALEA_LEAVES));
 
 
     /* ========== */
     /*   SAKURA   */
     /* ========== */
-    public static final Block SAKURA_LOG = register("sakura_log", BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true));
-    public static final Block STRIPPED_SAKURA_LOG = register("stripped_sakura_log", BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true));
-    public static final Block SAKURA_WOOD = register("sakura_wood", BlockFactory.log(PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true));
-    public static final Block STRIPPED_SAKURA_WOOD = register("stripped_sakura_wood", BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true));
+    public static final Block SAKURA_LOG = register(PromenadeBlockItemIds.SAKURA_LOG, BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true));
+    public static final Block STRIPPED_SAKURA_LOG = register(PromenadeBlockItemIds.STRIPPED_SAKURA_LOG, BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true));
+    public static final Block SAKURA_WOOD = register(PromenadeBlockItemIds.SAKURA_WOOD, BlockFactory.log(PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true));
+    public static final Block STRIPPED_SAKURA_WOOD = register(PromenadeBlockItemIds.STRIPPED_SAKURA_WOOD, BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true));
 
-    public static final Block SAKURA_PLANKS = register("sakura_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true)));
-    public static final Block SAKURA_STAIRS = register("sakura_stairs", BlockFactory.stairs(SAKURA_PLANKS));
-    public static final Block SAKURA_SLAB = register("sakura_slab", BlockFactory.slab(SAKURA_PLANKS));
-    public static final Block SAKURA_FENCE = register("sakura_fence", BlockFactory.fence(SAKURA_PLANKS));
-    public static final Block SAKURA_FENCE_GATE = register("sakura_fence_gate", BlockFactory.fenceGate(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA));
-    public static final Block SAKURA_DOOR = register("sakura_door", BlockFactory.door(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
-    public static final Block SAKURA_TRAPDOOR = register("sakura_trapdoor", BlockFactory.trapdoor(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
-    public static final Block SAKURA_BUTTON = register("sakura_button", BlockFactory.woodenButton(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
-    public static final Block SAKURA_PRESSURE_PLATE = register("sakura_pressure_plate", BlockFactory.pressurePlate(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
-    public static final Block SAKURA_SIGN = register("sakura_sign", BlockFactory.sign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA));
-    public static final Block SAKURA_WALL_SIGN = register("sakura_wall_sign", BlockFactory.wallSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA));
-    public static final Block SAKURA_HANGING_SIGN = register("sakura_hanging_sign", BlockFactory.hangingSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA, SoundType.CHERRY_WOOD_HANGING_SIGN));
-    public static final Block SAKURA_WALL_HANGING_SIGN = register("sakura_wall_hanging_sign", BlockFactory.wallHangingSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA, SoundType.CHERRY_WOOD_HANGING_SIGN));
-    public static final Block SAKURA_SHELF = register("sakura_shelf", BlockFactory.shelf(SAKURA_PLANKS));
+    public static final Block SAKURA_PLANKS = register(PromenadeBlockItemIds.SAKURA_PLANKS, BlockFactory.of(BlockSettings.planks(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true)));
+    public static final Block SAKURA_STAIRS = register(PromenadeBlockItemIds.SAKURA_STAIRS, BlockFactory.stairs(SAKURA_PLANKS));
+    public static final Block SAKURA_SLAB = register(PromenadeBlockItemIds.SAKURA_SLAB, BlockFactory.slab(SAKURA_PLANKS));
+    public static final Block SAKURA_FENCE = register(PromenadeBlockItemIds.SAKURA_FENCE, BlockFactory.fence(SAKURA_PLANKS));
+    public static final Block SAKURA_FENCE_GATE = register(PromenadeBlockItemIds.SAKURA_FENCE_GATE, BlockFactory.fenceGate(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA));
+    public static final Block SAKURA_DOOR = register(PromenadeBlockItemIds.SAKURA_DOOR, BlockFactory.door(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
+    public static final Block SAKURA_TRAPDOOR = register(PromenadeBlockItemIds.SAKURA_TRAPDOOR, BlockFactory.trapdoor(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
+    public static final Block SAKURA_BUTTON = register(PromenadeBlockItemIds.SAKURA_BUTTON, BlockFactory.woodenButton(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
+    public static final Block SAKURA_PRESSURE_PLATE = register(PromenadeBlockItemIds.SAKURA_PRESSURE_PLATE, BlockFactory.pressurePlate(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
+    public static final Block SAKURA_SIGN = register(PromenadeBlockItemIds.SAKURA_SIGN, BlockFactory.sign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA));
+    public static final Block SAKURA_WALL_SIGN = register(PromenadeBlockIds.SAKURA_WALL_SIGN, BlockFactory.wallSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA));
+    public static final Block SAKURA_HANGING_SIGN = register(PromenadeBlockItemIds.SAKURA_HANGING_SIGN, BlockFactory.hangingSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA, SoundType.CHERRY_WOOD_HANGING_SIGN));
+    public static final Block SAKURA_WALL_HANGING_SIGN = register(PromenadeBlockIds.SAKURA_WALL_HANGING_SIGN, BlockFactory.wallHangingSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA, SoundType.CHERRY_WOOD_HANGING_SIGN));
+    public static final Block SAKURA_SHELF = register(PromenadeBlockItemIds.SAKURA_SHELF, BlockFactory.shelf(SAKURA_PLANKS));
 
-    public static final Block BLUSH_SAKURA_SAPLING = register("blush_sakura_sapling", BlockFactory.sapling(PromenadeMapColors.BLUSH_BLOSSOMS, PromenadeSaplingGenerators.BLUSH_SAKURA));
-    public static final Block POTTED_BLUSH_SAKURA_SAPLING = register("potted_blush_sakura_sapling", BlockFactory.pot(BLUSH_SAKURA_SAPLING));
-    public static final Block BLUSH_SAKURA_BLOSSOMS = register("blush_sakura_blossoms", BlockFactory.leaves(PromenadeMapColors.BLUSH_BLOSSOMS, SoundType.CHERRY_LEAVES, 0.1f, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM));
-    public static final Block SNOWY_BLUSH_SAKURA_BLOSSOMS = register("snowy_blush_sakura_blossoms", BlockFactory.snowyLeaves(0.1f, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES));
-    public static final Block BLUSH_SAKURA_BLOSSOM_PILE = register("blush_sakura_blossom_pile", BlockFactory.pile(PromenadeMapColors.BLUSH_BLOSSOMS, SoundType.CHERRY_LEAVES));
+    public static final Block BLUSH_SAKURA_SAPLING = register(PromenadeBlockItemIds.BLUSH_SAKURA_SAPLING, BlockFactory.sapling(PromenadeMapColors.BLUSH_BLOSSOMS, PromenadeSaplingGenerators.BLUSH_SAKURA));
+    public static final Block POTTED_BLUSH_SAKURA_SAPLING = register(PromenadeBlockIds.POTTED_BLUSH_SAKURA_SAPLING, BlockFactory.pot(BLUSH_SAKURA_SAPLING));
+    public static final Block BLUSH_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.BLUSH_SAKURA_BLOSSOMS, BlockFactory.leaves(PromenadeMapColors.BLUSH_BLOSSOMS, SoundType.CHERRY_LEAVES, 0.1f, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM));
+    public static final Block SNOWY_BLUSH_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.SNOWY_BLUSH_SAKURA_BLOSSOMS, BlockFactory.snowyLeaves(0.1f, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES));
+    public static final Block BLUSH_SAKURA_BLOSSOM_PILE = register(PromenadeBlockItemIds.BLUSH_SAKURA_BLOSSOM_PILE, BlockFactory.pile(PromenadeMapColors.BLUSH_BLOSSOMS, SoundType.CHERRY_LEAVES));
 
-    public static final Block COTTON_SAKURA_SAPLING = register("cotton_sakura_sapling", BlockFactory.sapling(PromenadeMapColors.COTTON_BLOSSOMS, PromenadeSaplingGenerators.COTTON_SAKURA));
-    public static final Block POTTED_COTTON_SAKURA_SAPLING = register("potted_cotton_sakura_sapling", BlockFactory.pot(COTTON_SAKURA_SAPLING));
-    public static final Block COTTON_SAKURA_BLOSSOMS = register("cotton_sakura_blossoms", BlockFactory.leaves(PromenadeMapColors.COTTON_BLOSSOMS, SoundType.CHERRY_LEAVES, 0.1f, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM));
-    public static final Block SNOWY_COTTON_SAKURA_BLOSSOMS = register("snowy_cotton_sakura_blossoms", BlockFactory.snowyLeaves(0.1f, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES));
-    public static final Block COTTON_SAKURA_BLOSSOM_PILE = register("cotton_sakura_blossom_pile", BlockFactory.pile(PromenadeMapColors.COTTON_BLOSSOMS, SoundType.CHERRY_LEAVES));
+    public static final Block COTTON_SAKURA_SAPLING = register(PromenadeBlockItemIds.COTTON_SAKURA_SAPLING, BlockFactory.sapling(PromenadeMapColors.COTTON_BLOSSOMS, PromenadeSaplingGenerators.COTTON_SAKURA));
+    public static final Block POTTED_COTTON_SAKURA_SAPLING = register(PromenadeBlockIds.POTTED_COTTON_SAKURA_SAPLING, BlockFactory.pot(COTTON_SAKURA_SAPLING));
+    public static final Block COTTON_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.COTTON_SAKURA_BLOSSOMS, BlockFactory.leaves(PromenadeMapColors.COTTON_BLOSSOMS, SoundType.CHERRY_LEAVES, 0.1f, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM));
+    public static final Block SNOWY_COTTON_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.SNOWY_COTTON_SAKURA_BLOSSOMS, BlockFactory.snowyLeaves(0.1f, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES));
+    public static final Block COTTON_SAKURA_BLOSSOM_PILE = register(PromenadeBlockItemIds.COTTON_SAKURA_BLOSSOM_PILE, BlockFactory.pile(PromenadeMapColors.COTTON_BLOSSOMS, SoundType.CHERRY_LEAVES));
 
 
     /* ========= */
     /*   MAPLE   */
     /* ========= */
-    public static final Block MAPLE_LOG = register("maple_log", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true).factory(MapleLogBlock::new));
-    public static final Block STRIPPED_MAPLE_LOG = register("stripped_maple_log", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true).factory(StrippedMapleLogBlock::new));
-    public static final Block MAPLE_WOOD = register("maple_wood", BlockFactory.log(PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true));
-    public static final Block STRIPPED_MAPLE_WOOD = register("stripped_maple_wood", BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true));
+    public static final Block MAPLE_LOG = register(PromenadeBlockItemIds.MAPLE_LOG, BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true).factory(MapleLogBlock::new));
+    public static final Block STRIPPED_MAPLE_LOG = register(PromenadeBlockItemIds.STRIPPED_MAPLE_LOG, BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true).factory(StrippedMapleLogBlock::new));
+    public static final Block MAPLE_WOOD = register(PromenadeBlockItemIds.MAPLE_WOOD, BlockFactory.log(PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true));
+    public static final Block STRIPPED_MAPLE_WOOD = register(PromenadeBlockItemIds.STRIPPED_MAPLE_WOOD, BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true));
 
-    public static final Block MAPLE_PLANKS = register("maple_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true)));
-    public static final Block MAPLE_STAIRS = register("maple_stairs", BlockFactory.stairs(MAPLE_PLANKS));
-    public static final Block MAPLE_SLAB = register("maple_slab", BlockFactory.slab(MAPLE_PLANKS));
-    public static final Block MAPLE_FENCE = register("maple_fence", BlockFactory.fence(MAPLE_PLANKS));
-    public static final Block MAPLE_FENCE_GATE = register("maple_fence_gate", BlockFactory.fenceGate(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE));
-    public static final Block MAPLE_DOOR = register("maple_door", BlockFactory.door(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
-    public static final Block MAPLE_TRAPDOOR = register("maple_trapdoor", BlockFactory.trapdoor(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
-    public static final Block MAPLE_BUTTON = register("maple_button", BlockFactory.woodenButton(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
-    public static final Block MAPLE_PRESSURE_PLATE = register("maple_pressure_plate", BlockFactory.pressurePlate(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
-    public static final Block MAPLE_SIGN = register("maple_sign", BlockFactory.sign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE));
-    public static final Block MAPLE_WALL_SIGN = register("maple_wall_sign", BlockFactory.wallSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE));
-    public static final Block MAPLE_HANGING_SIGN = register("maple_hanging_sign", BlockFactory.hangingSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE, SoundType.CHERRY_WOOD_HANGING_SIGN));
-    public static final Block MAPLE_WALL_HANGING_SIGN = register("maple_wall_hanging_sign", BlockFactory.wallHangingSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE, SoundType.CHERRY_WOOD_HANGING_SIGN));
-    public static final Block MAPLE_SHELF = register("maple_shelf", BlockFactory.shelf(MAPLE_PLANKS));
+    public static final Block MAPLE_PLANKS = register(PromenadeBlockItemIds.MAPLE_PLANKS, BlockFactory.of(BlockSettings.planks(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true)));
+    public static final Block MAPLE_STAIRS = register(PromenadeBlockItemIds.MAPLE_STAIRS, BlockFactory.stairs(MAPLE_PLANKS));
+    public static final Block MAPLE_SLAB = register(PromenadeBlockItemIds.MAPLE_SLAB, BlockFactory.slab(MAPLE_PLANKS));
+    public static final Block MAPLE_FENCE = register(PromenadeBlockItemIds.MAPLE_FENCE, BlockFactory.fence(MAPLE_PLANKS));
+    public static final Block MAPLE_FENCE_GATE = register(PromenadeBlockItemIds.MAPLE_FENCE_GATE, BlockFactory.fenceGate(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE));
+    public static final Block MAPLE_DOOR = register(PromenadeBlockItemIds.MAPLE_DOOR, BlockFactory.door(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
+    public static final Block MAPLE_TRAPDOOR = register(PromenadeBlockItemIds.MAPLE_TRAPDOOR, BlockFactory.trapdoor(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
+    public static final Block MAPLE_BUTTON = register(PromenadeBlockItemIds.MAPLE_BUTTON, BlockFactory.woodenButton(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
+    public static final Block MAPLE_PRESSURE_PLATE = register(PromenadeBlockItemIds.MAPLE_PRESSURE_PLATE, BlockFactory.pressurePlate(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
+    public static final Block MAPLE_SIGN = register(PromenadeBlockItemIds.MAPLE_SIGN, BlockFactory.sign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE));
+    public static final Block MAPLE_WALL_SIGN = register(PromenadeBlockIds.MAPLE_WALL_SIGN, BlockFactory.wallSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE));
+    public static final Block MAPLE_HANGING_SIGN = register(PromenadeBlockItemIds.MAPLE_HANGING_SIGN, BlockFactory.hangingSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE, SoundType.CHERRY_WOOD_HANGING_SIGN));
+    public static final Block MAPLE_WALL_HANGING_SIGN = register(PromenadeBlockIds.MAPLE_WALL_HANGING_SIGN, BlockFactory.wallHangingSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE, SoundType.CHERRY_WOOD_HANGING_SIGN));
+    public static final Block MAPLE_SHELF = register(PromenadeBlockItemIds.MAPLE_SHELF, BlockFactory.shelf(MAPLE_PLANKS));
 
-    public static final Block SAP_MAPLE_SAPLING = register("sap_maple_sapling", BlockFactory.sapling(PromenadeMapColors.SAP_MAPLE_LEAVES, PromenadeSaplingGenerators.SAP_MAPLE));
-    public static final Block POTTED_SAP_MAPLE_SAPLING = register("potted_sap_maple_sapling", BlockFactory.pot(SAP_MAPLE_SAPLING));
-    public static final Block SAP_MAPLE_LEAVES = register("sap_maple_leaves", BlockFactory.leaves(PromenadeMapColors.SAP_MAPLE_LEAVES));
-    public static final Block SNOWY_SAP_MAPLE_LEAVES = register("snowy_sap_maple_leaves", BlockFactory.snowyLeaves());
-    public static final Block FALLEN_SAP_MAPLE_LEAVES = register("fallen_sap_maple_leaves", BlockFactory.fallenLeaves(PromenadeMapColors.SAP_MAPLE_LEAVES));
-    public static final Block SAP_MAPLE_LEAF_PILE = register("sap_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.SAP_MAPLE_LEAVES, SoundType.GRASS));
+    public static final Block SAP_MAPLE_SAPLING = register(PromenadeBlockItemIds.SAP_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.SAP_MAPLE_LEAVES, PromenadeSaplingGenerators.SAP_MAPLE));
+    public static final Block POTTED_SAP_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_SAP_MAPLE_SAPLING, BlockFactory.pot(SAP_MAPLE_SAPLING));
+    public static final Block SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.SAP_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.SAP_MAPLE_LEAVES));
+    public static final Block SNOWY_SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_SAP_MAPLE_LEAVES, BlockFactory.snowyLeaves());
+    public static final Block FALLEN_SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_SAP_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.SAP_MAPLE_LEAVES));
+    public static final Block SAP_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.SAP_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.SAP_MAPLE_LEAVES, SoundType.GRASS));
 
-    public static final Block VERMILION_MAPLE_SAPLING = register("vermilion_maple_sapling", BlockFactory.sapling(PromenadeMapColors.VERMILION_MAPLE_LEAVES, PromenadeSaplingGenerators.VERMILION_MAPLE));
-    public static final Block POTTED_VERMILION_MAPLE_SAPLING = register("potted_vermilion_maple_sapling", BlockFactory.pot(VERMILION_MAPLE_SAPLING));
-    public static final Block VERMILION_MAPLE_LEAVES = register("vermilion_maple_leaves", BlockFactory.leaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.VERMILION_MAPLE_LEAF));
-    public static final Block SNOWY_VERMILION_MAPLE_LEAVES = register("snowy_vermilion_maple_leaves", BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.VERMILION_MAPLE_LEAF));
-    public static final Block FALLEN_VERMILION_MAPLE_LEAVES = register("fallen_vermilion_maple_leaves", BlockFactory.fallenLeaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES));
-    public static final Block VERMILION_MAPLE_LEAF_PILE = register("vermilion_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.VERMILION_MAPLE_LEAVES, SoundType.GRASS));
+    public static final Block VERMILION_MAPLE_SAPLING = register(PromenadeBlockItemIds.VERMILION_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.VERMILION_MAPLE_LEAVES, PromenadeSaplingGenerators.VERMILION_MAPLE));
+    public static final Block POTTED_VERMILION_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_VERMILION_MAPLE_SAPLING, BlockFactory.pot(VERMILION_MAPLE_SAPLING));
+    public static final Block VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.VERMILION_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.VERMILION_MAPLE_LEAF));
+    public static final Block SNOWY_VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_VERMILION_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.VERMILION_MAPLE_LEAF));
+    public static final Block FALLEN_VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_VERMILION_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES));
+    public static final Block VERMILION_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.VERMILION_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.VERMILION_MAPLE_LEAVES, SoundType.GRASS));
 
-    public static final Block FULVOUS_MAPLE_SAPLING = register("fulvous_maple_sapling", BlockFactory.sapling(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, PromenadeSaplingGenerators.FULVOUS_MAPLE));
-    public static final Block POTTED_FULVOUS_MAPLE_SAPLING = register("potted_fulvous_maple_sapling", BlockFactory.pot(FULVOUS_MAPLE_SAPLING));
-    public static final Block FULVOUS_MAPLE_LEAVES = register("fulvous_maple_leaves", BlockFactory.leaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF));
-    public static final Block SNOWY_FULVOUS_MAPLE_LEAVES = register("snowy_fulvous_maple_leaves", BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF));
-    public static final Block FALLEN_FULVOUS_MAPLE_LEAVES = register("fallen_fulvous_maple_leaves", BlockFactory.fallenLeaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES));
-    public static final Block FULVOUS_MAPLE_LEAF_PILE = register("fulvous_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, SoundType.GRASS));
+    public static final Block FULVOUS_MAPLE_SAPLING = register(PromenadeBlockItemIds.FULVOUS_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, PromenadeSaplingGenerators.FULVOUS_MAPLE));
+    public static final Block POTTED_FULVOUS_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_FULVOUS_MAPLE_SAPLING, BlockFactory.pot(FULVOUS_MAPLE_SAPLING));
+    public static final Block FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.FULVOUS_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF));
+    public static final Block SNOWY_FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_FULVOUS_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF));
+    public static final Block FALLEN_FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_FULVOUS_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES));
+    public static final Block FULVOUS_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.FULVOUS_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, SoundType.GRASS));
 
-    public static final Block MIKADO_MAPLE_SAPLING = register("mikado_maple_sapling", BlockFactory.sapling(PromenadeMapColors.MIKADO_MAPLE_LEAVES, PromenadeSaplingGenerators.MIKADO_MAPLE));
-    public static final Block POTTED_MIKADO_MAPLE_SAPLING = register("potted_mikado_maple_sapling", BlockFactory.pot(MIKADO_MAPLE_SAPLING));
-    public static final Block MIKADO_MAPLE_LEAVES = register("mikado_maple_leaves", BlockFactory.leaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.MIKADO_MAPLE_LEAF));
-    public static final Block SNOWY_MIKADO_MAPLE_LEAVES = register("snowy_mikado_maple_leaves", BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.MIKADO_MAPLE_LEAF));
-    public static final Block FALLEN_MIKADO_MAPLE_LEAVES = register("fallen_mikado_maple_leaves", BlockFactory.fallenLeaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES));
-    public static final Block MIKADO_MAPLE_LEAF_PILE = register("mikado_maple_leaf_pile", BlockFactory.pile(PromenadeMapColors.MIKADO_MAPLE_LEAVES, SoundType.GRASS));
+    public static final Block MIKADO_MAPLE_SAPLING = register(PromenadeBlockItemIds.MIKADO_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.MIKADO_MAPLE_LEAVES, PromenadeSaplingGenerators.MIKADO_MAPLE));
+    public static final Block POTTED_MIKADO_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_MIKADO_MAPLE_SAPLING, BlockFactory.pot(MIKADO_MAPLE_SAPLING));
+    public static final Block MIKADO_MAPLE_LEAVES = register(PromenadeBlockItemIds.MIKADO_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.MIKADO_MAPLE_LEAF));
+    public static final Block SNOWY_MIKADO_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_MIKADO_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.MIKADO_MAPLE_LEAF));
+    public static final Block FALLEN_MIKADO_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_MIKADO_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES));
+    public static final Block MIKADO_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.MIKADO_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.MIKADO_MAPLE_LEAVES, SoundType.GRASS));
 
 
     /* ======== */
     /*   PALM   */
     /* ======== */
-    public static final Block PALM_LOG = register("palm_log", BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true));
-    public static final Block STRIPPED_PALM_LOG = register("stripped_palm_log", BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true));
-    public static final Block PALM_WOOD = register("palm_wood", BlockFactory.log(PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true));
-    public static final Block STRIPPED_PALM_WOOD = register("stripped_palm_wood", BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true));
+    public static final Block PALM_LOG = register(PromenadeBlockItemIds.PALM_LOG, BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true));
+    public static final Block STRIPPED_PALM_LOG = register(PromenadeBlockItemIds.STRIPPED_PALM_LOG, BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true));
+    public static final Block PALM_WOOD = register(PromenadeBlockItemIds.PALM_WOOD, BlockFactory.log(PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true));
+    public static final Block STRIPPED_PALM_WOOD = register(PromenadeBlockItemIds.STRIPPED_PALM_WOOD, BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true));
 
-    public static final Block PALM_PLANKS = register("palm_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true)));
-    public static final Block PALM_STAIRS = register("palm_stairs", BlockFactory.stairs(PALM_PLANKS));
-    public static final Block PALM_SLAB = register("palm_slab", BlockFactory.slab(PALM_PLANKS));
-    public static final Block PALM_FENCE = register("palm_fence", BlockFactory.fence(PALM_PLANKS));
-    public static final Block PALM_FENCE_GATE = register("palm_fence_gate", BlockFactory.fenceGate(PALM_PLANKS, PromenadeWoodTypes.PALM));
-    public static final Block PALM_DOOR = register("palm_door", BlockFactory.door(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
-    public static final Block PALM_TRAPDOOR = register("palm_trapdoor", BlockFactory.trapdoor(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
-    public static final Block PALM_BUTTON = register("palm_button", BlockFactory.woodenButton(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
-    public static final Block PALM_PRESSURE_PLATE = register("palm_pressure_plate", BlockFactory.pressurePlate(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
-    public static final Block PALM_SIGN = register("palm_sign", BlockFactory.sign(PALM_PLANKS, PromenadeWoodTypes.PALM));
-    public static final Block PALM_WALL_SIGN = register("palm_wall_sign", BlockFactory.wallSign(PALM_PLANKS, PromenadeWoodTypes.PALM));
-    public static final Block PALM_HANGING_SIGN = register("palm_hanging_sign", BlockFactory.hangingSign(PALM_PLANKS, PromenadeWoodTypes.PALM, SoundType.HANGING_SIGN));
-    public static final Block PALM_WALL_HANGING_SIGN = register("palm_wall_hanging_sign", BlockFactory.wallHangingSign(PALM_PLANKS, PromenadeWoodTypes.PALM, SoundType.HANGING_SIGN));
-    public static final Block PALM_SHELF = register("palm_shelf", BlockFactory.shelf(PALM_PLANKS));
+    public static final Block PALM_PLANKS = register(PromenadeBlockItemIds.PALM_PLANKS, BlockFactory.of(BlockSettings.planks(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true)));
+    public static final Block PALM_STAIRS = register(PromenadeBlockItemIds.PALM_STAIRS, BlockFactory.stairs(PALM_PLANKS));
+    public static final Block PALM_SLAB = register(PromenadeBlockItemIds.PALM_SLAB, BlockFactory.slab(PALM_PLANKS));
+    public static final Block PALM_FENCE = register(PromenadeBlockItemIds.PALM_FENCE, BlockFactory.fence(PALM_PLANKS));
+    public static final Block PALM_FENCE_GATE = register(PromenadeBlockItemIds.PALM_FENCE_GATE, BlockFactory.fenceGate(PALM_PLANKS, PromenadeWoodTypes.PALM));
+    public static final Block PALM_DOOR = register(PromenadeBlockItemIds.PALM_DOOR, BlockFactory.door(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
+    public static final Block PALM_TRAPDOOR = register(PromenadeBlockItemIds.PALM_TRAPDOOR, BlockFactory.trapdoor(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
+    public static final Block PALM_BUTTON = register(PromenadeBlockItemIds.PALM_BUTTON, BlockFactory.woodenButton(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
+    public static final Block PALM_PRESSURE_PLATE = register(PromenadeBlockItemIds.PALM_PRESSURE_PLATE, BlockFactory.pressurePlate(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
+    public static final Block PALM_SIGN = register(PromenadeBlockItemIds.PALM_SIGN, BlockFactory.sign(PALM_PLANKS, PromenadeWoodTypes.PALM));
+    public static final Block PALM_WALL_SIGN = register(PromenadeBlockIds.PALM_WALL_SIGN, BlockFactory.wallSign(PALM_PLANKS, PromenadeWoodTypes.PALM));
+    public static final Block PALM_HANGING_SIGN = register(PromenadeBlockItemIds.PALM_HANGING_SIGN, BlockFactory.hangingSign(PALM_PLANKS, PromenadeWoodTypes.PALM, SoundType.HANGING_SIGN));
+    public static final Block PALM_WALL_HANGING_SIGN = register(PromenadeBlockIds.PALM_WALL_HANGING_SIGN, BlockFactory.wallHangingSign(PALM_PLANKS, PromenadeWoodTypes.PALM, SoundType.HANGING_SIGN));
+    public static final Block PALM_SHELF = register(PromenadeBlockItemIds.PALM_SHELF, BlockFactory.shelf(PALM_PLANKS));
 
-    public static final Block PALM_SAPLING = register("palm_sapling", BlockFactory.sapling(PromenadeMapColors.PALM_LEAVES, PromenadeSaplingGenerators.PALM, state -> state.is(BlockTags.SAND)));
-    public static final Block POTTED_PALM_SAPLING = register("potted_palm_sapling", BlockFactory.pot(PALM_SAPLING));
-    public static final Block PALM_LEAVES = register("palm_leaves", BlockFactory.leaves(PromenadeMapColors.PALM_LEAVES).factory(s -> new TintedParticleExtendedLeavesBlock(0.01F, s)));
-    public static final Block SNOWY_PALM_LEAVES = register("snowy_palm_leaves", BlockFactory.snowyLeaves().factory(s -> new TintedParticleSnowyExtendedLeavesBlock(0.01F, s)));
-    public static final Block PALM_HANGING_LEAVES = register("palm_hanging_leaves", BlockFactory.hangingLeaves(PromenadeMapColors.PALM_LEAVES));
-    public static final Block PALM_LEAF_PILE = register("palm_leaf_pile", BlockFactory.pile(PromenadeMapColors.PALM_LEAVES, SoundType.GRASS));
+    public static final Block PALM_SAPLING = register(PromenadeBlockItemIds.PALM_SAPLING, BlockFactory.sapling(PromenadeMapColors.PALM_LEAVES, PromenadeSaplingGenerators.PALM, state -> state.is(BlockTags.SAND)));
+    public static final Block POTTED_PALM_SAPLING = register(PromenadeBlockIds.POTTED_PALM_SAPLING, BlockFactory.pot(PALM_SAPLING));
+    public static final Block PALM_LEAVES = register(PromenadeBlockItemIds.PALM_LEAVES, BlockFactory.leaves(PromenadeMapColors.PALM_LEAVES).factory(s -> new TintedParticleExtendedLeavesBlock(0.01F, s)));
+    public static final Block SNOWY_PALM_LEAVES = register(PromenadeBlockItemIds.SNOWY_PALM_LEAVES, BlockFactory.snowyLeaves().factory(s -> new TintedParticleSnowyExtendedLeavesBlock(0.01F, s)));
+    public static final Block PALM_HANGING_LEAVES = register(PromenadeBlockItemIds.PALM_HANGING_LEAVES, BlockFactory.hangingLeaves(PromenadeMapColors.PALM_LEAVES));
+    public static final Block PALM_LEAF_PILE = register(PromenadeBlockItemIds.PALM_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.PALM_LEAVES, SoundType.GRASS));
 
 
     /* ============ */
     /*   AMARANTH   */
     /* ============ */
-    public static final Block DARK_AMARANTH_NYLIUM = register("dark_amaranth_nylium", BlockFactory.of(NyliumBlock::new,
+    public static final Block DARK_AMARANTH_NYLIUM = register(PromenadeBlockItemIds.DARK_AMARANTH_NYLIUM, BlockFactory.of(NyliumBlock::new,
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_BLACK)
                     .instrument(NoteBlockInstrument.BASEDRUM)
@@ -224,46 +225,46 @@ public class PromenadeBlocks {
                     .strength(0.4F)
                     .sound(SoundType.NYLIUM)
                     .randomTicks()));
-    public static final Block DARK_AMARANTH_WART_BLOCK = register("dark_amaranth_wart_block",
+    public static final Block DARK_AMARANTH_WART_BLOCK = register(PromenadeBlockItemIds.DARK_AMARANTH_WART_BLOCK,
             BlockFactory.of(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PURPLE)
                     .strength(1.0F)
                     .sound(SoundType.WART_BLOCK)));
-    public static final Block DARK_AMARANTH_ROOTS = register("dark_amaranth_roots", BlockFactory.of(s -> new RootsBlock(state -> state.is(PromenadeBlockTags.DARK_AMARANTH_ROOTS_PLACEABLE_ON), s),
+    public static final Block DARK_AMARANTH_ROOTS = register(PromenadeBlockItemIds.DARK_AMARANTH_ROOTS, BlockFactory.of(s -> new RootsBlock(state -> state.is(PromenadeBlockTags.DARK_AMARANTH_ROOTS_PLACEABLE_ON), s),
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PURPLE)
                     .replaceable()
                     .instabreak()
                     .noCollision()
                     .sound(SoundType.ROOTS)));
-    public static final Block POTTED_DARK_AMARANTH_ROOTS = register("potted_dark_amaranth_roots", BlockFactory.pot(DARK_AMARANTH_ROOTS));
+    public static final Block POTTED_DARK_AMARANTH_ROOTS = register(PromenadeBlockIds.POTTED_DARK_AMARANTH_ROOTS, BlockFactory.pot(DARK_AMARANTH_ROOTS));
 
-    public static final Block DARK_AMARANTH_STEM = register("dark_amaranth_stem", BlockFactory.log(PromenadeMapColors.AMARANTH_BARK, PromenadeBlockSounds.AMARANTH_WOOD, false));
-    public static final Block STRIPPED_DARK_AMARANTH_STEM = register("stripped_dark_amaranth_stem", BlockFactory.log(PromenadeMapColors.AMARANTH_WOOD, PromenadeBlockSounds.AMARANTH_WOOD, false));
-    public static final Block DARK_AMARANTH_HYPHAE = register("dark_amaranth_hyphae", BlockFactory.log(PromenadeMapColors.AMARANTH_BARK, PromenadeBlockSounds.AMARANTH_WOOD, false));
-    public static final Block STRIPPED_DARK_AMARANTH_HYPHAE = register("stripped_dark_amaranth_hyphae", BlockFactory.log(PromenadeMapColors.AMARANTH_WOOD, PromenadeBlockSounds.AMARANTH_WOOD, false));
+    public static final Block DARK_AMARANTH_STEM = register(PromenadeBlockItemIds.DARK_AMARANTH_STEM, BlockFactory.log(PromenadeMapColors.AMARANTH_BARK, PromenadeBlockSounds.AMARANTH_WOOD, false));
+    public static final Block STRIPPED_DARK_AMARANTH_STEM = register(PromenadeBlockItemIds.STRIPPED_DARK_AMARANTH_STEM, BlockFactory.log(PromenadeMapColors.AMARANTH_WOOD, PromenadeBlockSounds.AMARANTH_WOOD, false));
+    public static final Block DARK_AMARANTH_HYPHAE = register(PromenadeBlockItemIds.DARK_AMARANTH_HYPHAE, BlockFactory.log(PromenadeMapColors.AMARANTH_BARK, PromenadeBlockSounds.AMARANTH_WOOD, false));
+    public static final Block STRIPPED_DARK_AMARANTH_HYPHAE = register(PromenadeBlockItemIds.STRIPPED_DARK_AMARANTH_HYPHAE, BlockFactory.log(PromenadeMapColors.AMARANTH_WOOD, PromenadeBlockSounds.AMARANTH_WOOD, false));
 
-    public static final Block DARK_AMARANTH_PLANKS = register("dark_amaranth_planks", BlockFactory.of(BlockSettings.planks(PromenadeMapColors.AMARANTH_WOOD, PromenadeBlockSounds.AMARANTH_WOOD, false)));
-    public static final Block DARK_AMARANTH_STAIRS = register("dark_amaranth_stairs", BlockFactory.stairs(DARK_AMARANTH_PLANKS));
-    public static final Block DARK_AMARANTH_SLAB = register("dark_amaranth_slab", BlockFactory.slab(DARK_AMARANTH_PLANKS));
-    public static final Block DARK_AMARANTH_FENCE = register("dark_amaranth_fence", BlockFactory.fence(DARK_AMARANTH_PLANKS));
-    public static final Block DARK_AMARANTH_FENCE_GATE = register("dark_amaranth_fence_gate", BlockFactory.fenceGate(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH));
-    public static final Block DARK_AMARANTH_DOOR = register("dark_amaranth_door", BlockFactory.door(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
-    public static final Block DARK_AMARANTH_TRAPDOOR = register("dark_amaranth_trapdoor", BlockFactory.trapdoor(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
-    public static final Block DARK_AMARANTH_BUTTON = register("dark_amaranth_button", BlockFactory.woodenButton(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
-    public static final Block DARK_AMARANTH_PRESSURE_PLATE = register("dark_amaranth_pressure_plate", BlockFactory.pressurePlate(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
-    public static final Block DARK_AMARANTH_SIGN = register("dark_amaranth_sign", BlockFactory.sign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH));
-    public static final Block DARK_AMARANTH_WALL_SIGN = register("dark_amaranth_wall_sign", BlockFactory.wallSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH));
-    public static final Block DARK_AMARANTH_HANGING_SIGN = register("dark_amaranth_hanging_sign", BlockFactory.hangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH, SoundType.NETHER_WOOD_HANGING_SIGN));
-    public static final Block DARK_AMARANTH_WALL_HANGING_SIGN = register("dark_amaranth_wall_hanging_sign", BlockFactory.wallHangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH, SoundType.NETHER_WOOD_HANGING_SIGN));
-    public static final Block DARK_AMARANTH_SHELF = register("dark_amaranth_shelf", BlockFactory.shelf(DARK_AMARANTH_PLANKS));
+    public static final Block DARK_AMARANTH_PLANKS = register(PromenadeBlockItemIds.DARK_AMARANTH_PLANKS, BlockFactory.of(BlockSettings.planks(PromenadeMapColors.AMARANTH_WOOD, PromenadeBlockSounds.AMARANTH_WOOD, false)));
+    public static final Block DARK_AMARANTH_STAIRS = register(PromenadeBlockItemIds.DARK_AMARANTH_STAIRS, BlockFactory.stairs(DARK_AMARANTH_PLANKS));
+    public static final Block DARK_AMARANTH_SLAB = register(PromenadeBlockItemIds.DARK_AMARANTH_SLAB, BlockFactory.slab(DARK_AMARANTH_PLANKS));
+    public static final Block DARK_AMARANTH_FENCE = register(PromenadeBlockItemIds.DARK_AMARANTH_FENCE, BlockFactory.fence(DARK_AMARANTH_PLANKS));
+    public static final Block DARK_AMARANTH_FENCE_GATE = register(PromenadeBlockItemIds.DARK_AMARANTH_FENCE_GATE, BlockFactory.fenceGate(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_DOOR = register(PromenadeBlockItemIds.DARK_AMARANTH_DOOR, BlockFactory.door(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_TRAPDOOR = register(PromenadeBlockItemIds.DARK_AMARANTH_TRAPDOOR, BlockFactory.trapdoor(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_BUTTON = register(PromenadeBlockItemIds.DARK_AMARANTH_BUTTON, BlockFactory.woodenButton(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_PRESSURE_PLATE = register(PromenadeBlockItemIds.DARK_AMARANTH_PRESSURE_PLATE, BlockFactory.pressurePlate(DARK_AMARANTH_PLANKS, PromenadeBlockSetTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_SIGN = register(PromenadeBlockItemIds.DARK_AMARANTH_SIGN, BlockFactory.sign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_WALL_SIGN = register(PromenadeBlockIds.DARK_AMARANTH_WALL_SIGN, BlockFactory.wallSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH));
+    public static final Block DARK_AMARANTH_HANGING_SIGN = register(PromenadeBlockItemIds.DARK_AMARANTH_HANGING_SIGN, BlockFactory.hangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH, SoundType.NETHER_WOOD_HANGING_SIGN));
+    public static final Block DARK_AMARANTH_WALL_HANGING_SIGN = register(PromenadeBlockIds.DARK_AMARANTH_WALL_HANGING_SIGN, BlockFactory.wallHangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH, SoundType.NETHER_WOOD_HANGING_SIGN));
+    public static final Block DARK_AMARANTH_SHELF = register(PromenadeBlockItemIds.DARK_AMARANTH_SHELF, BlockFactory.shelf(DARK_AMARANTH_PLANKS));
 
-    public static final Block DARK_AMARANTH_FUNGUS = register("dark_amaranth_fungus", BlockFactory.fungus(MapColor.COLOR_PURPLE, PromenadeConfiguredFeatures.PLANTED_DARK_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON));
-    public static final Block POTTED_DARK_AMARANTH_FUNGUS = register("potted_dark_amaranth_fungus", BlockFactory.pot(DARK_AMARANTH_FUNGUS));
+    public static final Block DARK_AMARANTH_FUNGUS = register(PromenadeBlockItemIds.DARK_AMARANTH_FUNGUS, BlockFactory.fungus(MapColor.COLOR_PURPLE, PromenadeConfiguredFeatures.PLANTED_DARK_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON));
+    public static final Block POTTED_DARK_AMARANTH_FUNGUS = register(PromenadeBlockIds.POTTED_DARK_AMARANTH_FUNGUS, BlockFactory.pot(DARK_AMARANTH_FUNGUS));
 
-    public static final Block SOUL_SHROOMLIGHT = register("soul_shroomlight", BlockFactory.of(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.0F).sound(SoundType.SHROOMLIGHT).lightLevel(state -> 10)));
+    public static final Block SOUL_SHROOMLIGHT = register(PromenadeBlockItemIds.SOUL_SHROOMLIGHT, BlockFactory.of(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.0F).sound(SoundType.SHROOMLIGHT).lightLevel(state -> 10)));
 
-    public static final Block COILED_VINES = register("coiled_vines", BlockFactory.of(
+    public static final Block COILED_VINES = register(PromenadeBlockItemIds.COILED_VINES, BlockFactory.of(
             CoiledVinesBlock::new,
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PURPLE)
@@ -273,7 +274,7 @@ public class PromenadeBlocks {
                     .sound(SoundType.WEEPING_VINES)
                     .pushReaction(PushReaction.DESTROY)
     ));
-    public static final Block COILED_VINES_PLANT = register("coiled_vines_plant", BlockFactory.of(
+    public static final Block COILED_VINES_PLANT = register(PromenadeBlockIds.COILED_VINES_PLANT, BlockFactory.of(
             CoiledVinesPlantBlock::new,
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PURPLE)
@@ -283,24 +284,20 @@ public class PromenadeBlocks {
                     .pushReaction(PushReaction.DESTROY)
     ).noItem());
 
-    public static final Block MOAI = register("moai", BlockFactory.of(MoaiBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)).itemSettings(s -> s.equipmentSlot((entity, stack) -> EquipmentSlot.HEAD)));
+    public static final Block MOAI = register(PromenadeBlockItemIds.MOAI, BlockFactory.of(MoaiBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)).itemSettings(s -> s.equipmentSlot((entity, stack) -> EquipmentSlot.HEAD)));
 
-    public static final Block BLUEBERRY_BUSH = register("blueberry_bush", BlockFactory.of(s -> new BerryBushBlock(PromenadeItemKeys.BLUEBERRIES, false, s), BlockBehaviour.Properties.of()
+    public static final Block BLUEBERRY_BUSH = register(PromenadeBlockIds.BLUEBERRY_BUSH, BlockFactory.of(s -> new BerryBushBlock(PromenadeItemKeys.BLUEBERRIES, false, s), BlockBehaviour.Properties.of()
             .mapColor(MapColor.PLANT)
             .randomTicks()
             .noCollision()
             .sound(SoundType.SWEET_BERRY_BUSH)
             .pushReaction(PushReaction.DESTROY)).noItem());
 
-    private static ResourceKey<Block> keyOf(String id) {
-        return ResourceKey.create(Registries.BLOCK, Promenade.id(id));
-    }
-
     private static Block register(ResourceKey<Block> key, BlockBuilder builder) {
         return builder.register(key);
     }
 
-    private static Block register(String id, BlockBuilder builder) {
-        return register(keyOf(id), builder);
+    private static Block register(BlockItemId id, BlockBuilder builder) {
+        return register(id.block(), builder);
     }
 }

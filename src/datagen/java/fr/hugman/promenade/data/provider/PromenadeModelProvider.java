@@ -113,7 +113,6 @@ public class PromenadeModelProvider extends FabricModelProvider {
 
         gen.woodProvider(PromenadeBlocks.SAKURA_LOG).logUVLocked(PromenadeBlocks.SAKURA_LOG).wood(PromenadeBlocks.SAKURA_WOOD);
         gen.woodProvider(PromenadeBlocks.STRIPPED_SAKURA_LOG).logUVLocked(PromenadeBlocks.STRIPPED_SAKURA_LOG).wood(PromenadeBlocks.STRIPPED_SAKURA_WOOD);
-        gen.createHangingSign(PromenadeBlocks.STRIPPED_SAKURA_LOG, PromenadeBlocks.SAKURA_HANGING_SIGN, PromenadeBlocks.SAKURA_WALL_HANGING_SIGN);
         gen.createShelf(PromenadeBlocks.SAKURA_SHELF, PromenadeBlocks.STRIPPED_SAKURA_LOG);
         gen.createPlantWithDefaultItem(PromenadeBlocks.BLUSH_SAKURA_SAPLING, PromenadeBlocks.POTTED_BLUSH_SAKURA_SAPLING, BlockModelGenerators.PlantType.NOT_TINTED);
         gen.createPlantWithDefaultItem(PromenadeBlocks.COTTON_SAKURA_SAPLING, PromenadeBlocks.POTTED_COTTON_SAKURA_SAPLING, BlockModelGenerators.PlantType.NOT_TINTED);
@@ -127,7 +126,6 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.woodProvider(PromenadeBlocks.MAPLE_LOG).log(PromenadeBlocks.MAPLE_LOG).wood(PromenadeBlocks.MAPLE_WOOD);
         registerDripLog(gen, PromenadeBlocks.STRIPPED_MAPLE_LOG);
         gen.woodProvider(PromenadeBlocks.STRIPPED_MAPLE_LOG).wood(PromenadeBlocks.STRIPPED_MAPLE_WOOD);
-        gen.createHangingSign(PromenadeBlocks.STRIPPED_MAPLE_LOG, PromenadeBlocks.MAPLE_HANGING_SIGN, PromenadeBlocks.MAPLE_WALL_HANGING_SIGN);
         gen.createShelf(PromenadeBlocks.MAPLE_SHELF, PromenadeBlocks.STRIPPED_MAPLE_LOG);
         gen.createPlantWithDefaultItem(PromenadeBlocks.SAP_MAPLE_SAPLING, PromenadeBlocks.POTTED_SAP_MAPLE_SAPLING, BlockModelGenerators.PlantType.NOT_TINTED);
         gen.createPlantWithDefaultItem(PromenadeBlocks.VERMILION_MAPLE_SAPLING, PromenadeBlocks.POTTED_VERMILION_MAPLE_SAPLING, BlockModelGenerators.PlantType.NOT_TINTED);
@@ -152,7 +150,6 @@ public class PromenadeModelProvider extends FabricModelProvider {
 
         gen.woodProvider(PromenadeBlocks.PALM_LOG).log(PromenadeBlocks.PALM_LOG).wood(PromenadeBlocks.PALM_WOOD);
         gen.woodProvider(PromenadeBlocks.STRIPPED_PALM_LOG).log(PromenadeBlocks.STRIPPED_PALM_LOG).wood(PromenadeBlocks.STRIPPED_PALM_WOOD);
-        gen.createHangingSign(PromenadeBlocks.STRIPPED_PALM_LOG, PromenadeBlocks.PALM_HANGING_SIGN, PromenadeBlocks.PALM_WALL_HANGING_SIGN);
         gen.createShelf(PromenadeBlocks.PALM_SHELF, PromenadeBlocks.STRIPPED_PALM_LOG);
         gen.createPlantWithDefaultItem(PromenadeBlocks.PALM_SAPLING, PromenadeBlocks.POTTED_PALM_SAPLING, BlockModelGenerators.PlantType.NOT_TINTED);
         gen.createTintedLeaves(PromenadeBlocks.PALM_LEAVES, TexturedModel.LEAVES, PromenadeFoliageColors.PALM);
@@ -166,7 +163,6 @@ public class PromenadeModelProvider extends FabricModelProvider {
         gen.createNetherRoots(PromenadeBlocks.DARK_AMARANTH_ROOTS, PromenadeBlocks.POTTED_DARK_AMARANTH_ROOTS);
         gen.woodProvider(PromenadeBlocks.DARK_AMARANTH_STEM).log(PromenadeBlocks.DARK_AMARANTH_STEM).wood(PromenadeBlocks.DARK_AMARANTH_HYPHAE);
         gen.woodProvider(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM).log(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM).wood(PromenadeBlocks.STRIPPED_DARK_AMARANTH_HYPHAE);
-        gen.createHangingSign(PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM, PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN, PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN);
         gen.createShelf(PromenadeBlocks.DARK_AMARANTH_SHELF, PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM);
         gen.createPlantWithDefaultItem(PromenadeBlocks.DARK_AMARANTH_FUNGUS, PromenadeBlocks.POTTED_DARK_AMARANTH_FUNGUS, BlockModelGenerators.PlantType.NOT_TINTED);
 

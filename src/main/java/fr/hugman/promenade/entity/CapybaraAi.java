@@ -8,6 +8,7 @@ import fr.hugman.promenade.tag.PromenadeItemTags;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.ai.ActivityData;
 import net.minecraft.world.entity.ai.behavior.*;
 import net.minecraft.world.entity.ai.behavior.declarative.BehaviorBuilder;
@@ -52,7 +53,7 @@ public class CapybaraAi {
         return ActivityData.create(
                 Activity.IDLE,
                 ImmutableList.of(
-                Pair.of(0, SetEntityLookTargetSometimes.create(EntityType.PLAYER, 6.0f, UniformInt.of(30, 60))),
+                Pair.of(0, SetEntityLookTargetSometimes.create(EntityTypes.PLAYER, 6.0f, UniformInt.of(30, 60))),
                 Pair.of(1, new AnimalMakeLove(PromenadeEntityTypes.CAPYBARA)),
                 Pair.of(2, new FollowTemptation(_ -> 1.5f)),
                 Pair.of(3, BehaviorBuilder.triggerIf(Predicate.not(Capybara::isStationary), BabyFollowAdult.create(WALK_TOWARD_ADULT_RANGE, 1.5f))),
