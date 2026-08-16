@@ -62,7 +62,7 @@ jobs:
           changelog: ${{ github.event.release.body }}
           java: 25
           game-versions: |
-            >=26.1
+            >=26.2
 
           modrinth-featured: false
 
