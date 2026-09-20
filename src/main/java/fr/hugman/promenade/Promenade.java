@@ -20,6 +20,7 @@ import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifierTypes;
+import fr.hugman.promenade.world.gen.stateprovider.PromenadeBlockStateProviderTypes;
 import fr.hugman.promenade.world.gen.tree.foliage.PromenadeFoliagePlacerTypes;
 import fr.hugman.promenade.world.gen.tree.trunk.PromenadeTrunkPlacerTypes;
 import net.fabricmc.api.ModInitializer;
@@ -48,7 +49,6 @@ public class Promenade implements ModInitializer {
 
         Reflection.initialize(PromenadeItemGroups.class);
         PromenadeItemGroupAdditions.appendItemGroups();
-        PromenadeCompostingChances.register();
         PromenadeDispenserBehaviors.register();
 
         Reflection.initialize(PromenadeSensorTypes.class);
@@ -56,6 +56,7 @@ public class Promenade implements ModInitializer {
         Reflection.initialize(PromenadeTrackedData.class);
         Reflection.initialize(PromenadeEntityTypes.class);
 
+        Reflection.initialize(PromenadeBlockStateProviderTypes.class);
         Reflection.initialize(PromenadeTrunkPlacerTypes.class);
         Reflection.initialize(PromenadeFoliagePlacerTypes.class);
         Reflection.initialize(PromenadeFeatures.class);

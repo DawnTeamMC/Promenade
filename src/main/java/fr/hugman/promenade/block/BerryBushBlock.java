@@ -2,8 +2,6 @@ package fr.hugman.promenade.block;
 
 import com.mojang.datafixers.DataFixUtils;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -21,6 +19,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.VegetationBlock;
@@ -36,12 +35,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BerryBushBlock extends VegetationBlock implements BonemealableBlock {
-    public static final MapCodec<BerryBushBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-                    ResourceKey.codec(Registries.ITEM).fieldOf("berry").forGetter(block -> block.berry),
-                    Codec.BOOL.fieldOf("is_spiny").forGetter(block -> block.isSpiny),
-                    propertiesCodec())
-            .apply(instance, BerryBushBlock::new));
-
     private static final float MIN_MOVEMENT_FOR_DAMAGE = 0.003f;
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
@@ -56,11 +49,6 @@ public class BerryBushBlock extends VegetationBlock implements BonemealableBlock
         this.berry = berry;
         this.isSpiny = isSpiny;
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
-    }
-
-    @Override
-    public MapCodec<BerryBushBlock> codec() {
-        return CODEC;
     }
 
     @Override
@@ -140,17 +128,17 @@ public class BerryBushBlock extends VegetationBlock implements BonemealableBlock
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, BonemealSource source) {
         return state.getValue(AGE) < 3;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         int i = Math.min(MAX_AGE, state.getValue(AGE) + 1);
         world.setBlock(pos, state.setValue(AGE, i), Block.UPDATE_CLIENTS);
     }

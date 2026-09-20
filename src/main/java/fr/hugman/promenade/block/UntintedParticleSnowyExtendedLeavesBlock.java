@@ -1,7 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -20,11 +18,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 public class UntintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBlock {
-    public static final MapCodec<UntintedParticleSnowyExtendedLeavesBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            ExtraCodecs.floatRange(0.0F, 1.0F).fieldOf("leaf_particle_chance").forGetter(untintedParticleLeavesBlock -> untintedParticleLeavesBlock.leafParticleChance),
-            ParticleTypes.CODEC.fieldOf("leaf_particle").forGetter(untintedParticleLeavesBlock -> untintedParticleLeavesBlock.leafParticleEffect),
-            propertiesCodec()
-    ).apply(instance, UntintedParticleSnowyExtendedLeavesBlock::new));
     public static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
 
     protected final ParticleOptions leafParticleEffect;
@@ -33,11 +26,6 @@ public class UntintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBloc
         super(leafParticleChance, settings);
         this.registerDefaultState(this.defaultBlockState().setValue(BOTTOM, false));
         this.leafParticleEffect = leafParticleEffect;
-    }
-
-    @Override
-    public MapCodec<? extends UntintedParticleSnowyExtendedLeavesBlock> codec() {
-        return CODEC;
     }
 
     @Override

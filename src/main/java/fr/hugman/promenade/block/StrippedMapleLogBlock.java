@@ -1,12 +1,12 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.block.property.PromenadeBlockProperties;
 import fr.hugman.promenade.item.PromenadeItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -23,7 +23,6 @@ import net.minecraft.world.phys.BlockHitResult;
 
 //TODO make generic
 public class StrippedMapleLogBlock extends RotatedPillarBlock {
-    public static final MapCodec<StrippedMapleLogBlock> CODEC = simpleCodec(StrippedMapleLogBlock::new);
     public static final BooleanProperty DRIP = PromenadeBlockProperties.DRIP;
 
     //TODO : add dispenser behavior
@@ -31,11 +30,6 @@ public class StrippedMapleLogBlock extends RotatedPillarBlock {
     public StrippedMapleLogBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.defaultBlockState().setValue(DRIP, false));
-    }
-
-    @Override
-    public MapCodec<StrippedMapleLogBlock> codec() {
-        return CODEC;
     }
 
     @Override
@@ -54,7 +48,7 @@ public class StrippedMapleLogBlock extends RotatedPillarBlock {
                 if (stack.isEmpty()) {
                     player.setItemInHand(hand, new ItemStack(PromenadeItems.MAPLE_SYRUP_BOTTLE));
                 } else if (!player.getInventory().add(new ItemStack(PromenadeItems.MAPLE_SYRUP_BOTTLE))) {
-                    player.drop(new ItemStack(PromenadeItems.MAPLE_SYRUP_BOTTLE), false);
+                    player.drop(new ItemStack(PromenadeItems.MAPLE_SYRUP_BOTTLE), false, Prediction.SERVER_ONLY);
                 }
                 world.gameEvent(player, GameEvent.FLUID_PICKUP, pos);
                 player.awardStat(Stats.ITEM_USED.get(stack.getItem()));

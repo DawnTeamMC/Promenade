@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.heightproviders.TrapezoidHeight;
 import net.minecraft.world.level.levelgen.placement.*;
@@ -48,7 +48,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
     }
 
     public static void register(BootstrapContext<PlacedFeature> registerable) {
-        final var configured = registerable.lookup(Registries.CONFIGURED_FEATURE);
+        final var configured = registerable.lookup(Registries.FEATURE);
 
         // Ores
         var asphalt = configured.getOrThrow(PromenadeConfiguredFeatures.ASPHALT_ORE);
@@ -238,7 +238,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
     public static void of(
             BootstrapContext<PlacedFeature> featureRegisterable,
             ResourceKey<PlacedFeature> key,
-            Holder<ConfiguredFeature<?, ?>> feature,
+            Holder<Feature> feature,
             List<PlacementModifier> modifiers
     ) {
         PlacementUtils.register(featureRegisterable, key, feature, modifiers);
@@ -247,7 +247,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
     public static void of(
             BootstrapContext<PlacedFeature> featureRegisterable,
             ResourceKey<PlacedFeature> key,
-            Holder<ConfiguredFeature<?, ?>> feature,
+            Holder<Feature> feature,
             PlacementModifier... modifiers
     ) {
         PlacementUtils.register(featureRegisterable, key, feature, modifiers);

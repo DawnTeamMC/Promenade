@@ -1,6 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -8,6 +7,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -33,9 +33,6 @@ public abstract class AbstractFacingPlantStemBlock extends AbstractFacingPlantPa
         this.growthChance = growthChance;
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(0)));
     }
-
-    @Override
-    protected abstract MapCodec<? extends AbstractFacingPlantStemBlock> codec();
 
     @Override
     public BlockState getRandomGrowthState(RandomSource random) {
@@ -107,17 +104,17 @@ public abstract class AbstractFacingPlantStemBlock extends AbstractFacingPlantPa
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, BonemealSource source) {
         return this.canGrowAt(world.getBlockState(pos.relative(state.getValue(FACING))));
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         var facing = state.getValue(FACING);
         var blockPos = pos.relative(facing);
         var i = Math.min(state.getValue(AGE) + 1, MAX_AGE);

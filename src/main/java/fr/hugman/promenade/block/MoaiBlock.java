@@ -1,6 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.block.property.PromenadeBlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,17 +18,11 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jetbrains.annotations.Nullable;
 
 public class MoaiBlock extends HorizontalDirectionalBlock {
-    public static final MapCodec<MoaiBlock> CODEC = simpleCodec(MoaiBlock::new);
     public static final EnumProperty<MoaiType> TYPE = PromenadeBlockProperties.MOAI_TYPE;
 
     public MoaiBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(TYPE, MoaiType.SINGLE).setValue(FACING, Direction.NORTH));
-    }
-
-    @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return CODEC;
     }
 
     @Override

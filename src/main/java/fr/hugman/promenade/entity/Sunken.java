@@ -44,7 +44,7 @@ import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.goal.RangedBowAttackGoal;
 import net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal;
 import net.minecraft.world.entity.ai.goal.RestrictSunGoal;
-import net.minecraft.world.entity.ai.goal.TryFindWaterGoal;
+import net.minecraft.world.entity.ai.goal.TryFindLiquidGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
@@ -145,7 +145,7 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new TryFindWaterGoal(this));
+        this.goalSelector.addGoal(1, new TryFindLiquidGoal(this, FluidTags.WATER));
         this.goalSelector.addGoal(1, new RestrictSunGoal(this));
         this.goalSelector.addGoal(2, new RangedCrossbowAttackGoal(this, 1.0D, 4.5F));
         this.goalSelector.addGoal(3, new AvoidEntityGoal(this, Pufferfish.class, 8.0F, 1.0D, 1.2D));

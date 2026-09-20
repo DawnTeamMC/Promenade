@@ -85,7 +85,7 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         registryBuilder.add(Registries.STRUCTURE, PromenadeStructureProvider::register);
         registryBuilder.add(Registries.STRUCTURE_SET, PromenadeStructureSetProvider::register);
 
-        registryBuilder.add(Registries.CONFIGURED_FEATURE, PromenadeConfiguredFeatureProvider::register);
+        registryBuilder.add(Registries.FEATURE, PromenadeConfiguredFeatureProvider::register);
         registryBuilder.add(Registries.PLACED_FEATURE, PromenadePlacedFeatureProvider::register);
         registryBuilder.add(Registries.BIOME, PromenadeBiomeProvider::register);
 
