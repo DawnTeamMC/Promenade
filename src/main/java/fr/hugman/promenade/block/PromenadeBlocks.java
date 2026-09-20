@@ -19,6 +19,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -52,47 +53,47 @@ public class PromenadeBlocks {
     /* ================= */
     /*   VANILLA PILES   */
     /* ================= */
-    public static final Block OAK_LEAF_PILE = register(PromenadeBlockItemIds.OAK_LEAF_PILE, BlockFactory.pile());
-    public static final Block SPRUCE_LEAF_PILE = register(PromenadeBlockItemIds.SPRUCE_LEAF_PILE, BlockFactory.pile());
-    public static final Block BIRCH_LEAF_PILE = register(PromenadeBlockItemIds.BIRCH_LEAF_PILE, BlockFactory.pile());
-    public static final Block JUNGLE_LEAF_PILE = register(PromenadeBlockItemIds.JUNGLE_LEAF_PILE, BlockFactory.pile());
-    public static final Block ACACIA_LEAF_PILE = register(PromenadeBlockItemIds.ACACIA_LEAF_PILE, BlockFactory.pile());
-    public static final Block CHERRY_LEAF_PILE = register(PromenadeBlockItemIds.CHERRY_LEAF_PILE, BlockFactory.pile(MapColor.COLOR_PINK).settings(s -> s.sound(SoundType.CHERRY_LEAVES)));
-    public static final Block DARK_OAK_LEAF_PILE = register(PromenadeBlockItemIds.DARK_OAK_LEAF_PILE, BlockFactory.pile());
-    public static final Block PALE_OAK_LEAF_PILE = register(PromenadeBlockItemIds.PALE_OAK_LEAF_PILE, BlockFactory.pile());
-    public static final Block MANGROVE_LEAF_PILE = register(PromenadeBlockItemIds.MANGROVE_LEAF_PILE, BlockFactory.pile());
-    public static final Block AZALEA_LEAF_PILE = register(PromenadeBlockItemIds.AZALEA_LEAF_PILE, BlockFactory.pile().settings(s -> s.sound(SoundType.AZALEA_LEAVES)));
-    public static final Block FLOWERING_AZALEA_LEAF_PILE = register(PromenadeBlockItemIds.FLOWERING_AZALEA_LEAF_PILE, BlockFactory.pile().settings(s -> s.sound(SoundType.AZALEA_LEAVES)));
+    public static final Block OAK_LEAF_PILE = register(PromenadeBlockItemIds.OAK_LEAF_PILE, BlockFactory.pile().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SPRUCE_LEAF_PILE = register(PromenadeBlockItemIds.SPRUCE_LEAF_PILE, BlockFactory.pile().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block BIRCH_LEAF_PILE = register(PromenadeBlockItemIds.BIRCH_LEAF_PILE, BlockFactory.pile().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block JUNGLE_LEAF_PILE = register(PromenadeBlockItemIds.JUNGLE_LEAF_PILE, BlockFactory.pile().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block ACACIA_LEAF_PILE = register(PromenadeBlockItemIds.ACACIA_LEAF_PILE, BlockFactory.pile().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block CHERRY_LEAF_PILE = register(PromenadeBlockItemIds.CHERRY_LEAF_PILE, BlockFactory.pile(MapColor.COLOR_PINK).settings(s -> s.sound(SoundType.CHERRY_LEAVES)).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block DARK_OAK_LEAF_PILE = register(PromenadeBlockItemIds.DARK_OAK_LEAF_PILE, BlockFactory.pile().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block PALE_OAK_LEAF_PILE = register(PromenadeBlockItemIds.PALE_OAK_LEAF_PILE, BlockFactory.pile().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block MANGROVE_LEAF_PILE = register(PromenadeBlockItemIds.MANGROVE_LEAF_PILE, BlockFactory.pile().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block AZALEA_LEAF_PILE = register(PromenadeBlockItemIds.AZALEA_LEAF_PILE, BlockFactory.pile().settings(s -> s.sound(SoundType.AZALEA_LEAVES)).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block FLOWERING_AZALEA_LEAF_PILE = register(PromenadeBlockItemIds.FLOWERING_AZALEA_LEAF_PILE, BlockFactory.pile().settings(s -> s.sound(SoundType.AZALEA_LEAVES)).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM));
 
-    public static final Block DANDELION_PILE = register(PromenadeBlockItemIds.DANDELION_PILE, BlockFactory.pile(MapColor.GOLD));
-    public static final Block POPPY_PILE = register(PromenadeBlockItemIds.POPPY_PILE, BlockFactory.pile(MapColor.CRIMSON_NYLIUM));
-    public static final Block BLUE_ORCHID_PILE = register(PromenadeBlockItemIds.BLUE_ORCHID_PILE, BlockFactory.pile(MapColor.COLOR_LIGHT_BLUE));
-    public static final Block ALLIUM_PILE = register(PromenadeBlockItemIds.ALLIUM_PILE, BlockFactory.pile(MapColor.COLOR_MAGENTA));
-    public static final Block AZURE_BLUET_PILE = register(PromenadeBlockItemIds.AZURE_BLUET_PILE, BlockFactory.pile(MapColor.SAND));
-    public static final Block RED_TULIP_PILE = register(PromenadeBlockItemIds.RED_TULIP_PILE, BlockFactory.pile(MapColor.CRIMSON_NYLIUM));
-    public static final Block ORANGE_TULIP_PILE = register(PromenadeBlockItemIds.ORANGE_TULIP_PILE, BlockFactory.pile(MapColor.COLOR_ORANGE));
-    public static final Block WHITE_TULIP_PILE = register(PromenadeBlockItemIds.WHITE_TULIP_PILE, BlockFactory.pile(MapColor.SNOW));
-    public static final Block PINK_TULIP_PILE = register(PromenadeBlockItemIds.PINK_TULIP_PILE, BlockFactory.pile(MapColor.COLOR_PINK));
-    public static final Block OXEYE_DAISY_PILE = register(PromenadeBlockItemIds.OXEYE_DAISY_PILE, BlockFactory.pile(MapColor.GOLD));
-    public static final Block CORNFLOWER_PILE = register(PromenadeBlockItemIds.CORNFLOWER_PILE, BlockFactory.pile(MapColor.LAPIS));
-    public static final Block LILY_OF_THE_VALLEY_PILE = register(PromenadeBlockItemIds.LILY_OF_THE_VALLEY_PILE, BlockFactory.pile(MapColor.SNOW));
-    public static final Block WITHER_ROSE_PILE = register(PromenadeBlockItemIds.WITHER_ROSE_PILE, BlockFactory.pile(MapColor.COLOR_BLACK).factory(WitherRosePileBlock::new));
+    public static final Block DANDELION_PILE = register(PromenadeBlockItemIds.DANDELION_PILE, BlockFactory.pile(MapColor.GOLD).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block POPPY_PILE = register(PromenadeBlockItemIds.POPPY_PILE, BlockFactory.pile(MapColor.CRIMSON_NYLIUM).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block BLUE_ORCHID_PILE = register(PromenadeBlockItemIds.BLUE_ORCHID_PILE, BlockFactory.pile(MapColor.COLOR_LIGHT_BLUE).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block ALLIUM_PILE = register(PromenadeBlockItemIds.ALLIUM_PILE, BlockFactory.pile(MapColor.COLOR_MAGENTA).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block AZURE_BLUET_PILE = register(PromenadeBlockItemIds.AZURE_BLUET_PILE, BlockFactory.pile(MapColor.SAND).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block RED_TULIP_PILE = register(PromenadeBlockItemIds.RED_TULIP_PILE, BlockFactory.pile(MapColor.CRIMSON_NYLIUM).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block ORANGE_TULIP_PILE = register(PromenadeBlockItemIds.ORANGE_TULIP_PILE, BlockFactory.pile(MapColor.COLOR_ORANGE).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block WHITE_TULIP_PILE = register(PromenadeBlockItemIds.WHITE_TULIP_PILE, BlockFactory.pile(MapColor.SNOW).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block PINK_TULIP_PILE = register(PromenadeBlockItemIds.PINK_TULIP_PILE, BlockFactory.pile(MapColor.COLOR_PINK).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block OXEYE_DAISY_PILE = register(PromenadeBlockItemIds.OXEYE_DAISY_PILE, BlockFactory.pile(MapColor.GOLD).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block CORNFLOWER_PILE = register(PromenadeBlockItemIds.CORNFLOWER_PILE, BlockFactory.pile(MapColor.LAPIS).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block LILY_OF_THE_VALLEY_PILE = register(PromenadeBlockItemIds.LILY_OF_THE_VALLEY_PILE, BlockFactory.pile(MapColor.SNOW).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
+    public static final Block WITHER_ROSE_PILE = register(PromenadeBlockItemIds.WITHER_ROSE_PILE, BlockFactory.pile(MapColor.COLOR_BLACK).factory(WitherRosePileBlock::new).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
 
 
     /* ======================== */
     /*   VANILLA SNOWY LEAVES   */
     /* ======================== */
-    public static final Block SNOWY_OAK_LEAVES = register(PromenadeBlockItemIds.SNOWY_OAK_LEAVES, BlockFactory.snowyLeaves());
-    public static final Block SNOWY_SPRUCE_LEAVES = register(PromenadeBlockItemIds.SNOWY_SPRUCE_LEAVES, BlockFactory.snowyLeaves());
-    public static final Block SNOWY_BIRCH_LEAVES = register(PromenadeBlockItemIds.SNOWY_BIRCH_LEAVES, BlockFactory.snowyLeaves());
-    public static final Block SNOWY_JUNGLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_JUNGLE_LEAVES, BlockFactory.snowyLeaves());
-    public static final Block SNOWY_ACACIA_LEAVES = register(PromenadeBlockItemIds.SNOWY_ACACIA_LEAVES, BlockFactory.snowyLeaves());
-    public static final Block SNOWY_CHERRY_LEAVES = register(PromenadeBlockItemIds.SNOWY_CHERRY_LEAVES, BlockFactory.snowyLeaves(0.1f, ParticleTypes.CHERRY_LEAVES, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES));
-    public static final Block SNOWY_DARK_OAK_LEAVES = register(PromenadeBlockItemIds.SNOWY_DARK_OAK_LEAVES, BlockFactory.snowyLeaves());
-    public static final Block SNOWY_PALE_OAK_LEAVES = register(PromenadeBlockItemIds.SNOWY_PALE_OAK_LEAVES, BlockFactory.snowyLeaves(0.02F, ParticleTypes.PALE_OAK_LEAVES));
-    public static final Block SNOWY_MANGROVE_LEAVES = register(PromenadeBlockItemIds.SNOWY_MANGROVE_LEAVES, BlockFactory.snowyLeaves());
-    public static final Block SNOWY_AZALEA_LEAVES = register(PromenadeBlockItemIds.SNOWY_AZALEA_LEAVES, BlockFactory.snowyLeaves(PromenadeBlockSounds.SNOWY_AZALEA_LEAVES));
-    public static final Block SNOWY_FLOWERING_AZALEA_LEAVES = register(PromenadeBlockItemIds.SNOWY_FLOWERING_AZALEA_LEAVES, BlockFactory.snowyLeaves(PromenadeBlockSounds.SNOWY_AZALEA_LEAVES));
+    public static final Block SNOWY_OAK_LEAVES = register(PromenadeBlockItemIds.SNOWY_OAK_LEAVES, BlockFactory.snowyLeaves().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_SPRUCE_LEAVES = register(PromenadeBlockItemIds.SNOWY_SPRUCE_LEAVES, BlockFactory.snowyLeaves().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_BIRCH_LEAVES = register(PromenadeBlockItemIds.SNOWY_BIRCH_LEAVES, BlockFactory.snowyLeaves().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_JUNGLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_JUNGLE_LEAVES, BlockFactory.snowyLeaves().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_ACACIA_LEAVES = register(PromenadeBlockItemIds.SNOWY_ACACIA_LEAVES, BlockFactory.snowyLeaves().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_CHERRY_LEAVES = register(PromenadeBlockItemIds.SNOWY_CHERRY_LEAVES, BlockFactory.snowyLeaves(0.1f, ParticleTypes.CHERRY_LEAVES, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_DARK_OAK_LEAVES = register(PromenadeBlockItemIds.SNOWY_DARK_OAK_LEAVES, BlockFactory.snowyLeaves().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_PALE_OAK_LEAVES = register(PromenadeBlockItemIds.SNOWY_PALE_OAK_LEAVES, BlockFactory.snowyLeaves(0.02F, ParticleTypes.PALE_OAK_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_MANGROVE_LEAVES = register(PromenadeBlockItemIds.SNOWY_MANGROVE_LEAVES, BlockFactory.snowyLeaves().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_AZALEA_LEAVES = register(PromenadeBlockItemIds.SNOWY_AZALEA_LEAVES, BlockFactory.snowyLeaves(PromenadeBlockSounds.SNOWY_AZALEA_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_FLOWERING_AZALEA_LEAVES = register(PromenadeBlockItemIds.SNOWY_FLOWERING_AZALEA_LEAVES, BlockFactory.snowyLeaves(PromenadeBlockSounds.SNOWY_AZALEA_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
 
     /* ========== */
@@ -118,17 +119,17 @@ public class PromenadeBlocks {
     public static final Block SAKURA_WALL_HANGING_SIGN = register(PromenadeBlockIds.SAKURA_WALL_HANGING_SIGN, BlockFactory.wallHangingSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA, SoundType.CHERRY_WOOD_HANGING_SIGN));
     public static final Block SAKURA_SHELF = register(PromenadeBlockItemIds.SAKURA_SHELF, BlockFactory.shelf(SAKURA_PLANKS));
 
-    public static final Block BLUSH_SAKURA_SAPLING = register(PromenadeBlockItemIds.BLUSH_SAKURA_SAPLING, BlockFactory.sapling(PromenadeMapColors.BLUSH_BLOSSOMS, PromenadeSaplingGenerators.BLUSH_SAKURA));
+    public static final Block BLUSH_SAKURA_SAPLING = register(PromenadeBlockItemIds.BLUSH_SAKURA_SAPLING, BlockFactory.sapling(PromenadeMapColors.BLUSH_BLOSSOMS, PromenadeSaplingGenerators.BLUSH_SAKURA).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block POTTED_BLUSH_SAKURA_SAPLING = register(PromenadeBlockIds.POTTED_BLUSH_SAKURA_SAPLING, BlockFactory.pot(BLUSH_SAKURA_SAPLING));
-    public static final Block BLUSH_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.BLUSH_SAKURA_BLOSSOMS, BlockFactory.leaves(PromenadeMapColors.BLUSH_BLOSSOMS, SoundType.CHERRY_LEAVES, 0.1f, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM));
-    public static final Block SNOWY_BLUSH_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.SNOWY_BLUSH_SAKURA_BLOSSOMS, BlockFactory.snowyLeaves(0.1f, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES));
-    public static final Block BLUSH_SAKURA_BLOSSOM_PILE = register(PromenadeBlockItemIds.BLUSH_SAKURA_BLOSSOM_PILE, BlockFactory.pile(PromenadeMapColors.BLUSH_BLOSSOMS, SoundType.CHERRY_LEAVES));
+    public static final Block BLUSH_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.BLUSH_SAKURA_BLOSSOMS, BlockFactory.leaves(PromenadeMapColors.BLUSH_BLOSSOMS, SoundType.CHERRY_LEAVES, 0.1f, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_BLUSH_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.SNOWY_BLUSH_SAKURA_BLOSSOMS, BlockFactory.snowyLeaves(0.1f, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block BLUSH_SAKURA_BLOSSOM_PILE = register(PromenadeBlockItemIds.BLUSH_SAKURA_BLOSSOM_PILE, BlockFactory.pile(PromenadeMapColors.BLUSH_BLOSSOMS, SoundType.CHERRY_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
-    public static final Block COTTON_SAKURA_SAPLING = register(PromenadeBlockItemIds.COTTON_SAKURA_SAPLING, BlockFactory.sapling(PromenadeMapColors.COTTON_BLOSSOMS, PromenadeSaplingGenerators.COTTON_SAKURA));
+    public static final Block COTTON_SAKURA_SAPLING = register(PromenadeBlockItemIds.COTTON_SAKURA_SAPLING, BlockFactory.sapling(PromenadeMapColors.COTTON_BLOSSOMS, PromenadeSaplingGenerators.COTTON_SAKURA).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block POTTED_COTTON_SAKURA_SAPLING = register(PromenadeBlockIds.POTTED_COTTON_SAKURA_SAPLING, BlockFactory.pot(COTTON_SAKURA_SAPLING));
-    public static final Block COTTON_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.COTTON_SAKURA_BLOSSOMS, BlockFactory.leaves(PromenadeMapColors.COTTON_BLOSSOMS, SoundType.CHERRY_LEAVES, 0.1f, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM));
-    public static final Block SNOWY_COTTON_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.SNOWY_COTTON_SAKURA_BLOSSOMS, BlockFactory.snowyLeaves(0.1f, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES));
-    public static final Block COTTON_SAKURA_BLOSSOM_PILE = register(PromenadeBlockItemIds.COTTON_SAKURA_BLOSSOM_PILE, BlockFactory.pile(PromenadeMapColors.COTTON_BLOSSOMS, SoundType.CHERRY_LEAVES));
+    public static final Block COTTON_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.COTTON_SAKURA_BLOSSOMS, BlockFactory.leaves(PromenadeMapColors.COTTON_BLOSSOMS, SoundType.CHERRY_LEAVES, 0.1f, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_COTTON_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.SNOWY_COTTON_SAKURA_BLOSSOMS, BlockFactory.snowyLeaves(0.1f, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block COTTON_SAKURA_BLOSSOM_PILE = register(PromenadeBlockItemIds.COTTON_SAKURA_BLOSSOM_PILE, BlockFactory.pile(PromenadeMapColors.COTTON_BLOSSOMS, SoundType.CHERRY_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
 
     /* ========= */
@@ -154,33 +155,33 @@ public class PromenadeBlocks {
     public static final Block MAPLE_WALL_HANGING_SIGN = register(PromenadeBlockIds.MAPLE_WALL_HANGING_SIGN, BlockFactory.wallHangingSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE, SoundType.CHERRY_WOOD_HANGING_SIGN));
     public static final Block MAPLE_SHELF = register(PromenadeBlockItemIds.MAPLE_SHELF, BlockFactory.shelf(MAPLE_PLANKS));
 
-    public static final Block SAP_MAPLE_SAPLING = register(PromenadeBlockItemIds.SAP_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.SAP_MAPLE_LEAVES, PromenadeSaplingGenerators.SAP_MAPLE));
+    public static final Block SAP_MAPLE_SAPLING = register(PromenadeBlockItemIds.SAP_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.SAP_MAPLE_LEAVES, PromenadeSaplingGenerators.SAP_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block POTTED_SAP_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_SAP_MAPLE_SAPLING, BlockFactory.pot(SAP_MAPLE_SAPLING));
-    public static final Block SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.SAP_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.SAP_MAPLE_LEAVES));
-    public static final Block SNOWY_SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_SAP_MAPLE_LEAVES, BlockFactory.snowyLeaves());
-    public static final Block FALLEN_SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_SAP_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.SAP_MAPLE_LEAVES));
-    public static final Block SAP_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.SAP_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.SAP_MAPLE_LEAVES, SoundType.GRASS));
+    public static final Block SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.SAP_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.SAP_MAPLE_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_SAP_MAPLE_LEAVES, BlockFactory.snowyLeaves().compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block FALLEN_SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_SAP_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.SAP_MAPLE_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SAP_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.SAP_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.SAP_MAPLE_LEAVES, SoundType.GRASS).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
-    public static final Block VERMILION_MAPLE_SAPLING = register(PromenadeBlockItemIds.VERMILION_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.VERMILION_MAPLE_LEAVES, PromenadeSaplingGenerators.VERMILION_MAPLE));
+    public static final Block VERMILION_MAPLE_SAPLING = register(PromenadeBlockItemIds.VERMILION_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.VERMILION_MAPLE_LEAVES, PromenadeSaplingGenerators.VERMILION_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block POTTED_VERMILION_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_VERMILION_MAPLE_SAPLING, BlockFactory.pot(VERMILION_MAPLE_SAPLING));
-    public static final Block VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.VERMILION_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.VERMILION_MAPLE_LEAF));
-    public static final Block SNOWY_VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_VERMILION_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.VERMILION_MAPLE_LEAF));
-    public static final Block FALLEN_VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_VERMILION_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES));
-    public static final Block VERMILION_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.VERMILION_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.VERMILION_MAPLE_LEAVES, SoundType.GRASS));
+    public static final Block VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.VERMILION_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.VERMILION_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_VERMILION_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.VERMILION_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block FALLEN_VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_VERMILION_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block VERMILION_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.VERMILION_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.VERMILION_MAPLE_LEAVES, SoundType.GRASS).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
-    public static final Block FULVOUS_MAPLE_SAPLING = register(PromenadeBlockItemIds.FULVOUS_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, PromenadeSaplingGenerators.FULVOUS_MAPLE));
+    public static final Block FULVOUS_MAPLE_SAPLING = register(PromenadeBlockItemIds.FULVOUS_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, PromenadeSaplingGenerators.FULVOUS_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block POTTED_FULVOUS_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_FULVOUS_MAPLE_SAPLING, BlockFactory.pot(FULVOUS_MAPLE_SAPLING));
-    public static final Block FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.FULVOUS_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF));
-    public static final Block SNOWY_FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_FULVOUS_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF));
-    public static final Block FALLEN_FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_FULVOUS_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES));
-    public static final Block FULVOUS_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.FULVOUS_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, SoundType.GRASS));
+    public static final Block FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.FULVOUS_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_FULVOUS_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block FALLEN_FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_FULVOUS_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block FULVOUS_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.FULVOUS_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, SoundType.GRASS).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
-    public static final Block MIKADO_MAPLE_SAPLING = register(PromenadeBlockItemIds.MIKADO_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.MIKADO_MAPLE_LEAVES, PromenadeSaplingGenerators.MIKADO_MAPLE));
+    public static final Block MIKADO_MAPLE_SAPLING = register(PromenadeBlockItemIds.MIKADO_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.MIKADO_MAPLE_LEAVES, PromenadeSaplingGenerators.MIKADO_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block POTTED_MIKADO_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_MIKADO_MAPLE_SAPLING, BlockFactory.pot(MIKADO_MAPLE_SAPLING));
-    public static final Block MIKADO_MAPLE_LEAVES = register(PromenadeBlockItemIds.MIKADO_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.MIKADO_MAPLE_LEAF));
-    public static final Block SNOWY_MIKADO_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_MIKADO_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.MIKADO_MAPLE_LEAF));
-    public static final Block FALLEN_MIKADO_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_MIKADO_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES));
-    public static final Block MIKADO_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.MIKADO_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.MIKADO_MAPLE_LEAVES, SoundType.GRASS));
+    public static final Block MIKADO_MAPLE_LEAVES = register(PromenadeBlockItemIds.MIKADO_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.MIKADO_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_MIKADO_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_MIKADO_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.MIKADO_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block FALLEN_MIKADO_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_MIKADO_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block MIKADO_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.MIKADO_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.MIKADO_MAPLE_LEAVES, SoundType.GRASS).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
 
     /* ======== */
@@ -206,12 +207,12 @@ public class PromenadeBlocks {
     public static final Block PALM_WALL_HANGING_SIGN = register(PromenadeBlockIds.PALM_WALL_HANGING_SIGN, BlockFactory.wallHangingSign(PALM_PLANKS, PromenadeWoodTypes.PALM, SoundType.HANGING_SIGN));
     public static final Block PALM_SHELF = register(PromenadeBlockItemIds.PALM_SHELF, BlockFactory.shelf(PALM_PLANKS));
 
-    public static final Block PALM_SAPLING = register(PromenadeBlockItemIds.PALM_SAPLING, BlockFactory.sapling(PromenadeMapColors.PALM_LEAVES, PromenadeSaplingGenerators.PALM, state -> state.is(BlockTags.SAND)));
+    public static final Block PALM_SAPLING = register(PromenadeBlockItemIds.PALM_SAPLING, BlockFactory.sapling(PromenadeMapColors.PALM_LEAVES, PromenadeSaplingGenerators.PALM, state -> state.is(BlockTags.SAND)).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block POTTED_PALM_SAPLING = register(PromenadeBlockIds.POTTED_PALM_SAPLING, BlockFactory.pot(PALM_SAPLING));
-    public static final Block PALM_LEAVES = register(PromenadeBlockItemIds.PALM_LEAVES, BlockFactory.leaves(PromenadeMapColors.PALM_LEAVES).factory(s -> new TintedParticleExtendedLeavesBlock(0.01F, s)));
-    public static final Block SNOWY_PALM_LEAVES = register(PromenadeBlockItemIds.SNOWY_PALM_LEAVES, BlockFactory.snowyLeaves().factory(s -> new TintedParticleSnowyExtendedLeavesBlock(0.01F, s)));
-    public static final Block PALM_HANGING_LEAVES = register(PromenadeBlockItemIds.PALM_HANGING_LEAVES, BlockFactory.hangingLeaves(PromenadeMapColors.PALM_LEAVES));
-    public static final Block PALM_LEAF_PILE = register(PromenadeBlockItemIds.PALM_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.PALM_LEAVES, SoundType.GRASS));
+    public static final Block PALM_LEAVES = register(PromenadeBlockItemIds.PALM_LEAVES, BlockFactory.leaves(PromenadeMapColors.PALM_LEAVES).factory(s -> new TintedParticleExtendedLeavesBlock(0.01F, s)).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SNOWY_PALM_LEAVES = register(PromenadeBlockItemIds.SNOWY_PALM_LEAVES, BlockFactory.snowyLeaves().factory(s -> new TintedParticleSnowyExtendedLeavesBlock(0.01F, s)).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block PALM_HANGING_LEAVES = register(PromenadeBlockItemIds.PALM_HANGING_LEAVES, BlockFactory.hangingLeaves(PromenadeMapColors.PALM_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block PALM_LEAF_PILE = register(PromenadeBlockItemIds.PALM_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.PALM_LEAVES, SoundType.GRASS).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
 
     /* ============ */
@@ -229,14 +230,14 @@ public class PromenadeBlocks {
             BlockFactory.of(BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PURPLE)
                     .strength(1.0F)
-                    .sound(SoundType.WART_BLOCK)));
+                    .sound(SoundType.WART_BLOCK)).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM_HIGH));
     public static final Block DARK_AMARANTH_ROOTS = register(PromenadeBlockItemIds.DARK_AMARANTH_ROOTS, BlockFactory.of(s -> new RootsBlock(state -> state.is(PromenadeBlockTags.DARK_AMARANTH_ROOTS_PLACEABLE_ON), s),
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PURPLE)
                     .replaceable()
                     .instabreak()
                     .noCollision()
-                    .sound(SoundType.ROOTS)));
+                    .sound(SoundType.ROOTS)).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
     public static final Block POTTED_DARK_AMARANTH_ROOTS = register(PromenadeBlockIds.POTTED_DARK_AMARANTH_ROOTS, BlockFactory.pot(DARK_AMARANTH_ROOTS));
 
     public static final Block DARK_AMARANTH_STEM = register(PromenadeBlockItemIds.DARK_AMARANTH_STEM, BlockFactory.log(PromenadeMapColors.AMARANTH_BARK, PromenadeBlockSounds.AMARANTH_WOOD, false));
@@ -259,10 +260,10 @@ public class PromenadeBlocks {
     public static final Block DARK_AMARANTH_WALL_HANGING_SIGN = register(PromenadeBlockIds.DARK_AMARANTH_WALL_HANGING_SIGN, BlockFactory.wallHangingSign(DARK_AMARANTH_PLANKS, PromenadeWoodTypes.DARK_AMARANTH, SoundType.NETHER_WOOD_HANGING_SIGN));
     public static final Block DARK_AMARANTH_SHELF = register(PromenadeBlockItemIds.DARK_AMARANTH_SHELF, BlockFactory.shelf(DARK_AMARANTH_PLANKS));
 
-    public static final Block DARK_AMARANTH_FUNGUS = register(PromenadeBlockItemIds.DARK_AMARANTH_FUNGUS, BlockFactory.fungus(MapColor.COLOR_PURPLE, PromenadeConfiguredFeatures.PLANTED_DARK_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON));
+    public static final Block DARK_AMARANTH_FUNGUS = register(PromenadeBlockItemIds.DARK_AMARANTH_FUNGUS, BlockFactory.fungus(MapColor.COLOR_PURPLE, PromenadeConfiguredFeatures.PLANTED_DARK_AMARANTH_FUNGUS, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_PLACEABLE_ON, PromenadeBlockTags.DARK_AMARANTH_FUNGUS_GROWABLE_ON).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
     public static final Block POTTED_DARK_AMARANTH_FUNGUS = register(PromenadeBlockIds.POTTED_DARK_AMARANTH_FUNGUS, BlockFactory.pot(DARK_AMARANTH_FUNGUS));
 
-    public static final Block SOUL_SHROOMLIGHT = register(PromenadeBlockItemIds.SOUL_SHROOMLIGHT, BlockFactory.of(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.0F).sound(SoundType.SHROOMLIGHT).lightLevel(state -> 10)));
+    public static final Block SOUL_SHROOMLIGHT = register(PromenadeBlockItemIds.SOUL_SHROOMLIGHT, BlockFactory.of(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(1.0F).sound(SoundType.SHROOMLIGHT).lightLevel(state -> 10)).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM));
 
     public static final Block COILED_VINES = register(PromenadeBlockItemIds.COILED_VINES, BlockFactory.of(
             CoiledVinesBlock::new,
@@ -272,8 +273,8 @@ public class PromenadeBlocks {
                     .noCollision()
                     .instabreak()
                     .sound(SoundType.WEEPING_VINES)
-                    .pushReaction(PushReaction.DESTROY)
-    ));
+                    .pushReaction(PushReaction.POPPED)
+    ).compostable(ContextIntProviders.COMPOSTABLE_LOW_MEDIUM));
     public static final Block COILED_VINES_PLANT = register(PromenadeBlockIds.COILED_VINES_PLANT, BlockFactory.of(
             CoiledVinesPlantBlock::new,
             BlockBehaviour.Properties.of()
@@ -281,7 +282,7 @@ public class PromenadeBlocks {
                     .noCollision()
                     .instabreak()
                     .sound(SoundType.WEEPING_VINES)
-                    .pushReaction(PushReaction.DESTROY)
+                    .pushReaction(PushReaction.POPPED)
     ).noItem());
 
     public static final Block MOAI = register(PromenadeBlockItemIds.MOAI, BlockFactory.of(MoaiBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)).itemSettings(s -> s.equipmentSlot((entity, stack) -> EquipmentSlot.HEAD)));
@@ -291,7 +292,7 @@ public class PromenadeBlocks {
             .randomTicks()
             .noCollision()
             .sound(SoundType.SWEET_BERRY_BUSH)
-            .pushReaction(PushReaction.DESTROY)).noItem());
+            .pushReaction(PushReaction.POPPED)).noItem());
 
     private static Block register(ResourceKey<Block> key, BlockBuilder builder) {
         return builder.register(key);

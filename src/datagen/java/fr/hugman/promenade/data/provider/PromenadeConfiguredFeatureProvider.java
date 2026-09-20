@@ -27,7 +27,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.WeightedPlacedFeature;
 import net.minecraft.world.level.levelgen.feature.configurations.*;
@@ -48,7 +48,7 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
 
     @Override
     protected void configure(HolderLookup.Provider registries, Entries entries) {
-        entries.addAll(registries.lookupOrThrow(Registries.CONFIGURED_FEATURE));
+        entries.addAll(registries.lookupOrThrow(Registries.FEATURE));
     }
 
     @Override
@@ -56,9 +56,9 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
         return "Configured Features";
     }
 
-    public static void register(BootstrapContext<ConfiguredFeature<?, ?>> registerable) {
+    public static void register(BootstrapContext<Feature> registerable) {
         final var blocks = registerable.lookup(Registries.BLOCK);
-        final var configured = registerable.lookup(Registries.CONFIGURED_FEATURE);
+        final var configured = registerable.lookup(Registries.FEATURE);
         final var placed = registerable.lookup(Registries.PLACED_FEATURE);
 
         // Ores
@@ -226,7 +226,7 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
         return builder;
     }
 
-    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void of(BootstrapContext<ConfiguredFeature<?, ?>> registry, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
+    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void of(BootstrapContext<Feature> registry, ResourceKey<Feature> key, F feature, FC config) {
         FeatureUtils.register(registry, key, feature, config);
     }
 }

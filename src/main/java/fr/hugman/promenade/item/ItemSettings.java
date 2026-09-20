@@ -10,6 +10,10 @@ public final class ItemSettings {
         return new Item.Properties().stacksTo(1);
     }
 
+    public static Item.Properties sign() {
+        return max16().signText();
+    }
+
     public static Item.Properties max16() {
         return new Item.Properties().stacksTo(16);
     }

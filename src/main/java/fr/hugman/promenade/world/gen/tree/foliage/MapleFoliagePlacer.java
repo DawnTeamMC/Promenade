@@ -10,7 +10,7 @@ import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.util.valueproviders.IntProviders;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
@@ -33,7 +33,7 @@ public class MapleFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    protected void createFoliage(WorldGenLevel world, FoliageSetter placer, RandomSource random, TreeConfiguration config, int trunkHeight, FoliageAttachment treeNode, int foliageHeight, int radius, int offset) {
+    protected void createFoliage(WorldGenLevel world, FoliageSetter placer, RandomSource random, TreeFeature config, int trunkHeight, FoliageAttachment treeNode, int foliageHeight, int radius, int offset) {
         var pos = treeNode.pos().below(foliageHeight - offset);
 
         var curvature = radius;
@@ -61,7 +61,7 @@ public class MapleFoliagePlacer extends FoliagePlacer {
         }
     }
 
-    protected void generateColumn(WorldGenLevel world, FoliageSetter placer, TreeConfiguration config, RandomSource random, BlockPos centerPos, int dx, int dz, int y1, int y2) {
+    protected void generateColumn(WorldGenLevel world, FoliageSetter placer, TreeFeature config, RandomSource random, BlockPos centerPos, int dx, int dz, int y1, int y2) {
         BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
         mutable.setWithOffset(centerPos, dz, y1, dx);
         for (int y = y1; y < y2; y++) {
@@ -71,7 +71,7 @@ public class MapleFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    public int foliageHeight(RandomSource random, int trunkHeight, TreeConfiguration config) {
+    public int foliageHeight(RandomSource random, int trunkHeight, TreeFeature config) {
         return this.height.sample(random);
     }
 

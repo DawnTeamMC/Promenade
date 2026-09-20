@@ -11,18 +11,19 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.FallingParticlesLeavesBlock;
+import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.Property;
 
-public abstract class SnowyLeavesBlock extends LeavesBlock {
+public abstract class SnowyLeavesBlock extends FallingParticlesLeavesBlock {
     public static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
 
     public SnowyLeavesBlock(float leafParticleChance, Properties settings) {
-        super(leafParticleChance, settings);
+        super(leafParticleChance, AmbientLeavesBlockSoundPlayer.noAmbientSound(), settings);
         this.registerDefaultState(this.defaultBlockState().setValue(BOTTOM, false));
     }
 

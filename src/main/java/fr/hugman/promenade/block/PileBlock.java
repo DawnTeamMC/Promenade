@@ -1,6 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -15,16 +14,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class PileBlock extends VegetationBlock {
-    public static final MapCodec<PileBlock> CODEC = simpleCodec(PileBlock::new);
     protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 0.0D, 16.0D, 1.0D, 16.0D);
 
     public PileBlock(Properties settings) {
         super(settings);
-    }
-
-    @Override
-    protected MapCodec<? extends PileBlock> codec() {
-        return CODEC;
     }
 
     @Override

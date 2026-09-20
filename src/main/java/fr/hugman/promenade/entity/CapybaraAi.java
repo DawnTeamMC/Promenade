@@ -82,7 +82,7 @@ public class CapybaraAi {
         public SleepOrWakeUp(int lastPoseSecondsDelta) {
             super(ImmutableMap.of(
                     MemoryModuleType.IS_PANICKING, MemoryStatus.VALUE_ABSENT,
-                    MemoryModuleType.IS_TEMPTED, MemoryStatus.VALUE_ABSENT,
+                    MemoryModuleType.TEMPTING_PLAYER, MemoryStatus.VALUE_ABSENT,
                     MemoryModuleType.IS_IN_WATER, MemoryStatus.VALUE_ABSENT,
                     MemoryModuleType.BREED_TARGET, MemoryStatus.VALUE_ABSENT));
             this.lastPoseTickDelta = lastPoseSecondsDelta * 20;
@@ -112,7 +112,7 @@ public class CapybaraAi {
         Fart(int lastPoseSecondsDelta) {
             super(Map.of(
                     MemoryModuleType.IS_PANICKING, MemoryStatus.VALUE_ABSENT,
-                    MemoryModuleType.IS_TEMPTED, MemoryStatus.VALUE_ABSENT,
+                    MemoryModuleType.TEMPTING_PLAYER, MemoryStatus.VALUE_ABSENT,
                     MemoryModuleType.IS_IN_WATER, MemoryStatus.VALUE_ABSENT,
                     PromenadeMemoryModuleTypes.FART_COOLDOWN, MemoryStatus.VALUE_ABSENT,
                     MemoryModuleType.BREED_TARGET, MemoryStatus.VALUE_ABSENT
