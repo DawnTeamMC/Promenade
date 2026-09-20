@@ -3,7 +3,7 @@ package fr.hugman.promenade.data.provider;
 import com.google.common.collect.ImmutableList;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
-import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
+import fr.hugman.promenade.world.gen.feature.FreezeTopLayerFeature;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.NoiseIntervalCountPlacementModifier;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.heightproviders.TrapezoidHeight;
 import net.minecraft.world.level.levelgen.placement.*;
 
@@ -105,9 +104,9 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome(),
                 CountPlacement.of(96),
-                RandomOffsetPlacement.ofTriangle(7, 3),
+                OffsetPlacement.ofTriangle(7, 3),
                 BlockPredicateFilter.forPredicate(
-                        BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.matchesBlocks(Direction.DOWN.getUnitVec3i(), Blocks.GRASS_BLOCK))
+                        BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.matchesBlocks(Direction.DOWN, Blocks.GRASS_BLOCK))
                 )
         );
         of(registerable, PromenadePlacedFeatures.BLUEBERRY_BUSH_RARE_PATCH, blueberryBush,
@@ -116,9 +115,9 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome(),
                 CountPlacement.of(96),
-                RandomOffsetPlacement.ofTriangle(7, 3),
+                OffsetPlacement.ofTriangle(7, 3),
                 BlockPredicateFilter.forPredicate(
-                        BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.matchesBlocks(Direction.DOWN.getUnitVec3i(), Blocks.GRASS_BLOCK))
+                        BlockPredicate.allOf(BlockPredicate.ONLY_IN_AIR_PREDICATE, BlockPredicate.matchesBlocks(Direction.DOWN, Blocks.GRASS_BLOCK))
                 )
         );
 
@@ -128,7 +127,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
                 PlacementUtils.HEIGHTMAP_WORLD_SURFACE,
                 BiomeFilter.biome(),
                 CountPlacement.of(25),
-                RandomOffsetPlacement.ofTriangle(7, 3),
+                OffsetPlacement.ofTriangle(7, 3),
                 BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
         );
 
@@ -136,7 +135,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
 
         of(registerable, PromenadePlacedFeatures.WATER_POOLS_GRAVEL_DECORATED, configured.getOrThrow(PromenadeConfiguredFeatures.WATER_POOL_GRAVEL_DECORATED), rare(10, PlacementUtils.HEIGHTMAP));
 
-        of(registerable, PromenadePlacedFeatures.FREEZE_TOP_LAYER, Holder.direct(new ConfiguredFeature<>(PromenadeFeatures.FREEZE_TOP_LAYER, FeatureConfiguration.NONE)), BiomeFilter.biome());
+        of(registerable, PromenadePlacedFeatures.FREEZE_TOP_LAYER, Holder.direct(new FreezeTopLayerFeature()), BiomeFilter.biome());
 
         of(registerable, PromenadePlacedFeatures.DARK_AMARANTH_FOREST_VEGETATION, configured.getOrThrow(PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_VEGETATION), netherCount(6));
 
@@ -159,7 +158,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
                 Util.copyAndAdd(
                     worldSurfaceSquaredWithCount(20),
                     CountPlacement.of(32),
-                    RandomOffsetPlacement.ofTriangle(7, 3),
+                    OffsetPlacement.ofTriangle(7, 3),
                     BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
         ));
 
@@ -228,7 +227,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
     }
 
     public static List<PlacementModifier> treeModifiersWithWouldSurvive(PlacementModifier modifier, Block block) {
-        return treeModifiersBuilder(modifier).add(BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(block.defaultBlockState(), BlockPos.ZERO))).build();
+        return treeModifiersBuilder(modifier).add(BlockPredicateFilter.forPredicate(BlockPredicate.wouldSurvive(block))).build();
     }
 
     public static List<PlacementModifier> treeModifiers(PlacementModifier modifier) {
