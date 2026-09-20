@@ -1,15 +1,12 @@
 package fr.hugman.promenade.world.biome;
 
 import com.terraformersmc.biolith.api.biome.BiomePlacement;
-import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.tag.PromenadeBiomeTags;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.SurfaceRuleData;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.tags.ItemTags;
@@ -19,10 +16,6 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.biome.Climate;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.levelgen.Noises;
-import net.minecraft.world.level.levelgen.SurfaceRules;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
 
 public class PromenadeBiomes {
     public static final ResourceKey<Biome> BLUSH_SAKURA_GROVE = of("blush_sakura_grove");

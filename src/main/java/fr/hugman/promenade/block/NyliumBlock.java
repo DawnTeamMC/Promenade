@@ -1,6 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,22 +10,16 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.lighting.LightEngine;
 
 public class NyliumBlock extends Block implements BonemealableBlock {
-    public static final MapCodec<NyliumBlock> CODEC = simpleCodec(NyliumBlock::new);
-
-    @Override
-    public MapCodec<NyliumBlock> codec() {
-        return CODEC;
-    }
-
     public NyliumBlock(Properties settings) {
         super(settings);
     }
@@ -47,27 +40,27 @@ public class NyliumBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, BonemealSource source) {
         return world.getBlockState(pos.above()).isAir();
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         BlockPos blockPos = pos.above();
         ChunkGenerator chunkGenerator = world.getChunkSource().getGenerator();
-        Registry<ConfiguredFeature<?, ?>> registry = world.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE);
+        Registry<Feature> registry = world.registryAccess().lookupOrThrow(Registries.FEATURE);
         //TODO: make this configurable
         this.generate(registry, PromenadeConfiguredFeatures.DARK_AMARANTH_FOREST_BONEMEAL_VEGETATION, world, chunkGenerator, random, blockPos);
     }
 
     private void generate(
-            Registry<ConfiguredFeature<?, ?>> registry,
-            ResourceKey<ConfiguredFeature<?, ?>> key,
+            Registry<Feature> registry,
+            ResourceKey<Feature> key,
             ServerLevel world,
             ChunkGenerator chunkGenerator,
             RandomSource random,

@@ -12,7 +12,7 @@ import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
@@ -40,7 +40,7 @@ public class BranchingStraightTrunkPlacer extends TrunkPlacer {
             RandomSource random,
             int height,
             BlockPos startPos,
-            TreeConfiguration config
+            TreeFeature config
     ) {
         placeBelowTrunkBlock(world, replacer, random, startPos.below(), config);
 

@@ -1,6 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -26,16 +25,9 @@ import org.jetbrains.annotations.Nullable;
 public class HangingLeavesBlock extends Block implements SimpleWaterloggedBlock {
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected static final VoxelShape SHAPE = Block.box(2.0, 10.0, 2.0, 14.0, 16.0, 14.0);
-    public static final MapCodec<HangingLeavesBlock> CODEC = simpleCodec(HangingLeavesBlock::new);
-
     public HangingLeavesBlock(BlockBehaviour.Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false));
-    }
-
-    @Override
-    public MapCodec<HangingLeavesBlock> codec() {
-        return CODEC;
     }
 
     @Override

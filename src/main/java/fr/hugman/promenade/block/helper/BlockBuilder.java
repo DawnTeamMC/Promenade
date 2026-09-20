@@ -10,6 +10,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider;
 
 public class BlockBuilder {
     private static final Function<BlockBehaviour.Properties, Block> DEFAULT_FACTORY = Block::new;
@@ -57,6 +58,20 @@ public class BlockBuilder {
     public BlockBuilder itemSettings(Function<Item.Properties, Item.Properties> settings) {
         this.itemSettings = settings.apply(this.itemSettings);
         return this;
+    }
+
+    /**
+     * Makes the block's item compostable, using one of the vanilla composting levels.
+     */
+    public BlockBuilder compostable(ResourceKey<ContextIntProvider> layers) {
+        return this.itemSettings(settings -> settings.compostable(layers));
+    }
+
+    /**
+     * Makes the block's item usable as furnace fuel, using one of the vanilla burn times.
+     */
+    public BlockBuilder cookingFuel(ResourceKey<ContextIntProvider> burnTime) {
+        return this.itemSettings(settings -> settings.cookingFuel(burnTime));
     }
 
     public BlockBuilder noItem() {

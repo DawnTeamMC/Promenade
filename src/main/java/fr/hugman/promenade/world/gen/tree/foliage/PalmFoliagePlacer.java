@@ -7,7 +7,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.LevelSimulatedReader;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 
@@ -26,11 +26,11 @@ public class PalmFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    protected void createFoliage(WorldGenLevel world, FoliageSetter placer, RandomSource random, TreeConfiguration config, int trunkHeight, FoliageAttachment treeNode, int foliageHeight, int radius, int offset) {
+    protected void createFoliage(WorldGenLevel world, FoliageSetter placer, RandomSource random, TreeFeature config, int trunkHeight, FoliageAttachment treeNode, int foliageHeight, int radius, int offset) {
         boolean bl = treeNode.doubleTrunk();
         BlockPos blockPos = treeNode.pos().below();
 
-        int i = radius + treeNode.radiusOffset();
+        int i = radius + treeNode.radiusOffsetXZ();
         if (i > 1) this.placeLeavesRow(world, placer, random, config, blockPos, i, 2, bl);
         this.placeLeavesRow(world, placer, random, config, blockPos, i + 1, 1, bl);
         this.placeLeavesRow(world, placer, random, config, blockPos, i + 2, 0, bl);
@@ -39,7 +39,7 @@ public class PalmFoliagePlacer extends FoliagePlacer {
     }
 
     @Override
-    public int foliageHeight(RandomSource random, int trunkHeight, TreeConfiguration config) {
+    public int foliageHeight(RandomSource random, int trunkHeight, TreeFeature config) {
         return 0;
     }
 

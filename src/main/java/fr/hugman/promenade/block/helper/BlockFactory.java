@@ -35,12 +35,13 @@ import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.WallHangingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.grower.TreeGrower;
+import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import java.util.function.Function;
@@ -90,14 +91,14 @@ public final class BlockFactory {
         return copy(baseBlock).factory(s -> new DoorBlock(setType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock)
                 .strength(3.0f)
                 .noOcclusion()
-                .pushReaction(PushReaction.DESTROY));
+                .pushReaction(PushReaction.POPPED));
     }
 
     public static BlockBuilder woodenButton(Block baseBlock, BlockSetType setType) {
         return copy(baseBlock).factory(s -> new ButtonBlock(setType, 30, s)).settings(BlockBehaviour.Properties.of()
                 .strength(0.5f)
                 .noCollision()
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .sound(baseBlock.defaultBlockState().getSoundType()));
     }
 
@@ -105,7 +106,7 @@ public final class BlockFactory {
         return copy(baseBlock).factory(s -> new PressurePlateBlock(setType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock)
                 .forceSolidOn()
                 .strength(0.5f)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .requiresCorrectToolForDrops()
                 .noCollision());
     }
@@ -173,7 +174,7 @@ public final class BlockFactory {
                 .instabreak()
                 .noCollision()
                 .randomTicks()
-                .pushReaction(PushReaction.DESTROY));
+                .pushReaction(PushReaction.POPPED));
     }
 
     public static BlockBuilder sapling(MapColor mapColor, TreeGrower generator, Predicate<BlockState> saplingSoilPredicate) {
@@ -189,13 +190,12 @@ public final class BlockFactory {
                 .noOcclusion()
                 .isValidSpawn(Blocks::never)
                 .isSuffocating(Blocks::never)
-                .isViewBlocking(Blocks::never)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .isRedstoneConductor(Blocks::never));
     }
 
     public static BlockBuilder leaves(MapColor mapColor, SoundType soundGroup, float particleChance, ParticleOptions fallingParticle) {
-        return new BlockBuilder(s -> new UntintedParticleLeavesBlock(particleChance, fallingParticle, s), BlockBehaviour.Properties.of()
+        return new BlockBuilder(s -> new UntintedParticleLeavesBlock(particleChance, fallingParticle, AmbientLeavesBlockSoundPlayer.noAmbientSound(), s), BlockBehaviour.Properties.of()
                 .mapColor(mapColor)
                 .strength(0.2f)
                 .randomTicks()
@@ -204,8 +204,7 @@ public final class BlockFactory {
                 .ignitedByLava()
                 .isValidSpawn(Blocks::never)
                 .isSuffocating(Blocks::never)
-                .isViewBlocking(Blocks::never)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .isRedstoneConductor(Blocks::never));
     }
 
@@ -215,7 +214,7 @@ public final class BlockFactory {
                 .sound(SoundType.GRASS)
                 .replaceable().noCollision().instabreak()
                 .ignitedByLava()
-                .pushReaction(PushReaction.DESTROY));
+                .pushReaction(PushReaction.POPPED));
     }
 
     public static BlockBuilder snowyLeaves() {
@@ -228,8 +227,7 @@ public final class BlockFactory {
                 .ignitedByLava()
                 .isValidSpawn(Blocks::ocelotOrParrot)
                 .isSuffocating(Blocks::never)
-                .isViewBlocking(Blocks::never)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .isRedstoneConductor(Blocks::never));
     }
 
@@ -250,7 +248,7 @@ public final class BlockFactory {
                 .instabreak()
                 .noOcclusion()
                 .lightLevel(state -> block.defaultBlockState().getLightEmission())
-                .pushReaction(PushReaction.DESTROY));
+                .pushReaction(PushReaction.POPPED));
     }
 
     public static BlockBuilder pile() {
@@ -281,15 +279,15 @@ public final class BlockFactory {
                 .replaceable()
                 .noCollision()
                 .sound(sounds)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
         );
     }
 
-    public static BlockBuilder fungus(MapColor mapColor, ResourceKey<ConfiguredFeature<?, ?>> featureKey, TagKey<Block> canPlantOn, TagKey<Block> canGrowOn) {
+    public static BlockBuilder fungus(MapColor mapColor, ResourceKey<Feature> featureKey, TagKey<Block> canPlantOn, TagKey<Block> canGrowOn) {
         return of(s -> new fr.hugman.promenade.block.FungusBlock(featureKey, canPlantOn, canGrowOn, s), BlockBehaviour.Properties.of()
                 .mapColor(mapColor)
                 .sound(SoundType.FUNGUS)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .instabreak()
                 .noCollision());
     }

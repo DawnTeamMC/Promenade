@@ -16,7 +16,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.gamerules.GameRules;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
 public class LushCreeper extends Creeper {
     private static final int EXPLOSION_Y_LENGTH = 10;
@@ -34,7 +34,7 @@ public class LushCreeper extends Creeper {
         if (this.level() instanceof ServerLevel serverWorld) {
             boolean hasGeneratedMoss = false;
 			if (serverWorld.getGameRules().get(GameRules.MOB_GRIEFING)) {
-                Registry<ConfiguredFeature<?, ?>> registry = serverWorld.registryAccess().lookupOrThrow(Registries.CONFIGURED_FEATURE);
+                Registry<Feature> registry = serverWorld.registryAccess().lookupOrThrow(Registries.FEATURE);
                 for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
                     BlockPos pos = blockPosition().below(i);
                     if (this.level().getBlockState(pos).isRedstoneConductor(this.level(), pos)) {

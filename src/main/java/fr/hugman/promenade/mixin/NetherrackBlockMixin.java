@@ -14,13 +14,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.NetherrackBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 @Mixin(NetherrackBlock.class)
 public abstract class NetherrackBlockMixin {
     @Inject(method = "performBonemeal", at = @At("HEAD"), cancellable = true)
-    public void promenade$grow(ServerLevel world, RandomSource random, BlockPos pos, BlockState state, CallbackInfo ci) {
+    public void promenade$grow(ServerLevel world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source, CallbackInfo ci) {
         boolean crimson = false;
         boolean warped = false;
         boolean darkAmaranth = false;

@@ -18,6 +18,8 @@ import net.minecraft.data.worldgen.placement.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.Musics;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.ARGB;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.attribute.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EntityTypes;
@@ -27,7 +29,7 @@ import net.minecraft.world.level.biome.BiomeGenerationSettings;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
+import net.minecraft.world.level.levelgen.carver.WorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
@@ -51,7 +53,7 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
     public static void register(BootstrapContext<Biome> registerable) {
         final var features = registerable.lookup(Registries.PLACED_FEATURE);
-        final var carvers = registerable.lookup(Registries.CONFIGURED_CARVER);
+        final var carvers = registerable.lookup(Registries.CARVER);
 
         registerable.register(PromenadeBiomes.BLUSH_SAKURA_GROVE, createSakuraGroves(features, carvers, PromenadePlacedFeatures.BLUSH_SAKURA_GROVE_TREES));
         registerable.register(PromenadeBiomes.COTTON_SAKURA_GROVE, createSakuraGroves(features, carvers, PromenadePlacedFeatures.COTTON_SAKURA_GROVE_TREES));
@@ -62,7 +64,7 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         registerable.register(PromenadeBiomes.DARK_AMARANTH_FOREST, createDarkAmaranthForest(features, carvers));
     }
 
-    public static Biome createSakuraGroves(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers, ResourceKey<PlacedFeature> trees) {
+    public static Biome createSakuraGroves(HolderGetter<PlacedFeature> features, HolderGetter<WorldCarver> carvers, ResourceKey<PlacedFeature> trees) {
         BiomeGenerationSettings.Builder generation = new BiomeGenerationSettings.Builder(features, carvers);
 
         addBasicFeatures(generation);
@@ -90,9 +92,9 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
         BiomeDefaultFeatures.farmAnimals(spawns);
         BiomeDefaultFeatures.commonSpawns(spawns);
-        spawns.addSpawn(MobCategory.CREATURE, 5, new MobSpawnSettings.SpawnerData(EntityTypes.WOLF, 4, 4));
-        spawns.addSpawn(MobCategory.CREATURE, 16, new MobSpawnSettings.SpawnerData(EntityTypes.FOX, 1, 3));
-        spawns.addSpawn(MobCategory.CREATURE, 2, new MobSpawnSettings.SpawnerData(EntityTypes.PANDA, 4, 5));
+        spawns.addSpawn(EntityTypes.WOLF, 5, 4, 4);
+        spawns.addSpawn(EntityTypes.FOX, 16, 1, 3);
+        spawns.addSpawn(EntityTypes.PANDA, 2, 4, 5);
 
         return biome(0.6F, 0.4F)
                 .mobSpawnSettings(spawns.build())
@@ -105,7 +107,7 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
                 .build();
     }
 
-    public static Biome createCarnelianTreeway(HolderGetter<PlacedFeature> features, HolderGetter<ConfiguredWorldCarver<?>> carvers) {
+    public static Biome createCarnelianTreeway(HolderGetter<PlacedFeature> features, HolderGetter<WorldCarver> carvers) {
         BiomeGenerationSettings.Builder generation = new BiomeGenerationSettings.Builder(features, carvers);
 
         addBasicFeatures(generation);
@@ -128,8 +130,8 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
 
         BiomeDefaultFeatures.farmAnimals(spawns);
         BiomeDefaultFeatures.commonSpawns(spawns);
-        spawns.addSpawn(MobCategory.CREATURE, 5, new MobSpawnSettings.SpawnerData(EntityTypes.WOLF, 4, 4));
-        spawns.addSpawn(MobCategory.CREATURE, 7, new MobSpawnSettings.SpawnerData(EntityTypes.FOX, 2, 3));
+        spawns.addSpawn(EntityTypes.WOLF, 5, 4, 4);
+        spawns.addSpawn(EntityTypes.FOX, 7, 2, 3);
 
         return biome(1.2F, 0.9F)
                 .mobSpawnSettings(spawns.build())
@@ -139,11 +141,11 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
                         .grassColorOverride(9090320)
                         .foliageColorOverride(10931465)
                         .build())
-                .setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, 541)
+                .setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, ARGB.vector3fFromRGB24(541))
                 .build();
     }
 
-    public static Biome createGlacarianTaiga(HolderGetter<PlacedFeature> featureLookup, HolderGetter<ConfiguredWorldCarver<?>> carverLookup) {
+    public static Biome createGlacarianTaiga(HolderGetter<PlacedFeature> featureLookup, HolderGetter<WorldCarver> carverLookup) {
         BiomeGenerationSettings.Builder generation = new BiomeGenerationSettings.Builder(featureLookup, carverLookup);
 
         generation.addCarver(Carvers.CAVE);
@@ -191,9 +193,9 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         generation.addFeature(GenerationStep.Decoration.TOP_LAYER_MODIFICATION, PromenadePlacedFeatures.FREEZE_TOP_LAYER);
 
         MobSpawnSettings.Builder spawns = new MobSpawnSettings.Builder()
-                .addSpawn(MobCategory.CREATURE, 4, new MobSpawnSettings.SpawnerData(PromenadeEntityTypes.DUCK, 4, 4))
-                .addSpawn(MobCategory.CREATURE, 8, new MobSpawnSettings.SpawnerData(EntityTypes.WOLF, 4, 4))
-                .addSpawn(MobCategory.CREATURE, 8, new MobSpawnSettings.SpawnerData(EntityTypes.FOX, 2, 4));
+                .addSpawn(PromenadeEntityTypes.DUCK, 4, 4, 4)
+                .addSpawn(EntityTypes.WOLF, 8, 4, 4)
+                .addSpawn(EntityTypes.FOX, 8, 2, 4);
         BiomeDefaultFeatures.commonSpawns(spawns);
 
         return biome(-0.7F, 0.8f)
@@ -202,16 +204,16 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
                 .specialEffects(new BiomeSpecialEffects.Builder()
                         .waterColor(1724346)
                         .build())
-                .setAttribute(EnvironmentAttributes.FOG_COLOR, 12638463)
-                .setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, 197394)
+                .setAttribute(EnvironmentAttributes.FOG_COLOR, ARGB.vector3fFromRGB24(12638463))
+                .setAttribute(EnvironmentAttributes.WATER_FOG_COLOR, ARGB.vector3fFromRGB24(197394))
                 .build();
     }
 
-    public static Biome createDarkAmaranthForest(HolderGetter<PlacedFeature> featureLookup, HolderGetter<ConfiguredWorldCarver<?>> carverLookup) {
+    public static Biome createDarkAmaranthForest(HolderGetter<PlacedFeature> featureLookup, HolderGetter<WorldCarver> carverLookup) {
         MobSpawnSettings spawnSettings = new MobSpawnSettings.Builder()
-                .addSpawn(MobCategory.MONSTER, 1, new MobSpawnSettings.SpawnerData(EntityTypes.ENDERMAN, 4, 4))
-                .addSpawn(MobCategory.CREATURE, 60, new MobSpawnSettings.SpawnerData(EntityTypes.STRIDER, 1, 2))
-                .addMobCharge(EntityTypes.ENDERMAN, 1.0, 0.12)
+                .addSpawn(EntityTypes.ENDERMAN, 1, 4, 4)
+                .addSpawn(EntityTypes.STRIDER, 60, 1, 2)
+                .addMobSpawnCost(EntityTypes.ENDERMAN, 1.0, 0.12)
                 .build();
         BiomeGenerationSettings.Builder lookupBackedBuilder = new BiomeGenerationSettings.Builder(featureLookup, carverLookup)
                 .addCarver(Carvers.NETHER_CAVE)
@@ -233,7 +235,7 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
                 .downfall(0.0F)
                 .specialEffects(new BiomeSpecialEffects.Builder().waterColor(4159204).build())
                 .setAttribute(EnvironmentAttributes.AMBIENT_PARTICLES, List.of(new AmbientParticle(ParticleTypes.WARPED_SPORE, 0.01428F))) //TODO
-                .setAttribute(EnvironmentAttributes.FOG_COLOR, 524562)
+                .setAttribute(EnvironmentAttributes.FOG_COLOR, ARGB.vector3fFromRGB24(524562))
                 .setAttribute(EnvironmentAttributes.AMBIENT_SOUNDS, new AmbientSounds(
                         Optional.of(SoundEvents.AMBIENT_WARPED_FOREST_LOOP),
                         Optional.of(new AmbientMoodSettings(SoundEvents.AMBIENT_WARPED_FOREST_MOOD, 6000, 8, 2.0)),
@@ -255,6 +257,6 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
     }
 
     public static Biome.BiomeBuilder biome(float temperature, float downfall) {
-        return (new Biome.BiomeBuilder()).hasPrecipitation(true).temperature(temperature).downfall(downfall).setAttribute(EnvironmentAttributes.SKY_COLOR, OverworldBiomes.calculateSkyColor(temperature)).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).build());
+        return (new Biome.BiomeBuilder()).hasPrecipitation(true).temperature(temperature).downfall(downfall).setAttribute(EnvironmentAttributes.SKY_COLOR, ARGB.vector3fFromRGB24(OverworldBiomes.calculateSkyColor(temperature))).specialEffects((new BiomeSpecialEffects.Builder()).waterColor(4159204).build());
     }
 }
