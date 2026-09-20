@@ -202,6 +202,30 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
                 DARK_AMARANTH_NYLIUM
         );
         builder(BlockTags.MINEABLE_WITH_AXE).add(DARK_AMARANTH_FUNGUS, COILED_VINES).add(COILED_VINES_PLANT);
+        // Blocks that stop entities, which 26.3 drives from tags instead of block settings.
+        // Everything else (suffocation, heightmaps, fluid flow, teleporting...) derives from this one.
+        builder(BlockTags.BLOCKS_MOTION_NO_LEAVES).add(
+                ASPHALT,
+                POLISHED_ASPHALT,
+                BLUNITE,
+                POLISHED_BLUNITE,
+                DARK_AMARANTH_NYLIUM,
+                DARK_AMARANTH_WART_BLOCK,
+                SOUL_SHROOMLIGHT,
+                MOAI
+        );
+
+        builder(BlockTags.WASHED_AWAY_BY_FLUIDS)
+                .addTag(LEAF_PILES)
+                .addTag(FLOWER_PILES)
+                .addTag(FALLEN_LEAVES)
+                .add(PALM_HANGING_LEAVES, DARK_AMARANTH_ROOTS, DARK_AMARANTH_FUNGUS, COILED_VINES)
+                .add(BLUEBERRY_BUSH, COILED_VINES_PLANT);
+
+        builder(BlockTags.REPLACEABLE).add(DARK_AMARANTH_ROOTS);
+        builder(BlockTags.REPLACEABLE_BY_MUSHROOMS).add(DARK_AMARANTH_ROOTS);
+        builder(BlockTags.HOGLIN_REPELLENTS).add(DARK_AMARANTH_FUNGUS);
+
         builder(BlockTags.MINEABLE_WITH_HOE)
                 .add(
                         VERMILION_MAPLE_LEAVES,

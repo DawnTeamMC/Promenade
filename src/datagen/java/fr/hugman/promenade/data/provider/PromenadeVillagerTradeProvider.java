@@ -13,8 +13,6 @@ import net.minecraft.world.item.trading.TradeCost;
 import net.minecraft.world.item.trading.VillagerTrade;
 import net.minecraft.world.level.block.Block;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeVillagerTradeProvider extends FabricDynamicRegistryProvider {
@@ -53,6 +51,6 @@ public class PromenadeVillagerTradeProvider extends FabricDynamicRegistryProvide
 
 
     private static VillagerTrade wanderingTraderSapling(Block sapling) {
-        return new VillagerTrade(new TradeCost(Items.EMERALD, 5), new ItemStackTemplate(sapling.asItem()), 8, 1, 0.05F, Optional.empty(), List.of());
+        return VillagerTrade.builder(new TradeCost(Items.EMERALD, 5), new ItemStackTemplate(sapling.asItem()), 8, 1, 0.05F).build();
     }
 }

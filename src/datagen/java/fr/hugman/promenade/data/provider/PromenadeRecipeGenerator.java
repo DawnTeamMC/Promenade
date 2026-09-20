@@ -6,7 +6,9 @@ import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.tag.PromenadeItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -21,8 +23,8 @@ import net.minecraft.world.level.block.Blocks;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeRecipeGenerator extends RecipeProvider {
-    public PromenadeRecipeGenerator(HolderLookup.Provider registries, RecipeOutput exporter) {
-        super(registries, exporter);
+    public PromenadeRecipeGenerator(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+        super(recipeOutput, advancementOutput);
     }
 
     @Override
@@ -191,8 +193,8 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
     public static FabricRecipeProvider create(FabricPackOutput fabricDataOutput, CompletableFuture<HolderLookup.Provider> completableFuture) {
         return new FabricRecipeProvider(fabricDataOutput, completableFuture) {
             @Override
-            protected RecipeProvider createRecipeProvider(HolderLookup.Provider wrapperLookup, RecipeOutput recipeExporter) {
-                return new PromenadeRecipeGenerator(wrapperLookup, recipeExporter);
+            protected RecipeProvider createRecipeProvider(HolderLookup.Provider wrapperLookup, BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+                return new PromenadeRecipeGenerator(recipeOutput, advancementOutput);
             }
 
             @Override

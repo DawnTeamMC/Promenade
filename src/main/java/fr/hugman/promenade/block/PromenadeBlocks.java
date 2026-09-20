@@ -99,33 +99,33 @@ public class PromenadeBlocks {
     /* ========== */
     /*   SAKURA   */
     /* ========== */
-    public static final Block SAKURA_LOG = register(PromenadeBlockItemIds.SAKURA_LOG, BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true));
-    public static final Block STRIPPED_SAKURA_LOG = register(PromenadeBlockItemIds.STRIPPED_SAKURA_LOG, BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true));
-    public static final Block SAKURA_WOOD = register(PromenadeBlockItemIds.SAKURA_WOOD, BlockFactory.log(PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true));
-    public static final Block STRIPPED_SAKURA_WOOD = register(PromenadeBlockItemIds.STRIPPED_SAKURA_WOOD, BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true));
+    public static final Block SAKURA_LOG = register(PromenadeBlockItemIds.SAKURA_LOG, BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block STRIPPED_SAKURA_LOG = register(PromenadeBlockItemIds.STRIPPED_SAKURA_LOG, BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block SAKURA_WOOD = register(PromenadeBlockItemIds.SAKURA_WOOD, BlockFactory.log(PromenadeMapColors.SAKURA_BARK, PromenadeBlockSounds.SAKURA_WOOD, true).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block STRIPPED_SAKURA_WOOD = register(PromenadeBlockItemIds.STRIPPED_SAKURA_WOOD, BlockFactory.log(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
 
-    public static final Block SAKURA_PLANKS = register(PromenadeBlockItemIds.SAKURA_PLANKS, BlockFactory.of(BlockSettings.planks(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true)));
-    public static final Block SAKURA_STAIRS = register(PromenadeBlockItemIds.SAKURA_STAIRS, BlockFactory.stairs(SAKURA_PLANKS));
-    public static final Block SAKURA_SLAB = register(PromenadeBlockItemIds.SAKURA_SLAB, BlockFactory.slab(SAKURA_PLANKS));
-    public static final Block SAKURA_FENCE = register(PromenadeBlockItemIds.SAKURA_FENCE, BlockFactory.fence(SAKURA_PLANKS));
-    public static final Block SAKURA_FENCE_GATE = register(PromenadeBlockItemIds.SAKURA_FENCE_GATE, BlockFactory.fenceGate(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA));
-    public static final Block SAKURA_DOOR = register(PromenadeBlockItemIds.SAKURA_DOOR, BlockFactory.door(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
-    public static final Block SAKURA_TRAPDOOR = register(PromenadeBlockItemIds.SAKURA_TRAPDOOR, BlockFactory.trapdoor(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
-    public static final Block SAKURA_BUTTON = register(PromenadeBlockItemIds.SAKURA_BUTTON, BlockFactory.woodenButton(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
-    public static final Block SAKURA_PRESSURE_PLATE = register(PromenadeBlockItemIds.SAKURA_PRESSURE_PLATE, BlockFactory.pressurePlate(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA));
+    public static final Block SAKURA_PLANKS = register(PromenadeBlockItemIds.SAKURA_PLANKS, BlockFactory.of(BlockSettings.planks(PromenadeMapColors.SAKURA_WOOD, PromenadeBlockSounds.SAKURA_WOOD, true)).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block SAKURA_STAIRS = register(PromenadeBlockItemIds.SAKURA_STAIRS, BlockFactory.stairs(SAKURA_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block SAKURA_SLAB = register(PromenadeBlockItemIds.SAKURA_SLAB, BlockFactory.slab(SAKURA_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_SLABS));
+    public static final Block SAKURA_FENCE = register(PromenadeBlockItemIds.SAKURA_FENCE, BlockFactory.fence(SAKURA_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block SAKURA_FENCE_GATE = register(PromenadeBlockItemIds.SAKURA_FENCE_GATE, BlockFactory.fenceGate(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block SAKURA_DOOR = register(PromenadeBlockItemIds.SAKURA_DOOR, BlockFactory.door(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_LARGE));
+    public static final Block SAKURA_TRAPDOOR = register(PromenadeBlockItemIds.SAKURA_TRAPDOOR, BlockFactory.trapdoor(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block SAKURA_BUTTON = register(PromenadeBlockItemIds.SAKURA_BUTTON, BlockFactory.woodenButton(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_EXTRA_SMALL));
+    public static final Block SAKURA_PRESSURE_PLATE = register(PromenadeBlockItemIds.SAKURA_PRESSURE_PLATE, BlockFactory.pressurePlate(SAKURA_PLANKS, PromenadeBlockSetTypes.SAKURA).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
     public static final Block SAKURA_SIGN = register(PromenadeBlockItemIds.SAKURA_SIGN, BlockFactory.sign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA));
     public static final Block SAKURA_WALL_SIGN = register(PromenadeBlockIds.SAKURA_WALL_SIGN, BlockFactory.wallSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA));
     public static final Block SAKURA_HANGING_SIGN = register(PromenadeBlockItemIds.SAKURA_HANGING_SIGN, BlockFactory.hangingSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA, SoundType.CHERRY_WOOD_HANGING_SIGN));
     public static final Block SAKURA_WALL_HANGING_SIGN = register(PromenadeBlockIds.SAKURA_WALL_HANGING_SIGN, BlockFactory.wallHangingSign(SAKURA_PLANKS, PromenadeWoodTypes.SAKURA, SoundType.CHERRY_WOOD_HANGING_SIGN));
-    public static final Block SAKURA_SHELF = register(PromenadeBlockItemIds.SAKURA_SHELF, BlockFactory.shelf(SAKURA_PLANKS));
+    public static final Block SAKURA_SHELF = register(PromenadeBlockItemIds.SAKURA_SHELF, BlockFactory.shelf(SAKURA_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
 
-    public static final Block BLUSH_SAKURA_SAPLING = register(PromenadeBlockItemIds.BLUSH_SAKURA_SAPLING, BlockFactory.sapling(PromenadeMapColors.BLUSH_BLOSSOMS, PromenadeSaplingGenerators.BLUSH_SAKURA).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block BLUSH_SAKURA_SAPLING = register(PromenadeBlockItemIds.BLUSH_SAKURA_SAPLING, BlockFactory.sapling(PromenadeMapColors.BLUSH_BLOSSOMS, PromenadeSaplingGenerators.BLUSH_SAKURA).compostable(ContextIntProviders.COMPOSTABLE_LOW).cookingFuel(ContextIntProviders.COOKING_TIME_DRY_PLANTS));
     public static final Block POTTED_BLUSH_SAKURA_SAPLING = register(PromenadeBlockIds.POTTED_BLUSH_SAKURA_SAPLING, BlockFactory.pot(BLUSH_SAKURA_SAPLING));
     public static final Block BLUSH_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.BLUSH_SAKURA_BLOSSOMS, BlockFactory.leaves(PromenadeMapColors.BLUSH_BLOSSOMS, SoundType.CHERRY_LEAVES, 0.1f, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block SNOWY_BLUSH_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.SNOWY_BLUSH_SAKURA_BLOSSOMS, BlockFactory.snowyLeaves(0.1f, PromenadeParticleTypes.BLUSH_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block BLUSH_SAKURA_BLOSSOM_PILE = register(PromenadeBlockItemIds.BLUSH_SAKURA_BLOSSOM_PILE, BlockFactory.pile(PromenadeMapColors.BLUSH_BLOSSOMS, SoundType.CHERRY_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
-    public static final Block COTTON_SAKURA_SAPLING = register(PromenadeBlockItemIds.COTTON_SAKURA_SAPLING, BlockFactory.sapling(PromenadeMapColors.COTTON_BLOSSOMS, PromenadeSaplingGenerators.COTTON_SAKURA).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block COTTON_SAKURA_SAPLING = register(PromenadeBlockItemIds.COTTON_SAKURA_SAPLING, BlockFactory.sapling(PromenadeMapColors.COTTON_BLOSSOMS, PromenadeSaplingGenerators.COTTON_SAKURA).compostable(ContextIntProviders.COMPOSTABLE_LOW).cookingFuel(ContextIntProviders.COOKING_TIME_DRY_PLANTS));
     public static final Block POTTED_COTTON_SAKURA_SAPLING = register(PromenadeBlockIds.POTTED_COTTON_SAKURA_SAPLING, BlockFactory.pot(COTTON_SAKURA_SAPLING));
     public static final Block COTTON_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.COTTON_SAKURA_BLOSSOMS, BlockFactory.leaves(PromenadeMapColors.COTTON_BLOSSOMS, SoundType.CHERRY_LEAVES, 0.1f, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block SNOWY_COTTON_SAKURA_BLOSSOMS = register(PromenadeBlockItemIds.SNOWY_COTTON_SAKURA_BLOSSOMS, BlockFactory.snowyLeaves(0.1f, PromenadeParticleTypes.COTTON_SAKURA_BLOSSOM, PromenadeBlockSounds.SNOWY_CHERRY_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
@@ -135,48 +135,48 @@ public class PromenadeBlocks {
     /* ========= */
     /*   MAPLE   */
     /* ========= */
-    public static final Block MAPLE_LOG = register(PromenadeBlockItemIds.MAPLE_LOG, BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true).factory(MapleLogBlock::new));
-    public static final Block STRIPPED_MAPLE_LOG = register(PromenadeBlockItemIds.STRIPPED_MAPLE_LOG, BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true).factory(StrippedMapleLogBlock::new));
-    public static final Block MAPLE_WOOD = register(PromenadeBlockItemIds.MAPLE_WOOD, BlockFactory.log(PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true));
-    public static final Block STRIPPED_MAPLE_WOOD = register(PromenadeBlockItemIds.STRIPPED_MAPLE_WOOD, BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true));
+    public static final Block MAPLE_LOG = register(PromenadeBlockItemIds.MAPLE_LOG, BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true).factory(MapleLogBlock::new).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block STRIPPED_MAPLE_LOG = register(PromenadeBlockItemIds.STRIPPED_MAPLE_LOG, BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true).factory(StrippedMapleLogBlock::new).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block MAPLE_WOOD = register(PromenadeBlockItemIds.MAPLE_WOOD, BlockFactory.log(PromenadeMapColors.MAPLE_BARK, PromenadeBlockSounds.MAPLE_WOOD, true).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block STRIPPED_MAPLE_WOOD = register(PromenadeBlockItemIds.STRIPPED_MAPLE_WOOD, BlockFactory.log(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
 
-    public static final Block MAPLE_PLANKS = register(PromenadeBlockItemIds.MAPLE_PLANKS, BlockFactory.of(BlockSettings.planks(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true)));
-    public static final Block MAPLE_STAIRS = register(PromenadeBlockItemIds.MAPLE_STAIRS, BlockFactory.stairs(MAPLE_PLANKS));
-    public static final Block MAPLE_SLAB = register(PromenadeBlockItemIds.MAPLE_SLAB, BlockFactory.slab(MAPLE_PLANKS));
-    public static final Block MAPLE_FENCE = register(PromenadeBlockItemIds.MAPLE_FENCE, BlockFactory.fence(MAPLE_PLANKS));
-    public static final Block MAPLE_FENCE_GATE = register(PromenadeBlockItemIds.MAPLE_FENCE_GATE, BlockFactory.fenceGate(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE));
-    public static final Block MAPLE_DOOR = register(PromenadeBlockItemIds.MAPLE_DOOR, BlockFactory.door(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
-    public static final Block MAPLE_TRAPDOOR = register(PromenadeBlockItemIds.MAPLE_TRAPDOOR, BlockFactory.trapdoor(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
-    public static final Block MAPLE_BUTTON = register(PromenadeBlockItemIds.MAPLE_BUTTON, BlockFactory.woodenButton(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
-    public static final Block MAPLE_PRESSURE_PLATE = register(PromenadeBlockItemIds.MAPLE_PRESSURE_PLATE, BlockFactory.pressurePlate(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE));
+    public static final Block MAPLE_PLANKS = register(PromenadeBlockItemIds.MAPLE_PLANKS, BlockFactory.of(BlockSettings.planks(PromenadeMapColors.MAPLE_WOOD, PromenadeBlockSounds.MAPLE_WOOD, true)).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block MAPLE_STAIRS = register(PromenadeBlockItemIds.MAPLE_STAIRS, BlockFactory.stairs(MAPLE_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block MAPLE_SLAB = register(PromenadeBlockItemIds.MAPLE_SLAB, BlockFactory.slab(MAPLE_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_SLABS));
+    public static final Block MAPLE_FENCE = register(PromenadeBlockItemIds.MAPLE_FENCE, BlockFactory.fence(MAPLE_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block MAPLE_FENCE_GATE = register(PromenadeBlockItemIds.MAPLE_FENCE_GATE, BlockFactory.fenceGate(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block MAPLE_DOOR = register(PromenadeBlockItemIds.MAPLE_DOOR, BlockFactory.door(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_LARGE));
+    public static final Block MAPLE_TRAPDOOR = register(PromenadeBlockItemIds.MAPLE_TRAPDOOR, BlockFactory.trapdoor(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block MAPLE_BUTTON = register(PromenadeBlockItemIds.MAPLE_BUTTON, BlockFactory.woodenButton(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_EXTRA_SMALL));
+    public static final Block MAPLE_PRESSURE_PLATE = register(PromenadeBlockItemIds.MAPLE_PRESSURE_PLATE, BlockFactory.pressurePlate(MAPLE_PLANKS, PromenadeBlockSetTypes.MAPLE).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
     public static final Block MAPLE_SIGN = register(PromenadeBlockItemIds.MAPLE_SIGN, BlockFactory.sign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE));
     public static final Block MAPLE_WALL_SIGN = register(PromenadeBlockIds.MAPLE_WALL_SIGN, BlockFactory.wallSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE));
     public static final Block MAPLE_HANGING_SIGN = register(PromenadeBlockItemIds.MAPLE_HANGING_SIGN, BlockFactory.hangingSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE, SoundType.CHERRY_WOOD_HANGING_SIGN));
     public static final Block MAPLE_WALL_HANGING_SIGN = register(PromenadeBlockIds.MAPLE_WALL_HANGING_SIGN, BlockFactory.wallHangingSign(MAPLE_PLANKS, PromenadeWoodTypes.MAPLE, SoundType.CHERRY_WOOD_HANGING_SIGN));
-    public static final Block MAPLE_SHELF = register(PromenadeBlockItemIds.MAPLE_SHELF, BlockFactory.shelf(MAPLE_PLANKS));
+    public static final Block MAPLE_SHELF = register(PromenadeBlockItemIds.MAPLE_SHELF, BlockFactory.shelf(MAPLE_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
 
-    public static final Block SAP_MAPLE_SAPLING = register(PromenadeBlockItemIds.SAP_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.SAP_MAPLE_LEAVES, PromenadeSaplingGenerators.SAP_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block SAP_MAPLE_SAPLING = register(PromenadeBlockItemIds.SAP_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.SAP_MAPLE_LEAVES, PromenadeSaplingGenerators.SAP_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW).cookingFuel(ContextIntProviders.COOKING_TIME_DRY_PLANTS));
     public static final Block POTTED_SAP_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_SAP_MAPLE_SAPLING, BlockFactory.pot(SAP_MAPLE_SAPLING));
     public static final Block SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.SAP_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.SAP_MAPLE_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block SNOWY_SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_SAP_MAPLE_LEAVES, BlockFactory.snowyLeaves().compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block FALLEN_SAP_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_SAP_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.SAP_MAPLE_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block SAP_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.SAP_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.SAP_MAPLE_LEAVES, SoundType.GRASS).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
-    public static final Block VERMILION_MAPLE_SAPLING = register(PromenadeBlockItemIds.VERMILION_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.VERMILION_MAPLE_LEAVES, PromenadeSaplingGenerators.VERMILION_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block VERMILION_MAPLE_SAPLING = register(PromenadeBlockItemIds.VERMILION_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.VERMILION_MAPLE_LEAVES, PromenadeSaplingGenerators.VERMILION_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW).cookingFuel(ContextIntProviders.COOKING_TIME_DRY_PLANTS));
     public static final Block POTTED_VERMILION_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_VERMILION_MAPLE_SAPLING, BlockFactory.pot(VERMILION_MAPLE_SAPLING));
     public static final Block VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.VERMILION_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.VERMILION_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block SNOWY_VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_VERMILION_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.VERMILION_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block FALLEN_VERMILION_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_VERMILION_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.VERMILION_MAPLE_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block VERMILION_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.VERMILION_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.VERMILION_MAPLE_LEAVES, SoundType.GRASS).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
-    public static final Block FULVOUS_MAPLE_SAPLING = register(PromenadeBlockItemIds.FULVOUS_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, PromenadeSaplingGenerators.FULVOUS_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block FULVOUS_MAPLE_SAPLING = register(PromenadeBlockItemIds.FULVOUS_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, PromenadeSaplingGenerators.FULVOUS_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW).cookingFuel(ContextIntProviders.COOKING_TIME_DRY_PLANTS));
     public static final Block POTTED_FULVOUS_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_FULVOUS_MAPLE_SAPLING, BlockFactory.pot(FULVOUS_MAPLE_SAPLING));
     public static final Block FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.FULVOUS_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block SNOWY_FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_FULVOUS_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.FULVOUS_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block FALLEN_FULVOUS_MAPLE_LEAVES = register(PromenadeBlockItemIds.FALLEN_FULVOUS_MAPLE_LEAVES, BlockFactory.fallenLeaves(PromenadeMapColors.FULVOUS_MAPLE_LEAVES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block FULVOUS_MAPLE_LEAF_PILE = register(PromenadeBlockItemIds.FULVOUS_MAPLE_LEAF_PILE, BlockFactory.pile(PromenadeMapColors.FULVOUS_MAPLE_LEAVES, SoundType.GRASS).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
-    public static final Block MIKADO_MAPLE_SAPLING = register(PromenadeBlockItemIds.MIKADO_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.MIKADO_MAPLE_LEAVES, PromenadeSaplingGenerators.MIKADO_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block MIKADO_MAPLE_SAPLING = register(PromenadeBlockItemIds.MIKADO_MAPLE_SAPLING, BlockFactory.sapling(PromenadeMapColors.MIKADO_MAPLE_LEAVES, PromenadeSaplingGenerators.MIKADO_MAPLE).compostable(ContextIntProviders.COMPOSTABLE_LOW).cookingFuel(ContextIntProviders.COOKING_TIME_DRY_PLANTS));
     public static final Block POTTED_MIKADO_MAPLE_SAPLING = register(PromenadeBlockIds.POTTED_MIKADO_MAPLE_SAPLING, BlockFactory.pot(MIKADO_MAPLE_SAPLING));
     public static final Block MIKADO_MAPLE_LEAVES = register(PromenadeBlockItemIds.MIKADO_MAPLE_LEAVES, BlockFactory.leaves(PromenadeMapColors.MIKADO_MAPLE_LEAVES, SoundType.GRASS, 0.01F, PromenadeParticleTypes.MIKADO_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block SNOWY_MIKADO_MAPLE_LEAVES = register(PromenadeBlockItemIds.SNOWY_MIKADO_MAPLE_LEAVES, BlockFactory.snowyLeaves(0.01F, PromenadeParticleTypes.MIKADO_MAPLE_LEAF).compostable(ContextIntProviders.COMPOSTABLE_LOW));
@@ -187,27 +187,27 @@ public class PromenadeBlocks {
     /* ======== */
     /*   PALM   */
     /* ======== */
-    public static final Block PALM_LOG = register(PromenadeBlockItemIds.PALM_LOG, BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true));
-    public static final Block STRIPPED_PALM_LOG = register(PromenadeBlockItemIds.STRIPPED_PALM_LOG, BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true));
-    public static final Block PALM_WOOD = register(PromenadeBlockItemIds.PALM_WOOD, BlockFactory.log(PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true));
-    public static final Block STRIPPED_PALM_WOOD = register(PromenadeBlockItemIds.STRIPPED_PALM_WOOD, BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true));
+    public static final Block PALM_LOG = register(PromenadeBlockItemIds.PALM_LOG, BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block STRIPPED_PALM_LOG = register(PromenadeBlockItemIds.STRIPPED_PALM_LOG, BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block PALM_WOOD = register(PromenadeBlockItemIds.PALM_WOOD, BlockFactory.log(PromenadeMapColors.PALM_BARK, PromenadeBlockSounds.PALM_WOOD, true).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block STRIPPED_PALM_WOOD = register(PromenadeBlockItemIds.STRIPPED_PALM_WOOD, BlockFactory.log(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
 
-    public static final Block PALM_PLANKS = register(PromenadeBlockItemIds.PALM_PLANKS, BlockFactory.of(BlockSettings.planks(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true)));
-    public static final Block PALM_STAIRS = register(PromenadeBlockItemIds.PALM_STAIRS, BlockFactory.stairs(PALM_PLANKS));
-    public static final Block PALM_SLAB = register(PromenadeBlockItemIds.PALM_SLAB, BlockFactory.slab(PALM_PLANKS));
-    public static final Block PALM_FENCE = register(PromenadeBlockItemIds.PALM_FENCE, BlockFactory.fence(PALM_PLANKS));
-    public static final Block PALM_FENCE_GATE = register(PromenadeBlockItemIds.PALM_FENCE_GATE, BlockFactory.fenceGate(PALM_PLANKS, PromenadeWoodTypes.PALM));
-    public static final Block PALM_DOOR = register(PromenadeBlockItemIds.PALM_DOOR, BlockFactory.door(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
-    public static final Block PALM_TRAPDOOR = register(PromenadeBlockItemIds.PALM_TRAPDOOR, BlockFactory.trapdoor(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
-    public static final Block PALM_BUTTON = register(PromenadeBlockItemIds.PALM_BUTTON, BlockFactory.woodenButton(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
-    public static final Block PALM_PRESSURE_PLATE = register(PromenadeBlockItemIds.PALM_PRESSURE_PLATE, BlockFactory.pressurePlate(PALM_PLANKS, PromenadeBlockSetTypes.PALM));
+    public static final Block PALM_PLANKS = register(PromenadeBlockItemIds.PALM_PLANKS, BlockFactory.of(BlockSettings.planks(PromenadeMapColors.PALM_WOOD, PromenadeBlockSounds.PALM_WOOD, true)).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block PALM_STAIRS = register(PromenadeBlockItemIds.PALM_STAIRS, BlockFactory.stairs(PALM_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block PALM_SLAB = register(PromenadeBlockItemIds.PALM_SLAB, BlockFactory.slab(PALM_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_SLABS));
+    public static final Block PALM_FENCE = register(PromenadeBlockItemIds.PALM_FENCE, BlockFactory.fence(PALM_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block PALM_FENCE_GATE = register(PromenadeBlockItemIds.PALM_FENCE_GATE, BlockFactory.fenceGate(PALM_PLANKS, PromenadeWoodTypes.PALM).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block PALM_DOOR = register(PromenadeBlockItemIds.PALM_DOOR, BlockFactory.door(PALM_PLANKS, PromenadeBlockSetTypes.PALM).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_LARGE));
+    public static final Block PALM_TRAPDOOR = register(PromenadeBlockItemIds.PALM_TRAPDOOR, BlockFactory.trapdoor(PALM_PLANKS, PromenadeBlockSetTypes.PALM).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
+    public static final Block PALM_BUTTON = register(PromenadeBlockItemIds.PALM_BUTTON, BlockFactory.woodenButton(PALM_PLANKS, PromenadeBlockSetTypes.PALM).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_EXTRA_SMALL));
+    public static final Block PALM_PRESSURE_PLATE = register(PromenadeBlockItemIds.PALM_PRESSURE_PLATE, BlockFactory.pressurePlate(PALM_PLANKS, PromenadeBlockSetTypes.PALM).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
     public static final Block PALM_SIGN = register(PromenadeBlockItemIds.PALM_SIGN, BlockFactory.sign(PALM_PLANKS, PromenadeWoodTypes.PALM));
     public static final Block PALM_WALL_SIGN = register(PromenadeBlockIds.PALM_WALL_SIGN, BlockFactory.wallSign(PALM_PLANKS, PromenadeWoodTypes.PALM));
     public static final Block PALM_HANGING_SIGN = register(PromenadeBlockItemIds.PALM_HANGING_SIGN, BlockFactory.hangingSign(PALM_PLANKS, PromenadeWoodTypes.PALM, SoundType.HANGING_SIGN));
     public static final Block PALM_WALL_HANGING_SIGN = register(PromenadeBlockIds.PALM_WALL_HANGING_SIGN, BlockFactory.wallHangingSign(PALM_PLANKS, PromenadeWoodTypes.PALM, SoundType.HANGING_SIGN));
-    public static final Block PALM_SHELF = register(PromenadeBlockItemIds.PALM_SHELF, BlockFactory.shelf(PALM_PLANKS));
+    public static final Block PALM_SHELF = register(PromenadeBlockItemIds.PALM_SHELF, BlockFactory.shelf(PALM_PLANKS).cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS));
 
-    public static final Block PALM_SAPLING = register(PromenadeBlockItemIds.PALM_SAPLING, BlockFactory.sapling(PromenadeMapColors.PALM_LEAVES, PromenadeSaplingGenerators.PALM, state -> state.is(BlockTags.SAND)).compostable(ContextIntProviders.COMPOSTABLE_LOW));
+    public static final Block PALM_SAPLING = register(PromenadeBlockItemIds.PALM_SAPLING, BlockFactory.sapling(PromenadeMapColors.PALM_LEAVES, PromenadeSaplingGenerators.PALM, state -> state.is(BlockTags.SAND)).compostable(ContextIntProviders.COMPOSTABLE_LOW).cookingFuel(ContextIntProviders.COOKING_TIME_DRY_PLANTS));
     public static final Block POTTED_PALM_SAPLING = register(PromenadeBlockIds.POTTED_PALM_SAPLING, BlockFactory.pot(PALM_SAPLING));
     public static final Block PALM_LEAVES = register(PromenadeBlockItemIds.PALM_LEAVES, BlockFactory.leaves(PromenadeMapColors.PALM_LEAVES).factory(s -> new TintedParticleExtendedLeavesBlock(0.01F, s)).compostable(ContextIntProviders.COMPOSTABLE_LOW));
     public static final Block SNOWY_PALM_LEAVES = register(PromenadeBlockItemIds.SNOWY_PALM_LEAVES, BlockFactory.snowyLeaves().factory(s -> new TintedParticleSnowyExtendedLeavesBlock(0.01F, s)).compostable(ContextIntProviders.COMPOSTABLE_LOW));
