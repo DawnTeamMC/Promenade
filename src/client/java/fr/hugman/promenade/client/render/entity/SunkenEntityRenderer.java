@@ -38,7 +38,7 @@ public class SunkenEntityRenderer extends AbstractSkeletonRenderer<Sunken, Sunke
         if (h > 0.0F) {
             float jx = state.isInWater ? -90.0F - i : -90.0F;
             float k = Mth.lerp(h, 0.0F, jx);
-            poseStack.mulPose(Axis.XP.rotationDegrees(k));
+            poseStack.rotateDegrees(Axis.XP, k);
             if (state.isVisuallySwimming) {
                 poseStack.translate(0.0F, -1.0F, 0.3F);
             }

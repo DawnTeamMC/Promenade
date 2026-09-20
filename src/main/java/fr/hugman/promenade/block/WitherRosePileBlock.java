@@ -1,6 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
@@ -19,15 +18,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class WitherRosePileBlock extends PileBlock {
-    public static final MapCodec<WitherRosePileBlock> CODEC = simpleCodec(WitherRosePileBlock::new);
-
     public WitherRosePileBlock(Properties builder) {
         super(builder);
-    }
-
-    @Override
-    protected MapCodec<WitherRosePileBlock> codec() {
-        return CODEC;
     }
 
     @Override

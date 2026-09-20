@@ -3,7 +3,6 @@
   "package": "fr.hugman.promenade.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "AxeItemMixin",
     "FallLocationMixin",
     "LivingEntityMixin",
     "NetherrackBlockMixin",

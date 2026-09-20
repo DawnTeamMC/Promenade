@@ -1,7 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ColorParticleOption;
@@ -20,20 +18,11 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 public class TintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBlock {
-    public static final MapCodec<TintedParticleSnowyExtendedLeavesBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            ExtraCodecs.floatRange(0.0F, 1.0F).fieldOf("leaf_particle_chance").forGetter(untintedParticleLeavesBlock -> untintedParticleLeavesBlock.leafParticleChance),
-            propertiesCodec()
-    ).apply(instance, TintedParticleSnowyExtendedLeavesBlock::new));
     public static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
 
     public TintedParticleSnowyExtendedLeavesBlock(float leafParticleChance, Properties settings) {
         super(leafParticleChance, settings);
         this.registerDefaultState(this.defaultBlockState().setValue(BOTTOM, false));
-    }
-
-    @Override
-    public MapCodec<? extends TintedParticleSnowyExtendedLeavesBlock> codec() {
-        return CODEC;
     }
 
     @Override

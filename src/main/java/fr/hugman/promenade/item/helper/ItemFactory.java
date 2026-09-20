@@ -1,5 +1,6 @@
 package fr.hugman.promenade.item.helper;
 
+import net.minecraft.core.Direction;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
@@ -7,7 +8,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BoatItem;
 import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.item.SpawnEggItem;
 import net.minecraft.world.level.block.Block;
 import java.util.function.BiFunction;
@@ -18,8 +19,8 @@ public final class ItemFactory {
         return settings -> new BlockItem(block, settings.useItemDescriptionPrefix());
     }
 
-    public static BiFunction<Block, Item.Properties, SignItem> sign(Block wallSignBlock) {
-        return (block, settings) -> new SignItem(block, wallSignBlock, settings);
+    public static BiFunction<Block, Item.Properties, StandingAndWallBlockItem> sign(Block wallSignBlock) {
+        return (block, settings) -> new StandingAndWallBlockItem(block, wallSignBlock, Direction.DOWN, settings);
     }
 
     public static BiFunction<Block, Item.Properties, HangingSignItem> hangingSign(Block wallSignBlock) {

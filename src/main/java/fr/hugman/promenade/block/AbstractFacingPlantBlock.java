@@ -1,6 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import java.util.Optional;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -14,6 +13,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
@@ -23,9 +23,6 @@ public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBl
     protected AbstractFacingPlantBlock(Properties settings, VoxelShape[] outlineShapes, boolean bl) {
         super(settings, outlineShapes, bl);
     }
-
-    @Override
-    protected abstract MapCodec<? extends AbstractFacingPlantBlock> codec();
 
     protected BlockState copyState(BlockState from, BlockState to) {
         return to.setValue(FACING, from.getValue(FACING));
@@ -65,23 +62,23 @@ public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBl
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, BonemealSource source) {
         var facing = state.getValue(FACING);
         Optional<BlockPos> optional = this.getStemHeadPos(world, pos, state.getBlock(), facing);
         return optional.isPresent() && this.getStem().canGrowAt(world.getBlockState(optional.get().relative(facing)));
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
         Optional<BlockPos> optional = this.getStemHeadPos(world, pos, state.getBlock(), state.getValue(FACING));
         if (optional.isPresent()) {
             BlockState blockState = world.getBlockState(optional.get());
-            ((AbstractFacingPlantStemBlock) blockState.getBlock()).performBonemeal(world, random, optional.get(), blockState);
+            ((AbstractFacingPlantStemBlock) blockState.getBlock()).performBonemeal(world, random, optional.get(), blockState, source);
         }
     }
 
