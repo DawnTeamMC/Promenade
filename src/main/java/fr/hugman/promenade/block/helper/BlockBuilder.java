@@ -67,6 +67,13 @@ public class BlockBuilder {
         return this.itemSettings(settings -> settings.compostable(layers));
     }
 
+    /**
+     * Makes the block's item usable as furnace fuel, using one of the vanilla burn times.
+     */
+    public BlockBuilder cookingFuel(ResourceKey<ContextIntProvider> burnTime) {
+        return this.itemSettings(settings -> settings.cookingFuel(burnTime));
+    }
+
     public BlockBuilder noItem() {
         this.itemSettings = null;
         return this;

@@ -20,8 +20,8 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.predicates.MatchBlock;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
@@ -37,8 +37,6 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
 
     @Override
     public void generate() {
-        final var enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
-
         dropSelf(PromenadeBlocks.ASPHALT);
         add(PromenadeBlocks.ASPHALT_SLAB, this::createSlabItemTable);
         dropSelf(PromenadeBlocks.ASPHALT_STAIRS);
@@ -230,19 +228,19 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
                         LootTable.lootTable()
                                 .withPool(
                                         LootPool.lootPool()
-                                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(PromenadeBlocks.BLUEBERRY_BUSH)
-                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 3)))
+                                                .when(MatchBlock.blockMatches(this.blocks, PromenadeBlocks.BLUEBERRY_BUSH,
+                                                        StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 3)))
                                                 .add(LootItem.lootTableItem(PromenadeItems.BLUEBERRIES))
-                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
-                                                .apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE)))
+                                                .apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 3)))
+                                                .apply(ApplyBonusCount.addUniformBonusCount(this.enchantments.getOrThrow(Enchantments.FORTUNE)))
                                 )
                                 .withPool(
                                         LootPool.lootPool()
-                                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(PromenadeBlocks.BLUEBERRY_BUSH)
-                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 2)))
+                                                .when(MatchBlock.blockMatches(this.blocks, PromenadeBlocks.BLUEBERRY_BUSH,
+                                                        StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 2)))
                                                 .add(LootItem.lootTableItem(PromenadeItems.BLUEBERRIES))
-                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
-                                                .apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE)))
+                                                .apply(SetItemCountFunction.setCount(ContextIntProviders.between(1, 2)))
+                                                .apply(ApplyBonusCount.addUniformBonusCount(this.enchantments.getOrThrow(Enchantments.FORTUNE)))
                                 )
                 )
         );
@@ -256,7 +254,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
                                 .add(
                                         this.applyExplosionCondition(leaves,
                                                 LootItem.lootTableItem(Items.SNOWBALL)
-                                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
+                                                        .apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 4)))
                                         )
                                 ));
     }
@@ -268,19 +266,18 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
                                 .when(this.doesNotHaveShearsOrSilkTouch())
                                 .add(
                                         this.applyExplosionCondition(leaves,
-                                                LootItem.lootTableItem(Items.SNOWBALL).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
+                                                LootItem.lootTableItem(Items.SNOWBALL).apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 4)))
                                         )
                                 ));
     }
 
     public LootTable.Builder fruitLeavesDrops(Block leaves, Block sapling, Item fruit, float... saplingChance) {
-        HolderLookup.RegistryLookup<Enchantment> impl = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return this.createLeavesDrops(leaves, sapling, saplingChance)
                 .withPool(LootPool.lootPool()
                         .when(this.doesNotHaveSilkTouch())
                         .add(
                                 this.applyExplosionCondition(leaves, LootItem.lootTableItem(fruit))
-                                        .when(BonusLevelTableCondition.bonusLevelFlatChance(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
+                                        .when(BonusLevelTableCondition.bonusLevelFlatChance(this.enchantments.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
                         )
                 );
     }
@@ -291,7 +288,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
                         .when(this.doesNotHaveShearsOrSilkTouch())
                         .add(
                                 this.applyExplosionCondition(leaves,
-                                        LootItem.lootTableItem(Items.SNOWBALL).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
+                                        LootItem.lootTableItem(Items.SNOWBALL).apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 4)))
                                 )
                         )
                 );
@@ -304,7 +301,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
     public LootTable.Builder flowerPile(Block pile, Item flower) {
         return this.createSilkTouchOrShearsDispatchTable(
                 pile,
-                this.applyExplosionDecay(pile, LootItem.lootTableItem(flower).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))))
+                this.applyExplosionDecay(pile, LootItem.lootTableItem(flower).apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 3))))
         );
     }
 }

@@ -21,23 +21,23 @@ import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntPr
 
 public class PromenadeItems {
     public static final Item SAKURA_SIGN = register(PromenadeBlocks.SAKURA_SIGN, ItemFactory.sign(PromenadeBlocks.SAKURA_WALL_SIGN), ItemSettings.sign());
-    public static final Item SAKURA_HANGING_SIGN = register(PromenadeBlocks.SAKURA_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.SAKURA_WALL_HANGING_SIGN), ItemSettings.sign());
-    public static final Item SAKURA_BOAT = register("sakura_boat", ItemFactory.boat(PromenadeEntityTypes.SAKURA_BOAT), ItemSettings.max1());
-    public static final Item SAKURA_CHEST_BOAT = register("sakura_chest_boat", ItemFactory.boat(PromenadeEntityTypes.SAKURA_CHEST_BOAT), ItemSettings.max1());
+    public static final Item SAKURA_HANGING_SIGN = register(PromenadeBlocks.SAKURA_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.SAKURA_WALL_HANGING_SIGN), ItemSettings.hangingSign());
+    public static final Item SAKURA_BOAT = register("sakura_boat", ItemFactory.boat(PromenadeEntityTypes.SAKURA_BOAT), ItemSettings.boat());
+    public static final Item SAKURA_CHEST_BOAT = register("sakura_chest_boat", ItemFactory.boat(PromenadeEntityTypes.SAKURA_CHEST_BOAT), ItemSettings.boat());
 
     public static final Item MAPLE_SIGN = register(PromenadeBlocks.MAPLE_SIGN, ItemFactory.sign(PromenadeBlocks.MAPLE_WALL_SIGN), ItemSettings.sign());
-    public static final Item MAPLE_HANGING_SIGN = register(PromenadeBlocks.MAPLE_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.MAPLE_WALL_HANGING_SIGN), ItemSettings.sign());
-    public static final Item MAPLE_BOAT = register("maple_boat", ItemFactory.boat(PromenadeEntityTypes.MAPLE_BOAT), ItemSettings.max1());
-    public static final Item MAPLE_CHEST_BOAT = register("maple_chest_boat", ItemFactory.boat(PromenadeEntityTypes.MAPLE_CHEST_BOAT), ItemSettings.max1());
+    public static final Item MAPLE_HANGING_SIGN = register(PromenadeBlocks.MAPLE_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.MAPLE_WALL_HANGING_SIGN), ItemSettings.hangingSign());
+    public static final Item MAPLE_BOAT = register("maple_boat", ItemFactory.boat(PromenadeEntityTypes.MAPLE_BOAT), ItemSettings.boat());
+    public static final Item MAPLE_CHEST_BOAT = register("maple_chest_boat", ItemFactory.boat(PromenadeEntityTypes.MAPLE_CHEST_BOAT), ItemSettings.boat());
     public static final Item MAPLE_SYRUP_BOTTLE = register("maple_syrup_bottle", ItemSettings.stackableDrink(PromenadeFoodComponents.MAPLE_SYRUP_BOTTLE, PromenadeConsumableComponents.MAPLE_SYRUP_BOTTLE));
 
     public static final Item PALM_SIGN = register(PromenadeBlocks.PALM_SIGN, ItemFactory.sign(PromenadeBlocks.PALM_WALL_SIGN), ItemSettings.sign());
-    public static final Item PALM_HANGING_SIGN = register(PromenadeBlocks.PALM_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.PALM_WALL_HANGING_SIGN), ItemSettings.sign());
-    public static final Item PALM_BOAT = register("palm_boat", ItemFactory.boat(PromenadeEntityTypes.PALM_BOAT), ItemSettings.max1());
-    public static final Item PALM_CHEST_BOAT = register("palm_chest_boat", ItemFactory.boat(PromenadeEntityTypes.PALM_CHEST_BOAT), ItemSettings.max1());
+    public static final Item PALM_HANGING_SIGN = register(PromenadeBlocks.PALM_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.PALM_WALL_HANGING_SIGN), ItemSettings.hangingSign());
+    public static final Item PALM_BOAT = register("palm_boat", ItemFactory.boat(PromenadeEntityTypes.PALM_BOAT), ItemSettings.boat());
+    public static final Item PALM_CHEST_BOAT = register("palm_chest_boat", ItemFactory.boat(PromenadeEntityTypes.PALM_CHEST_BOAT), ItemSettings.boat());
 
-    public static final Item DARK_AMARANTH_SIGN = register(PromenadeBlocks.DARK_AMARANTH_SIGN, ItemFactory.sign(PromenadeBlocks.DARK_AMARANTH_WALL_SIGN), ItemSettings.sign());
-    public static final Item DARK_AMARANTH_HANGING_SIGN = register(PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN), ItemSettings.sign());
+    public static final Item DARK_AMARANTH_SIGN = register(PromenadeBlocks.DARK_AMARANTH_SIGN, ItemFactory.sign(PromenadeBlocks.DARK_AMARANTH_WALL_SIGN), ItemSettings.nonFlammableSign());
+    public static final Item DARK_AMARANTH_HANGING_SIGN = register(PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN, ItemFactory.hangingSign(PromenadeBlocks.DARK_AMARANTH_WALL_HANGING_SIGN), ItemSettings.nonFlammableSign());
 
     public static final Item BLUEBERRIES = register(PromenadeItemKeys.BLUEBERRIES, ItemFactory.uniqueNameBlock(PromenadeBlocks.BLUEBERRY_BUSH), new Item.Properties().food(PromenadeFoodComponents.BLUEBERRIES).compostable(ContextIntProviders.COMPOSTABLE_LOW));
 
