@@ -23,4 +23,5 @@ public class CapybaraRenderState extends LivingEntityRenderState {
 
     public boolean canAngleHead = true;
     public boolean floatingInWater = false;
+    public float divePitch = 0.0f;
 }
