@@ -10,7 +10,7 @@ base {
 }
 
 repositories {
-    maven { url 'https://maven.terraformersmc.com' } // Required for Biolith
+    maven { url 'https://maven.terraformersmc.com' } // Required for Biolith and Mod Menu
 }
 
 dependencies {
@@ -20,6 +20,14 @@ dependencies {
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
     api include("com.terraformersmc:biolith-fabric:${biolith_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+
+    // Optional: provides the config screen entry point
+    compileOnly("com.terraformersmc:modmenu:${modmenu_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+    localRuntime("com.terraformersmc:modmenu:${modmenu_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
