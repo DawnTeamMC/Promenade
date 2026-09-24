@@ -22,4 +22,5 @@ public class CapybaraRenderState extends LivingEntityRenderState {
     public float earWiggleSpeed = 1.0f;
 
     public boolean canAngleHead = true;
+    public boolean floatingInWater = false;
 }

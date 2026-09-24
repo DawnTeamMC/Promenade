@@ -54,5 +54,6 @@ public class CapybaraEntityRenderer<E extends Capybara> extends AgeableMobRender
         state.surprised = capybara.isSurprised();
         state.earWiggleSpeed = capybara.getEarWiggleSpeed();
         state.canAngleHead = capybara.canAngleHead();
+        state.floatingInWater = capybara.isFloatingInWater();
     }
 }

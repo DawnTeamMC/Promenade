@@ -133,7 +133,8 @@ public class Capybara extends Animal {
     public static AttributeSupplier.Builder createCapybaraAttributes() {
         return createAnimalAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.2);
+                .add(Attributes.MOVEMENT_SPEED, 0.2)
+                .add(Attributes.WATER_MOVEMENT_EFFICIENCY, 1.0);
     }
 
     @Override
@@ -409,6 +410,13 @@ public class Capybara extends Animal {
     @Environment(EnvType.CLIENT)
     public boolean canAngleHead() {
         return !this.isFarting() && !this.isAsleep() && !this.isFallingToSleep() && !this.isWakingUp();
+    }
+
+    /**
+     * Whether the capybara is swimming rather than walking on the bottom of the water.
+     */
+    public boolean isFloatingInWater() {
+        return this.isInWater() && !this.onGround();
     }
 
     @Environment(EnvType.CLIENT)

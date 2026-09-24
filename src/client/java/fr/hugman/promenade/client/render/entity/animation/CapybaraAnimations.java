@@ -46,6 +46,9 @@ public class CapybaraAnimations {
                     new Keyframe(0.75f, KeyframeAnimations.degreeVec(-27.5f, 0f, 0f), AnimationChannel.Interpolations.CATMULLROM),
                     new Keyframe(1.5f, KeyframeAnimations.degreeVec(27.5f, 0f, 0f), AnimationChannel.Interpolations.CATMULLROM))).build();
 
+    // TODO: replace with the dedicated swimming animation, the walking animation is used as a placeholder
+    public static final AnimationDefinition SWIMMING = WALKING;
+
     public static final AnimationDefinition FALL_TO_SLEEP = AnimationDefinition.Builder.withLength(1.9167667f)
             .addAnimation(PartNames.ROOT, new AnimationChannel(AnimationChannel.Targets.POSITION,
                     new Keyframe(0f, KeyframeAnimations.posVec(0f, 0f, 0f), AnimationChannel.Interpolations.CATMULLROM),
