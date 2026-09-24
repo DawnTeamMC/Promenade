@@ -39,8 +39,11 @@ import net.minecraft.world.entity.ai.Brain;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.BodyRotationControl;
+import net.minecraft.world.entity.ai.control.MoveControl;
 import net.minecraft.world.entity.ai.memory.MemoryModuleType;
 import net.minecraft.world.entity.ai.memory.MemoryStatus;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.variant.SpawnContext;
@@ -91,9 +94,19 @@ public class Capybara extends Animal {
 
     public int earWiggleCooldown = 0;
 
+    private final PathNavigation groundNavigation;
+    private final PathNavigation waterNavigation;
+    private boolean wasDiving = false;
+
+    private float divePitch;
+    private float divePitchO;
+
     public Capybara(EntityType<? extends Animal> entityType, Level world) {
         super(entityType, world);
-        this.getNavigation().setCanFloat(true);
+        this.moveControl = new CapybaraMoveControl(this);
+        this.groundNavigation = this.getNavigation();
+        this.groundNavigation.setCanFloat(true);
+        this.waterNavigation = new WaterBoundPathNavigation(this, world);
     }
 
     @Override
@@ -101,6 +114,7 @@ public class Capybara extends Animal {
         super.tick();
         if (this.level().isClientSide()) {
             this.updateAnimations();
+            this.updateDivePitch();
         }
         this.tickState();
     }
@@ -108,6 +122,7 @@ public class Capybara extends Animal {
     @Override
     protected void customServerAiStep(ServerLevel world) {
         ProfilerFiller profiler = Profiler.get();
+        this.tickDive();
         profiler.push("capybaraBrain");
         Brain<Capybara> brain = (Brain<Capybara>) this.getBrain();
         brain.tick((ServerLevel) this.level(), this);
@@ -133,7 +148,8 @@ public class Capybara extends Animal {
     public static AttributeSupplier.Builder createCapybaraAttributes() {
         return createAnimalAttributes()
                 .add(Attributes.MAX_HEALTH, 10.0)
-                .add(Attributes.MOVEMENT_SPEED, 0.2);
+                .add(Attributes.MOVEMENT_SPEED, 0.2)
+                .add(Attributes.WATER_MOVEMENT_EFFICIENCY, 1.0);
     }
 
     @Override
@@ -156,6 +172,107 @@ public class Capybara extends Animal {
             movementInput = movementInput.multiply(0.0, 1.0, 0.0);
         }
         super.travel(movementInput);
+    }
+
+    /*============*/
+    /*   DIVING   */
+    /*============*/
+
+    public boolean isDiving() {
+        return this.getBrain().hasMemoryValue(PromenadeMemoryModuleTypes.DIVE_TIME);
+    }
+
+    private void tickDive() {
+        boolean diving = this.isDiving();
+        if (diving && CapybaraAi.shouldStopDiving(this)) {
+            this.getBrain().eraseMemory(PromenadeMemoryModuleTypes.DIVE_TIME);
+            diving = false;
+        }
+        if (this.wasDiving && !diving) {
+            CapybaraAi.onDiveEnd(this);
+        }
+        this.wasDiving = diving;
+        this.updateNavigation();
+    }
+
+    /**
+     * Capybaras use their regular navigation on land and at the surface of the water,
+     * and switch to an underwater navigation while diving.
+     */
+    public void updateNavigation() {
+        PathNavigation navigation = this.isDiving() ? this.waterNavigation : this.groundNavigation;
+        if (this.navigation != navigation) {
+            this.navigation.stop();
+            this.navigation = navigation;
+        }
+    }
+
+    @Environment(EnvType.CLIENT)
+    private void updateDivePitch() {
+        this.divePitchO = this.divePitch;
+        float target = 0.0f;
+        if (this.isUnderWater() && !this.onGround()) {
+            double dx = this.getX() - this.xo;
+            double dy = this.getY() - this.yo;
+            double dz = this.getZ() - this.zo;
+            double horizontal = Math.sqrt(dx * dx + dz * dz);
+            if (horizontal * horizontal + dy * dy > 1.0E-5) {
+                target = Mth.clamp((float) (Mth.atan2(dy, horizontal) * Mth.RAD_TO_DEG), -60.0f, 60.0f);
+            }
+        }
+        this.divePitch += (target - this.divePitch) * 0.15f;
+    }
+
+    /**
+     * @return the pitch of the body while swimming underwater, in degrees (negative when heading down)
+     */
+    @Environment(EnvType.CLIENT)
+    public float getDivePitch(float tickProgress) {
+        return Mth.lerp(tickProgress, this.divePitchO, this.divePitch);
+    }
+
+    /**
+     * Moves like any land animal, except while diving, where it swims freely in all directions.
+     */
+    static class CapybaraMoveControl extends MoveControl<Capybara> {
+        private static final float MAX_DIVE_PITCH = 60.0f * Mth.DEG_TO_RAD;
+        private static final float DIVE_SPEED_MODIFIER = 1.25f;
+
+        public CapybaraMoveControl(Capybara capybara) {
+            super(capybara);
+        }
+
+        @Override
+        public void tick() {
+            if (!this.mob.isDiving() || !this.mob.isInWater()) {
+                super.tick();
+                return;
+            }
+            if (this.operation == Operation.MOVE_TO && !this.mob.getNavigation().isDone()) {
+                double dx = this.wantedX - this.mob.getX();
+                double dy = this.wantedY - this.mob.getY();
+                double dz = this.wantedZ - this.mob.getZ();
+                double horizontal = Math.sqrt(dx * dx + dz * dz);
+                if (horizontal * horizontal + dy * dy < 2.5000003E-7) {
+                    this.mob.setZza(0.0f);
+                    return;
+                }
+                float yRot = (float) (Mth.atan2(dz, dx) * Mth.RAD_TO_DEG) - 90.0f;
+                this.mob.setYRot(this.rotlerp(this.mob.getYRot(), yRot, 10.0f));
+                this.mob.yBodyRot = this.mob.getYRot();
+
+                float speed = (float) (this.speedModifier * this.mob.getAttributeValue(Attributes.MOVEMENT_SPEED)) * DIVE_SPEED_MODIFIER;
+                float pitch = Mth.clamp((float) Mth.atan2(dy, horizontal), -MAX_DIVE_PITCH, MAX_DIVE_PITCH);
+                this.mob.setSpeed(speed);
+                this.mob.setZza(Mth.cos(pitch) * speed);
+                this.mob.setYya(Mth.sin(pitch) * speed);
+            } else {
+                this.mob.setSpeed(0.0f);
+                this.mob.setXxa(0.0f);
+                this.mob.setYya(0.0f);
+                this.mob.setZza(0.0f);
+            }
+        }
     }
 
     public boolean isStationary() {
@@ -409,6 +526,13 @@ public class Capybara extends Animal {
     @Environment(EnvType.CLIENT)
     public boolean canAngleHead() {
         return !this.isFarting() && !this.isAsleep() && !this.isFallingToSleep() && !this.isWakingUp();
+    }
+
+    /**
+     * Whether the capybara is swimming rather than walking on the bottom of the water.
+     */
+    public boolean isFloatingInWater() {
+        return this.isInWater() && !this.onGround();
     }
 
     @Environment(EnvType.CLIENT)

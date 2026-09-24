@@ -5,6 +5,8 @@ import fr.hugman.promenade.client.render.entity.model.capybara.AdultCapybaraMode
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.capybara.CapybaraModel;
 import fr.hugman.promenade.client.render.entity.state.CapybaraRenderState;
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import fr.hugman.promenade.entity.Capybara;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -54,5 +56,15 @@ public class CapybaraEntityRenderer<E extends Capybara> extends AgeableMobRender
         state.surprised = capybara.isSurprised();
         state.earWiggleSpeed = capybara.getEarWiggleSpeed();
         state.canAngleHead = capybara.canAngleHead();
+        state.floatingInWater = capybara.isFloatingInWater();
+        state.divePitch = capybara.getDivePitch(f);
+    }
+
+    @Override
+    protected void setupRotations(CapybaraRenderState state, PoseStack poseStack, float bodyRot, float entityScale) {
+        super.setupRotations(state, poseStack, bodyRot, entityScale);
+        if (state.divePitch != 0.0f) {
+            poseStack.rotateAround(Axis.XP.rotationDegrees(state.divePitch), 0.0f, state.boundingBoxHeight / 2.0f / entityScale, 0.0f);
+        }
     }
 }
