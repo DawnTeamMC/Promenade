@@ -14,6 +14,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.Unit;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.ai.ActivityData;
 import net.minecraft.world.entity.ai.Brain;
@@ -43,6 +44,10 @@ public class CapybaraAi {
     private static final UniformInt SWIM_COOLDOWN = UniformInt.of(120 * 20, 240 * 20);
     // How long a capybara waits before looking for water again when none was found
     private static final UniformInt SWIM_RETRY_COOLDOWN = UniformInt.of(10 * 20, 20 * 20);
+    // How long a capybara stays underwater when diving
+    private static final UniformInt DIVE_TIME = UniformInt.of(3 * 20, 8 * 20);
+    // How long a capybara waits at the surface between two dives
+    private static final UniformInt DIVE_COOLDOWN = UniformInt.of(5 * 20, 15 * 20);
 
     protected static List<ActivityData<Capybara>> getActivities() {
         return List.of(initCoreActivity(), initIdleActivity(), initSwimActivity());
@@ -53,7 +58,13 @@ public class CapybaraAi {
                 Activity.CORE,
                 0,
                 ImmutableList.of(
-                        new Swim<>(0.8f),
+                        new Swim<Capybara>(0.8f) {
+                            // Stay underwater while diving instead of swimming back up to the surface
+                            @Override
+                            protected boolean checkExtraStartConditions(ServerLevel level, Mob body) {
+                                return !(body instanceof Capybara capybara && capybara.isDiving()) && super.checkExtraStartConditions(level, body);
+                            }
+                        },
                         new AnimalPanic<>(1.0F) {
                             private void run(ServerLevel serverWorld, Capybara capybara, long l) {
                                 capybara.forceDefaultState();
@@ -100,6 +111,7 @@ public class CapybaraAi {
                 Pair.of(3, leaveWater(12, 1.0f)),
                 Pair.of(4, new RunOne<>(ImmutableMap.of(MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT), ImmutableList.of(
                         Pair.of(swimAround(1.0f), 3),
+                        Pair.of(new Dive(1.0f), 2),
                         Pair.of(SetWalkTargetFromLookTarget.create(1.0f, 3), 1),
                         Pair.of(new DoNothing(30, 60), 1)
                 )))),
@@ -134,19 +146,37 @@ public class CapybaraAi {
         brain.setMemoryWithExpiry(PromenadeMemoryModuleTypes.SWIM_COOLDOWN, Unit.INSTANCE, SWIM_COOLDOWN.sample(capybara.getRandom()));
     }
 
+    /**
+     * Capybaras come back up for air before running out of it, and when something catches their attention.
+     */
+    public static boolean shouldStopDiving(Capybara capybara) {
+        Brain<?> brain = capybara.getBrain();
+        return !capybara.isInWater() ||
+                capybara.getAirSupply() < capybara.getMaxAirSupply() / 3 ||
+                brain.hasMemoryValue(MemoryModuleType.TEMPTING_PLAYER) ||
+                brain.hasMemoryValue(MemoryModuleType.IS_PANICKING);
+    }
+
+    public static void onDiveEnd(Capybara capybara) {
+        Brain<?> brain = capybara.getBrain();
+        brain.setMemoryWithExpiry(PromenadeMemoryModuleTypes.DIVE_COOLDOWN, Unit.INSTANCE, DIVE_COOLDOWN.sample(capybara.getRandom()));
+        // The current target is underwater, go back up to the surface instead
+        brain.eraseMemory(MemoryModuleType.WALK_TARGET);
+    }
+
     public static Predicate<ItemStack> getTemptItemPredicate() {
         return (stack) -> stack.is(PromenadeItemTags.CAPYBARA_FOOD);
     }
 
     /**
-     * Wanders around at the surface of the water.
+     * Wanders around at the surface of the water, or underwater while diving.
      */
     private static OneShot<Capybara> swimAround(float speedModifier) {
         return BehaviorBuilder.create(i -> i.group(i.absent(MemoryModuleType.WALK_TARGET)).apply(i, walkTarget -> (_, capybara, _) -> {
             if (!capybara.isInWater()) {
                 return false;
             }
-            Optional<Vec3> target = Optional.ofNullable(getWaterSurfacePos(capybara, 8, 3));
+            Optional<Vec3> target = Optional.ofNullable(capybara.isDiving() ? getUnderwaterPos(capybara, 8, 2, 3) : getWaterSurfacePos(capybara, 8, 3));
             walkTarget.setOrErase(target.map(pos -> new WalkTarget(pos, speedModifier, 0)));
             return true;
         }));
@@ -161,8 +191,9 @@ public class CapybaraAi {
                 i.absent(MemoryModuleType.WALK_TARGET),
                 i.present(MemoryModuleType.IS_IN_WATER),
                 i.absent(PromenadeMemoryModuleTypes.SWIM_TIME),
+                i.absent(PromenadeMemoryModuleTypes.DIVE_TIME),
                 i.registered(MemoryModuleType.LOOK_TARGET)
-        ).apply(i, (walkTarget, _, _, lookTarget) -> (level, capybara, _) -> {
+        ).apply(i, (walkTarget, _, _, _, lookTarget) -> (level, capybara, _) -> {
             Vec3 target = findLand(level, capybara, range);
             if (target == null) {
                 target = LandRandomPos.getPos(capybara, range + 4, 7);
@@ -237,6 +268,28 @@ public class CapybaraAi {
         return null;
     }
 
+    /**
+     * Picks a random position fully underwater, where a capybara can swim.
+     */
+    @Nullable
+    private static Vec3 getUnderwaterPos(Capybara capybara, int horizontalRange, int upRange, int downRange) {
+        Level level = capybara.level();
+        RandomSource random = capybara.getRandom();
+        BlockPos origin = capybara.blockPosition();
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+        for (int attempt = 0; attempt < 10; attempt++) {
+            pos.set(
+                    origin.getX() + random.nextInt(2 * horizontalRange + 1) - horizontalRange,
+                    origin.getY() + random.nextInt(upRange + downRange + 1) - downRange,
+                    origin.getZ() + random.nextInt(2 * horizontalRange + 1) - horizontalRange
+            );
+            if (level.getFluidState(pos).is(FluidTags.WATER) && level.getFluidState(pos.above()).is(FluidTags.WATER)) {
+                return Vec3.atBottomCenterOf(pos);
+            }
+        }
+        return null;
+    }
+
     private static boolean isWaterSurface(Level level, BlockPos pos) {
         return level.getFluidState(pos).is(FluidTags.WATER) && level.getBlockState(pos.above()).isAir();
     }
@@ -281,6 +334,46 @@ public class CapybaraAi {
             startSwimCycle(capybara);
             capybara.getBrain().setMemory(MemoryModuleType.LOOK_TARGET, new BlockPosTracker(water));
             capybara.getBrain().setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(water, this.speedModifier, 0));
+        }
+    }
+
+    /**
+     * While swimming, dives underwater for a few seconds.
+     */
+    public static class Dive extends Behavior<Capybara> {
+        private final float speedModifier;
+
+        public Dive(float speedModifier) {
+            super(ImmutableMap.of(
+                    MemoryModuleType.WALK_TARGET, MemoryStatus.VALUE_ABSENT,
+                    MemoryModuleType.IS_IN_WATER, MemoryStatus.VALUE_PRESENT,
+                    MemoryModuleType.IS_PANICKING, MemoryStatus.VALUE_ABSENT,
+                    MemoryModuleType.TEMPTING_PLAYER, MemoryStatus.VALUE_ABSENT,
+                    PromenadeMemoryModuleTypes.SWIM_TIME, MemoryStatus.VALUE_PRESENT,
+                    PromenadeMemoryModuleTypes.DIVE_COOLDOWN, MemoryStatus.VALUE_ABSENT,
+                    PromenadeMemoryModuleTypes.DIVE_TIME, MemoryStatus.VALUE_ABSENT
+            ));
+            this.speedModifier = speedModifier;
+        }
+
+        @Override
+        protected boolean checkExtraStartConditions(ServerLevel serverLevel, Capybara capybara) {
+            return capybara.getAirSupply() >= capybara.getMaxAirSupply() &&
+                    !capybara.isLeashed() &&
+                    !capybara.isPassenger();
+        }
+
+        @Override
+        protected void start(ServerLevel serverLevel, Capybara capybara, long l) {
+            Brain<?> brain = capybara.getBrain();
+            Vec3 target = getUnderwaterPos(capybara, 8, 0, 5);
+            if (target == null) {
+                brain.setMemoryWithExpiry(PromenadeMemoryModuleTypes.DIVE_COOLDOWN, Unit.INSTANCE, DIVE_COOLDOWN.sample(capybara.getRandom()));
+                return;
+            }
+            brain.setMemoryWithExpiry(PromenadeMemoryModuleTypes.DIVE_TIME, Unit.INSTANCE, DIVE_TIME.sample(capybara.getRandom()));
+            capybara.updateNavigation();
+            brain.setMemory(MemoryModuleType.WALK_TARGET, new WalkTarget(target, this.speedModifier, 0));
         }
     }
 
