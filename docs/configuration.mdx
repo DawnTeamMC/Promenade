@@ -10,31 +10,20 @@ Promenade adds 1 game rule to the game:
   - **Type**: `boolean` (`true` or `false`)
   - **Default**: `true`
 
-## Configuration file
+## Configuration
 
-The configuration file for Promenade can be found at `.minecraft/config/promenade.json`.
-This file is used to **tweak values of the mod's features**. This is not meant to add new features or drastically change the mod's behavior.
+Promenade's settings are used to **tweak values of the mod's features**. They are not meant to add new features or drastically change the mod's behavior.
 
-### Change the configuration
+### In-game
 
-Open the file using a text editor of your choice. Here's the default configuration values:
+If [Mod Menu](https://modrinth.com/mod/modmenu) is installed, open the mods list, select Promenade and click the configuration button.
+
+### Configuration file
+
+The settings are stored in `.minecraft/config/promenade.json`, which can also be edited with any text editor. This is the only way to change them on a dedicated server. Here are the default values:
 
 ```json
 {
-    "biomes": {
-        "carnelian_treeway_weight": 20,
-        "sakura_groves_weight": 20,
-        "glacarian_taiga_weight": 10,
-        "dark_amaranth_forests_noise": {
-            "erosion": 0.0,
-            "depth": 0.0,
-            "weirdness": 0.0,
-            "offset": 0.0,
-            "temperature": 0.15,
-            "humidity": -0.3,
-            "continentalness": 0.0
-        }
-    },
     "world_features": {
         "igneous_rock_patches": true,
         "blueberry_bushes": true,
@@ -45,13 +34,13 @@ Open the file using a text editor of your choice. Here's the default configurati
         "ducks_weight": 10
     },
     "monsters": {
-        "lush_creepers_weight": 10,
+        "lush_creepers_weight": 15,
         "sunkens_weight": 10
     }
 }
 ```
 
-To increase or decrease the frequency of a weighted feature, change its weight. **Setting it to 0 or below will prevent the feature from ever appearing.**
+To increase or decrease the frequency of a mob, change its weight. **Setting it to 0 or below will prevent the mob from ever spawning.**
 
 <Callout variant="warning">
     You must restart the server (or your client) for the changes to take effect.
@@ -63,6 +52,37 @@ To increase or decrease the frequency of a weighted feature, change its weight. 
     This will prevent them from researching why they can't find features for too long.
     For example, disabling a biome will not remove the related blocks (i.e. the wood set) from the game, but they will never appear naturally in the world.
     The blocks will still be visible to players using recipe viewing mods and such.
+</Callout>
+
+## Biome placement
+
+The placement of Promenade's biomes is data-driven: it is defined by [Biolith](https://modrinth.com/mod/biolith) files, which can be overridden using a data pack. Since data packs are per-world, this lets you use different settings in each world.
+
+Each biome has its own file, in `data/promenade/biolith/biome_placement/`:
+- `sakura_groves.json` for the [sakura groves](@promenade:sakura_groves)
+- `carnelian_treeway.json` for the [carnelian treeway](@promenade:carnelian_treeway)
+- `glacarian_taiga.json` for the [glacarian taiga](@promenade:glacarian_taiga)
+- `dark_amaranth_forest.json` for the [dark amaranth forest](@promenade:dark_amaranth_forest)
+
+For example, here is the default placement of the carnelian treeway, which replaces 20% of plains:
+
+```json
+{
+    "replacements": [
+        {
+            "dimension": "minecraft:overworld",
+            "target": "minecraft:plains",
+            "biome": "promenade:carnelian_treeway",
+            "proportion": 0.2
+        }
+    ]
+}
+```
+
+To change the frequency of a biome, override its file in a data pack with a different `proportion`. To disable a biome, override its file with an empty object (`{}`).
+
+<Callout variant="warning">
+    Biome placement is read when the world loads: running `/reload` is not enough, the world must be reopened (or the server restarted) for the changes to take effect.
 </Callout>
 
 ## Freezing snowfalls configuration

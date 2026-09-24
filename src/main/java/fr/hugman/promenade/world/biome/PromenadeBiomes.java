@@ -1,10 +1,7 @@
 package fr.hugman.promenade.world.biome;
 
-import com.terraformersmc.biolith.api.biome.BiomePlacement;
 import fr.hugman.promenade.Promenade;
-import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.tag.PromenadeBiomeTags;
-import net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -14,8 +11,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.biome.Climate;
 
 public class PromenadeBiomes {
     public static final ResourceKey<Biome> BLUSH_SAKURA_GROVE = of("blush_sakura_grove");
@@ -25,42 +20,8 @@ public class PromenadeBiomes {
 
     public static final ResourceKey<Biome> DARK_AMARANTH_FOREST = of("dark_amaranth_forest");
 
-    public static final Climate.ParameterPoint DEFAULT_DARK_AMARANTH_FOREST_HYPERCUBE = Climate.parameters(0.15f, -0.3f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-
     private static ResourceKey<Biome> of(String path) {
         return ResourceKey.create(Registries.BIOME, Promenade.id(path));
-    }
-
-    public static void appendWorldGen() {
-
-        var biomeConfig = PromenadeConfig.get().biomes();
-
-        // Sakura Groves
-        if (biomeConfig.sakuraGrovesWeight() > 0) {
-            double sakuraWeight = biomeConfig.sakuraGrovesWeight() / 100.0D;
-            BiomePlacement.replaceOverworld(Biomes.FOREST, PromenadeBiomes.BLUSH_SAKURA_GROVE, sakuraWeight);
-            BiomePlacement.replaceOverworld(Biomes.BIRCH_FOREST, PromenadeBiomes.COTTON_SAKURA_GROVE, sakuraWeight);
-        }
-
-        // Carnelian Treeway
-        if (biomeConfig.carnelianTreewayWeight() > 0) {
-            BiomePlacement.replaceOverworld(Biomes.PLAINS, PromenadeBiomes.CARNELIAN_TREEWAY, biomeConfig.carnelianTreewayWeight() / 100.0D);
-        }
-
-        // Glacarian Taiga
-        if (biomeConfig.glacarianTaigaWeight() > 0) {
-            double glacarianTaigaWeight = biomeConfig.glacarianTaigaWeight() / 100.0D;
-            BiomePlacement.replaceOverworld(Biomes.TAIGA, PromenadeBiomes.GLACARIAN_TAIGA, glacarianTaigaWeight);
-            BiomePlacement.replaceOverworld(Biomes.SNOWY_TAIGA, PromenadeBiomes.GLACARIAN_TAIGA, glacarianTaigaWeight);
-            BiomePlacement.replaceOverworld(Biomes.SNOWY_SLOPES, PromenadeBiomes.GLACARIAN_TAIGA, glacarianTaigaWeight);
-            BiomePlacement.replaceOverworld(Biomes.JAGGED_PEAKS, PromenadeBiomes.GLACARIAN_TAIGA, glacarianTaigaWeight);
-            BiomePlacement.replaceOverworld(Biomes.GROVE, PromenadeBiomes.GLACARIAN_TAIGA, glacarianTaigaWeight);
-        }
-
-
-        if (biomeConfig.darkAmaranthForestsNoise().isPresent()) {
-            BiomePlacement.addNether(PromenadeBiomes.DARK_AMARANTH_FOREST, biomeConfig.darkAmaranthForestsNoise().get());
-        }
     }
 
     /**

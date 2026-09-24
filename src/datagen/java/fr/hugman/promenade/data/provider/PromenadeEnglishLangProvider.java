@@ -43,6 +43,29 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
         builder.add("advancements.promenade.husbandry.harvest_maple_syrup.description", "Strip a natural Maple tree using an Axe to collect Maple Syrup with a Bottle");
         builder.add("advancements.promenade.husbandry.harvest_maple_syrup.title", "Don't Worry, Be Sappy!");
 
+        // Config
+
+        builder.add("promenade.config.title", "Promenade Settings");
+        builder.add("promenade.config.reset", "Reset to Defaults");
+        builder.add("promenade.config.restart_required", "Restart the game to apply the changes.");
+        builder.add("promenade.config.world_features", "World Features");
+        builder.add("promenade.config.world_features.igneous_rock_patches", "Asphalt & Blunite");
+        builder.add("promenade.config.world_features.igneous_rock_patches.tooltip", "Generate asphalt and blunite underground, alongside granite, diorite and andesite.");
+        builder.add("promenade.config.world_features.blueberry_bushes", "Blueberry Bushes");
+        builder.add("promenade.config.world_features.blueberry_bushes.tooltip", "Generate blueberry bushes where sweet berry bushes grow.");
+        builder.add("promenade.config.world_features.palms", "Palms");
+        builder.add("promenade.config.world_features.palms.tooltip", "Generate palms naturally in the world.");
+        builder.add("promenade.config.animals", "Animals");
+        builder.add("promenade.config.animals.capybaras_weight", "Capybaras");
+        builder.add("promenade.config.animals.capybaras_weight.tooltip", "Spawn weight of capybaras. The higher it is, the more they spawn.");
+        builder.add("promenade.config.animals.ducks_weight", "Ducks");
+        builder.add("promenade.config.animals.ducks_weight.tooltip", "Spawn weight of ducks. The higher it is, the more they spawn.");
+        builder.add("promenade.config.monsters", "Monsters");
+        builder.add("promenade.config.monsters.lush_creepers_weight", "Lush Creepers");
+        builder.add("promenade.config.monsters.lush_creepers_weight.tooltip", "Spawn weight of lush creepers. The higher it is, the more they spawn.");
+        builder.add("promenade.config.monsters.sunkens_weight", "Sunkens");
+        builder.add("promenade.config.monsters.sunkens_weight.tooltip", "Spawn weight of sunkens. The higher it is, the more they spawn.");
+
         // Subtitles
 
         builder.add("subtitles.promenade.entity.capybara.ambient", "Capybara squeaks");

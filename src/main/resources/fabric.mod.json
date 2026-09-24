@@ -23,6 +23,9 @@
     ],
     "client": [
       "fr.hugman.promenade.client.PromenadeClient"
+    ],
+    "modmenu": [
+      "fr.hugman.promenade.client.compat.PromenadeModMenuApi"
     ]
   },
   "mixins": [
@@ -35,6 +38,7 @@
     "biolith": "*"
   },
   "suggests": {
+    "modmenu": "*",
     "farmingforblockheads": "*",
     "appleskin": "*"
   },
@@ -63,6 +67,7 @@
       ],
       "dependencies": [
         "farmingforblockheads(optional){curseforge:farming-for-blockheads-fabric}{modrinth:farming-for-blockheads}",
+        "modmenu(optional){curseforge:modmenu}{modrinth:modmenu}",
         "biolith(embedded)"
       ]
     }
