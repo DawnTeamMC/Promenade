@@ -10,6 +10,8 @@ import java.util.Optional;
 
 public class PromenadeMemoryModuleTypes {
     public static final MemoryModuleType<Unit> FART_COOLDOWN = register("fart_cooldown", Unit.CODEC);
+    public static final MemoryModuleType<Unit> SWIM_COOLDOWN = register("swim_cooldown", Unit.CODEC);
+    public static final MemoryModuleType<Unit> SWIM_TIME = register("swim_time", Unit.CODEC);
 
     private static <U> MemoryModuleType<U> register(String id, Codec<U> codec) {
         return Registry.register(BuiltInRegistries.MEMORY_MODULE_TYPE, Promenade.id(id), new MemoryModuleType<>(Optional.of(codec)));
