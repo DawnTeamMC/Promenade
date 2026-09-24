@@ -13,6 +13,8 @@ import net.minecraft.client.gui.screens.options.OptionsSubScreen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 
+import java.util.List;
+
 /**
  * An in-game screen to edit the {@link PromenadeConfig}.
  * <p>
@@ -70,7 +72,11 @@ public class PromenadeConfigScreen extends OptionsSubScreen {
         this.ducksWeight.set(config.animals().ducksWeight());
         this.lushCreepersWeight.set(config.monsters().lushCreepersWeight());
         this.sunkensWeight.set(config.monsters().sunkensWeight());
-        this.rebuildWidgets();
+        // Refreshes the existing widgets: rebuilding them would stack a new layout on top of the old one
+        for (var option : List.of(this.igneousRockPatches, this.blueberryBushes, this.palms,
+                this.capybarasWeight, this.ducksWeight, this.lushCreepersWeight, this.sunkensWeight)) {
+            this.resetOption(option);
+        }
     }
 
     @Override
