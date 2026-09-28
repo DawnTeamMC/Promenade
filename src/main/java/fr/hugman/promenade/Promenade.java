@@ -5,6 +5,7 @@ import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.block.dispenser.PromenadeDispenserBehaviors;
 import fr.hugman.promenade.block.entity.PromenadeBlockEntities;
 import fr.hugman.promenade.component.PromenadeComponentTypes;
+import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
@@ -16,7 +17,6 @@ import fr.hugman.promenade.itemgroup.PromenadeItemGroups;
 import fr.hugman.promenade.registry.*;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.world.PromenadeGameRules;
-import fr.hugman.promenade.world.biome.PromenadeBiomes;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifierTypes;
@@ -24,6 +24,7 @@ import fr.hugman.promenade.world.gen.stateprovider.PromenadeBlockStateProviderTy
 import fr.hugman.promenade.world.gen.tree.foliage.PromenadeFoliagePlacerTypes;
 import fr.hugman.promenade.world.gen.tree.trunk.PromenadeTrunkPlacerTypes;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.resources.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +35,8 @@ public class Promenade implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        PromenadeConfig.load(FabricLoader.getInstance().getConfigDir());
+
         PromenadeRegistries.register();
 
         Reflection.initialize(PromenadeSoundEvents.class);
@@ -65,7 +68,6 @@ public class Promenade implements ModInitializer {
         PromenadeSpawnConditions.register();
 
         PromenadeEntityTypes.appendWorldGen();
-        PromenadeBiomes.appendWorldGen();
         PromenadePlacedFeatures.appendWorldGen();
 
         PromenadeRegistryAliases.registerAliases();
