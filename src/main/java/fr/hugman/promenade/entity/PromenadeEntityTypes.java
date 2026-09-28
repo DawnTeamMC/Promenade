@@ -68,7 +68,7 @@ public class PromenadeEntityTypes {
 
     public static void appendWorldGen() {
         var duckWeight = PromenadeConfig.get().animals().ducksWeight();
-        if (duckWeight != 0) {
+        if (duckWeight > 0) {
             Predicate<BiomeSelectionContext> hasFarmAnimals = BiomeSelectors.spawnsOneOf(EntityTypes.COW)
                     .and(BiomeSelectors.spawnsOneOf(EntityTypes.SHEEP))
                     .and(BiomeSelectors.spawnsOneOf(EntityTypes.CHICKEN))
@@ -77,18 +77,18 @@ public class PromenadeEntityTypes {
         }
 
         var capybaraWeight = PromenadeConfig.get().animals().capybarasWeight();
-        if (capybaraWeight != 0) {
+        if (capybaraWeight > 0) {
             BiomeModifications.addSpawn(BiomeSelectors.tag(PromenadeBiomeTags.SPAWNS_CAPYBARAS), MobCategory.CREATURE, PromenadeEntityTypes.CAPYBARA, capybaraWeight, 3, 5);
         }
 
         var lushCreeperWeight = PromenadeConfig.get().monsters().lushCreepersWeight();
-        if (lushCreeperWeight != 0) {
+        if (lushCreeperWeight > 0) {
             BiomeModifications.addSpawn(BiomeSelectors.spawnsOneOf(EntityTypes.CREEPER).and(BiomeSelectors.excludeByKey(Biomes.LUSH_CAVES)), MobCategory.MONSTER, LUSH_CREEPER, lushCreeperWeight, 2, 3);
             BiomeModifications.addSpawn(BiomeSelectors.includeByKey(Biomes.LUSH_CAVES), MobCategory.MONSTER, LUSH_CREEPER, lushCreeperWeight * 4, 2, 4);
         }
 
         var sunkensWeight = PromenadeConfig.get().monsters().sunkensWeight();
-        if (sunkensWeight != 0) {
+        if (sunkensWeight > 0) {
             BiomeModifications.addSpawn(biomeSelectionContext -> biomeSelectionContext.hasTag(PromenadeBiomeTags.SPAWNS_SUNKEN), MobCategory.MONSTER, SUNKEN, sunkensWeight, 1, 3);
         }
     }
