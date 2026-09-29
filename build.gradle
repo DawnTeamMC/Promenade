@@ -1,107 +1,51 @@
 plugins {
-    id "net.fabricmc.fabric-loom" version "${loom_version}"
+    id "net.fabricmc.fabric-loom" version "${loom_version}" apply false
+    id "net.neoforged.moddev" version "${moddev_version}" apply false
     id 'org.moddedmc.wiki.toolkit' version '0.5.0'
 }
 
-group = "com.github.hugman"
+subprojects {
+    apply plugin: 'java-library'
 
-base {
-    archivesName = project.mod_id
-}
+    group = "com.github.hugman"
+    version = rootProject.version
 
-repositories {
-    maven { url 'https://maven.terraformersmc.com' } // Required for Biolith and Mod Menu
-}
-
-dependencies {
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
-
-    api include("com.terraformersmc:biolith-fabric:${biolith_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
+    base {
+        archivesName = "${mod_id}-${project.name}"
     }
 
-    // Optional: provides the config screen entry point
-    compileOnly("com.terraformersmc:modmenu:${modmenu_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
-    }
-    localRuntime("com.terraformersmc:modmenu:${modmenu_version}") {
-        exclude(group: "net.fabricmc.fabric-api")
+    repositories {
+        mavenCentral()
+        maven { url 'https://maven.fabricmc.net/' } // Mixin, for the common project
+        maven { url 'https://maven.terraformersmc.com' } // Required for Biolith and Mod Menu
     }
 
-    compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+    dependencies {
+        compileOnly "com.google.code.findbugs:jsr305:3.0.2"
+    }
 
-    // Version list: https://maven.su5ed.dev/#/releases/org/sinytra/wiki-exporter-fabric
-    //runtimeOnly "org.sinytra:wiki-exporter-fabric:2.2.1+1.21.11"
-}
+    tasks.withType(JavaCompile).configureEach {
+        it.options.encoding = "UTF-8"
+        it.options.release = 25
+    }
 
-loom {
-    accessWidenerPath = file("src/main/resources/promenade.accesswidener")
+    java {
+        withSourcesJar()
 
-    splitEnvironmentSourceSets()
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
+    }
 
-    mods {
-        "promenade" {
-            sourceSet sourceSets.main
-            sourceSet sourceSets.client
+    tasks.withType(Jar).configureEach {
+        from(rootProject.file("LICENSE.md")) {
+            rename { "${it}_${mod_id}" }
         }
     }
 
-    runs {
-        exportClient {
-            client()
-            name = "Wiki Export Client"
-            property "wiki_exporter.enabled", "true"
-            property "wiki_exporter.config.path", "${projectDir}/wiki_exporter_config.json"
-        }
-        exportServer {
-            server()
-            name = "Wiki Export Server"
-            property "wiki_exporter.enabled", "true"
-            property "wiki_exporter.config.path", "${projectDir}/wiki_exporter_config.json"
-        }
+    // for JitPack
+    configurations.configureEach {
+        resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
     }
-}
-
-fabricApi {
-    configureDataGeneration() {
-        modId = "promenade-datagen"
-        createSourceSet = true
-        client = true
-    }
-}
-
-processResources {
-    inputs.property "version", project.version
-
-    filesMatching("fabric.mod.json") {
-        expand "version": project.version
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    it.options.encoding = "UTF-8"
-    it.options.release = 25
-}
-
-java {
-    withSourcesJar()
-
-    sourceCompatibility = JavaVersion.VERSION_25
-    targetCompatibility = JavaVersion.VERSION_25
-}
-
-jar {
-    from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}" }
-    }
-}
-
-// for JitPack
-configurations.configureEach {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
 wiki {

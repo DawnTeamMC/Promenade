@@ -6,6 +6,9 @@ registries:
   terraformers-maven:
     type: maven-repository
     url: https://maven.terraformersmc.com/releases/
+  neoforged-maven:
+    type: maven-repository
+    url: https://maven.neoforged.net/releases/
 
 updates:
   - package-ecosystem: "github-actions"
@@ -22,3 +25,4 @@ updates:
     registries:
       - fabric-maven
       - terraformers-maven
+      - neoforged-maven
