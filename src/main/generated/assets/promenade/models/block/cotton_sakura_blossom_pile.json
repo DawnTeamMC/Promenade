@@ -1,6 +1,0 @@
-{
-  "parent": "promenade:block/pile",
-  "textures": {
-    "all": "promenade:block/cotton_sakura_blossoms"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "promenade:block/dark_amaranth_stem",
-    "side": "promenade:block/dark_amaranth_stem"
-  }
-}

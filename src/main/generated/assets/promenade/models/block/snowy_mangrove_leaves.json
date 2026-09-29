@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "promenade:block/snowy_mangrove_leaves"
-  }
-}

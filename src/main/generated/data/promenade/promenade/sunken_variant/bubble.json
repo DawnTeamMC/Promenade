@@ -1,9 +1,0 @@
-{
-  "asset_id": "promenade:entity/sunken/bubble",
-  "loot_table": "promenade:entities/sunken/bubble",
-  "spawn_conditions": [
-    {
-      "priority": 0
-    }
-  ]
-}

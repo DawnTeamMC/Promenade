@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "promenade:item/capybara_spawn_egg"
-  }
-}

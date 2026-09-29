@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_shelf_right",
-  "textures": {
-    "all": "promenade:block/palm_shelf",
-    "particle": "promenade:block/stripped_palm_log"
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_sign_rot_0",
-  "textures": {
-    "all": "promenade:block/sakura_sign",
-    "particle": "promenade:block/sakura_planks"
-  }
-}

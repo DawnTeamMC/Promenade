@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_wall_sign",
-  "textures": {
-    "all": "promenade:block/palm_sign",
-    "particle": "promenade:block/palm_planks"
-  }
-}

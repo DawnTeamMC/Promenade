@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": "promenade:polished_blunite",
-  "result": {
-    "id": "promenade:polished_blunite_stairs"
-  }
-}

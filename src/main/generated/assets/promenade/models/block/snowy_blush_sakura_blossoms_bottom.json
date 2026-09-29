@@ -1,8 +1,0 @@
-{
-  "parent": "promenade:block/bottom_snowy_leaves",
-  "textures": {
-    "all": "promenade:block/blush_sakura_blossoms",
-    "side": "promenade:block/snowy_sakura_blossoms_bottom",
-    "top": "promenade:block/snowy_sakura_blossoms"
-  }
-}
