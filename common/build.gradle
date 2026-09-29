@@ -1,0 +1,43 @@
+// Loader-agnostic code, compiled against vanilla Minecraft only.
+// This project is never shipped: the loader projects compile its sources into their own jars.
+// Anything loader-specific goes through fr.hugman.promenade.platform.
+plugins {
+    id "net.neoforged.moddev"
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/main/generated'
+            exclude '.cache/**'
+        }
+    }
+    // Client-only code, kept apart so it can't leak into the common (server-safe) code
+    client {
+        compileClasspath += main.output
+        runtimeClasspath += main.output
+    }
+}
+
+configurations {
+    clientCompileOnly.extendsFrom compileOnly
+}
+
+neoForge {
+    neoFormVersion = neo_form_version
+    // Same access changes as the Fabric access widener
+    accessTransformers.from(project(':neoforge').file('src/main/resources/META-INF/accesstransformer.cfg'))
+    addModdingDependenciesTo(sourceSets.client)
+}
+
+dependencies {
+    // Both loaders ship Mixin and MixinExtras
+    compileOnly "net.fabricmc:sponge-mixin:${mixin_version}"
+    compileOnly "io.github.llamalad7:mixinextras-common:${mixinextras_version}"
+    compileOnly "org.jetbrains:annotations:26.0.2"
+}
+
+// Nothing is shipped from here
+tasks.withType(Jar).configureEach {
+    enabled = false
+}

@@ -70,7 +70,11 @@ We use [CurseForge](https://www.curseforge.com/minecraft/mc-mods/promenade) and 
 
 ### Required mods
 
-⚠ Promenade **requires** Fabric API to be installed: [GitHub](https://github.com/FabricMC/fabric) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) / [Modrinth](https://modrinth.com/mod/fabric-api)
+Promenade is available for both **Fabric** and **NeoForge**.
+
+⚠ On Fabric, Promenade **requires** Fabric API to be installed: [GitHub](https://github.com/FabricMC/fabric) / [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) / [Modrinth](https://modrinth.com/mod/fabric-api)
+
+On NeoForge, no other mod is required.
 
 ### Compatible mods
 

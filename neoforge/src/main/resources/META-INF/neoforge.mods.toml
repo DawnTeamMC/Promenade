@@ -1,0 +1,38 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "Polyform Shield 1.0.0"
+issueTrackerURL = "https://github.com/DawnTeamMC/Promenade/issues"
+
+[[mods]]
+modId = "promenade"
+version = "${version}"
+displayName = "Promenade"
+iconFile = "assets/promenade/textures/logo.png"
+authors = "Hugman"
+credits = "LudoCrypt, Lylian"
+displayURL = "https://dawnteammc.github.io/promenade"
+description = '''Adds new biomes, animals, monsters, structures, and more to the game.'''
+
+[[mixins]]
+config = "promenade.mixins.json"
+
+[[dependencies.promenade]]
+modId = "neoforge"
+type = "required"
+versionRange = "${neoforge_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.promenade]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.promenade]]
+modId = "biolith"
+type = "required"
+versionRange = "*"
+ordering = "NONE"
+side = "BOTH"

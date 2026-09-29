@@ -1,0 +1,63 @@
+plugins {
+    id "net.neoforged.moddev"
+}
+
+evaluationDependsOn(':common')
+def common = project(':common')
+
+neoForge {
+    version = neoforge_version
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+        // Boots a server, runs the game tests and exits: a quick way to check that the mod loads
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', mod_id
+        }
+    }
+
+    mods {
+        "promenade" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+dependencies {
+    jarJar(implementation("com.terraformersmc:biolith-neoforge:${biolith_version}"))
+
+    // Lets the IDE resolve the shared code; the classes themselves are compiled from source below
+    compileOnly common.sourceSets.main.output
+    compileOnly common.sourceSets.client.output
+}
+
+// Compile the shared sources into this jar.
+// NeoForge has no split source sets: client classes only load through the Dist.CLIENT entrypoint.
+tasks.named('compileJava', JavaCompile) {
+    source common.sourceSets.main.java
+    source common.sourceSets.client.java
+}
+processResources {
+    from common.sourceSets.main.resources
+    from common.sourceSets.client.resources
+
+    def props = [
+            "version"               : project.version,
+            "minecraft_version_range": minecraft_version_range,
+            "neoforge_version_range": neoforge_version_range,
+    ]
+    inputs.properties props
+    filesMatching("META-INF/neoforge.mods.toml") {
+        expand props
+    }
+}
+sourcesJar {
+    from common.sourceSets.main.allSource
+    from common.sourceSets.client.allSource
+}

@@ -13,6 +13,14 @@ Before getting started, you'll need to install the latest 64-bit version of the 
 
 We strongly recommend you use [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/) when making code contributions. While other IDEs may work (in theory, anyway), you will often run into issues and other roadblocks. If you're not familiar with setting up IntelliJ IDEA for use with Fabric projects, the community of Fabric has created a wiki which runs over a lot of the basics of Fabric [here](https://fabricmc.net/wiki/doku.php).
 
+### Project layout
+Promenade is built for Fabric and NeoForge from the same source:
+- `common` holds the shared code and resources, compiled against vanilla Minecraft only. Its `client` source set holds client-only code.
+- `fabric` and `neoforge` hold each loader's entrypoints, metadata and implementation of `PromenadePlatform`, the interface through which the shared code reaches loader-specific APIs.
+- Data is generated with Fabric's data generation (`./gradlew :fabric:runDatagen`) into `common/src/main/generated`, and shipped with both loaders.
+
+Access wideners (Fabric) and access transformers (NeoForge) must be kept in sync: `fabric/src/main/resources/promenade.accesswidener` and `neoforge/src/main/resources/META-INF/accesstransformer.cfg`.
+
 If you have any questions or issues, or would just like to discuss Promenade development, feel free to [join us on Discord](https://discord.gg/8ksTVJu).
 
 ### Creating pull requests

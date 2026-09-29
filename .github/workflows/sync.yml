@@ -31,7 +31,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Generate data files
-        run: ./gradlew runDatagen
+        run: ./gradlew :fabric:runDatagen
 
       - name: Upload translations source file to Crowdin
         uses: crowdin/github-action@v2
