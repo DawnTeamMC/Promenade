@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:random_selector",
+  "default": "promenade:tree/vermilion_maple",
+  "features": [
+    {
+      "chance": 0.1,
+      "feature": "promenade:tree/fancy_vermilion_maple_bees"
+    },
+    {
+      "chance": 0.2,
+      "feature": "promenade:tree/fancy_vermilion_maple"
+    }
+  ]
+}

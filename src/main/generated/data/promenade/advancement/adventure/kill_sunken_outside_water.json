@@ -1,0 +1,68 @@
+{
+  "parent": "minecraft:adventure/whos_the_pillager_now",
+  "criteria": {
+    "kill_sunken_outside_water": {
+      "conditions": {
+        "player": {
+          "type": "minecraft:location_check",
+          "offsetY": 1,
+          "predicate": {
+            "fluid": {
+              "fluids": "#minecraft:water"
+            }
+          }
+        },
+        "victims": [
+          {
+            "type": "minecraft:all_of",
+            "terms": [
+              {
+                "type": "minecraft:entity_properties",
+                "entity": "this",
+                "predicate": {
+                  "minecraft:entity_type": "promenade:sunken"
+                }
+              },
+              {
+                "type": "minecraft:inverted",
+                "term": {
+                  "type": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "minecraft:location": {
+                      "fluid": {
+                        "fluids": "#minecraft:water"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:killed_by_arrow"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.promenade.adventure.kill_sunken_outside_water.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "minecraft:fire_coral"
+    },
+    "title": {
+      "translate": "advancements.promenade.adventure.kill_sunken_outside_water.title"
+    }
+  },
+  "requirements": [
+    [
+      "kill_sunken_outside_water"
+    ]
+  ],
+  "rewards": {
+    "experience": 65
+  },
+  "sends_telemetry_event": true
+}

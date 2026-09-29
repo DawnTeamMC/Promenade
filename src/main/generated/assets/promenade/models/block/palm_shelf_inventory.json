@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_inventory",
+  "textures": {
+    "all": "promenade:block/palm_shelf",
+    "particle": "promenade:block/stripped_palm_log"
+  }
+}

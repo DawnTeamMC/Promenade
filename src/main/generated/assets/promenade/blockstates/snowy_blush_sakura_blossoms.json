@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "bottom=false": {
+      "model": "promenade:block/snowy_blush_sakura_blossoms"
+    },
+    "bottom=true": {
+      "model": "promenade:block/snowy_blush_sakura_blossoms_bottom"
+    }
+  }
+}

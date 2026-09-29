@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "promenade:block/stripped_sakura_log_x"
+    },
+    "axis=y": {
+      "model": "promenade:block/stripped_sakura_log_y"
+    },
+    "axis=z": {
+      "model": "promenade:block/stripped_sakura_log_z"
+    }
+  }
+}

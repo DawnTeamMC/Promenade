@@ -1,5 +1,0 @@
-accessWidener	v1	official
-extendable	method	net/minecraft/world/entity/monster/skeleton/AbstractSkeleton	getStepSound	()Lnet/minecraft/sounds/SoundEvent;
-extendable	method	net/minecraft/world/entity/monster/Creeper	explodeCreeper	()V
-accessible	field	net/minecraft/world/entity/Mob	lootTable	Ljava/util/Optional;
-accessible	method	net/minecraft/client/particle/FallingLeavesParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/client/renderer/texture/TextureAtlasSprite;FFZZFF)V

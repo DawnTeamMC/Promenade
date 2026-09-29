@@ -1,0 +1,10 @@
+{
+  "values": [
+    "minecraft:mycelium",
+    "minecraft:soul_soil",
+    "minecraft:dirt",
+    "minecraft:farmland",
+    "#promenade:dark_amaranth_fungus_growable_on",
+    "#minecraft:nylium"
+  ]
+}

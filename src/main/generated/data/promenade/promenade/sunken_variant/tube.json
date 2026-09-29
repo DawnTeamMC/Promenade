@@ -1,0 +1,9 @@
+{
+  "asset_id": "promenade:entity/sunken/tube",
+  "loot_table": "promenade:entities/sunken/tube",
+  "spawn_conditions": [
+    {
+      "priority": 0
+    }
+  ]
+}

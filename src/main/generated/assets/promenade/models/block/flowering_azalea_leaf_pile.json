@@ -1,0 +1,6 @@
+{
+  "parent": "promenade:block/pile",
+  "textures": {
+    "all": "minecraft:block/flowering_azalea_leaves"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "promenade:block/palm_hanging_leaves"
+  }
+}

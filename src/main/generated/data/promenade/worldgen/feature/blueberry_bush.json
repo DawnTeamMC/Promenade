@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:simple_block",
+  "to_place": {
+    "id": "promenade:blueberry_bush",
+    "properties": {
+      "age": "3"
+    }
+  }
+}

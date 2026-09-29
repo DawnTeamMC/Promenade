@@ -1,0 +1,6 @@
+{
+  "parent": "promenade:block/pile",
+  "textures": {
+    "all": "promenade:block/white_tulip_pile"
+  }
+}

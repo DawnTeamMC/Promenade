@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "bottom=false": {
+      "model": "promenade:block/snowy_mikado_maple_leaves"
+    },
+    "bottom=true": {
+      "model": "promenade:block/snowy_mikado_maple_leaves_bottom"
+    }
+  }
+}

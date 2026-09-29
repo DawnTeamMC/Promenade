@@ -1,0 +1,12 @@
+{
+  "type": "promenade:coiled_vines",
+  "directions": [
+    "north",
+    "south",
+    "west",
+    "east"
+  ],
+  "max_length": 8,
+  "spread_height": 4,
+  "spread_width": 8
+}

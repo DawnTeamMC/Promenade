@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "fallen_leaves",
+  "key": {
+    "#": "promenade:fulvous_maple_leaves"
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 2,
+    "id": "promenade:fallen_fulvous_maple_leaves"
+  }
+}

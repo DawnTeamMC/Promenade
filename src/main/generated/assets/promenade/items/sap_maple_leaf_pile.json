@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "promenade:block/sap_maple_leaf_pile",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -5845751
+      }
+    ]
+  }
+}

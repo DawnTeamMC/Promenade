@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "snowy_leaves",
+  "key": {
+    "#": "minecraft:azalea_leaves",
+    "_": "minecraft:snow"
+  },
+  "pattern": [
+    "_",
+    "#"
+  ],
+  "result": {
+    "id": "promenade:snowy_azalea_leaves"
+  }
+}

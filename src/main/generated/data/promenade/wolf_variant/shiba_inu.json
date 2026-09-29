@@ -1,0 +1,21 @@
+{
+  "assets": {
+    "angry": "promenade:entity/wolf/shiba_inu/angry",
+    "tame": "promenade:entity/wolf/shiba_inu/tame",
+    "wild": "promenade:entity/wolf/shiba_inu/wild"
+  },
+  "baby_assets": {
+    "angry": "promenade:entity/wolf/shiba_inu/angry_baby",
+    "tame": "promenade:entity/wolf/shiba_inu/tame_baby",
+    "wild": "promenade:entity/wolf/shiba_inu/wild_baby"
+  },
+  "spawn_conditions": [
+    {
+      "condition": {
+        "type": "minecraft:biome",
+        "biomes": "#promenade:sakura_groves"
+      },
+      "priority": 1
+    }
+  ]
+}

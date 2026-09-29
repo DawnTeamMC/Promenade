@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "promenade:block/birch_leaf_pile",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -8345771
+      }
+    ]
+  }
+}

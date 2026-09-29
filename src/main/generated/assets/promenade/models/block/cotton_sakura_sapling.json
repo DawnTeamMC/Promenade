@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "promenade:block/cotton_sakura_sapling"
+  }
+}

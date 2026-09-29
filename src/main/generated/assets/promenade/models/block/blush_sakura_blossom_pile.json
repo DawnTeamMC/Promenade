@@ -1,0 +1,6 @@
+{
+  "parent": "promenade:block/pile",
+  "textures": {
+    "all": "promenade:block/blush_sakura_blossoms"
+  }
+}

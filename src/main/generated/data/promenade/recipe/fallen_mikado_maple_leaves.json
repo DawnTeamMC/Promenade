@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "fallen_leaves",
+  "key": {
+    "#": "promenade:mikado_maple_leaves"
+  },
+  "pattern": [
+    "##"
+  ],
+  "result": {
+    "count": 2,
+    "id": "promenade:fallen_mikado_maple_leaves"
+  }
+}

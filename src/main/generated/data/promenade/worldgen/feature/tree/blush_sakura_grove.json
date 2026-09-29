@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:random_selector",
+  "default": "promenade:tree/blush_sakura",
+  "features": [
+    {
+      "chance": 0.1,
+      "feature": "promenade:tree/fancy_blush_sakura"
+    },
+    {
+      "chance": 0.2,
+      "feature": "promenade:tree/cotton_sakura"
+    }
+  ]
+}

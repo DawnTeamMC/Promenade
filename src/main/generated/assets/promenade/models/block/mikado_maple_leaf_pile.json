@@ -1,0 +1,6 @@
+{
+  "parent": "promenade:block/pile",
+  "textures": {
+    "all": "promenade:block/mikado_maple_leaves"
+  }
+}

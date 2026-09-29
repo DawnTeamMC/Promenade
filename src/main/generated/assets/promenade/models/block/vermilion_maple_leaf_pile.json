@@ -1,0 +1,6 @@
+{
+  "parent": "promenade:block/pile",
+  "textures": {
+    "all": "promenade:block/vermilion_maple_leaves"
+  }
+}

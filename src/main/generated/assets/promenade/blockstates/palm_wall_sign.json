@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "promenade:block/palm_wall_sign",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "promenade:block/palm_wall_sign",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "promenade:block/palm_wall_sign"
+    },
+    "facing=west": {
+      "model": "promenade:block/palm_wall_sign",
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,9 @@
+// 26.3	-999999999-01-01T00:00:00	Promenade/minecraft:entity Loot Table
+ef017fe8afbc1e704a7cfb4818ece7ba018f9c91 data/promenade/loot_table/entities/capybara.json
+8644c0302bfa268a99773dec206d3cef66a3f498 data/promenade/loot_table/entities/duck.json
+61cff5bad1c994c74026e36ec664463e1b614134 data/promenade/loot_table/entities/lush_creeper.json
+b588491b7bf1b8e3c117ded70420d5df01ba9cf4 data/promenade/loot_table/entities/sunken/brain.json
+6f7b076f954bbad70d9289bd0a2878283b72fd16 data/promenade/loot_table/entities/sunken/bubble.json
+30a4100eb7fce754489f72161caf5ef279daec84 data/promenade/loot_table/entities/sunken/fire.json
+2242189aeda1f0d073d067430572e0d924c315bd data/promenade/loot_table/entities/sunken/horn.json
+39aaec862da7e2585ae984f16c256253d4846631 data/promenade/loot_table/entities/sunken/tube.json

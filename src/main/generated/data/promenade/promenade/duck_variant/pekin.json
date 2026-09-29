@@ -1,0 +1,12 @@
+{
+  "asset_id": "promenade:entity/duck/pekin",
+  "spawn_conditions": [
+    {
+      "condition": {
+        "type": "minecraft:biome",
+        "biomes": "#promenade:spawns_pekin_ducks"
+      },
+      "priority": 1
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "promenade:block/bottom_snowy_leaves",
+  "textures": {
+    "all": "promenade:block/vermilion_maple_leaves",
+    "side": "promenade:block/snowy_maple_leaves_bottom",
+    "top": "promenade:block/snowy_maple_leaves"
+  }
+}

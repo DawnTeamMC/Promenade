@@ -1,0 +1,51 @@
+{
+  "type": "minecraft:tree",
+  "below_trunk_provider": "minecraft:soil_beneath_tree",
+  "decorators": [],
+  "foliage_placer": {
+    "type": "promenade:maple",
+    "height": {
+      "type": "minecraft:biased_to_bottom",
+      "max_inclusive": 20,
+      "min_inclusive": 17
+    },
+    "offset": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 6,
+      "min_inclusive": 5
+    },
+    "radius": {
+      "type": "minecraft:biased_to_bottom",
+      "max_inclusive": 4,
+      "min_inclusive": 3
+    }
+  },
+  "foliage_provider": {
+    "id": "promenade:fulvous_maple_leaves",
+    "properties": {
+      "distance": "7",
+      "persistent": "false",
+      "waterlogged": "false"
+    }
+  },
+  "ignore_vines": true,
+  "minimum_size": {
+    "type": "minecraft:two_layers_feature_size",
+    "limit": 0,
+    "min_clipped_height": 4,
+    "upper_size": 0
+  },
+  "trunk_placer": {
+    "type": "promenade:branching_straight",
+    "base_height": 17,
+    "height_rand_a": 5,
+    "height_rand_b": 3
+  },
+  "trunk_provider": {
+    "id": "promenade:maple_log",
+    "properties": {
+      "axis": "y",
+      "natural": "true"
+    }
+  }
+}

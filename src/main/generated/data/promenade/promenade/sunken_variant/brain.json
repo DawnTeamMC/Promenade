@@ -1,0 +1,9 @@
+{
+  "asset_id": "promenade:entity/sunken/brain",
+  "loot_table": "promenade:entities/sunken/brain",
+  "spawn_conditions": [
+    {
+      "priority": 0
+    }
+  ]
+}

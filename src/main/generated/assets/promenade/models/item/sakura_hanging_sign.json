@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "promenade:item/sakura_hanging_sign"
+  }
+}

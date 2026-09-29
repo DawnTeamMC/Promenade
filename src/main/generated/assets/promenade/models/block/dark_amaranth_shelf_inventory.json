@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_inventory",
+  "textures": {
+    "all": "promenade:block/dark_amaranth_shelf",
+    "particle": "promenade:block/stripped_dark_amaranth_stem"
+  }
+}

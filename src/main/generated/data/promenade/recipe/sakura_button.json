@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    "promenade:sakura_planks"
+  ],
+  "result": {
+    "id": "promenade:sakura_button"
+  }
+}

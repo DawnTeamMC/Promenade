@@ -1,0 +1,103 @@
+plugins {
+    id "net.fabricmc.fabric-loom"
+}
+
+evaluationDependsOn(':common')
+def common = project(':common')
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    api include("com.terraformersmc:biolith-fabric:${biolith_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+
+    // Optional: provides the config screen entry point
+    compileOnly("com.terraformersmc:modmenu:${modmenu_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+    localRuntime("com.terraformersmc:modmenu:${modmenu_version}") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+
+    // Version list: https://maven.su5ed.dev/#/releases/org/sinytra/wiki-exporter-fabric
+    //runtimeOnly "org.sinytra:wiki-exporter-fabric:2.2.1+1.21.11"
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/promenade.accesswidener")
+
+    splitEnvironmentSourceSets()
+
+    mods {
+        "promenade" {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.client
+        }
+    }
+
+    runs {
+        // Boots a server, runs the game tests and exits: a quick way to check that the mod loads
+        gameTestServer {
+            server()
+            name = "Game Test Server"
+            vmArg "-Dfabric-api.gametest"
+            runDir "build/gametest"
+        }
+        exportClient {
+            client()
+            name = "Wiki Export Client"
+            property "wiki_exporter.enabled", "true"
+            property "wiki_exporter.config.path", "${rootDir}/wiki_exporter_config.json"
+        }
+        exportServer {
+            server()
+            name = "Wiki Export Server"
+            property "wiki_exporter.enabled", "true"
+            property "wiki_exporter.config.path", "${rootDir}/wiki_exporter_config.json"
+        }
+    }
+}
+
+// Lets the IDE resolve the shared code; the classes themselves are compiled from source below
+dependencies {
+    compileOnly common.sourceSets.main.output
+    clientCompileOnly common.sourceSets.client.output
+}
+
+fabricApi {
+    configureDataGeneration() {
+        modId = "promenade-datagen"
+        createSourceSet = true
+        client = true
+        // Generated data is shared by every loader: the common project adds it to its resources
+        outputDirectory = common.file("src/main/generated")
+        addToResources = false
+    }
+}
+
+// Compile the shared sources into this jar
+tasks.named('compileJava', JavaCompile) {
+    source common.sourceSets.main.java
+}
+tasks.named('compileClientJava', JavaCompile) {
+    source common.sourceSets.client.java
+}
+processResources {
+    from common.sourceSets.main.resources
+
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
+}
+processClientResources {
+    from common.sourceSets.client.resources
+}
+sourcesJar {
+    from common.sourceSets.main.allSource
+    from common.sourceSets.client.allSource
+}

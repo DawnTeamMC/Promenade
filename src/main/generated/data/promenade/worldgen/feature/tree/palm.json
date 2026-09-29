@@ -1,0 +1,65 @@
+{
+  "type": "minecraft:tree",
+  "below_trunk_provider": {
+    "id": "minecraft:sand"
+  },
+  "decorators": [
+    {
+      "type": "minecraft:attached_to_leaves",
+      "block_provider": {
+        "id": "promenade:palm_hanging_leaves",
+        "properties": {
+          "waterlogged": "false"
+        }
+      },
+      "directions": [
+        "down"
+      ],
+      "exclusion_radius_xz": 1,
+      "exclusion_radius_y": 0,
+      "probability": 0.8,
+      "required_empty_blocks": 2
+    }
+  ],
+  "foliage_placer": {
+    "type": "promenade:palm",
+    "offset": 0,
+    "radius": 0
+  },
+  "foliage_provider": {
+    "id": "promenade:palm_leaves",
+    "properties": {
+      "distance": "14",
+      "persistent": "false",
+      "waterlogged": "false"
+    }
+  },
+  "ignore_vines": true,
+  "minimum_size": {
+    "type": "minecraft:two_layers_feature_size"
+  },
+  "trunk_placer": {
+    "type": "promenade:leaping",
+    "base_height": 6,
+    "decline_chance": 0.45,
+    "height_rand_a": 5,
+    "height_rand_b": 2,
+    "max_foliage_radius_bonus": 2,
+    "straight_difference": {
+      "type": "minecraft:uniform",
+      "max_inclusive": 0,
+      "min_inclusive": -1
+    },
+    "straight_max": {
+      "type": "minecraft:biased_to_bottom",
+      "max_inclusive": 10,
+      "min_inclusive": 3
+    }
+  },
+  "trunk_provider": {
+    "id": "promenade:palm_log",
+    "properties": {
+      "axis": "y"
+    }
+  }
+}

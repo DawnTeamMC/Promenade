@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "minecraft:block/netherrack",
+    "side": "promenade:block/dark_amaranth_nylium_side",
+    "top": "promenade:block/dark_amaranth_nylium"
+  }
+}

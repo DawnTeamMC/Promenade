@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "promenade:block/blush_sakura_sapling"
+  }
+}

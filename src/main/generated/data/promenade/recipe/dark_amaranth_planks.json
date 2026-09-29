@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    "#promenade:dark_amaranth_stems"
+  ],
+  "result": {
+    "count": 4,
+    "id": "promenade:dark_amaranth_planks"
+  }
+}

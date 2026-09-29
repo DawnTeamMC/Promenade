@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_red_tulip": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:red_tulip"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "promenade:red_tulip_pile"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_red_tulip"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "promenade:red_tulip_pile"
+    ]
+  }
+}

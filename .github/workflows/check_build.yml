@@ -33,7 +33,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Generate data files
-        run: ./gradlew runDatagen
+        run: ./gradlew :fabric:runDatagen
 
       - name: Build
         run: ./gradlew build

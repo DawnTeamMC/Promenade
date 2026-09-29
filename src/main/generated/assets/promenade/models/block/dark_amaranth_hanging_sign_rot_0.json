@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_hanging_sign_rot_0",
+  "textures": {
+    "all": "promenade:block/dark_amaranth_hanging_sign",
+    "particle": "promenade:block/stripped_dark_amaranth_stem"
+  }
+}

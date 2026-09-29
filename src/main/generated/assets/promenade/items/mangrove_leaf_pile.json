@@ -1,0 +1,12 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "promenade:block/mangrove_leaf_pile",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -7158200
+      }
+    ]
+  }
+}

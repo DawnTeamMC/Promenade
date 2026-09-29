@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "promenade:block/fulvous_maple_sapling"
+  }
+}

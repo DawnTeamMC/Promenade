@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "promenade:block/coiled_vines_plant",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "promenade:block/coiled_vines_plant",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "promenade:block/coiled_vines_plant",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "promenade:block/coiled_vines_plant",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "promenade:block/coiled_vines_plant"
+    },
+    "facing=west": {
+      "model": "promenade:block/coiled_vines_plant",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

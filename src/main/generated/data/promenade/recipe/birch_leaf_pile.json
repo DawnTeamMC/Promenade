@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "leaf_pile",
+  "key": {
+    "#": "minecraft:birch_leaves"
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 3,
+    "id": "promenade:birch_leaf_pile"
+  }
+}

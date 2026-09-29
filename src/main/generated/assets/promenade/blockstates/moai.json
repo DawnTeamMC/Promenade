@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=east,type=bottom": {
+      "model": "promenade:block/moai_bottom",
+      "y": 90
+    },
+    "facing=east,type=single": {
+      "model": "promenade:block/moai",
+      "y": 90
+    },
+    "facing=east,type=top": {
+      "model": "promenade:block/moai_top",
+      "y": 90
+    },
+    "facing=north,type=bottom": {
+      "model": "promenade:block/moai_bottom"
+    },
+    "facing=north,type=single": {
+      "model": "promenade:block/moai"
+    },
+    "facing=north,type=top": {
+      "model": "promenade:block/moai_top"
+    },
+    "facing=south,type=bottom": {
+      "model": "promenade:block/moai_bottom",
+      "y": 180
+    },
+    "facing=south,type=single": {
+      "model": "promenade:block/moai",
+      "y": 180
+    },
+    "facing=south,type=top": {
+      "model": "promenade:block/moai_top",
+      "y": 180
+    },
+    "facing=west,type=bottom": {
+      "model": "promenade:block/moai_bottom",
+      "y": 270
+    },
+    "facing=west,type=single": {
+      "model": "promenade:block/moai",
+      "y": 270
+    },
+    "facing=west,type=top": {
+      "model": "promenade:block/moai_top",
+      "y": 270
+    }
+  }
+}

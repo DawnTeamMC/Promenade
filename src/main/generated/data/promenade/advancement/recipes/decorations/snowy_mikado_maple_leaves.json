@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mikado_maple_leaves": {
+      "conditions": {
+        "items": [
+          {
+            "items": "promenade:mikado_maple_leaves"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "promenade:snowy_mikado_maple_leaves"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mikado_maple_leaves"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "promenade:snowy_mikado_maple_leaves"
+    ]
+  }
+}

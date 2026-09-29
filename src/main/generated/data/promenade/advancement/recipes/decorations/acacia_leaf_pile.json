@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_acacia_leaves": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:acacia_leaves"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "promenade:acacia_leaf_pile"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_acacia_leaves"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "promenade:acacia_leaf_pile"
+    ]
+  }
+}
