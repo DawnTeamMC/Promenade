@@ -1,14 +1,19 @@
 package fr.hugman.promenade.data.provider;
 
+
+
+
+
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import fr.hugman.promenade.references.BlockItemId;
+import net.minecraft.tags.TagKey;
 import fr.hugman.promenade.tag.PromenadeBlockTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.references.BlockItemIds;
-import net.minecraft.references.ItemIds;
-import net.minecraft.tags.BlockItemTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import org.jetbrains.annotations.Nullable;
@@ -20,8 +25,8 @@ import static fr.hugman.promenade.references.PromenadeItemIds.*;
 
 import static fr.hugman.promenade.tag.PromenadeItemTags.*;
 
-public class PromenadeItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
-    public PromenadeItemTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable BlockTagsProvider blockTagProvider) {
+public class PromenadeItemTagProvider extends FabricTagProvider.ItemTagProvider {
+    public PromenadeItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture, @Nullable FabricTagProvider.BlockTagProvider blockTagProvider) {
         super(output, completableFuture, blockTagProvider);
     }
 
@@ -35,37 +40,35 @@ public class PromenadeItemTagProvider extends FabricTagsProvider.ItemTagsProvide
 
         copy(PromenadeBlockTags.SNOWY_LEAVES, SNOWY_LEAVES);
 
-        builder(CAPYBARA_FOOD).add(BlockItemIds.CARROT_CROP).add(ItemIds.MELON_SLICE);
-        builder(DUCK_FOOD).add(BlockItemIds.WHEAT_CROP, BlockItemIds.MELON_CROP, BlockItemIds.PUMPKIN_CROP, BlockItemIds.BEETROOT_CROP, BlockItemIds.TORCHFLOWER_CROP, BlockItemIds.PITCHER_CROP);
+        builder(CAPYBARA_FOOD).add(Items.CARROT, Items.MELON_SLICE);
+        builder(DUCK_FOOD).add(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS, Items.TORCHFLOWER_SEEDS, Items.PITCHER_POD);
 
         // Vanilla
         copy(BlockTags.PLANKS, ItemTags.PLANKS);
         copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
-        copy(BlockTags.BUTTONS, BlockItemTags.BUTTONS.item());
+        copy(BlockTags.BUTTONS, ItemTags.BUTTONS);
         copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
         copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
         copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
         copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
         copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
         copy(BlockTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
-        copy(BlockTags.DOORS, BlockItemTags.DOORS.item());
-        copy(BlockItemTags.SAPLINGS.block(), ItemTags.SAPLINGS);
+        copy(BlockTags.DOORS, ItemTags.DOORS);
+        copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
         copy(BlockTags.WART_BLOCKS, ItemTags.WART_BLOCKS);
-        copy(BlockItemTags.LOGS_THAT_BURN.block(), ItemTags.LOGS_THAT_BURN);
+        copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
         copy(BlockTags.LOGS, ItemTags.LOGS);
-        copy(BlockTags.SLABS, BlockItemTags.SLABS.item());
+        copy(BlockTags.SLABS, ItemTags.SLABS);
         copy(BlockTags.WALLS, ItemTags.WALLS);
-        copy(BlockTags.STAIRS, BlockItemTags.STAIRS.item());
+        copy(BlockTags.STAIRS, ItemTags.STAIRS);
         copy(BlockTags.ANVIL, ItemTags.ANVIL);
         copy(BlockTags.RAILS, ItemTags.RAILS);
         copy(BlockTags.LEAVES, ItemTags.LEAVES);
         copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
-        copy(BlockTags.FENCES, BlockItemTags.FENCES.item());
-        copy(BlockTags.BEE_ATTRACTIVE, ItemTags.BEE_FOOD);
+        copy(BlockTags.FENCES, ItemTags.FENCES);
         copy(BlockTags.SOUL_FIRE_BASE_BLOCKS, ItemTags.SOUL_FIRE_BASE_BLOCKS);
         copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
         copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
-        copy(BlockTags.WOODEN_SHELVES, ItemTags.WOODEN_SHELVES);
 
         builder(ItemTags.BOATS).add(SAKURA_BOAT, MAPLE_BOAT, PALM_BOAT);
         builder(ItemTags.CHEST_BOATS).add(SAKURA_CHEST_BOAT, MAPLE_CHEST_BOAT, PALM_CHEST_BOAT);
@@ -125,5 +128,9 @@ public class PromenadeItemTagProvider extends FabricTagsProvider.ItemTagsProvide
         copy(ConventionalBlockTags.STRIPPED_WOODS, ConventionalItemTags.STRIPPED_WOODS);
         copy(ConventionalBlockTags.STRIPPED_LOGS, ConventionalItemTags.STRIPPED_LOGS);
         copy(PromenadeBlockTags.IGNEOUS_ROCKS, IGNEOUS_ROCKS);
+    }
+
+    private PromenadeTagBuilder<Item> builder(TagKey<Item> tag) {
+        return new PromenadeTagBuilder<Item>(this.getOrCreateTagBuilder(tag), BlockItemId::item);
     }
 }

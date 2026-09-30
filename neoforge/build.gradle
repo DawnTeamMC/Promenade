@@ -56,6 +56,10 @@ processResources {
     filesMatching("META-INF/neoforge.mods.toml") {
         expand props
     }
+    // The refmap only exists in the Fabric jar: NeoForge runs on Mojang names and warns about a missing one
+    filesMatching("promenade.mixins.json") {
+        filter { String line -> line.contains('"refmap"') ? null : line }
+    }
 }
 sourcesJar {
     from common.sourceSets.main.allSource

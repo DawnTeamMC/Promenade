@@ -1,7 +1,6 @@
 package fr.hugman.promenade.references;
 
 import fr.hugman.promenade.Promenade;
-import net.minecraft.references.BlockItemId;
 
 public class PromenadeBlockItemIds {
     public static final BlockItemId ASPHALT = createKey("asphalt");
@@ -29,7 +28,6 @@ public class PromenadeBlockItemIds {
     public static final BlockItemId ACACIA_LEAF_PILE = createKey("acacia_leaf_pile");
     public static final BlockItemId CHERRY_LEAF_PILE = createKey("cherry_leaf_pile");
     public static final BlockItemId DARK_OAK_LEAF_PILE = createKey("dark_oak_leaf_pile");
-    public static final BlockItemId PALE_OAK_LEAF_PILE = createKey("pale_oak_leaf_pile");
     public static final BlockItemId MANGROVE_LEAF_PILE = createKey("mangrove_leaf_pile");
     public static final BlockItemId AZALEA_LEAF_PILE = createKey("azalea_leaf_pile");
     public static final BlockItemId FLOWERING_AZALEA_LEAF_PILE = createKey("flowering_azalea_leaf_pile");
@@ -55,7 +53,6 @@ public class PromenadeBlockItemIds {
     public static final BlockItemId SNOWY_ACACIA_LEAVES = createKey("snowy_acacia_leaves");
     public static final BlockItemId SNOWY_CHERRY_LEAVES = createKey("snowy_cherry_leaves");
     public static final BlockItemId SNOWY_DARK_OAK_LEAVES = createKey("snowy_dark_oak_leaves");
-    public static final BlockItemId SNOWY_PALE_OAK_LEAVES = createKey("snowy_pale_oak_leaves");
     public static final BlockItemId SNOWY_MANGROVE_LEAVES = createKey("snowy_mangrove_leaves");
     public static final BlockItemId SNOWY_AZALEA_LEAVES = createKey("snowy_azalea_leaves");
     public static final BlockItemId SNOWY_FLOWERING_AZALEA_LEAVES = createKey("snowy_flowering_azalea_leaves");
@@ -76,7 +73,6 @@ public class PromenadeBlockItemIds {
     public static final BlockItemId SAKURA_PRESSURE_PLATE = createKey("sakura_pressure_plate");
     public static final BlockItemId SAKURA_SIGN = createKey("sakura_sign");
     public static final BlockItemId SAKURA_HANGING_SIGN = createKey("sakura_hanging_sign");
-    public static final BlockItemId SAKURA_SHELF = createKey("sakura_shelf");
 
     public static final BlockItemId BLUSH_SAKURA_SAPLING = createKey("blush_sakura_sapling");
     public static final BlockItemId BLUSH_SAKURA_BLOSSOMS = createKey("blush_sakura_blossoms");
@@ -104,7 +100,6 @@ public class PromenadeBlockItemIds {
     public static final BlockItemId MAPLE_PRESSURE_PLATE = createKey("maple_pressure_plate");
     public static final BlockItemId MAPLE_SIGN = createKey("maple_sign");
     public static final BlockItemId MAPLE_HANGING_SIGN = createKey("maple_hanging_sign");
-    public static final BlockItemId MAPLE_SHELF = createKey("maple_shelf");
 
     public static final BlockItemId SAP_MAPLE_SAPLING = createKey("sap_maple_sapling");
     public static final BlockItemId SAP_MAPLE_LEAVES = createKey("sap_maple_leaves");
@@ -146,7 +141,6 @@ public class PromenadeBlockItemIds {
     public static final BlockItemId PALM_PRESSURE_PLATE = createKey("palm_pressure_plate");
     public static final BlockItemId PALM_SIGN = createKey("palm_sign");
     public static final BlockItemId PALM_HANGING_SIGN = createKey("palm_hanging_sign");
-    public static final BlockItemId PALM_SHELF = createKey("palm_shelf");
 
     public static final BlockItemId PALM_SAPLING = createKey("palm_sapling");
     public static final BlockItemId PALM_LEAVES = createKey("palm_leaves");
@@ -173,7 +167,6 @@ public class PromenadeBlockItemIds {
     public static final BlockItemId DARK_AMARANTH_PRESSURE_PLATE = createKey("dark_amaranth_pressure_plate");
     public static final BlockItemId DARK_AMARANTH_SIGN = createKey("dark_amaranth_sign");
     public static final BlockItemId DARK_AMARANTH_HANGING_SIGN = createKey("dark_amaranth_hanging_sign");
-    public static final BlockItemId DARK_AMARANTH_SHELF = createKey("dark_amaranth_shelf");
 
     public static final BlockItemId DARK_AMARANTH_FUNGUS = createKey("dark_amaranth_fungus");
 

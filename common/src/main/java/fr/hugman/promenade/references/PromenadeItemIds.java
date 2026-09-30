@@ -4,7 +4,6 @@ import fr.hugman.promenade.Promenade;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
 
 public class PromenadeItemIds {
     public static final ResourceKey<Item> SAKURA_BOAT = createKey("sakura_boat");

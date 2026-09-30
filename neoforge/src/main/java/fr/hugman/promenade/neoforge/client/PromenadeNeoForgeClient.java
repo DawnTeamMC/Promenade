@@ -21,7 +21,8 @@ public class PromenadeNeoForgeClient {
         container.registerExtensionPoint(IConfigScreenFactory.class, (mod, parent) -> new PromenadeConfigScreen(parent));
 
         modBus.addListener(EntityRenderersEvent.RegisterLayerDefinitions.class, event -> PromenadeEntityModelLayers.register(event::registerLayerDefinition));
-        modBus.addListener(RegisterColorHandlersEvent.BlockTintSources.class, event -> PromenadeBlockColors.register(event::register));
+        modBus.addListener(RegisterColorHandlersEvent.Block.class, event -> PromenadeBlockColors.register(event::register));
+        modBus.addListener(RegisterColorHandlersEvent.Item.class, event -> PromenadeBlockColors.registerItems(event::register));
         modBus.addListener(EntityRenderersEvent.RegisterRenderers.class, event -> PromenadeEntityRenderers.register(event::registerEntityRenderer));
         modBus.addListener(RegisterParticleProvidersEvent.class, event -> PromenadeParticles.register((type, provider) -> event.registerSpriteSet(type, provider::apply)));
     }

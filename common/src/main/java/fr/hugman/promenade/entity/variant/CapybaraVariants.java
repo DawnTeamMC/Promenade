@@ -7,8 +7,8 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.variant.PriorityProvider;
-import net.minecraft.world.entity.variant.SpawnContext;
+import fr.hugman.promenade.entity.spawn.PriorityProvider;
+import fr.hugman.promenade.entity.spawn.SpawnContext;
 
 public class CapybaraVariants {
     public static final ResourceKey<CapybaraVariant> BROWN = of("brown");

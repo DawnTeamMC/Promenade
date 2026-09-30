@@ -1,20 +1,37 @@
 package fr.hugman.promenade.world.item.trading;
 
-import fr.hugman.promenade.Promenade;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.item.trading.VillagerTrade;
+import fr.hugman.promenade.block.PromenadeBlocks;
+import net.minecraft.world.entity.npc.VillagerTrades;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
+import net.minecraft.world.item.trading.MerchantOffer;
+import net.minecraft.world.level.ItemLike;
+
+import java.util.List;
 
 public class PromenadeVillagerTrades {
-    public static final ResourceKey<VillagerTrade> WANDERING_TRADER_VERMILION_MAPLE_SAPLING = resourceKey("wandering_trader/vermilion_maple_sapling");
-    public static final ResourceKey<VillagerTrade> WANDERING_TRADER_FULVOUS_MAPLE_SAPLING = resourceKey("wandering_trader/fulvous_maple_sapling");
-    public static final ResourceKey<VillagerTrade> WANDERING_TRADER_MIKADO_MAPLE_SAPLING = resourceKey("wandering_trader/mikado_maple_sapling");
-    public static final ResourceKey<VillagerTrade> WANDERING_TRADER_SAP_MAPLE_SAPLING = resourceKey("wandering_trader/sap_maple_sapling");
-    public static final ResourceKey<VillagerTrade> WANDERING_TRADER_BLUSH_SAKURA_SAPLING = resourceKey("wandering_trader/blush_sakura_sapling");
-    public static final ResourceKey<VillagerTrade> WANDERING_TRADER_COTTON_SAKURA_SAPLING = resourceKey("wandering_trader/cotton_sakura_sapling");
-    public static final ResourceKey<VillagerTrade> WANDERING_TRADER_PALM_SAPLING = resourceKey("wandering_trader/palm_sapling");
+    /**
+     * @return the trades that wandering traders may offer among their common ones
+     */
+    public static List<VillagerTrades.ItemListing> wanderingTraderCommonTrades() {
+        return List.of(
+                sapling(PromenadeBlocks.VERMILION_MAPLE_SAPLING),
+                sapling(PromenadeBlocks.FULVOUS_MAPLE_SAPLING),
+                sapling(PromenadeBlocks.MIKADO_MAPLE_SAPLING),
+                sapling(PromenadeBlocks.SAP_MAPLE_SAPLING),
 
-    private static ResourceKey<VillagerTrade> resourceKey(String path) {
-        return ResourceKey.create(Registries.VILLAGER_TRADE, Promenade.id(path));
+                sapling(PromenadeBlocks.BLUSH_SAKURA_SAPLING),
+                sapling(PromenadeBlocks.COTTON_SAKURA_SAPLING),
+
+                sapling(PromenadeBlocks.PALM_SAPLING)
+        );
+    }
+
+    /**
+     * Same trade as the vanilla saplings sold by wandering traders.
+     */
+    private static VillagerTrades.ItemListing sapling(ItemLike sapling) {
+        return (trader, random) -> new MerchantOffer(new ItemCost(Items.EMERALD, 5), new ItemStack(sapling), 8, 1, 0.05F);
     }
 }

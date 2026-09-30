@@ -1,28 +1,43 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.block.property.PromenadeBlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.Equipable;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jetbrains.annotations.Nullable;
+import net.minecraft.world.level.LevelAccessor;
 
-public class MoaiBlock extends HorizontalDirectionalBlock {
+public class MoaiBlock extends HorizontalDirectionalBlock implements Equipable {
+    public static final MapCodec<MoaiBlock> CODEC = simpleCodec(MoaiBlock::new);
     public static final EnumProperty<MoaiType> TYPE = PromenadeBlockProperties.MOAI_TYPE;
 
     public MoaiBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(TYPE, MoaiType.SINGLE).setValue(FACING, Direction.NORTH));
+    }
+
+    @Override
+    protected MapCodec<? extends MoaiBlock> codec() {
+        return CODEC;
+    }
+
+    /**
+     * Moais can be worn, like carved pumpkins.
+     */
+    @Override
+    public EquipmentSlot getEquipmentSlot() {
+        return EquipmentSlot.HEAD;
     }
 
     @Override
@@ -82,7 +97,7 @@ public class MoaiBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         var type = state.getValue(TYPE);
         if ((type == MoaiType.TOP && direction == Direction.DOWN) || (type == MoaiType.BOTTOM && direction == Direction.UP)) {
             if (!(neighborState.is(this) && neighborState.getValue(TYPE) == (type == MoaiType.TOP ? MoaiType.BOTTOM : MoaiType.TOP))) {

@@ -1,7 +1,7 @@
 package fr.hugman.promenade.data.model;
 
-import net.minecraft.client.data.models.model.TextureMapping;
-import net.minecraft.client.data.models.model.TexturedModel;
+import net.minecraft.data.models.model.TextureMapping;
+import net.minecraft.data.models.model.TexturedModel;
 import net.minecraft.world.level.block.Block;
 
 public class PromenadeTexturedModels {

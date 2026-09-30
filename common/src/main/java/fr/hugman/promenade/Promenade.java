@@ -4,7 +4,6 @@ import com.google.common.reflect.Reflection;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.block.dispenser.PromenadeDispenserBehaviors;
 import fr.hugman.promenade.block.entity.PromenadeBlockEntities;
-import fr.hugman.promenade.component.PromenadeComponentTypes;
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
@@ -21,10 +20,9 @@ import fr.hugman.promenade.world.PromenadeGameRules;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifierTypes;
-import fr.hugman.promenade.world.gen.stateprovider.PromenadeBlockStateProviderTypes;
 import fr.hugman.promenade.world.gen.tree.foliage.PromenadeFoliagePlacerTypes;
 import fr.hugman.promenade.world.gen.tree.trunk.PromenadeTrunkPlacerTypes;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -45,7 +43,6 @@ public class Promenade {
         PromenadeFlammables.register();
         PromenadeBlockEntities.addBlocksToVanillaBlockEntityTypes();
 
-        Reflection.initialize(PromenadeComponentTypes.class);
         Reflection.initialize(PromenadeItems.class);
 
         Reflection.initialize(PromenadeItemGroups.class);
@@ -57,7 +54,6 @@ public class Promenade {
         Reflection.initialize(PromenadeTrackedData.class);
         Reflection.initialize(PromenadeEntityTypes.class);
 
-        Reflection.initialize(PromenadeBlockStateProviderTypes.class);
         Reflection.initialize(PromenadeTrunkPlacerTypes.class);
         Reflection.initialize(PromenadeFoliagePlacerTypes.class);
         Reflection.initialize(PromenadeFeatures.class);
@@ -75,7 +71,7 @@ public class Promenade {
         Reflection.initialize(PromenadeGameRules.class);
     }
 
-    public static Identifier id(String path) {
-        return Identifier.fromNamespaceAndPath(MOD_ID, path);
+    public static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 }

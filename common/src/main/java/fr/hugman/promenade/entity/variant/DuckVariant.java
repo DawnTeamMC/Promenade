@@ -5,17 +5,16 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import java.util.List;
-import net.minecraft.core.ClientAsset.ResourceTexture;
 import net.minecraft.core.Holder;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.core.registries.codec.RegistryFixedCodec;
-import net.minecraft.world.entity.variant.PriorityProvider;
-import net.minecraft.world.entity.variant.SpawnCondition;
-import net.minecraft.world.entity.variant.SpawnContext;
-import net.minecraft.world.entity.variant.SpawnPrioritySelectors;
-import org.jspecify.annotations.NonNull;
+import net.minecraft.resources.RegistryFixedCodec;
+import fr.hugman.promenade.entity.spawn.PriorityProvider;
+import fr.hugman.promenade.entity.spawn.SpawnCondition;
+import fr.hugman.promenade.entity.spawn.SpawnContext;
+import fr.hugman.promenade.entity.spawn.SpawnPrioritySelectors;
+import org.jetbrains.annotations.NotNull;
 
 public record DuckVariant(
         ResourceTexture texture,
@@ -43,7 +42,7 @@ public record DuckVariant(
     }
 
     @Override
-    @NonNull
+    @NotNull
     public List<Selector<SpawnContext, SpawnCondition>> selectors() {
         return this.spawnConditions.selectors();
     }

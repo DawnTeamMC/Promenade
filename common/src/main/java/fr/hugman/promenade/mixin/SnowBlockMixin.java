@@ -28,7 +28,7 @@ public class SnowBlockMixin {
 
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
     private void promenade$randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random, CallbackInfo ci) {
-		if (! world.getGameRules().get(PromenadeGameRules.DO_BLOCKS_GET_SNOWY)) {
+		if (! world.getGameRules().getBoolean(PromenadeGameRules.DO_BLOCKS_GET_SNOWY)) {
             return;
         }
         if(state.getValue(LAYERS) == 8 && world.getBlockState(pos.above()).is((SnowLayerBlock)(Object)this)) {
@@ -39,7 +39,7 @@ public class SnowBlockMixin {
             return;
         }
         var downState = world.getBlockState(downPos.get());
-        var snowyLeaves = world.registryAccess().lookupOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().filter(
+        var snowyLeaves = world.registryAccess().registryOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().filter(
                 entry -> entry.baseBlock().is(downState.getBlock().builtInRegistryHolder())
         ).findFirst().map(sbt -> sbt.snowyBlock().value()).orElse(null);
 
@@ -73,7 +73,7 @@ public class SnowBlockMixin {
         } while (isFullSnowyBlock(world, blockState));
 
         var block = blockState.getBlock();
-        return world.registryAccess().lookupOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
+        return world.registryAccess().registryOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
                 entry -> entry.baseBlock().is(block.builtInRegistryHolder())
         ) ? Optional.of(mutable) : Optional.empty();
     }
@@ -82,7 +82,7 @@ public class SnowBlockMixin {
     @Unique
     private boolean isFullSnowyBlock(ServerLevel world, BlockState state) {
         var block = state.getBlock();
-        if (world.registryAccess().lookupOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
+        if (world.registryAccess().registryOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
                 entry -> entry.snowyBlock().is(block.builtInRegistryHolder())
         )) return true;
         if(state.is(Blocks.SNOW_BLOCK) || state.is(Blocks.POWDER_SNOW)) return true;

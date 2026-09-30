@@ -1,7 +1,7 @@
 package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.banner.PromenadeBannerPatterns;
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.entity.BannerPattern;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeBannerPatternProvider extends FabricDynamicRegistryProvider {
-    public PromenadeBannerPatternProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public PromenadeBannerPatternProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -31,7 +31,7 @@ public class PromenadeBannerPatternProvider extends FabricDynamicRegistryProvide
     }
 
     public static void of(BootstrapContext<BannerPattern> registerable, ResourceKey<BannerPattern> key) {
-        registerable.register(key, new BannerPattern(key.identifier(), "block.promenade.banner." + key.identifier().getPath()));
+        registerable.register(key, new BannerPattern(key.location(), "block.promenade.banner." + key.location().getPath()));
     }
 
 }

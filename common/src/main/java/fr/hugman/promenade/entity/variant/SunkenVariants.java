@@ -5,11 +5,11 @@ import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import java.util.Optional;
 import net.minecraft.core.Holder;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.variant.PriorityProvider;
-import net.minecraft.world.entity.variant.SpawnContext;
+import fr.hugman.promenade.entity.spawn.PriorityProvider;
+import fr.hugman.promenade.entity.spawn.SpawnContext;
 
 public class SunkenVariants {
     public static final ResourceKey<SunkenVariant> TUBE = of("tube");
@@ -24,7 +24,7 @@ public class SunkenVariants {
         return of(Promenade.id(path));
     }
 
-    public static ResourceKey<SunkenVariant> of(Identifier id) {
+    public static ResourceKey<SunkenVariant> of(ResourceLocation id) {
         return ResourceKey.create(PromenadeRegistryKeys.SUNKEN_VARIANT, id);
     }
 

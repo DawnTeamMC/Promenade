@@ -4,11 +4,10 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.function.Predicate;
@@ -30,11 +29,10 @@ public final class PromenadeBiomeSelectors {
      */
     public static Predicate<Holder<Biome>> spawns(EntityType<?> type) {
         return biome -> {
-            var spawns = EnvironmentAttributes.NATURAL_MOB_SPAWNS;
-            var spawnSettings = biome.value().getAttributes().applyModifier(spawns, spawns.defaultValue());
+            var spawnSettings = biome.value().getMobSettings();
             for (MobCategory category : MobCategory.values()) {
-                for (var spawner : spawnSettings.getMobsToSpawn(category).unwrap()) {
-                    if (spawner.value().type() == type) {
+                for (var spawner : spawnSettings.getMobs(category).unwrap()) {
+                    if (spawner.type == type) {
                         return true;
                     }
                 }
@@ -43,7 +41,7 @@ public final class PromenadeBiomeSelectors {
         };
     }
 
-    public static Predicate<Holder<Biome>> hasFeature(ResourceKey<Feature> feature) {
+    public static Predicate<Holder<Biome>> hasFeature(ResourceKey<ConfiguredFeature<?, ?>> feature) {
         return biome -> biome.value().getGenerationSettings().features().stream()
                 .flatMap(HolderSet::stream)
                 .anyMatch(placed -> placed.value().feature().is(feature));

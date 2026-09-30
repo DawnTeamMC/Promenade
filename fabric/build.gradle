@@ -1,5 +1,5 @@
 plugins {
-    id "net.fabricmc.fabric-loom"
+    id "net.fabricmc.fabric-loom-remap"
 }
 
 evaluationDependsOn(':common')
@@ -7,19 +7,21 @@ def common = project(':common')
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    // Same names as the common project, which is compiled against NeoForm
+    mappings loom.officialMojangMappings()
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-    api include("com.terraformersmc:biolith-fabric:${biolith_version}") {
+    modApi include("com.terraformersmc:biolith-fabric:${biolith_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
     // Optional: provides the config screen entry point
-    compileOnly("com.terraformersmc:modmenu:${modmenu_version}") {
+    modCompileOnly("com.terraformersmc:modmenu:${modmenu_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
-    localRuntime("com.terraformersmc:modmenu:${modmenu_version}") {
+    modLocalRuntime("com.terraformersmc:modmenu:${modmenu_version}") {
         exclude(group: "net.fabricmc.fabric-api")
     }
 
@@ -31,6 +33,13 @@ loom {
     accessWidenerPath = file("src/main/resources/promenade.accesswidener")
 
     splitEnvironmentSourceSets()
+
+    // The shared mixins are compiled here, so their refmap is generated here too (NeoForge runs on Mojang names and needs none)
+    mixin {
+        // Loom 1.18 no longer runs the Mixin annotation processor by default, and the obfuscated runtime needs the refmap it writes
+        useLegacyMixinAp = true
+        defaultRefmapName = "promenade.refmap.json"
+    }
 
     mods {
         "promenade" {

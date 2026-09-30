@@ -3,7 +3,7 @@ package fr.hugman.promenade.entity.variant;
 import fr.hugman.promenade.Promenade;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.entity.animal.wolf.WolfVariant;
+import net.minecraft.world.entity.animal.WolfVariant;
 
 public class PromenadeWolfVariants {
     public static final ResourceKey<WolfVariant> SHIBA_INU = of("shiba_inu");

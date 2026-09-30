@@ -2,10 +2,10 @@ package fr.hugman.promenade.world;
 
 import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.random.Weighted;
-import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.block.grower.TreeGrower;
-import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+
+import java.util.Optional;
 
 public class PromenadeSaplingGenerators {
     public static final TreeGrower BLUSH_SAKURA = fancyGrower("sakura/blush",
@@ -35,7 +35,7 @@ public class PromenadeSaplingGenerators {
     );
 
     public static final TreeGrower PALM = new TreeGrower("palm",
-            WeightedList.of(PromenadeConfiguredFeatures.PALM), WeightedList.of(), WeightedList.of(), PromenadeConfiguredFeatures.PALM
+            Optional.empty(), Optional.of(PromenadeConfiguredFeatures.PALM), Optional.empty()
     );
 
     /**
@@ -43,16 +43,14 @@ public class PromenadeSaplingGenerators {
      */
     private static TreeGrower fancyGrower(
             String name,
-            ResourceKey<Feature> tree,
-            ResourceKey<Feature> fancyTree,
-            ResourceKey<Feature> beeTree,
-            ResourceKey<Feature> fancyBeeTree
+            ResourceKey<ConfiguredFeature<?, ?>> tree,
+            ResourceKey<ConfiguredFeature<?, ?>> fancyTree,
+            ResourceKey<ConfiguredFeature<?, ?>> beeTree,
+            ResourceKey<ConfiguredFeature<?, ?>> fancyBeeTree
     ) {
-        return new TreeGrower(name,
-                WeightedList.of(new Weighted<>(tree, 9), new Weighted<>(fancyTree, 1)),
-                WeightedList.of(),
-                WeightedList.of(new Weighted<>(beeTree, 9), new Weighted<>(fancyBeeTree, 1)),
-                tree
+        return new TreeGrower(name, 0.1F, Optional.empty(), Optional.empty(),
+                Optional.of(tree), Optional.of(fancyTree),
+                Optional.of(beeTree), Optional.of(fancyBeeTree)
         );
     }
 }

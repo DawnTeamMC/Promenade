@@ -2,7 +2,7 @@ package fr.hugman.promenade.tag;
 
 import fr.hugman.promenade.Promenade;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
@@ -31,6 +31,6 @@ public class PromenadeBlockTags {
     }
 
 	private static TagKey<Block> ofConventional(String path) {
-		return TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(C_NAMESPACE, path));
+		return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(C_NAMESPACE, path));
 	}
 }

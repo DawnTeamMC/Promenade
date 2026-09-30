@@ -10,16 +10,17 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider;
+import fr.hugman.promenade.registry.PromenadeCompostables;
 
 public class BlockBuilder {
     private static final Function<BlockBehaviour.Properties, Block> DEFAULT_FACTORY = Block::new;
-    private static final Supplier<Item.Properties> DEFAULT_ITEM_SETTINGS = () -> new Item.Properties().useBlockDescriptionPrefix();
+    private static final Supplier<Item.Properties> DEFAULT_ITEM_SETTINGS = Item.Properties::new;
 
     private Function<BlockBehaviour.Properties, Block> factory = DEFAULT_FACTORY;
     private BlockBehaviour.Properties settings;
 
     private Item.Properties itemSettings = DEFAULT_ITEM_SETTINGS.get();
+    private float compostChance = 0.0F;
 
     public BlockBuilder(Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties settings) {
         this.factory = factory;
@@ -61,17 +62,12 @@ public class BlockBuilder {
     }
 
     /**
-     * Makes the block's item compostable, using one of the vanilla composting levels.
+     * Makes the block's item compostable, using one of the vanilla composting chances (see {@link PromenadeCompostables}).
+     * Burn times need no such setting: on 1.21.1, both loaders give them through item tags.
      */
-    public BlockBuilder compostable(ResourceKey<ContextIntProvider> layers) {
-        return this.itemSettings(settings -> settings.compostable(layers));
-    }
-
-    /**
-     * Makes the block's item usable as furnace fuel, using one of the vanilla burn times.
-     */
-    public BlockBuilder cookingFuel(ResourceKey<ContextIntProvider> burnTime) {
-        return this.itemSettings(settings -> settings.cookingFuel(burnTime));
+    public BlockBuilder compostable(float chance) {
+        this.compostChance = chance;
+        return this;
     }
 
     public BlockBuilder noItem() {
@@ -83,11 +79,14 @@ public class BlockBuilder {
         if (this.factory == null) {
             throw new IllegalStateException("Cannot register block: factory is not set!");
         }
-        var block = this.factory.apply(this.settings.setId(key));
+        var block = this.factory.apply(this.settings);
         Registry.register(BuiltInRegistries.BLOCK, key, block);
         if (this.itemSettings instanceof Item.Properties) {
-            var itemRegistryKey = ResourceKey.create(Registries.ITEM, key.identifier());
-            Registry.register(BuiltInRegistries.ITEM, itemRegistryKey, new BlockItem(block, this.itemSettings.setId(itemRegistryKey)));
+            var itemRegistryKey = ResourceKey.create(Registries.ITEM, key.location());
+            var item = Registry.register(BuiltInRegistries.ITEM, itemRegistryKey, new BlockItem(block, this.itemSettings));
+            if (this.compostChance > 0.0F) {
+                PromenadeCompostables.add(item, this.compostChance);
+            }
         }
         return block;
     }

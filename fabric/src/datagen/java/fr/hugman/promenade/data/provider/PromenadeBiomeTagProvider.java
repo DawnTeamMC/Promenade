@@ -1,7 +1,10 @@
 package fr.hugman.promenade.data.provider;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
@@ -14,8 +17,8 @@ import static fr.hugman.promenade.tag.PromenadeBiomeTags.*;
 import static fr.hugman.promenade.world.biome.PromenadeBiomes.*;
 import static net.minecraft.world.level.biome.Biomes.*;
 
-public class PromenadeBiomeTagProvider extends FabricTagsProvider<Biome> {
-    public PromenadeBiomeTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
+public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
+    public PromenadeBiomeTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
         super(output, Registries.BIOME, completableFuture);
     }
 
@@ -28,8 +31,8 @@ public class PromenadeBiomeTagProvider extends FabricTagsProvider<Biome> {
                 .add(DESERT)
                 .addOptionalTag(ConventionalBiomeTags.IS_DESERT);
         builder(HAS_DARK_FOREST_WITCH_HUTS)
-                .add(DARK_FOREST, PALE_GARDEN)
-                .addOptionalTag(ConventionalBiomeTags.IS_DARK_FOREST);
+                .add(DARK_FOREST)
+                .addOptionalTag(TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("c", "is_dark_forest")));
 
         builder(CAN_FREEZE_DURING_SNOWFALL).add(GLACARIAN_TAIGA);
 
@@ -72,5 +75,9 @@ public class PromenadeBiomeTagProvider extends FabricTagsProvider<Biome> {
         builder(ConventionalBiomeTags.IS_SNOWY).add(GLACARIAN_TAIGA);
         builder(ConventionalBiomeTags.IS_ICY).add(GLACARIAN_TAIGA);
         builder(ConventionalBiomeTags.IS_NETHER_FOREST).add(DARK_AMARANTH_FOREST);
+    }
+
+    private PromenadeTagBuilder<Biome> builder(TagKey<Biome> tag) {
+        return new PromenadeTagBuilder<Biome>(this.getOrCreateTagBuilder(tag), null);
     }
 }

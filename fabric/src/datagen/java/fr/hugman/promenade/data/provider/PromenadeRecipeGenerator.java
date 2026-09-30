@@ -1,35 +1,51 @@
 package fr.hugman.promenade.data.provider;
 
+
+
+
+
+import net.minecraft.world.item.Item;
+import net.minecraft.tags.TagKey;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.data.PromenadeBlockFamilies;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.tag.PromenadeItemTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.advancements.Advancement;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.BlockFamily;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.CampfireCookingRecipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
+import net.minecraft.world.item.crafting.SmokingRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-
 import java.util.concurrent.CompletableFuture;
 
-public class PromenadeRecipeGenerator extends RecipeProvider {
-    public PromenadeRecipeGenerator(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
-        super(recipeOutput, advancementOutput);
+public class PromenadeRecipeGenerator extends FabricRecipeProvider {
+    private RecipeOutput exporter;
+
+    public PromenadeRecipeGenerator(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+        super(output, registriesFuture);
     }
 
     @Override
-    public void buildRecipes() {
-        PromenadeBlockFamilies.getFamilies().forEach(family -> this.generateRecipes(family, FeatureFlagSet.of(FeatureFlags.VANILLA)));
+    public String getName() {
+        return "Recipes";
+    }
+
+    @Override
+    public void buildRecipes(RecipeOutput exporter) {
+        this.exporter = exporter;
+        PromenadeBlockFamilies.getFamilies().filter(BlockFamily::shouldGenerateRecipe).forEach(family -> this.generateRecipes(family, FeatureFlagSet.of(FeatureFlags.VANILLA)));
 
         this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.ASPHALT_SLAB, PromenadeBlocks.ASPHALT, 2);
         this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.ASPHALT_STAIRS, PromenadeBlocks.ASPHALT);
@@ -56,7 +72,6 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
         this.offerLeafPileRecipe(PromenadeBlocks.ACACIA_LEAF_PILE, Blocks.ACACIA_LEAVES);
         this.offerLeafPileRecipe(PromenadeBlocks.CHERRY_LEAF_PILE, Blocks.CHERRY_LEAVES);
         this.offerLeafPileRecipe(PromenadeBlocks.DARK_OAK_LEAF_PILE, Blocks.DARK_OAK_LEAVES);
-        this.offerLeafPileRecipe(PromenadeBlocks.PALE_OAK_LEAF_PILE, Blocks.PALE_OAK_LEAVES);
         this.offerLeafPileRecipe(PromenadeBlocks.MANGROVE_LEAF_PILE, Blocks.MANGROVE_LEAVES);
         this.offerLeafPileRecipe(PromenadeBlocks.AZALEA_LEAF_PILE, Blocks.AZALEA_LEAVES);
         this.offerLeafPileRecipe(PromenadeBlocks.FLOWERING_AZALEA_LEAF_PILE, Blocks.FLOWERING_AZALEA_LEAVES);
@@ -82,7 +97,6 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_ACACIA_LEAVES, Blocks.ACACIA_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_CHERRY_LEAVES, Blocks.CHERRY_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_DARK_OAK_LEAVES, Blocks.DARK_OAK_LEAVES);
-        this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_PALE_OAK_LEAVES, Blocks.PALE_OAK_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_MANGROVE_LEAVES, Blocks.MANGROVE_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_AZALEA_LEAVES, Blocks.AZALEA_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES, Blocks.FLOWERING_AZALEA_LEAVES);
@@ -90,7 +104,7 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
         this.planksFromLogs(PromenadeBlocks.SAKURA_PLANKS, PromenadeItemTags.SAKURA_LOGS, 4);
         this.woodFromLogs(PromenadeBlocks.SAKURA_WOOD, PromenadeBlocks.SAKURA_LOG);
         this.woodFromLogs(PromenadeBlocks.STRIPPED_SAKURA_WOOD, PromenadeBlocks.STRIPPED_SAKURA_LOG);
-        this.shelf(PromenadeBlocks.SAKURA_SHELF, PromenadeBlocks.STRIPPED_SAKURA_LOG);
+        this.hangingSign(PromenadeItems.SAKURA_HANGING_SIGN, PromenadeBlocks.STRIPPED_SAKURA_LOG);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_BLUSH_SAKURA_BLOSSOMS, PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_COTTON_SAKURA_BLOSSOMS, PromenadeBlocks.COTTON_SAKURA_BLOSSOMS);
         this.offerLeafPileRecipe(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE);
@@ -101,7 +115,7 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
         this.planksFromLogs(PromenadeBlocks.MAPLE_PLANKS, PromenadeItemTags.MAPLE_LOGS, 4);
         this.woodFromLogs(PromenadeBlocks.MAPLE_WOOD, PromenadeBlocks.MAPLE_LOG);
         this.woodFromLogs(PromenadeBlocks.STRIPPED_MAPLE_WOOD, PromenadeBlocks.STRIPPED_MAPLE_LOG);
-        this.shelf(PromenadeBlocks.MAPLE_SHELF, PromenadeBlocks.STRIPPED_MAPLE_LOG);
+        this.hangingSign(PromenadeItems.MAPLE_HANGING_SIGN, PromenadeBlocks.STRIPPED_MAPLE_LOG);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_SAP_MAPLE_LEAVES, PromenadeBlocks.SAP_MAPLE_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_VERMILION_MAPLE_LEAVES, PromenadeBlocks.VERMILION_MAPLE_LEAVES);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_FULVOUS_MAPLE_LEAVES, PromenadeBlocks.FULVOUS_MAPLE_LEAVES);
@@ -120,7 +134,7 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
         this.planksFromLogs(PromenadeBlocks.PALM_PLANKS, PromenadeItemTags.PALM_LOGS, 4);
         this.woodFromLogs(PromenadeBlocks.PALM_WOOD, PromenadeBlocks.PALM_LOG);
         this.woodFromLogs(PromenadeBlocks.STRIPPED_PALM_WOOD, PromenadeBlocks.STRIPPED_PALM_LOG);
-        this.shelf(PromenadeBlocks.PALM_SHELF, PromenadeBlocks.STRIPPED_PALM_LOG);
+        this.hangingSign(PromenadeItems.PALM_HANGING_SIGN, PromenadeBlocks.STRIPPED_PALM_LOG);
         this.offerSnowyLeavesRecipe(PromenadeBlocks.SNOWY_PALM_LEAVES, PromenadeBlocks.PALM_LEAVES);
         this.offerLeafPileRecipe(PromenadeBlocks.PALM_LEAF_PILE, PromenadeBlocks.PALM_LEAVES);
         this.woodenBoat(PromenadeItems.PALM_BOAT, PromenadeBlocks.PALM_PLANKS);
@@ -129,21 +143,21 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
         this.planksFromLogs(PromenadeBlocks.DARK_AMARANTH_PLANKS, PromenadeItemTags.DARK_AMARANTH_STEMS, 4);
         this.woodFromLogs(PromenadeBlocks.DARK_AMARANTH_HYPHAE, PromenadeBlocks.DARK_AMARANTH_STEM);
         this.woodFromLogs(PromenadeBlocks.STRIPPED_DARK_AMARANTH_HYPHAE, PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM);
-        this.shelf(PromenadeBlocks.DARK_AMARANTH_SHELF, PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM);
+        this.hangingSign(PromenadeItems.DARK_AMARANTH_HANGING_SIGN, PromenadeBlocks.STRIPPED_DARK_AMARANTH_STEM);
 
         this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.MOAI, Blocks.TUFF);
 
-        this.cookRecipes("smelting", SmeltingRecipe::new, 200);
-        this.cookRecipes("smoking", SmokingRecipe::new, 100);
-        this.cookRecipes("campfire_cooking", CampfireCookingRecipe::new, 600);
+        this.cookRecipes("smelting", RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, 200);
+        this.cookRecipes("smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);
+        this.cookRecipes("campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600);
 
-        this.oneToOneConversionRecipe(Items.DYE.magenta(), PromenadeItems.BLUEBERRIES, "magenta_dye", 1);
+        this.oneToOneConversionRecipe(Items.MAGENTA_DYE, PromenadeItems.BLUEBERRIES, "magenta_dye", 1);
 
         this.shapeless(RecipeCategory.MISC, PromenadeItems.BOVINE_BANNER_PATTERN)
                 .requires(Items.PAPER)
                 .requires(Items.LEATHER)
                 .unlockedBy("has_leather", this.has(Items.LEATHER))
-                .save(this.output);
+                .save(this.exporter);
     }
 
     public void offerSnowyLeavesRecipe(ItemLike output, ItemLike input) {
@@ -154,7 +168,7 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
                 .pattern("#")
                 .group("snowy_leaves")
                 .unlockedBy(getHasName(input), this.has(input))
-                .save(this.output);
+                .save(this.exporter);
 
     }
 
@@ -164,7 +178,7 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
                 .pattern("##")
                 .group("fallen_leaves")
                 .unlockedBy(getHasName(input), this.has(input))
-                .save(this.output);
+                .save(this.exporter);
     }
 
 
@@ -174,7 +188,7 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
                 .pattern("###")
                 .group("leaf_pile")
                 .unlockedBy(getHasName(input), this.has(input))
-                .save(this.output);
+                .save(this.exporter);
     }
 
     public void offerFlowerPileRecipe(ItemLike output, ItemLike input) {
@@ -183,24 +197,58 @@ public class PromenadeRecipeGenerator extends RecipeProvider {
                 .pattern("##")
                 .group("flower_pile")
                 .unlockedBy(getHasName(input), this.has(input))
-                .save(this.output);
+                .save(this.exporter);
     }
 
-    public <T extends AbstractCookingRecipe> void cookRecipes(final String source, final AbstractCookingRecipe.Factory<T> factory, final int cookingTime) {
-        this.simpleCookingRecipe(source, factory, cookingTime, PromenadeItems.DUCK, PromenadeItems.COOKED_DUCK, 0.35F);
+    public <T extends AbstractCookingRecipe> void cookRecipes(
+            String cooker, RecipeSerializer<T> serializer, AbstractCookingRecipe.Factory<T> recipeFactory, int cookingTime
+    ) {
+        simpleCookingRecipe(this.exporter, cooker, serializer, recipeFactory, cookingTime, PromenadeItems.DUCK, PromenadeItems.COOKED_DUCK, 0.35F);
     }
 
-    public static FabricRecipeProvider create(FabricPackOutput fabricDataOutput, CompletableFuture<HolderLookup.Provider> completableFuture) {
-        return new FabricRecipeProvider(fabricDataOutput, completableFuture) {
-            @Override
-            protected RecipeProvider createRecipeProvider(HolderLookup.Provider wrapperLookup, BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
-                return new PromenadeRecipeGenerator(recipeOutput, advancementOutput);
-            }
+    /* The instance methods that newer versions of the recipe provider have */
 
-            @Override
-            public String getName() {
-                return "Recipes";
-            }
-        };
+    private void generateRecipes(BlockFamily family, FeatureFlagSet flags) {
+        generateRecipes(this.exporter, family, flags);
+    }
+
+    private void stonecutterResultFromBase(RecipeCategory category, ItemLike result, ItemLike material) {
+        stonecutterResultFromBase(this.exporter, category, result, material);
+    }
+
+    private void stonecutterResultFromBase(RecipeCategory category, ItemLike result, ItemLike material, int count) {
+        stonecutterResultFromBase(this.exporter, category, result, material, count);
+    }
+
+    private void planksFromLogs(ItemLike planks, TagKey<Item> logs, int count) {
+        planksFromLogs(this.exporter, planks, logs, count);
+    }
+
+    private void woodFromLogs(ItemLike wood, ItemLike log) {
+        woodFromLogs(this.exporter, wood, log);
+    }
+
+    private void hangingSign(ItemLike sign, ItemLike strippedLog) {
+        hangingSign(this.exporter, sign, strippedLog);
+    }
+
+    private void woodenBoat(ItemLike boat, ItemLike planks) {
+        woodenBoat(this.exporter, boat, planks);
+    }
+
+    private void chestBoat(ItemLike chestBoat, ItemLike boat) {
+        chestBoat(this.exporter, chestBoat, boat);
+    }
+
+    private void oneToOneConversionRecipe(ItemLike result, ItemLike ingredient, String group, int count) {
+        oneToOneConversionRecipe(this.exporter, result, ingredient, group, count);
+    }
+
+    private ShapedRecipeBuilder shaped(RecipeCategory category, ItemLike result, int count) {
+        return ShapedRecipeBuilder.shaped(category, result, count);
+    }
+
+    private ShapelessRecipeBuilder shapeless(RecipeCategory category, ItemLike result) {
+        return ShapelessRecipeBuilder.shapeless(category, result);
     }
 }

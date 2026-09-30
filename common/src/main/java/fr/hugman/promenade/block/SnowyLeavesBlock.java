@@ -7,23 +7,20 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.LightLayer;
-import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FallingParticlesLeavesBlock;
-import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.LevelAccessor;
 
 public abstract class SnowyLeavesBlock extends FallingParticlesLeavesBlock {
     public static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
 
     public SnowyLeavesBlock(float leafParticleChance, Properties settings) {
-        super(leafParticleChance, AmbientLeavesBlockSoundPlayer.noAmbientSound(), settings);
+        super(leafParticleChance, settings);
         this.registerDefaultState(this.defaultBlockState().setValue(BOTTOM, false));
     }
 
@@ -51,7 +48,7 @@ public abstract class SnowyLeavesBlock extends FallingParticlesLeavesBlock {
         super.randomTick(state, world, pos, random);
 
         if (world.getBrightness(LightLayer.BLOCK, pos) > 11 && !world.getBiome(pos).is(PromenadeBiomeTags.CAN_FREEZE_DURING_SNOWFALL)) {
-            var normalLeaves = world.registryAccess().lookupOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().filter(
+            var normalLeaves = world.registryAccess().registryOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().filter(
                     entry -> entry.snowyBlock().value() == state.getBlock()
             ).findFirst().map(sbt -> sbt.baseBlock().value()).orElse(null);
 
@@ -65,9 +62,9 @@ public abstract class SnowyLeavesBlock extends FallingParticlesLeavesBlock {
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         BlockState stateBelow = world.getBlockState(pos.below());
-        return super.updateShape(state, world, tickView, pos, direction, neighborPos, neighborState, random).setValue(BOTTOM, !isSnow(stateBelow));
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos).setValue(BOTTOM, !isSnow(stateBelow));
     }
 
     public static boolean isSnow(BlockState state) {

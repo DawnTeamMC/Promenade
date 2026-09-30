@@ -1,11 +1,15 @@
 package fr.hugman.promenade.data.provider;
 
+
+
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.ItemLike;
 import fr.hugman.promenade.block.BerryBushBlock;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.item.PromenadeItems;
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootSubProvider;
-import net.minecraft.advancements.predicates.StatePropertiesPredicate;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
@@ -20,23 +24,25 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableCondition;
-import net.minecraft.world.level.storage.loot.predicates.MatchBlock;
-import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider {
+public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvider {
     private static final float[] JUNGLE_SAPLING_DROP_CHANCE = new float[]{0.025F, 0.027777778F, 0.03125F, 0.041666668F, 0.1F};
     protected static final float[] SAPLING_DROP_CHANCE = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
     private static final float[] LEAVES_STICK_DROP_CHANCE = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
 
-    public PromenadeBlockLootTableProvider(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+    public PromenadeBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(dataOutput, registryLookup);
     }
 
     @Override
     public void generate() {
+        final var enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
+
         dropSelf(PromenadeBlocks.ASPHALT);
         add(PromenadeBlocks.ASPHALT_SLAB, this::createSlabItemTable);
         dropSelf(PromenadeBlocks.ASPHALT_STAIRS);
@@ -60,7 +66,6 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
         add(PromenadeBlocks.ACACIA_LEAF_PILE, this::createShearsOrSilkTouchOnlyDrop);
         add(PromenadeBlocks.CHERRY_LEAF_PILE, this::createShearsOrSilkTouchOnlyDrop);
         add(PromenadeBlocks.DARK_OAK_LEAF_PILE, this::createShearsOrSilkTouchOnlyDrop);
-        add(PromenadeBlocks.PALE_OAK_LEAF_PILE, this::createShearsOrSilkTouchOnlyDrop);
         add(PromenadeBlocks.MANGROVE_LEAF_PILE, this::createShearsOrSilkTouchOnlyDrop);
         add(PromenadeBlocks.AZALEA_LEAF_PILE, this::createShearsOrSilkTouchOnlyDrop);
         add(PromenadeBlocks.FLOWERING_AZALEA_LEAF_PILE, this::createShearsOrSilkTouchOnlyDrop);
@@ -86,7 +91,6 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
         add(PromenadeBlocks.SNOWY_ACACIA_LEAVES, block -> this.snowyLeavesDrops(block, Blocks.ACACIA_SAPLING, SAPLING_DROP_CHANCE));
         add(PromenadeBlocks.SNOWY_CHERRY_LEAVES, block -> this.snowyLeavesDrops(block, Blocks.CHERRY_SAPLING, SAPLING_DROP_CHANCE));
         add(PromenadeBlocks.SNOWY_DARK_OAK_LEAVES, block -> this.snowyFruitLeavesDrop(block, Blocks.DARK_OAK_SAPLING, Items.APPLE, SAPLING_DROP_CHANCE));
-        add(PromenadeBlocks.SNOWY_PALE_OAK_LEAVES, block -> this.snowyLeavesDrops(block, Blocks.PALE_OAK_SAPLING, SAPLING_DROP_CHANCE));
         add(PromenadeBlocks.SNOWY_MANGROVE_LEAVES, this::snowyMangroveLeavesDrops);
         add(PromenadeBlocks.SNOWY_AZALEA_LEAVES, block -> this.snowyLeavesDrops(block, Blocks.AZALEA, SAPLING_DROP_CHANCE));
         add(PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES, block -> this.snowyLeavesDrops(block, Blocks.FLOWERING_AZALEA, SAPLING_DROP_CHANCE));
@@ -106,7 +110,6 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
         dropSelf(PromenadeBlocks.SAKURA_PRESSURE_PLATE);
         dropSelf(PromenadeBlocks.SAKURA_SIGN);
         dropSelf(PromenadeBlocks.SAKURA_HANGING_SIGN);
-        dropSelf(PromenadeBlocks.SAKURA_SHELF);
 
         dropSelf(PromenadeBlocks.BLUSH_SAKURA_SAPLING);
         dropPottedContents(PromenadeBlocks.POTTED_BLUSH_SAKURA_SAPLING);
@@ -135,7 +138,6 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
         dropSelf(PromenadeBlocks.MAPLE_PRESSURE_PLATE);
         dropSelf(PromenadeBlocks.MAPLE_SIGN);
         dropSelf(PromenadeBlocks.MAPLE_HANGING_SIGN);
-        dropSelf(PromenadeBlocks.MAPLE_SHELF);
 
         dropSelf(PromenadeBlocks.SAP_MAPLE_SAPLING);
         dropPottedContents(PromenadeBlocks.POTTED_SAP_MAPLE_SAPLING);
@@ -180,7 +182,6 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
         dropSelf(PromenadeBlocks.PALM_PRESSURE_PLATE);
         dropSelf(PromenadeBlocks.PALM_SIGN);
         dropSelf(PromenadeBlocks.PALM_HANGING_SIGN);
-        dropSelf(PromenadeBlocks.PALM_SHELF);
 
         dropSelf(PromenadeBlocks.PALM_SAPLING);
         dropPottedContents(PromenadeBlocks.POTTED_PALM_SAPLING);
@@ -209,7 +210,6 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
         dropSelf(PromenadeBlocks.DARK_AMARANTH_PRESSURE_PLATE);
         dropSelf(PromenadeBlocks.DARK_AMARANTH_SIGN);
         dropSelf(PromenadeBlocks.DARK_AMARANTH_HANGING_SIGN);
-        dropSelf(PromenadeBlocks.DARK_AMARANTH_SHELF);
 
         dropSelf(PromenadeBlocks.DARK_AMARANTH_FUNGUS);
         dropPottedContents(PromenadeBlocks.POTTED_DARK_AMARANTH_FUNGUS);
@@ -228,22 +228,24 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
                         LootTable.lootTable()
                                 .withPool(
                                         LootPool.lootPool()
-                                                .when(MatchBlock.blockMatches(this.blocks, PromenadeBlocks.BLUEBERRY_BUSH,
-                                                        StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 3)))
+                                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(PromenadeBlocks.BLUEBERRY_BUSH)
+                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 3)))
                                                 .add(LootItem.lootTableItem(PromenadeItems.BLUEBERRIES))
-                                                .apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 3)))
-                                                .apply(ApplyBonusCount.addUniformBonusCount(this.enchantments.getOrThrow(Enchantments.FORTUNE)))
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
+                                                .apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE)))
                                 )
                                 .withPool(
                                         LootPool.lootPool()
-                                                .when(MatchBlock.blockMatches(this.blocks, PromenadeBlocks.BLUEBERRY_BUSH,
-                                                        StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 2)))
+                                                .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(PromenadeBlocks.BLUEBERRY_BUSH)
+                                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 2)))
                                                 .add(LootItem.lootTableItem(PromenadeItems.BLUEBERRIES))
-                                                .apply(SetItemCountFunction.setCount(ContextIntProviders.between(1, 2)))
-                                                .apply(ApplyBonusCount.addUniformBonusCount(this.enchantments.getOrThrow(Enchantments.FORTUNE)))
+                                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
+                                                .apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE)))
                                 )
                 )
         );
+
+        this.map.forEach((id, lootTable) -> lootTable.setRandomSequence(id.location()));
     }
 
     public LootTable.Builder snowyLeavesDrops(Block leaves, Block sapling, float... saplingChance) {
@@ -254,7 +256,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
                                 .add(
                                         this.applyExplosionCondition(leaves,
                                                 LootItem.lootTableItem(Items.SNOWBALL)
-                                                        .apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 4)))
+                                                        .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
                                         )
                                 ));
     }
@@ -266,18 +268,19 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
                                 .when(this.doesNotHaveShearsOrSilkTouch())
                                 .add(
                                         this.applyExplosionCondition(leaves,
-                                                LootItem.lootTableItem(Items.SNOWBALL).apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 4)))
+                                                LootItem.lootTableItem(Items.SNOWBALL).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
                                         )
                                 ));
     }
 
     public LootTable.Builder fruitLeavesDrops(Block leaves, Block sapling, Item fruit, float... saplingChance) {
+        HolderLookup.RegistryLookup<Enchantment> impl = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return this.createLeavesDrops(leaves, sapling, saplingChance)
                 .withPool(LootPool.lootPool()
                         .when(this.doesNotHaveSilkTouch())
                         .add(
                                 this.applyExplosionCondition(leaves, LootItem.lootTableItem(fruit))
-                                        .when(BonusLevelTableCondition.bonusLevelFlatChance(this.enchantments.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
+                                        .when(BonusLevelTableCondition.bonusLevelFlatChance(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
                         )
                 );
     }
@@ -288,7 +291,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
                         .when(this.doesNotHaveShearsOrSilkTouch())
                         .add(
                                 this.applyExplosionCondition(leaves,
-                                        LootItem.lootTableItem(Items.SNOWBALL).apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 4)))
+                                        LootItem.lootTableItem(Items.SNOWBALL).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
                                 )
                         )
                 );
@@ -301,7 +304,17 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootSubProvider 
     public LootTable.Builder flowerPile(Block pile, Item flower) {
         return this.createSilkTouchOrShearsDispatchTable(
                 pile,
-                this.applyExplosionDecay(pile, LootItem.lootTableItem(flower).apply(SetItemCountFunction.setCount(ContextIntProviders.between(2, 3))))
+                this.applyExplosionDecay(pile, LootItem.lootTableItem(flower).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))))
         );
+    }
+
+    /**
+     * Drops the block only when broken with shears or silk touch. Newer versions of Minecraft ship this helper.
+     */
+    private LootTable.Builder createShearsOrSilkTouchOnlyDrop(ItemLike item) {
+        return LootTable.lootTable().withPool(LootPool.lootPool()
+                .when(HAS_SHEARS.or(this.hasSilkTouch()))
+                .setRolls(ConstantValue.exactly(1.0F))
+                .add(LootItem.lootTableItem(item)));
     }
 }

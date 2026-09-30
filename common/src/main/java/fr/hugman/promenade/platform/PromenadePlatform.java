@@ -3,7 +3,7 @@ package fr.hugman.promenade.platform;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.network.syncher.EntityDataSerializer;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -47,9 +47,9 @@ public interface PromenadePlatform {
     /**
      * Makes {@code oldId} resolve to {@code newId}, so that renamed content is not lost in existing worlds.
      */
-    <T> void registerAlias(Registry<T> registry, Identifier oldId, Identifier newId);
+    <T> void registerAlias(Registry<T> registry, ResourceLocation oldId, ResourceLocation newId);
 
-    void registerEntityDataSerializer(Identifier id, EntityDataSerializer<?> serializer);
+    void registerEntityDataSerializer(ResourceLocation id, EntityDataSerializer<?> serializer);
 
     /* ========== */
     /*   BLOCKS   */

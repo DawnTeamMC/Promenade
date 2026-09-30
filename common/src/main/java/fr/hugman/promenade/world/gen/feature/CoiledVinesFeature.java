@@ -1,12 +1,9 @@
 package fr.hugman.promenade.world.gen.feature;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.mojang.serialization.Codec;
 import fr.hugman.promenade.block.PromenadeBlocks;
-import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
@@ -16,46 +13,40 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
-public record CoiledVinesFeature(
-        int spreadWidth,
-        int spreadHeight,
-        int maxLength,
-        List<Direction> directions
-) implements Feature {
-    public static final MapCodec<CoiledVinesFeature> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            ExtraCodecs.POSITIVE_INT.fieldOf("spread_width").forGetter(CoiledVinesFeature::spreadWidth),
-            ExtraCodecs.POSITIVE_INT.fieldOf("spread_height").forGetter(CoiledVinesFeature::spreadHeight),
-            ExtraCodecs.POSITIVE_INT.fieldOf("max_length").forGetter(CoiledVinesFeature::maxLength),
-            ExtraCodecs.nonEmptyList(Direction.CODEC.listOf()).optionalFieldOf("directions", List.of(Direction.values())).forGetter(CoiledVinesFeature::directions)
-    ).apply(instance, CoiledVinesFeature::new));
-
-    @Override
-    public MapCodec<CoiledVinesFeature> codec() {
-        return CODEC;
+public class CoiledVinesFeature extends Feature<CoiledVinesFeatureConfig> {
+    public CoiledVinesFeature(Codec<CoiledVinesFeatureConfig> configCodec) {
+        super(configCodec);
     }
 
     @Override
-    public boolean place(WorldGenLevel structureWorldAccess, ChunkGenerator chunkGenerator, RandomSource random, BlockPos blockPos) {
+    public boolean place(FeaturePlaceContext<CoiledVinesFeatureConfig> context) {
+        WorldGenLevel structureWorldAccess = context.level();
+        BlockPos blockPos = context.origin();
         if (isNotSuitable(structureWorldAccess, blockPos, Direction.UP)) {
             return false;
         } else {
+            RandomSource random = context.random();
+            CoiledVinesFeatureConfig config = context.config();
+            int spreadWidth = config.spreadWidth();
+            int spreadHeight = config.spreadHeight();
+            int maxLength = config.maxLength();
             BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
 
-            for (int l = 0; l < this.spreadWidth * this.spreadWidth; l++) {
+            for (int l = 0; l < spreadWidth * spreadWidth; l++) {
                 // Pick a random direction
-                var direction = this.directions.get(random.nextInt(this.directions.size()));
+                var direction = config.directions().get(random.nextInt(config.directions().size()));
                 // Pick a random position
                 mutable.set(blockPos).move(
-                        Mth.nextInt(random, -this.spreadWidth, this.spreadWidth),
-                        Mth.nextInt(random, -this.spreadHeight, this.spreadHeight),
-                        Mth.nextInt(random, -this.spreadWidth, this.spreadWidth)
+                        Mth.nextInt(random, -spreadWidth, spreadWidth),
+                        Mth.nextInt(random, -spreadHeight, spreadHeight),
+                        Mth.nextInt(random, -spreadWidth, spreadWidth)
                 );
 
                 if (findNonAirBlock(structureWorldAccess, mutable, direction) && !isNotSuitable(structureWorldAccess, mutable, direction)) {
-                    int lenght = Mth.nextInt(random, 1, this.maxLength);
+                    int lenght = Mth.nextInt(random, 1, maxLength);
                     if (random.nextInt(6) == 0) {
                         lenght *= 2;
                     }

@@ -1,11 +1,10 @@
 package fr.hugman.promenade.client.render.entity.model.duck;
 
-import fr.hugman.promenade.client.render.entity.state.DuckRenderState;
+import fr.hugman.promenade.entity.Duck;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartNames;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.util.Mth;
 
 public class AdultDuckModel extends DuckModel {
     private final ModelPart rightWing;
@@ -37,12 +36,11 @@ public class AdultDuckModel extends DuckModel {
     }
 
     @Override
-    public void setupAnim(DuckRenderState state) {
-        super.setupAnim(state);
+    public void setupAnim(Duck duck, float limbAngle, float limbDistance, float wingFlap, float headYaw, float headPitch) {
+        super.setupAnim(duck, limbAngle, limbDistance, wingFlap, headYaw, headPitch);
 
         // Wings
-        float f = (Mth.sin(state.flapProgress) + 1.0F) * state.maxWingDeviation;
-        this.rightWing.zRot = f;
-        this.leftWing.zRot = -f;
+        this.rightWing.zRot = wingFlap;
+        this.leftWing.zRot = -wingFlap;
     }
 }

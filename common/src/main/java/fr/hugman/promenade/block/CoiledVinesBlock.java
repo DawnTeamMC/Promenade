@@ -1,5 +1,6 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.NetherVines;
@@ -16,8 +17,15 @@ public class CoiledVinesBlock extends AbstractFacingPlantStemBlock {
             Block.box(0.0, 2.0, 2.0, 14.0, 14.0, 14.0) // EAST
     };
 
+    public static final MapCodec<CoiledVinesBlock> CODEC = simpleCodec(CoiledVinesBlock::new);
+
     public CoiledVinesBlock(Properties settings) {
         super(settings, SHAPES, false, 0.1);
+    }
+
+    @Override
+    protected MapCodec<? extends CoiledVinesBlock> codec() {
+        return CODEC;
     }
 
     @Override
