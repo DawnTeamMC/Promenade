@@ -8,7 +8,12 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.entity.decoration.painting.PaintingVariant;
+import net.minecraft.nbt.NbtOps;
+import net.minecraft.nbt.Tag;
+import net.minecraft.resources.RegistryOps;
+import net.minecraft.world.entity.decoration.Painting;
+import net.minecraft.world.entity.decoration.PaintingVariant;
+import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemStackLinkedSet;
@@ -33,7 +38,8 @@ public final class PromenadeItemGroup {
         // Vanilla Entity Variants
         //TODO: add spawn eggs
 
-        // Paintings
+        // Paintings (mirrors vanilla's CreativeModeTabs#generatePresetPaintings)
+        RegistryOps<Tag> ops = displayContext.holders().createSerializationContext(NbtOps.INSTANCE);
         displayContext.holders()
                 .lookup(Registries.PAINTING_VARIANT)
                 .ifPresent(registryWrapper -> registryWrapper.listElements()
@@ -41,8 +47,12 @@ public final class PromenadeItemGroup {
                         .sorted(PAINTING_VARIANT_COMPARATOR)
                         .forEach(
                                 paintingVariantEntry -> {
+                                    CustomData entityData = CustomData.EMPTY
+                                            .update(ops, Painting.VARIANT_MAP_CODEC, paintingVariantEntry)
+                                            .getOrThrow()
+                                            .update(nbt -> nbt.putString("id", "minecraft:painting"));
                                     ItemStack itemStack = new ItemStack(Items.PAINTING);
-                                    itemStack.set(DataComponents.PAINTING_VARIANT, paintingVariantEntry);
+                                    itemStack.set(DataComponents.ENTITY_DATA, entityData);
                                     entries.accept(itemStack, CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                                 }
                         )
@@ -55,7 +65,7 @@ public final class PromenadeItemGroup {
 
 
     private static boolean isPromenade(ResourceKey<?> key) {
-        return key.identifier().getNamespace().equals(Promenade.MOD_ID);
+        return key.location().getNamespace().equals(Promenade.MOD_ID);
     }
 
     // FROM Vanilla ItemGroups

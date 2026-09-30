@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.components.toasts.SystemToast;
 import net.minecraft.client.gui.layouts.LinearLayout;
 import net.minecraft.client.gui.screens.Screen;
@@ -13,7 +14,6 @@ import net.minecraft.client.gui.screens.options.OptionsSubScreen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 
-import java.util.List;
 
 /**
  * An in-game screen to edit the {@link PromenadeConfig}.
@@ -48,12 +48,19 @@ public class PromenadeConfigScreen extends OptionsSubScreen {
 
     @Override
     protected void addOptions() {
-        this.list.addHeader(Component.translatable(KEY + ".world_features"));
+        this.addHeader(Component.translatable(KEY + ".world_features"));
         this.list.addSmall(this.igneousRockPatches, this.blueberryBushes, this.palms);
-        this.list.addHeader(Component.translatable(KEY + ".animals"));
+        this.addHeader(Component.translatable(KEY + ".animals"));
         this.list.addSmall(this.capybarasWeight, this.ducksWeight);
-        this.list.addHeader(Component.translatable(KEY + ".monsters"));
+        this.addHeader(Component.translatable(KEY + ".monsters"));
         this.list.addSmall(this.lushCreepersWeight, this.sunkensWeight);
+    }
+
+    /**
+     * Option lists have no headers in 1.21.1, so this adds a text spanning both columns.
+     */
+    private void addHeader(Component title) {
+        this.list.addSmall(new StringWidget(this.list.getRowWidth(), 20, title, this.font), null);
     }
 
     @Override
@@ -72,11 +79,9 @@ public class PromenadeConfigScreen extends OptionsSubScreen {
         this.ducksWeight.set(config.animals().ducksWeight());
         this.lushCreepersWeight.set(config.monsters().lushCreepersWeight());
         this.sunkensWeight.set(config.monsters().sunkensWeight());
-        // Refreshes the existing widgets: rebuilding them would stack a new layout on top of the old one
-        for (var option : List.of(this.igneousRockPatches, this.blueberryBushes, this.palms,
-                this.capybarasWeight, this.ducksWeight, this.lushCreepersWeight, this.sunkensWeight)) {
-            this.resetOption(option);
-        }
+        // Reopens the screen to refresh the widgets: this screen saves the defaults as it is closed, and the new one
+        // reads them back. Rebuilding the widgets in place would stack a new layout on top of the old one.
+        this.minecraft.setScreen(new PromenadeConfigScreen(this.lastScreen));
     }
 
     @Override
@@ -84,7 +89,7 @@ public class PromenadeConfigScreen extends OptionsSubScreen {
         // Saves our config instead of the vanilla options
         PromenadeConfig.save(this.toConfig());
         if (PromenadeConfig.requiresRestart()) {
-            SystemToast.addOrUpdate(this.minecraft.gui.toastManager(), SystemToast.SystemToastId.PERIODIC_NOTIFICATION,
+            SystemToast.addOrUpdate(this.minecraft.getToasts(), SystemToast.SystemToastId.PERIODIC_NOTIFICATION,
                     TITLE, Component.translatable(KEY + ".restart_required"));
         }
     }
@@ -110,7 +115,8 @@ public class PromenadeConfigScreen extends OptionsSubScreen {
                 (caption, weight) -> weight == 0 ? Options.genericValueLabel(caption, CommonComponents.OPTION_OFF) : Options.genericValueLabel(caption, weight),
                 new OptionInstance.IntRange(0, Math.max(MAX_WEIGHT, initialValue)),
                 initialValue,
-                OptionInstance.NO_ACTION
+                newValue -> {
+                }
         );
     }
 

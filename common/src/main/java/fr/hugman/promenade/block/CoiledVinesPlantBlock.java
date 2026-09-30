@@ -1,5 +1,6 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -13,8 +14,15 @@ public class CoiledVinesPlantBlock extends AbstractFacingPlantBlock {
             Block.box(0.0, 2.0, 2.0, 16.0, 14.0, 14.0) // EAST
     };
 
+    public static final MapCodec<CoiledVinesPlantBlock> CODEC = simpleCodec(CoiledVinesPlantBlock::new);
+
     public CoiledVinesPlantBlock(Properties settings) {
         super(settings, SHAPES, false);
+    }
+
+    @Override
+    protected MapCodec<? extends CoiledVinesPlantBlock> codec() {
+        return CODEC;
     }
 
     @Override

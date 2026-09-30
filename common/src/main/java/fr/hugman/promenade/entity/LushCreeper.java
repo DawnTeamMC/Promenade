@@ -9,14 +9,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.AreaEffectCloud;
-import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.gamerules.GameRules;
-import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 public class LushCreeper extends Creeper {
     private static final int EXPLOSION_Y_LENGTH = 10;
@@ -25,7 +25,7 @@ public class LushCreeper extends Creeper {
         super(entityType, world);
     }
 
-    public static boolean canSpawn(EntityType<? extends Monster> type, ServerLevelAccessor world, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
+    public static boolean canSpawn(EntityType<? extends Monster> type, ServerLevelAccessor world, MobSpawnType spawnReason, BlockPos pos, RandomSource random) {
         return pos.getY() < 0 && Monster.checkMonsterSpawnRules(type, world, spawnReason, pos, random);
     }
 
@@ -33,12 +33,12 @@ public class LushCreeper extends Creeper {
     protected void explodeCreeper() {
         if (this.level() instanceof ServerLevel serverWorld) {
             boolean hasGeneratedMoss = false;
-			if (serverWorld.getGameRules().get(GameRules.MOB_GRIEFING)) {
-                Registry<Feature> registry = serverWorld.registryAccess().lookupOrThrow(Registries.FEATURE);
+			if (serverWorld.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
+                Registry<ConfiguredFeature<?, ?>> registry = serverWorld.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE);
                 for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
                     BlockPos pos = blockPosition().below(i);
                     if (this.level().getBlockState(pos).isRedstoneConductor(this.level(), pos)) {
-                        if (registry.getValue(this.level().getRandom().nextBoolean() ? CaveFeatures.MOSS_PATCH : CaveFeatures.CLAY_POOL_WITH_DRIPLEAVES).place(serverWorld, serverWorld.getChunkSource().getGenerator(), random, pos.above())) {
+                        if (registry.getOrThrow(this.level().getRandom().nextBoolean() ? CaveFeatures.MOSS_PATCH : CaveFeatures.CLAY_POOL_WITH_DRIPLEAVES).place(serverWorld, serverWorld.getChunkSource().getGenerator(), random, pos.above())) {
                             hasGeneratedMoss = true;
                         }
                         break;
@@ -47,7 +47,7 @@ public class LushCreeper extends Creeper {
                 for (int i = 0; i < EXPLOSION_Y_LENGTH; i++) {
                     BlockPos pos = blockPosition().above(i);
                     if (this.level().getBlockState(pos).isRedstoneConductor(this.level(), pos)) {
-                        if (registry.getValue(CaveFeatures.MOSS_PATCH_CEILING).place(serverWorld, serverWorld.getChunkSource().getGenerator(), random, pos.below())) {
+                        if (registry.getOrThrow(CaveFeatures.MOSS_PATCH_CEILING).place(serverWorld, serverWorld.getChunkSource().getGenerator(), random, pos.below())) {
                             hasGeneratedMoss = true;
                         }
                         break;

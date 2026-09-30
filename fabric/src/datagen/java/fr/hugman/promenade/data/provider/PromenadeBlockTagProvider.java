@@ -1,12 +1,16 @@
 package fr.hugman.promenade.data.provider;
 
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+
+
+
+import net.minecraft.world.level.block.Block;
+import fr.hugman.promenade.references.BlockItemId;
+import net.minecraft.tags.TagKey;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.references.BlockItemIds;
-import net.minecraft.tags.BlockItemTagId;
-import net.minecraft.tags.BlockItemTags;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Blocks;
 
@@ -16,8 +20,8 @@ import static fr.hugman.promenade.references.PromenadeBlockItemIds.*;
 import static fr.hugman.promenade.references.PromenadeBlockIds.*;
 import static fr.hugman.promenade.tag.PromenadeBlockTags.*;
 
-public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvider {
-    public PromenadeBlockTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvider {
+    public PromenadeBlockTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -37,7 +41,6 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
                 SNOWY_ACACIA_LEAVES,
                 SNOWY_CHERRY_LEAVES,
                 SNOWY_DARK_OAK_LEAVES,
-                SNOWY_PALE_OAK_LEAVES,
                 SNOWY_MANGROVE_LEAVES,
                 SNOWY_AZALEA_LEAVES,
                 SNOWY_FLOWERING_AZALEA_LEAVES,
@@ -64,7 +67,6 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
                 ACACIA_LEAF_PILE,
                 CHERRY_LEAF_PILE,
                 DARK_OAK_LEAF_PILE,
-                PALE_OAK_LEAF_PILE,
                 MANGROVE_LEAF_PILE,
                 AZALEA_LEAF_PILE,
                 FLOWERING_AZALEA_LEAF_PILE,
@@ -95,16 +97,16 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
 
         builder(DARK_AMARANTH_FUNGUS_GROWABLE_ON).add(DARK_AMARANTH_NYLIUM);
         builder(DARK_AMARANTH_FUNGUS_PLACEABLE_ON)
-                .add(BlockItemIds.MYCELIUM)
-                .add(BlockItemIds.SOUL_SOIL)
-                .add(BlockItemIds.DIRT)
-                .add(BlockItemIds.FARMLAND)
+                .add(Blocks.MYCELIUM)
+                .add(Blocks.SOUL_SOIL)
+                .add(Blocks.DIRT)
+                .add(Blocks.FARMLAND)
                 .addTag(DARK_AMARANTH_FUNGUS_GROWABLE_ON)
                 .forceAddTag(BlockTags.NYLIUM);
         builder(DARK_AMARANTH_ROOTS_PLACEABLE_ON)
-                .add(BlockItemIds.SOUL_SOIL)
-                .add(BlockItemIds.DIRT)
-                .add(BlockItemIds.FARMLAND)
+                .add(Blocks.SOUL_SOIL)
+                .add(Blocks.DIRT)
+                .add(Blocks.FARMLAND)
                 .forceAddTag(BlockTags.NYLIUM);
 
         // Vanilla
@@ -117,7 +119,7 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
         builder(BlockTags.WALLS).add(ASPHALT_WALL, BLUNITE_WALL);
 
         builder(BlockTags.LOGS).addTag(DARK_AMARANTH_STEMS);
-        builder(BlockItemTags.LOGS_THAT_BURN.block()).addTag(SAKURA_LOGS).addTag(MAPLE_LOGS).addTag(PALM_LOGS);
+        builder(BlockTags.LOGS_THAT_BURN).addTag(SAKURA_LOGS).addTag(MAPLE_LOGS).addTag(PALM_LOGS);
         builder(BlockTags.OVERWORLD_NATURAL_LOGS).add(SAKURA_LOG, MAPLE_LOG, PALM_LOG);
         builder(BlockTags.PLANKS).add(SAKURA_PLANKS, MAPLE_PLANKS, PALM_PLANKS, DARK_AMARANTH_PLANKS);
         builder(BlockTags.WOODEN_BUTTONS).add(SAKURA_BUTTON, MAPLE_BUTTON, PALM_BUTTON, DARK_AMARANTH_BUTTON);
@@ -132,7 +134,6 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
         builder(BlockTags.WALL_SIGNS).add(SAKURA_WALL_SIGN, MAPLE_WALL_SIGN, PALM_WALL_SIGN, DARK_AMARANTH_WALL_SIGN);
         builder(BlockTags.CEILING_HANGING_SIGNS).add(SAKURA_HANGING_SIGN, MAPLE_HANGING_SIGN, PALM_HANGING_SIGN, DARK_AMARANTH_HANGING_SIGN);
         builder(BlockTags.WALL_HANGING_SIGNS).add(SAKURA_WALL_HANGING_SIGN, MAPLE_WALL_HANGING_SIGN, PALM_WALL_HANGING_SIGN, DARK_AMARANTH_WALL_HANGING_SIGN);
-        builder(BlockTags.WOODEN_SHELVES).add(SAKURA_SHELF, MAPLE_SHELF, PALM_SHELF, DARK_AMARANTH_SHELF);
 
         builder(BlockTags.LEAVES).add(
                 VERMILION_MAPLE_LEAVES,
@@ -143,12 +144,11 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
                 COTTON_SAKURA_BLOSSOMS,
                 PALM_LEAVES
         ).addTag(SNOWY_LEAVES);
-        builder(BlockItemTags.SAPLINGS.block()).add(
+        builder(BlockTags.SAPLINGS).add(
                 BLUSH_SAKURA_SAPLING, COTTON_SAKURA_SAPLING,
                 SAP_MAPLE_SAPLING, VERMILION_MAPLE_SAPLING, FULVOUS_MAPLE_SAPLING, MIKADO_MAPLE_SAPLING,
                 PALM_SAPLING);
 
-        builder(BlockTags.BEE_ATTRACTIVE).add(AZALEA_LEAF_PILE, FLOWERING_AZALEA_LEAF_PILE);
         builder(BlockTags.FLOWERS).add(AZALEA_LEAF_PILE, FLOWERING_AZALEA_LEAF_PILE);
         builder(BlockTags.FLOWER_POTS).add(
                 POTTED_BLUSH_SAKURA_SAPLING, POTTED_COTTON_SAKURA_SAPLING,
@@ -163,9 +163,8 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
                 .addTag(FLOWER_PILES)
                 .add(DARK_AMARANTH_ROOTS);
         builder(BlockTags.BEE_GROWABLES).add(BLUEBERRY_BUSH);
-        builder(BlockTags.OVERRIDES_MUSHROOM_LIGHT_REQUIREMENT).add(DARK_AMARANTH_NYLIUM);
-        builder(BlockTags.HUGE_BROWN_MUSHROOM_CAN_PLACE_ON).add(DARK_AMARANTH_NYLIUM);
-        builder(BlockTags.HUGE_RED_MUSHROOM_CAN_PLACE_ON).add(DARK_AMARANTH_NYLIUM);
+        // lets mushrooms grow in any light, like on nylium
+        builder(BlockTags.MUSHROOM_GROW_BLOCK).add(DARK_AMARANTH_NYLIUM);
 
         builder(BlockTags.NYLIUM).add(DARK_AMARANTH_NYLIUM);
         builder(BlockTags.WART_BLOCKS).add(DARK_AMARANTH_WART_BLOCK);
@@ -177,7 +176,6 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
         builder(BlockTags.COMBINATION_STEP_SOUND_BLOCKS).add(DARK_AMARANTH_ROOTS);
 
         builder(BlockTags.CLIMBABLE).add(COILED_VINES).add(COILED_VINES_PLANT);
-        builder(BlockTags.CAN_GLIDE_THROUGH).add(COILED_VINES).add(COILED_VINES_PLANT);
         builder(BlockTags.REPLACEABLE).addTag(FALLEN_LEAVES);
 
         builder(BlockTags.SWORD_EFFICIENT)
@@ -202,28 +200,7 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
                 DARK_AMARANTH_NYLIUM
         );
         builder(BlockTags.MINEABLE_WITH_AXE).add(DARK_AMARANTH_FUNGUS, COILED_VINES).add(COILED_VINES_PLANT);
-        // Blocks that stop entities, which 26.3 drives from tags instead of block settings.
-        // Everything else (suffocation, heightmaps, fluid flow, teleporting...) derives from this one.
-        builder(BlockTags.BLOCKS_MOTION_NO_LEAVES).add(
-                ASPHALT,
-                POLISHED_ASPHALT,
-                BLUNITE,
-                POLISHED_BLUNITE,
-                DARK_AMARANTH_NYLIUM,
-                DARK_AMARANTH_WART_BLOCK,
-                SOUL_SHROOMLIGHT,
-                MOAI
-        );
-
-        builder(BlockTags.WASHED_AWAY_BY_FLUIDS)
-                .addTag(LEAF_PILES)
-                .addTag(FLOWER_PILES)
-                .addTag(FALLEN_LEAVES)
-                .add(PALM_HANGING_LEAVES, DARK_AMARANTH_ROOTS, DARK_AMARANTH_FUNGUS, COILED_VINES)
-                .add(BLUEBERRY_BUSH, COILED_VINES_PLANT);
-
         builder(BlockTags.REPLACEABLE).add(DARK_AMARANTH_ROOTS);
-        builder(BlockTags.REPLACEABLE_BY_MUSHROOMS).add(DARK_AMARANTH_ROOTS);
         builder(BlockTags.HOGLIN_REPELLENTS).add(DARK_AMARANTH_FUNGUS);
 
         builder(BlockTags.MINEABLE_WITH_HOE)
@@ -252,7 +229,11 @@ public class PromenadeBlockTagProvider extends FabricTagsProvider.BlockTagsProvi
         builder(ConventionalBlockTags.STRIPPED_WOODS).add(STRIPPED_SAKURA_WOOD, STRIPPED_MAPLE_WOOD, STRIPPED_PALM_WOOD, STRIPPED_DARK_AMARANTH_HYPHAE);
 
         builder(IGNEOUS_ROCKS)
-                .add(BlockItemIds.ANDESITE, BlockItemIds.DIORITE, BlockItemIds.GRANITE, BlockItemIds.TUFF, BLUNITE);
+                .add(Blocks.ANDESITE, Blocks.DIORITE, Blocks.GRANITE, Blocks.TUFF).add(BLUNITE);
 
+    }
+
+    private PromenadeTagBuilder<Block> builder(TagKey<Block> tag) {
+        return new PromenadeTagBuilder<Block>(this.getOrCreateTagBuilder(tag), BlockItemId::block);
     }
 }

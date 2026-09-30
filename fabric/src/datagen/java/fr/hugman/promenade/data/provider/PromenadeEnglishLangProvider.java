@@ -6,7 +6,7 @@ import fr.hugman.promenade.tag.PromenadeBiomeTags;
 import fr.hugman.promenade.tag.PromenadeBlockTags;
 import fr.hugman.promenade.tag.PromenadeEntityTypeTags;
 import fr.hugman.promenade.tag.PromenadeItemTags;
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
@@ -14,7 +14,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
 import net.minecraft.world.item.DyeColor;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
             "of", "the", "and", "a", "an", "in", "on", "for", "to", "at", "by", "from", "with"
     );
 
-    public PromenadeEnglishLangProvider(FabricPackOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+    public PromenadeEnglishLangProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(dataOutput, "en_us", registryLookup);
     }
 
@@ -141,14 +141,18 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
 
     private void generateAutomaticTranslations(HolderLookup.Provider wrapperLookup, TranslationBuilder builder) {
         for (var block : getRegistryEntries(wrapperLookup, Registries.BLOCK)) {
-            builder.add(block.value(), snakeToTitleCase(block.key().identifier().getPath()));
+            // wall signs reuse the description of their standing counterpart
+            if (!block.value().getDescriptionId().equals(Util.makeDescriptionId("block", block.key().location()))) {
+                continue;
+            }
+            builder.add(block.value(), snakeToTitleCase(block.key().location().getPath()));
         }
 
         for (var item : getRegistryEntries(wrapperLookup, Registries.ITEM)) {
             if (item.value().getDescriptionId().startsWith("block.")) {
                 continue;
             }
-            var path = item.key().identifier().getPath();
+            var path = item.key().location().getPath();
             if (path.endsWith("_chest_boat")) {
                 path = path.replace("_chest_boat", "_boat_with_chest");
             }
@@ -159,7 +163,7 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
         }
 
         for (var entity : getRegistryEntries(wrapperLookup, Registries.ENTITY_TYPE)) {
-            var path = entity.key().identifier().getPath();
+            var path = entity.key().location().getPath();
             if (path.endsWith("_chest_boat")) {
                 path = path.replace("_chest_boat", "_boat_with_chest");
             }
@@ -167,12 +171,12 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
         }
 
         for (var biome : getRegistryEntries(wrapperLookup, Registries.BIOME)) {
-            var id = biome.key().identifier();
+            var id = biome.key().location();
             builder.add(Util.makeDescriptionId("biome", id), snakeToTitleCase(id.getPath()));
         }
 
         for (var bannerPattern : getRegistryEntries(wrapperLookup, Registries.BANNER_PATTERN)) {
-            var id = bannerPattern.key().identifier();
+            var id = bannerPattern.key().location();
             builder.add(
                     Util.makeDescriptionId("item", id.withPath(s -> s + "_banner_pattern.desc")),
                     snakeToTitleCase(id.getPath())
@@ -186,12 +190,13 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
         }
 
         for (var paintingVariant : getRegistryEntries(wrapperLookup, Registries.PAINTING_VARIANT)) {
-            var id = paintingVariant.key().identifier();
+            var id = paintingVariant.key().location();
             builder.add(Util.makeDescriptionId("painting", id) + ".title", snakeToTitleCase(id.getPath()));
+            builder.add(Util.makeDescriptionId("painting", id) + ".author", "Hugman");
         }
 
         for (var itemGroup : getRegistryEntries(wrapperLookup, Registries.CREATIVE_MODE_TAB)) {
-            var id = itemGroup.key().identifier();
+            var id = itemGroup.key().location();
             builder.add(Util.makeDescriptionId("item_group", id), snakeToTitleCase(id.getPath()));
         }
     }
@@ -206,7 +211,7 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
 
     private static <O> List<Holder.Reference<O>> getRegistryEntries(HolderLookup.Provider wrapperLookup, ResourceKey<? extends Registry<O>> registryKey) {
         return wrapperLookup.lookupOrThrow(registryKey).listElements()
-                .filter(entry -> entry.key().identifier().getNamespace().equals(Promenade.MOD_ID))
+                .filter(entry -> entry.key().location().getNamespace().equals(Promenade.MOD_ID))
                 .toList();
     }
 

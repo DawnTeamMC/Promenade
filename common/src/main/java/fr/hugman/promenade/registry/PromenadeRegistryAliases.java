@@ -4,14 +4,14 @@ import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.platform.PromenadePlatform;
 import java.util.HashMap;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 
 /**
  * Registry aliases for Promenade. Prevents players from losing stuff when content is removed along new versions.
  */
 public class PromenadeRegistryAliases {
     public static void registerAliases() {
-        HashMap<Identifier, Identifier> blockAliases = new HashMap<>();
+        HashMap<ResourceLocation, ResourceLocation> blockAliases = new HashMap<>();
 
         // I forgot what version that was in
         PromenadePlatform.INSTANCE.registerAlias(BuiltInRegistries.ENTITY_TYPE, Promenade.id("sunken_skeleton"), Promenade.id("sunken"));
@@ -71,7 +71,7 @@ public class PromenadeRegistryAliases {
         blockAliases.put(Promenade.id("polished_carbonite_stairs"), Promenade.id("polished_asphalt_stairs"));
 
         // v5.0.0
-        var grassId = Identifier.withDefaultNamespace("grass_block");
+        var grassId = ResourceLocation.withDefaultNamespace("grass_block");
         blockAliases.put(Promenade.id("vermilion_carpeted_grass_block"), grassId);
         blockAliases.put(Promenade.id("fulvous_carpeted_grass_block"), grassId);
         blockAliases.put(Promenade.id("mikado_carpeted_grass_block"), grassId);

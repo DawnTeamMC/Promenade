@@ -2,7 +2,7 @@ package fr.hugman.promenade.tag;
 
 import fr.hugman.promenade.Promenade;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 
@@ -31,6 +31,6 @@ public class PromenadeBiomeTags {
     }
 
 	private static TagKey<Biome> ofConventional(String path) {
-		return TagKey.create(Registries.BIOME, Identifier.fromNamespaceAndPath(C_NAMESPACE, path));
+		return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(C_NAMESPACE, path));
 	}
 }

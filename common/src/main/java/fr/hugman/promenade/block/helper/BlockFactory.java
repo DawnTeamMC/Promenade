@@ -3,14 +3,13 @@ package fr.hugman.promenade.block.helper;
 import fr.hugman.promenade.block.HangingLeavesBlock;
 import fr.hugman.promenade.block.PileBlock;
 import fr.hugman.promenade.block.TintedParticleSnowyLeavesBlock;
+import fr.hugman.promenade.block.UntintedParticleLeavesBlock;
 import fr.hugman.promenade.block.UntintedParticleSnowyLeavesBlock;
 import fr.hugman.promenade.sound.PromenadeBlockSounds;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
@@ -19,33 +18,27 @@ import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
-import net.minecraft.world.level.block.LeafLitterBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.ShelfBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.StandingSignBlock;
-import net.minecraft.world.level.block.TintedParticleLeavesBlock;
+import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
-import net.minecraft.world.level.block.UntintedParticleLeavesBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.WallHangingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.grower.TreeGrower;
-import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import java.util.function.Function;
-import java.util.function.Predicate;
 
 public final class BlockFactory {
     public static BlockBuilder of(Function<BlockBehaviour.Properties, Block> factory, BlockBehaviour.Properties settings) {
@@ -91,14 +84,14 @@ public final class BlockFactory {
         return copy(baseBlock).factory(s -> new DoorBlock(setType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock)
                 .strength(3.0f)
                 .noOcclusion()
-                .pushReaction(PushReaction.POPPED));
+                .pushReaction(PushReaction.DESTROY));
     }
 
     public static BlockBuilder woodenButton(Block baseBlock, BlockSetType setType) {
         return copy(baseBlock).factory(s -> new ButtonBlock(setType, 30, s)).settings(BlockBehaviour.Properties.of()
                 .strength(0.5f)
-                .noCollision()
-                .pushReaction(PushReaction.POPPED)
+                .noCollission()
+                .pushReaction(PushReaction.DESTROY)
                 .sound(baseBlock.defaultBlockState().getSoundType()));
     }
 
@@ -106,25 +99,25 @@ public final class BlockFactory {
         return copy(baseBlock).factory(s -> new PressurePlateBlock(setType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock)
                 .forceSolidOn()
                 .strength(0.5f)
-                .pushReaction(PushReaction.POPPED)
+                .pushReaction(PushReaction.DESTROY)
                 .requiresCorrectToolForDrops()
-                .noCollision());
+                .noCollission());
     }
 
     public static BlockBuilder sign(Block baseBlock, WoodType woodType) {
         return copy(baseBlock).factory(s -> new StandingSignBlock(woodType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock)
                 .mapColor(baseBlock.defaultMapColor())
                 .forceSolidOn()
-                .noCollision()
+                .noCollission()
                 .strength(1.0F)).noItem();
     }
 
     public static BlockBuilder wallSign(Block standingSign, WoodType woodType) {
         return copy(standingSign).factory(s -> new WallSignBlock(woodType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(standingSign)
-                .overrideLootTable(standingSign.getLootTable())
+                .dropsLike(standingSign)
                 .mapColor(standingSign.defaultMapColor())
                 .forceSolidOn()
-                .noCollision()
+                .noCollission()
                 .strength(1.0F)).noItem();
     }
 
@@ -132,23 +125,19 @@ public final class BlockFactory {
         return copy(baseBlock).factory(s -> new CeilingHangingSignBlock(woodType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock)
                 .mapColor(baseBlock.defaultMapColor())
                 .forceSolidOn()
-                .noCollision()
+                .noCollission()
                 .strength(1.0F)
                 .sound(soundGroup)).noItem();
     }
 
     public static BlockBuilder wallHangingSign(Block standingSign, WoodType woodType, SoundType soundGroup) {
         return copy(standingSign).factory(s -> new WallHangingSignBlock(woodType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(standingSign)
-                .overrideLootTable(standingSign.getLootTable())
+                .dropsLike(standingSign)
                 .mapColor(standingSign.defaultMapColor())
                 .forceSolidOn()
-                .noCollision()
+                .noCollission()
                 .strength(1.0F)
                 .sound(soundGroup)).noItem();
-    }
-
-    public static BlockBuilder shelf(Block planks) {
-        return copy(planks).factory(ShelfBlock::new).settings(BlockBehaviour.Properties.ofLegacyCopy(planks).sound(SoundType.SHELF)).itemSettings((s -> s.component(DataComponents.CONTAINER, ItemContainerContents.EMPTY)));
     }
 
     public static BlockBuilder log(MapColor woodColor, MapColor barkColor, SoundType sounds, boolean flammable) {
@@ -172,17 +161,18 @@ public final class BlockFactory {
                 .mapColor(mapColor)
                 .sound(SoundType.GRASS)
                 .instabreak()
-                .noCollision()
+                .noCollission()
                 .randomTicks()
-                .pushReaction(PushReaction.POPPED));
+                .pushReaction(PushReaction.DESTROY));
     }
 
-    public static BlockBuilder sapling(MapColor mapColor, TreeGrower generator, Predicate<BlockState> saplingSoilPredicate) {
-        return sapling(mapColor, generator).factory(settings -> new fr.hugman.promenade.block.SaplingBlock(generator, saplingSoilPredicate, settings));
+    public static BlockBuilder sapling(MapColor mapColor, TreeGrower generator, TagKey<Block> placeableOn) {
+        return sapling(mapColor, generator).factory(settings -> new fr.hugman.promenade.block.SaplingBlock(generator, placeableOn, settings));
     }
 
     public static BlockBuilder leaves(MapColor mapColor) {
-        return new BlockBuilder(s -> new TintedParticleLeavesBlock(0.01f, s), BlockBehaviour.Properties.of()
+        // 1.21.1 has no tinted leaf particles, like vanilla leaves
+        return new BlockBuilder(LeavesBlock::new, BlockBehaviour.Properties.of()
                 .mapColor(mapColor)
                 .strength(0.2f)
                 .randomTicks()
@@ -190,12 +180,12 @@ public final class BlockFactory {
                 .noOcclusion()
                 .isValidSpawn(Blocks::never)
                 .isSuffocating(Blocks::never)
-                .pushReaction(PushReaction.POPPED)
+                .pushReaction(PushReaction.DESTROY)
                 .isRedstoneConductor(Blocks::never));
     }
 
     public static BlockBuilder leaves(MapColor mapColor, SoundType soundGroup, float particleChance, ParticleOptions fallingParticle) {
-        return new BlockBuilder(s -> new UntintedParticleLeavesBlock(particleChance, fallingParticle, AmbientLeavesBlockSoundPlayer.noAmbientSound(), s), BlockBehaviour.Properties.of()
+        return new BlockBuilder(s -> new UntintedParticleLeavesBlock(particleChance, fallingParticle, s), BlockBehaviour.Properties.of()
                 .mapColor(mapColor)
                 .strength(0.2f)
                 .randomTicks()
@@ -204,7 +194,7 @@ public final class BlockFactory {
                 .ignitedByLava()
                 .isValidSpawn(Blocks::never)
                 .isSuffocating(Blocks::never)
-                .pushReaction(PushReaction.POPPED)
+                .pushReaction(PushReaction.DESTROY)
                 .isRedstoneConductor(Blocks::never));
     }
 
@@ -212,9 +202,9 @@ public final class BlockFactory {
         return new BlockBuilder(HangingLeavesBlock::new, BlockBehaviour.Properties.of()
                 .mapColor(mapColor)
                 .sound(SoundType.GRASS)
-                .replaceable().noCollision().instabreak()
+                .replaceable().noCollission().instabreak()
                 .ignitedByLava()
-                .pushReaction(PushReaction.POPPED));
+                .pushReaction(PushReaction.DESTROY));
     }
 
     public static BlockBuilder snowyLeaves() {
@@ -227,7 +217,7 @@ public final class BlockFactory {
                 .ignitedByLava()
                 .isValidSpawn(Blocks::ocelotOrParrot)
                 .isSuffocating(Blocks::never)
-                .pushReaction(PushReaction.POPPED)
+                .pushReaction(PushReaction.DESTROY)
                 .isRedstoneConductor(Blocks::never));
     }
 
@@ -248,7 +238,7 @@ public final class BlockFactory {
                 .instabreak()
                 .noOcclusion()
                 .lightLevel(state -> block.defaultBlockState().getLightEmission())
-                .pushReaction(PushReaction.POPPED));
+                .pushReaction(PushReaction.DESTROY));
     }
 
     public static BlockBuilder pile() {
@@ -265,30 +255,36 @@ public final class BlockFactory {
                 .ignitedByLava()
                 .strength(0.1f)
                 .sound(sounds)
-                .noCollision()
+                .noCollission()
                 .noOcclusion());
     }
 
+    /**
+     * Fallen leaves are a flat pile, as 1.21.1 has no leaf litter.
+     */
     public static BlockBuilder fallenLeaves(MapColor color) {
-        return fallenLeaves(color, SoundType.LEAF_LITTER);
+        return fallenLeaves(color, SoundType.GRASS);
     }
 
     public static BlockBuilder fallenLeaves(MapColor color, SoundType sounds) {
-        return new BlockBuilder(LeafLitterBlock::new, BlockBehaviour.Properties.of()
+        return new BlockBuilder(PileBlock::new, BlockBehaviour.Properties.of()
                 .mapColor(color)
+                .ignitedByLava()
                 .replaceable()
-                .noCollision()
+                .instabreak()
                 .sound(sounds)
-                .pushReaction(PushReaction.POPPED)
+                .noCollission()
+                .noOcclusion()
+                .pushReaction(PushReaction.DESTROY)
         );
     }
 
-    public static BlockBuilder fungus(MapColor mapColor, ResourceKey<Feature> featureKey, TagKey<Block> canPlantOn, TagKey<Block> canGrowOn) {
+    public static BlockBuilder fungus(MapColor mapColor, ResourceKey<ConfiguredFeature<?, ?>> featureKey, TagKey<Block> canPlantOn, TagKey<Block> canGrowOn) {
         return of(s -> new fr.hugman.promenade.block.FungusBlock(featureKey, canPlantOn, canGrowOn, s), BlockBehaviour.Properties.of()
                 .mapColor(mapColor)
                 .sound(SoundType.FUNGUS)
-                .pushReaction(PushReaction.POPPED)
+                .pushReaction(PushReaction.DESTROY)
                 .instabreak()
-                .noCollision());
+                .noCollission());
     }
 }

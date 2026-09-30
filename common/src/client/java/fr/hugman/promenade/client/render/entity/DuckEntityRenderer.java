@@ -1,48 +1,47 @@
 package fr.hugman.promenade.client.render.entity;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.duck.AdultDuckModel;
 import fr.hugman.promenade.client.render.entity.model.duck.BabyDuckModel;
 import fr.hugman.promenade.client.render.entity.model.duck.DuckModel;
-import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
-import fr.hugman.promenade.client.render.entity.state.DuckRenderState;
 import fr.hugman.promenade.entity.Duck;
-import net.minecraft.client.renderer.entity.AgeableMobRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
-import net.minecraft.resources.Identifier;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-public class DuckEntityRenderer extends AgeableMobRenderer<Duck, DuckRenderState, DuckModel> {
+public class DuckEntityRenderer extends MobRenderer<Duck, DuckModel> {
+    private final DuckModel adultModel;
+    private final DuckModel babyModel;
+
     public DuckEntityRenderer(EntityRendererProvider.Context context) {
-        super(
-                context,
-                new AdultDuckModel(context.bakeLayer(PromenadeEntityModelLayers.DUCK)),
-                new BabyDuckModel(context.bakeLayer(PromenadeEntityModelLayers.DUCK_BABY)),
-                0.3F
-        );
+        super(context, new AdultDuckModel(context.bakeLayer(PromenadeEntityModelLayers.DUCK)), 0.3F);
+        this.adultModel = this.model;
+        this.babyModel = new BabyDuckModel(context.bakeLayer(PromenadeEntityModelLayers.DUCK_BABY));
     }
 
     @Override
-    public DuckRenderState createRenderState() {
-        return new DuckRenderState();
+    public void render(Duck duck, float yaw, float tickDelta, PoseStack poseStack, MultiBufferSource buffers, int light) {
+        // Babies have their own model
+        this.model = duck.isBaby() ? this.babyModel : this.adultModel;
+        super.render(duck, yaw, tickDelta, poseStack, buffers, light);
     }
 
     @Override
-    public Identifier getTextureLocation(DuckRenderState state) {
-        if (state.variant == null) {
-            return MissingTextureAtlasSprite.getLocation();
-        }
-        if (state.isBaby) {
-            return state.variant.babyTexture().texturePath();
-        }
-        return state.variant.texture().texturePath();
+    public ResourceLocation getTextureLocation(Duck duck) {
+        var variant = duck.getVariant().value();
+        return duck.isBaby() ? variant.babyTexture().texturePath() : variant.texture().texturePath();
     }
 
+    /**
+     * The model uses this value to open the wings, like vanilla chickens.
+     */
     @Override
-    public void extractRenderState(Duck duck, DuckRenderState state, float f) {
-        super.extractRenderState(duck, state, f);
-        state.flapProgress = Mth.lerp(f, duck.prevFlapProgress, duck.flapProgress);
-        state.maxWingDeviation = Mth.lerp(f, duck.prevMaxWingDeviation, duck.maxWingDeviation);
-        state.variant = duck.getVariant().value();
+    protected float getBob(Duck duck, float tickDelta) {
+        float flapProgress = Mth.lerp(tickDelta, duck.prevFlapProgress, duck.flapProgress);
+        float maxWingDeviation = Mth.lerp(tickDelta, duck.prevMaxWingDeviation, duck.maxWingDeviation);
+        return (Mth.sin(flapProgress) + 1.0F) * maxWingDeviation;
     }
 }

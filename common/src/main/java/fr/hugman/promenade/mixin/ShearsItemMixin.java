@@ -1,7 +1,9 @@
 package fr.hugman.promenade.mixin;
 
+
+import net.minecraft.world.entity.LivingEntity;
 import fr.hugman.promenade.block.AbstractFacingPlantStemBlock;
-import net.minecraft.advancements.triggers.CriteriaTriggers;
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -38,10 +40,10 @@ public class ShearsItemMixin {
             world.setBlockAndUpdate(blockPos, blockState2);
             world.gameEvent(GameEvent.BLOCK_CHANGE, blockPos, GameEvent.Context.of(context.getPlayer(), blockState2));
             if (playerEntity != null) {
-                itemStack.hurtAndBreak(1, playerEntity, context.getHand());
+                itemStack.hurtAndBreak(1, playerEntity, LivingEntity.getSlotForHand(context.getHand()));
             }
 
-            cir.setReturnValue(InteractionResult.SUCCESS);
+            cir.setReturnValue(InteractionResult.sidedSuccess(world.isClientSide));
         }
     }
 }

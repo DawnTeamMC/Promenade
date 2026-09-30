@@ -1,6 +1,7 @@
 package fr.hugman.promenade.entity;
 
 import fr.hugman.promenade.Promenade;
+import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.config.PromenadeConfig;
 import fr.hugman.promenade.entity.helper.EntityTypeFactory;
 import fr.hugman.promenade.item.PromenadeItems;
@@ -10,26 +11,22 @@ import fr.hugman.promenade.world.biome.PromenadeBiomeSelectors;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.Animal;
-import net.minecraft.world.entity.vehicle.boat.Boat;
-import net.minecraft.world.entity.vehicle.boat.ChestBoat;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.levelgen.Heightmap;
 import java.util.function.Predicate;
 
 public class PromenadeEntityTypes {
-    public static final EntityType<Boat> SAKURA_BOAT = register("sakura_boat", EntityTypeFactory.boat(() -> PromenadeItems.SAKURA_BOAT));
-    public static final EntityType<ChestBoat> SAKURA_CHEST_BOAT = register("sakura_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.SAKURA_CHEST_BOAT));
+    public static final EntityType<PromenadeBoat> SAKURA_BOAT = register("sakura_boat", EntityTypeFactory.boat(() -> PromenadeItems.SAKURA_BOAT, () -> PromenadeBlocks.SAKURA_PLANKS));
+    public static final EntityType<PromenadeChestBoat> SAKURA_CHEST_BOAT = register("sakura_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.SAKURA_CHEST_BOAT, () -> PromenadeBlocks.SAKURA_PLANKS));
 
-    public static final EntityType<Boat> MAPLE_BOAT = register("maple_boat", EntityTypeFactory.boat(() -> PromenadeItems.MAPLE_BOAT));
-    public static final EntityType<ChestBoat> MAPLE_CHEST_BOAT = register("maple_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.MAPLE_CHEST_BOAT));
+    public static final EntityType<PromenadeBoat> MAPLE_BOAT = register("maple_boat", EntityTypeFactory.boat(() -> PromenadeItems.MAPLE_BOAT, () -> PromenadeBlocks.MAPLE_PLANKS));
+    public static final EntityType<PromenadeChestBoat> MAPLE_CHEST_BOAT = register("maple_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.MAPLE_CHEST_BOAT, () -> PromenadeBlocks.MAPLE_PLANKS));
 
-    public static final EntityType<Boat> PALM_BOAT = register("palm_boat", EntityTypeFactory.boat(() -> PromenadeItems.PALM_BOAT));
-    public static final EntityType<ChestBoat> PALM_CHEST_BOAT = register("palm_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.PALM_CHEST_BOAT));
+    public static final EntityType<PromenadeBoat> PALM_BOAT = register("palm_boat", EntityTypeFactory.boat(() -> PromenadeItems.PALM_BOAT, () -> PromenadeBlocks.PALM_PLANKS));
+    public static final EntityType<PromenadeChestBoat> PALM_CHEST_BOAT = register("palm_chest_boat", EntityTypeFactory.chestBoat(() -> PromenadeItems.PALM_CHEST_BOAT, () -> PromenadeBlocks.PALM_PLANKS));
 
     public static final EntityType<Capybara> CAPYBARA = register("capybara", EntityType.Builder.of(Capybara::new, MobCategory.CREATURE)
             .sized(0.7f, 0.875f)
@@ -42,17 +39,16 @@ public class PromenadeEntityTypes {
 
     public static final EntityType<LushCreeper> LUSH_CREEPER = register("lush_creeper", EntityType.Builder.of(LushCreeper::new, MobCategory.MONSTER)
             .sized(0.6f, 1.7f)
-            .clientTrackingRange(8)
-            .notInPeaceful());
+            .clientTrackingRange(8));
     public static final EntityType<Sunken> SUNKEN = register("sunken", EntityType.Builder.of(Sunken::new, MobCategory.MONSTER)
             .sized(0.6F, 1.99F)
             .eyeHeight(1.74F)
-            .clientTrackingRange(8)
-            .notInPeaceful());
+            .ridingOffset(-0.7F)
+            .clientTrackingRange(8));
 
     private static <T extends Entity> EntityType<T> register(String path, EntityType.Builder<T> type) {
-        var key = ResourceKey.create(Registries.ENTITY_TYPE, Promenade.id(path));
-        return Registry.register(BuiltInRegistries.ENTITY_TYPE, key, type.build(key));
+        var id = Promenade.id(path);
+        return Registry.register(BuiltInRegistries.ENTITY_TYPE, id, type.build(id.toString()));
     }
 
     public static void registerAttributes() {
@@ -75,10 +71,10 @@ public class PromenadeEntityTypes {
         var platform = PromenadePlatform.INSTANCE;
         var duckWeight = PromenadeConfig.get().animals().ducksWeight();
         if (duckWeight > 0) {
-            Predicate<Holder<Biome>> hasFarmAnimals = PromenadeBiomeSelectors.spawns(EntityTypes.COW)
-                    .and(PromenadeBiomeSelectors.spawns(EntityTypes.SHEEP))
-                    .and(PromenadeBiomeSelectors.spawns(EntityTypes.CHICKEN))
-                    .and(PromenadeBiomeSelectors.spawns(EntityTypes.PIG));
+            Predicate<Holder<Biome>> hasFarmAnimals = PromenadeBiomeSelectors.spawns(EntityType.COW)
+                    .and(PromenadeBiomeSelectors.spawns(EntityType.SHEEP))
+                    .and(PromenadeBiomeSelectors.spawns(EntityType.CHICKEN))
+                    .and(PromenadeBiomeSelectors.spawns(EntityType.PIG));
             platform.addSpawn(hasFarmAnimals, MobCategory.CREATURE, PromenadeEntityTypes.DUCK, duckWeight, 4, 4);
         }
 
@@ -89,7 +85,7 @@ public class PromenadeEntityTypes {
 
         var lushCreeperWeight = PromenadeConfig.get().monsters().lushCreepersWeight();
         if (lushCreeperWeight > 0) {
-            platform.addSpawn(PromenadeBiomeSelectors.spawns(EntityTypes.CREEPER).and(PromenadeBiomeSelectors.is(Biomes.LUSH_CAVES).negate()), MobCategory.MONSTER, LUSH_CREEPER, lushCreeperWeight, 2, 3);
+            platform.addSpawn(PromenadeBiomeSelectors.spawns(EntityType.CREEPER).and(PromenadeBiomeSelectors.is(Biomes.LUSH_CAVES).negate()), MobCategory.MONSTER, LUSH_CREEPER, lushCreeperWeight, 2, 3);
             platform.addSpawn(PromenadeBiomeSelectors.is(Biomes.LUSH_CAVES), MobCategory.MONSTER, LUSH_CREEPER, lushCreeperWeight * 4, 2, 4);
         }
 

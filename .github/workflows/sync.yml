@@ -8,7 +8,7 @@ jobs:
   build_and_crowdin:
     strategy:
       matrix:
-        java: [ 25 ]
+        java: [ 21 ]
         os: [ ubuntu-latest ]
     name: Build the project (Java ${{ matrix.java }}, on ${{ matrix.os }})) and upload translations to Crowdin
     runs-on: ${{ matrix.os }}

@@ -6,8 +6,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ScheduledTickAccess;
-import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -17,6 +15,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraft.world.level.LevelAccessor;
 
 public abstract class AbstractFacingPlantStemBlock extends AbstractFacingPlantPartBlock implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_25;
@@ -71,27 +70,18 @@ public abstract class AbstractFacingPlantStemBlock extends AbstractFacingPlantPa
     }
 
     @Override
-    protected BlockState updateShape(
-            BlockState state,
-            LevelReader world,
-            ScheduledTickAccess tickView,
-            BlockPos pos,
-            Direction direction,
-            BlockPos neighborPos,
-            BlockState neighborState,
-            RandomSource random
-    ) {
+    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         var facing = state.getValue(FACING);
         if (direction == facing.getOpposite() && !state.canSurvive(world, pos)) {
-            tickView.scheduleTick(pos, this, 1);
+            world.scheduleTick(pos, this, 1);
         }
 
         if (direction != facing || !((neighborState.is(this) || neighborState.is(this.getPlant())) && neighborState.getValue(FACING) == facing)) {
             if (this.tickWater) {
-                tickView.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
+                world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
             }
 
-            return super.updateShape(state, world, tickView, pos, direction, neighborPos, neighborState, random);
+            return super.updateShape(state, direction, neighborState, world, pos, neighborPos);
         } else {
             return this.copyState(state, this.getPlant().defaultBlockState());
         }
@@ -104,17 +94,17 @@ public abstract class AbstractFacingPlantStemBlock extends AbstractFacingPlantPa
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, BonemealSource source) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
         return this.canGrowAt(world.getBlockState(pos.relative(state.getValue(FACING))));
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
         var facing = state.getValue(FACING);
         var blockPos = pos.relative(facing);
         var i = Math.min(state.getValue(AGE) + 1, MAX_AGE);

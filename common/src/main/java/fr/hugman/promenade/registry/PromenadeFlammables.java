@@ -14,7 +14,6 @@ public class PromenadeFlammables {
         add(PromenadeBlocks.ACACIA_LEAF_PILE, 30, 60);
         add(PromenadeBlocks.CHERRY_LEAF_PILE, 30, 60);
         add(PromenadeBlocks.DARK_OAK_LEAF_PILE, 30, 60);
-        add(PromenadeBlocks.PALE_OAK_LEAF_PILE, 30, 60);
         add(PromenadeBlocks.MANGROVE_LEAF_PILE, 30, 60);
         add(PromenadeBlocks.AZALEA_LEAF_PILE, 30, 60);
         add(PromenadeBlocks.FLOWERING_AZALEA_LEAF_PILE, 30, 60);
@@ -40,7 +39,6 @@ public class PromenadeFlammables {
         add(PromenadeBlocks.SNOWY_ACACIA_LEAVES, 30, 60);
         add(PromenadeBlocks.SNOWY_CHERRY_LEAVES, 30, 60);
         add(PromenadeBlocks.SNOWY_DARK_OAK_LEAVES, 30, 60);
-        add(PromenadeBlocks.SNOWY_PALE_OAK_LEAVES, 30, 60);
         add(PromenadeBlocks.SNOWY_MANGROVE_LEAVES, 30, 60);
         add(PromenadeBlocks.SNOWY_AZALEA_LEAVES, 30, 60);
         add(PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES, 30, 60);
@@ -54,7 +52,6 @@ public class PromenadeFlammables {
         add(PromenadeBlocks.SAKURA_SLAB, 5, 20);
         add(PromenadeBlocks.SAKURA_FENCE, 5, 20);
         add(PromenadeBlocks.SAKURA_FENCE_GATE, 5, 20);
-        add(PromenadeBlocks.SAKURA_SHELF, 30, 20);
         add(PromenadeBlocks.BLUSH_SAKURA_BLOSSOMS, 30, 60);
         add(PromenadeBlocks.SNOWY_BLUSH_SAKURA_BLOSSOMS, 30, 60);
         add(PromenadeBlocks.BLUSH_SAKURA_BLOSSOM_PILE, 30, 60);
@@ -71,7 +68,6 @@ public class PromenadeFlammables {
         add(PromenadeBlocks.MAPLE_SLAB, 5, 20);
         add(PromenadeBlocks.MAPLE_FENCE, 5, 20);
         add(PromenadeBlocks.MAPLE_FENCE_GATE, 5, 20);
-        add(PromenadeBlocks.MAPLE_SHELF, 30, 20);
         add(PromenadeBlocks.SAP_MAPLE_LEAVES, 30, 60);
         add(PromenadeBlocks.SNOWY_SAP_MAPLE_LEAVES, 30, 60);
         add(PromenadeBlocks.FALLEN_SAP_MAPLE_LEAVES, 30, 60);
@@ -98,7 +94,6 @@ public class PromenadeFlammables {
         add(PromenadeBlocks.PALM_SLAB, 5, 20);
         add(PromenadeBlocks.PALM_FENCE, 5, 20);
         add(PromenadeBlocks.PALM_FENCE_GATE, 5, 20);
-        add(PromenadeBlocks.PALM_SHELF, 30, 20);
         add(PromenadeBlocks.PALM_LEAVES, 30, 60);
         add(PromenadeBlocks.SNOWY_PALM_LEAVES, 30, 60);
         add(PromenadeBlocks.PALM_HANGING_LEAVES, 30, 60);

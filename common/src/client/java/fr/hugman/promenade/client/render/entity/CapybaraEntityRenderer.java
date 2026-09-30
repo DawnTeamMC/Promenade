@@ -1,56 +1,40 @@
 package fr.hugman.promenade.client.render.entity;
 
-import fr.hugman.promenade.client.render.entity.model.capybara.BabyCapybaraModel;
-import fr.hugman.promenade.client.render.entity.model.capybara.AdultCapybaraModel;
+import com.mojang.blaze3d.vertex.PoseStack;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
+import fr.hugman.promenade.client.render.entity.model.capybara.AdultCapybaraModel;
+import fr.hugman.promenade.client.render.entity.model.capybara.BabyCapybaraModel;
 import fr.hugman.promenade.client.render.entity.model.capybara.CapybaraModel;
-import fr.hugman.promenade.client.render.entity.state.CapybaraRenderState;
 import fr.hugman.promenade.entity.Capybara;
-import net.minecraft.client.renderer.entity.AgeableMobRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
-import net.minecraft.resources.Identifier;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
-public class CapybaraEntityRenderer<E extends Capybara> extends AgeableMobRenderer<E, CapybaraRenderState, CapybaraModel> {
+public class CapybaraEntityRenderer extends MobRenderer<Capybara, CapybaraModel> {
+    private final CapybaraModel adultModel;
+    private final CapybaraModel babyModel;
+
     public CapybaraEntityRenderer(EntityRendererProvider.Context context) {
-        super(
-                context,
-                new AdultCapybaraModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA)),
-                new BabyCapybaraModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA_BABY)),
-                0.5f
-        );
+        super(context, new AdultCapybaraModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA)), 0.5f);
+        this.adultModel = this.model;
+        this.babyModel = new BabyCapybaraModel(context.bakeLayer(PromenadeEntityModelLayers.CAPYBARA_BABY));
     }
 
     @Override
-    public CapybaraRenderState createRenderState() {
-        return new CapybaraRenderState();
+    public void render(Capybara capybara, float yaw, float tickDelta, PoseStack poseStack, MultiBufferSource buffers, int light) {
+        // Babies have their own model
+        this.model = capybara.isBaby() ? this.babyModel : this.adultModel;
+        super.render(capybara, yaw, tickDelta, poseStack, buffers, light);
     }
 
     @Override
-    public Identifier getTextureLocation(CapybaraRenderState state) {
-        if (state.variant == null) {
-            return MissingTextureAtlasSprite.getLocation();
-        }
-        var textureInfo = state.isBaby ? state.variant.babyInfo() : state.variant.adultInfo();
-        if (state.sleeping) {
+    public ResourceLocation getTextureLocation(Capybara capybara) {
+        var variant = capybara.getVariant().value();
+        var textureInfo = capybara.isBaby() ? variant.babyInfo() : variant.adultInfo();
+        if (capybara.isVisuallySleeping()) {
             return textureInfo.sleeping().texturePath();
         }
-        return state.surprised ? textureInfo.surprised().texturePath() : textureInfo.normal().texturePath();
-    }
-
-    @Override
-    public void extractRenderState(E capybara, CapybaraRenderState state, float f) {
-        super.extractRenderState(capybara, state, f);
-        state.earWiggleAnimationState.copyFrom(capybara.earWiggleAnimState);
-        state.fallToSleepAnimationState.copyFrom(capybara.fallToSleepAnimState);
-        state.sleepingAnimationState.copyFrom(capybara.sleepingAnimState);
-        state.wakeUpAnimationState.copyFrom(capybara.wakeUpAnimState);
-        state.fartAnimationState.copyFrom(capybara.fartAnimState);
-
-        state.variant = capybara.getVariant().value();
-        state.sleeping = capybara.isVisuallySleeping();
-        state.surprised = capybara.isSurprised();
-        state.earWiggleSpeed = capybara.getEarWiggleSpeed();
-        state.canAngleHead = capybara.canAngleHead();
+        return capybara.isSurprised() ? textureInfo.surprised().texturePath() : textureInfo.normal().texturePath();
     }
 }

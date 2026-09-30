@@ -1,6 +1,5 @@
 package fr.hugman.promenade.entity;
 
-import fr.hugman.promenade.component.PromenadeComponentTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.entity.variant.SunkenVariant;
 import fr.hugman.promenade.entity.variant.SunkenVariants;
@@ -8,8 +7,8 @@ import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.component.DataComponentGetter;
-import net.minecraft.core.component.DataComponentType;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -23,7 +22,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -44,37 +43,36 @@ import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
 import net.minecraft.world.entity.ai.goal.RangedBowAttackGoal;
 import net.minecraft.world.entity.ai.goal.RangedCrossbowAttackGoal;
 import net.minecraft.world.entity.ai.goal.RestrictSunGoal;
-import net.minecraft.world.entity.ai.goal.TryFindLiquidGoal;
+import net.minecraft.world.entity.ai.goal.TryFindWaterGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.ai.navigation.GroundPathNavigation;
 import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
 import net.minecraft.world.entity.ai.util.DefaultRandomPos;
-import net.minecraft.world.entity.animal.dolphin.Dolphin;
-import net.minecraft.world.entity.animal.fish.Pufferfish;
+import net.minecraft.world.entity.animal.Dolphin;
+import net.minecraft.world.entity.animal.Pufferfish;
 import net.minecraft.world.entity.monster.CrossbowAttackMob;
-import net.minecraft.world.entity.monster.skeleton.AbstractSkeleton;
+import net.minecraft.world.entity.monster.AbstractSkeleton;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
-import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
-import net.minecraft.world.entity.projectile.arrow.Arrow;
-import net.minecraft.world.entity.variant.SpawnContext;
-import net.minecraft.world.entity.variant.VariantUtils;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.entity.projectile.Arrow;
+import fr.hugman.promenade.entity.spawn.SpawnContext;
+import fr.hugman.promenade.entity.variant.VariantUtils;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ProjectileWeaponItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.level.pathfinder.PathType;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
-import java.util.Optional;
 
 public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
     private static final EntityDataAccessor<Holder<SunkenVariant>> VARIANT = SynchedEntityData.defineId(Sunken.class, PromenadeTrackedData.SUNKEN_VARIANT);
@@ -111,16 +109,15 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
 
     @Nullable
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, EntitySpawnReason spawnReason, @Nullable SpawnGroupData entityData) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData) {
         SunkenVariants.select(this.random, this.registryAccess(), SpawnContext.create(world, this.blockPosition())).ifPresent(this::setVariant);
-        this.lootTable = Optional.ofNullable(this.getVariant().value().lootTable());
         return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
     }
 
-    public static boolean canSpawn(EntityType<Sunken> ignoredType, ServerLevelAccessor world, EntitySpawnReason spawnReason, BlockPos pos, RandomSource random) {
+    public static boolean canSpawn(EntityType<Sunken> ignoredType, ServerLevelAccessor world, MobSpawnType spawnReason, BlockPos pos, RandomSource random) {
         boolean bl = world.getDifficulty() != Difficulty.PEACEFUL
                 && isDarkEnoughToSpawn(world, pos, random)
-                && (spawnReason == EntitySpawnReason.SPAWNER || world.getFluidState(pos).is(FluidTags.WATER));
+                && (spawnReason == MobSpawnType.SPAWNER || world.getFluidState(pos).is(FluidTags.WATER));
         return pos.getY() < world.getSeaLevel() - 10 && bl;
     }
 
@@ -145,7 +142,7 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(1, new TryFindLiquidGoal(this, FluidTags.WATER));
+        this.goalSelector.addGoal(1, new TryFindWaterGoal(this));
         this.goalSelector.addGoal(1, new RestrictSunGoal(this));
         this.goalSelector.addGoal(2, new RangedCrossbowAttackGoal(this, 1.0D, 4.5F));
         this.goalSelector.addGoal(3, new AvoidEntityGoal(this, Pufferfish.class, 8.0F, 1.0D, 1.2D));
@@ -188,7 +185,7 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
     protected AbstractArrow getArrow(ItemStack arrow, float damageModifier, @Nullable ItemStack shotFrom) {
         AbstractArrow persistentProjectileEntity = super.getArrow(arrow, damageModifier, shotFrom);
         if (persistentProjectileEntity instanceof Arrow) {
-            ((Arrow) persistentProjectileEntity).addEffect(new MobEffectInstance(MobEffects.SLOWNESS, 600));
+            ((Arrow) persistentProjectileEntity).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600));
         }
 
         return persistentProjectileEntity;
@@ -200,15 +197,14 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
         this.setItemSlot(EquipmentSlot.MAINHAND, new ItemStack(Items.CROSSBOW));
     }
 
-	@Override
-	public boolean canUseNonMeleeWeapon(ItemStack stack) {
-		var weapon = stack.getItem();
-		return weapon instanceof BowItem || weapon instanceof CrossbowItem;
-	}
+    @Override
+    public boolean canFireProjectileWeapon(ProjectileWeaponItem weapon) {
+        return weapon instanceof BowItem || weapon instanceof CrossbowItem;
+    }
 
 	@Override
     public void travel(Vec3 movementInput) {
-        if (this.canSimulateMovement() && this.isInWater()) {
+        if (this.isEffectiveAi() && this.isInWater()) {
             float speed = 0.075F;
             this.moveRelative(speed, movementInput);
             this.move(MoverType.SELF, this.getDeltaMovement());
@@ -227,7 +223,7 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
     public void updateSwimming() {
         if (!this.level().isClientSide()) {
             boolean b = this.level().isEmptyBlock(this.blockPosition().above(2));
-            if (!b && this.canSimulateMovement() && this.isUnderWater()) {
+            if (!b && this.isEffectiveAi() && this.isUnderWater()) {
                 this.navigation = this.waterNavigation;
                 this.setSwimming(true);
                 this.setBreaststrokeSwimming(true);
@@ -353,6 +349,14 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
         this.entityData.set(VARIANT, variant);
     }
 
+    /**
+     * Each variant drops its own loot.
+     */
+    @Override
+    protected ResourceKey<LootTable> getDefaultLootTable() {
+        return this.getVariant().value().lootTable();
+    }
+
     /*============*/
     /*   STATES   */
     /*============*/
@@ -391,39 +395,17 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
     }
 
     @Override
-    protected void addAdditionalSaveData(ValueOutput view) {
-        super.addAdditionalSaveData(view);
-		VariantUtils.writeVariant(view, this.getVariant());
-
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
+        VariantUtils.writeVariant(nbt, this.getVariant());
     }
 
     @Override
-    protected void readAdditionalSaveData(ValueInput view) {
-        super.readAdditionalSaveData(view);
-		VariantUtils.readVariant(view, PromenadeRegistryKeys.SUNKEN_VARIANT).ifPresent(this::setVariant);
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
+        VariantUtils.readVariant(nbt, this.registryAccess(), PromenadeRegistryKeys.SUNKEN_VARIANT).ifPresent(this::setVariant);
     }
 
-    @org.jetbrains.annotations.Nullable
-    @Override
-    public <T> T get(DataComponentType<? extends T> type) {
-        return type == PromenadeComponentTypes.SUNKEN_VARIANT ? castComponentValue((DataComponentType<T>) type, this.getVariant()) : super.get(type);
-    }
-
-    @Override
-    protected void applyImplicitComponents(DataComponentGetter from) {
-        this.applyImplicitComponentIfPresent(from, PromenadeComponentTypes.SUNKEN_VARIANT);
-        super.applyImplicitComponents(from);
-    }
-
-    @Override
-    protected <T> boolean applyImplicitComponent(DataComponentType<T> type, T value) {
-        if (type == PromenadeComponentTypes.SUNKEN_VARIANT) {
-            this.setVariant(castComponentValue(PromenadeComponentTypes.SUNKEN_VARIANT, value));
-            return true;
-        } else {
-            return super.applyImplicitComponent(type, value);
-        }
-    }
 
     static class SunkenMoveControl extends MoveControl {
         private final Sunken sunken;
@@ -476,7 +458,7 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
         }
 
         public boolean canUse() {
-            return super.canUse() && !this.sunken.level().isBrightOutside() && this.sunken.isInWater() && this.sunken.getY() >= (double) (this.sunken.level().getSeaLevel() - 3);
+            return super.canUse() && !this.sunken.level().isDay() && this.sunken.isInWater() && this.sunken.getY() >= (double) (this.sunken.level().getSeaLevel() - 3);
         }
 
         public boolean canContinueToUse() {
@@ -512,7 +494,7 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
         }
 
         public boolean canUse() {
-            return !this.sunken.level().isBrightOutside() && this.sunken.isInWater() && !this.sunken.isTargetingUnderwater() && this.sunken.getY() < (double) (this.minY - 2);
+            return !this.sunken.level().isDay() && this.sunken.isInWater() && !this.sunken.isTargetingUnderwater() && this.sunken.getY() < (double) (this.minY - 2);
         }
 
         public boolean canContinueToUse() {

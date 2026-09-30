@@ -4,55 +4,41 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import fr.hugman.promenade.client.render.entity.model.PromenadeEntityModelLayers;
 import fr.hugman.promenade.client.render.entity.model.SunkenEntityModel;
-import fr.hugman.promenade.client.render.entity.state.SunkenRenderState;
 import fr.hugman.promenade.entity.Sunken;
-import net.minecraft.client.renderer.entity.AbstractSkeletonRenderer;
+import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
-import net.minecraft.resources.Identifier;
+import net.minecraft.client.renderer.entity.SkeletonRenderer;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-public class SunkenEntityRenderer extends AbstractSkeletonRenderer<Sunken, SunkenRenderState> {
+public class SunkenEntityRenderer extends SkeletonRenderer<Sunken> {
     public SunkenEntityRenderer(EntityRendererProvider.Context context) {
         super(
                 context,
-                PromenadeEntityModelLayers.SUNKEN_EQUIPMENT,
+                ModelLayers.STRAY_INNER_ARMOR,
+                ModelLayers.STRAY_OUTER_ARMOR,
                 new SunkenEntityModel(context.bakeLayer(PromenadeEntityModelLayers.SUNKEN))
         );
     }
 
     @Override
-    public SunkenRenderState createRenderState() {
-        return new SunkenRenderState();
-    }
+    protected void setupRotations(Sunken sunken, PoseStack poseStack, float animationProgress, float bodyYaw, float tickDelta, float scale) {
+        float h = sunken.getSwimAmount(tickDelta);
+        float i = sunken.getViewXRot(tickDelta);
 
-    @Override
-    protected void setupRotations(SunkenRenderState state, PoseStack poseStack, float bodyYaw, float baseHeight) {
-        float h = state.swimAmount;
-        float i = state.xRot;
-
-        super.setupRotations(state, poseStack, bodyYaw, baseHeight);
+        super.setupRotations(sunken, poseStack, animationProgress, bodyYaw, tickDelta, scale);
         if (h > 0.0F) {
-            float jx = state.isInWater ? -90.0F - i : -90.0F;
+            float jx = sunken.isInWater() ? -90.0F - i : -90.0F;
             float k = Mth.lerp(h, 0.0F, jx);
-            poseStack.rotateDegrees(Axis.XP, k);
-            if (state.isVisuallySwimming) {
+            poseStack.mulPose(Axis.XP.rotationDegrees(k));
+            if (sunken.isVisuallySwimming()) {
                 poseStack.translate(0.0F, -1.0F, 0.3F);
             }
         }
     }
 
     @Override
-    public Identifier getTextureLocation(SunkenRenderState state) {
-        if (state.variant == null) {
-            return MissingTextureAtlasSprite.getLocation();
-        }
-        return state.variant.texture().texturePath();
-    }
-
-    @Override
-    public void extractRenderState(Sunken sunken, SunkenRenderState state, float f) {
-        super.extractRenderState(sunken, state, f);
-        state.variant = sunken.getVariant().value();
+    public ResourceLocation getTextureLocation(Sunken sunken) {
+        return sunken.getVariant().value().texture().texturePath();
     }
 }

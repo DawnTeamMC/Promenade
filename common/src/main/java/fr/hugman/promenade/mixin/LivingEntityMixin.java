@@ -11,14 +11,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
-    @Inject(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;setTicksFrozen(I)V", ordinal = 0), cancellable = true)
+    // inject before the second call to setTicksFrozen, where frozen ticks decrease when out of powder snow
+    @Inject(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;setTicksFrozen(I)V", ordinal = 1), cancellable = true)
     private void promenade$tickMovement(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
         int frozenTicks = entity.getTicksFrozen();
-        if (entity.level() instanceof ServerLevel serverWorld && PromenadeBiomes.canFreezeFromBiomeAndWeather(entity)) {
+        if (entity.level() instanceof ServerLevel && PromenadeBiomes.canFreezeFromBiomeAndWeather(entity)) {
             entity.setTicksFrozen(Math.min(entity.getTicksRequiredToFreeze(), frozenTicks + 1));
             if (entity.tickCount % 40 == 0 && entity.isFullyFrozen()) {
-                entity.hurtServer(serverWorld, entity.damageSources().freeze(), entity.is(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES) ? 5 : 1);
+                entity.hurt(entity.damageSources().freeze(), entity.getType().is(EntityTypeTags.FREEZE_HURTS_EXTRA_TYPES) ? 5 : 1);
             }
             ci.cancel();
         }

@@ -3,7 +3,7 @@ package fr.hugman.promenade.entity.variant;
 import fr.hugman.promenade.Promenade;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.entity.decoration.painting.PaintingVariant;
+import net.minecraft.world.entity.decoration.PaintingVariant;
 
 public class PromenadePaintingVariants {
     public static final ResourceKey<PaintingVariant> OPTIMISM = of("optimism");

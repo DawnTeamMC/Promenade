@@ -9,10 +9,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelSimulatedReader;
-import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.TreeFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.TrunkPlacerType;
@@ -35,14 +34,14 @@ public class BranchingStraightTrunkPlacer extends TrunkPlacer {
 
     @Override
     public List<FoliagePlacer.FoliageAttachment> placeTrunk(
-            WorldGenLevel world,
+            LevelSimulatedReader world,
             BiConsumer<BlockPos, BlockState> replacer,
             RandomSource random,
             int height,
             BlockPos startPos,
-            TreeFeature config
+            TreeConfiguration config
     ) {
-        placeBelowTrunkBlock(world, replacer, random, startPos.below(), config);
+        setDirtAt(world, replacer, random, startPos.below(), config);
 
         Direction branchDirection = null;
         int branches = 0;

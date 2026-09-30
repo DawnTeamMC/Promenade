@@ -5,7 +5,7 @@ import fr.hugman.promenade.platform.PromenadePlatform;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.network.syncher.EntityDataSerializer;
-import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -75,12 +75,12 @@ public class NeoForgePromenadePlatform implements PromenadePlatform {
     }
 
     @Override
-    public <T> void registerAlias(Registry<T> registry, Identifier oldId, Identifier newId) {
+    public <T> void registerAlias(Registry<T> registry, ResourceLocation oldId, ResourceLocation newId) {
         registry.addAlias(oldId, newId);
     }
 
     @Override
-    public void registerEntityDataSerializer(Identifier id, EntityDataSerializer<?> serializer) {
+    public void registerEntityDataSerializer(ResourceLocation id, EntityDataSerializer<?> serializer) {
         Registry.register(NeoForgeRegistries.ENTITY_DATA_SERIALIZERS, id, serializer);
     }
 

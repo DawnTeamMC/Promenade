@@ -32,7 +32,7 @@ public class PromenadeBiomes {
      */
     public static boolean canFreezeFromBiomeAndWeather(LivingEntity entity) {
         Holder<Biome> biome = entity.level().getBiome(entity.blockPosition());
-        if (entity.is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)) {
+        if (entity.getType().is(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES)) {
             // is immune
             return false;
         }

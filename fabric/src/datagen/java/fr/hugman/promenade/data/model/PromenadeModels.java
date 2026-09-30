@@ -1,8 +1,8 @@
 package fr.hugman.promenade.data.model;
 
 import fr.hugman.promenade.Promenade;
-import net.minecraft.client.data.models.model.ModelTemplate;
-import net.minecraft.client.data.models.model.TextureSlot;
+import net.minecraft.data.models.model.ModelTemplate;
+import net.minecraft.data.models.model.TextureSlot;
 
 import java.util.Optional;
 

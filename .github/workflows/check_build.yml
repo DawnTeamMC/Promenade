@@ -10,7 +10,7 @@ jobs:
     if: github.event.pull_request.draft == false
     strategy:
       matrix:
-        java: [ 25 ]
+        java: [ 21 ]
         os: [ ubuntu-latest ]
     name: Build the project (Java ${{ matrix.java }}, on ${{ matrix.os }}))
     runs-on: ${{ matrix.os }}

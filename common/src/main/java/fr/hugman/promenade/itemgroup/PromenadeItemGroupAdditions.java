@@ -32,7 +32,6 @@ public class PromenadeItemGroupAdditions {
                     PromenadeBlocks.ACACIA_LEAF_PILE,
                     PromenadeBlocks.CHERRY_LEAF_PILE,
                     PromenadeBlocks.DARK_OAK_LEAF_PILE,
-                    PromenadeBlocks.PALE_OAK_LEAF_PILE,
                     PromenadeBlocks.MANGROVE_LEAF_PILE,
                     PromenadeBlocks.AZALEA_LEAF_PILE,
                     PromenadeBlocks.FLOWERING_AZALEA_LEAF_PILE
@@ -64,7 +63,6 @@ public class PromenadeItemGroupAdditions {
             e.insertAfter(Blocks.ACACIA_LEAVES, PromenadeBlocks.SNOWY_ACACIA_LEAVES);
             e.insertAfter(Blocks.CHERRY_LEAVES, PromenadeBlocks.SNOWY_CHERRY_LEAVES);
             e.insertAfter(Blocks.DARK_OAK_LEAVES, PromenadeBlocks.SNOWY_DARK_OAK_LEAVES);
-            e.insertAfter(Blocks.PALE_OAK_LEAVES, PromenadeBlocks.SNOWY_PALE_OAK_LEAVES);
             e.insertAfter(Blocks.MANGROVE_LEAVES, PromenadeBlocks.SNOWY_MANGROVE_LEAVES);
             e.insertAfter(Blocks.AZALEA_LEAVES, PromenadeBlocks.SNOWY_AZALEA_LEAVES);
             e.insertAfter(Blocks.FLOWERING_AZALEA_LEAVES, PromenadeBlocks.SNOWY_FLOWERING_AZALEA_LEAVES);
@@ -186,20 +184,16 @@ public class PromenadeItemGroupAdditions {
         modify(CreativeModeTabs.BUILDING_BLOCKS, e -> e.insertAfter(Blocks.CUT_RED_SANDSTONE_SLAB, PromenadeBlocks.MOAI));
 
         modify(CreativeModeTabs.FUNCTIONAL_BLOCKS, e -> e.insertAfter(Blocks.BIRCH_HANGING_SIGN, PromenadeItems.SAKURA_SIGN, PromenadeItems.SAKURA_HANGING_SIGN));
-        modify(CreativeModeTabs.FUNCTIONAL_BLOCKS, e -> e.insertAfter(Blocks.BIRCH_SHELF, PromenadeBlocks.SAKURA_SHELF));
         modify(CreativeModeTabs.TOOLS_AND_UTILITIES, e -> e.insertAfter(Items.BIRCH_CHEST_BOAT, PromenadeItems.SAKURA_BOAT, PromenadeItems.SAKURA_CHEST_BOAT));
 
         modify(CreativeModeTabs.FUNCTIONAL_BLOCKS, e -> e.insertAfter(PromenadeItems.SAKURA_HANGING_SIGN, PromenadeItems.MAPLE_SIGN, PromenadeItems.MAPLE_HANGING_SIGN));
-        modify(CreativeModeTabs.FUNCTIONAL_BLOCKS, e -> e.insertAfter(PromenadeBlocks.SAKURA_SHELF, PromenadeBlocks.MAPLE_SHELF));
         modify(CreativeModeTabs.TOOLS_AND_UTILITIES, e -> e.insertAfter(PromenadeItems.SAKURA_CHEST_BOAT, PromenadeItems.MAPLE_BOAT, PromenadeItems.MAPLE_CHEST_BOAT));
         modify(CreativeModeTabs.FOOD_AND_DRINKS, e -> e.insertAfter(Items.HONEY_BOTTLE, PromenadeItems.MAPLE_SYRUP_BOTTLE));
 
         modify(CreativeModeTabs.FUNCTIONAL_BLOCKS, e -> e.insertAfter(Blocks.ACACIA_HANGING_SIGN, PromenadeItems.PALM_SIGN, PromenadeItems.PALM_HANGING_SIGN));
-        modify(CreativeModeTabs.FUNCTIONAL_BLOCKS, e -> e.insertAfter(Blocks.ACACIA_SHELF, PromenadeBlocks.PALM_SHELF));
         modify(CreativeModeTabs.TOOLS_AND_UTILITIES, e -> e.insertAfter(Items.ACACIA_CHEST_BOAT, PromenadeItems.PALM_BOAT, PromenadeItems.PALM_CHEST_BOAT));
 
         modify(CreativeModeTabs.FUNCTIONAL_BLOCKS, e -> e.insertAfter(Blocks.WARPED_HANGING_SIGN, PromenadeItems.DARK_AMARANTH_SIGN, PromenadeItems.DARK_AMARANTH_HANGING_SIGN));
-        modify(CreativeModeTabs.FUNCTIONAL_BLOCKS, e -> e.insertAfter(Blocks.WARPED_SHELF, PromenadeBlocks.DARK_AMARANTH_SHELF));
 
         modify(CreativeModeTabs.FOOD_AND_DRINKS, e -> {
             e.insertAfter(Items.SWEET_BERRIES, PromenadeItems.BLUEBERRIES);

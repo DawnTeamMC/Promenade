@@ -1,8 +1,10 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.datafixers.DataFixUtils;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
@@ -11,18 +13,21 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.VegetationBlock;
+import net.minecraft.world.level.block.BushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -34,7 +39,12 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BerryBushBlock extends VegetationBlock implements BonemealableBlock {
+public class BerryBushBlock extends BushBlock implements BonemealableBlock {
+    public static final MapCodec<BerryBushBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
+            ResourceKey.codec(Registries.ITEM).fieldOf("berry").forGetter(block -> block.berry),
+            Codec.BOOL.fieldOf("is_spiny").forGetter(block -> block.isSpiny),
+            propertiesCodec()
+    ).apply(instance, BerryBushBlock::new));
     private static final float MIN_MOVEMENT_FOR_DAMAGE = 0.003f;
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
@@ -52,8 +62,17 @@ public class BerryBushBlock extends VegetationBlock implements BonemealableBlock
     }
 
     @Override
-    protected ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
-        return new ItemStack(DataFixUtils.orElse(world.registryAccess().lookupOrThrow(Registries.ITEM).getOptional(this.berry), this));
+    protected MapCodec<BerryBushBlock> codec() {
+        return CODEC;
+    }
+
+    private ItemLike getBerry() {
+        return BuiltInRegistries.ITEM.getOptional(this.berry).<ItemLike>map(item -> item).orElse(this);
+    }
+
+    @Override
+    public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
+        return new ItemStack(this.getBerry());
     }
 
     @Override
@@ -82,29 +101,26 @@ public class BerryBushBlock extends VegetationBlock implements BonemealableBlock
         }
     }
 
-	@Override
-	protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entity, InsideBlockEffectApplier handler, boolean bl) {
-        if (!(entity instanceof LivingEntity) || entity.getType() == EntityTypes.FOX || entity.getType() == EntityTypes.BEE) {
+    @Override
+    protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+        if (!(entity instanceof LivingEntity) || entity.getType() == EntityType.FOX || entity.getType() == EntityType.BEE) {
             return;
         }
         entity.makeStuckInBlock(state, new Vec3(0.8f, 0.75, 0.8f));
         if (this.isSpiny) {
-            if (world instanceof ServerLevel serverWorld && state.getValue(AGE) != 0) {
-                Vec3 vec3d = entity.isClientAuthoritative() ? entity.getKnownMovement() : entity.oldPosition().subtract(entity.position());
-                if (vec3d.horizontalDistanceSqr() > 0.0) {
-                    double d = Math.abs(vec3d.x());
-                    double e = Math.abs(vec3d.z());
-                    if (d >= MIN_MOVEMENT_FOR_DAMAGE || e >= MIN_MOVEMENT_FOR_DAMAGE) {
-                        entity.hurtServer(serverWorld, world.damageSources().sweetBerryBush(), 1.0F);
-                    }
+            if (!world.isClientSide && state.getValue(AGE) != 0 && (entity.xOld != entity.getX() || entity.zOld != entity.getZ())) {
+                double d = Math.abs(entity.getX() - entity.xOld);
+                double e = Math.abs(entity.getZ() - entity.zOld);
+                if (d >= MIN_MOVEMENT_FOR_DAMAGE || e >= MIN_MOVEMENT_FOR_DAMAGE) {
+                    entity.hurt(world.damageSources().sweetBerryBush(), 1.0F);
                 }
             }
         }
     }
 
     @Override
-    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return state.getValue(AGE) != 3 && stack.is(Items.BONE_MEAL) ? InteractionResult.PASS : super.useItemOn(stack, state, world, pos, player, hand, hit);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        return state.getValue(AGE) != MAX_AGE && stack.is(Items.BONE_MEAL) ? ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION : super.useItemOn(stack, state, world, pos, player, hand, hit);
     }
 
     @Override
@@ -112,12 +128,12 @@ public class BerryBushBlock extends VegetationBlock implements BonemealableBlock
         int age = state.getValue(AGE);
         if (age > 1) {
             int j = 1 + world.getRandom().nextInt(2);
-            popResource(world, pos, new ItemStack(DataFixUtils.orElse(world.registryAccess().lookupOrThrow(Registries.ITEM).getOptional(this.berry), this), j + (age == MAX_AGE ? 1 : 0)));
+            popResource(world, pos, new ItemStack(this.getBerry(), j + (age == MAX_AGE ? 1 : 0)));
             world.playSound(null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0f, 0.8f + world.getRandom().nextFloat() * 0.4f);
             BlockState blockState = state.setValue(AGE, 1);
             world.setBlock(pos, blockState, Block.UPDATE_CLIENTS);
             world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockState));
-            return InteractionResult.SUCCESS;
+            return InteractionResult.sidedSuccess(world.isClientSide);
         }
         return super.useWithoutItem(state, world, pos, player, hit);
     }
@@ -128,17 +144,17 @@ public class BerryBushBlock extends VegetationBlock implements BonemealableBlock
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, BonemealSource source) {
-        return state.getValue(AGE) < 3;
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+        return state.getValue(AGE) < MAX_AGE;
     }
 
     @Override
-    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
+    public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state, BonemealSource source) {
+    public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
         int i = Math.min(MAX_AGE, state.getValue(AGE) + 1);
         world.setBlock(pos, state.setValue(AGE, i), Block.UPDATE_CLIENTS);
     }

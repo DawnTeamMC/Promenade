@@ -1,32 +1,31 @@
 package fr.hugman.promenade.world.gen.feature;
 
-import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SnowLayerBlock;
-import net.minecraft.world.level.block.SnowyBlock;
+import net.minecraft.world.level.block.SnowyDirtBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public record FreezeTopLayerFeature() implements Feature {
-    public static final MapCodec<FreezeTopLayerFeature> CODEC = MapCodec.unit(FreezeTopLayerFeature::new);
-
-    @Override
-    public MapCodec<FreezeTopLayerFeature> codec() {
-        return CODEC;
+public class FreezeTopLayerFeature extends Feature<NoneFeatureConfiguration> {
+    public FreezeTopLayerFeature(Codec<NoneFeatureConfiguration> codec) {
+        super(codec);
     }
 
     @Override
-    public boolean place(WorldGenLevel world, ChunkGenerator chunkGenerator, RandomSource random, BlockPos blockPos) {
+    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+        var world = context.level();
+        var random = context.random();
+        var blockPos = context.origin();
         var topMutable = new BlockPos.MutableBlockPos();
         var groundMutable = new BlockPos.MutableBlockPos();
         var undergroundMutable = new BlockPos.MutableBlockPos();
@@ -59,8 +58,8 @@ public record FreezeTopLayerFeature() implements Feature {
                     }
 
                     BlockState blockState = world.getBlockState(groundMutable);
-                    if (blockState.hasProperty(SnowyBlock.SNOWY)) {
-                        world.setBlock(groundMutable, blockState.setValue(SnowyBlock.SNOWY, true), Block.UPDATE_CLIENTS);
+                    if (blockState.hasProperty(SnowyDirtBlock.SNOWY)) {
+                        world.setBlock(groundMutable, blockState.setValue(SnowyDirtBlock.SNOWY, true), Block.UPDATE_CLIENTS);
                     }
                 }
 
@@ -95,8 +94,8 @@ public record FreezeTopLayerFeature() implements Feature {
                     world.setBlock(topMutable, Blocks.SNOW.defaultBlockState().setValue(SnowLayerBlock.LAYERS, topSnowLayers.sample(random)), Block.UPDATE_CLIENTS);
 
                     BlockState blockState = world.getBlockState(groundMutable);
-                    if (blockState.hasProperty(SnowyBlock.SNOWY)) {
-                        world.setBlock(groundMutable, blockState.setValue(SnowyBlock.SNOWY, true), Block.UPDATE_CLIENTS);
+                    if (blockState.hasProperty(SnowyDirtBlock.SNOWY)) {
+                        world.setBlock(groundMutable, blockState.setValue(SnowyDirtBlock.SNOWY, true), Block.UPDATE_CLIENTS);
                     }
                 }
             }

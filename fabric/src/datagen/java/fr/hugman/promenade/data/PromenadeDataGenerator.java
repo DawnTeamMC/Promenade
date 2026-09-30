@@ -27,7 +27,7 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         // - Modded stuff
         pack.addProvider(PromenadeSnowyBlockTransformationProvider::new);
         // - Loader-specific
-        pack.addProvider(PromenadeNeoForgeTransformablesProvider::new);
+        pack.addProvider(PromenadeNeoForgeDataMapsProvider::new);
 
         // - Variants
         pack.addProvider(PromenadeWolfVariantProvider::new);
@@ -55,9 +55,6 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         // - Banner Patterns
         pack.addProvider(PromenadeBannerPatternProvider::new);
 
-        // - Villager Trades
-        pack.addProvider(PromenadeVillagerTradeProvider::new);
-
         // - Tags
         var blockTagProvider = pack.addProvider(PromenadeBlockTagProvider::new);
         pack.addProvider((output, lookup) -> new PromenadeItemTagProvider(output, lookup, blockTagProvider));
@@ -65,10 +62,9 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(PromenadeEntityTypeTagProvider::new);
         pack.addProvider(PromenadeBannerPatternTagProvider::new);
         pack.addProvider(PromenadePaintingVariantTagProvider::new);
-        pack.addProvider(PromenadeVillagerTradeTagsProvider::new);
 
         // - Recipes
-        pack.addProvider(PromenadeRecipeGenerator::create);
+        pack.addProvider(PromenadeRecipeGenerator::new);
 
         // - Advancements
         pack.addProvider(PromenadeAdvancementProvider::new);
@@ -88,13 +84,11 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         registryBuilder.add(Registries.STRUCTURE, PromenadeStructureProvider::register);
         registryBuilder.add(Registries.STRUCTURE_SET, PromenadeStructureSetProvider::register);
 
-        registryBuilder.add(Registries.FEATURE, PromenadeConfiguredFeatureProvider::register);
+        registryBuilder.add(Registries.CONFIGURED_FEATURE, PromenadeConfiguredFeatureProvider::register);
         registryBuilder.add(Registries.PLACED_FEATURE, PromenadePlacedFeatureProvider::register);
         registryBuilder.add(Registries.BIOME, PromenadeBiomeProvider::register);
 
         registryBuilder.add(Registries.BANNER_PATTERN, PromenadeBannerPatternProvider::register);
-
-        registryBuilder.add(Registries.VILLAGER_TRADE, PromenadeVillagerTradeProvider::register);
     }
 
     @Override

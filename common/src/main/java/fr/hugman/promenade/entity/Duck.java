@@ -1,6 +1,5 @@
 package fr.hugman.promenade.entity;
 
-import fr.hugman.promenade.component.PromenadeComponentTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.entity.variant.DuckVariant;
 import fr.hugman.promenade.entity.variant.DuckVariants;
@@ -9,8 +8,6 @@ import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.tag.PromenadeItemTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.core.component.DataComponentGetter;
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
@@ -21,7 +18,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Pose;
@@ -39,15 +36,14 @@ import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.variant.SpawnContext;
-import net.minecraft.world.entity.variant.VariantUtils;
+import fr.hugman.promenade.entity.spawn.SpawnContext;
+import fr.hugman.promenade.entity.variant.VariantUtils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathType;
-import net.minecraft.world.level.storage.ValueInput;
-import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -68,7 +64,7 @@ public class Duck extends Animal {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, EntitySpawnReason spawnReason, @org.jetbrains.annotations.Nullable SpawnGroupData entityData) {
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @org.jetbrains.annotations.Nullable SpawnGroupData entityData) {
         DuckVariants.select(this.random, this.registryAccess(), SpawnContext.create(world, this.blockPosition())).ifPresent(this::setVariant);
         return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
     }
@@ -91,7 +87,7 @@ public class Duck extends Animal {
     /*========*/
 
     public static Builder createDuckAttributes() {
-        return createAnimalAttributes()
+        return Animal.createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 4.0D)
                 .add(Attributes.MOVEMENT_SPEED, 0.25D);
     }
@@ -169,7 +165,7 @@ public class Duck extends Animal {
     @Nullable
     @Override
     public Duck getBreedOffspring(ServerLevel serverWorld, AgeableMob entity) {
-        Duck child = PromenadeEntityTypes.DUCK.create(this.level(), EntitySpawnReason.BREEDING);
+        Duck child = PromenadeEntityTypes.DUCK.create(this.level());
         if (child != null && entity instanceof Duck mama) {
             child.setVariant(this.random.nextFloat() < 0.5f ? mama.getVariant() : this.getVariant());
         }
@@ -195,37 +191,14 @@ public class Duck extends Animal {
     }
 
     @Override
-    protected void addAdditionalSaveData(ValueOutput view) {
-        super.addAdditionalSaveData(view);
-		VariantUtils.writeVariant(view, this.getVariant());
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
+        VariantUtils.writeVariant(nbt, this.getVariant());
     }
 
     @Override
-    protected void readAdditionalSaveData(ValueInput view) {
-        super.readAdditionalSaveData(view);
-		VariantUtils.readVariant(view, PromenadeRegistryKeys.DUCK_VARIANT).ifPresent(this::setVariant);
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
+        VariantUtils.readVariant(nbt, this.registryAccess(), PromenadeRegistryKeys.DUCK_VARIANT).ifPresent(this::setVariant);
     }
-
-    @Nullable
-    @Override
-    public <T> T get(DataComponentType<? extends T> type) {
-        return type == PromenadeComponentTypes.DUCK_VARIANT ? castComponentValue((DataComponentType<T>) type, this.getVariant()) : super.get(type);
-    }
-
-    @Override
-    protected void applyImplicitComponents(DataComponentGetter from) {
-        this.applyImplicitComponentIfPresent(from, PromenadeComponentTypes.DUCK_VARIANT);
-        super.applyImplicitComponents(from);
-    }
-
-    @Override
-    protected <T> boolean applyImplicitComponent(DataComponentType<T> type, T value) {
-        if (type == PromenadeComponentTypes.DUCK_VARIANT) {
-            this.setVariant(castComponentValue(PromenadeComponentTypes.DUCK_VARIANT, value));
-            return true;
-        } else {
-            return super.applyImplicitComponent(type, value);
-        }
-    }
-
 }

@@ -2,20 +2,15 @@ package fr.hugman.promenade.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.particles.ColorParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.util.ExtraCodecs;
-import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.LevelAccessor;
 
 public class TintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBlock {
     public static final BooleanProperty BOTTOM = BlockStateProperties.BOTTOM;
@@ -40,9 +35,9 @@ public class TintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBlock 
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         BlockState stateBelow = world.getBlockState(pos.below());
-        return super.updateShape(state, world, tickView, pos, direction, neighborPos, neighborState, random).setValue(BOTTOM, !isSnow(stateBelow));
+        return super.updateShape(state, direction, neighborState, world, pos, neighborPos).setValue(BOTTOM, !isSnow(stateBelow));
     }
 
     public static boolean isSnow(BlockState state) {
@@ -51,6 +46,6 @@ public class TintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBlock 
 
     @Override
     protected void spawnLeafParticle(Level world, BlockPos pos, RandomSource random) {
-        ParticleUtils.spawnParticleBelow(world, pos, random, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, world.getClientLeafTintColor(pos)));
+        // 1.21.1 has no tinted leaf particles, like vanilla leaves
     }
 }

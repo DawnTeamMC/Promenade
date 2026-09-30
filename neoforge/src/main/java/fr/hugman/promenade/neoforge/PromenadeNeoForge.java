@@ -3,11 +3,14 @@ package fr.hugman.promenade.neoforge;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.platform.PromenadePlatform;
 import fr.hugman.promenade.registry.PromenadeRegistries;
+import fr.hugman.promenade.world.item.trading.PromenadeVillagerTrades;
 import net.minecraft.core.Registry;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.village.WandererTradesEvent;
+import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
-import net.neoforged.neoforge.registries.NewDatapackRegistryEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
 @Mod(Promenade.MOD_ID)
@@ -17,8 +20,11 @@ public class PromenadeNeoForge {
     public PromenadeNeoForge(IEventBus modBus) {
         ((NeoForgePromenadePlatform) PromenadePlatform.INSTANCE).subscribe(modBus);
 
-        modBus.addListener(NewDatapackRegistryEvent.class, event -> PromenadeRegistries.register(event::worldRegistry));
+        modBus.addListener(DataPackRegistryEvent.NewRegistry.class, event -> PromenadeRegistries.register(event::dataPackRegistry));
         modBus.addListener(RegisterEvent.class, PromenadeNeoForge::register);
+
+        // Stripping and composting are given by data maps generated from the common lists
+        NeoForge.EVENT_BUS.addListener(WandererTradesEvent.class, event -> event.getGenericTrades().addAll(PromenadeVillagerTrades.wanderingTraderCommonTrades()));
     }
 
     /**

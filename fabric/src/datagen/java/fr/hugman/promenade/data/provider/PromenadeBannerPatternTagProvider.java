@@ -1,17 +1,19 @@
 package fr.hugman.promenade.data.provider;
 
+
+import net.minecraft.tags.TagKey;
 import fr.hugman.promenade.banner.PromenadeBannerPatternTags;
 import fr.hugman.promenade.banner.PromenadeBannerPatterns;
-import net.fabricmc.fabric.api.datagen.v1.FabricPackOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagsProvider;
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BannerPattern;
 
 import java.util.concurrent.CompletableFuture;
 
-public class PromenadeBannerPatternTagProvider extends FabricTagsProvider<BannerPattern> {
-    public PromenadeBannerPatternTagProvider(FabricPackOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class PromenadeBannerPatternTagProvider extends FabricTagProvider<BannerPattern> {
+    public PromenadeBannerPatternTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, Registries.BANNER_PATTERN, registriesFuture);
     }
 
@@ -19,5 +21,9 @@ public class PromenadeBannerPatternTagProvider extends FabricTagsProvider<Banner
     protected void addTags(HolderLookup.Provider wrapperLookup) {
         // Promenade
         builder(PromenadeBannerPatternTags.BOVINE_PATTERN_ITEM).add(PromenadeBannerPatterns.BOVINE);
+    }
+
+    private PromenadeTagBuilder<BannerPattern> builder(TagKey<BannerPattern> tag) {
+        return new PromenadeTagBuilder<BannerPattern>(this.getOrCreateTagBuilder(tag), null);
     }
 }

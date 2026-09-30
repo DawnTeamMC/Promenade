@@ -1,5 +1,6 @@
 package fr.hugman.promenade.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -8,7 +9,6 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -16,8 +16,15 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class WitherRosePileBlock extends PileBlock {
+    public static final MapCodec<WitherRosePileBlock> CODEC = simpleCodec(WitherRosePileBlock::new);
+
     public WitherRosePileBlock(Properties builder) {
         super(builder);
+    }
+
+    @Override
+    protected MapCodec<? extends WitherRosePileBlock> codec() {
+        return CODEC;
     }
 
     @Override
@@ -35,14 +42,14 @@ public class WitherRosePileBlock extends PileBlock {
     }
 
     @Override
-	protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entity, InsideBlockEffectApplier handler, boolean bl) {
-        if (world instanceof ServerLevel serverWorld
+	protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+        if (world instanceof ServerLevel
                 && world.getDifficulty() != Difficulty.PEACEFUL
                 && entity instanceof LivingEntity livingEntity
-                && !livingEntity.isInvulnerableTo(serverWorld, world.damageSources().wither())) {
+                && !livingEntity.isInvulnerableTo(world.damageSources().wither())) {
             livingEntity.addEffect(this.getContactEffect());
         }
-		super.entityInside(state, world, pos, entity, handler, bl);
+		super.entityInside(state, world, pos, entity);
     }
 
     public MobEffectInstance getContactEffect() {
