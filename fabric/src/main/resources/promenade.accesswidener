@@ -1,0 +1,9 @@
+accessWidener	v1	official
+extendable	method	net/minecraft/world/entity/monster/skeleton/AbstractSkeleton	getStepSound	()Lnet/minecraft/sounds/SoundEvent;
+extendable	method	net/minecraft/world/entity/monster/Creeper	explodeCreeper	()V
+accessible	field	net/minecraft/world/entity/Mob	lootTable	Ljava/util/Optional;
+accessible	method	net/minecraft/client/particle/FallingLeavesParticle	<init>	(Lnet/minecraft/client/multiplayer/ClientLevel;DDDLnet/minecraft/client/renderer/texture/TextureAtlasSprite;FFZZFF)V
+accessible	method	net/minecraft/world/level/block/state/properties/WoodType	register	(Lnet/minecraft/world/level/block/state/properties/WoodType;)Lnet/minecraft/world/level/block/state/properties/WoodType;
+accessible	method	net/minecraft/world/level/block/state/properties/BlockSetType	register	(Lnet/minecraft/world/level/block/state/properties/BlockSetType;)Lnet/minecraft/world/level/block/state/properties/BlockSetType;
+# Fabric only (NeoForge has RegisterSpawnPlacementsEvent); the rest is mirrored in the NeoForge access transformer
+accessible	method	net/minecraft/world/entity/SpawnPlacements	register	(Lnet/minecraft/world/entity/EntityType;Lnet/minecraft/world/entity/SpawnPlacementType;Lnet/minecraft/world/level/levelgen/Heightmap$Types;Lnet/minecraft/world/entity/SpawnPlacements$SpawnPredicate;)V

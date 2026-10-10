@@ -18,12 +18,22 @@ body:
       placeholder: Tell us what has happened!
     validations:
       required: true
-  - type: input
-    id: fabric-version
+  - type: dropdown
+    id: loader
     attributes:
-      label: Fabric API version
-      description: What version of the Fabric API are you using?
-      placeholder: ex. 0.51.0+1.18.2
+      label: Mod loader
+      description: Which mod loader are you using?
+      options:
+        - Fabric
+        - NeoForge
+    validations:
+      required: true
+  - type: input
+    id: loader-version
+    attributes:
+      label: Loader version
+      description: What version of Fabric API or NeoForge are you using?
+      placeholder: ex. 0.161.0+26.3 (Fabric API), 26.3.0.31-beta (NeoForge)
     validations:
       required: false
   - type: textarea

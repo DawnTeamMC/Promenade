@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "name": "Promenade",
+  "id": "promenade",
+  "version": "${version}",
+  "icon": "assets/promenade/textures/logo.png",
+  "authors": [
+    "Hugman"
+  ],
+  "contributors": [
+    "LudoCrypt",
+    "Lylian"
+  ],
+  "contact": {
+    "homepage": "https://dawnteammc.github.io/promenade",
+    "sources": "https://github.com/DawnTeamMC/Promenade",
+    "issues": "https://github.com/DawnTeamMC/Promenade/issues"
+  },
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "fr.hugman.promenade.fabric.PromenadeFabric"
+    ],
+    "client": [
+      "fr.hugman.promenade.fabric.client.PromenadeFabricClient"
+    ],
+    "modmenu": [
+      "fr.hugman.promenade.fabric.client.PromenadeModMenuApi"
+    ]
+  },
+  "mixins": [
+    "promenade.mixins.json"
+  ],
+  "accessWidener": "promenade.accesswidener",
+  "depends": {
+    "minecraft": "~26.3-",
+    "fabric-api": "*",
+    "biolith": "*"
+  },
+  "suggests": {
+    "modmenu": "*",
+    "farmingforblockheads": "*",
+    "appleskin": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.twitter": "https://twitter.com/DawnTeamMC",
+        "modmenu.discord": "https://discord.gg/8ksTVJu",
+        "modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/promenade",
+        "modmenu.modrinth": "https://modrinth.com/mod/promenade",
+        "modmenu.github_releases": "https://github.com/DawnTeamMC/Promenade/releases/",
+        "modmenu.crowdin": "https://crowdin.com/project/dawnteam",
+        "modmenu.wiki": "https://dawnteammc.github.io/promenade/wiki"
+      }
+    },
+    "modupdater": {
+      "strategy": "curseforge",
+      "projectID": 399648
+    },
+    "mc-publish": {
+      "curseforge": 399648,
+      "modrinth": "GuE5FpvB",
+      "loaders": [
+        "fabric",
+        "quilt"
+      ],
+      "dependencies": [
+        "farmingforblockheads(optional){curseforge:farming-for-blockheads-fabric}{modrinth:farming-for-blockheads}",
+        "modmenu(optional){curseforge:modmenu}{modrinth:modmenu}",
+        "biolith(embedded)"
+      ]
+    }
+  },
+  "license": "Polyform Shield 1.0.0"
+}
