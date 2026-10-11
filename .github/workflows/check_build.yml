@@ -10,7 +10,7 @@ jobs:
     if: github.event.pull_request.draft == false
     strategy:
       matrix:
-        java: [ 21 ]
+        java: [ 25 ]
         os: [ ubuntu-latest ]
     name: Build the project (Java ${{ matrix.java }}, on ${{ matrix.os }}))
     runs-on: ${{ matrix.os }}
@@ -25,7 +25,10 @@ jobs:
       - name: Setup JDK ${{ matrix.java }}
         uses: actions/setup-java@v6.0.1
         with:
-          java-version: ${{ matrix.java }}
+          # Gradle and Loom run on Java 25 (the default, listed last); Minecraft 1.21.1 compiles and runs on the Java 21 toolchain
+          java-version: |
+            21
+            ${{ matrix.java }}
           distribution: 'temurin'
 
       - name: Make Gradle wrapper executable
