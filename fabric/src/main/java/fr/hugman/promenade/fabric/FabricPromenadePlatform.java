@@ -8,9 +8,12 @@ import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityDataRegistry;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
+import net.fabricmc.fabric.api.resource.v1.pack.PackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -90,5 +93,12 @@ public class FabricPromenadePlatform implements PromenadePlatform {
     @Override
     public void addFeature(Predicate<Holder<Biome>> biomes, GenerationStep.Decoration step, ResourceKey<PlacedFeature> feature) {
         BiomeModifications.addFeature(context -> biomes.test(context.getBiomeHolder()), step, feature);
+    }
+
+    @Override
+    public void registerBuiltinDataPack(Identifier id, Component name) {
+        // Fabric reads built-in packs from resourcepacks/<id path>/
+        var container = FabricLoader.getInstance().getModContainer(id.getNamespace()).orElseThrow();
+        ResourceLoader.registerBuiltinPack(id, container, name, PackActivationType.NORMAL);
     }
 }

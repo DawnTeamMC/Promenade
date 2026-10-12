@@ -14,6 +14,7 @@ import fr.hugman.promenade.entity.spawn.PromenadeSpawnConditions;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.itemgroup.PromenadeItemGroupAdditions;
 import fr.hugman.promenade.itemgroup.PromenadeItemGroups;
+import fr.hugman.promenade.pack.PromenadeDataPacks;
 import fr.hugman.promenade.platform.PromenadePlatform;
 import fr.hugman.promenade.registry.*;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
@@ -73,6 +74,8 @@ public class Promenade {
         PromenadeRegistryAliases.registerAliases();
 
         Reflection.initialize(PromenadeGameRules.class);
+
+        PromenadeDataPacks.register();
     }
 
     public static Identifier id(String path) {

@@ -20,6 +20,7 @@ import org.jspecify.annotations.NonNull;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 /**
@@ -27,35 +28,59 @@ import java.util.stream.Stream;
  * can override or disable them one by one.
  */
 public class PromenadeBiolithBiomePlacementProvider extends FabricCodecDataProvider<BiomePlacementMarshaller> {
+	public static final Identifier SAKURA_GROVES = Promenade.id("sakura_groves");
+	public static final Identifier CARNELIAN_TREEWAY = Promenade.id("carnelian_treeway");
+	public static final Identifier GLACARIAN_TAIGA = Promenade.id("glacarian_taiga");
+	public static final Identifier DARK_AMARANTH_FOREST = Promenade.id("dark_amaranth_forest");
+
+	/**
+	 * Overriding a placement file with this disables it.
+	 */
+	public static final BiomePlacementMarshaller NONE = new BiomePlacementMarshaller(List.of(), List.of(), List.of(), List.of());
+
+	private final Consumer<BiConsumer<Identifier, BiomePlacementMarshaller>> placements;
+
 	public PromenadeBiolithBiomePlacementProvider(FabricPackOutput packOutput, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+		this(packOutput, registriesFuture, PromenadeBiolithBiomePlacementProvider::defaultPlacements);
+	}
+
+	/**
+	 * @param placements the placement files to generate, instead of the default ones
+	 */
+	public PromenadeBiolithBiomePlacementProvider(FabricPackOutput packOutput, CompletableFuture<HolderLookup.Provider> registriesFuture, Consumer<BiConsumer<Identifier, BiomePlacementMarshaller>> placements) {
 		super(packOutput, registriesFuture, PackOutput.Target.DATA_PACK, "biolith/biome_placement", BiomePlacementMarshaller.CODEC);
+		this.placements = placements;
 	}
 
 	@Override
 	public void configure(BiConsumer<Identifier, BiomePlacementMarshaller> provider, HolderLookup.Provider registryLookup) {
-		provider.accept(Promenade.id("sakura_groves"), replacements(List.of(
+		this.placements.accept(provider);
+	}
+
+	private static void defaultPlacements(BiConsumer<Identifier, BiomePlacementMarshaller> provider) {
+		provider.accept(SAKURA_GROVES, replacements(List.of(
 				overworldReplacement(Biomes.FOREST, PromenadeBiomes.BLUSH_SAKURA_GROVE, 0.2D),
 				overworldReplacement(Biomes.BIRCH_FOREST, PromenadeBiomes.COTTON_SAKURA_GROVE, 0.2D)
 		)));
-		provider.accept(Promenade.id("carnelian_treeway"), replacements(List.of(
+		provider.accept(CARNELIAN_TREEWAY, replacements(List.of(
 				overworldReplacement(Biomes.PLAINS, PromenadeBiomes.CARNELIAN_TREEWAY, 0.2D)
 		)));
-		provider.accept(Promenade.id("glacarian_taiga"), replacements(
+		provider.accept(GLACARIAN_TAIGA, replacements(
 				Stream.of(Biomes.TAIGA, Biomes.SNOWY_TAIGA, Biomes.SNOWY_SLOPES, Biomes.JAGGED_PEAKS, Biomes.GROVE)
 						.map(target -> overworldReplacement(target, PromenadeBiomes.GLACARIAN_TAIGA, 0.1D))
 						.toList()
 		));
-		provider.accept(Promenade.id("dark_amaranth_forest"), new BiomePlacementMarshaller(
+		provider.accept(DARK_AMARANTH_FOREST, new BiomePlacementMarshaller(
 				List.of(new AddBiomeMarshaller(BuiltinDimensionTypes.NETHER, PromenadeBiomes.DARK_AMARANTH_FOREST, Climate.parameters(0.15F, -0.3F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F))),
 				List.of(), List.of(), List.of()
 		));
 	}
 
-	private static ReplaceBiomeMarshaller overworldReplacement(ResourceKey<Biome> target, ResourceKey<Biome> biome, double proportion) {
+	public static ReplaceBiomeMarshaller overworldReplacement(ResourceKey<Biome> target, ResourceKey<Biome> biome, double proportion) {
 		return new ReplaceBiomeMarshaller(BuiltinDimensionTypes.OVERWORLD, target, biome, proportion);
 	}
 
-	private static BiomePlacementMarshaller replacements(List<ReplaceBiomeMarshaller> replacements) {
+	public static BiomePlacementMarshaller replacements(List<ReplaceBiomeMarshaller> replacements) {
 		return new BiomePlacementMarshaller(List.of(), List.of(), replacements, List.of());
 	}
 
