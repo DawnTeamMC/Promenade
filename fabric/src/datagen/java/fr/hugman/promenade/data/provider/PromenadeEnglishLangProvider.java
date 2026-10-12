@@ -2,6 +2,7 @@ package fr.hugman.promenade.data.provider;
 
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.item.PromenadeItems;
+import fr.hugman.promenade.pack.PromenadeDataPacks;
 import fr.hugman.promenade.tag.PromenadeBiomeTags;
 import fr.hugman.promenade.tag.PromenadeBlockTags;
 import fr.hugman.promenade.tag.PromenadeEntityTypeTags;
@@ -12,6 +13,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Util;
@@ -65,6 +67,15 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
         builder.add("promenade.config.monsters.lush_creepers_weight.tooltip", "Spawn weight of lush creepers. The higher it is, the more they spawn.");
         builder.add("promenade.config.monsters.sunkens_weight", "Sunkens");
         builder.add("promenade.config.monsters.sunkens_weight.tooltip", "Spawn weight of sunkens. The higher it is, the more they spawn.");
+
+        // Data packs
+
+        addDataPack(builder, PromenadeDataPacks.NO_SAKURA_GROVES, "No Sakura Groves", "Sakura groves no longer generate in forests");
+        addDataPack(builder, PromenadeDataPacks.NO_CARNELIAN_TREEWAY, "No Carnelian Treeway", "The carnelian treeway no longer generates in plains");
+        addDataPack(builder, PromenadeDataPacks.NO_GLACARIAN_TAIGA, "No Glacarian Taiga", "The glacarian taiga no longer generates");
+        addDataPack(builder, PromenadeDataPacks.NO_DARK_AMARANTH_FOREST, "No Dark Amaranth Forest", "The dark amaranth forest no longer generates in the Nether");
+        addDataPack(builder, PromenadeDataPacks.SAKURA_GROVES_REPLACE_CHERRY_GROVES, "Sakura Groves Replace Cherry Groves", "Cherry groves become sakura groves");
+        addDataPack(builder, PromenadeDataPacks.CARNELIAN_TREEWAY_REPLACES_DAPPLED_FOREST, "Carnelian Treeway Replaces Dappled Forest", "Dappled forests become carnelian treeways");
 
         // Subtitles
 
@@ -196,6 +207,11 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
         }
     }
 
+
+    private static void addDataPack(TranslationBuilder builder, Identifier pack, String name, String description) {
+        builder.add(PromenadeDataPacks.nameKey(pack), name);
+        builder.add(PromenadeDataPacks.descriptionKey(pack), description);
+    }
 
     private void generateAutomaticTagTranslations(TranslationBuilder builder, TagKey<?>... tagKeys) {
         for (var tagKey : tagKeys) {

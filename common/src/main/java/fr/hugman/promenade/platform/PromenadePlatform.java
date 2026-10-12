@@ -2,6 +2,7 @@ package fr.hugman.promenade.platform;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
@@ -88,4 +89,14 @@ public interface PromenadePlatform {
     void addSpawn(Predicate<Holder<Biome>> biomes, MobCategory category, EntityType<?> type, int weight, int minGroupSize, int maxGroupSize);
 
     void addFeature(Predicate<Holder<Biome>> biomes, GenerationStep.Decoration step, ResourceKey<PlacedFeature> feature);
+
+    /* ============== */
+    /*   DATA PACKS   */
+    /* ============== */
+
+    /**
+     * Lists a data pack shipped in the mod's jar, in {@code resourcepacks/<id path>/}, in the data pack selection screen.
+     * It is disabled by default.
+     */
+    void registerBuiltinDataPack(Identifier id, Component name);
 }

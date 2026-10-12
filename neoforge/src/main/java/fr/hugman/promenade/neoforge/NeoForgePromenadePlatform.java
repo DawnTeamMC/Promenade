@@ -4,9 +4,16 @@ import fr.hugman.promenade.platform.CreativeModeTabOutput;
 import fr.hugman.promenade.platform.PromenadePlatform;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.packs.PackLocationInfo;
+import net.minecraft.server.packs.PackSelectionConfig;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.KnownPack;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -26,18 +33,22 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLPaths;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.event.entity.RegisterSpawnPlacementsEvent;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.resource.JarContentsPackResources;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.SequencedSet;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -51,6 +62,7 @@ public class NeoForgePromenadePlatform implements PromenadePlatform {
     private final List<Consumer<EntityAttributeCreationEvent>> attributes = new ArrayList<>();
     private final List<Consumer<RegisterSpawnPlacementsEvent>> spawnPlacements = new ArrayList<>();
     private final List<Consumer<BlockEntityTypeAddBlocksEvent>> supportedBlocks = new ArrayList<>();
+    private final List<Consumer<AddPackFindersEvent>> packFinders = new ArrayList<>();
     private final Map<ResourceKey<CreativeModeTab>, List<Consumer<CreativeModeTabOutput>>> creativeModeTabModifiers = new HashMap<>();
     final List<SpawnAddition> spawns = new ArrayList<>();
     final List<FeatureAddition> features = new ArrayList<>();
@@ -59,6 +71,7 @@ public class NeoForgePromenadePlatform implements PromenadePlatform {
         modBus.addListener(EntityAttributeCreationEvent.class, event -> this.attributes.forEach(registration -> registration.accept(event)));
         modBus.addListener(RegisterSpawnPlacementsEvent.class, event -> this.spawnPlacements.forEach(registration -> registration.accept(event)));
         modBus.addListener(BlockEntityTypeAddBlocksEvent.class, event -> this.supportedBlocks.forEach(registration -> registration.accept(event)));
+        modBus.addListener(AddPackFindersEvent.class, event -> this.packFinders.forEach(registration -> registration.accept(event)));
         modBus.addListener(BuildCreativeModeTabContentsEvent.class, event -> {
             for (var modifier : this.creativeModeTabModifiers.getOrDefault(event.getTabKey(), List.of())) {
                 modifier.accept((anchor, items) -> {
@@ -122,6 +135,25 @@ public class NeoForgePromenadePlatform implements PromenadePlatform {
     @Override
     public void addFeature(Predicate<Holder<Biome>> biomes, GenerationStep.Decoration step, ResourceKey<PlacedFeature> feature) {
         this.features.add(new FeatureAddition(biomes, step, feature));
+    }
+
+    /**
+     * Unlike {@link AddPackFindersEvent#addPackFinders}, keeps the pack's id as is, so that it is the same as on Fabric.
+     */
+    @Override
+    public void registerBuiltinDataPack(Identifier id, Component name) {
+        this.packFinders.add(event -> {
+            if (event.getPackType() != PackType.SERVER_DATA) {
+                return;
+            }
+            var modInfo = ModList.get().getModContainerById(id.getNamespace()).orElseThrow().getModInfo();
+            var location = new PackLocationInfo(id.toString(), name, PackSource.FEATURE, Optional.of(new KnownPack("neoforge", id.toString(), modInfo.getVersion().toString())));
+            var resources = new JarContentsPackResources.JarContentsResourcesSupplier(modInfo.getOwningFile().getFile().getContents(), "resourcepacks/" + id.getPath());
+            var pack = Pack.readMetaAndCreate(location, resources, PackType.SERVER_DATA, new PackSelectionConfig(false, Pack.Position.TOP, false));
+            if (pack != null) {
+                event.addRepositorySource(packs -> packs.accept(pack));
+            }
+        });
     }
 
     /**
