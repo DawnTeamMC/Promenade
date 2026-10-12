@@ -85,6 +85,31 @@ To change the frequency of a biome, override its file in a data pack with a diff
     Biome placement is read when the world loads: running `/reload` is not enough, the world must be reopened (or the server restarted) for the changes to take effect.
 </Callout>
 
+### Built-in data packs
+
+Promenade comes with optional data packs for the most common changes. They are disabled by default: to use them, open the **Data Packs** screen when creating a world (in the **More** tab) and move them to the selected packs.
+
+- **No Sakura Groves** (`promenade:no_sakura_groves`): sakura groves no longer replace forests and birch forests.
+- **No Carnelian Treeway** (`promenade:no_carnelian_treeway`): the carnelian treeway no longer replaces plains.
+- **No Glacarian Taiga** (`promenade:no_glacarian_taiga`): the glacarian taiga no longer generates.
+- **No Dark Amaranth Forest** (`promenade:no_dark_amaranth_forest`): the dark amaranth forest no longer generates in the Nether.
+- **Sakura Groves Replace Cherry Groves** (`promenade:sakura_groves_replace_cherry_groves`): every cherry grove becomes a blush or a cotton sakura grove.
+- **Carnelian Treeway Replaces Dappled Forest** (`promenade:carnelian_treeway_replaces_dappled_forest`): every dappled forest becomes a carnelian treeway.
+
+The replacing packs come on top of the default placement. To only find sakura groves where cherry groves would be, enable both **No Sakura Groves** and **Sakura Groves Replace Cherry Groves** (and likewise for the carnelian treeway and dappled forests).
+
+On a dedicated server, list the packs in the `initial-enabled-packs` property of `server.properties` before the world is created, for example:
+
+```properties
+initial-enabled-packs=vanilla,promenade:no_glacarian_taiga
+```
+
+On NeoForge, also list `mod_data` before them (`vanilla,mod_data,promenade:no_glacarian_taiga`): otherwise, NeoForge adds it at the end, above the Promenade packs, and the default placement wins.
+
+<Callout variant="warning">
+    These packs only affect the parts of the world that have not been generated yet. Enabling one in an existing world (with `/datapack enable`, then by restarting the server) leaves already explored areas as they are, which can create abrupt biome borders.
+</Callout>
+
 ## Freezing snowfalls configuration
 The [glacarian taiga biome](@promenade:glacarian_taiga) features freezing snowfalls. Entities that are not protected from the cold will freeze to death during snowfalls.
 The `#promenade:can_freeze_during_snowfall` biome tag controls the list of biomes that can freeze entities to death during snowfall.
