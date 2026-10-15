@@ -89,9 +89,13 @@ tasks.named('compileClientJava', JavaCompile) {
 processResources {
     from common.sourceSets.main.resources
 
-    inputs.property "version", project.version
+    def props = [
+            "version"              : project.version,
+            "biolith_version_range": biolith_version_range,
+    ]
+    inputs.properties props
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
+        expand props
     }
 }
 processClientResources {
