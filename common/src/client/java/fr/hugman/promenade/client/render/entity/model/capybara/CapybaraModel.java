@@ -14,6 +14,7 @@ public abstract class CapybaraModel extends EntityModel<CapybaraRenderState> {
     private final ModelPart head;
 
     private final KeyframeAnimation walkingAnimation;
+    private final KeyframeAnimation swimmingAnimation;
     private final KeyframeAnimation earWiggleAnimation;
     private final KeyframeAnimation fallToSleepAnimation;
     private final KeyframeAnimation sleepingAnimation;
@@ -24,6 +25,7 @@ public abstract class CapybaraModel extends EntityModel<CapybaraRenderState> {
         super(part.getChild(PartNames.ROOT));
         this.head = this.root.getChild(PartNames.HEAD);
         this.walkingAnimation = CapybaraAnimations.WALKING.bake(this.root);
+        this.swimmingAnimation = CapybaraAnimations.SWIMMING.bake(this.root);
         this.earWiggleAnimation = CapybaraAnimations.EAR_WIGGLE.bake(this.root);
         this.fallToSleepAnimation = CapybaraAnimations.FALL_TO_SLEEP.bake(this.root);
         this.sleepingAnimation = CapybaraAnimations.SLEEP.bake(this.root);
@@ -42,7 +44,11 @@ public abstract class CapybaraModel extends EntityModel<CapybaraRenderState> {
         }
 
         // Dynamic animations
-        this.walkingAnimation.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 4.0F, 2.5F);
+        if (state.floatingInWater) {
+            this.swimmingAnimation.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 4.0F, 2.5F);
+        } else {
+            this.walkingAnimation.applyWalk(state.walkAnimationPos, state.walkAnimationSpeed, 4.0F, 2.5F);
+        }
 
         // Custom animations
         this.earWiggleAnimation.apply(state.earWiggleAnimationState, state.ageInTicks, state.earWiggleSpeed);
