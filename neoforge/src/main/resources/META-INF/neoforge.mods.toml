@@ -33,6 +33,6 @@ side = "BOTH"
 [[dependencies.promenade]]
 modId = "biolith"
 type = "required"
-versionRange = "*"
+versionRange = "[${biolith_version_range},)"
 ordering = "NONE"
 side = "BOTH"
