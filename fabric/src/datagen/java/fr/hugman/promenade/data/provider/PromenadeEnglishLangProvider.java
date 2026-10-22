@@ -13,6 +13,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.Util;
 import net.minecraft.world.item.DyeColor;
@@ -26,12 +27,16 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
             "of", "the", "and", "a", "an", "in", "on", "for", "to", "at", "by", "from", "with"
     );
 
+    private final CompletableFuture<HolderLookup.Provider> registryLookup;
+
     public PromenadeEnglishLangProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-        super(dataOutput, "en_us", registryLookup);
+        super(dataOutput, "en_us");
+        this.registryLookup = registryLookup;
     }
 
     @Override
-    public void generateTranslations(HolderLookup.Provider wrapperLookup, TranslationBuilder builder) {
+    public void generateTranslations(TranslationBuilder builder) {
+        var wrapperLookup = this.registryLookup.join();
         builder.add(PromenadeItems.DUCK, "Raw Duck");
 
         this.generateAutomaticTranslations(wrapperLookup, builder);
@@ -82,17 +87,17 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
 
         // Tags
 
-        builder.add(PromenadeItemTags.APRICOTS_FOODS, "Apricots");
-        builder.add(PromenadeItemTags.BANANA_FOODS, "Bananas");
-        builder.add(PromenadeItemTags.MANGOES_FOODS, "Mangoes");
-        builder.add(PromenadeItemTags.BLUEBERRIES_FOODS, "Blueberries");
-        builder.add(PromenadeItemTags.MAPLE_SYRUP_DRINKS, "Maple Syrups");
-        builder.add(PromenadeItemTags.CAPYBARA_FOOD, "Food for Capybaras");
-        builder.add(PromenadeItemTags.DUCK_FOOD, "Food for Ducks");
-        builder.add(PromenadeBiomeTags.PRIMARY_WOOD_TYPE_SAKURA, "Sakura Primary Wood Type");
-        builder.add(PromenadeBiomeTags.PRIMARY_WOOD_TYPE_PALM, "Palm Primary Wood Type");
-        builder.add(PromenadeBiomeTags.PRIMARY_WOOD_TYPE_MAPLE, "Maple Primary Wood Type");
-        builder.add(PromenadeBiomeTags.PRIMARY_WOOD_TYPE_DARK_AMARANTH, "Dark Amaranth Primary Wood Type");
+        add(builder, PromenadeItemTags.APRICOTS_FOODS, "Apricots");
+        add(builder, PromenadeItemTags.BANANA_FOODS, "Bananas");
+        add(builder, PromenadeItemTags.MANGOES_FOODS, "Mangoes");
+        add(builder, PromenadeItemTags.BLUEBERRIES_FOODS, "Blueberries");
+        add(builder, PromenadeItemTags.MAPLE_SYRUP_DRINKS, "Maple Syrups");
+        add(builder, PromenadeItemTags.CAPYBARA_FOOD, "Food for Capybaras");
+        add(builder, PromenadeItemTags.DUCK_FOOD, "Food for Ducks");
+        add(builder, PromenadeBiomeTags.PRIMARY_WOOD_TYPE_SAKURA, "Sakura Primary Wood Type");
+        add(builder, PromenadeBiomeTags.PRIMARY_WOOD_TYPE_PALM, "Palm Primary Wood Type");
+        add(builder, PromenadeBiomeTags.PRIMARY_WOOD_TYPE_MAPLE, "Maple Primary Wood Type");
+        add(builder, PromenadeBiomeTags.PRIMARY_WOOD_TYPE_DARK_AMARANTH, "Dark Amaranth Primary Wood Type");
         this.generateAutomaticTagTranslations(builder,
                 PromenadeBlockTags.SAKURA_LOGS,
                 PromenadeBlockTags.MAPLE_LOGS,
@@ -181,9 +186,10 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
                     Util.makeDescriptionId("item", id.withPath(s -> s + "_banner_pattern.desc")),
                     snakeToTitleCase(id.getPath())
             );
+            // 1.20.1 banners name their patterns from vanilla's namespace
             for (DyeColor color : DyeColor.values()) {
                 builder.add(
-                        Util.makeDescriptionId("block", id.withPath(s -> "banner." + s + "." + color.getName())),
+                        "block.minecraft.banner." + id.toShortLanguageKey() + "." + color.getName(),
                         snakeToTitleCase(color.getName() + "_" + id.getPath())
                 );
             }
@@ -205,8 +211,25 @@ public class PromenadeEnglishLangProvider extends FabricLanguageProvider {
     private void generateAutomaticTagTranslations(TranslationBuilder builder, TagKey<?>... tagKeys) {
         for (var tagKey : tagKeys) {
             var id = tagKey.location();
-            builder.add(tagKey, snakeToTitleCase(id.getPath()));
+            add(builder, tagKey, snakeToTitleCase(id.getPath()));
         }
+    }
+
+    /**
+     * Uses the translation keys of newer versions of Fabric API, which can't translate tags in 1.20.1.
+     */
+    private static void add(TranslationBuilder builder, TagKey<?> tagKey, String value) {
+        var registryId = tagKey.registry().location();
+        var key = new StringBuilder("tag.");
+        if (!registryId.getNamespace().equals(ResourceLocation.DEFAULT_NAMESPACE)) {
+            key.append(registryId.getNamespace()).append(".");
+        }
+        key.append(registryId.getPath().replace("/", "."))
+                .append(".")
+                .append(tagKey.location().getNamespace())
+                .append(".")
+                .append(tagKey.location().getPath().replace("/", "."));
+        builder.add(key.toString(), value);
     }
 
     private static <O> List<Holder.Reference<O>> getRegistryEntries(HolderLookup.Provider wrapperLookup, ResourceKey<? extends Registry<O>> registryKey) {

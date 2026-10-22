@@ -8,6 +8,7 @@ import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.tag.PromenadeItemTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
@@ -36,21 +37,24 @@ import net.minecraft.world.entity.ai.goal.TemptGoal;
 import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.crafting.Ingredient;
 import fr.hugman.promenade.entity.spawn.SpawnContext;
 import fr.hugman.promenade.entity.variant.VariantUtils;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.PathType;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 public class Duck extends Animal {
-    private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.scalable(4 / 16f, 5 / 16f).withEyeHeight(3.5f / 16f);
+    private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.scalable(4 / 16f, 5 / 16f);
+    private static final float EYE_HEIGHT = 9.75f / 16f;
+    private static final float BABY_EYE_HEIGHT = 3.5f / 16f;
 
-    private static final EntityDataAccessor<Holder<DuckVariant>> VARIANT = SynchedEntityData.defineId(Duck.class, PromenadeTrackedData.DUCK_VARIANT);
+    private static final EntityDataAccessor<ResourceKey<DuckVariant>> VARIANT = SynchedEntityData.defineId(Duck.class, PromenadeTrackedData.DUCK_VARIANT);
 
     public float flapProgress;
     public float maxWingDeviation;
@@ -60,18 +64,23 @@ public class Duck extends Animal {
 
     public Duck(EntityType<? extends Duck> type, Level worldIn) {
         super(type, worldIn);
-        this.setPathfindingMalus(PathType.WATER, 0.0F);
+        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @org.jetbrains.annotations.Nullable SpawnGroupData entityData) {
-        DuckVariants.select(this.random, this.registryAccess(), SpawnContext.create(world, this.blockPosition())).ifPresent(this::setVariant);
-        return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData, @Nullable CompoundTag entityNbt) {
+        DuckVariants.select(this.random, this.level().registryAccess(), SpawnContext.create(world, this.blockPosition())).ifPresent(this::setVariant);
+        return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
     }
 
     @Override
-    protected EntityDimensions getDefaultDimensions(Pose pose) {
-        return this.isBaby() ? BABY_DIMENSIONS : super.getDefaultDimensions(pose);
+    public EntityDimensions getDimensions(Pose pose) {
+        return this.isBaby() ? BABY_DIMENSIONS : super.getDimensions(pose);
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
+        return this.isBaby() ? BABY_EYE_HEIGHT : EYE_HEIGHT;
     }
 
     @Override
@@ -97,7 +106,7 @@ public class Duck extends Animal {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.4D));
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, (stack) -> stack.is(PromenadeItemTags.DUCK_FOOD), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.0, Ingredient.of(PromenadeItemTags.DUCK_FOOD), false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
         this.goalSelector.addGoal(5, new RandomSwimmingGoal(this, 1.0, 10));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomStrollGoal(this, 1.0D));
@@ -173,11 +182,11 @@ public class Duck extends Animal {
     }
 
     public Holder<DuckVariant> getVariant() {
-        return this.entityData.get(VARIANT);
+        return VariantUtils.resolve(this.level().registryAccess(), this.entityData.get(VARIANT), DuckVariants.DEFAULT);
     }
 
     public void setVariant(Holder<DuckVariant> registryEntry) {
-        this.entityData.set(VARIANT, registryEntry);
+        registryEntry.unwrapKey().ifPresent(key -> this.entityData.set(VARIANT, key));
     }
 
     /*==========*/
@@ -185,9 +194,9 @@ public class Duck extends Animal {
     /*==========*/
 
     @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(VARIANT, VariantUtils.getDefaultOrAny(this.registryAccess(), DuckVariants.DEFAULT));
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(VARIANT, DuckVariants.DEFAULT);
     }
 
     @Override
@@ -199,6 +208,6 @@ public class Duck extends Animal {
     @Override
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
-        VariantUtils.readVariant(nbt, this.registryAccess(), PromenadeRegistryKeys.DUCK_VARIANT).ifPresent(this::setVariant);
+        VariantUtils.readVariant(nbt, this.level().registryAccess(), PromenadeRegistryKeys.DUCK_VARIANT).ifPresent(this::setVariant);
     }
 }

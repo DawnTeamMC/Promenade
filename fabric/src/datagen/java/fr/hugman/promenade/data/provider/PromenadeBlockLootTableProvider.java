@@ -10,11 +10,8 @@ import fr.hugman.promenade.item.PromenadeItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -27,7 +24,6 @@ import net.minecraft.world.level.storage.loot.predicates.BonusLevelTableConditio
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvider {
@@ -35,14 +31,12 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
     protected static final float[] SAPLING_DROP_CHANCE = new float[]{0.05F, 0.0625F, 0.083333336F, 0.1F};
     private static final float[] LEAVES_STICK_DROP_CHANCE = new float[]{0.02F, 0.022222223F, 0.025F, 0.033333335F, 0.1F};
 
-    public PromenadeBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
-        super(dataOutput, registryLookup);
+    public PromenadeBlockLootTableProvider(FabricDataOutput dataOutput) {
+        super(dataOutput);
     }
 
     @Override
     public void generate() {
-        final var enchantments = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
-
         dropSelf(PromenadeBlocks.ASPHALT);
         add(PromenadeBlocks.ASPHALT_SLAB, this::createSlabItemTable);
         dropSelf(PromenadeBlocks.ASPHALT_STAIRS);
@@ -232,7 +226,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
                                                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 3)))
                                                 .add(LootItem.lootTableItem(PromenadeItems.BLUEBERRIES))
                                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))
-                                                .apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE)))
+                                                .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
                                 )
                                 .withPool(
                                         LootPool.lootPool()
@@ -240,19 +234,19 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
                                                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BerryBushBlock.AGE, 2)))
                                                 .add(LootItem.lootTableItem(PromenadeItems.BLUEBERRIES))
                                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
-                                                .apply(ApplyBonusCount.addUniformBonusCount(enchantments.getOrThrow(Enchantments.FORTUNE)))
+                                                .apply(ApplyBonusCount.addUniformBonusCount(Enchantments.BLOCK_FORTUNE))
                                 )
                 )
         );
 
-        this.map.forEach((id, lootTable) -> lootTable.setRandomSequence(id.location()));
+        this.map.forEach((id, lootTable) -> lootTable.setRandomSequence(id));
     }
 
     public LootTable.Builder snowyLeavesDrops(Block leaves, Block sapling, float... saplingChance) {
         return this.createLeavesDrops(leaves, sapling, saplingChance)
                 .withPool(
                         LootPool.lootPool()
-                                .when(this.doesNotHaveShearsOrSilkTouch())
+                                .when(HAS_SHEARS.or(HAS_SILK_TOUCH).invert())
                                 .add(
                                         this.applyExplosionCondition(leaves,
                                                 LootItem.lootTableItem(Items.SNOWBALL)
@@ -265,7 +259,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
         return this.createMangroveLeavesDrops(leaves)
                 .withPool(
                         LootPool.lootPool()
-                                .when(this.doesNotHaveShearsOrSilkTouch())
+                                .when(HAS_SHEARS.or(HAS_SILK_TOUCH).invert())
                                 .add(
                                         this.applyExplosionCondition(leaves,
                                                 LootItem.lootTableItem(Items.SNOWBALL).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
@@ -274,13 +268,12 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
     }
 
     public LootTable.Builder fruitLeavesDrops(Block leaves, Block sapling, Item fruit, float... saplingChance) {
-        HolderLookup.RegistryLookup<Enchantment> impl = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
         return this.createLeavesDrops(leaves, sapling, saplingChance)
                 .withPool(LootPool.lootPool()
-                        .when(this.doesNotHaveSilkTouch())
+                        .when(HAS_NO_SILK_TOUCH)
                         .add(
                                 this.applyExplosionCondition(leaves, LootItem.lootTableItem(fruit))
-                                        .when(BonusLevelTableCondition.bonusLevelFlatChance(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
+                                        .when(BonusLevelTableCondition.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
                         )
                 );
     }
@@ -288,7 +281,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
     public LootTable.Builder snowyFruitLeavesDrop(Block leaves, Block sapling, Item fruit, float... saplingChance) {
         return this.fruitLeavesDrops(leaves, sapling, fruit, saplingChance)
                 .withPool(LootPool.lootPool()
-                        .when(this.doesNotHaveShearsOrSilkTouch())
+                        .when(HAS_SHEARS.or(HAS_SILK_TOUCH).invert())
                         .add(
                                 this.applyExplosionCondition(leaves,
                                         LootItem.lootTableItem(Items.SNOWBALL).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F)))
@@ -302,7 +295,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
     }
 
     public LootTable.Builder flowerPile(Block pile, Item flower) {
-        return this.createSilkTouchOrShearsDispatchTable(
+        return createSilkTouchOrShearsDispatchTable(
                 pile,
                 this.applyExplosionDecay(pile, LootItem.lootTableItem(flower).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F))))
         );
@@ -313,7 +306,7 @@ public class PromenadeBlockLootTableProvider extends FabricBlockLootTableProvide
      */
     private LootTable.Builder createShearsOrSilkTouchOnlyDrop(ItemLike item) {
         return LootTable.lootTable().withPool(LootPool.lootPool()
-                .when(HAS_SHEARS.or(this.hasSilkTouch()))
+                .when(HAS_SHEARS.or(HAS_SILK_TOUCH))
                 .setRolls(ConstantValue.exactly(1.0F))
                 .add(LootItem.lootTableItem(item)));
     }

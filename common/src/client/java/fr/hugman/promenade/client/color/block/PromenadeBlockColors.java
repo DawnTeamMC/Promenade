@@ -5,7 +5,6 @@ import fr.hugman.promenade.world.biome.PromenadeFoliageColors;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.util.FastColor;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -25,7 +24,7 @@ public final class PromenadeBlockColors {
     }
 
     /**
-     * Item tints are set in code on 1.21.1, rather than in item model definitions.
+     * Item tints are set in code on 1.20.1, rather than in item model definitions.
      */
     public static void registerItems(ItemRegistrar registrar) {
         registrar.register(constantItem(FoliageColor.getDefaultColor()),
@@ -45,8 +44,7 @@ public final class PromenadeBlockColors {
     }
 
     private static ItemColor constantItem(int color) {
-        int opaqueColor = FastColor.ARGB32.opaque(color);
-        return (stack, tintIndex) -> opaqueColor;
+        return (stack, tintIndex) -> color;
     }
 
     @FunctionalInterface

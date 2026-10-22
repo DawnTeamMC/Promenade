@@ -8,7 +8,6 @@ import fr.hugman.promenade.references.BlockItemId;
 import net.minecraft.tags.TagKey;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.tags.BlockTags;
@@ -219,15 +218,7 @@ public class PromenadeBlockTagProvider extends FabricTagProvider.BlockTagProvide
                 .add(DARK_AMARANTH_WART_BLOCK, SOUL_SHROOMLIGHT);
 
 
-        // Conventional
-        builder(ConventionalBlockTags.STONES).add(ASPHALT, BLUNITE);
-        builder(ConventionalBlockTags.FENCES).add(SAKURA_FENCE, MAPLE_FENCE, PALM_FENCE, DARK_AMARANTH_FENCE);
-        builder(ConventionalBlockTags.WOODEN_FENCES).add(SAKURA_FENCE, MAPLE_FENCE, PALM_FENCE, DARK_AMARANTH_FENCE);
-        builder(ConventionalBlockTags.FENCE_GATES).add(SAKURA_FENCE_GATE, MAPLE_FENCE_GATE, PALM_FENCE_GATE, DARK_AMARANTH_FENCE_GATE);
-        builder(ConventionalBlockTags.WOODEN_FENCE_GATES).add(SAKURA_FENCE_GATE, MAPLE_FENCE_GATE, PALM_FENCE_GATE, DARK_AMARANTH_FENCE_GATE);
-        builder(ConventionalBlockTags.STRIPPED_LOGS).add(STRIPPED_SAKURA_LOG, STRIPPED_MAPLE_LOG, STRIPPED_PALM_LOG, STRIPPED_DARK_AMARANTH_STEM);
-        builder(ConventionalBlockTags.STRIPPED_WOODS).add(STRIPPED_SAKURA_WOOD, STRIPPED_MAPLE_WOOD, STRIPPED_PALM_WOOD, STRIPPED_DARK_AMARANTH_HYPHAE);
-
+        // Conventional (1.20.1 conventions have no stone, fence or stripped wood tags)
         builder(IGNEOUS_ROCKS)
                 .add(Blocks.ANDESITE, Blocks.DIORITE, Blocks.GRANITE, Blocks.TUFF).add(BLUNITE);
 

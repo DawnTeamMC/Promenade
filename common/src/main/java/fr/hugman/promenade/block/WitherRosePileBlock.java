@@ -1,6 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -16,15 +15,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class WitherRosePileBlock extends PileBlock {
-    public static final MapCodec<WitherRosePileBlock> CODEC = simpleCodec(WitherRosePileBlock::new);
 
     public WitherRosePileBlock(Properties builder) {
         super(builder);
-    }
-
-    @Override
-    protected MapCodec<? extends WitherRosePileBlock> codec() {
-        return CODEC;
     }
 
     @Override
@@ -42,7 +35,7 @@ public class WitherRosePileBlock extends PileBlock {
     }
 
     @Override
-	protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+	public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
         if (world instanceof ServerLevel
                 && world.getDifficulty() != Difficulty.PEACEFUL
                 && entity instanceof LivingEntity livingEntity

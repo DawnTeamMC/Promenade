@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.function.Supplier;
 
 /**
- * A boat of one of the mod's wood types. 1.21.1 boats take their wood from an enum, so each of the mod's boats is its
+ * A boat of one of the mod's wood types. 1.20.1 boats take their wood from an enum, so each of the mod's boats is its
  * own entity type instead, as in newer versions.
  */
 public class PromenadeBoat extends Boat {

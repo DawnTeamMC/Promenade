@@ -1,5 +1,6 @@
 package fr.hugman.promenade.item;
 
+import fr.hugman.promenade.platform.PromenadePlatform;
 import fr.hugman.promenade.Promenade;
 import fr.hugman.promenade.banner.PromenadeBannerPatternTags;
 import fr.hugman.promenade.block.PromenadeBlocks;
@@ -7,7 +8,6 @@ import fr.hugman.promenade.component.PromenadeFoodComponents;
 import fr.hugman.promenade.entity.PromenadeEntityTypes;
 import fr.hugman.promenade.item.helper.ItemFactory;
 import fr.hugman.promenade.registry.PromenadeCompostables;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -50,7 +50,7 @@ public class PromenadeItems {
 
     public static final Item BOVINE_BANNER_PATTERN = register("bovine_banner_pattern", settings -> new BannerPatternItem(PromenadeBannerPatternTags.BOVINE_PATTERN_ITEM, settings), ItemSettings.max1());
 
-    // Spawn eggs are tinted templates in 1.21.1
+    // Spawn eggs are tinted templates in 1.20.1
     public static final Item CAPYBARA_SPAWN_EGG = register("capybara_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.CAPYBARA, 0xa0704e, 0x433930));
     public static final Item DUCK_SPAWN_EGG = register("duck_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.DUCK, 10592673, 15904341));
     public static final Item LUSH_CREEPER_SPAWN_EGG = register("lush_creeper_spawn_egg", ItemFactory.spawnEgg(PromenadeEntityTypes.LUSH_CREEPER, 4347181, 4262661));
@@ -75,7 +75,7 @@ public class PromenadeItems {
 
     public static <O extends Item> O register(ResourceKey<Item> key, Function<Item.Properties, O> factory, Item.Properties settings) {
         O item = factory.apply(settings);
-        return Registry.register(BuiltInRegistries.ITEM, key, item);
+        return PromenadePlatform.INSTANCE.register(BuiltInRegistries.ITEM, key, item);
     }
 
     public static <O extends Item> O register(String id, Function<Item.Properties, O> factory, Item.Properties settings) {

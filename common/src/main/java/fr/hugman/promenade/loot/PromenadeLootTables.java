@@ -1,21 +1,19 @@
 package fr.hugman.promenade.loot;
 
 import fr.hugman.promenade.Promenade;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.resources.ResourceLocation;
 
 public class PromenadeLootTables {
-    public static final ResourceKey<LootTable> TUBE_SUNKEN = of("entities/sunken/tube");
-    public static final ResourceKey<LootTable> BRAIN_SUNKEN = of("entities/sunken/brain");
-    public static final ResourceKey<LootTable> BUBBLE_SUNKEN = of("entities/sunken/bubble");
-    public static final ResourceKey<LootTable> FIRE_SUNKEN = of("entities/sunken/fire");
-    public static final ResourceKey<LootTable> HORN_SUNKEN = of("entities/sunken/horn");
+    public static final ResourceLocation TUBE_SUNKEN = of("entities/sunken/tube");
+    public static final ResourceLocation BRAIN_SUNKEN = of("entities/sunken/brain");
+    public static final ResourceLocation BUBBLE_SUNKEN = of("entities/sunken/bubble");
+    public static final ResourceLocation FIRE_SUNKEN = of("entities/sunken/fire");
+    public static final ResourceLocation HORN_SUNKEN = of("entities/sunken/horn");
 
-    public static final ResourceKey<LootTable> WITCH_HUT_CHEST = of("chests/witch_hut");
+    public static final ResourceLocation WITCH_HUT_CHEST = of("chests/witch_hut");
 
 
-    private static ResourceKey<LootTable> of(String path) {
-        return ResourceKey.create(Registries.LOOT_TABLE, Promenade.id(path));
+    private static ResourceLocation of(String path) {
+        return Promenade.id(path);
     }
 }

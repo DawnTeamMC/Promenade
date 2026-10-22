@@ -9,7 +9,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider
 import fr.hugman.promenade.entity.variant.ResourceTexture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import fr.hugman.promenade.entity.spawn.SpawnPrioritySelectors;
@@ -33,16 +33,16 @@ public class PromenadeDuckVariantProvider extends FabricDynamicRegistryProvider 
         return "Duck Variants";
     }
 
-    public static void register(BootstrapContext<DuckVariant> registerable) {
+    public static void register(BootstapContext<DuckVariant> registerable) {
         of(registerable, DuckVariants.PEKIN, PromenadeBiomeTags.SPAWNS_PEKIN_DUCKS);
         of(registerable, DuckVariants.MALLARD, PromenadeBiomeTags.SPAWNS_MALLARD_DUCKS);
     }
 
-    private static void of(BootstrapContext<DuckVariant> registry, ResourceKey<DuckVariant> key, TagKey<Biome> biomeTag) {
+    private static void of(BootstapContext<DuckVariant> registry, ResourceKey<DuckVariant> key, TagKey<Biome> biomeTag) {
         of(registry, key, DataProviderUtil.createSpawnConditions(registry.lookup(Registries.BIOME).getOrThrow(biomeTag)));
     }
 
-    private static void of(BootstrapContext<DuckVariant> registry, ResourceKey<DuckVariant> key, SpawnPrioritySelectors spawnConditions) {
+    private static void of(BootstapContext<DuckVariant> registry, ResourceKey<DuckVariant> key, SpawnPrioritySelectors spawnConditions) {
         registry.register(key, new DuckVariant(new ResourceTexture(key.location().withPrefix("entity/duck/")), DuckVariant.DEFAULT_DUCKLING_ASSET, spawnConditions));
     }
 }

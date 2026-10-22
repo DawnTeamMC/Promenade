@@ -1,0 +1,76 @@
+plugins {
+    id "net.neoforged.moddev.legacyforge"
+}
+
+evaluationDependsOn(':common')
+def common = project(':common')
+
+legacyForge {
+    version = "${minecraft_version}-${forge_version}"
+    validateAccessTransformers = true
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+    }
+
+    mods {
+        "promenade" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+// Forge 1.20.1 runs on SRG names: the shared mixins need a refmap, written by the Mixin annotation processor
+mixin {
+    add sourceSets.main, "promenade.refmap.json"
+    config "promenade.mixins.json"
+}
+
+dependencies {
+    annotationProcessor "org.spongepowered:mixin:0.8.5:processor"
+
+    modImplementation "com.terraformersmc:biolith-forge:${biolith_version}"
+    // Biolith's Forge jar bundles MixinExtras, which mod dependencies don't bring to the development classpath
+    runtimeOnly "io.github.llamalad7:mixinextras-forge:0.3.2"
+    jarJar("com.terraformersmc:biolith-forge:${biolith_version}") {
+        transitive = false
+    }
+
+    // Lets the IDE resolve the shared code; the classes themselves are compiled from source below
+    compileOnly common.sourceSets.main.output
+    compileOnly common.sourceSets.client.output
+}
+
+// Compile the shared sources into this jar.
+// Forge has no split source sets: client classes are only loaded on the client (see PromenadeForge).
+tasks.named('compileJava', JavaCompile) {
+    source common.sourceSets.main.java
+    source common.sourceSets.client.java
+}
+processResources {
+    from common.sourceSets.main.resources
+    from common.sourceSets.client.resources
+
+    def props = [
+            "version"                : project.version,
+            "minecraft_version_range": minecraft_version_range,
+            "forge_version_range"    : forge_version_range,
+    ]
+    inputs.properties props
+    filesMatching("META-INF/mods.toml") {
+        expand props
+    }
+}
+jar {
+    // Forge 1.20.1 finds mixin configs in the manifest
+    manifest.attributes(["MixinConfigs": "promenade.mixins.json"])
+}
+sourcesJar {
+    from common.sourceSets.main.allSource
+    from common.sourceSets.client.allSource
+}

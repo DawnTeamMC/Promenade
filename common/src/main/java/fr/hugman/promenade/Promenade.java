@@ -1,6 +1,7 @@
 package fr.hugman.promenade;
 
 import com.google.common.reflect.Reflection;
+import fr.hugman.promenade.banner.PromenadeBannerPatterns;
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.block.dispenser.PromenadeDispenserBehaviors;
 import fr.hugman.promenade.block.entity.PromenadeBlockEntities;
@@ -10,6 +11,7 @@ import fr.hugman.promenade.entity.ai.brain.PromenadeMemoryModuleTypes;
 import fr.hugman.promenade.entity.ai.brain.sensor.PromenadeSensorTypes;
 import fr.hugman.promenade.entity.data.PromenadeTrackedData;
 import fr.hugman.promenade.entity.spawn.PromenadeSpawnConditions;
+import fr.hugman.promenade.entity.variant.PromenadePaintingVariants;
 import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.itemgroup.PromenadeItemGroupAdditions;
 import fr.hugman.promenade.itemgroup.PromenadeItemGroups;
@@ -17,6 +19,7 @@ import fr.hugman.promenade.platform.PromenadePlatform;
 import fr.hugman.promenade.registry.*;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.world.PromenadeGameRules;
+import fr.hugman.promenade.world.biome.PromenadeBiomePlacements;
 import fr.hugman.promenade.world.gen.feature.PromenadeFeatures;
 import fr.hugman.promenade.world.gen.feature.PromenadePlacedFeatures;
 import fr.hugman.promenade.world.gen.placement_modifier.PromenadePlacementModifierTypes;
@@ -44,6 +47,8 @@ public class Promenade {
         PromenadeBlockEntities.addBlocksToVanillaBlockEntityTypes();
 
         Reflection.initialize(PromenadeItems.class);
+        Reflection.initialize(PromenadeBannerPatterns.class);
+        Reflection.initialize(PromenadePaintingVariants.class);
 
         Reflection.initialize(PromenadeItemGroups.class);
         PromenadeItemGroupAdditions.appendItemGroups();
@@ -65,6 +70,7 @@ public class Promenade {
 
         PromenadeEntityTypes.appendWorldGen();
         PromenadePlacedFeatures.appendWorldGen();
+        PromenadeBiomePlacements.register();
 
         PromenadeRegistryAliases.registerAliases();
 
@@ -72,6 +78,6 @@ public class Promenade {
     }
 
     public static ResourceLocation id(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
+        return new ResourceLocation(MOD_ID, path);
     }
 }

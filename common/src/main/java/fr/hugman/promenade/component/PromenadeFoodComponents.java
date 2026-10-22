@@ -13,10 +13,11 @@ public class PromenadeFoodComponents {
     public static final FoodProperties APRICOT = simple(4, 0.3F);
     public static final FoodProperties MANGO = simple(4, 0.3F);
 
-    public static final FoodProperties RAW_DUCK = new FoodProperties.Builder().nutrition(2).saturationModifier(0.3F).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).build();
-    public static final FoodProperties COOKED_DUCK = simple(6, 0.6F);
+    // Wolves eat meat by this property in 1.20.1, as there is no meat tag
+    public static final FoodProperties RAW_DUCK = new FoodProperties.Builder().nutrition(2).saturationMod(0.3F).effect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F).meat().build();
+    public static final FoodProperties COOKED_DUCK = new FoodProperties.Builder().nutrition(6).saturationMod(0.6F).meat().build();
 
     public static FoodProperties simple(int nutrition, float saturation) {
-        return new FoodProperties.Builder().nutrition(nutrition).saturationModifier(saturation).build();
+        return new FoodProperties.Builder().nutrition(nutrition).saturationMod(saturation).build();
     }
 }

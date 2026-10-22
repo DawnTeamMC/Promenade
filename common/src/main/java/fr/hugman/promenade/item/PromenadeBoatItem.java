@@ -66,7 +66,9 @@ public class PromenadeBoatItem extends BoatItem {
         if (!world.isClientSide) {
             world.addFreshEntity(boat);
             world.gameEvent(player, GameEvent.ENTITY_PLACE, hitResult.getLocation());
-            stack.consume(1, player);
+            if (!player.getAbilities().instabuild) {
+                stack.shrink(1);
+            }
         }
         player.awardStat(Stats.ITEM_USED.get(this));
         return InteractionResultHolder.sidedSuccess(stack, world.isClientSide());

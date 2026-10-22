@@ -23,9 +23,9 @@ jobs:
       - name: Setup JDK ${{ matrix.java }}
         uses: actions/setup-java@v5.6.0
         with:
-          # Gradle and Loom run on Java 25 (the default, listed last); Minecraft 1.21.1 compiles and runs on the Java 21 toolchain
+          # Gradle and Loom run on Java 25 (the default, listed last); Minecraft 1.20.1 compiles and runs on the Java 17 toolchain
           java-version: |
-            21
+            17
             ${{ matrix.java }}
           distribution: 'temurin'
 

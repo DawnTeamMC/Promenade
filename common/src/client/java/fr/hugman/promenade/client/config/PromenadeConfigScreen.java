@@ -5,14 +5,21 @@ import fr.hugman.promenade.config.PromenadeConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.OptionInstance;
 import net.minecraft.client.Options;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.ContainerObjectSelectionList;
 import net.minecraft.client.gui.components.StringWidget;
+import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.components.toasts.SystemToast;
-import net.minecraft.client.gui.layouts.LinearLayout;
+import net.minecraft.client.gui.narration.NarratableEntry;
+import net.minecraft.client.gui.screens.OptionsSubScreen;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.options.OptionsSubScreen;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
+
+import java.util.List;
 
 
 /**
@@ -33,6 +40,8 @@ public class PromenadeConfigScreen extends OptionsSubScreen {
     private final OptionInstance<Integer> lushCreepersWeight;
     private final OptionInstance<Integer> sunkensWeight;
 
+    private OptionList list;
+
     public PromenadeConfigScreen(Screen lastScreen) {
         super(lastScreen, Minecraft.getInstance().options, TITLE);
         var config = PromenadeConfig.getSaved();
@@ -47,27 +56,28 @@ public class PromenadeConfigScreen extends OptionsSubScreen {
     }
 
     @Override
-    protected void addOptions() {
-        this.addHeader(Component.translatable(KEY + ".world_features"));
-        this.list.addSmall(this.igneousRockPatches, this.blueberryBushes, this.palms);
-        this.addHeader(Component.translatable(KEY + ".animals"));
-        this.list.addSmall(this.capybarasWeight, this.ducksWeight);
-        this.addHeader(Component.translatable(KEY + ".monsters"));
-        this.list.addSmall(this.lushCreepersWeight, this.sunkensWeight);
-    }
+    protected void init() {
+        this.list = new OptionList(this.minecraft, this.width, this.height, 32, this.height - 32);
+        this.list.addHeader(Component.translatable(KEY + ".world_features"), this.font);
+        this.list.addOptions(this.options, this.igneousRockPatches, this.blueberryBushes, this.palms);
+        this.list.addHeader(Component.translatable(KEY + ".animals"), this.font);
+        this.list.addOptions(this.options, this.capybarasWeight, this.ducksWeight);
+        this.list.addHeader(Component.translatable(KEY + ".monsters"), this.font);
+        this.list.addOptions(this.options, this.lushCreepersWeight, this.sunkensWeight);
+        this.addWidget(this.list);
 
-    /**
-     * Option lists have no headers in 1.21.1, so this adds a text spanning both columns.
-     */
-    private void addHeader(Component title) {
-        this.list.addSmall(new StringWidget(this.list.getRowWidth(), 20, title, this.font), null);
+        this.addRenderableWidget(Button.builder(Component.translatable(KEY + ".reset"), button -> this.reset())
+                .bounds(this.width / 2 - 155, this.height - 27, 150, 20).build());
+        this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, button -> this.onClose())
+                .bounds(this.width / 2 + 5, this.height - 27, 150, 20).build());
     }
 
     @Override
-    protected void addFooter() {
-        var footer = this.layout.addToFooter(LinearLayout.horizontal().spacing(8));
-        footer.addChild(Button.builder(Component.translatable(KEY + ".reset"), button -> this.reset()).build());
-        footer.addChild(Button.builder(CommonComponents.GUI_DONE, button -> this.onClose()).build());
+    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick) {
+        this.renderBackground(graphics);
+        this.list.render(graphics, mouseX, mouseY, partialTick);
+        graphics.drawCenteredString(this.font, this.title, this.width / 2, 20, 0xFFFFFF);
+        super.render(graphics, mouseX, mouseY, partialTick);
     }
 
     private void reset() {
@@ -89,7 +99,7 @@ public class PromenadeConfigScreen extends OptionsSubScreen {
         // Saves our config instead of the vanilla options
         PromenadeConfig.save(this.toConfig());
         if (PromenadeConfig.requiresRestart()) {
-            SystemToast.addOrUpdate(this.minecraft.getToasts(), SystemToast.SystemToastId.PERIODIC_NOTIFICATION,
+            SystemToast.addOrUpdate(this.minecraft.getToasts(), SystemToast.SystemToastIds.PERIODIC_NOTIFICATION,
                     TITLE, Component.translatable(KEY + ".restart_required"));
         }
     }
@@ -122,5 +132,66 @@ public class PromenadeConfigScreen extends OptionsSubScreen {
 
     private static Component tooltip(String name) {
         return Component.translatable(KEY + "." + name + ".tooltip");
+    }
+
+    /**
+     * The 1.20.1 option list only holds options: this one also has headers, spanning both columns.
+     */
+    private static class OptionList extends ContainerObjectSelectionList<OptionList.Row> {
+        private static final int ROW_HEIGHT = 25;
+
+        public OptionList(Minecraft minecraft, int width, int height, int top, int bottom) {
+            super(minecraft, width, height, top, bottom, ROW_HEIGHT);
+            this.centerListVertically = false;
+        }
+
+        public void addHeader(Component title, Font font) {
+            this.addEntry(new Row(List.of(new StringWidget(this.width / 2 - 155, 0, 310, 20, title, font))));
+        }
+
+        public void addOptions(Options options, OptionInstance<?>... instances) {
+            for (int i = 0; i < instances.length; i += 2) {
+                var left = instances[i].createButton(options, this.width / 2 - 155, 0, 150);
+                this.addEntry(new Row(i + 1 < instances.length
+                        ? List.of(left, instances[i + 1].createButton(options, this.width / 2 + 5, 0, 150))
+                        : List.of(left)));
+            }
+        }
+
+        @Override
+        public int getRowWidth() {
+            return 400;
+        }
+
+        @Override
+        protected int getScrollbarPosition() {
+            return super.getScrollbarPosition() + 32;
+        }
+
+        private static class Row extends ContainerObjectSelectionList.Entry<Row> {
+            private final List<AbstractWidget> widgets;
+
+            private Row(List<AbstractWidget> widgets) {
+                this.widgets = widgets;
+            }
+
+            @Override
+            public void render(GuiGraphics graphics, int index, int top, int left, int width, int height, int mouseX, int mouseY, boolean hovered, float partialTick) {
+                for (var widget : this.widgets) {
+                    widget.setY(top);
+                    widget.render(graphics, mouseX, mouseY, partialTick);
+                }
+            }
+
+            @Override
+            public List<? extends GuiEventListener> children() {
+                return this.widgets;
+            }
+
+            @Override
+            public List<? extends NarratableEntry> narratables() {
+                return this.widgets;
+            }
+        }
     }
 }

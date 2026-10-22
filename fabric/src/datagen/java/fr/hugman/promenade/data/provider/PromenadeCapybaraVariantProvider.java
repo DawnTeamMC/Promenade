@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import fr.hugman.promenade.entity.variant.ResourceTexture;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import fr.hugman.promenade.entity.spawn.SpawnPrioritySelectors;
 
@@ -30,16 +30,16 @@ public class PromenadeCapybaraVariantProvider extends FabricDynamicRegistryProvi
         return "Capybara Variants";
     }
 
-    public static void register(BootstrapContext<CapybaraVariant> registerable) {
+    public static void register(BootstapContext<CapybaraVariant> registerable) {
         of(registerable, CapybaraVariants.BROWN, SpawnPrioritySelectors.fallback(0));
         of(registerable, CapybaraVariants.ALBINO, 1 / 50f);
     }
 
-    private static void of(BootstrapContext<CapybaraVariant> registry, ResourceKey<CapybaraVariant> key, float rarity) {
+    private static void of(BootstapContext<CapybaraVariant> registry, ResourceKey<CapybaraVariant> key, float rarity) {
         of(registry, key, SpawnPrioritySelectors.single(new ChanceSpawnCondition(rarity), 0));
     }
 
-    private static void of(BootstrapContext<CapybaraVariant> registry, ResourceKey<CapybaraVariant> key, SpawnPrioritySelectors spawnConditions) {
+    private static void of(BootstapContext<CapybaraVariant> registry, ResourceKey<CapybaraVariant> key, SpawnPrioritySelectors spawnConditions) {
         var baseId = key.location().withPrefix("entity/capybara/");
         registry.register(key, new CapybaraVariant(
                 new CapybaraVariant.AssetInfo(

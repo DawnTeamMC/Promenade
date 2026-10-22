@@ -33,6 +33,6 @@ public class PromenadeItemTags {
     }
 
     private static TagKey<Item> ofConventional(String path) {
-		return TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(C_NAMESPACE, path));
+		return TagKey.create(Registries.ITEM, new ResourceLocation(C_NAMESPACE, path));
     }
 }

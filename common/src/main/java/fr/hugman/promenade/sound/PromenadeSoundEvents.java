@@ -1,8 +1,8 @@
 package fr.hugman.promenade.sound;
 
+import fr.hugman.promenade.platform.PromenadePlatform;
 import fr.hugman.promenade.Promenade;
 import net.minecraft.core.Holder;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvent;
 
@@ -44,11 +44,11 @@ public class PromenadeSoundEvents {
 
     private static Holder.Reference<SoundEvent> ofRef(String path) {
         var id = Promenade.id(path);
-        return Registry.registerForHolder(BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));
+        return PromenadePlatform.INSTANCE.registerForHolder(BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));
     }
 
     private static SoundEvent of(String path) {
         var id = Promenade.id(path);
-        return Registry.register(BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));
+        return PromenadePlatform.INSTANCE.register(BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));
     }
 }

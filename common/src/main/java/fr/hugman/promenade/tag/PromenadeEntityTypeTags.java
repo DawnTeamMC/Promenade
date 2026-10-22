@@ -20,6 +20,6 @@ public class PromenadeEntityTypeTags {
     }
 
     private static TagKey<EntityType<?>> ofConventional(String path) {
-		return TagKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(C_NAMESPACE, path));
+		return TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(C_NAMESPACE, path));
     }
 }

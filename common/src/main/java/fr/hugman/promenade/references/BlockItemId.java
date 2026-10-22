@@ -7,7 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 /**
- * The keys of a block and of its item. Newer versions of Minecraft ship this class; 1.21.1 does not.
+ * The keys of a block and of its item. Newer versions of Minecraft ship this class; 1.20.1 does not.
  */
 public record BlockItemId(ResourceKey<Block> block, ResourceKey<Item> item) {
     public static BlockItemId create(ResourceLocation blockId, ResourceLocation itemId) {

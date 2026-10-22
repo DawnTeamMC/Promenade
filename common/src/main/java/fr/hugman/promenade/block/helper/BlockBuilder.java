@@ -1,8 +1,8 @@
 package fr.hugman.promenade.block.helper;
 
+import fr.hugman.promenade.platform.PromenadePlatform;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -33,7 +33,7 @@ public class BlockBuilder {
 
     public BlockBuilder(Block block) {
         // retrieves the block's values
-        this.settings = BlockBehaviour.Properties.ofLegacyCopy(block);
+        this.settings = BlockBehaviour.Properties.copy(block);
     }
 
     public BlockBuilder factory(Function<BlockBehaviour.Properties, Block> factory) {
@@ -63,7 +63,7 @@ public class BlockBuilder {
 
     /**
      * Makes the block's item compostable, using one of the vanilla composting chances (see {@link PromenadeCompostables}).
-     * Burn times need no such setting: on 1.21.1, both loaders give them through item tags.
+     * Burn times need no such setting: on 1.20.1, both loaders give them through item tags.
      */
     public BlockBuilder compostable(float chance) {
         this.compostChance = chance;
@@ -80,10 +80,10 @@ public class BlockBuilder {
             throw new IllegalStateException("Cannot register block: factory is not set!");
         }
         var block = this.factory.apply(this.settings);
-        Registry.register(BuiltInRegistries.BLOCK, key, block);
+        PromenadePlatform.INSTANCE.register(BuiltInRegistries.BLOCK, key, block);
         if (this.itemSettings instanceof Item.Properties) {
             var itemRegistryKey = ResourceKey.create(Registries.ITEM, key.location());
-            var item = Registry.register(BuiltInRegistries.ITEM, itemRegistryKey, new BlockItem(block, this.itemSettings));
+            var item = PromenadePlatform.INSTANCE.register(BuiltInRegistries.ITEM, itemRegistryKey, new BlockItem(block, this.itemSettings));
             if (this.compostChance > 0.0F) {
                 PromenadeCompostables.add(item, this.compostChance);
             }

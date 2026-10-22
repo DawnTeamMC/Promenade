@@ -14,27 +14,22 @@ import fr.hugman.promenade.item.PromenadeItems;
 import fr.hugman.promenade.tag.PromenadeItemTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
-import net.minecraft.world.item.crafting.CampfireCookingRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.SmeltingRecipe;
-import net.minecraft.world.item.crafting.SmokingRecipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
-import java.util.concurrent.CompletableFuture;
+import java.util.function.Consumer;
 
 public class PromenadeRecipeGenerator extends FabricRecipeProvider {
-    private RecipeOutput exporter;
+    private Consumer<FinishedRecipe> exporter;
 
-    public PromenadeRecipeGenerator(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        super(output, registriesFuture);
+    public PromenadeRecipeGenerator(FabricDataOutput output) {
+        super(output);
     }
 
     @Override
@@ -43,9 +38,9 @@ public class PromenadeRecipeGenerator extends FabricRecipeProvider {
     }
 
     @Override
-    public void buildRecipes(RecipeOutput exporter) {
+    public void buildRecipes(Consumer<FinishedRecipe> exporter) {
         this.exporter = exporter;
-        PromenadeBlockFamilies.getFamilies().filter(BlockFamily::shouldGenerateRecipe).forEach(family -> this.generateRecipes(family, FeatureFlagSet.of(FeatureFlags.VANILLA)));
+        PromenadeBlockFamilies.getFamilies().filter(family -> family.shouldGenerateRecipe(FeatureFlags.VANILLA_SET)).forEach(this::generateRecipes);
 
         this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.ASPHALT_SLAB, PromenadeBlocks.ASPHALT, 2);
         this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.ASPHALT_STAIRS, PromenadeBlocks.ASPHALT);
@@ -147,16 +142,16 @@ public class PromenadeRecipeGenerator extends FabricRecipeProvider {
 
         this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, PromenadeBlocks.MOAI, Blocks.TUFF);
 
-        this.cookRecipes("smelting", RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, 200);
-        this.cookRecipes("smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new, 100);
-        this.cookRecipes("campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new, 600);
+        this.cookRecipes("smelting", RecipeSerializer.SMELTING_RECIPE, 200);
+        this.cookRecipes("smoking", RecipeSerializer.SMOKING_RECIPE, 100);
+        this.cookRecipes("campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 600);
 
         this.oneToOneConversionRecipe(Items.MAGENTA_DYE, PromenadeItems.BLUEBERRIES, "magenta_dye", 1);
 
         this.shapeless(RecipeCategory.MISC, PromenadeItems.BOVINE_BANNER_PATTERN)
                 .requires(Items.PAPER)
                 .requires(Items.LEATHER)
-                .unlockedBy("has_leather", this.has(Items.LEATHER))
+                .unlockedBy("has_leather", has(Items.LEATHER))
                 .save(this.exporter);
     }
 
@@ -167,7 +162,7 @@ public class PromenadeRecipeGenerator extends FabricRecipeProvider {
                 .pattern("_")
                 .pattern("#")
                 .group("snowy_leaves")
-                .unlockedBy(getHasName(input), this.has(input))
+                .unlockedBy(getHasName(input), has(input))
                 .save(this.exporter);
 
     }
@@ -177,7 +172,7 @@ public class PromenadeRecipeGenerator extends FabricRecipeProvider {
                 .define('#', input)
                 .pattern("##")
                 .group("fallen_leaves")
-                .unlockedBy(getHasName(input), this.has(input))
+                .unlockedBy(getHasName(input), has(input))
                 .save(this.exporter);
     }
 
@@ -187,7 +182,7 @@ public class PromenadeRecipeGenerator extends FabricRecipeProvider {
                 .define('#', input)
                 .pattern("###")
                 .group("leaf_pile")
-                .unlockedBy(getHasName(input), this.has(input))
+                .unlockedBy(getHasName(input), has(input))
                 .save(this.exporter);
     }
 
@@ -196,20 +191,18 @@ public class PromenadeRecipeGenerator extends FabricRecipeProvider {
                 .define('#', input)
                 .pattern("##")
                 .group("flower_pile")
-                .unlockedBy(getHasName(input), this.has(input))
+                .unlockedBy(getHasName(input), has(input))
                 .save(this.exporter);
     }
 
-    public <T extends AbstractCookingRecipe> void cookRecipes(
-            String cooker, RecipeSerializer<T> serializer, AbstractCookingRecipe.Factory<T> recipeFactory, int cookingTime
-    ) {
-        simpleCookingRecipe(this.exporter, cooker, serializer, recipeFactory, cookingTime, PromenadeItems.DUCK, PromenadeItems.COOKED_DUCK, 0.35F);
+    public void cookRecipes(String cooker, RecipeSerializer<? extends AbstractCookingRecipe> serializer, int cookingTime) {
+        simpleCookingRecipe(this.exporter, cooker, serializer, cookingTime, PromenadeItems.DUCK, PromenadeItems.COOKED_DUCK, 0.35F);
     }
 
     /* The instance methods that newer versions of the recipe provider have */
 
-    private void generateRecipes(BlockFamily family, FeatureFlagSet flags) {
-        generateRecipes(this.exporter, family, flags);
+    private void generateRecipes(BlockFamily family) {
+        generateRecipes(this.exporter, family);
     }
 
     private void stonecutterResultFromBase(RecipeCategory category, ItemLike result, ItemLike material) {

@@ -14,7 +14,6 @@ public class EntityTypeFactory {
         EntityType.EntityFactory<PromenadeBoat> factory = (type, world) -> new PromenadeBoat(type, world, item, planks);
         return EntityType.Builder.of(factory, MobCategory.MISC)
                 .sized(1.375F, 0.5625F)
-                .eyeHeight(0.5625F)
                 .clientTrackingRange(10);
     }
 
@@ -22,7 +21,6 @@ public class EntityTypeFactory {
         EntityType.EntityFactory<PromenadeChestBoat> factory = (type, world) -> new PromenadeChestBoat(type, world, item, planks);
         return EntityType.Builder.of(factory, MobCategory.MISC)
                 .sized(1.375F, 0.5625F)
-                .eyeHeight(0.5625F)
                 .clientTrackingRange(10);
     }
 }

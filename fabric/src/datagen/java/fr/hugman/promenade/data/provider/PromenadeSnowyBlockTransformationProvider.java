@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -31,7 +31,7 @@ public class PromenadeSnowyBlockTransformationProvider extends FabricDynamicRegi
         return "Snowy Block Transformations";
     }
 
-    public static void register(BootstrapContext<SnowyBlockTransformation> registerable) {
+    public static void register(BootstapContext<SnowyBlockTransformation> registerable) {
         of(registerable, Blocks.OAK_LEAVES, PromenadeBlocks.SNOWY_OAK_LEAVES);
         of(registerable, Blocks.SPRUCE_LEAVES, PromenadeBlocks.SNOWY_SPRUCE_LEAVES);
         of(registerable, Blocks.BIRCH_LEAVES, PromenadeBlocks.SNOWY_BIRCH_LEAVES);
@@ -51,7 +51,7 @@ public class PromenadeSnowyBlockTransformationProvider extends FabricDynamicRegi
         of(registerable, PromenadeBlocks.PALM_LEAVES, PromenadeBlocks.SNOWY_PALM_LEAVES);
     }
 
-    private static void of(BootstrapContext<SnowyBlockTransformation> registry, Block baseBlock, Block snowyBlock) {
+    private static void of(BootstapContext<SnowyBlockTransformation> registry, Block baseBlock, Block snowyBlock) {
         var id = ResourceKey.create(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION, Promenade.id(BuiltInRegistries.BLOCK.getKey(snowyBlock).getPath()));
         registry.register(id, new SnowyBlockTransformation(baseBlock.builtInRegistryHolder(), snowyBlock.builtInRegistryHolder()));
     }
