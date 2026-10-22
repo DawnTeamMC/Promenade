@@ -18,7 +18,7 @@ import net.minecraft.world.entity.ai.memory.MemoryStatus;
 import net.minecraft.world.entity.ai.sensing.Sensor;
 import net.minecraft.world.entity.ai.sensing.SensorType;
 import net.minecraft.world.entity.schedule.Activity;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.Map;
 import java.util.function.Predicate;
@@ -72,7 +72,7 @@ public class CapybaraAi {
                 0,
                 ImmutableList.of(
                         new Swim(0.8f),
-                        new AnimalPanic<>(1.0F) {
+                        new AnimalPanic(1.0F) {
                             private void run(ServerLevel serverWorld, Capybara capybara, long l) {
                                 capybara.forceDefaultState();
                                 super.start(serverWorld, capybara, l);
@@ -91,7 +91,7 @@ public class CapybaraAi {
                 Activity.IDLE,
                 ImmutableList.of(
                 Pair.of(0, SetEntityLookTargetSometimes.create(EntityType.PLAYER, 6.0f, UniformInt.of(30, 60))),
-                Pair.of(1, new AnimalMakeLove(PromenadeEntityTypes.CAPYBARA)),
+                Pair.of(1, new AnimalMakeLove(PromenadeEntityTypes.CAPYBARA, 1.0F)),
                 Pair.of(2, new FollowTemptation(entity -> 1.5f)),
                 Pair.of(3, BehaviorBuilder.triggerIf(Predicate.not(Capybara::isStationary), BabyFollowAdult.create(WALK_TOWARD_ADULT_RANGE, 1.5f))),
                 Pair.of(4, new RandomLookAround(UniformInt.of(150, 250), 30.0f, 0.0f, 10.0f)),
@@ -109,8 +109,8 @@ public class CapybaraAi {
         capybara.getBrain().setActiveActivityToFirstValid(ImmutableList.of(Activity.IDLE));
     }
 
-    public static Predicate<ItemStack> getTemptItemPredicate() {
-        return (stack) -> stack.is(PromenadeItemTags.CAPYBARA_FOOD);
+    public static Ingredient getTemptItemPredicate() {
+        return Ingredient.of(PromenadeItemTags.CAPYBARA_FOOD);
     }
 
     public static class SleepOrWakeUp extends Behavior<Capybara> {
@@ -160,7 +160,7 @@ public class CapybaraAi {
         @Override
         protected boolean checkExtraStartConditions(ServerLevel serverLevel, Capybara capybara) {
             return capybara.getLastStateTickDelta() >= this.lastPoseTickDelta &&
-                    !capybara.mayBeLeashed() &&
+                    !capybara.isLeashed() &&
                     capybara.onGround() &&
                     !capybara.hasControllingPassenger();
         }

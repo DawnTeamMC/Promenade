@@ -14,7 +14,7 @@ public class PromenadeBlockSetTypes {
      */
     private static BlockSetType copyOf(BlockSetType base, String path) {
         return BlockSetType.register(new BlockSetType(Promenade.id(path).toString(),
-                base.canOpenByHand(), base.canOpenByWindCharge(), base.canButtonBeActivatedByArrows(), base.pressurePlateSensitivity(), base.soundType(),
+                base.canOpenByHand(), base.soundType(),
                 base.doorClose(), base.doorOpen(), base.trapdoorClose(), base.trapdoorOpen(),
                 base.pressurePlateClickOff(), base.pressurePlateClickOn(), base.buttonClickOff(), base.buttonClickOn()));
     }

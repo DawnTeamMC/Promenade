@@ -1,7 +1,8 @@
 plugins {
-    // 1.21.1 is obfuscated: the remapping flavour of Loom maps it with Mojang mappings
+    // 1.20.1 is obfuscated: the remapping flavour of Loom maps it with Mojang mappings
     id "net.fabricmc.fabric-loom-remap" version "${loom_version}" apply false
-    id "net.neoforged.moddev" version "${moddev_version}" apply false
+    // Forge 1.20.1 and vanilla 1.20.1 are only supported by the legacy flavour of ModDevGradle
+    id "net.neoforged.moddev.legacyforge" version "${moddev_version}" apply false
     id 'org.moddedmc.wiki.toolkit' version '0.5.0'
 }
 
@@ -27,14 +28,14 @@ subprojects {
 
     tasks.withType(JavaCompile).configureEach {
         it.options.encoding = "UTF-8"
-        it.options.release = 21
+        it.options.release = 17
     }
 
     java {
         withSourcesJar()
 
-        // Minecraft 1.21.1 targets Java 21; the toolchain is also used to run the game
-        toolchain.languageVersion = JavaLanguageVersion.of(21)
+        // Minecraft 1.20.1 targets Java 17; the toolchain is also used to run the game
+        toolchain.languageVersion = JavaLanguageVersion.of(17)
     }
 
     tasks.withType(Jar).configureEach {

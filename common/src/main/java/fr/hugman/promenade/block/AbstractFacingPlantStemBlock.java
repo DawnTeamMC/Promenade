@@ -39,12 +39,12 @@ public abstract class AbstractFacingPlantStemBlock extends AbstractFacingPlantPa
     }
 
     @Override
-    protected boolean isRandomlyTicking(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return state.getValue(AGE) < MAX_AGE;
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (state.getValue(AGE) < 25 && random.nextDouble() < this.growthChance) {
             BlockPos blockPos = pos.relative(state.getValue(FACING));
             if (this.canGrowAt(world.getBlockState(blockPos))) {
@@ -70,7 +70,7 @@ public abstract class AbstractFacingPlantStemBlock extends AbstractFacingPlantPa
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         var facing = state.getValue(FACING);
         if (direction == facing.getOpposite() && !state.canSurvive(world, pos)) {
             world.scheduleTick(pos, this, 1);
@@ -94,7 +94,7 @@ public abstract class AbstractFacingPlantStemBlock extends AbstractFacingPlantPa
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, boolean isClient) {
         return this.canGrowAt(world.getBlockState(pos.relative(state.getValue(FACING))));
     }
 

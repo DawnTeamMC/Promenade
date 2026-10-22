@@ -3,10 +3,11 @@ package fr.hugman.promenade.entity.spawn;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.advancements.critereon.MinMaxBounds;
+import fr.hugman.promenade.codec.PromenadeCodecs;
 
 public record MoonBrightnessCheck(MinMaxBounds.Doubles range) implements SpawnCondition {
     public static final MapCodec<MoonBrightnessCheck> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            MinMaxBounds.Doubles.CODEC.fieldOf("range").forGetter(MoonBrightnessCheck::range)
+            PromenadeCodecs.DOUBLE_BOUNDS.fieldOf("range").forGetter(MoonBrightnessCheck::range)
     ).apply(instance, MoonBrightnessCheck::new));
 
     @Override

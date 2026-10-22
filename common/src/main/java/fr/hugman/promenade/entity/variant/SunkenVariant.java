@@ -5,38 +5,32 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import java.util.List;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.RegistryFixedCodec;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import fr.hugman.promenade.entity.spawn.PriorityProvider;
 import fr.hugman.promenade.entity.spawn.SpawnCondition;
 import fr.hugman.promenade.entity.spawn.SpawnContext;
 import fr.hugman.promenade.entity.spawn.SpawnPrioritySelectors;
-import net.minecraft.world.level.storage.loot.LootTable;
 
 public record SunkenVariant(
         ResourceTexture texture,
-        ResourceKey<LootTable> lootTable,
+        ResourceLocation lootTable,
         SpawnPrioritySelectors spawnConditions
 ) implements PriorityProvider<SpawnContext, SpawnCondition> {
     public static final Codec<SunkenVariant> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ResourceTexture.DEFAULT_FIELD_CODEC.forGetter(SunkenVariant::texture),
-            ResourceKey.codec(Registries.LOOT_TABLE).fieldOf("loot_table").forGetter(SunkenVariant::lootTable),
+            ResourceLocation.CODEC.fieldOf("loot_table").forGetter(SunkenVariant::lootTable),
             SpawnPrioritySelectors.CODEC.fieldOf("spawn_conditions").forGetter(SunkenVariant::spawnConditions)
     ).apply(instance, SunkenVariant::new));
 
     public static final Codec<SunkenVariant> NETWORK_CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ResourceTexture.DEFAULT_FIELD_CODEC.forGetter(SunkenVariant::texture),
-            ResourceKey.codec(Registries.LOOT_TABLE).fieldOf("loot_table").forGetter(SunkenVariant::lootTable)
+            ResourceLocation.CODEC.fieldOf("loot_table").forGetter(SunkenVariant::lootTable)
     ).apply(instance, SunkenVariant::new));
 
     public static final Codec<Holder<SunkenVariant>> ENTRY_CODEC = RegistryFixedCodec.create(PromenadeRegistryKeys.SUNKEN_VARIANT);
-    public static final StreamCodec<RegistryFriendlyByteBuf, Holder<SunkenVariant>> ENTRY_PACKET_CODEC = ByteBufCodecs.holderRegistry(PromenadeRegistryKeys.SUNKEN_VARIANT);
 
-    public SunkenVariant(ResourceTexture texture, ResourceKey<LootTable> lootTable) {
+    public SunkenVariant(ResourceTexture texture, ResourceLocation lootTable) {
         this(texture, lootTable, SpawnPrioritySelectors.EMPTY);
     }
 

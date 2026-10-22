@@ -9,13 +9,11 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.SpawnPlacementType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -45,6 +43,22 @@ public interface PromenadePlatform {
     /* ============== */
 
     /**
+     * Registers an entry into one of vanilla's registries, while they are open (see {@link fr.hugman.promenade.Promenade#init()}).
+     * Forge 1.20.1 locks vanilla's own methods for the registries it manages.
+     */
+    <T, V extends T> V register(Registry<T> registry, ResourceKey<T> key, V value);
+
+    default <T, V extends T> V register(Registry<T> registry, ResourceLocation id, V value) {
+        return this.register(registry, ResourceKey.create(registry.key(), id), value);
+    }
+
+    default <T> Holder.Reference<T> registerForHolder(Registry<T> registry, ResourceLocation id, T value) {
+        var key = ResourceKey.create(registry.key(), id);
+        this.register(registry, key, value);
+        return registry.getHolderOrThrow(key);
+    }
+
+    /**
      * Makes {@code oldId} resolve to {@code newId}, so that renamed content is not lost in existing worlds.
      */
     <T> void registerAlias(Registry<T> registry, ResourceLocation oldId, ResourceLocation newId);
@@ -56,8 +70,6 @@ public interface PromenadePlatform {
     /* ========== */
 
     void registerFlammable(Block block, int burnChance, int spreadChance);
-
-    void addSupportedBlocks(BlockEntityType<?> type, Block... blocks);
 
     /* ================= */
     /*   CREATIVE TABS   */
@@ -79,7 +91,7 @@ public interface PromenadePlatform {
      */
     void registerAttributes(EntityType<? extends LivingEntity> type, Supplier<AttributeSupplier.Builder> attributes);
 
-    <T extends Mob> void registerSpawnPlacement(EntityType<T> type, SpawnPlacementType placementType, Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate);
+    <T extends Mob> void registerSpawnPlacement(EntityType<T> type, SpawnPlacements.Type placementType, Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate);
 
     /* ==================== */
     /*   WORLD GENERATION   */

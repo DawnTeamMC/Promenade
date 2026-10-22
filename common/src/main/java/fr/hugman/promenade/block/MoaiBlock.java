@@ -1,6 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.block.property.PromenadeBlockProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,17 +18,11 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.world.level.LevelAccessor;
 
 public class MoaiBlock extends HorizontalDirectionalBlock implements Equipable {
-    public static final MapCodec<MoaiBlock> CODEC = simpleCodec(MoaiBlock::new);
     public static final EnumProperty<MoaiType> TYPE = PromenadeBlockProperties.MOAI_TYPE;
 
     public MoaiBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(this.stateDefinition.any().setValue(TYPE, MoaiType.SINGLE).setValue(FACING, Direction.NORTH));
-    }
-
-    @Override
-    protected MapCodec<? extends MoaiBlock> codec() {
-        return CODEC;
     }
 
     /**
@@ -97,7 +90,7 @@ public class MoaiBlock extends HorizontalDirectionalBlock implements Equipable {
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         var type = state.getValue(TYPE);
         if ((type == MoaiType.TOP && direction == Direction.DOWN) || (type == MoaiType.BOTTOM && direction == Direction.UP)) {
             if (!(neighborState.is(this) && neighborState.getValue(TYPE) == (type == MoaiType.TOP ? MoaiType.BOTTOM : MoaiType.TOP))) {

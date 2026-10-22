@@ -26,9 +26,9 @@ public class PromenadeSpawnConditions {
     );
 
     public static void register() {
-        of(ResourceLocation.withDefaultNamespace("structure"), StructureCheck.CODEC);
-        of(ResourceLocation.withDefaultNamespace("moon_brightness"), MoonBrightnessCheck.CODEC);
-        of(ResourceLocation.withDefaultNamespace("biome"), BiomeCheck.CODEC);
+        of(new ResourceLocation("structure"), StructureCheck.CODEC);
+        of(new ResourceLocation("moon_brightness"), MoonBrightnessCheck.CODEC);
+        of(new ResourceLocation("biome"), BiomeCheck.CODEC);
         of(Promenade.id("chance"), ChanceSpawnCondition.CODEC);
     }
 

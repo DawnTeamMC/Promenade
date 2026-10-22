@@ -18,13 +18,11 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.SpawnPlacementType;
 import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -41,26 +39,24 @@ public class FabricPromenadePlatform implements PromenadePlatform {
     }
 
     @Override
+    public <T, V extends T> V register(Registry<T> registry, ResourceKey<T> key, V value) {
+        return Registry.register(registry, key, value);
+    }
+
+    @Override
     public <T> void registerAlias(Registry<T> registry, ResourceLocation oldId, ResourceLocation newId) {
-        registry.addAlias(oldId, newId);
+        ((AliasedRegistry) registry).promenade$addAlias(oldId, newId);
     }
 
     @Override
     public void registerEntityDataSerializer(ResourceLocation id, EntityDataSerializer<?> serializer) {
-        // Fabric API has no registry for these on 1.21.1: they are synced by the order they are registered in
+        // Fabric API has no registry for these on 1.20.1: they are synced by the order they are registered in
         EntityDataSerializers.registerSerializer(serializer);
     }
 
     @Override
     public void registerFlammable(Block block, int burnChance, int spreadChance) {
         FlammableBlockRegistry.getDefaultInstance().add(block, burnChance, spreadChance);
-    }
-
-    @Override
-    public void addSupportedBlocks(BlockEntityType<?> type, Block... blocks) {
-        for (Block block : blocks) {
-            type.addSupportedBlock(block);
-        }
     }
 
     @Override
@@ -79,7 +75,7 @@ public class FabricPromenadePlatform implements PromenadePlatform {
     }
 
     @Override
-    public <T extends Mob> void registerSpawnPlacement(EntityType<T> type, SpawnPlacementType placementType, Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate) {
+    public <T extends Mob> void registerSpawnPlacement(EntityType<T> type, SpawnPlacements.Type placementType, Heightmap.Types heightmap, SpawnPlacements.SpawnPredicate<T> predicate) {
         SpawnPlacements.register(type, placementType, heightmap, predicate);
     }
 

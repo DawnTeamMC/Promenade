@@ -170,7 +170,7 @@ public record PromenadeConfig(
     }
 
     private static void write(PromenadeConfig config) {
-        var json = CODEC.encodeStart(JsonOps.INSTANCE, config).getOrThrow();
+        var json = CODEC.encodeStart(JsonOps.INSTANCE, config).getOrThrow(false, error -> {});
         try {
             Files.createDirectories(path.getParent());
             Files.writeString(path, GSON.toJson(json), StandardCharsets.UTF_8);

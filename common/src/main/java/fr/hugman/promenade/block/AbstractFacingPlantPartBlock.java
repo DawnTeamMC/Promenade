@@ -64,7 +64,7 @@ public abstract class AbstractFacingPlantPartBlock extends DirectionalBlock {
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         var facing = state.getValue(FACING);
         var blockPos = pos.relative(facing.getOpposite());
         var blockState = world.getBlockState(blockPos);
@@ -78,7 +78,7 @@ public abstract class AbstractFacingPlantPartBlock extends DirectionalBlock {
     }
 
     @Override
-    protected void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+    public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!state.canSurvive(world, pos)) {
             world.destroyBlock(pos, true);
         }
@@ -89,7 +89,7 @@ public abstract class AbstractFacingPlantPartBlock extends DirectionalBlock {
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return this.outlineShapes[state.getValue(FACING).get3DDataValue()];
     }
 

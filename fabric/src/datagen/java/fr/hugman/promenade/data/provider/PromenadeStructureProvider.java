@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
@@ -16,6 +16,7 @@ import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeStructureProvider extends FabricDynamicRegistryProvider {
@@ -33,17 +34,19 @@ public class PromenadeStructureProvider extends FabricDynamicRegistryProvider {
         return "Structures";
     }
 
-    public static void register(BootstrapContext<Structure> registerable) {
+    public static void register(BootstapContext<Structure> registerable) {
         var biomes = registerable.lookup(Registries.BIOME);
         var templatePools = registerable.lookup(Registries.TEMPLATE_POOL);
 
         registerable.register(
                 PromenadeStructureKeys.DARK_FOREST_WITCH_HUT,
                 new JigsawStructure(
-                        new Structure.StructureSettings.Builder(biomes.getOrThrow(PromenadeBiomeTags.HAS_DARK_FOREST_WITCH_HUTS))
-                                .generationStep(GenerationStep.Decoration.SURFACE_STRUCTURES)
-                                .terrainAdapation(TerrainAdjustment.BEARD_THIN)
-                                .build(),
+                        new Structure.StructureSettings(
+                                biomes.getOrThrow(PromenadeBiomeTags.HAS_DARK_FOREST_WITCH_HUTS),
+                                Map.of(),
+                                GenerationStep.Decoration.SURFACE_STRUCTURES,
+                                TerrainAdjustment.BEARD_THIN
+                        ),
                         templatePools.getOrThrow(PromenadeStructurePoolsKeys.DARK_FOREST_WITCH_HUTS),
                         1,
                         ConstantHeight.of(VerticalAnchor.absolute(0)),

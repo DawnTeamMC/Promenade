@@ -23,6 +23,6 @@ public class CreeperOverlayRenderer<T extends Creeper, M extends EntityModel<T>>
 
     @Override
     public void render(PoseStack poseStack, MultiBufferSource buffers, int light, T creeper, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        coloredCutoutModelCopyLayerRender(this.getParentModel(), this.model, this.texture, poseStack, buffers, light, creeper, limbAngle, limbDistance, animationProgress, headYaw, headPitch, tickDelta, -1);
+        coloredCutoutModelCopyLayerRender(this.getParentModel(), this.model, this.texture, poseStack, buffers, light, creeper, limbAngle, limbDistance, animationProgress, headYaw, headPitch, tickDelta, 1.0F, 1.0F, 1.0F);
     }
 }

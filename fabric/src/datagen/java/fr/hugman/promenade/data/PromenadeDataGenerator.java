@@ -26,15 +26,11 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
 
         // - Modded stuff
         pack.addProvider(PromenadeSnowyBlockTransformationProvider::new);
-        // - Loader-specific
-        pack.addProvider(PromenadeNeoForgeDataMapsProvider::new);
 
-        // - Variants
-        pack.addProvider(PromenadeWolfVariantProvider::new);
+        // - Variants (painting variants are registered in code in 1.20.1)
         pack.addProvider(PromenadeCapybaraVariantProvider::new);
         pack.addProvider(PromenadeDuckVariantProvider::new);
         pack.addProvider(PromenadeSunkenVariantProvider::new);
-        pack.addProvider(PromenadePaintingVariantProvider::new);
 
         // - World generation
         pack.addProvider(PromenadeTemplatePoolProvider::new);
@@ -44,16 +40,11 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         pack.addProvider(PromenadeConfiguredFeatureProvider::new);
         pack.addProvider(PromenadePlacedFeatureProvider::new);
         pack.addProvider(PromenadeBiomeProvider::new);
-        pack.addProvider(PromenadeBiolithBiomePlacementProvider::new);
-        pack.addProvider(PromenadeBiolithSurfaceProvider::new);
 
         // - Loot tables
         pack.addProvider(PromenadeBlockLootTableProvider::new);
         pack.addProvider(PromenadeEntityLootTableProvider::new);
         pack.addProvider(PromenadeChestLootTableProvider::new);
-
-        // - Banner Patterns
-        pack.addProvider(PromenadeBannerPatternProvider::new);
 
         // - Tags
         var blockTagProvider = pack.addProvider(PromenadeBlockTagProvider::new);
@@ -74,11 +65,9 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
     public void buildRegistry(RegistrySetBuilder registryBuilder) {
         registryBuilder.add(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION, PromenadeSnowyBlockTransformationProvider::register);
 
-        registryBuilder.add(Registries.WOLF_VARIANT, PromenadeWolfVariantProvider::register);
         registryBuilder.add(PromenadeRegistryKeys.CAPYBARA_VARIANT, PromenadeCapybaraVariantProvider::register);
         registryBuilder.add(PromenadeRegistryKeys.DUCK_VARIANT, PromenadeDuckVariantProvider::register);
         registryBuilder.add(PromenadeRegistryKeys.SUNKEN_VARIANT, PromenadeSunkenVariantProvider::register);
-        registryBuilder.add(Registries.PAINTING_VARIANT, PromenadePaintingVariantProvider::register);
 
         registryBuilder.add(Registries.TEMPLATE_POOL, PromenadeTemplatePoolProvider::register);
         registryBuilder.add(Registries.STRUCTURE, PromenadeStructureProvider::register);
@@ -87,8 +76,6 @@ public class PromenadeDataGenerator implements DataGeneratorEntrypoint {
         registryBuilder.add(Registries.CONFIGURED_FEATURE, PromenadeConfiguredFeatureProvider::register);
         registryBuilder.add(Registries.PLACED_FEATURE, PromenadePlacedFeatureProvider::register);
         registryBuilder.add(Registries.BIOME, PromenadeBiomeProvider::register);
-
-        registryBuilder.add(Registries.BANNER_PATTERN, PromenadeBannerPatternProvider::register);
     }
 
     @Override

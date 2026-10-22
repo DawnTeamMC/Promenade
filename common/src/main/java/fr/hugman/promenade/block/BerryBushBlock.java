@@ -1,11 +1,7 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -13,7 +9,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -40,11 +35,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BerryBushBlock extends BushBlock implements BonemealableBlock {
-    public static final MapCodec<BerryBushBlock> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            ResourceKey.codec(Registries.ITEM).fieldOf("berry").forGetter(block -> block.berry),
-            Codec.BOOL.fieldOf("is_spiny").forGetter(block -> block.isSpiny),
-            propertiesCodec()
-    ).apply(instance, BerryBushBlock::new));
     private static final float MIN_MOVEMENT_FOR_DAMAGE = 0.003f;
     public static final int MAX_AGE = 3;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;
@@ -61,22 +51,17 @@ public class BerryBushBlock extends BushBlock implements BonemealableBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0));
     }
 
-    @Override
-    protected MapCodec<BerryBushBlock> codec() {
-        return CODEC;
-    }
-
     private ItemLike getBerry() {
         return BuiltInRegistries.ITEM.getOptional(this.berry).<ItemLike>map(item -> item).orElse(this);
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(BlockGetter world, BlockPos pos, BlockState state) {
         return new ItemStack(this.getBerry());
     }
 
     @Override
-    protected VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         if (state.getValue(AGE) == 0) {
             return SMALL_SHAPE;
         }
@@ -87,12 +72,12 @@ public class BerryBushBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    protected boolean isRandomlyTicking(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return state.getValue(AGE) < MAX_AGE;
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         int age = state.getValue(AGE);
         if (age < MAX_AGE && random.nextInt(5) == 0 && world.getRawBrightness(pos.above(), 0) >= 9) {
             BlockState blockState = state.setValue(AGE, age + 1);
@@ -102,7 +87,7 @@ public class BerryBushBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    protected void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
+    public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
         if (!(entity instanceof LivingEntity) || entity.getType() == EntityType.FOX || entity.getType() == EntityType.BEE) {
             return;
         }
@@ -119,13 +104,11 @@ public class BerryBushBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        return state.getValue(AGE) != MAX_AGE && stack.is(Items.BONE_MEAL) ? ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION : super.useItemOn(stack, state, world, pos, player, hand, hit);
-    }
-
-    @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         int age = state.getValue(AGE);
+        if (age != MAX_AGE && player.getItemInHand(hand).is(Items.BONE_MEAL)) {
+            return InteractionResult.PASS;
+        }
         if (age > 1) {
             int j = 1 + world.getRandom().nextInt(2);
             popResource(world, pos, new ItemStack(this.getBerry(), j + (age == MAX_AGE ? 1 : 0)));
@@ -135,7 +118,7 @@ public class BerryBushBlock extends BushBlock implements BonemealableBlock {
             world.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(player, blockState));
             return InteractionResult.sidedSuccess(world.isClientSide);
         }
-        return super.useWithoutItem(state, world, pos, player, hit);
+        return super.use(state, world, pos, player, hand, hit);
     }
 
     @Override
@@ -144,7 +127,7 @@ public class BerryBushBlock extends BushBlock implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, boolean isClient) {
         return state.getValue(AGE) < MAX_AGE;
     }
 

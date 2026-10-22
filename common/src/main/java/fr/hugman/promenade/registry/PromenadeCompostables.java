@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * The chance each of the mod's items has to add a layer to a composter.
- * Fabric registers them at runtime, while NeoForge reads them from a data map generated from this list.
+ * Fabric registers them through its API, while Forge, which has no data maps in 1.20.1, adds them to vanilla's map.
  */
 public final class PromenadeCompostables {
     // Same chances as vanilla's

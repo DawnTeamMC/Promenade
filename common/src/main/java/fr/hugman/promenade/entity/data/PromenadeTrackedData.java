@@ -6,21 +6,28 @@ import fr.hugman.promenade.entity.variant.CapybaraVariant;
 import fr.hugman.promenade.entity.variant.DuckVariant;
 import fr.hugman.promenade.entity.variant.SunkenVariant;
 import fr.hugman.promenade.platform.PromenadePlatform;
-import net.minecraft.core.Holder;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.StreamCodec;
+import fr.hugman.promenade.registry.PromenadeRegistryKeys;
+import net.minecraft.core.Registry;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.syncher.EntityDataSerializer;
+import net.minecraft.resources.ResourceKey;
 
 public class PromenadeTrackedData {
-    public static final EntityDataSerializer<Holder<DuckVariant>> DUCK_VARIANT = of("duck_variant", DuckVariant.ENTRY_PACKET_CODEC);
-    public static final EntityDataSerializer<Holder<CapybaraVariant>> CAPYBARA_VARIANT = of("capybara_variant", CapybaraVariant.ENTRY_PACKET_CODEC);
-    public static final EntityDataSerializer<Holder<SunkenVariant>> SUNKEN_VARIANT = of("sunken_variant", SunkenVariant.ENTRY_PACKET_CODEC);
+    public static final EntityDataSerializer<ResourceKey<DuckVariant>> DUCK_VARIANT = register("duck_variant", resourceKey(PromenadeRegistryKeys.DUCK_VARIANT));
+    public static final EntityDataSerializer<ResourceKey<CapybaraVariant>> CAPYBARA_VARIANT = register("capybara_variant", resourceKey(PromenadeRegistryKeys.CAPYBARA_VARIANT));
+    public static final EntityDataSerializer<ResourceKey<SunkenVariant>> SUNKEN_VARIANT = register("sunken_variant", resourceKey(PromenadeRegistryKeys.SUNKEN_VARIANT));
 
-    public static final EntityDataSerializer<Capybara.State> CAPYBARA_STATE = of("capybara_state", Capybara.State.PACKET_CODEC);
+    public static final EntityDataSerializer<Capybara.State> CAPYBARA_STATE = register("capybara_state", EntityDataSerializer.simpleEnum(Capybara.State.class));
 
-    public static <T> EntityDataSerializer<T> of(String name, StreamCodec<? super RegistryFriendlyByteBuf, T> codec) {
-        var handler = EntityDataSerializer.forValueType(codec);
-        PromenadePlatform.INSTANCE.registerEntityDataSerializer(Promenade.id(name), handler);
-        return handler;
+    /**
+     * 1.20.1 packets have no access to registries: variants are synced by key, and each side looks them up in its own registries.
+     */
+    private static <T> EntityDataSerializer<ResourceKey<T>> resourceKey(ResourceKey<? extends Registry<T>> registryKey) {
+        return EntityDataSerializer.simple(FriendlyByteBuf::writeResourceKey, buf -> buf.readResourceKey(registryKey));
+    }
+
+    private static <T> EntityDataSerializer<T> register(String name, EntityDataSerializer<T> serializer) {
+        PromenadePlatform.INSTANCE.registerEntityDataSerializer(Promenade.id(name), serializer);
+        return serializer;
     }
 }

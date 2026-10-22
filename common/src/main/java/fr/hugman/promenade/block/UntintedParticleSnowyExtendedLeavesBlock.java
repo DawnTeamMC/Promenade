@@ -40,7 +40,7 @@ public class UntintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBloc
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         BlockState stateBelow = world.getBlockState(pos.below());
         return super.updateShape(state, direction, neighborState, world, pos, neighborPos).setValue(BOTTOM, !isSnow(stateBelow));
     }

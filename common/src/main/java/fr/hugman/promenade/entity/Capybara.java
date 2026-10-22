@@ -7,19 +7,16 @@ import fr.hugman.promenade.entity.variant.CapybaraVariants;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import fr.hugman.promenade.sound.PromenadeSoundEvents;
 import fr.hugman.promenade.tag.PromenadeItemTags;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.SharedConstants;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import com.mojang.serialization.Dynamic;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.util.ByIdMap;
 import net.minecraft.util.Mth;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.util.Unit;
@@ -46,11 +43,11 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.function.IntFunction;
-
 public class Capybara extends Animal {
     private static final FloatProvider FART_CHANCE_PROVIDER = TrapezoidFloat.of(0.1F, 0.55F, 0.2F);
-    private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.scalable(0.49f, 0.45f).withEyeHeight(0.40F);
+    private static final EntityDimensions BABY_DIMENSIONS = EntityDimensions.scalable(0.49f, 0.45f);
+    private static final float EYE_HEIGHT = 0.85F;
+    private static final float BABY_EYE_HEIGHT = 0.40F;
 
     protected static final EntityDataAccessor<State> STATE = SynchedEntityData.defineId(Capybara.class, PromenadeTrackedData.CAPYBARA_STATE);
     public static final EntityDataAccessor<Long> LAST_STATE_TICK = SynchedEntityData.defineId(Capybara.class, EntityDataSerializers.LONG);
@@ -59,7 +56,7 @@ public class Capybara extends Animal {
     public static final String LAST_STATE_TICK_KEY = "last_state_tick";
     public static final String STATE_KEY = "state_key";
 
-    private static final EntityDataAccessor<Holder<CapybaraVariant>> VARIANT = SynchedEntityData.defineId(Capybara.class, PromenadeTrackedData.CAPYBARA_VARIANT);
+    private static final EntityDataAccessor<ResourceKey<CapybaraVariant>> VARIANT = SynchedEntityData.defineId(Capybara.class, PromenadeTrackedData.CAPYBARA_VARIANT);
     private static final EntityDataAccessor<Float> FART_CHANCE = SynchedEntityData.defineId(Capybara.class, EntityDataSerializers.FLOAT);
 
     private static final int EAR_WIGGLE_LENGHT = (int) (0.2f * SharedConstants.TICKS_PER_SECOND);
@@ -100,11 +97,11 @@ public class Capybara extends Animal {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData) {
-        CapybaraVariants.select(this.random, this.registryAccess(), SpawnContext.create(world, this.blockPosition())).ifPresent(this::setVariant);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData, @Nullable CompoundTag entityNbt) {
+        CapybaraVariants.select(this.random, this.level().registryAccess(), SpawnContext.create(world, this.blockPosition())).ifPresent(this::setVariant);
         this.entityData.set(LAST_STATE_TICK, world.getLevel().getGameTime() - WAKE_UP_LENGTH);
         this.entityData.set(FART_CHANCE, FART_CHANCE_PROVIDER.sample(this.random));
-        return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
+        return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
     }
 
     /*========*/
@@ -159,8 +156,13 @@ public class Capybara extends Animal {
     }
 
     @Override
-    protected EntityDimensions getDefaultDimensions(Pose pose) {
-        return this.isBaby() ? BABY_DIMENSIONS : super.getDefaultDimensions(pose);
+    public EntityDimensions getDimensions(Pose pose) {
+        return this.isBaby() ? BABY_DIMENSIONS : super.getDimensions(pose);
+    }
+
+    @Override
+    protected float getStandingEyeHeight(Pose pose, EntityDimensions dimensions) {
+        return this.isBaby() ? BABY_EYE_HEIGHT : EYE_HEIGHT;
     }
 
     @Override
@@ -277,7 +279,7 @@ public class Capybara extends Animal {
         this.getBrain().setMemoryWithExpiry(PromenadeMemoryModuleTypes.FART_COOLDOWN, Unit.INSTANCE, createFartCooldown());
 
         this.playSound(PromenadeSoundEvents.CAPYBARA_FART, getSoundVolume(), getVoicePitch());
-        this.gameEvent(GameEvent.ENTITY_ACTION);
+        this.gameEvent(GameEvent.ENTITY_SHAKE);
     }
 
     public boolean isFarting() {
@@ -313,22 +315,19 @@ public class Capybara extends Animal {
     }
 
     public enum State implements StringRepresentable {
-        IDLING("idling", 0),
-        FARTING("farting", 1),
-        SLEEPING("sleeping", 2),
-        FALL_TO_SLEEP("fall_to_sleep", 3),
-        WAKE_UP("wake_up", 4);
+        // Synced by ordinal
+        IDLING("idling"),
+        FARTING("farting"),
+        SLEEPING("sleeping"),
+        FALL_TO_SLEEP("fall_to_sleep"),
+        WAKE_UP("wake_up");
 
         private final String name;
-        private final int index;
 
         private static final EnumCodec<State> CODEC = StringRepresentable.fromEnum(State::values);
-        private static final IntFunction<State> INDEX_TO_VALUE = ByIdMap.continuous(State::getIndex, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
-        public static final StreamCodec<ByteBuf, State> PACKET_CODEC = ByteBufCodecs.idMapper(INDEX_TO_VALUE, State::getIndex);
 
-        State(String name, int index) {
+        State(String name) {
             this.name = name;
-            this.index = index;
         }
 
         public static State fromName(String name) {
@@ -337,10 +336,6 @@ public class Capybara extends Animal {
 
         public String getSerializedName() {
             return this.name;
-        }
-
-        private int getIndex() {
-            return this.index;
         }
     }
 
@@ -369,13 +364,13 @@ public class Capybara extends Animal {
         if (STATE.equals(data)) {
             var state = this.getState();
             this.stopAnimations();
-            AnimationState animstate = (switch (state) {
+            AnimationState animstate = state == null ? null : switch (state) {
                 case FALL_TO_SLEEP -> this.fallToSleepAnimState;
                 case SLEEPING -> this.sleepingAnimState;
                 case WAKE_UP -> this.wakeUpAnimState;
                 case FARTING -> this.fartAnimState;
-                case null, default -> null;
-            });
+                default -> null;
+            };
             if (animstate != null) animstate.startIfStopped(this.tickCount);
         }
 
@@ -448,11 +443,11 @@ public class Capybara extends Animal {
     }
 
     public Holder<CapybaraVariant> getVariant() {
-        return this.entityData.get(VARIANT);
+        return VariantUtils.resolve(this.level().registryAccess(), this.entityData.get(VARIANT), CapybaraVariants.DEFAULT);
     }
 
     public void setVariant(Holder<CapybaraVariant> variant) {
-        this.entityData.set(VARIANT, variant);
+        variant.unwrapKey().ifPresent(key -> this.entityData.set(VARIANT, key));
     }
 
     public float getFartChance() {
@@ -470,12 +465,12 @@ public class Capybara extends Animal {
     /*==========*/
 
     @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(VARIANT, VariantUtils.getDefaultOrAny(this.registryAccess(), CapybaraVariants.DEFAULT));
-        builder.define(FART_CHANCE, 0.0f);
-        builder.define(STATE, State.IDLING);
-        builder.define(LAST_STATE_TICK, -WAKE_UP_LENGTH);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(VARIANT, CapybaraVariants.DEFAULT);
+        this.entityData.define(FART_CHANCE, 0.0f);
+        this.entityData.define(STATE, State.IDLING);
+        this.entityData.define(LAST_STATE_TICK, -WAKE_UP_LENGTH);
     }
 
     @Override
@@ -491,7 +486,7 @@ public class Capybara extends Animal {
     @Override
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
-        VariantUtils.readVariant(nbt, this.registryAccess(), PromenadeRegistryKeys.CAPYBARA_VARIANT).ifPresent(this::setVariant);
+        VariantUtils.readVariant(nbt, this.level().registryAccess(), PromenadeRegistryKeys.CAPYBARA_VARIANT).ifPresent(this::setVariant);
 
         if (nbt.contains(STATE_KEY)) {
             this.setState(State.fromName(nbt.getString(STATE_KEY)));

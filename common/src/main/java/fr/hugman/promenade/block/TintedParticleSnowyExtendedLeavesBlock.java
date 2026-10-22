@@ -35,7 +35,7 @@ public class TintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBlock 
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         BlockState stateBelow = world.getBlockState(pos.below());
         return super.updateShape(state, direction, neighborState, world, pos, neighborPos).setValue(BOTTOM, !isSnow(stateBelow));
     }
@@ -46,6 +46,6 @@ public class TintedParticleSnowyExtendedLeavesBlock extends ExtendedLeavesBlock 
 
     @Override
     protected void spawnLeafParticle(Level world, BlockPos pos, RandomSource random) {
-        // 1.21.1 has no tinted leaf particles, like vanilla leaves
+        // 1.20.1 has no tinted leaf particles, like vanilla leaves
     }
 }

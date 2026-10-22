@@ -11,7 +11,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BiomeDefaultFeatures;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.Carvers;
 import net.minecraft.data.worldgen.placement.CavePlacements;
 import net.minecraft.data.worldgen.placement.MiscOverworldPlacements;
@@ -38,7 +38,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import java.util.concurrent.CompletableFuture;
 
 public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
-    // Vanilla's defaults, that 1.21.1 biomes must all set
+    // Vanilla's defaults, that 1.20.1 biomes must all set
     private static final int NORMAL_WATER_COLOR = 4159204;
     private static final int NORMAL_WATER_FOG_COLOR = 329011;
     private static final int OVERWORLD_FOG_COLOR = 12638463;
@@ -57,7 +57,7 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         return "Biomes";
     }
 
-    public static void register(BootstrapContext<Biome> registerable) {
+    public static void register(BootstapContext<Biome> registerable) {
         final var features = registerable.lookup(Registries.PLACED_FEATURE);
         final var carvers = registerable.lookup(Registries.CONFIGURED_CARVER);
 
@@ -182,7 +182,6 @@ public class PromenadeBiomeProvider extends FabricDynamicRegistryProvider {
         generation.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_REDSTONE);
         generation.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_REDSTONE_LOWER);
         generation.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_DIAMOND);
-        generation.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_DIAMOND_MEDIUM);
         generation.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_DIAMOND_LARGE);
         generation.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_DIAMOND_BURIED);
         generation.addFeature(GenerationStep.Decoration.UNDERGROUND_ORES, OrePlacements.ORE_LAPIS);

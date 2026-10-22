@@ -31,6 +31,6 @@ public class PromenadeBlockTags {
     }
 
 	private static TagKey<Block> ofConventional(String path) {
-		return TagKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(C_NAMESPACE, path));
+		return TagKey.create(Registries.BLOCK, new ResourceLocation(C_NAMESPACE, path));
 	}
 }

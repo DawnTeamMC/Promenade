@@ -278,7 +278,7 @@ public class PromenadeBlocks {
                     .pushReaction(PushReaction.DESTROY)
     ).noItem());
 
-    public static final Block MOAI = register(PromenadeBlockItemIds.MOAI, BlockFactory.of(MoaiBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)));
+    public static final Block MOAI = register(PromenadeBlockItemIds.MOAI, BlockFactory.of(MoaiBlock::new, BlockBehaviour.Properties.copy(Blocks.TUFF).mapColor(MapColor.TERRACOTTA_LIGHT_GRAY)));
 
     public static final Block BLUEBERRY_BUSH = register(PromenadeBlockIds.BLUEBERRY_BUSH, BlockFactory.of(s -> new BerryBushBlock(PromenadeItemKeys.BLUEBERRIES, false, s), BlockBehaviour.Properties.of()
             .mapColor(MapColor.PLANT)

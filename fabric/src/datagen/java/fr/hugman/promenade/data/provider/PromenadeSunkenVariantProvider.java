@@ -8,10 +8,10 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import fr.hugman.promenade.entity.variant.ResourceTexture;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import fr.hugman.promenade.entity.spawn.SpawnPrioritySelectors;
-import net.minecraft.world.level.storage.loot.LootTable;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -31,7 +31,7 @@ public class PromenadeSunkenVariantProvider extends FabricDynamicRegistryProvide
         return "Sunken Variants";
     }
 
-    public static void register(BootstrapContext<SunkenVariant> registry) {
+    public static void register(BootstapContext<SunkenVariant> registry) {
         of(registry, SunkenVariants.TUBE, PromenadeLootTables.TUBE_SUNKEN);
         of(registry, SunkenVariants.BRAIN, PromenadeLootTables.BRAIN_SUNKEN);
         of(registry, SunkenVariants.BUBBLE, PromenadeLootTables.BUBBLE_SUNKEN);
@@ -39,7 +39,7 @@ public class PromenadeSunkenVariantProvider extends FabricDynamicRegistryProvide
         of(registry, SunkenVariants.HORN, PromenadeLootTables.HORN_SUNKEN);
     }
 
-    private static void of(BootstrapContext<SunkenVariant> registry, ResourceKey<SunkenVariant> key, ResourceKey<LootTable> lootTable) {
+    private static void of(BootstapContext<SunkenVariant> registry, ResourceKey<SunkenVariant> key, ResourceLocation lootTable) {
         registry.register(key, new SunkenVariant(new ResourceTexture(key.location().withPrefix("entity/sunken/")), lootTable, SpawnPrioritySelectors.fallback(0)));
     }
 }

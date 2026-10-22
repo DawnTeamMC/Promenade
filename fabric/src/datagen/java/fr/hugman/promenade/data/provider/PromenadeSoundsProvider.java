@@ -19,7 +19,7 @@ import java.util.TreeMap;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Generates the mod's {@code sounds.json}. Fabric API has no sounds provider on 1.21.1.
+ * Generates the mod's {@code sounds.json}. Fabric API has no sounds provider on 1.20.1.
  */
 public class PromenadeSoundsProvider implements DataProvider {
     private final FabricDataOutput output;
@@ -69,8 +69,8 @@ public class PromenadeSoundsProvider implements DataProvider {
         soundExporter.add(PromenadeSoundEvents.DUCK_HURT, variantSoundBuilder(PromenadeSoundEvents.DUCK_HURT, 3));
         soundExporter.add(PromenadeSoundEvents.DUCK_DEATH, variantSoundBuilder(PromenadeSoundEvents.DUCK_DEATH, 1));
         soundExporter.add(PromenadeSoundEvents.DUCK_STEP, new SoundTypeBuilder().subtitle("subtitles.block.generic.footsteps")
-                .sound(Sound.ofFile(ResourceLocation.parse("mob/chicken/step1")))
-                .sound(Sound.ofFile(ResourceLocation.parse("mob/chicken/step2")))
+                .sound(Sound.ofFile(new ResourceLocation("mob/chicken/step1")))
+                .sound(Sound.ofFile(new ResourceLocation("mob/chicken/step2")))
         );
 
         soundExporter.add(PromenadeSoundEvents.CAPYBARA_AMBIENT, variantSoundBuilder(PromenadeSoundEvents.CAPYBARA_AMBIENT, 5));
@@ -86,13 +86,13 @@ public class PromenadeSoundsProvider implements DataProvider {
         // Music
         soundExporter.add(PromenadeSoundEvents.MUSIC_OVERWORLD_SAKURA_GROVES, new SoundTypeBuilder()
                 .sound(Sound.ofFile(Promenade.id("music/brise_couleur_pastel")).stream(true).volume(0.4f).weight(6))
-                .sound(Sound.ofFile(ResourceLocation.parse("minecraft:music/game/minecraft")).stream(true))
-                .sound(Sound.ofFile(ResourceLocation.parse("minecraft:music/game/sweden")).stream(true))
-                .sound(Sound.ofFile(ResourceLocation.parse("minecraft:music/game/clark")).stream(true))
-                .sound(Sound.ofFile(ResourceLocation.parse("minecraft:music/game/left_to_bloom")).stream(true).volume(0.4f))
-                .sound(Sound.ofFile(ResourceLocation.parse("minecraft:music/game/featherfall")).stream(true).volume(0.4f).weight(3))
-                .sound(Sound.ofFile(ResourceLocation.parse("minecraft:music/game/echo_in_the_wind")).stream(true).volume(0.4f).weight(3))
-                .sound(Sound.ofFile(ResourceLocation.parse("minecraft:music/game/bromeliad")).stream(true).volume(0.4f).weight(3))
+                .sound(Sound.ofFile(new ResourceLocation("minecraft:music/game/minecraft")).stream(true))
+                .sound(Sound.ofFile(new ResourceLocation("minecraft:music/game/sweden")).stream(true))
+                .sound(Sound.ofFile(new ResourceLocation("minecraft:music/game/clark")).stream(true))
+                .sound(Sound.ofFile(new ResourceLocation("minecraft:music/game/left_to_bloom")).stream(true).volume(0.4f))
+                .sound(Sound.ofFile(new ResourceLocation("minecraft:music/game/featherfall")).stream(true).volume(0.4f).weight(3))
+                .sound(Sound.ofFile(new ResourceLocation("minecraft:music/game/echo_in_the_wind")).stream(true).volume(0.4f).weight(3))
+                .sound(Sound.ofFile(new ResourceLocation("minecraft:music/game/bromeliad")).stream(true).volume(0.4f).weight(3))
         );
     }
 

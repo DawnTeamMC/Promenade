@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadStructurePlacement;
 import net.minecraft.world.level.levelgen.structure.placement.RandomSpreadType;
@@ -28,7 +28,7 @@ public class PromenadeStructureSetProvider extends FabricDynamicRegistryProvider
         return "Structure Sets";
     }
 
-    public static void register(BootstrapContext<StructureSet> registerable) {
+    public static void register(BootstapContext<StructureSet> registerable) {
         var structures = registerable.lookup(Registries.STRUCTURE);
 
         registerable.register(

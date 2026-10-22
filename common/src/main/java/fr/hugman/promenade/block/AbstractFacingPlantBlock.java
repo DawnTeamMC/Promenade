@@ -28,7 +28,7 @@ public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBl
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         var facing = state.getValue(FACING);
         if (direction == facing.getOpposite() && !state.canSurvive(world, pos)) {
             world.scheduleTick(pos, this, 1);
@@ -47,12 +47,12 @@ public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBl
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state) {
+    public ItemStack getCloneItemStack(BlockGetter world, BlockPos pos, BlockState state) {
         return new ItemStack(this.getStem());
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, boolean isClient) {
         var facing = state.getValue(FACING);
         Optional<BlockPos> optional = this.getStemHeadPos(world, pos, state.getBlock(), facing);
         return optional.isPresent() && this.getStem().canGrowAt(world.getBlockState(optional.get().relative(facing)));
@@ -77,7 +77,7 @@ public abstract class AbstractFacingPlantBlock extends AbstractFacingPlantPartBl
     }
 
     @Override
-    protected boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
+    public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
         boolean bl = super.canBeReplaced(state, context);
         return (!bl || !context.getItemInHand().is(this.getStem().asItem())) && bl;
     }

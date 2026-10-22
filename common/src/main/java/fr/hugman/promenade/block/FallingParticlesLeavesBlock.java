@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
 /**
- * Leaves that let particles fall below them. Newer versions of Minecraft ship this class; 1.21.1 only has cherry leaves.
+ * Leaves that let particles fall below them. Newer versions of Minecraft ship this class; 1.20.1 only has cherry leaves.
  */
 public abstract class FallingParticlesLeavesBlock extends LeavesBlock {
     protected final float leafParticleChance;

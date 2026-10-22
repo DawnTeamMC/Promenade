@@ -34,7 +34,7 @@ loom {
 
     splitEnvironmentSourceSets()
 
-    // The shared mixins are compiled here, so their refmap is generated here too (NeoForge runs on Mojang names and needs none)
+    // The shared mixins are compiled here, so their refmap is generated here too (Forge generates its own, to SRG names)
     mixin {
         // Loom 1.18 no longer runs the Mixin annotation processor by default, and the obfuscated runtime needs the refmap it writes
         useLegacyMixinAp = true
@@ -49,13 +49,6 @@ loom {
     }
 
     runs {
-        // Boots a server, runs the game tests and exits: a quick way to check that the mod loads
-        gameTestServer {
-            server()
-            name = "Game Test Server"
-            vmArg "-Dfabric-api.gametest"
-            runDir "build/gametest"
-        }
         exportClient {
             client()
             name = "Wiki Export Client"

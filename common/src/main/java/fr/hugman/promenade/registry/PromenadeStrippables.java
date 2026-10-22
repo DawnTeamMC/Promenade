@@ -8,7 +8,7 @@ import java.util.function.BiConsumer;
 public class PromenadeStrippables {
     /**
      * Gives each strippable block, with the block it turns into once stripped.
-     * Fabric registers them at runtime, while NeoForge reads them from a data map generated from this list.
+     * Fabric registers them through its API, while Forge, which has no data maps in 1.20.1, strips them through its tool event.
      * Stripped maple logs may drip syrup, which they decide themselves once placed.
      */
     public static void register(BiConsumer<Block, Block> registrar) {

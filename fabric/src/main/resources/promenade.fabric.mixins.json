@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "fr.hugman.promenade.fabric.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "promenade.refmap.json",
+  "mixins": [
+    "MappedRegistryMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

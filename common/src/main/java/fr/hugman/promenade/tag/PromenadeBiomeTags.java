@@ -31,6 +31,6 @@ public class PromenadeBiomeTags {
     }
 
 	private static TagKey<Biome> ofConventional(String path) {
-		return TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath(C_NAMESPACE, path));
+		return TagKey.create(Registries.BIOME, new ResourceLocation(C_NAMESPACE, path));
 	}
 }

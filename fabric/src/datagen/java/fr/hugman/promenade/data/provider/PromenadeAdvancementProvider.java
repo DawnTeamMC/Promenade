@@ -7,11 +7,8 @@ import fr.hugman.promenade.item.PromenadeItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.AdvancementType;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.critereon.BlockPredicate;
 import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.EntityPredicate;
@@ -22,52 +19,36 @@ import net.minecraft.advancements.critereon.KilledByCrossbowTrigger;
 import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.advancements.critereon.MinMaxBounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.HolderGetter;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.InvertedLootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
 import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
-import net.minecraft.world.level.storage.loot.predicates.MatchTool;
-import java.util.List;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
 public class PromenadeAdvancementProvider extends FabricAdvancementProvider {
-    public PromenadeAdvancementProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
-        super(output, registryLookup);
+    public PromenadeAdvancementProvider(FabricDataOutput output) {
+        super(output);
     }
 
     @Override
-    public void generateAdvancement(HolderLookup.Provider wrapperLookup, Consumer<AdvancementHolder> consumer) {
-        final var entities = wrapperLookup.lookupOrThrow(Registries.ENTITY_TYPE);
-        final var fluids = wrapperLookup.lookupOrThrow(Registries.FLUID);
-        final var blocks = wrapperLookup.lookupOrThrow(Registries.BLOCK);
-        final var items = wrapperLookup.lookupOrThrow(Registries.ITEM);
-
+    public void generateAdvancement(Consumer<Advancement> consumer) {
         Advancement.Builder.advancement()
                 .display(
                         PromenadeItems.MAPLE_SYRUP_BOTTLE,
                         Component.translatable("advancements.promenade.husbandry.harvest_maple_syrup.title"),
                         Component.translatable("advancements.promenade.husbandry.harvest_maple_syrup.description"),
                         null,
-                        AdvancementType.TASK,
+                        FrameType.TASK,
                         true,
                         true,
                         false
                 )
-                .parent(ResourceLocation.parse("husbandry/safely_harvest_honey"))
-                .addCriterion("harvest_maple_syrup", createPickMapleSyrup(blocks, items))
+                .parent(vanilla("husbandry/safely_harvest_honey"))
+                .addCriterion("harvest_maple_syrup", createPickMapleSyrup())
                 .save(consumer, Promenade.MOD_ID + ":husbandry/harvest_maple_syrup");
         Advancement.Builder.advancement()
                 .display(
@@ -75,46 +56,47 @@ public class PromenadeAdvancementProvider extends FabricAdvancementProvider {
                         Component.translatable("advancements.promenade.adventure.kill_sunken_outside_water.title"),
                         Component.translatable("advancements.promenade.adventure.kill_sunken_outside_water.description"),
                         null,
-                        AdvancementType.CHALLENGE,
+                        FrameType.CHALLENGE,
                         true,
                         true,
                         false
                 )
-                .parent(ResourceLocation.parse("adventure/whos_the_pillager_now"))
-                .addCriterion("kill_sunken_outside_water", createCrossbowSunkenOutsideWaterFromWater(fluids, entities))
+                .parent(vanilla("adventure/whos_the_pillager_now"))
+                .addCriterion("kill_sunken_outside_water", createCrossbowSunkenOutsideWaterFromWater())
                 .rewards(AdvancementRewards.Builder.experience(65))
                 .save(consumer, Promenade.MOD_ID + ":adventure/kill_sunken_outside_water");
 
 
     }
 
-    public static Criterion<KilledByCrossbowTrigger.TriggerInstance> createCrossbowSunkenOutsideWaterFromWater(HolderGetter<Fluid> fluids, HolderGetter<EntityType<?>> entities) {
-        return CriteriaTriggers.KILLED_BY_CROSSBOW.createCriterion(
-                new KilledByCrossbowTrigger.TriggerInstance(
-                        // player is in water
-                        Optional.of(ContextAwarePredicate.create(LocationCheck.checkLocation(LocationPredicate.Builder.location().setFluid(FluidPredicate.Builder.fluid().of(fluids.getOrThrow(FluidTags.WATER))), new BlockPos(0, 1, 0)).build())),
-                        // entity is a sunken and is outside water
-                        List.of(ContextAwarePredicate.create(
-                                LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().of(PromenadeEntityTypes.SUNKEN)).build(),
-                                InvertedLootItemCondition.invert(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
-                                        EntityPredicate.Builder.entity().located(LocationPredicate.Builder.location().setFluid(FluidPredicate.Builder.fluid().of(fluids.getOrThrow(FluidTags.WATER))))
-                                )).build()
-                        )),
-                        MinMaxBounds.Ints.ANY
-                )
+    /**
+     * In 1.20.1, advancements can only be built once their parent is: this stands for a vanilla one, of which only the id is saved.
+     */
+    private static Advancement vanilla(String path) {
+        return Advancement.Builder.advancement().build(new ResourceLocation(path));
+    }
+
+    public static KilledByCrossbowTrigger.TriggerInstance createCrossbowSunkenOutsideWaterFromWater() {
+        var water = FluidPredicate.Builder.fluid().of(FluidTags.WATER).build();
+        return new KilledByCrossbowTrigger.TriggerInstance(
+                // player is in water
+                ContextAwarePredicate.create(LocationCheck.checkLocation(LocationPredicate.Builder.location().setFluid(water), new BlockPos(0, 1, 0)).build()),
+                // entity is a sunken and is outside water
+                new ContextAwarePredicate[]{ContextAwarePredicate.create(
+                        LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().of(PromenadeEntityTypes.SUNKEN)).build(),
+                        InvertedLootItemCondition.invert(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
+                                EntityPredicate.Builder.entity().located(LocationPredicate.Builder.location().setFluid(water).build())
+                        )).build()
+                )},
+                MinMaxBounds.Ints.ANY
         );
     }
 
 
-    public static Criterion<ItemUsedOnLocationTrigger.TriggerInstance> createPickMapleSyrup(HolderGetter<Block> blocks, HolderGetter<Item> items) {
-        return CriteriaTriggers.ITEM_USED_ON_BLOCK.createCriterion(
-                new ItemUsedOnLocationTrigger.TriggerInstance(
-                        Optional.empty(),
-                        Optional.of(ContextAwarePredicate.create(
-                                LocationCheck.checkLocation(LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(PromenadeBlocks.STRIPPED_MAPLE_LOG))).build(),
-                                MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.GLASS_BOTTLE)).build()
-                        ))
-                )
+    public static ItemUsedOnLocationTrigger.TriggerInstance createPickMapleSyrup() {
+        return ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
+                LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(PromenadeBlocks.STRIPPED_MAPLE_LOG).build()),
+                ItemPredicate.Builder.item().of(Items.GLASS_BOTTLE)
         );
     }
 }

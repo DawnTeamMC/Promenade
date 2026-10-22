@@ -11,7 +11,7 @@ public class TintedParticleExtendedLeavesBlock extends ExtendedLeavesBlock {
 
     @Override
     protected void spawnLeafParticle(Level world, BlockPos pos, RandomSource random) {
-        // 1.21.1 has no tinted leaf particles, like vanilla leaves
+        // 1.20.1 has no tinted leaf particles, like vanilla leaves
     }
 
 }

@@ -1,7 +1,7 @@
 package fr.hugman.promenade.world.gen.feature;
 
+import fr.hugman.promenade.platform.PromenadePlatform;
 import fr.hugman.promenade.Promenade;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.HugeFungusConfiguration;
@@ -16,7 +16,7 @@ public class PromenadeFeatures {
     public static final FreezeTopLayerFeature FREEZE_TOP_LAYER = of("freeze_top_layer", new FreezeTopLayerFeature(NoneFeatureConfiguration.CODEC));
 
     private static <C extends FeatureConfiguration, F extends Feature<C>> F of(String path, F feature) {
-        return Registry.register(BuiltInRegistries.FEATURE, Promenade.id(path), feature);
+        return PromenadePlatform.INSTANCE.register(BuiltInRegistries.FEATURE, Promenade.id(path), feature);
     }
 
 }

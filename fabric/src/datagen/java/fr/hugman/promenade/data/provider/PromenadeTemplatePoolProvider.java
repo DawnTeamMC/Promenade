@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.Pools;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
@@ -30,7 +30,7 @@ public class PromenadeTemplatePoolProvider extends FabricDynamicRegistryProvider
         return "Template Pools";
     }
 
-    public static void register(BootstrapContext<StructureTemplatePool> registerable) {
+    public static void register(BootstapContext<StructureTemplatePool> registerable) {
         var pools = registerable.lookup(Registries.TEMPLATE_POOL);
         var empty = pools.getOrThrow(Pools.EMPTY);
 

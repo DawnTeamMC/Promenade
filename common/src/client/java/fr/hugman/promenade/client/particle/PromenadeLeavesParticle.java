@@ -11,7 +11,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * A leaf that falls from leaves. Mirrors {@code FallingLeavesParticle} from newer versions of Minecraft; 1.21.1 only
+ * A leaf that falls from leaves. Mirrors {@code FallingLeavesParticle} from newer versions of Minecraft; 1.20.1 only
  * has one for cherry leaves.
  */
 public class PromenadeLeavesParticle extends TextureSheetParticle {

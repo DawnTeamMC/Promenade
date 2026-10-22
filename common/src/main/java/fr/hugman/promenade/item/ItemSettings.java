@@ -5,7 +5,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 /**
- * Burn times need no setting here: on 1.21.1, both loaders give them through item tags (signs, boats...).
+ * Burn times need no setting here: on 1.20.1, both loaders give them through item tags (signs, boats...).
  */
 public final class ItemSettings {
     public static Item.Properties max1() {

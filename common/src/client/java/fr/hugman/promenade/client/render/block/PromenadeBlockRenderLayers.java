@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
 
 /**
- * 1.21.1 renders every block as solid unless told otherwise, rather than reading the layer from its textures.
+ * 1.20.1 renders every block as solid unless told otherwise, rather than reading the layer from its textures.
  * Blocks extending {@link net.minecraft.world.level.block.LeavesBlock} are the exception: the game already switches them with the graphics setting.
  */
 public final class PromenadeBlockRenderLayers {

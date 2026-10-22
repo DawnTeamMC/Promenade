@@ -40,7 +40,7 @@ public class SnowBlockMixin {
         }
         var downState = world.getBlockState(downPos.get());
         var snowyLeaves = world.registryAccess().registryOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().filter(
-                entry -> entry.baseBlock().is(downState.getBlock().builtInRegistryHolder())
+                entry -> entry.baseBlock().value() == downState.getBlock()
         ).findFirst().map(sbt -> sbt.snowyBlock().value()).orElse(null);
 
         if(snowyLeaves != null) {
@@ -74,7 +74,7 @@ public class SnowBlockMixin {
 
         var block = blockState.getBlock();
         return world.registryAccess().registryOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
-                entry -> entry.baseBlock().is(block.builtInRegistryHolder())
+                entry -> entry.baseBlock().value() == block
         ) ? Optional.of(mutable) : Optional.empty();
     }
 
@@ -83,7 +83,7 @@ public class SnowBlockMixin {
     private boolean isFullSnowyBlock(ServerLevel world, BlockState state) {
         var block = state.getBlock();
         if (world.registryAccess().registryOrThrow(PromenadeRegistryKeys.SNOWY_BLOCK_TRANSFORMATION).stream().anyMatch(
-                entry -> entry.snowyBlock().is(block.builtInRegistryHolder())
+                entry -> entry.snowyBlock().value() == block
         )) return true;
         if(state.is(Blocks.SNOW_BLOCK) || state.is(Blocks.POWDER_SNOW)) return true;
         if(state.is(Blocks.SNOW) && state.hasProperty(LAYERS) && state.getValue(LAYERS) == 8) return true;

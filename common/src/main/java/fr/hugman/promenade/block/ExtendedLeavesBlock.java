@@ -42,7 +42,7 @@ public abstract class ExtendedLeavesBlock extends Block implements SimpleWaterlo
     }
 
     @Override
-    protected VoxelShape getBlockSupportShape(BlockState state, BlockGetter world, BlockPos pos) {
+    public VoxelShape getBlockSupportShape(BlockState state, BlockGetter world, BlockPos pos) {
         return Shapes.empty();
     }
 
@@ -69,12 +69,12 @@ public abstract class ExtendedLeavesBlock extends Block implements SimpleWaterlo
     }
 
     @Override
-    protected int getLightBlock(BlockState state, BlockGetter world, BlockPos pos) {
+    public int getLightBlock(BlockState state, BlockGetter world, BlockPos pos) {
         return 1;
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         if (state.getValue(WATERLOGGED)) {
             world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }

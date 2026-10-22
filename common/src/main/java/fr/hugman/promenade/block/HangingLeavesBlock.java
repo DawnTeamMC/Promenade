@@ -64,7 +64,7 @@ public class HangingLeavesBlock extends Block implements SimpleWaterloggedBlock 
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         if (direction == Direction.UP && !this.canSurvive(state, world, pos)) {
             return Blocks.AIR.defaultBlockState();
         }

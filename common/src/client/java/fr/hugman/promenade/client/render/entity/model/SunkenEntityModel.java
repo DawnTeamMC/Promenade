@@ -26,7 +26,7 @@ public class SunkenEntityModel extends SkeletonModel<Sunken> {
         root.addOrReplaceChild(PartNames.LEFT_ARM, CubeListBuilder.create().texOffs(40, 16).mirror().addBox(-1.0F, -2.0F, -1.0F, 2.0F, 12.0F, 2.0F), PartPose.offset(5.0F, 2.0F, 0.0F));
         root.addOrReplaceChild(PartNames.RIGHT_LEG, CubeListBuilder.create().texOffs(0, 16).addBox(-1.0F, 0.0F, -1.0F, 2.0F, 12.0F, 2.0F), PartPose.offset(-2.0F, 12.0F, 0.0F));
         root.addOrReplaceChild(PartNames.LEFT_LEG, CubeListBuilder.create().texOffs(0, 16).mirror().addBox(-1.0F, 0.0F, -1.0F, 2.0F, 12.0F, 2.0F), PartPose.offset(2.0F, 12.0F, 0.0F));
-        // the coral on the head; in 1.21.1 the hat follows the head without being its child
+        // the coral on the head; in 1.20.1 the hat follows the head without being its child
         root.addOrReplaceChild(PartNames.HAT, CubeListBuilder.create().texOffs(32, 0).addBox(-4.0F, -16.0F, -4.0F, 16.0F, 16.0F, 0.0F), PartPose.ZERO);
         return LayerDefinition.create(modelData, 64, 32);
     }

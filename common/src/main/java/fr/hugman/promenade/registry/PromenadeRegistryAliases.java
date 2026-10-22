@@ -71,7 +71,7 @@ public class PromenadeRegistryAliases {
         blockAliases.put(Promenade.id("polished_carbonite_stairs"), Promenade.id("polished_asphalt_stairs"));
 
         // v5.0.0
-        var grassId = ResourceLocation.withDefaultNamespace("grass_block");
+        var grassId = new ResourceLocation("grass_block");
         blockAliases.put(Promenade.id("vermilion_carpeted_grass_block"), grassId);
         blockAliases.put(Promenade.id("fulvous_carpeted_grass_block"), grassId);
         blockAliases.put(Promenade.id("mikado_carpeted_grass_block"), grassId);

@@ -30,7 +30,7 @@ import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.WallHangingSignBlock;
 import net.minecraft.world.level.block.WallSignBlock;
-import net.minecraft.world.level.block.grower.TreeGrower;
+import net.minecraft.world.level.block.grower.AbstractTreeGrower;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
@@ -62,33 +62,33 @@ public final class BlockFactory {
     }
 
     public static BlockBuilder wall(Block baseBlock) {
-        return copy(baseBlock).factory(WallBlock::new).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock).forceSolidOn());
+        return copy(baseBlock).factory(WallBlock::new).settings(BlockBehaviour.Properties.copy(baseBlock).forceSolidOn());
     }
 
     public static BlockBuilder fence(Block baseBlock) {
-        return copy(baseBlock).factory(FenceBlock::new).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock));
+        return copy(baseBlock).factory(FenceBlock::new).settings(BlockBehaviour.Properties.copy(baseBlock));
     }
 
     public static BlockBuilder fenceGate(Block baseBlock, WoodType woodType) {
-        return copy(baseBlock).factory(s -> new FenceGateBlock(woodType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock).forceSolidOn());
+        return copy(baseBlock).factory(s -> new FenceGateBlock(s, woodType)).settings(BlockBehaviour.Properties.copy(baseBlock).forceSolidOn());
     }
 
     public static BlockBuilder trapdoor(Block baseBlock, BlockSetType setType) {
-        return copy(baseBlock).factory(s -> new TrapDoorBlock(setType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock)
+        return copy(baseBlock).factory(s -> new TrapDoorBlock(s, setType)).settings(BlockBehaviour.Properties.copy(baseBlock)
                 .strength(3.0f)
                 .noOcclusion()
                 .isValidSpawn(Blocks::never));
     }
 
     public static BlockBuilder door(Block baseBlock, BlockSetType setType) {
-        return copy(baseBlock).factory(s -> new DoorBlock(setType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock)
+        return copy(baseBlock).factory(s -> new DoorBlock(s, setType)).settings(BlockBehaviour.Properties.copy(baseBlock)
                 .strength(3.0f)
                 .noOcclusion()
                 .pushReaction(PushReaction.DESTROY));
     }
 
     public static BlockBuilder woodenButton(Block baseBlock, BlockSetType setType) {
-        return copy(baseBlock).factory(s -> new ButtonBlock(setType, 30, s)).settings(BlockBehaviour.Properties.of()
+        return copy(baseBlock).factory(s -> new ButtonBlock(s, setType, 30, true)).settings(BlockBehaviour.Properties.of()
                 .strength(0.5f)
                 .noCollission()
                 .pushReaction(PushReaction.DESTROY)
@@ -96,7 +96,7 @@ public final class BlockFactory {
     }
 
     public static BlockBuilder pressurePlate(Block baseBlock, BlockSetType setType) {
-        return copy(baseBlock).factory(s -> new PressurePlateBlock(setType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock)
+        return copy(baseBlock).factory(s -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, s, setType)).settings(BlockBehaviour.Properties.copy(baseBlock)
                 .forceSolidOn()
                 .strength(0.5f)
                 .pushReaction(PushReaction.DESTROY)
@@ -105,7 +105,7 @@ public final class BlockFactory {
     }
 
     public static BlockBuilder sign(Block baseBlock, WoodType woodType) {
-        return copy(baseBlock).factory(s -> new StandingSignBlock(woodType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock)
+        return copy(baseBlock).factory(s -> new StandingSignBlock(s, woodType)).settings(BlockBehaviour.Properties.copy(baseBlock)
                 .mapColor(baseBlock.defaultMapColor())
                 .forceSolidOn()
                 .noCollission()
@@ -113,7 +113,7 @@ public final class BlockFactory {
     }
 
     public static BlockBuilder wallSign(Block standingSign, WoodType woodType) {
-        return copy(standingSign).factory(s -> new WallSignBlock(woodType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(standingSign)
+        return copy(standingSign).factory(s -> new WallSignBlock(s, woodType)).settings(BlockBehaviour.Properties.copy(standingSign)
                 .dropsLike(standingSign)
                 .mapColor(standingSign.defaultMapColor())
                 .forceSolidOn()
@@ -122,7 +122,7 @@ public final class BlockFactory {
     }
 
     public static BlockBuilder hangingSign(Block baseBlock, WoodType woodType, SoundType soundGroup) {
-        return copy(baseBlock).factory(s -> new CeilingHangingSignBlock(woodType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(baseBlock)
+        return copy(baseBlock).factory(s -> new CeilingHangingSignBlock(s, woodType)).settings(BlockBehaviour.Properties.copy(baseBlock)
                 .mapColor(baseBlock.defaultMapColor())
                 .forceSolidOn()
                 .noCollission()
@@ -131,7 +131,7 @@ public final class BlockFactory {
     }
 
     public static BlockBuilder wallHangingSign(Block standingSign, WoodType woodType, SoundType soundGroup) {
-        return copy(standingSign).factory(s -> new WallHangingSignBlock(woodType, s)).settings(BlockBehaviour.Properties.ofLegacyCopy(standingSign)
+        return copy(standingSign).factory(s -> new WallHangingSignBlock(s, woodType)).settings(BlockBehaviour.Properties.copy(standingSign)
                 .dropsLike(standingSign)
                 .mapColor(standingSign.defaultMapColor())
                 .forceSolidOn()
@@ -156,7 +156,7 @@ public final class BlockFactory {
         return builder;
     }
 
-    public static BlockBuilder sapling(MapColor mapColor, TreeGrower generator) {
+    public static BlockBuilder sapling(MapColor mapColor, AbstractTreeGrower generator) {
         return new BlockBuilder(s -> new SaplingBlock(generator, s), BlockBehaviour.Properties.of()
                 .mapColor(mapColor)
                 .sound(SoundType.GRASS)
@@ -166,12 +166,12 @@ public final class BlockFactory {
                 .pushReaction(PushReaction.DESTROY));
     }
 
-    public static BlockBuilder sapling(MapColor mapColor, TreeGrower generator, TagKey<Block> placeableOn) {
+    public static BlockBuilder sapling(MapColor mapColor, AbstractTreeGrower generator, TagKey<Block> placeableOn) {
         return sapling(mapColor, generator).factory(settings -> new fr.hugman.promenade.block.SaplingBlock(generator, placeableOn, settings));
     }
 
     public static BlockBuilder leaves(MapColor mapColor) {
-        // 1.21.1 has no tinted leaf particles, like vanilla leaves
+        // 1.20.1 has no tinted leaf particles, like vanilla leaves
         return new BlockBuilder(LeavesBlock::new, BlockBehaviour.Properties.of()
                 .mapColor(mapColor)
                 .strength(0.2f)
@@ -260,7 +260,7 @@ public final class BlockFactory {
     }
 
     /**
-     * Fallen leaves are a flat pile, as 1.21.1 has no leaf litter.
+     * Fallen leaves are a flat pile, as 1.20.1 has no leaf litter.
      */
     public static BlockBuilder fallenLeaves(MapColor color) {
         return fallenLeaves(color, SoundType.GRASS);

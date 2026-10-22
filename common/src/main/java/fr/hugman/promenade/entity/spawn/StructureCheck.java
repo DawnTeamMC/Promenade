@@ -14,7 +14,8 @@ public record StructureCheck(HolderSet<Structure> requiredStructures) implements
 
     @Override
     public boolean test(SpawnContext context) {
-        return context.level().getLevel().structureManager().getStructureWithPieceAt(context.pos(), this.requiredStructures).isValid();
+        var structureManager = context.level().getLevel().structureManager();
+        return this.requiredStructures.stream().anyMatch(structure -> structureManager.getStructureWithPieceAt(context.pos(), structure.value()).isValid());
     }
 
     @Override
