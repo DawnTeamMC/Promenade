@@ -11,7 +11,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.features.VegetationFeatures;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
@@ -57,7 +57,7 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
         return "Configured Features";
     }
 
-    public static void register(BootstrapContext<ConfiguredFeature<?, ?>> registerable) {
+    public static void register(BootstapContext<ConfiguredFeature<?, ?>> registerable) {
         final var configured = registerable.lookup(Registries.CONFIGURED_FEATURE);
         final var placed = registerable.lookup(Registries.PLACED_FEATURE);
 
@@ -230,7 +230,7 @@ public class PromenadeConfiguredFeatureProvider extends FabricDynamicRegistryPro
     }
 
 
-    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void of(BootstrapContext<ConfiguredFeature<?, ?>> registry, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
+    private static <FC extends FeatureConfiguration, F extends Feature<FC>> void of(BootstapContext<ConfiguredFeature<?, ?>> registry, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {
         FeatureUtils.register(registry, key, feature, config);
     }
 }

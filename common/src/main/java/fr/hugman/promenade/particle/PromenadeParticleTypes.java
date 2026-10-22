@@ -1,7 +1,7 @@
 package fr.hugman.promenade.particle;
 
+import fr.hugman.promenade.platform.PromenadePlatform;
 import fr.hugman.promenade.Promenade;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -15,7 +15,7 @@ public class PromenadeParticleTypes {
     public static final SimpleParticleType MIKADO_MAPLE_LEAF = register("mikado_maple_leaf", simple());
 
     public static <B extends ParticleType<?>> B register(String path, B particleType) {
-        return Registry.register(BuiltInRegistries.PARTICLE_TYPE, Promenade.id(path), particleType);
+        return PromenadePlatform.INSTANCE.register(BuiltInRegistries.PARTICLE_TYPE, Promenade.id(path), particleType);
     }
 
     private static SimpleParticleType simple() {

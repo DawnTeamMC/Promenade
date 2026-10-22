@@ -33,7 +33,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 /**
- * Generates the block states and models. Tints are registered in code on 1.21.1 (see {@code PromenadeBlockColors}).
+ * Generates the block states and models. Tints are registered in code on 1.20.1 (see {@code PromenadeBlockColors}).
  */
 public class PromenadeModelProvider extends FabricModelProvider {
     private static final PropertyDispatch UP_DEFAULT_ROTATION_OPERATIONS = PropertyDispatch.property(BlockStateProperties.FACING)
@@ -152,7 +152,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
 
         this.registerBlueberryBush(gen);
 
-        // 1.21.1 spawn eggs are tinted templates
+        // 1.20.1 spawn eggs are tinted templates
         for (Item spawnEgg : new Item[]{PromenadeItems.CAPYBARA_SPAWN_EGG, PromenadeItems.DUCK_SPAWN_EGG, PromenadeItems.LUSH_CREEPER_SPAWN_EGG, PromenadeItems.SUNKEN_SPAWN_EGG}) {
             gen.delegateItemModel(spawnEgg, ModelLocationUtils.decorateItemModelLocation("template_spawn_egg"));
         }
@@ -210,7 +210,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
     }
 
     private void registerSnowyLeaves(BlockModelGenerators gen, Block snowyLeaves, Block normalLeaves, String textureName) {
-        var textureId = ResourceLocation.fromNamespaceAndPath(BuiltInRegistries.BLOCK.getKey(snowyLeaves).getNamespace(), "block/" + textureName);
+        var textureId = new ResourceLocation(BuiltInRegistries.BLOCK.getKey(snowyLeaves).getNamespace(), "block/" + textureName);
         var bottomModel = gen.createSuffixedVariant(snowyLeaves, "_bottom", PromenadeModels.BOTTOM_SNOWY_LEAVES, block -> PromenadeTextureMaps.snowyLeaves(textureId, normalLeaves));
         var model = gen.createSuffixedVariant(snowyLeaves, "", ModelTemplates.CUBE_ALL, identifier -> TextureMapping.cube(textureId));
         this.registerSnowyLeaves(gen, snowyLeaves, bottomModel, model);
@@ -228,7 +228,7 @@ public class PromenadeModelProvider extends FabricModelProvider {
     }
 
     /**
-     * Fallen leaves are flat piles on 1.21.1, which has no leaf litter.
+     * Fallen leaves are flat piles on 1.20.1, which has no leaf litter.
      */
     public final void registerFallenLeaves(BlockModelGenerators gen, Block fallenLeaves) {
         gen.createTrivialBlock(fallenLeaves, PromenadeTexturedModels.FALLEN_LEAVES);

@@ -1,8 +1,8 @@
 package fr.hugman.promenade.world.gen.tree.foliage;
 
+import fr.hugman.promenade.platform.PromenadePlatform;
 import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.Promenade;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
@@ -12,7 +12,7 @@ public class PromenadeFoliagePlacerTypes {
     public static final FoliagePlacerType<MapleFoliagePlacer> MAPLE = register("maple", MapleFoliagePlacer.CODEC);
 
     private static <P extends FoliagePlacer> FoliagePlacerType<P> register(String path, MapCodec<P> codec) {
-        return Registry.register(BuiltInRegistries.FOLIAGE_PLACER_TYPE, Promenade.id(path), new FoliagePlacerType<>(codec));
+        return PromenadePlatform.INSTANCE.register(BuiltInRegistries.FOLIAGE_PLACER_TYPE, Promenade.id(path), new FoliagePlacerType<>(codec.codec()));
     }
 
 }

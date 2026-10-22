@@ -24,14 +24,12 @@ public class PromenadeEntityTypeTagProvider extends FabricTagProvider.EntityType
     protected void addTags(HolderLookup.Provider wrapperLookup) {
         // Vanilla
         builder(EntityTypeTags.SKELETONS).add(SUNKEN);
-        builder(EntityTypeTags.AQUATIC).add(SUNKEN, CAPYBARA);
 
 
         builder(EntityTypeTags.AXOLOTL_ALWAYS_HOSTILES).add(SUNKEN);
         builder(EntityTypeTags.FREEZE_IMMUNE_ENTITY_TYPES).add(DUCK);
         builder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(DUCK);
         builder(EntityTypeTags.POWDER_SNOW_WALKABLE_MOBS).add(DUCK);
-        builder(EntityTypeTags.NOT_SCARY_FOR_PUFFERFISH).add(CAPYBARA);
 
         // Conventional
         builder(ANIMALS).add(DUCK, CAPYBARA);

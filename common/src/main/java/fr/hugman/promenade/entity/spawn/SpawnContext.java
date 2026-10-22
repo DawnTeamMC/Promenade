@@ -9,7 +9,7 @@ import net.minecraft.world.level.biome.Biome;
  * Where a mob is spawning, as seen by {@link SpawnCondition}s.
  * <p>
  * Newer versions of Minecraft pick mob variants with spawn conditions; this package brings the same system (and the
- * same data format) to 1.21.1.
+ * same data format) to 1.20.1.
  */
 public record SpawnContext(BlockPos pos, ServerLevelAccessor level, Holder<Biome> biome) {
     public static SpawnContext create(ServerLevelAccessor level, BlockPos pos) {

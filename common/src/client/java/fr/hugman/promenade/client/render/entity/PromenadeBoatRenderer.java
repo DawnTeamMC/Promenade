@@ -61,7 +61,7 @@ public class PromenadeBoatRenderer extends EntityRenderer<Boat> {
         poseStack.mulPose(Axis.YP.rotationDegrees(90.0F));
         this.model.setupAnim(boat, tickDelta, 0.0F, -0.1F, 0.0F, 0.0F);
         VertexConsumer vertexConsumer = buffers.getBuffer(this.model.renderType(this.texture));
-        this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
+        this.model.renderToBuffer(poseStack, vertexConsumer, light, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
         if (!boat.isUnderWater() && this.model instanceof WaterPatchModel waterPatchModel) {
             VertexConsumer waterMask = buffers.getBuffer(RenderType.waterMask());
             waterPatchModel.waterPatch().render(poseStack, waterMask, light, OverlayTexture.NO_OVERLAY);

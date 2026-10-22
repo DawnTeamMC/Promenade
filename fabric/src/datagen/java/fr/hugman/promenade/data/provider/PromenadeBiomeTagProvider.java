@@ -5,7 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
+import net.fabricmc.fabric.api.tag.convention.v1.ConventionalBiomeTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BiomeTags;
@@ -29,28 +29,28 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
 
         builder(HAS_PALMS)
                 .add(DESERT)
-                .addOptionalTag(ConventionalBiomeTags.IS_DESERT);
+                .addOptionalTag(ConventionalBiomeTags.DESERT);
         builder(HAS_DARK_FOREST_WITCH_HUTS)
                 .add(DARK_FOREST)
-                .addOptionalTag(TagKey.create(Registries.BIOME, ResourceLocation.fromNamespaceAndPath("c", "is_dark_forest")));
+                .addOptionalTag(TagKey.create(Registries.BIOME, new ResourceLocation("c", "is_dark_forest")));
 
         builder(CAN_FREEZE_DURING_SNOWFALL).add(GLACARIAN_TAIGA);
 
         builder(SPAWNS_CAPYBARAS)
                 .forceAddTag(BiomeTags.IS_RIVER)
                 .add(MANGROVE_SWAMP, SWAMP)
-                .addOptionalTag(ConventionalBiomeTags.IS_RIVER)
-                .addOptionalTag(ConventionalBiomeTags.IS_SWAMP);
+                .addOptionalTag(ConventionalBiomeTags.RIVER)
+                .addOptionalTag(ConventionalBiomeTags.SWAMP);
         builder(SPAWNS_SUNKEN).add(WARM_OCEAN, LUKEWARM_OCEAN, DEEP_LUKEWARM_OCEAN);
         builder(SPAWNS_MALLARD_DUCKS)
                 .forceAddTag(BiomeTags.IS_OCEAN)
                 .forceAddTag(BiomeTags.IS_RIVER)
-                .addOptionalTag(ConventionalBiomeTags.IS_OCEAN)
-                .addOptionalTag(ConventionalBiomeTags.IS_RIVER);
+                .addOptionalTag(ConventionalBiomeTags.OCEAN)
+                .addOptionalTag(ConventionalBiomeTags.RIVER);
         builder(SPAWNS_PEKIN_DUCKS)
                 .add(PLAINS)
                 .forceAddTag(BiomeTags.IS_FOREST)
-                .addOptionalTag(ConventionalBiomeTags.IS_OCEAN);
+                .addOptionalTag(ConventionalBiomeTags.OCEAN);
 
         // Vanilla
         builder(BiomeTags.IS_FOREST).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY);
@@ -59,7 +59,6 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
         builder(BiomeTags.IS_TAIGA).add(GLACARIAN_TAIGA);
 
         builder(BiomeTags.STRONGHOLD_BIASED_TO).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
-        builder(BiomeTags.HAS_TRIAL_CHAMBERS).addTag(SAKURA_GROVES).add(CARNELIAN_TREEWAY, GLACARIAN_TAIGA);
         builder(BiomeTags.HAS_BASTION_REMNANT).add(DARK_AMARANTH_FOREST);
 
         builder(BiomeTags.SPAWNS_COLD_VARIANT_FROGS).add(GLACARIAN_TAIGA);
@@ -71,10 +70,10 @@ public class PromenadeBiomeTagProvider extends FabricTagProvider<Biome> {
         builder(PRIMARY_WOOD_TYPE_PALM).addTag(HAS_PALMS);
         builder(PRIMARY_WOOD_TYPE_MAPLE).add(CARNELIAN_TREEWAY);
         builder(PRIMARY_WOOD_TYPE_DARK_AMARANTH).add(DARK_AMARANTH_FOREST);
-        builder(ConventionalBiomeTags.IS_CONIFEROUS_TREE).add(CARNELIAN_TREEWAY);
-        builder(ConventionalBiomeTags.IS_SNOWY).add(GLACARIAN_TAIGA);
-        builder(ConventionalBiomeTags.IS_ICY).add(GLACARIAN_TAIGA);
-        builder(ConventionalBiomeTags.IS_NETHER_FOREST).add(DARK_AMARANTH_FOREST);
+        builder(ConventionalBiomeTags.TREE_CONIFEROUS).add(CARNELIAN_TREEWAY);
+        builder(ConventionalBiomeTags.SNOWY).add(GLACARIAN_TAIGA);
+        builder(ConventionalBiomeTags.ICY).add(GLACARIAN_TAIGA);
+        builder(ConventionalBiomeTags.NETHER_FORESTS).add(DARK_AMARANTH_FOREST);
     }
 
     private PromenadeTagBuilder<Biome> builder(TagKey<Biome> tag) {

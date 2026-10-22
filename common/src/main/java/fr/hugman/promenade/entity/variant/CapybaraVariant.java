@@ -4,9 +4,6 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import fr.hugman.promenade.registry.PromenadeRegistryKeys;
 import net.minecraft.core.Holder;
-import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.RegistryFixedCodec;
 import fr.hugman.promenade.entity.spawn.PriorityProvider;
 import fr.hugman.promenade.entity.spawn.SpawnCondition;
@@ -32,7 +29,6 @@ public record CapybaraVariant(
     ).apply(instance, CapybaraVariant::new));
 
     public static final Codec<Holder<CapybaraVariant>> ENTRY_CODEC = RegistryFixedCodec.create(PromenadeRegistryKeys.CAPYBARA_VARIANT);
-    public static final StreamCodec<RegistryFriendlyByteBuf, Holder<CapybaraVariant>> ENTRY_PACKET_CODEC = ByteBufCodecs.holderRegistry(PromenadeRegistryKeys.CAPYBARA_VARIANT);
 
     private CapybaraVariant(AssetInfo adultInfo, AssetInfo babyInfo) {
         this(adultInfo, babyInfo, SpawnPrioritySelectors.EMPTY);

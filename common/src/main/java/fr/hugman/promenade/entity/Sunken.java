@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -58,6 +59,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
+import net.minecraft.world.entity.projectile.Projectile;
 import fr.hugman.promenade.entity.spawn.SpawnContext;
 import fr.hugman.promenade.entity.variant.VariantUtils;
 import net.minecraft.world.item.BowItem;
@@ -69,13 +71,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.pathfinder.Path;
-import net.minecraft.world.level.pathfinder.PathType;
-import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
 import javax.annotation.Nullable;
 
 public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
-    private static final EntityDataAccessor<Holder<SunkenVariant>> VARIANT = SynchedEntityData.defineId(Sunken.class, PromenadeTrackedData.SUNKEN_VARIANT);
+    private static final EntityDataAccessor<ResourceKey<SunkenVariant>> VARIANT = SynchedEntityData.defineId(Sunken.class, PromenadeTrackedData.SUNKEN_VARIANT);
     private static final EntityDataAccessor<Boolean> CHARGING = SynchedEntityData.defineId(Sunken.class, EntityDataSerializers.BOOLEAN);
     private static final EntityDataAccessor<Boolean> SWIMMING = SynchedEntityData.defineId(Sunken.class, EntityDataSerializers.BOOLEAN);
 
@@ -85,33 +86,23 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
     protected final GroundPathNavigation landNavigation;
     private final RangedCrossbowAttackGoal<Sunken> crossbowAttackGoal = new RangedCrossbowAttackGoal<>(this, 1.0D, 20.0F);
     private final RangedBowAttackGoal<AbstractSkeleton> bowAttackGoal = new RangedBowAttackGoal<>(this, 1.0D, 20, 15.0F);
-    private final MeleeAttackGoal meleeAttackGoal = new MeleeAttackGoal(this, 1.2D, false) {
-        public void stop() {
-            super.stop();
-            Sunken.this.setAggressive(false);
-        }
-
-        public void start() {
-            super.start();
-            Sunken.this.setAggressive(true);
-        }
-    };
+    private final MeleeAttackGoal meleeAttackGoal = new SunkenMeleeAttackGoal(this);
     boolean targetingUnderwater;
 
     public Sunken(EntityType<? extends Sunken> entityType, Level world) {
         super(entityType, world);
         this.reassessWeaponGoal();
         this.moveControl = new SunkenMoveControl(this);
-        this.setPathfindingMalus(PathType.WATER, 0.0F);
+        this.setPathfindingMalus(BlockPathTypes.WATER, 0.0F);
         this.waterNavigation = new WaterBoundPathNavigation(this, world);
         this.landNavigation = new GroundPathNavigation(this, world);
     }
 
     @Nullable
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData) {
-        SunkenVariants.select(this.random, this.registryAccess(), SpawnContext.create(world, this.blockPosition())).ifPresent(this::setVariant);
-        return super.finalizeSpawn(world, difficulty, spawnReason, entityData);
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType spawnReason, @Nullable SpawnGroupData entityData, @Nullable CompoundTag entityNbt) {
+        SunkenVariants.select(this.random, this.level().registryAccess(), SpawnContext.create(world, this.blockPosition())).ifPresent(this::setVariant);
+        return super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityNbt);
     }
 
     public static boolean canSpawn(EntityType<Sunken> ignoredType, ServerLevelAccessor world, MobSpawnType spawnReason, BlockPos pos, RandomSource random) {
@@ -127,9 +118,9 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
     }
 
     @Override
-    public EntityDimensions getDefaultDimensions(Pose pose) {
+    public EntityDimensions getDimensions(Pose pose) {
         if (this.isBreaststrokeSwimming()) return SWIMMING_DIMENSIONS;
-        else return super.getDefaultDimensions(pose);
+        else return super.getDimensions(pose);
     }
 
     /*========*/
@@ -165,7 +156,7 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
             this.performCrossbowAttack(this, 1.6F);
         } else {
             ItemStack itemStack = this.getItemInHand(ProjectileUtil.getWeaponHoldingHand(this, Items.BOW));
-            AbstractArrow persistentProjectileEntity = this.getArrow(this.getProjectile(itemStack), pullProgress, itemStack);
+            AbstractArrow persistentProjectileEntity = this.getArrow(this.getProjectile(itemStack), pullProgress);
             double d = target.getX() - this.getX();
             double e = target.getY(0.3333333333333333D) - persistentProjectileEntity.getY();
             double f = target.getZ() - this.getZ();
@@ -182,8 +173,13 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
     }
 
     @Override
-    protected AbstractArrow getArrow(ItemStack arrow, float damageModifier, @Nullable ItemStack shotFrom) {
-        AbstractArrow persistentProjectileEntity = super.getArrow(arrow, damageModifier, shotFrom);
+    public void shootCrossbowProjectile(LivingEntity target, ItemStack crossbow, Projectile projectile, float multiShotSpray) {
+        this.shootCrossbowProjectile(this, target, projectile, multiShotSpray, 1.6F);
+    }
+
+    @Override
+    protected AbstractArrow getArrow(ItemStack arrow, float damageModifier) {
+        AbstractArrow persistentProjectileEntity = super.getArrow(arrow, damageModifier);
         if (persistentProjectileEntity instanceof Arrow) {
             ((Arrow) persistentProjectileEntity).addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 600));
         }
@@ -342,18 +338,18 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
     /*==============*/
 
     public Holder<SunkenVariant> getVariant() {
-        return this.entityData.get(VARIANT);
+        return VariantUtils.resolve(this.level().registryAccess(), this.entityData.get(VARIANT), SunkenVariants.DEFAULT);
     }
 
     public void setVariant(Holder<SunkenVariant> variant) {
-        this.entityData.set(VARIANT, variant);
+        variant.unwrapKey().ifPresent(key -> this.entityData.set(VARIANT, key));
     }
 
     /**
      * Each variant drops its own loot.
      */
     @Override
-    protected ResourceKey<LootTable> getDefaultLootTable() {
+    protected ResourceLocation getDefaultLootTable() {
         return this.getVariant().value().lootTable();
     }
 
@@ -387,11 +383,11 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
     /*==========*/
 
     @Override
-    protected void defineSynchedData(SynchedEntityData.Builder builder) {
-        super.defineSynchedData(builder);
-        builder.define(VARIANT, this.registryAccess().lookupOrThrow(PromenadeRegistryKeys.SUNKEN_VARIANT).getOrThrow(SunkenVariants.DEFAULT));
-        builder.define(CHARGING, false);
-        builder.define(SWIMMING, false);
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(VARIANT, SunkenVariants.DEFAULT);
+        this.entityData.define(CHARGING, false);
+        this.entityData.define(SWIMMING, false);
     }
 
     @Override
@@ -403,9 +399,34 @@ public class Sunken extends AbstractSkeleton implements CrossbowAttackMob {
     @Override
     public void readAdditionalSaveData(CompoundTag nbt) {
         super.readAdditionalSaveData(nbt);
-        VariantUtils.readVariant(nbt, this.registryAccess(), PromenadeRegistryKeys.SUNKEN_VARIANT).ifPresent(this::setVariant);
+        VariantUtils.readVariant(nbt, this.level().registryAccess(), PromenadeRegistryKeys.SUNKEN_VARIANT).ifPresent(this::setVariant);
     }
 
+
+    /**
+     * A named class rather than an anonymous one: compiling an anonymous subclass against Forge's binaries fails, as
+     * their constructor parameters share the same name.
+     */
+    static class SunkenMeleeAttackGoal extends MeleeAttackGoal {
+        private final Sunken sunken;
+
+        public SunkenMeleeAttackGoal(Sunken sunken) {
+            super(sunken, 1.2D, false);
+            this.sunken = sunken;
+        }
+
+        @Override
+        public void stop() {
+            super.stop();
+            this.sunken.setAggressive(false);
+        }
+
+        @Override
+        public void start() {
+            super.start();
+            this.sunken.setAggressive(true);
+        }
+    }
 
     static class SunkenMoveControl extends MoveControl {
         private final Sunken sunken;

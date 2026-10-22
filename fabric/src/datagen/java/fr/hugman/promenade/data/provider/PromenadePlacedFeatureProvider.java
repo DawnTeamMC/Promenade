@@ -12,7 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
@@ -53,7 +53,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
         return "Placed Features";
     }
 
-    public static void register(BootstrapContext<PlacedFeature> registerable) {
+    public static void register(BootstapContext<PlacedFeature> registerable) {
         final var configured = registerable.lookup(Registries.CONFIGURED_FEATURE);
 
         // Ores
@@ -204,7 +204,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
     }
 
     public static void of(
-            BootstrapContext<PlacedFeature> featureRegisterable,
+            BootstapContext<PlacedFeature> featureRegisterable,
             ResourceKey<PlacedFeature> key,
             Holder<ConfiguredFeature<?, ?>> feature,
             List<PlacementModifier> modifiers
@@ -213,7 +213,7 @@ public class PromenadePlacedFeatureProvider extends FabricDynamicRegistryProvide
     }
 
     public static void of(
-            BootstrapContext<PlacedFeature> featureRegisterable,
+            BootstapContext<PlacedFeature> featureRegisterable,
             ResourceKey<PlacedFeature> key,
             Holder<ConfiguredFeature<?, ?>> feature,
             PlacementModifier... modifiers

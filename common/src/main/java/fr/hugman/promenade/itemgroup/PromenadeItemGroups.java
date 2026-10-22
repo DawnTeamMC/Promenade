@@ -2,7 +2,6 @@ package fr.hugman.promenade.itemgroup;
 
 import fr.hugman.promenade.block.PromenadeBlocks;
 import fr.hugman.promenade.platform.PromenadePlatform;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -17,6 +16,6 @@ public class PromenadeItemGroups {
             .build());
 
     private static CreativeModeTab of(ResourceKey<CreativeModeTab> key, CreativeModeTab itemGroup) {
-        return Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, key, itemGroup);
+        return PromenadePlatform.INSTANCE.register(BuiltInRegistries.CREATIVE_MODE_TAB, key, itemGroup);
     }
 }

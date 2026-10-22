@@ -18,4 +18,4 @@ rootProject.name = 'Promenade'
 include 'common'
 // Loader-specific entrypoints, metadata and platform implementations.
 include 'fabric'
-include 'neoforge'
+include 'forge'

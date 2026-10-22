@@ -1,6 +1,5 @@
 package fr.hugman.promenade.block;
 
-import com.mojang.serialization.MapCodec;
 import fr.hugman.promenade.world.gen.feature.PromenadeConfiguredFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,15 +19,9 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.lighting.LightEngine;
 
 public class NyliumBlock extends Block implements BonemealableBlock {
-    public static final MapCodec<NyliumBlock> CODEC = simpleCodec(NyliumBlock::new);
 
     public NyliumBlock(Properties settings) {
         super(settings);
-    }
-
-    @Override
-    protected MapCodec<? extends NyliumBlock> codec() {
-        return CODEC;
     }
 
     private static boolean stayAlive(BlockState state, LevelReader world, BlockPos pos) {
@@ -39,7 +32,7 @@ public class NyliumBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         if (!stayAlive(state, world, pos)) {
             //TODO: make this configurable
             world.setBlockAndUpdate(pos, Blocks.NETHERRACK.defaultBlockState());
@@ -47,7 +40,7 @@ public class NyliumBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, boolean isClient) {
         return world.getBlockState(pos.above()).isAir();
     }
 
@@ -74,10 +67,5 @@ public class NyliumBlock extends Block implements BonemealableBlock {
             BlockPos pos
     ) {
         registry.getHolder(key).ifPresent(entry -> entry.value().place(world, chunkGenerator, random, pos));
-    }
-
-    @Override
-    public Type getType() {
-        return Type.NEIGHBOR_SPREADER;
     }
 }

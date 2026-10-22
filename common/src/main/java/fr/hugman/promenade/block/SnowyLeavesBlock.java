@@ -39,12 +39,12 @@ public abstract class SnowyLeavesBlock extends FallingParticlesLeavesBlock {
     }
 
     @Override
-    protected boolean isRandomlyTicking(BlockState state) {
+    public boolean isRandomlyTicking(BlockState state) {
         return true;
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
         super.randomTick(state, world, pos, random);
 
         if (world.getBrightness(LightLayer.BLOCK, pos) > 11 && !world.getBiome(pos).is(PromenadeBiomeTags.CAN_FREEZE_DURING_SNOWFALL)) {
@@ -62,7 +62,7 @@ public abstract class SnowyLeavesBlock extends FallingParticlesLeavesBlock {
     }
 
     @Override
-    protected BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
+    public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor world, BlockPos pos, BlockPos neighborPos) {
         BlockState stateBelow = world.getBlockState(pos.below());
         return super.updateShape(state, direction, neighborState, world, pos, neighborPos).setValue(BOTTOM, !isSnow(stateBelow));
     }
