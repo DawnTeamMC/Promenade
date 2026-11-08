@@ -1,7 +1,7 @@
 plugins {
     id "net.fabricmc.fabric-loom" version "${loom_version}" apply false
     id "net.neoforged.moddev" version "${moddev_version}" apply false
-    id 'org.moddedmc.wiki.toolkit' version '0.5.0'
+    id 'org.moddedmc.wiki.toolkit' version '0.5.1'
 }
 
 subprojects {
